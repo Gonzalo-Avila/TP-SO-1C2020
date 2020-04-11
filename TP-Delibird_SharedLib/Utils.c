@@ -8,11 +8,6 @@
 
 #include "Utils.h"
 
-int test(void){
-
-	return 33;
-}
-
 /* Crea un socket de escucha para un servidor en X puerto
  * RECORDAR HACER EL CLOSE DEL LISTENNING SOCKET EN LA FUNCION CORRESPONDIENTE
  * */
@@ -111,6 +106,7 @@ void enviarMensaje(char * mensaje, int socketDestino){
 tPaquete *recibirMensaje(int socketFuente){
 
 	tPaquete *paqueteRecibido = malloc(sizeof(tPaquete));
+	paqueteRecibido->buffer=malloc(sizeof(tBuffer));
 
 	recv(socketFuente,&(paqueteRecibido->codOperacion),sizeof(int),MSG_WAITALL);
 	recv(socketFuente,&(paqueteRecibido->buffer->size),sizeof(int),MSG_WAITALL);
@@ -122,13 +118,12 @@ tPaquete *recibirMensaje(int socketFuente){
 }
 
 
-/*
-void inicializarColas(){
+
+/*void inicializarColas(){
 	  NEW_POKEMON=queue_create();
 	  APPEARED_POKEMON=queue_create();
 	  CATCH_POKEMON=queue_create();
 	  CAUGHT_POKEMON=queue_create();
 	  GET_POKEMON=queue_create();
 	  LOCALIZED_POKEMON=queue_create();
-}
-*/
+}*/

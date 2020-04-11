@@ -13,6 +13,7 @@ int main(){
 		printf("Buffer size recibido: %d\n", paquete->buffer->size);
 		printf("Payload recibido: %s\n", (char *)paquete->buffer->stream);
 		free(paquete->buffer->stream);
+                free(paquete->buffer);
 		free(paquete);
 	}
 	close(socketEscucha);
