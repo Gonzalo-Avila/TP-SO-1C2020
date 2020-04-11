@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>TP-Delibird_Game-Boy</name>
+	<name>TP-Delibird_SharedLib</name>
 	<comment></comment>
 	<projects>
-		<project>TP-Delibird_SharedLib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

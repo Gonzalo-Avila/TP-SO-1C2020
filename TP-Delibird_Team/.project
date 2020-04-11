@@ -3,6 +3,7 @@
 	<name>TP-Delibird_Team</name>
 	<comment></comment>
 	<projects>
+		<project>TP-Delibird_SharedLib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

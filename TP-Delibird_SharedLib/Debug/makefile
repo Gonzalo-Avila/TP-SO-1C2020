@@ -22,25 +22,21 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: TP-Delibird_Team
-
-dependents:
-	-cd /home/utnso/tp-2020-1c-Ripped-Dinos/TP-Delibird_SharedLib/Debug && $(MAKE) all
+all: libTP-Delibird_SharedLib.so
 
 # Tool invocations
-TP-Delibird_Team: $(OBJS) $(USER_OBJS) /home/utnso/tp-2020-1c-Ripped-Dinos/TP-Delibird_SharedLib/Debug/libTP-Delibird_SharedLib.so
+libTP-Delibird_SharedLib.so: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	gcc -L"/home/utnso/tp-2020-1c-Ripped-Dinos/TP-Delibird_SharedLib/Debug" -o "TP-Delibird_Team" $(OBJS) $(USER_OBJS) $(LIBS)
+	gcc -shared -o "libTP-Delibird_SharedLib.so" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) TP-Delibird_Team
+	-$(RM) $(LIBRARIES)$(OBJS)$(C_DEPS) libTP-Delibird_SharedLib.so
 	-@echo ' '
 
 .PHONY: all clean dependents
-/home/utnso/tp-2020-1c-Ripped-Dinos/TP-Delibird_SharedLib/Debug/libTP-Delibird_SharedLib.so:
 
 -include ../makefile.targets

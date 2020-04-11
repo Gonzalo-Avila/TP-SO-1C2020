@@ -53,6 +53,7 @@ typedef struct
 	tBuffer* buffer; //Buffer = size + stream
 } tPaquete;
 
+int test(void);
 int crearConexionServer(char * puerto);
 int crearConexionCliente(char * puerto, char * ip);
 int * esperarCliente(int socketEscucha, int backlog);

@@ -3,6 +3,7 @@
 	<name>TP-Delibird_Game-Card</name>
 	<comment></comment>
 	<projects>
+		<project>TP-Delibird_SharedLib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
