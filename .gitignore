@@ -50,3 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+TP-Delibird_Broker/Debug/
+TP-Delibird_Game-Boy/Debug/
+TP-Delibird_Game-Card/Debug/
+TP-Delibird_SharedLib/Debug/
+TP-Delibird_Team/Debug/
+
