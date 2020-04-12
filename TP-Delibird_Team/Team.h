@@ -9,5 +9,6 @@
 #define TEAM_H_
 
 #include "Utils.h"
+const MAXSIZE = 1024;
 
 #endif /* TEAM_H_ */

@@ -20,6 +20,7 @@
 #include <commons/log.h>
 #include <commons/collections/list.h>
 #include <commons/collections/queue.h>
+#include <commons/config.h>
 
 t_queue * NEW_POKEMON;
 t_queue * APPEARED_POKEMON;
@@ -30,7 +31,8 @@ t_queue * LOCALIZED_POKEMON;
 
 typedef enum
 {
-	MENSAJE=1
+	MENSAJE=1,
+	FINALIZAR=2
 }opCode;
 
 /*typedef struct
@@ -54,7 +56,7 @@ typedef struct
 } tPaquete;
 
 int crearConexionServer(char * puerto);
-int crearConexionCliente(char * puerto, char * ip);
+int crearConexionCliente(char * ip, char * puerto);
 int * esperarCliente(int socketEscucha, int backlog);
 void inicializarColas();
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar);

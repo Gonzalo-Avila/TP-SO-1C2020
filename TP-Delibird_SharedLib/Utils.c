@@ -31,7 +31,7 @@ int crearConexionServer(char * puerto){
 		freeaddrinfo(serverInfo);
 		return socketEscucha;
 }
-int crearConexionCliente(char * puerto, char * ip){
+int crearConexionCliente(char * ip, char * puerto){
 		struct addrinfo hints;
 		struct addrinfo *serverInfo;
 		memset(&hints, 0, sizeof(hints));
@@ -48,7 +48,6 @@ int crearConexionCliente(char * puerto, char * ip){
 		return socketServidor;
 
 }
-
 
 /* Espera un cliente y cuando recibe una conexion, devuelve el socket correspondiente al cliente conectado.
  * RECORDAR HACER EL FREE AL PUNTERO SOCKETCLIENTE EN LA FUNCIÓN CORRESPONDIENTE Y EL CLOSE AL SOCKET
@@ -89,7 +88,10 @@ void enviarMensaje(char * mensaje, int socketDestino){
     memcpy(buffer->stream,mensaje,buffer->size);
 
     paquete->buffer=buffer;
-    paquete->codOperacion=MENSAJE;
+    if(strcmp(mensaje,"exit")==0)
+    	paquete->codOperacion=FINALIZAR;
+    else
+        paquete->codOperacion=MENSAJE;
 
     int tamanioAEnviar = 2*sizeof(int)+buffer->size;
     void* aEnviar = serializarPaquete(paquete,tamanioAEnviar);
@@ -116,7 +118,13 @@ tPaquete *recibirMensaje(int socketFuente){
 	return paqueteRecibido;
 
 }
+int test(){
+  return 10;
+}
 
+void loggearMensaje(t_log *logger,char * mensaje){
+	log_info(logger,mensaje);
+}
 
 
 /*void inicializarColas(){
