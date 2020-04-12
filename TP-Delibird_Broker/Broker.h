@@ -8,6 +8,8 @@
 #ifndef BROKER_H_
 #define BROKER_H_
 
-#include "Utils.h"
+#include <Utils.h>
+
+t_queue * listaSocketsCliente;
 
 #endif /* BROKER_H_ */

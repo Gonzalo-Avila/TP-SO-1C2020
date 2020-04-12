@@ -8,9 +8,11 @@
 
 #include "Utils.h"
 
+
+
 /* Crea un socket de escucha para un servidor en X puerto
  * RECORDAR HACER EL CLOSE DEL LISTENNING SOCKET EN LA FUNCION CORRESPONDIENTE
- * */
+ */
 int crearConexionServer(char * puerto){
 	    struct addrinfo hints;
 		struct addrinfo *serverInfo;
@@ -31,6 +33,10 @@ int crearConexionServer(char * puerto){
 		freeaddrinfo(serverInfo);
 		return socketEscucha;
 }
+
+/* Crea una conexión con el servidor en la IP y puerto indicados, devolviendo el socket del servidor
+ *
+ */
 int crearConexionCliente(char * ip, char * puerto){
 		struct addrinfo hints;
 		struct addrinfo *serverInfo;
@@ -62,6 +68,9 @@ int * esperarCliente(int socketEscucha, int backlog)
     return socketCliente;
 }
 
+/* Serializa un paquete de formato estandar (Código de operación / Tamaño de buffer / Stream)
+ *
+ */
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar)
 {
 	int offset=0;
@@ -76,6 +85,9 @@ void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar)
     return aEnviar;
 }
 
+/* Envía un string al socket destino
+ *
+ */
 void enviarMensaje(char * mensaje, int socketDestino){
 
 	int longMensaje = strlen(mensaje);
@@ -104,7 +116,9 @@ void enviarMensaje(char * mensaje, int socketDestino){
     free(aEnviar);
 }
 
-/**/
+/* Recibe un string enviado por el socket fuente
+ *
+ */
 tPaquete *recibirMensaje(int socketFuente){
 
 	tPaquete *paqueteRecibido = malloc(sizeof(tPaquete));
@@ -118,20 +132,20 @@ tPaquete *recibirMensaje(int socketFuente){
 	return paqueteRecibido;
 
 }
+
+/* Funcion de prueba
+ *
+ */
 int test(){
   return 10;
 }
 
-void loggearMensaje(t_log *logger,char * mensaje){
-	log_info(logger,mensaje);
+/* Luego de creada la conexión con el broker, esta función envía el código de la cola a la que se va a suscribir.
+ *
+ */
+void suscribirseACola(cola tipoCola, int socketBroker){
+    send(socketBroker,(void*)(&tipoCola),sizeof(cola),0);
 }
 
 
-/*void inicializarColas(){
-	  NEW_POKEMON=queue_create();
-	  APPEARED_POKEMON=queue_create();
-	  CATCH_POKEMON=queue_create();
-	  CAUGHT_POKEMON=queue_create();
-	  GET_POKEMON=queue_create();
-	  LOCALIZED_POKEMON=queue_create();
-}*/
+

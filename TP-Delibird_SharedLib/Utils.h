@@ -29,11 +29,24 @@ t_queue * CAUGHT_POKEMON;
 t_queue * GET_POKEMON;
 t_queue * LOCALIZED_POKEMON;
 
+t_log * logger;
+t_config * config;
+
 typedef enum
 {
 	MENSAJE=1,
 	FINALIZAR=2
 }opCode;
+
+typedef enum
+{
+	NEW=1,
+	APPEARED=2,
+	CATCH=3,
+	CAUGHT=4,
+	GET=5,
+	LOCALIZED=6
+}cola;
 
 /*typedef struct
 {
@@ -62,5 +75,8 @@ void inicializarColas();
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar);
 void enviarMensaje(char * mensaje, int socketDestino);
 tPaquete *recibirMensaje(int socketFuente);
+void loggearMensaje(t_log *logger,char * mensaje);
+int test();
+
 
 #endif /* UTILS_H_ */

@@ -32084,3 +32084,64 @@ Payload recibido: exit
 
 [INFO] 15:30:33:634 Broker/(17822:17822): El proceso broker finalizó su ejecución
 
+[INFO] 18:52:36:129 Broker/(6247:6247): Se ha iniciado el servidor broker
+
+[INFO] 18:52:36:135 Broker/(6247:6247): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[INFO] 18:52:39:848 Broker/(6247:6247): Se ha conectado un cliente. Número de socket cliente: 5
+[INFO] 18:52:42:391 Broker/(6247:6247): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 5
+Payload recibido: Hola
+
+[INFO] 18:52:43:850 Broker/(6247:6247): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 5
+Payload recibido: Como
+
+[INFO] 18:52:44:709 Broker/(6247:6247): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 3
+Payload recibido: va
+
+[INFO] 18:52:45:417 Broker/(6247:6247): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: ?
+
+[INFO] 18:52:47:0 Broker/(6247:6247): Mensaje recibido del socket 5
+Código de operación recibido: 2
+Buffer size recibido: 5
+Payload recibido: exit
+
+[INFO] 18:52:47:0 Broker/(6247:6247): El cliente se ha desconectado
+
+[INFO] 18:52:47:1 Broker/(6247:6247): El proceso broker finalizó su ejecución
+
+[INFO] 20:09:38:264 Broker/(8775:8775): Se ha iniciado el servidor broker
+
+[INFO] 20:09:38:264 Broker/(8775:8775): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[INFO] 20:09:39:424 Broker/(8775:8775): Se ha conectado un cliente. Número de socket cliente: 5
+[INFO] 20:09:42:285 Broker/(8775:8775): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 5
+Payload recibido: Hola
+
+[INFO] 20:09:44:728 Broker/(8775:8775): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 5
+Payload recibido: Como
+
+[INFO] 20:09:44:728 Broker/(8775:8775): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 4
+Payload recibido: va?
+
+[INFO] 20:09:46:980 Broker/(8775:8775): Mensaje recibido del socket 5
+Código de operación recibido: 2
+Buffer size recibido: 5
+Payload recibido: exit
+
+[INFO] 20:09:46:980 Broker/(8775:8775): El cliente se ha desconectado
+
+[INFO] 20:09:46:980 Broker/(8775:8775): El proceso broker finalizó su ejecución
+

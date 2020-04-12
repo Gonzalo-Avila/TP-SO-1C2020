@@ -1,14 +1,18 @@
 #include "Team.h"
 
-
+void inicializarVariablesGlobales(){
+	config = config_create("team.config");
+	logger = log_create("team_logs","Team",1,LOG_LEVEL_TRACE);
+}
 int main(){
 
-	t_config * config = config_create("team.config");
-	t_log * logger = log_create("team_logs","Team",1,LOG_LEVEL_TRACE);
+	inicializarVariablesGlobales();
+
 	char * ipServidor = malloc(strlen(config_get_string_value(config,"IP"))+1);
 	ipServidor = config_get_string_value(config,"IP");
 	char * puertoServidor = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
 	puertoServidor = config_get_string_value(config,"PUERTO");
+
     log_info(logger,"Se ha iniciado el cliente team\n");
 
 	int socketServidor = crearConexionCliente(ipServidor,puertoServidor);

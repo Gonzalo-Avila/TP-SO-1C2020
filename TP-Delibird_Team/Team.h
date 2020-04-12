@@ -8,7 +8,8 @@
 #ifndef TEAM_H_
 #define TEAM_H_
 
-#include "Utils.h"
+#include <Utils.h>
+
 const MAXSIZE = 1024;
 
 #endif /* TEAM_H_ */
