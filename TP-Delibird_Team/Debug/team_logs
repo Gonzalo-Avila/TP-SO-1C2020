@@ -46,3 +46,15 @@ Número de socket: 154301104
 
 [INFO] 20:09:46:980 Team/(8781:8781): El proceso team finalizó su ejecución
 
+[INFO] 20:55:50:216 Team/(27571:27571): Se ha iniciado el cliente team
+
+[INFO] 20:55:50:217 Team/(27571:27571): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 142357168
+[INFO] 20:57:06:598 Team/(27577:27577): Se ha iniciado el cliente team
+
+[INFO] 20:57:06:599 Team/(27577:27577): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 156512944

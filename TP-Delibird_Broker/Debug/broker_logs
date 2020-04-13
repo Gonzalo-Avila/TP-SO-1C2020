@@ -32145,3 +32145,155 @@ Payload recibido: exit
 
 [INFO] 20:09:46:980 Broker/(8775:8775): El proceso broker finalizó su ejecución
 
+[INFO] 20:54:32:423 Broker/(27404:27404): Se ha iniciado el servidor broker
+
+[INFO] 20:54:32:424 Broker/(27404:27404): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[INFO] 20:57:01:265 Broker/(27576:27576): Se ha iniciado el servidor broker
+
+[INFO] 20:57:01:266 Broker/(27576:27576): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[INFO] 20:57:06:599 Broker/(27576:27576): Se ha conectado un cliente. Número de socket cliente: 5
+[INFO] 20:57:08:268 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: a
+
+[INFO] 20:57:08:915 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: s
+
+[INFO] 20:57:09:552 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: d
+
+[INFO] 20:57:10:92 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: b
+
+[INFO] 20:57:10:702 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: n
+
+[INFO] 20:57:11:436 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: q
+
+[INFO] 20:57:11:935 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: w
+
+[INFO] 20:57:12:351 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: e
+
+[INFO] 20:57:12:706 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: r
+
+[INFO] 20:57:13:5 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: t
+
+[INFO] 20:57:13:304 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: y
+
+[INFO] 20:57:13:747 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: u
+
+[INFO] 20:57:14:180 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: i
+
+[INFO] 20:57:14:607 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: o
+
+[INFO] 20:57:16:6 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: a
+
+[INFO] 20:57:16:436 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: s
+
+[INFO] 20:57:16:661 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: d
+
+[INFO] 20:57:16:908 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 2
+Payload recibido: d
+
+[INFO] 20:57:17:111 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 3
+Payload recibido: ss
+
+[INFO] 20:57:17:548 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 5
+Payload recibido: dasd
+
+[INFO] 20:57:17:889 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 5
+Payload recibido: asda
+
+[INFO] 20:57:18:231 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 6
+Payload recibido: sdasd
+
+[INFO] 20:57:18:472 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 4
+Payload recibido: asd
+
+[INFO] 20:57:18:713 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 4
+Payload recibido: asd
+
+[INFO] 20:57:18:951 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 4
+Payload recibido: asd
+
+[INFO] 20:57:19:168 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 4
+Payload recibido: asd
+
+[INFO] 20:57:19:387 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 4
+Payload recibido: asd
+
+[INFO] 20:57:19:617 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 5
+Payload recibido: asda
+
+[INFO] 20:57:19:986 Broker/(27576:27576): Mensaje recibido del socket 5
+Código de operación recibido: 1
+Buffer size recibido: 6
+Payload recibido: sdasd
+
