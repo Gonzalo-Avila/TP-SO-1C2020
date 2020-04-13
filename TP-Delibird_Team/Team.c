@@ -15,19 +15,15 @@ int main(){
 
     log_info(logger,"Se ha iniciado el cliente team\n");
 
-	int socketServidor = crearConexionCliente(ipServidor,puertoServidor);
+	int socketBroker = crearConexionCliente(ipServidor,puertoServidor);
 	log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
 			config_get_string_value(config,"IP"),config_get_string_value(config,"PUERTO"));
 
-    while(1){
-    	char * mensaje = malloc(MAXSIZE);
-      	printf("Ingrese mensaje: ");
-      	scanf("%s",mensaje);
-      	enviarMensaje(mensaje,socketServidor);
-        if(strcmp(mensaje,"exit")==0)
-        	break;
-    }
-    close(socketServidor);
+	suscribirseACola(APPEARED, socketBroker);
+	suscribirseACola(LOCALIZED, socketBroker);
+	suscribirseACola(CAUGHT, socketBroker);
+    while(1);
+    close(socketBroker);
     log_info(logger,"Finalizó la conexión con el servidor\n");
     log_info(logger,"El proceso team finalizó su ejecución\n");
     return 0;

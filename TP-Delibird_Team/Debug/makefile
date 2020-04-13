@@ -25,7 +25,7 @@ endif
 all: TP-Delibird_Team
 
 dependents:
-	-cd /home/utnso/Escritorio/DELIBIRD/tp-2020-1c-Ripped-Dinos/TP-Delibird_SharedLib/Debug && $(MAKE) clean all
+	-cd /home/utnso/Escritorio/DELIBIRD/tp-2020-1c-Ripped-Dinos/TP-Delibird_SharedLib/Debug && $(MAKE) all
 
 # Tool invocations
 TP-Delibird_Team: $(OBJS) $(USER_OBJS) /home/utnso/Escritorio/DELIBIRD/tp-2020-1c-Ripped-Dinos/TP-Delibird_SharedLib/Debug/libTP-Delibird_SharedLib.so

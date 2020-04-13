@@ -1,63 +1,157 @@
 #include "Broker.h"
 
 
+/* Recibe el código de suscripción desde el socket a suscribirse, eligiendo de esta manera la cola y agregando el socket
+ * a la lista de suscriptores de la misma.
+ */
+void atenderSuscripcion(int socketSuscriptor){
 
-void atenderSuscripcion(int socketEmisor){
-    int codSuscripcion;
-    recv(socketEmisor,&codSuscripcion,sizeof(int),MSG_WAITALL);
-    switch(codSuscripcion)
-    {
-         case NEW:
-         {
-        	 //Suscribir a NEW_POKEMON
+      int codSuscripcion;
+      recv(socketSuscriptor,&codSuscripcion,sizeof(int),MSG_WAITALL);
+      switch(codSuscripcion)
+      {
+           case NEW:
+           {
+          	 //Suscribir a NEW_POKEMON
+             list_add(suscriptoresNEW,&socketSuscriptor);
+             log_info(logger,"Hay un nuevo suscriptor en la cola NEW_POKEMON. Número de socket suscriptor: %d", socketSuscriptor);
              break;
-         }
-         case APPEARED:
-         {
+           }
+           case APPEARED:
+           {
         	 //Suscribir a APPEARED_POKEMON
+        	 list_add(suscriptoresAPP,&socketSuscriptor);
+        	 log_info(logger,"Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: %d", socketSuscriptor);
         	 break;
-         }
-         case CATCH:
-         {
+           }
+           case CATCH:
+           {
         	 //Suscribir a CATCH_POKEMON
+        	 list_add(suscriptoresCAT,&socketSuscriptor);
+        	 log_info(logger,"Hay un nuevo suscriptor en la cola CATCH_POKEMON. Número de socket suscriptor: %d", socketSuscriptor);
         	 break;
-         }
-         case CAUGHT:
-         {
+           }
+           case CAUGHT:
+           {
         	 //Suscribir a CAUGHT_POKEMON
+        	 list_add(suscriptoresCAU,&socketSuscriptor);
+        	 log_info(logger,"Hay un nuevo suscriptor en la cola CAUGHT_POKEMON. Número de socket suscriptor: %d", socketSuscriptor);
         	 break;
-         }
-         case GET:
-         {
+           }
+           case GET:
+           {
         	 //Suscribir a GET_POKEMON
+        	 list_add(suscriptoresGET,&socketSuscriptor);
+        	 log_info(logger,"Hay un nuevo suscriptor en la cola GET_POKEMON. Número de socket suscriptor: %d", socketSuscriptor);
         	 break;
-         }
-         case LOCALIZED:
-         {
+           }
+           case LOCALIZED:
+           {
         	 //Suscribir a LOCALIZED_POKEMON
+        	 list_add(suscriptoresLOC,&socketSuscriptor);
+        	 log_info(logger,"Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: %d", socketSuscriptor);
         	 break;
-         }
-         default:
-         {
-
-         }
-    }
+           }
+           default:
+           {
+        	 log_error(logger, "Intento fallido de suscripción a una cola de mensajes");
+        	 break;
+           }
+	   }
 }
 
-void inicializarColas(){
+/* Guarda el mensaje en memoria cache
+ * 1) Busca ponerlo en un espacio libre.
+ * 2) Si no puede, compacta la memoria y vuelve a probar.
+ * 3) Si no puede, borra el mensaje mas viejo.
+ */
+void cachearMensaje(void * mensaje){
+
+}
+
+/* Espera mensajes de una conexión ya establecida. Según el código de operación recibido, delega tareas a distintos modulos.
+ *
+ */
+void esperarMensajes(int socketCliente){
+	int codOperacion;
+	while(1){
+
+      recv(socketCliente,&codOperacion,sizeof(int),MSG_WAITALL);
+      switch(codOperacion)
+      {
+        case SUSCRIPCION:
+        {
+            atenderSuscripcion(socketCliente);
+            break;
+        }
+        case MENSAJE:
+        {
+        	/* En este punto habria que:
+        	 * - Determinar a que cola va a ir ese mensaje, y agregarlo.
+        	 * - Reenviar el mensaje a todos los suscriptores de dicha cola (¿o eso se hace en otro proceso asincronico?).
+        	 * - Guardar el mensaje en la caché.
+             *
+        	 */
+
+            break;
+        }
+        case FINALIZAR:
+        {
+        	/* Finalizaría la conexión con el broker de forma ordenada.
+        	 * No creo que tenga mucho sentido en el TP, seria para hacer pruebas.
+        	 */
+        	break;
+        }
+        default:
+        {
+            log_error(logger,"El mensaje recibido está dañado");
+        }
+	  }
+	}
+}
+
+
+/* Espera nuevas conexiones en el socket de escucha. Al establecerse una nueva, envía esa conexión a un nuevo hilo para que
+ * sea gestionada y vuelve a esperar nuevas conexiones.
+ */
+void atenderConexiones(int socketEscucha){
+	while(1){
+		int * socketCliente = esperarCliente(socketEscucha, 5);
+		log_info(logger,"Se ha conectado un cliente. Número de socket cliente: %d", *socketCliente);
+
+        /* Esto me habia traido problemas antes, ¿andará asi?
+         * Sino habria que crear una lista de hilos e ir agregando/quitando
+         */
+        pthread_t nuevoHilo;
+		pthread_create(&nuevoHilo, NULL, (void*)esperarMensajes,*socketCliente);
+		pthread_detach(nuevoHilo);
+
+
+	}
+}
+
+void inicializarColasYListas(){
 	  NEW_POKEMON=queue_create();
 	  APPEARED_POKEMON=queue_create();
 	  CATCH_POKEMON=queue_create();
 	  CAUGHT_POKEMON=queue_create();
 	  GET_POKEMON=queue_create();
 	  LOCALIZED_POKEMON=queue_create();
+
+	  suscriptoresNEW=list_create();;
+	  suscriptoresAPP=list_create();;
+	  suscriptoresGET=list_create();;
+	  suscriptoresLOC=list_create();;
+	  suscriptoresCAT=list_create();;
+	  suscriptoresCAU=list_create();;
 }
 
 void inicializarVariablesGlobales(){
 	config = config_create("broker.config");
 	logger = log_create("broker_logs","Broker",1,LOG_LEVEL_TRACE);
-	listaSocketsCliente=queue_create();
-	inicializarColas();
+	cacheBroker = malloc(config_get_int_value(config,"CACHESIZE"));
+
+	inicializarColasYListas();
 }
 
 int main(){
@@ -74,15 +168,11 @@ int main(){
 	int socketEscucha = crearConexionServer(puertoEscucha);
 	log_info(logger,"El servidor está configurado y a la espera de un cliente. Número de socket servidor: %d", socketEscucha);
 
-	/* Aca iria un while donde el broker esperaria nuevos clientes, y por cada uno que llegue iria a un nuevo thread
-	 * para atender las sucripciones, y posteriormente el envio/recepcion de mensajes. Tambien podria haber un thread
-	 * nuevo para separar atencion de nuevos suscriptores y atencion de clientes ya suscriptos
-	 */
-	int * socketCliente = esperarCliente(socketEscucha, 5);
-	log_info(logger,"Se ha conectado un cliente. Número de socket cliente: %d", *socketCliente);
+
+    atenderConexiones(socketEscucha);
 
 
-	while(1){
+	/*while(1){
 		tPaquete *paquete = recibirMensaje(*socketCliente);
 
 		log_info(logger,"Mensaje recibido del socket %d\nCódigo de operación recibido: %d\nBuffer size recibido: %d\nPayload recibido: %s\n",
@@ -107,7 +197,7 @@ int main(){
 	free(socketCliente);
 
 	log_info(logger,"El cliente se ha desconectado\n");
-    log_info(logger,"El proceso broker finalizó su ejecución\n");
+    log_info(logger,"El proceso broker finalizó su ejecución\n");*/
 
 	return 0;
 

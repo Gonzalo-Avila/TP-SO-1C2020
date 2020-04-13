@@ -140,10 +140,13 @@ int test(){
   return 10;
 }
 
+
 /* Luego de creada la conexión con el broker, esta función envía el código de la cola a la que se va a suscribir.
  *
  */
 void suscribirseACola(cola tipoCola, int socketBroker){
+    opCode tipoMensaje = SUSCRIPCION;
+	send(socketBroker,(void*)(&tipoMensaje),sizeof(opCode),0);
     send(socketBroker,(void*)(&tipoCola),sizeof(cola),0);
 }
 
