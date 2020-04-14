@@ -19,6 +19,9 @@ int main(){
 	log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
 			config_get_string_value(config,"IP"),config_get_string_value(config,"PUERTO"));
 
+	free(ipServidor);
+	free(puertoServidor);
+
 	suscribirseACola(APPEARED, socketBroker);
 	suscribirseACola(LOCALIZED, socketBroker);
 	suscribirseACola(CAUGHT, socketBroker);
@@ -30,6 +33,9 @@ int main(){
     close(socketBroker);
     log_info(logger,"Finalizó la conexión con el servidor\n");
     log_info(logger,"El proceso team finalizó su ejecución\n");
+
+    log_destroy(logger);
+    config_destroy(config);
     return 0;
 
 

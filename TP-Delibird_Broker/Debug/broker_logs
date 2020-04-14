@@ -15688,3 +15688,44 @@
 [INFO] 18:06:28:387 Broker/(16281:16323): Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: 6
 [INFO] 18:06:28:388 Broker/(16281:16323): Hay un nuevo suscriptor en la cola CAUGHT_POKEMON. Número de socket suscriptor: 6
 [INFO] 18:06:28:388 Broker/(16281:16323): El cliente con socket 6 se ha desconectado
+[INFO] 18:36:37:838 Broker/(17032:17032): Se ha iniciado el servidor broker
+
+[INFO] 18:36:37:917 Broker/(17032:17032): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[INFO] 18:36:53:269 Broker/(17032:17032): Se ha conectado un cliente. Número de socket cliente: 5
+[INFO] 18:36:53:310 Broker/(17032:17045): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 18:36:53:316 Broker/(17032:17045): Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: 5
+[INFO] 18:36:53:317 Broker/(17032:17045): Hay un nuevo suscriptor en la cola CAUGHT_POKEMON. Número de socket suscriptor: 5
+[INFO] 18:36:53:317 Broker/(17032:17045): El cliente con socket 5 se ha desconectado
+[INFO] 18:37:27:124 Broker/(17032:17032): Se ha conectado un cliente. Número de socket cliente: 6
+[INFO] 18:37:27:149 Broker/(17032:17063): Hay un nuevo suscriptor en la cola NEW_POKEMON. Número de socket suscriptor: 6
+[INFO] 18:37:27:150 Broker/(17032:17063): Hay un nuevo suscriptor en la cola GET_POKEMON. Número de socket suscriptor: 6
+[INFO] 18:37:27:151 Broker/(17032:17063): Hay un nuevo suscriptor en la cola CATCH_POKEMON. Número de socket suscriptor: 6
+[INFO] 18:37:27:152 Broker/(17032:17063): El cliente con socket 6 se ha desconectado
+[INFO] 18:40:34:255 Broker/(17229:17229): Se ha iniciado el servidor broker
+
+[INFO] 18:40:34:334 Broker/(17229:17229): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[INFO] 18:40:41:300 Broker/(17229:17229): Se ha conectado un cliente. Número de socket cliente: 5
+[INFO] 18:40:41:368 Broker/(17229:17236): Hay un nuevo suscriptor en la cola NEW_POKEMON. Número de socket suscriptor: 5
+[INFO] 18:40:41:375 Broker/(17229:17236): Hay un nuevo suscriptor en la cola GET_POKEMON. Número de socket suscriptor: 5
+[INFO] 18:40:41:378 Broker/(17229:17236): Hay un nuevo suscriptor en la cola CATCH_POKEMON. Número de socket suscriptor: 5
+[INFO] 18:40:41:380 Broker/(17229:17236): El cliente con socket 5 se ha desconectado
+[INFO] 18:42:21:376 Broker/(17229:17229): Se ha conectado un cliente. Número de socket cliente: 6
+[INFO] 18:42:21:401 Broker/(17229:17268): Hay un nuevo suscriptor en la cola NEW_POKEMON. Número de socket suscriptor: 6
+[INFO] 18:42:21:402 Broker/(17229:17268): Hay un nuevo suscriptor en la cola GET_POKEMON. Número de socket suscriptor: 6
+[INFO] 18:42:21:403 Broker/(17229:17268): Hay un nuevo suscriptor en la cola CATCH_POKEMON. Número de socket suscriptor: 6
+[INFO] 18:42:21:404 Broker/(17229:17268): El cliente con socket 6 se ha desconectado
+[INFO] 18:45:27:428 Broker/(17229:17229): Se ha conectado un cliente. Número de socket cliente: 7
+[INFO] 18:45:27:455 Broker/(17229:17454): Hay un nuevo suscriptor en la cola NEW_POKEMON. Número de socket suscriptor: 7
+[INFO] 18:45:27:457 Broker/(17229:17454): Hay un nuevo suscriptor en la cola GET_POKEMON. Número de socket suscriptor: 7
+[INFO] 18:45:27:457 Broker/(17229:17454): Hay un nuevo suscriptor en la cola CATCH_POKEMON. Número de socket suscriptor: 7
+[INFO] 18:45:27:458 Broker/(17229:17454): El cliente con socket 7 se ha desconectado
+[INFO] 18:45:59:202 Broker/(17229:17229): Se ha conectado un cliente. Número de socket cliente: 8
+[INFO] 18:45:59:228 Broker/(17229:17501): Hay un nuevo suscriptor en la cola NEW_POKEMON. Número de socket suscriptor: 8
+[INFO] 18:45:59:229 Broker/(17229:17501): Hay un nuevo suscriptor en la cola GET_POKEMON. Número de socket suscriptor: 8
+[INFO] 18:45:59:230 Broker/(17229:17501): Hay un nuevo suscriptor en la cola CATCH_POKEMON. Número de socket suscriptor: 8
+[INFO] 18:45:59:231 Broker/(17229:17501): El cliente con socket 8 se ha desconectado
+[INFO] 18:46:05:484 Broker/(17229:17229): Se ha conectado un cliente. Número de socket cliente: 9
+[INFO] 18:46:05:507 Broker/(17229:17510): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 9
+[INFO] 18:46:05:509 Broker/(17229:17510): Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: 9
+[INFO] 18:46:05:511 Broker/(17229:17510): Hay un nuevo suscriptor en la cola CAUGHT_POKEMON. Número de socket suscriptor: 9
+[INFO] 18:46:05:512 Broker/(17229:17510): El cliente con socket 9 se ha desconectado

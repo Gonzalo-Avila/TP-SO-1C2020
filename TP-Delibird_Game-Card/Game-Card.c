@@ -24,13 +24,19 @@ int main(){
     suscribirseACola(GET, socketBroker);
     suscribirseACola(CATCH, socketBroker);
 
+    free(ipServidor);
+    free(puertoServidor);
+
     //Procedimiento auxiliar para que no rompa el server en las pruebas
     int codigoOP = FINALIZAR;
     send(socketBroker,(void*)&codigoOP,sizeof(opCode),0);
     close(socketBroker);
+
     log_info(logger,"Finalizó la conexión con el servidor\n");
     log_info(logger,"El proceso team finalizó su ejecución\n");
-    return 0;
+
+    log_destroy(logger);
+    config_destroy(config);
 
 
 

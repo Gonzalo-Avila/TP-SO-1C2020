@@ -173,11 +173,17 @@ int main(){
 	int socketEscucha = crearConexionServer(puertoEscucha);
 	log_info(logger,"El servidor está configurado y a la espera de un cliente. Número de socket servidor: %d", socketEscucha);
 
+
+
+
 	//Un hilo iria a atender conexiones
     atenderConexiones(socketEscucha);
 
     //Otro hilo iria
 
+    free(puertoEscucha);
+    log_destroy(logger);
+    config_destroy(config);
 
 
 	return 0;
