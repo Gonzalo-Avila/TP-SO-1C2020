@@ -75,7 +75,8 @@ void cachearMensaje(void * mensaje){
  */
 void esperarMensajes(int socketCliente){
 	int codOperacion;
-	while(1){
+    int desconectar=0;
+	while(desconectar==0){
 
       recv(socketCliente,&codOperacion,sizeof(int),MSG_WAITALL);
       switch(codOperacion)
@@ -91,24 +92,27 @@ void esperarMensajes(int socketCliente){
         	 * - Determinar a que cola va a ir ese mensaje, y agregarlo.
         	 * - Reenviar el mensaje a todos los suscriptores de dicha cola (¿o eso se hace en otro proceso asincronico?).
         	 * - Guardar el mensaje en la caché.
-             *
+             * - ...
         	 */
 
             break;
         }
         case FINALIZAR:
         {
-        	/* Finalizaría la conexión con el broker de forma ordenada.
+        	/* Finaliza la conexión con el broker de forma ordenada.
         	 * No creo que tenga mucho sentido en el TP, seria para hacer pruebas.
         	 */
+        	desconectar=1;
         	break;
         }
         default:
         {
             log_error(logger,"El mensaje recibido está dañado");
+            break;
         }
 	  }
 	}
+    log_info(logger, "El cliente con socket %d se ha desconectado",socketCliente);
 }
 
 
@@ -117,14 +121,14 @@ void esperarMensajes(int socketCliente){
  */
 void atenderConexiones(int socketEscucha){
 	while(1){
-		int * socketCliente = esperarCliente(socketEscucha, 5);
-		log_info(logger,"Se ha conectado un cliente. Número de socket cliente: %d", *socketCliente);
+		int socketCliente = esperarCliente(socketEscucha, 5);
+		log_info(logger,"Se ha conectado un cliente. Número de socket cliente: %d", socketCliente);
 
         /* Esto me habia traido problemas antes, ¿andará asi?
          * Sino habria que crear una lista de hilos e ir agregando/quitando
          */
         pthread_t nuevoHilo;
-		pthread_create(&nuevoHilo, NULL, (void*)esperarMensajes,*socketCliente);
+		pthread_create(&nuevoHilo, NULL, (void*)esperarMensajes,socketCliente); //No entiendo el warning, si le paso un puntero no anda
 		pthread_detach(nuevoHilo);
 
 
@@ -158,8 +162,7 @@ void inicializarVariablesGlobales(){
 
 int main(){
 
-	// 6 colas de mensajes - 3 pares de colas relacionadas
-	//
+
 	inicializarVariablesGlobales();
 
     char * puertoEscucha = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
@@ -170,36 +173,12 @@ int main(){
 	int socketEscucha = crearConexionServer(puertoEscucha);
 	log_info(logger,"El servidor está configurado y a la espera de un cliente. Número de socket servidor: %d", socketEscucha);
 
-
+	//Un hilo iria a atender conexiones
     atenderConexiones(socketEscucha);
 
-
-	/*while(1){
-		tPaquete *paquete = recibirMensaje(*socketCliente);
-
-		log_info(logger,"Mensaje recibido del socket %d\nCódigo de operación recibido: %d\nBuffer size recibido: %d\nPayload recibido: %s\n",
-				*socketCliente,paquete->codOperacion,paquete->buffer->size,paquete->buffer->stream);
-
-		if(paquete->codOperacion==FINALIZAR){
-			free(paquete->buffer->stream);
-			free(paquete->buffer);
-		    free(paquete);
-		    break;
-		}
-
-		free(paquete->buffer->stream);
-        free(paquete->buffer);
-		free(paquete);
-	}
+    //Otro hilo iria
 
 
-
-	close(socketEscucha);
-	close(*socketCliente);
-	free(socketCliente);
-
-	log_info(logger,"El cliente se ha desconectado\n");
-    log_info(logger,"El proceso broker finalizó su ejecución\n");*/
 
 	return 0;
 

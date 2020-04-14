@@ -58,13 +58,14 @@ int crearConexionCliente(char * ip, char * puerto){
 /* Espera un cliente y cuando recibe una conexion, devuelve el socket correspondiente al cliente conectado.
  * RECORDAR HACER EL FREE AL PUNTERO SOCKETCLIENTE EN LA FUNCIÓN CORRESPONDIENTE Y EL CLOSE AL SOCKET
  */
-int * esperarCliente(int socketEscucha, int backlog)
+int esperarCliente(int socketEscucha, int backlog)
 {
 	listen(socketEscucha, backlog);
 	struct sockaddr_in addr;
     socklen_t addrlen = sizeof(addr);
-    int *socketCliente = (int*)malloc(sizeof(int));
-	*socketCliente=accept(socketEscucha, (struct sockaddr *) &addr, &addrlen);
+    int socketCliente;
+    //int *socketCliente = (int*)malloc(sizeof(int)); Al parecer anda sin esto, si volvemos a tener problemas lo ponemos
+	socketCliente=accept(socketEscucha, (struct sockaddr *) &addr, &addrlen);
     return socketCliente;
 }
 
@@ -117,7 +118,7 @@ void enviarMensaje(char * mensaje, int socketDestino){
 }
 
 /* Recibe un string enviado por el socket fuente
- *
+ * RECORDAR HACER LOS FREE CORRESPONDIENTES EN LA FUNCIÓN QUE LLAMA
  */
 tPaquete *recibirMensaje(int socketFuente){
 
@@ -142,7 +143,7 @@ int test(){
 
 
 /* Luego de creada la conexión con el broker, esta función envía el código de la cola a la que se va a suscribir.
- *
+ * Nota: no usa serialización, por lo que se mandan dos mensajes en lugar de uno, pero funciona. ¿Esta mal?
  */
 void suscribirseACola(cola tipoCola, int socketBroker){
     opCode tipoMensaje = SUSCRIPCION;

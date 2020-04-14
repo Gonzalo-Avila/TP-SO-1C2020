@@ -74,3 +74,43 @@ Número de socket: 1
 IP: 127.0.0.1
 Puerto: 9898
 Número de socket: 1
+[INFO] 14:34:40:247 Team/(9673:9673): Se ha iniciado el cliente team
+
+[INFO] 14:34:40:248 Team/(9673:9673): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 14:34:40:248 Team/(9673:9673): Finalizó la conexión con el servidor
+
+[INFO] 14:34:40:249 Team/(9673:9673): El proceso team finalizó su ejecución
+
+[INFO] 14:47:56:862 Team/(10262:10262): Se ha iniciado el cliente team
+
+[INFO] 14:47:56:862 Team/(10262:10262): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 14:47:56:863 Team/(10262:10262): Finalizó la conexión con el servidor
+
+[INFO] 14:47:56:863 Team/(10262:10262): El proceso team finalizó su ejecución
+
+[INFO] 14:54:04:683 Team/(10625:10625): Se ha iniciado el cliente team
+
+[INFO] 14:54:04:684 Team/(10625:10625): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 14:54:04:684 Team/(10625:10625): Finalizó la conexión con el servidor
+
+[INFO] 14:54:04:685 Team/(10625:10625): El proceso team finalizó su ejecución
+
+[INFO] 18:06:28:384 Team/(16321:16321): Se ha iniciado el cliente team
+
+[INFO] 18:06:28:385 Team/(16321:16321): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 18:06:28:385 Team/(16321:16321): Finalizó la conexión con el servidor
+
+[INFO] 18:06:28:385 Team/(16321:16321): El proceso team finalizó su ejecución
+
