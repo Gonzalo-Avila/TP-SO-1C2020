@@ -67,6 +67,7 @@ void atenderSuscripcion(int socketSuscriptor){
  */
 void cachearMensaje(void * mensaje){
 
+
 }
 
 /* Espera mensajes de una conexión ya establecida. Según el código de operación recibido, delega tareas a distintos modulos.
@@ -131,6 +132,7 @@ void atenderConexiones(int socketEscucha){
 }
 
 void inicializarColasYListas(){
+
 	  NEW_POKEMON=queue_create();
 	  APPEARED_POKEMON=queue_create();
 	  CATCH_POKEMON=queue_create();

@@ -21,6 +21,7 @@
 #include <commons/collections/list.h>
 #include <commons/collections/queue.h>
 #include <commons/config.h>
+#include <inttypes.h>
 
 
 
@@ -63,6 +64,66 @@ typedef struct
 	opCode codOperacion;
 	tBuffer* buffer; //Buffer = size + stream
 } tPaquete;
+
+//Este mensaje hace aparecer un nuevo pokemon en la posicion indicada
+typedef struct
+{
+	uint32_t id;            //ID del mensaje. Entiendo que el emisor lo manda inicializado en 0,y el broker le asigna valor
+	uint32_t longPokemon;   //Longitud del nombre del pokemon
+	char * pokemon;         //Nombre del pokemon a agregar
+	uint32_t posicion [2];  //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna
+    uint32_t cantPokemon;   //Cantidad pokemons a agregar en la posición
+}mensajeNew;
+
+//Este mensaje avisa que ha aparecido un nuevo pokemon en la posicion indicada
+typedef struct
+{
+	uint32_t id;            //ID del mensaje al que responde.
+	uint32_t longPokemon;   //Longitud del nombre del pokemon
+	char * pokemon;         //Nombre del pokemon que apareció
+	uint32_t posicion [2];  //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna
+}mensajeAppeared;
+
+//Este mensaje indica que se va a atrapar un pokemon en determinada posicion
+typedef struct
+{
+	uint32_t id;            //ID del mensaje. Entiendo que el emisor lo manda inicializado en 0,y el broker le asigna valor
+	uint32_t longPokemon;   //Longitud del nombre del pokemon
+	char * pokemon;         //Nombre del pokemon a atrapar
+	uint32_t posicion [2];  //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna
+}mensajeCatch;
+
+//Este mensaje confirma si el resultado de la operacion "Catch" fue correcto o fallo
+typedef struct
+{
+    uint32_t id;            //ID del mensaje al que responde.
+    uint32_t resultado;     //Define si se atrapo correctamente o no. Habria que ver que tipo de variable seria.
+}mensajeCaught;
+
+//Este mensaje solicita todas las posiciones en las que se puede encontrar determinado pokemon
+typedef struct
+{
+	uint32_t id;            //ID del mensaje. Entiendo que el emisor lo manda inicializado en 0,y el broker le asigna valor
+	uint32_t longPokemon;   //Longitud del nombre del pokemon
+	char * pokemon;         //Nombre del pokemon cuyas posiciones se desea conocer.
+}mensajeGet;
+
+//Este mensaje informa todas las posiciones donde se puede encontrar un pokemon, y en que cantidades
+typedef struct
+{
+	uint32_t id;            //ID del mensaje al que responde
+	uint32_t longPokemon;   //Longitud del nombre del pokemon
+	char * pokemon;         //Nombre del pokemon cuyas posiciones se esta informando
+    t_list * posicionYCant; //Lista de todas las posiciones donde esta el pokemon y cantidad en cada una, seria un struct
+}mensajeLocalized;
+
+//Estructura para las componentes de la lista de posiciones y cantidades
+typedef struct
+{
+	uint32_t posicion[2];
+	uint32_t cantidad;
+}posicYCant;
+
 
 int crearConexionServer(char * puerto);
 int crearConexionCliente(char * ip, char * puerto);
