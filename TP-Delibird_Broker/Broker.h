@@ -25,5 +25,6 @@ t_list * suscriptoresCAT;
 t_list * suscriptoresCAU;
 
 void * cacheBroker;
+int CACHESIZE;
 
 #endif /* BROKER_H_ */
