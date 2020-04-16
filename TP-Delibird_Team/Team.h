@@ -12,4 +12,17 @@
 
 const MAXSIZE = 1024;
 
+typedef int t_posicion[2];
+
+typedef struct {
+	t_list *entrenadores;
+	char *algoritmoPlanificacion;
+}t_team;
+
+typedef struct{
+	t_posicion pos;
+	t_list *objetivos;
+	t_list *pokemones;
+}t_entrenador;
+
 #endif /* TEAM_H_ */

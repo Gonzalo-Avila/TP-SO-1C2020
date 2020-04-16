@@ -130,8 +130,6 @@ void atenderConexiones(int socketEscucha){
         pthread_t nuevoHilo;
 		pthread_create(&nuevoHilo, NULL, (void*)esperarMensajes,socketCliente); //No entiendo el warning, si le paso un puntero no anda
 		pthread_detach(nuevoHilo);
-
-
 	}
 }
 
@@ -144,12 +142,12 @@ void inicializarColasYListas(){
 	  GET_POKEMON=queue_create();
 	  LOCALIZED_POKEMON=queue_create();
 
-	  suscriptoresNEW=list_create();;
-	  suscriptoresAPP=list_create();;
-	  suscriptoresGET=list_create();;
-	  suscriptoresLOC=list_create();;
-	  suscriptoresCAT=list_create();;
-	  suscriptoresCAU=list_create();;
+	  suscriptoresNEW=list_create();
+	  suscriptoresAPP=list_create();
+	  suscriptoresGET=list_create();
+	  suscriptoresLOC=list_create();
+	  suscriptoresCAT=list_create();
+	  suscriptoresCAU=list_create();
 }
 
 void inicializarVariablesGlobales(){
