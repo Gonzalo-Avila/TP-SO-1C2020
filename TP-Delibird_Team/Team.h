@@ -25,4 +25,11 @@ typedef struct{
 	t_list *pokemones;
 }t_entrenador;
 
+typedef enum{
+	FIFO,	//First In First Out
+	RR,		//Round Robin
+	SJFCD,	//Shortest Job First Con Desalojo
+	SJFSD	//Shortest Job First Sin Desalojo
+}e_algoritmo;
+
 #endif /* TEAM_H_ */
