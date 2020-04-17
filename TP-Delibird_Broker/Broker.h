@@ -10,6 +10,8 @@
 
 #include <Utils.h>
 
+
+
 t_queue * NEW_POKEMON;
 t_queue * APPEARED_POKEMON;
 t_queue * CATCH_POKEMON;

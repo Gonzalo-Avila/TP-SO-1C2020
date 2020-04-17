@@ -144,3 +144,53 @@ Número de socket: 1
 
 [INFO] 16:40:50:913 Team/(11855:11855): El proceso team finalizó su ejecución
 
+[INFO] 18:06:05:874 Team/(783:783): Se ha iniciado el cliente team
+
+[INFO] 18:06:05:875 Team/(783:783): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 18:06:05:876 Team/(783:783): Finalizó la conexión con el servidor
+
+[INFO] 18:06:05:876 Team/(783:783): El proceso team finalizó su ejecución
+
+[INFO] 18:17:41:980 Team/(1229:1229): Se ha iniciado el cliente team
+
+[INFO] 18:17:41:981 Team/(1229:1229): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 18:17:41:981 Team/(1229:1229): Finalizó la conexión con el servidor
+
+[INFO] 18:17:41:982 Team/(1229:1229): El proceso team finalizó su ejecución
+
+[INFO] 18:17:57:861 Team/(1239:1239): Se ha iniciado el cliente team
+
+[INFO] 18:17:57:862 Team/(1239:1239): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 18:17:57:867 Team/(1239:1239): Finalizó la conexión con el servidor
+
+[INFO] 18:17:57:867 Team/(1239:1239): El proceso team finalizó su ejecución
+
+[INFO] 18:18:09:782 Team/(1254:1254): Se ha iniciado el cliente team
+
+[INFO] 18:18:09:783 Team/(1254:1254): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 18:18:09:783 Team/(1254:1254): Finalizó la conexión con el servidor
+
+[INFO] 18:18:09:783 Team/(1254:1254): El proceso team finalizó su ejecución
+
+[INFO] 18:22:11:568 Team/(1307:1307): Se ha iniciado el cliente team
+
+[INFO] 18:22:11:568 Team/(1307:1307): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 18:22:11:569 Team/(1307:1307): Finalizó la conexión con el servidor
+
+[INFO] 18:22:11:569 Team/(1307:1307): El proceso team finalizó su ejecución
+

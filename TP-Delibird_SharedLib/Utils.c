@@ -8,12 +8,15 @@
 
 #include "Utils.h"
 
-
+void atenderConexionEn(int socket, int backlog){
+	listen(socket, backlog);
+}
 
 /* Crea un socket de escucha para un servidor en X puerto
  * RECORDAR HACER EL CLOSE DEL LISTENNING SOCKET EN LA FUNCION CORRESPONDIENTE
  */
-int crearConexionServer(char * puerto){
+int crearConexionServer(char * ip, char * puerto){
+
 	    struct addrinfo hints;
 		struct addrinfo *serverInfo;
 
@@ -22,7 +25,7 @@ int crearConexionServer(char * puerto){
 		hints.ai_flags = AI_PASSIVE;
 		hints.ai_socktype = SOCK_STREAM;
 
-		getaddrinfo(NULL, puerto, &hints, &serverInfo);
+		getaddrinfo(ip, puerto, &hints, &serverInfo);
 
 
 		int socketEscucha;
@@ -31,6 +34,7 @@ int crearConexionServer(char * puerto){
 
 		bind(socketEscucha,serverInfo->ai_addr, serverInfo->ai_addrlen);
 		freeaddrinfo(serverInfo);
+
 		return socketEscucha;
 }
 
@@ -52,20 +56,17 @@ int crearConexionCliente(char * ip, char * puerto){
 		connect(socketServidor, serverInfo->ai_addr, serverInfo->ai_addrlen);
 		freeaddrinfo(serverInfo);
 		return socketServidor;
-
 }
 
 /* Espera un cliente y cuando recibe una conexion, devuelve el socket correspondiente al cliente conectado.
  * RECORDAR HACER EL FREE AL PUNTERO SOCKETCLIENTE EN LA FUNCIÓN CORRESPONDIENTE Y EL CLOSE AL SOCKET
  */
-int esperarCliente(int socketEscucha, int backlog)
+int esperarCliente(int socketEscucha)
 {
-	listen(socketEscucha, backlog);
 	struct sockaddr_in addr;
     socklen_t addrlen = sizeof(addr);
     int socketCliente;
-    //int *socketCliente = (int*)malloc(sizeof(int)); Al parecer anda sin esto, si volvemos a tener problemas lo ponemos
-	socketCliente=accept(socketEscucha, (struct sockaddr *) &addr, &addrlen);
+    socketCliente=accept(socketEscucha, (struct sockaddr *) &addr, &addrlen);
     return socketCliente;
 }
 

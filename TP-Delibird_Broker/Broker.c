@@ -230,8 +230,11 @@ void esperarMensajes(int socketCliente){
  * sea gestionada y vuelve a esperar nuevas conexiones.
  */
 void atenderConexiones(int socketEscucha){
+	char * backlog_server = malloc(strlen(config_get_string_value(config,"BACKLOG_SERVER"))+1);
+	backlog_server = config_get_string_value(config,"BACKLOG_SERVER");
+	atenderConexionEn(socketEscucha, backlog_server);
 	while(1){
-		int socketCliente = esperarCliente(socketEscucha, 5);
+		int socketCliente = esperarCliente(socketEscucha);
 		log_info(logger,"Se ha conectado un cliente. Número de socket cliente: %d", socketCliente);
 
         /* Esto me habia traido problemas antes, ¿andará asi?
@@ -267,16 +270,15 @@ void inicializarColasYListas(){
  * estan vacios. Hay que averiguar como hacer esto bien, puse un caracter para llenar.
  */
 void inicializarCache(){
-	CACHESIZE=config_get_int_value(config,"CACHESIZE");
+	CACHESIZE=config_get_int_value(config,"TAMANO_MEMORIA");
 	cacheBroker = malloc(CACHESIZE);
 
     memset(cacheBroker,'f',CACHESIZE);
-
 }
 
 void inicializarVariablesGlobales(){
 	config = config_create("broker.config");
-	logger = log_create("broker_logs","Broker",1,LOG_LEVEL_TRACE);
+	logger = log_create("broker_logs","Broker",1, LOG_LEVEL_TRACE);
 
 	inicializarColasYListas();
 	inicializarCache();
@@ -287,26 +289,24 @@ int main(){
 
 	inicializarVariablesGlobales();
 
-    char * puertoEscucha = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
-    puertoEscucha = config_get_string_value(config,"PUERTO");
+	char * ipEscucha = malloc(strlen(config_get_string_value(config,"IP_BROKER"))+1);
+	ipEscucha = config_get_string_value(config,"IP_BROKER");
+
+    char * puertoEscucha = malloc(strlen(config_get_string_value(config,"PUERTO_BROKER"))+1);
+    puertoEscucha = config_get_string_value(config,"PUERTO_BROKER");
 
 	log_info(logger,"Se ha iniciado el servidor broker\n");
 
-	int socketEscucha = crearConexionServer(puertoEscucha);
+	int socketEscucha = crearConexionServer(ipEscucha, puertoEscucha);
 	log_info(logger,"El servidor está configurado y a la espera de un cliente. Número de socket servidor: %d", socketEscucha);
-
-
-
 
 	//Un hilo iria a atender conexiones
     atenderConexiones(socketEscucha);
 
     //Otros hilos seguirian aca
-
     free(puertoEscucha);
     log_destroy(logger);
     config_destroy(config);
-
 
 	return 0;
 

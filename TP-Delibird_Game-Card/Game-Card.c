@@ -38,7 +38,5 @@ int main(){
     log_destroy(logger);
     config_destroy(config);
 
-
-
     return 0;
 }

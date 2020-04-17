@@ -128,10 +128,10 @@ typedef struct
 	uint32_t cantidad;      //Cantidad de pokemons que hay en la posición.
 }posicYCant;
 
-
-int crearConexionServer(char * puerto);
+void atenderConexionEn(int socket, int backlog);
+int crearConexionServer(char * ip, char * puerto);
 int crearConexionCliente(char * ip, char * puerto);
-int esperarCliente(int socketEscucha, int backlog);
+int esperarCliente(int socketEscucha);
 void inicializarColas();
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar);
 void enviarMensaje(char * mensaje, int socketDestino);
