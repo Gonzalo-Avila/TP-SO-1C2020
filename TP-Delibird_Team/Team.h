@@ -10,6 +10,6 @@
 
 #include <Utils.h>
 
-const MAXSIZE = 1024;
+const int MAXSIZE = 1024;
 
 #endif /* TEAM_H_ */

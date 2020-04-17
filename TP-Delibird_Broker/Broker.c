@@ -93,9 +93,64 @@ void * buscarEspacio(int sizeMensaje, void *posicionInicial){
     return posicionInicial+offset;
 }
 
-//A desarrollar
-void compactarMemoria(){
+/* Partiendo desde una posición ocupada, cuenta todas las posiciónes contiguas llenas para determinar el tamaño del mensaje
+ *
+ */
+int tamanioDelMensaje(int offset, int *cacheExcedida){
+	int tamanio=0;
+	while(*(char *)(cacheBroker+offset)!='f'){
+		tamanio++;
+		offset++;
+		if(offset==CACHESIZE){
+		   	 *cacheExcedida=1;
+		   	 break;
+	    }
+	}
+	return tamanio;
 }
+
+/* Partiendo desde una posición vacia, busca secuencialmente hasta encontrar una posición ocupada
+ *
+ */
+void * buscarProximoMensaje(int offset, int * tamanio, int *cacheExcedida){
+     while(*(char *)(cacheBroker+offset)!='f'){
+    	 offset++;
+    	 if(offset==CACHESIZE){
+    		 *cacheExcedida=1;
+    		 return NULL;
+    	 }
+     }
+     *tamanio=tamanioDelMensaje(offset,cacheExcedida);
+
+     return cacheBroker+offset;
+
+}
+
+/* Libera los "huecos" de la memoria cache, haciendo que todos los mensajes esten pegados uno detras del otro.
+ *
+ */
+
+void compactarMemoria(){
+	int tamanio;
+	int cacheExcedida=0;
+	void * posicion;
+	for(int offset=0 ; offset<CACHESIZE; offset++){
+		if(*(char *)(cacheBroker+offset)=='f'){
+			posicion=buscarProximoMensaje(offset,&tamanio,&cacheExcedida);
+			if(cacheExcedida==0)
+			{
+				memcpy(cacheBroker+offset,posicion,tamanio);
+				memset(posicion,'f',tamanio);
+			}
+			else
+			{
+				break;
+			}
+		}
+	}
+}
+
+//A desarrollar
 void eliminarMensaje(){
 }
 
@@ -214,8 +269,8 @@ void inicializarColasYListas(){
 void inicializarCache(){
 	CACHESIZE=config_get_int_value(config,"CACHESIZE");
 	cacheBroker = malloc(CACHESIZE);
-    char inicValue = 'f';
-    memcpy(cacheBroker,inicValue,CACHESIZE);
+
+    memset(cacheBroker,'f',CACHESIZE);
 
 }
 
