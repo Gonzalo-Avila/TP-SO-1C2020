@@ -11,7 +11,7 @@ void inicializarVariablesGlobales(){
 //QUE CREE EL HILO Y LO DETACHEE POR CADA TEAM---->crearEntrenador()
 
 //16-04 | Nico | Definida la función. Sin probar.
-t_list obtenerPosicionesEntrenadores(){
+t_list* obtenerPosicionesEntrenadores(){
 	t_list *listaPosicionesEntrenadores = list_create();
 	char** posiciones = malloc(sizeof(config_get_array_value(config, "POSICIONES_ENTRENADORES")));
 	posiciones = config_get_array_value(config, "POSICION_ENTRENADORES");
@@ -26,6 +26,7 @@ t_list obtenerPosicionesEntrenadores(){
 
 	}
 
+//16-04 | Nico | Ver comentario en obtenerObjetivos().
 void obtenerObjetivosEntrenadores(){
 	t_list *listaObjetivos =  list_create();
 
@@ -33,28 +34,23 @@ void obtenerObjetivosEntrenadores(){
 
 	}
 
-e_algoritmo obtenerAlgoritmoPlanificador(){
-	char* algoritmo = malloc(strlen(config_get_string_value(config, "ALGORITMO_PLANIFICACION"))+1);
-	switch(algoritmo){
-		case "FIFO":
-			return FIFO;
-			break;
-		case "RR":
-			return RR;
-			break;
-		case "SJFCD":
-			return SJFCD;
-			break;
-		case "SJFSD":
-			return SJFSD;
-			break;
-		default:
-			log_info(logger, "No se ingresó un algoritmo válido en team.config. Se toma FIFO por defecto.\n");
-			return FIFO;
-			break;
+//16-04 | Nico | Posible implementación genérica para obtener los parámetros que sean Lista de Listas.
+t_list* obtenerObjetivos(char* objetivos){
+	t_list *listaPosicionesEntrenadores = list_create();
+	char** posiciones = malloc(sizeof(config_get_array_value(config, *objetivos)));
+	posiciones = config_get_array_value(config, *objetivos);
+
+	int contador = 0;
+	while(posiciones[contador] != NULL){
+		list_add(listaPosicionesEntrenadores, posiciones[contador]);
+		contador++;
 	}
+
+	return listaPosicionesEntrenadores;
 }
 
+
+//16-04 | Nico | Ver comentario en obtenerObjetivos().
 void obtenerPokemonesEntrenadores(){
 	t_list *listaPokemones =  list_create();
 
@@ -74,11 +70,32 @@ void crearEntrenador(t_entrenador entrenador){
 }
 
 t_entrenador armarEntrenador(t_list *posicionesEntrenadores,t_list *objetivosEntrenadores,t_list *pokemonesEntrenadores){
+	t_entrenador* nuevoEntrenador = malloc(sizeof(t_entrenador))
+
+	nuevoEntrenador->pos = list_get(posicionesEntrenadores, 0);
+	nuevoEntrenador->objetivos = list_get(objetivosEntrenadores, 0);
+	nuevoEntrenador->pokemones = list_get(pokemonesEntrenadores, 0);
+
+	return nuevoEntrenador;
 
 	//mete eso en el struct t_entrenador
 	//retorna el entrenador
 }
 
+void generarEntrenadores(){
+	t_entrenador* unEntrenador = malloc(sizeof(t_entrenador));
+	t_list* posiciones = obtenerObjetivos("POSICIONES_ENTRENADORES");
+	t_list* objetivos = obtenerObjetivos("OBJETIVO_ENTRENADORES");
+	t_list* pokemones = obtenerObjetivos("POKEMON_ENTRENADORES");
+	int contador = 0;
+
+	for(contador; contador < list_size(posiciones); contador++){
+		unEntrenador = armarEntrenador(list_get(posiciones, contador), list_get(objetivos, contador), list_get(pokemones, contador));
+		crearEntrenador(unEntrenador);
+	}
+}
+
+//16-04 | Nico | No sé si debería poner "TIPO\n" o "TIPO" en los case
 e_algoritmo obtenerAlgoritmoPlanificador(){
 	char* algoritmo = malloc(strlen(config_get_string_value(config, "ALGORITMO_PLANIFICACION"))+1);
 	switch(algoritmo){
