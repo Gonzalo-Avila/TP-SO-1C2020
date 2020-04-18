@@ -70,7 +70,7 @@ void crearEntrenador(t_entrenador entrenador){
 }
 
 t_entrenador armarEntrenador(t_list *posicionesEntrenadores,t_list *objetivosEntrenadores,t_list *pokemonesEntrenadores){
-	t_entrenador* nuevoEntrenador = malloc(sizeof(t_entrenador))
+	t_entrenador* nuevoEntrenador = malloc(sizeof(t_entrenador));
 
 	nuevoEntrenador->pos = list_get(posicionesEntrenadores, 0);
 	nuevoEntrenador->objetivos = list_get(objetivosEntrenadores, 0);
