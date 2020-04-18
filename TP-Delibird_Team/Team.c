@@ -97,6 +97,7 @@ void generarEntrenadores(){
 //16-04 | Nico | No sé si debería poner "TIPO\n" o "TIPO" en los case
 e_algoritmo obtenerAlgoritmoPlanificador(){
 	char* algoritmo = malloc(strlen(config_get_string_value(config, "ALGORITMO_PLANIFICACION"))+1);
+	algoritmo = config_get_string_value(config, "ALGORITMO_PLANIFICACION");
 	if(strcmp(algoritmo, "FIFO")){
 		return FIFO;
 	}
