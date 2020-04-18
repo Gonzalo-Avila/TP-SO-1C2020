@@ -22,9 +22,15 @@ int main(){
 	free(ipServidor);
 	free(puertoServidor);
 
-	suscribirseACola(APPEARED, socketBroker);
-	suscribirseACola(LOCALIZED, socketBroker);
-	suscribirseACola(CAUGHT, socketBroker);
+	suscribirseACola(socketBroker, APPEARED);
+	suscribirseACola(socketBroker, LOCALIZED);
+	suscribirseACola(socketBroker, CAUGHT);
+
+	//char* msjTest = malloc(sizeof("115elias"));
+	//msjTest = 1 + 1 + "5elias"; // 115elias = MENSAJE NEW <sizeMsj> <Msj>
+	//log_info(logger, msjTest);
+	//enviarMensaje(socketBroker, msjTest);
+	enviarMensajeACola(socketBroker, NEW, "elias");
 
 
 	//Procedimiento auxiliar para que no rompa el server en las pruebas

@@ -27,6 +27,15 @@
 t_log * logger;
 t_config * config;
 
+/*	<opCode><Type><Msj>
+ * SUSCRIPCION 	<nombreCola> 							= 3 1
+ * MENSAJE 		NEW 		<MsjLenght> <NombrePokemon> = 1 1 <MsjLenght> <NombrePokemon>
+ * MENSAJE 		APPEARED  	<MsjLenght> <NombrePokemon> = 1 2 <MsjLenght> <NombrePokemon>
+ * MENSAJE 		CATCH 	 	<MsjLenght> <NombrePokemon> = 1 3 <MsjLenght> <NombrePokemon>
+ * MENSAJE 		CAUGHT 	 	<MsjLenght> <NombrePokemon> = 1 4 <MsjLenght> <NombrePokemon>
+ * MENSAJE 		GET 	 	<MsjLenght> <NombrePokemon> = 1 5 <MsjLenght> <NombrePokemon>
+ * MENSAJE 		LOCALIZED	<MsjLenght> <NombrePokemon> = 1 6 <MsjLenght> <NombrePokemon>
+ * */
 
 
 typedef enum
@@ -65,6 +74,13 @@ typedef struct
 	opCode codOperacion;
 	tBuffer* buffer; //Buffer = size + stream
 } tPaquete;
+
+typedef struct
+{
+	opCode codOperacion;
+	cola tipoCola;
+	tBuffer* buffer; //Buffer = size + stream
+} tPaqueteCola;
 
 //Este mensaje hace aparecer un nuevo pokemon en la posicion indicada
 typedef struct
@@ -134,11 +150,13 @@ int crearConexionCliente(char * ip, char * puerto);
 int esperarCliente(int socketEscucha);
 void inicializarColas();
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar);
-void enviarMensaje(char * mensaje, int socketDestino);
+void * serializarPaqueteCola(tPaqueteCola* paquete, int tamanioAEnviar);
+void enviarMensaje(int socketDestino, char * mensaje);
+void enviarMensajeACola(int socketDestino, cola tipoCola, char * mensaje);
 tPaquete *recibirMensaje(int socketFuente);
 void loggearMensaje(t_log *logger,char * mensaje);
 int test();
-void suscribirseACola(cola tipoCola, int socketBroker);
-
+void suscribirseACola(int socketBroker, cola tipoCola);
+void enviarACola(int socketBroker, cola tipoCola, char* msj, int msjSize);
 
 #endif /* UTILS_H_ */

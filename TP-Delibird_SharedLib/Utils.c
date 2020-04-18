@@ -87,10 +87,26 @@ void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar)
     return aEnviar;
 }
 
+void * serializarPaqueteCola(tPaqueteCola* paquete, int tamanioAEnviar)
+{
+	int offset=0;
+	void* aEnviar=malloc(tamanioAEnviar);
+
+	memcpy(aEnviar+offset,&(paquete->codOperacion),sizeof(int));
+	offset+=sizeof(int);
+	memcpy(aEnviar+offset,&(paquete->tipoCola),sizeof(int));
+	offset+=sizeof(int);
+    memcpy(aEnviar+offset,&(paquete->buffer->size),sizeof(int));
+    offset+=sizeof(int);
+    memcpy(aEnviar+offset,paquete->buffer->stream,paquete->buffer->size);
+
+    return aEnviar;
+}
+
 /* Envía un string al socket destino
  *
  */
-void enviarMensaje(char * mensaje, int socketDestino){
+void enviarMensaje(int socketDestino, char * mensaje){
 
 	int longMensaje = strlen(mensaje);
     tBuffer *buffer = malloc(sizeof(tBuffer));
@@ -118,6 +134,36 @@ void enviarMensaje(char * mensaje, int socketDestino){
     free(aEnviar);
 }
 
+void enviarMensajeACola(int socketDestino, cola tipoCola, char * mensaje){
+
+	int longMensaje = strlen(mensaje);
+    tBuffer *buffer = malloc(sizeof(tBuffer));
+    tPaqueteCola *paquete = malloc(sizeof(tPaqueteCola));
+
+    buffer->size = longMensaje+1;
+    buffer->stream = malloc(buffer->size);
+
+    memcpy(buffer->stream, mensaje, buffer->size);
+
+    paquete->buffer=buffer;
+    if(strcmp(mensaje,"exit")==0)
+    	paquete->codOperacion=FINALIZAR;
+    else
+        paquete->codOperacion=MENSAJE;
+
+    paquete->tipoCola = tipoCola;
+
+    int tamanioAEnviar = sizeof(cola) + 2*sizeof(int)+buffer->size;
+    void* aEnviar = serializarPaqueteCola(paquete, tamanioAEnviar);
+
+    send(socketDestino,aEnviar,tamanioAEnviar,0);
+
+    free(buffer->stream);
+    free(buffer);
+    free(paquete);
+    free(aEnviar);
+}
+
 /* Recibe un string enviado por el socket fuente
  * RECORDAR HACER LOS FREE CORRESPONDIENTES EN LA FUNCIÓN QUE LLAMA
  */
@@ -135,6 +181,7 @@ tPaquete *recibirMensaje(int socketFuente){
 
 }
 
+
 /* Funcion de prueba
  *
  */
@@ -146,11 +193,22 @@ int test(){
 /* Luego de creada la conexión con el broker, esta función envía el código de la cola a la que se va a suscribir.
  * Nota: no usa serialización, por lo que se mandan dos mensajes en lugar de uno, pero funciona. ¿Esta mal?
  */
-void suscribirseACola(cola tipoCola, int socketBroker){
+void suscribirseACola(int socketBroker, cola tipoCola){
     opCode tipoMensaje = SUSCRIPCION;
 	send(socketBroker,(void*)(&tipoMensaje),sizeof(opCode),0);
     send(socketBroker,(void*)(&tipoCola),sizeof(cola),0);
 }
+
+/*void enviarACola(int socketBroker, cola tipoCola, char* msj, int msjSize){
+	int msjSizeReal = msjSize + 1;
+	int size = sizeof(int) + sizeof(int) + msjSizeReal;
+	void* aEnviar = malloc(size);
+	memcpy(aEnviar, &tipoCola, sizeof(int));
+	memcpy(aEnviar, &msjSize, sizeof(int));
+	memcpy(aEnviar, msj, msjSizeReal);
+	printf("%s", (char*) aEnviar);
+	enviarMensaje(socketBroker, (char *) aEnviar);
+}*/
 
 
 

@@ -21,10 +21,10 @@ t_queue * LOCALIZED_POKEMON;
 
 t_list * suscriptoresNEW;
 t_list * suscriptoresAPP;
-t_list * suscriptoresGET;
-t_list * suscriptoresLOC;
 t_list * suscriptoresCAT;
 t_list * suscriptoresCAU;
+t_list * suscriptoresGET;
+t_list * suscriptoresLOC;
 
 void * cacheBroker;
 int CACHESIZE;
