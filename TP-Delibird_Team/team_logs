@@ -32,3 +32,82 @@ Número de socket: 1
 
 [INFO] 16:49:31:842 Team/(16329:16329): El proceso team finalizó su ejecución
 
+[INFO] 00:53:05:678 Team/(9704:9704): Se ha iniciado el cliente team
+
+[INFO] 00:53:05:687 Team/(9704:9704): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 01:19:00:132 Team/(10867:10867): Se ha iniciado el cliente team
+
+[INFO] 01:19:00:132 Team/(10867:10867): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 01:20:43:187 Team/(11000:11000): Se ha iniciado el cliente team
+
+[INFO] 01:20:43:188 Team/(11000:11000): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 01:23:28:801 Team/(11151:11151): Se ha iniciado el cliente team
+
+[INFO] 01:23:28:801 Team/(11151:11151): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 01:50:37:467 Team/(12253:12253): Se ha iniciado el cliente team
+
+[INFO] 01:50:37:475 Team/(12253:12253): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 01:50:37:475 Team/(12253:12253): Lista objetivos test: [1
+[INFO] 01:51:28:264 Team/(12322:12322): Se ha iniciado el cliente team
+
+[INFO] 01:51:28:265 Team/(12322:12322): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 01:51:28:266 Team/(12322:12322): Lista objetivos test: [1 --
+[INFO] 01:52:52:741 Team/(12391:12391): Se ha iniciado el cliente team
+
+[INFO] 01:52:52:742 Team/(12391:12391): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 01:52:52:742 Team/(12391:12391): Lista objetivos test: [Pikachu --
+[INFO] 01:53:11:239 Team/(12438:12438): Se ha iniciado el cliente team
+
+[INFO] 01:53:11:239 Team/(12438:12438): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 01:53:11:239 Team/(12438:12438): Lista objetivos test: Squirtle --
+[INFO] 01:56:01:720 Team/(12601:12601): Se ha iniciado el cliente team
+
+[INFO] 01:56:01:721 Team/(12601:12601): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 01:56:01:721 Team/(12601:12601): Lista objetivos test: Charmander] --
+[INFO] 02:02:12:329 Team/(12888:12888): Se ha iniciado el cliente team
+
+[INFO] 02:02:12:329 Team/(12888:12888): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 02:02:12:329 Team/(12888:12888): Lista objetivos test: [Bulbasaur] --
+[INFO] 02:04:02:112 Team/(12963:12963): Se ha iniciado el cliente team
+
+[INFO] 02:04:02:113 Team/(12963:12963): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 02:04:02:113 Team/(12963:12963): Lista objetivos test: Charmander] --
+[INFO] 02:33:21:856 Team/(13850:13850): Se ha iniciado el cliente team
+
+[INFO] 02:33:21:856 Team/(13850:13850): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1

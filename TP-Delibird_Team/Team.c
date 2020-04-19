@@ -1,14 +1,19 @@
 #include "Team.h"
 
-t_team *team = malloc(sizeof(t_team));
+
+t_team* team; //No se pueden usar mallocs fuera de funciones
 t_list *listaHilos;
 
 void inicializarVariablesGlobales(){
+
 	config = config_create("team.config");
 	logger = log_create("team_logs","Team",1,LOG_LEVEL_TRACE);
-	team->entrenadores = list_create()
-	listaHilos = list_create()
+	listaHilos = list_create();
+	team = malloc(sizeof(t_team));
+	team->entrenadores = list_create();
 }
+
+
 
 //PODRIA IMPLEMENTAR UN for(int i = 0, i<= largoListaPosicionesEntrenadores,i++);
 //QUE CREE EL HILO Y LO DETACHEE POR CADA TEAM---->crearEntrenador()
@@ -45,24 +50,26 @@ t_list* obtenerObjetivos(char* clave){
 	listaPokemones = config_get_array_value(config,"POKEMON_ENTRENADORES");
 	}*/
 
+
+
 /*MANEJA EL FUNCIONAMIENTO INTERNO DE CADA ENTRENADOR(trabajo en un hilo separado)*/
-void gestionarEntrenador(t_entrenador *entrenador,char *pokemon,t_posicion posPokemon){
+//void gestionarEntrenador(t_entrenador *entrenador,char *pokemon,t_posicion posPokemon){
+//
+//	//mueve el entrenador una posicion y ejecuta SLEEP(RETARDO_CICLO_CPU)
+//	while(moverEntrenadorPorUnidad(entrenador,posPokemon)){
+//
+//	}
+//	//Tira un catch de pokemon
+//}
 
-	//mueve el entrenador una posicion y ejecuta SLEEP(RETARDO_CICLO_CPU)
-	while(moverEntrenadorPorUnidad(entrenador,posPokemon)){
-
-	}
-	//Tira un catch de pokemon
-}
-
-void crearEntrenador(t_entrenador* entrenador,char *pokemon,t_posicion posPokemon){
-	pthread_t nuevoHilo;
-
-	pthread_create(&nuevoHilo, NULL, (void*)gestionarEntrenador,entrenador);
-	list_add(listaHilos,nuevoHilo);
-
-	pthread_detach(nuevoHilo);
-}
+//void crearEntrenador(t_entrenador* entrenador,char *pokemon,t_posicion posPokemon){
+//	pthread_t nuevoHilo;
+//
+//	pthread_create(&nuevoHilo, NULL, (void*)gestionarEntrenador,entrenador);
+//	list_add(listaHilos,nuevoHilo);
+//
+//	pthread_detach(nuevoHilo);
+//}
 
 t_entrenador* armarEntrenador(t_list *posicionesEntrenadores,t_list *objetivosEntrenadores,t_list *pokemonesEntrenadores){
 	t_entrenador* nuevoEntrenador = malloc(sizeof(t_entrenador));
@@ -77,7 +84,8 @@ t_entrenador* armarEntrenador(t_list *posicionesEntrenadores,t_list *objetivosEn
 	//retorna el entrenador
 }
 
-void generarEntrenadores(){
+// EMMA | Agrego que generarEntreadores reciba como parametro un team
+void generarEntrenadores(t_team* team){
 	t_entrenador* unEntrenador = malloc(sizeof(t_entrenador));
 	t_list* posiciones = obtenerObjetivos("POSICIONES_ENTRENADORES");
 	t_list* objetivos = obtenerObjetivos("OBJETIVO_ENTRENADORES");
@@ -132,6 +140,8 @@ e_algoritmo obtenerAlgoritmoPlanificador(){
 }
 
 int main(){
+
+
 	//Se setean todos los datos
 	inicializarVariablesGlobales();
 
@@ -153,7 +163,8 @@ int main(){
 	free(ipServidor);
 	free(puertoServidor);
 
-	//Se inicializa el Team con los entrenadores
+
+
 
 	//Se suscribe el Team a las colas
 	suscribirseACola(APPEARED, socketBroker);

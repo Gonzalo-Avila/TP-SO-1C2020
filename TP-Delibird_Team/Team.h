@@ -10,7 +10,7 @@
 
 #include <Utils.h>
 
-const MAXSIZE = 1024;
+#define MAXSIZE = 1024;
 
 typedef int t_posicion[2];
 
