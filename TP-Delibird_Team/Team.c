@@ -30,7 +30,8 @@ int main(){
 	//msjTest = 1 + 1 + "5elias"; // 115elias = MENSAJE NEW <sizeMsj> <Msj>
 	//log_info(logger, msjTest);
 	//enviarMensaje(socketBroker, msjTest);
-	enviarMensajeACola(socketBroker, NEW, "elias");
+	//enviarMensajeACola(socketBroker, NEW, "elias");
+
 
 
 	//Procedimiento auxiliar para que no rompa el server en las pruebas

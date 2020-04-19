@@ -44110,3 +44110,35 @@
 [INFO] 18:23:29:271 Broker/(20969:20983): ----> APPEARED_POKEMON (8): elias
 [INFO] 18:23:29:272 Broker/(20969:20983): [FINALIZAR]
 [INFO] 18:23:29:289 Broker/(20969:20983): El cliente con socket 8 se ha desconectado
+[INFO] 19:53:14:915 Broker/(18310:18310): Se ha iniciado el servidor broker
+
+[INFO] 19:53:14:915 Broker/(18310:18310): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 19:53:14:915 Broker/(18310:18312): atenderColas
+[INFO] 19:53:21:745 Broker/(18310:18311): Se ha conectado un cliente. Número de socket cliente: 5
+[INFO] 19:53:21:748 Broker/(18310:18317): [FINALIZAR]
+[INFO] 19:53:21:749 Broker/(18310:18317): El cliente con socket 5 se ha desconectado
+[INFO] 19:53:27:897 Broker/(18310:18311): Se ha conectado un cliente. Número de socket cliente: 6
+[INFO] 19:53:27:900 Broker/(18310:18328): [SUSCRIPCION]
+[INFO] 19:53:27:901 Broker/(18310:18328): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 6
+[INFO] 19:53:27:901 Broker/(18310:18328): [SUSCRIPCION]
+[INFO] 19:53:27:901 Broker/(18310:18328): Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: 6
+[INFO] 19:54:06:801 Broker/(18341:18341): Se ha iniciado el servidor broker
+
+[INFO] 19:54:06:801 Broker/(18341:18341): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 19:54:06:802 Broker/(18341:18343): atenderColas
+[INFO] 19:54:09:293 Broker/(18341:18342): Se ha conectado un cliente. Número de socket cliente: 5
+[INFO] 19:54:09:297 Broker/(18341:18346): [FINALIZAR]
+[INFO] 19:54:09:297 Broker/(18341:18346): El cliente con socket 5 se ha desconectado
+[INFO] 19:54:39:37 Broker/(18341:18342): Se ha conectado un cliente. Número de socket cliente: 6
+[INFO] 19:54:39:46 Broker/(18341:18366): [SUSCRIPCION]
+[INFO] 19:54:39:46 Broker/(18341:18366): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 6
+[INFO] 19:54:39:47 Broker/(18341:18366): [SUSCRIPCION]
+[INFO] 19:54:39:47 Broker/(18341:18366): Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: 6
+[INFO] 19:55:34:258 Broker/(18434:18434): Se ha iniciado el servidor broker
+
+[INFO] 19:55:34:259 Broker/(18434:18434): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[INFO] 19:55:39:168 Broker/(18434:18434): Se ha conectado un cliente. Número de socket cliente: 5
+[INFO] 19:55:39:171 Broker/(18434:18436): [SUSCRIPCION]
+[INFO] 19:55:39:171 Broker/(18434:18436): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 19:55:39:171 Broker/(18434:18436): [SUSCRIPCION]
+[INFO] 19:55:39:171 Broker/(18434:18436): Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: 5

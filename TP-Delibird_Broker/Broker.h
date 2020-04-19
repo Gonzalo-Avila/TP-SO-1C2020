@@ -26,6 +26,8 @@ t_list * suscriptoresCAU;
 t_list * suscriptoresGET;
 t_list * suscriptoresLOC;
 
+t_list * IDs;
+
 void * cacheBroker;
 int CACHESIZE;
 
@@ -33,9 +35,16 @@ typedef struct {
 	int id;
 	int idCorrelativo;			// Si no se usa idCorrelativo = -1
 	t_list *listaSuscriptores;
-	void* mensaje;
 	int sizeMensaje;
+	void* mensaje;
 } estructuraMensaje;
 
+typedef enum{
+    NO_CONFIRMADO=0,
+	CONFIRMADO=1
+}statusMensaje;
+
+int generarID();
+t_list* getListaSuscriptoresByNum(int nro);
 
 #endif /* BROKER_H_ */

@@ -147,17 +147,119 @@ t_list* getListaSuscriptoresByNum(int nro) {
 	return lista[nro];
 }
 
-void atenderMensaje(int socket) {
+
+//Edit Gonzalo - 19/04
+//----------
+
+// TODO: revisar si usamos una variable global o size de la lista + 1, para no repetir el ID nunca durante la ejecución
+/* Chequea los index de la lista global de IDs, a partir de uno, y cuando encuentra alguno libre se carga ahi
+ *
+ */
+int generarID(){
+    int count = 1;
+    while(list_get(IDs,count)!=NULL){
+       count++;
+    }
+    list_add_in_index(IDs,count,&count);
+	return  count;
+}
+
+t_list * generarListaDeSuscriptoresActuales(cola tipoCola){
+	t_list * listaGenerada = list_create();
+	t_list * suscriptoresDeLaCola = getListaSuscriptoresByNum(tipoCola);
+
+    for(int index=0; index<list_size(suscriptoresDeLaCola);index++){
+        /* Convención utilizada para el vector:
+         * - La primera posición es el suscriptor (o sea el numero de socket)
+         * - La segunda posición es el estado del mensaje en relación al suscriptor
+         * |- NO_CONFIRMADO (0):  el suscriptor aun no confirmó recepción
+         * |- CONFIRMADO (1): el suscriptor confirmó recepción del mensaje
+         */
+        int vec[2];
+        vec[0]=*(int *)list_get(suscriptoresDeLaCola,index);
+        vec[1]=NO_CONFIRMADO;
+        list_add(listaGenerada,vec);
+    }
+
+	return listaGenerada;
+}
+void imprimirEstructuraDeDatos(estructuraMensaje mensaje){
+	log_info(logger, "[NUEVO MENSAJE RECIBIDO]");
+	log_info(logger, "ID: %d", mensaje.id);
+	log_info(logger,"ID correlativo: %d",mensaje.idCorrelativo);
+	log_info(logger,"Tamaño de mensaje: %d",mensaje.sizeMensaje);
+	//TODO
+	//Imprimir lista de suscriptores y datos del mensaje
+}
+int agregarMensajeACola(int socketEmisor,cola tipoCola, int idCorrelativo){
+	estructuraMensaje mensajeNuevo;
+	mensajeNuevo.id=generarID();
+	mensajeNuevo.idCorrelativo=idCorrelativo;
+
+	mensajeNuevo.listaSuscriptores=list_create();
+	mensajeNuevo.listaSuscriptores=generarListaDeSuscriptoresActuales(tipoCola);
+
+	recv(socketEmisor,&mensajeNuevo.sizeMensaje,sizeof(int),MSG_WAITALL);
+
+	mensajeNuevo.mensaje = malloc(mensajeNuevo.sizeMensaje);
+    recv(socketEmisor,mensajeNuevo.mensaje,mensajeNuevo.sizeMensaje,MSG_WAITALL);
+
+
+
+    queue_push(getColaByNum(tipoCola),&mensajeNuevo);
+
+    imprimirEstructuraDeDatos(mensajeNuevo);
+
+    if(idCorrelativo!=-1)
+      cachearMensaje(mensajeNuevo.mensaje, mensajeNuevo.sizeMensaje);
+
+    return mensajeNuevo.id;
+}
+//----------
+
+void atenderMensaje(int socketEmisor, cola tipoCola) {
+	int idMensaje;
 
 	// TODO
-	// - Crear estructura de mensaje
-	// - Crear ID
-	// - Sacar "foto" de lista de suscriptores actuales (int checklistSuscriptor[2];)
-	// - Guardar payload (mensaje + size)
-	// - Decidir si tiene idCorrelativo [SI (idC = <valor>) || NO idCorrelativo (idC = -1)}
-	// - Meter esta estructura en cola
-	// - Enviar ID creado al publicador
-	// - Guardar en cache
+	// - Crear estructura de mensaje (Done)
+	// - Crear ID (Done)
+	// - Sacar "foto" de lista de suscriptores actuales (int checklistSuscriptor[2];) (Done)
+	// - Guardar payload (mensaje + size) (Done)
+	// - Decidir si tiene idCorrelativo [SI (idC = <valor>) || NO idCorrelativo (idC = -1)} (Done)
+	// - Meter esta estructura en cola (Done)
+	// - Enviar ID creado al publicador (Done)
+	// - Guardar en cache (Done)
+	// |- Averiguar qué guardar en la cache, porque el enunciado dice que solo se puede guardar el payload
+
+	// Edit Gonzalo - 19/04
+	//-------------------------
+    switch(tipoCola)
+    {
+         case NEW:
+         case CATCH:
+         case GET: {
+        	 idMensaje=agregarMensajeACola(socketEmisor,tipoCola, -1);
+        	 send(socketEmisor,&idMensaje,sizeof(int),0);
+        	 break;
+         }
+         case APPEARED:
+         case CAUGHT:
+         case LOCALIZED: {
+        	 int idCorrelativo;
+        	 recv(socketEmisor,&idCorrelativo,sizeof(int),MSG_WAITALL);
+        	 idMensaje=agregarMensajeACola(socketEmisor,tipoCola, idCorrelativo);
+        	 send(socketEmisor,&idMensaje,sizeof(int),0);
+        	 break;
+
+         }
+         default:{
+        	 log_error(logger,"[ERROR]");
+        	 log_error(logger,"No pudo obtenerse el tipo de cola en el mensaje recibido");
+         }
+    }
+
+
+	//-------------------------
 
 	//int checklistSuscriptor[2];
 	/*
@@ -182,8 +284,12 @@ void atenderMensaje(int socket) {
 	log_info(logger, "----> %s (%d): %s",
 			getCodeStringByNum(paquete->codOperacion), socketSuscriptor,
 			(char *) paquete->buffer->stream);
-
 	 */
+}
+
+void enviarMensajesCacheados(int socketSuscriptor,int codSuscripcion){
+	//TODO
+
 }
 
 /* Recibe el código de suscripción desde el socket a suscribirse, eligiendo de esta manera la cola y agregando el socket
@@ -193,6 +299,8 @@ void atenderSuscripcion(int socketSuscriptor) {
 
 	int codSuscripcion;
 	recv(socketSuscriptor, &codSuscripcion, sizeof(int), MSG_WAITALL);
+
+	enviarMensajesCacheados(socketSuscriptor,codSuscripcion);
 
 	switch (codSuscripcion) {
 	case NEW: {
@@ -281,17 +389,24 @@ void esperarMensajes(int socketCliente) {
 		}
 		case NUEVO_MENSAJE: {
 			/* En este punto habria que:
-			 * - Determinar a que cola va a ir ese mensaje, y agregarlo.
+			 * - Determinar a que cola va a ir ese mensaje, y agregarlo. (Done)
 			 * - Reenviar el mensaje a todos los suscriptores de dicha cola (¿o eso se hace en otro proceso asincronico?).
-			 * - Guardar el mensaje en la caché.
+			 *   |- Concluimos en realizarlo mediante la funcion/hilo "atenderColas"
+			 * - Guardar el mensaje en la caché. (Done)
+			 *   |- Averiguar qué guardar en la cache, porque el enunciado dice que solo se puede guardar el payload
 			 * - ...
 			 */
+
 			log_info(logger, "[NUEVO_MENSAJE]");
-			atenderMensaje(socketCliente);
-			/*pthread_t nuevoHilo;
-			 pthread_create(&nuevoHilo, NULL, (void*) atenderMensaje,
-			 socketCliente); //No entiendo el warning, si le paso un puntero no anda
-			 pthread_detach(nuevoHilo);*/
+
+            //Edit Gonzalo - 19/04
+            //---------------
+            cola tipoCola;
+            recv(socketCliente, &tipoCola, sizeof(cola), MSG_WAITALL);
+            atenderMensaje(socketCliente,tipoCola);
+
+
+            //---------------
 			break;
 		}
 		case CONFIRMACION_MENSAJE: {
@@ -368,21 +483,7 @@ void atenderColas() {
 				// - Decidir si tiene idCorrelativo
 				// - Serializar con o sin idCorrelativo
 				// - Enviar a todos los suscriptores
-
-
-
-				//OLD
-				/*log_debug(logger,
-				 ">>>>>>>>>>>>>>>>>>>>>>>>>>>>mensaje pendiente encontrado");
-				 pthread_t nuevoHilo;
-				 estructuraMensaje* aProcesar = malloc(
-				 sizeof(estructuraMensaje));
-				 aProcesar->id = 0;
-				 aProcesar->listaSuscriptores = getListaSuscriptoresByNum(i);
-				 aProcesar->msj = queue_pop(colaActual);
-				 pthread_create(&nuevoHilo, NULL, (void*) enviarASuscriptores,
-				 aProcesar); //Delegar el envio de mensaje a otro hilo para seguir revisando
-				 pthread_detach(nuevoHilo);*/
+                // - Agregar a lista de mensajes enviados
 			}
 		}
 
@@ -405,6 +506,7 @@ void inicializarColasYListas() {
 	suscriptoresCAT = list_create();
 	suscriptoresCAU = list_create();
 
+	IDs=list_create();
 }
 
 /*
@@ -446,21 +548,20 @@ int main() {
 			"El servidor está configurado y a la espera de un cliente. Número de socket servidor: %d",
 			socketEscucha);
 
-	atenderConexiones(socketEscucha); // Agregar suscriptores a listas, Agregar mensajes a colas y Recibir confirmacion de mensajes
-	atenderColas(); 				  // Verifica mensajes encolados y los envia
+	//atenderConexiones(socketEscucha); // Agregar suscriptores a listas, Agregar mensajes a colas y Recibir confirmacion de mensajes
+    //	atenderColas(); 				// Verifica mensajes encolados y los envia
 
-	/*
+
 	 pthread_t hiloAtenderCliente;
-	 pthread_create(&hiloAtenderCliente, NULL, (void*) atenderConexiones,
-	 socketEscucha);
+	 pthread_create(&hiloAtenderCliente, NULL, (void*) atenderConexiones, socketEscucha);
 
 	 pthread_t hiloAtenderColas;
-	 pthread_create(&hiloAtenderColas, NULL, (void*) atenderColas,
-	 NULL);
+	 pthread_create(&hiloAtenderColas, NULL, (void*) atenderColas, NULL);
 
 	 pthread_join(hiloAtenderCliente, NULL);
 	 pthread_join(hiloAtenderColas, NULL);
-	 */
+
+
 
 	//Otros hilos seguirian aca
 	free(puertoEscucha);
