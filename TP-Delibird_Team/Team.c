@@ -1,30 +1,18 @@
 #include "Team.h"
 
+t_team *team = malloc(sizeof(t_team));
+t_list *listaHilos;
+
 void inicializarVariablesGlobales(){
 	config = config_create("team.config");
 	logger = log_create("team_logs","Team",1,LOG_LEVEL_TRACE);
+	team->entrenadores = list_create()
+	listaHilos = list_create()
 }
 
-/*****************************************Rama*****************************************/
-//POR CADA ENTRENADOR TENGO UN HILO DISTINTO
 //PODRIA IMPLEMENTAR UN for(int i = 0, i<= largoListaPosicionesEntrenadores,i++);
 //QUE CREE EL HILO Y LO DETACHEE POR CADA TEAM---->crearEntrenador()
 
-//16-04 | Nico | Definida la función. Sin probar.
-t_list* obtenerPosicionesEntrenadores(){
-	t_list *listaPosicionesEntrenadores = list_create();
-	char** posiciones = malloc(sizeof(config_get_array_value(config, "POSICIONES_ENTRENADORES")));
-	posiciones = config_get_array_value(config, "POSICION_ENTRENADORES");
-
-	int contador = 0;
-	while(posiciones[contador] != NULL){
-		list_add(listaPosicionesEntrenadores, posiciones[contador]);
-		contador++;
-	}
-
-	return listaPosicionesEntrenadores;
-
-	}
 
 //16-04 | Nico | Ver comentario en obtenerObjetivos().
 /*void obtenerObjetivosEntrenadores(){
@@ -35,18 +23,18 @@ t_list* obtenerPosicionesEntrenadores(){
 	}*/
 
 //16-04 | Nico | Posible implementación genérica para obtener los parámetros que sean Lista de Listas.
-t_list* obtenerObjetivos(char* objetivos){
-	t_list *listaPosicionesEntrenadores = list_create();
-	char** posiciones = malloc(sizeof(config_get_array_value(config, objetivos)));
-	posiciones = config_get_array_value(config, objetivos);
+t_list* obtenerObjetivos(char* clave){
+	t_list *listaObjetivos = list_create();
+	char** posiciones = malloc(sizeof(config_get_array_value(config, clave)));
+	posiciones = config_get_array_value(config, clave);
 
 	int contador = 0;
 	while(posiciones[contador] != NULL){
-		list_add(listaPosicionesEntrenadores, posiciones[contador]);
+		list_add(listaObjetivos, posiciones[contador]);
 		contador++;
 	}
 
-	return listaPosicionesEntrenadores;
+	return listaObjetivos;
 }
 
 
@@ -58,24 +46,31 @@ t_list* obtenerObjetivos(char* objetivos){
 	}*/
 
 /*MANEJA EL FUNCIONAMIENTO INTERNO DE CADA ENTRENADOR(trabajo en un hilo separado)*/
-void gestionarEntrenador(t_entrenador entrenador){
+void gestionarEntrenador(t_entrenador *entrenador,char *pokemon,t_posicion posPokemon){
 
+	//mueve el entrenador una posicion y ejecuta SLEEP(RETARDO_CICLO_CPU)
+	while(moverEntrenadorPorUnidad(entrenador,posPokemon)){
+
+	}
+	//Tira un catch de pokemon
 }
 
-void crearEntrenador(t_entrenador* entrenador){
+void crearEntrenador(t_entrenador* entrenador,char *pokemon,t_posicion posPokemon){
 	pthread_t nuevoHilo;
 
-	pthread_create(&nuevoHilo, NULL, (void*)gestionarEntrenador,entrenador); //No entiendo el warning, si le paso un puntero no anda
+	pthread_create(&nuevoHilo, NULL, (void*)gestionarEntrenador,entrenador);
+	list_add(listaHilos,nuevoHilo);
+
 	pthread_detach(nuevoHilo);
 }
 
 t_entrenador* armarEntrenador(t_list *posicionesEntrenadores,t_list *objetivosEntrenadores,t_list *pokemonesEntrenadores){
 	t_entrenador* nuevoEntrenador = malloc(sizeof(t_entrenador));
 
-	memcpy(nuevoEntrenador->pos, list_get(posicionesEntrenadores, 0), sizeof(posicionesEntrenadores->head->data));
-	memcpy(nuevoEntrenador->objetivos, list_get(objetivosEntrenadores, 0), sizeof(objetivosEntrenadores->head->data));
-	memcpy(nuevoEntrenador->pokemones, list_get(pokemonesEntrenadores, 0), sizeof(pokemonesEntrenadores->head->data));
-
+	memcpy(nuevoEntrenador->pos, list_get(posicionesEntrenadores, 0), sizeof(t_posicion));
+	memcpy(nuevoEntrenador->objetivos, list_get(objetivosEntrenadores, 0), sizeof(t_list));
+	memcpy(nuevoEntrenador->pokemones, list_get(pokemonesEntrenadores, 0), sizeof(t_list));
+	nuevoEntrenador->estado = NUEVO;
 	return nuevoEntrenador;
 
 	//mete eso en el struct t_entrenador
@@ -90,8 +85,28 @@ void generarEntrenadores(){
 
 	for(int contador = 0; contador < list_size(posiciones); contador++) {
 		unEntrenador = armarEntrenador(list_get(posiciones, contador), list_get(objetivos, contador), list_get(pokemones, contador));
-		crearEntrenador(unEntrenador);
+
+		list_add(team->entrenadores,unEntrenador);
 	}
+}
+
+void planificador(){
+	/*
+	Nuevo Hilo por cada entrenador
+
+	APARECE UN POKEMON
+
+	Me fijo algun entrendaro libre (NUEVO/BLOQUEADO)
+		idEntrenadorLibreMasCercano= masCercano(team->entrenadores,pokemon);
+	(team->entrenadores[idEntrenadorLibreMasCercano])->estado = READY
+
+	meterProcesosListosEnLaColaDeListos();
+	FIFO con la cola --> cambio estado del Entrenador a EJEC
+
+	Despierta el Hilo del entrenador con estado EJEC de listaHilos = [threadEntrenador1,threadEntrenador2,...]
+	Cuando termina el Hilo lo pasa a BLOQUEADO o FIN segun corresponda
+
+	 */
 }
 
 //16-04 | Nico | No sé si debería poner "TIPO\n" o "TIPO" en los case
@@ -115,7 +130,6 @@ e_algoritmo obtenerAlgoritmoPlanificador(){
 		return FIFO;
 	}
 }
-/**************************************************************************************/
 
 int main(){
 	//Se setean todos los datos
@@ -140,7 +154,6 @@ int main(){
 	free(puertoServidor);
 
 	//Se inicializa el Team con los entrenadores
-
 
 	//Se suscribe el Team a las colas
 	suscribirseACola(APPEARED, socketBroker);

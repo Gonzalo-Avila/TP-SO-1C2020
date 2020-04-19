@@ -14,22 +14,34 @@ const MAXSIZE = 1024;
 
 typedef int t_posicion[2];
 
-typedef struct {
-	t_list *entrenadores;
-	char *algoritmoPlanificacion;
-}t_team;
-
-typedef struct{
-	t_posicion pos;
-	t_list *objetivos;
-	t_list *pokemones;
-}t_entrenador;
-
 typedef enum{
 	FIFO,	//First In First Out
 	RR,		//Round Robin
 	SJFCD,	//Shortest Job First Con Desalojo
 	SJFSD	//Shortest Job First Sin Desalojo
 }e_algoritmo;
+
+typedef enum{ //
+	NUEVO,	  //
+	LISTO,    //
+	BLOQUEADO,//---> Estados del Entrenador
+	EJEC,	  //
+	FIN  	  //
+}e_estado;
+
+typedef struct {
+	t_list *entrenadores;
+	e_algoritmo algoritmoPlanificacion;
+}t_team;
+
+
+typedef struct{
+	int id;
+	t_posicion pos;
+	t_list *objetivos;
+	t_list *pokemones;
+	e_estado estado;
+}t_entrenador;
+
 
 #endif /* TEAM_H_ */
