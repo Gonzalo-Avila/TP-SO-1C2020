@@ -147,15 +147,24 @@ t_list* getListaSuscriptoresByNum(int nro) {
 	return lista[nro];
 }
 
-void atenderMensaje(int socketSuscriptor) {
+void atenderMensaje(int socket) {
 
 	// TODO
-	// Hacer refactor
+	// - Crear estructura de mensaje
+	// - Crear ID
+	// - Sacar "foto" de lista de suscriptores actuales (int checklistSuscriptor[2];)
+	// - Guardar payload (mensaje + size)
+	// - Decidir si tiene idCorrelativo [SI (idC = <valor>) || NO idCorrelativo (idC = -1)}
+	// - Meter esta estructura en cola
+	// - Enviar ID creado al publicador
+	// - Guardar en cache
 
+	//int checklistSuscriptor[2];
+	/*
 	log_debug(logger, "atenderMensaje");
 	tPaqueteCola* paquete = malloc(sizeof(tPaqueteCola));
 	paquete->buffer = malloc(sizeof(tBuffer));
-	paquete->codOperacion = MENSAJE;
+	paquete->codOperacion = NUEVO_MENSAJE;
 	recv(socketSuscriptor, &(paquete->tipoCola), sizeof(int), MSG_WAITALL);
 	recv(socketSuscriptor, &(paquete->buffer->size), sizeof(int), MSG_WAITALL);
 
@@ -169,11 +178,12 @@ void atenderMensaje(int socketSuscriptor) {
 	recv(socketSuscriptor, paquete->buffer->stream, paquete->buffer->size,
 	MSG_WAITALL);
 
-	queue_push(NEW_POKEMON, paquete->buffer->stream);
+	queue_push(paquete->tipoCola, paquete->buffer->stream);
 	log_info(logger, "----> %s (%d): %s",
 			getCodeStringByNum(paquete->codOperacion), socketSuscriptor,
 			(char *) paquete->buffer->stream);
 
+	 */
 }
 
 /* Recibe el código de suscripción desde el socket a suscribirse, eligiendo de esta manera la cola y agregando el socket
@@ -183,6 +193,7 @@ void atenderSuscripcion(int socketSuscriptor) {
 
 	int codSuscripcion;
 	recv(socketSuscriptor, &codSuscripcion, sizeof(int), MSG_WAITALL);
+
 	switch (codSuscripcion) {
 	case NEW: {
 		//Suscribir a NEW_POKEMON
@@ -190,8 +201,8 @@ void atenderSuscripcion(int socketSuscriptor) {
 		log_info(logger,
 				"Hay un nuevo suscriptor en la cola NEW_POKEMON. Número de socket suscriptor: %d",
 				socketSuscriptor);
-		enviarMensaje(socketSuscriptor, "hola");
-		send(socketSuscriptor, (void *) "hola2", 6, 0);
+		enviarMensaje(socketSuscriptor,
+				"Se suscribio satisfactoriamente a la cola de mensajes NEW_POKEMON");
 		break;
 	}
 	case APPEARED: {
@@ -200,6 +211,8 @@ void atenderSuscripcion(int socketSuscriptor) {
 		log_info(logger,
 				"Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: %d",
 				socketSuscriptor);
+		enviarMensaje(socketSuscriptor,
+				"Se suscribio satisfactoriamente a la cola de mensajes APPEARED_POKEMON");
 		break;
 	}
 	case CATCH: {
@@ -208,6 +221,8 @@ void atenderSuscripcion(int socketSuscriptor) {
 		log_info(logger,
 				"Hay un nuevo suscriptor en la cola CATCH_POKEMON. Número de socket suscriptor: %d",
 				socketSuscriptor);
+		enviarMensaje(socketSuscriptor,
+				"Se suscribio satisfactoriamente a la cola de mensajes CATCH_POKEMON");
 		break;
 	}
 	case CAUGHT: {
@@ -216,6 +231,8 @@ void atenderSuscripcion(int socketSuscriptor) {
 		log_info(logger,
 				"Hay un nuevo suscriptor en la cola CAUGHT_POKEMON. Número de socket suscriptor: %d",
 				socketSuscriptor);
+		enviarMensaje(socketSuscriptor,
+				"Se suscribio satisfactoriamente a la cola de mensajes CAUGHT_POKEMON");
 		break;
 	}
 	case GET: {
@@ -224,6 +241,8 @@ void atenderSuscripcion(int socketSuscriptor) {
 		log_info(logger,
 				"Hay un nuevo suscriptor en la cola GET_POKEMON. Número de socket suscriptor: %d",
 				socketSuscriptor);
+		enviarMensaje(socketSuscriptor,
+				"Se suscribio satisfactoriamente a la cola de mensajes GET_POKEMON");
 		break;
 	}
 	case LOCALIZED: {
@@ -232,6 +251,8 @@ void atenderSuscripcion(int socketSuscriptor) {
 		log_info(logger,
 				"Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: %d",
 				socketSuscriptor);
+		enviarMensaje(socketSuscriptor,
+				"Se suscribio satisfactoriamente a la cola de mensajes LOCALIZED_POKEMON");
 		break;
 	}
 	default: {
@@ -251,25 +272,32 @@ void esperarMensajes(int socketCliente) {
 	while (desconectar == 0) {
 
 		recv(socketCliente, &codOperacion, sizeof(int), MSG_WAITALL);
+
 		switch (codOperacion) {
 		case SUSCRIPCION: {
 			log_info(logger, "[SUSCRIPCION]");
 			atenderSuscripcion(socketCliente);
 			break;
 		}
-		case MENSAJE: {
+		case NUEVO_MENSAJE: {
 			/* En este punto habria que:
 			 * - Determinar a que cola va a ir ese mensaje, y agregarlo.
 			 * - Reenviar el mensaje a todos los suscriptores de dicha cola (¿o eso se hace en otro proceso asincronico?).
 			 * - Guardar el mensaje en la caché.
 			 * - ...
 			 */
-			log_info(logger, "[MENSAJE]");
+			log_info(logger, "[NUEVO_MENSAJE]");
 			atenderMensaje(socketCliente);
 			/*pthread_t nuevoHilo;
 			 pthread_create(&nuevoHilo, NULL, (void*) atenderMensaje,
 			 socketCliente); //No entiendo el warning, si le paso un puntero no anda
 			 pthread_detach(nuevoHilo);*/
+			break;
+		}
+		case CONFIRMACION_MENSAJE: {
+			// TODO
+			// - Obtener id del mensaje y socket
+			// -
 			break;
 		}
 		case FINALIZAR: {
@@ -294,9 +322,7 @@ void esperarMensajes(int socketCliente) {
  * sea gestionada y vuelve a esperar nuevas conexiones.
  */
 void atenderConexiones(int socketEscucha) {
-	char * backlog_server = malloc(
-			strlen(config_get_string_value(config, "BACKLOG_SERVER")) + 1);
-	backlog_server = config_get_string_value(config, "BACKLOG_SERVER");
+	int backlog_server = config_get_int_value(config, "BACKLOG_SERVER");
 	atenderConexionEn(socketEscucha, backlog_server);
 	while (1) {
 		int socketCliente = esperarCliente(socketEscucha);
@@ -313,11 +339,7 @@ void atenderConexiones(int socketEscucha) {
 
 	}
 }
-typedef struct {
-	int id;
-	t_list *listaSuscriptores;
-	void* msj;
-} estructuraMensaje;
+
 
 void enviarASuscriptores(estructuraMensaje *estMsj) {
 	log_debug(logger, ">>>>>>>>>>>>>>>>>>>>>>>>>>>> Enviando a todos los subs");
@@ -327,31 +349,40 @@ void enviarASuscriptores(estructuraMensaje *estMsj) {
 		//	// evitar el envio a los demas suscriptores en la lista
 
 		int socketSuscriptor;
-		memcpy(&socketSuscriptor, list_get(estMsj->listaSuscriptores, i),
-				sizeof(int));
+		//memcpy(&socketSuscriptor, list_get(estMsj->listaSuscriptores, i), sizeof(int));
+		socketSuscriptor = list_get(estMsj->listaSuscriptores, i);
 		//enviarMensaje(socketSuscriptor, (char*) estMsj->msj);
 		enviarMensaje(socketSuscriptor, "hola");
-		send(socketSuscriptor, (void *) "hola2", 6, 0);
+
 	}
 }
 
 void atenderColas() {
 	log_debug(logger, "atenderColas");
 	while (1) {
-		for (int i = 0; i < 5; i++) { //Revisar cada una de las 6 colas
+		for (int i = 0; i < 6; i++) { //Revisar cada una de las 6 colas
 			t_queue* colaActual = getColaByNum(i);
-			if (queue_size(colaActual) > 1) { // Fijarse si en cada cola hay mensajes pendientes
-				log_debug(logger,
-						">>>>>>>>>>>>>>>>>>>>>>>>>>>>mensaje pendiente encontrado");
-				pthread_t nuevoHilo;
-				estructuraMensaje* aProcesar = malloc(
-						sizeof(estructuraMensaje));
-				aProcesar->id = 0;
-				aProcesar->listaSuscriptores = getListaSuscriptoresByNum(i);
-				aProcesar->msj = queue_pop(colaActual);
-				pthread_create(&nuevoHilo, NULL, (void*) enviarASuscriptores,
-						aProcesar); //Delegar el envio de mensaje a otro hilo para seguir revisando
-				pthread_detach(nuevoHilo);
+			if (queue_size(colaActual) > 0) { // Fijarse si en cada cola hay mensajes pendientes
+				//	TODO
+				// - Tomar elemento de queue
+				// - Decidir si tiene idCorrelativo
+				// - Serializar con o sin idCorrelativo
+				// - Enviar a todos los suscriptores
+
+
+
+				//OLD
+				/*log_debug(logger,
+				 ">>>>>>>>>>>>>>>>>>>>>>>>>>>>mensaje pendiente encontrado");
+				 pthread_t nuevoHilo;
+				 estructuraMensaje* aProcesar = malloc(
+				 sizeof(estructuraMensaje));
+				 aProcesar->id = 0;
+				 aProcesar->listaSuscriptores = getListaSuscriptoresByNum(i);
+				 aProcesar->msj = queue_pop(colaActual);
+				 pthread_create(&nuevoHilo, NULL, (void*) enviarASuscriptores,
+				 aProcesar); //Delegar el envio de mensaje a otro hilo para seguir revisando
+				 pthread_detach(nuevoHilo);*/
 			}
 		}
 
@@ -368,20 +399,16 @@ void inicializarColasYListas() {
 	LOCALIZED_POKEMON = queue_create();
 
 	suscriptoresNEW = list_create();
-	;
 	suscriptoresAPP = list_create();
-	;
 	suscriptoresGET = list_create();
-	;
 	suscriptoresLOC = list_create();
-	;
 	suscriptoresCAT = list_create();
-	;
 	suscriptoresCAU = list_create();
-	;
+
 }
 
-/* La cache tiene que ser un espacio fijo, reservado al momento de ejecutar el broker. Tiene que ser un espacio tipo void
+/*
+ * La cache tiene que ser un espacio fijo, reservado al momento de ejecutar el broker. Tiene que ser un espacio tipo void
  * porque no se sabe que se va a guardar ahi, pero tambien tiene que estar inicializado para poder diferenciar que espacios
  * estan vacios. Hay que averiguar como hacer esto bien, puse un caracter para llenar.
  */
@@ -419,22 +446,21 @@ int main() {
 			"El servidor está configurado y a la espera de un cliente. Número de socket servidor: %d",
 			socketEscucha);
 
-	atenderConexiones(socketEscucha);
-	atenderColas();
+	atenderConexiones(socketEscucha); // Agregar suscriptores a listas, Agregar mensajes a colas y Recibir confirmacion de mensajes
+	atenderColas(); 				  // Verifica mensajes encolados y los envia
 
 	/*
-	pthread_t hiloAtenderCliente;
-	pthread_create(&hiloAtenderCliente, NULL, (void*) atenderConexiones,
-			socketEscucha);
+	 pthread_t hiloAtenderCliente;
+	 pthread_create(&hiloAtenderCliente, NULL, (void*) atenderConexiones,
+	 socketEscucha);
 
-	pthread_t hiloAtenderColas;
-	pthread_create(&hiloAtenderColas, NULL, (void*) atenderColas,
-	NULL);
+	 pthread_t hiloAtenderColas;
+	 pthread_create(&hiloAtenderColas, NULL, (void*) atenderColas,
+	 NULL);
 
-	pthread_join(hiloAtenderCliente, NULL);
-	pthread_join(hiloAtenderColas, NULL);
-	*/
-
+	 pthread_join(hiloAtenderCliente, NULL);
+	 pthread_join(hiloAtenderColas, NULL);
+	 */
 
 	//Otros hilos seguirian aca
 	free(puertoEscucha);

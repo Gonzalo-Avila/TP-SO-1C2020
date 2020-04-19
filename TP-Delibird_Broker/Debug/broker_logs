@@ -44073,3 +44073,40 @@
 [INFO] 02:49:57:941 Broker/(14228:14237): ----> APPEARED_POKEMON (7): elias
 [INFO] 02:49:57:941 Broker/(14228:14237): [FINALIZAR]
 [INFO] 02:49:57:941 Broker/(14228:14237): El cliente con socket 7 se ha desconectado
+[INFO] 18:20:59:614 Broker/(20907:20907): Se ha iniciado el servidor broker
+
+[INFO] 18:20:59:615 Broker/(20907:20907): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[INFO] 18:22:39:188 Broker/(20969:20969): Se ha iniciado el servidor broker
+
+[INFO] 18:22:39:189 Broker/(20969:20969): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[INFO] 18:22:42:491 Broker/(20969:20969): Se ha conectado un cliente. Número de socket cliente: 5
+[INFO] 18:22:42:491 Broker/(20969:20971): [SUSCRIPCION]
+[INFO] 18:22:42:491 Broker/(20969:20971): Hay un nuevo suscriptor en la cola NEW_POKEMON. Número de socket suscriptor: 5
+[INFO] 18:23:02:399 Broker/(20969:20969): Se ha conectado un cliente. Número de socket cliente: 7
+[INFO] 18:23:02:402 Broker/(20969:20978): [SUSCRIPCION]
+[INFO] 18:23:02:403 Broker/(20969:20978): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 7
+[INFO] 18:23:02:403 Broker/(20969:20978): [SUSCRIPCION]
+[INFO] 18:23:02:403 Broker/(20969:20978): Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: 7
+[INFO] 18:23:02:403 Broker/(20969:20978): [SUSCRIPCION]
+[INFO] 18:23:02:405 Broker/(20969:20978): Hay un nuevo suscriptor en la cola CAUGHT_POKEMON. Número de socket suscriptor: 7
+[INFO] 18:23:02:405 Broker/(20969:20978): [MENSAJE]
+[DEBUG] 18:23:02:405 Broker/(20969:20978): atenderMensaje
+[INFO] 18:23:02:405 Broker/(20969:20978): APPEARED_POKEMON
+[INFO] 18:23:02:405 Broker/(20969:20978): 6
+[INFO] 18:23:02:406 Broker/(20969:20978): ----> APPEARED_POKEMON (7): elias
+[INFO] 18:23:02:409 Broker/(20969:20978): [FINALIZAR]
+[INFO] 18:23:02:409 Broker/(20969:20978): El cliente con socket 7 se ha desconectado
+[INFO] 18:23:29:264 Broker/(20969:20969): Se ha conectado un cliente. Número de socket cliente: 8
+[INFO] 18:23:29:268 Broker/(20969:20983): [SUSCRIPCION]
+[INFO] 18:23:29:268 Broker/(20969:20983): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 8
+[INFO] 18:23:29:269 Broker/(20969:20983): [SUSCRIPCION]
+[INFO] 18:23:29:270 Broker/(20969:20983): Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: 8
+[INFO] 18:23:29:270 Broker/(20969:20983): [SUSCRIPCION]
+[INFO] 18:23:29:270 Broker/(20969:20983): Hay un nuevo suscriptor en la cola CAUGHT_POKEMON. Número de socket suscriptor: 8
+[INFO] 18:23:29:271 Broker/(20969:20983): [MENSAJE]
+[DEBUG] 18:23:29:271 Broker/(20969:20983): atenderMensaje
+[INFO] 18:23:29:271 Broker/(20969:20983): APPEARED_POKEMON
+[INFO] 18:23:29:271 Broker/(20969:20983): 6
+[INFO] 18:23:29:271 Broker/(20969:20983): ----> APPEARED_POKEMON (8): elias
+[INFO] 18:23:29:272 Broker/(20969:20983): [FINALIZAR]
+[INFO] 18:23:29:289 Broker/(20969:20983): El cliente con socket 8 se ha desconectado

@@ -121,7 +121,7 @@ void enviarMensaje(int socketDestino, char * mensaje){
     if(strcmp(mensaje,"exit")==0)
     	paquete->codOperacion=FINALIZAR;
     else
-        paquete->codOperacion=MENSAJE;
+        paquete->codOperacion=NUEVO_MENSAJE;
 
     int tamanioAEnviar = 2*sizeof(int)+buffer->size;
     void* aEnviar = serializarPaquete(paquete,tamanioAEnviar);
@@ -149,7 +149,7 @@ void enviarMensajeACola(int socketDestino, cola tipoCola, char * mensaje){
     if(strcmp(mensaje,"exit")==0)
     	paquete->codOperacion=FINALIZAR;
     else
-        paquete->codOperacion=MENSAJE;
+        paquete->codOperacion=NUEVO_MENSAJE;
 
     paquete->tipoCola = tipoCola;
 

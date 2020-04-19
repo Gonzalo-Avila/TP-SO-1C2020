@@ -29,4 +29,13 @@ t_list * suscriptoresLOC;
 void * cacheBroker;
 int CACHESIZE;
 
+typedef struct {
+	int id;
+	int idCorrelativo;			// Si no se usa idCorrelativo = -1
+	t_list *listaSuscriptores;
+	void* mensaje;
+	int sizeMensaje;
+} estructuraMensaje;
+
+
 #endif /* BROKER_H_ */
