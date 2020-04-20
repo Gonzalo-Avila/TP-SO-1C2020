@@ -13,44 +13,24 @@ void inicializarVariablesGlobales(){
 	team->entrenadores = list_create();
 }
 
-
-
-//PODRIA IMPLEMENTAR UN for(int i = 0, i<= largoListaPosicionesEntrenadores,i++);
-//QUE CREE EL HILO Y LO DETACHEE POR CADA TEAM---->crearEntrenador()
-
-
-//16-04 | Nico | Ver comentario en obtenerObjetivos().
-/*void obtenerObjetivosEntrenadores(){
-	t_list *listaObjetivos =  list_create();
-
-	listaObjetivos = config_get_array_value(config,"OBJETIVO_ENTRENADORES");
-
-	}*/
-
-//16-04 | Nico | Posible implementación genérica para obtener los parámetros que sean Lista de Listas.
-t_list* obtenerObjetivos(char* clave){
-	t_list *listaObjetivos = list_create();
-	char** posiciones = malloc(sizeof(config_get_array_value(config, clave)));
-	posiciones = config_get_array_value(config, clave);
-
-	int contador = 0;
-	while(posiciones[contador] != NULL){
-		list_add(listaObjetivos, posiciones[contador]);
-		contador++;
+void array_iterate_element(char** strings, void (*closure)(char*,t_list*),t_list *lista){
+	while (*strings != NULL) {
+		closure(*strings,lista);
+		strings++;
 	}
-
-	return listaObjetivos;
 }
 
+void enlistar(char *elemento,t_list *lista){
+	if(elemento != NULL)
+		list_add(lista,elemento);
+}
 
-//16-04 | Nico | Ver comentario en obtenerObjetivos().
-/*void obtenerPokemonesEntrenadores(){
-	t_list *listaPokemones =  list_create();
+//implementacion generica para obtener de configs
+void obtenerDeConfig(char *clave,t_list *lista){
+	char** listaDeConfig = config_get_array_value(config,clave);
 
-	listaPokemones = config_get_array_value(config,"POKEMON_ENTRENADORES");
-	}*/
-
-
+	array_iterate_element(listaDeConfig,enlistar,lista);
+}
 
 /*MANEJA EL FUNCIONAMIENTO INTERNO DE CADA ENTRENADOR(trabajo en un hilo separado)*/
 //void gestionarEntrenador(t_entrenador *entrenador,char *pokemon,t_posicion posPokemon){
@@ -71,32 +51,53 @@ t_list* obtenerObjetivos(char* clave){
 //	pthread_detach(nuevoHilo);
 //}
 
-t_entrenador* armarEntrenador(t_list *posicionesEntrenadores,t_list *objetivosEntrenadores,t_list *pokemonesEntrenadores){
+
+/*arma el entrenador*/
+t_entrenador* armarEntrenador(char *posicionesEntrenador,char *objetivosEntrenador,char *pokemonesEntrenador){
 	t_entrenador* nuevoEntrenador = malloc(sizeof(t_entrenador));
+	t_list *posicionEntrenador = list_create();
+	t_list *objetivoEntrenador = list_create();
+	t_list *pokemonEntrenador = list_create();
 
-	memcpy(nuevoEntrenador->pos, list_get(posicionesEntrenadores, 0), sizeof(t_posicion));
-	memcpy(nuevoEntrenador->objetivos, list_get(objetivosEntrenadores, 0), sizeof(t_list));
-	memcpy(nuevoEntrenador->pokemones, list_get(pokemonesEntrenadores, 0), sizeof(t_list));
-	nuevoEntrenador->estado = NUEVO;
+	array_iterate_element((char **)string_split(posicionesEntrenador, "|"),(void *)enlistar,posicionEntrenador);
+	array_iterate_element((char **)string_split(objetivosEntrenador, "|"),(void *)enlistar,objetivoEntrenador);
+	array_iterate_element((char **)string_split(pokemonesEntrenador, "|"),(void *)enlistar,pokemonEntrenador);
+
+	for(int i = 0; i < 2;i++){
+		nuevoEntrenador->pos[i] = (int)list_get(posicionEntrenador,i);
+	}
+	nuevoEntrenador->objetivos = objetivoEntrenador;
+	nuevoEntrenador->pokemones = pokemonEntrenador;
+
+	list_destroy(posicionEntrenador);
+	list_destroy(objetivoEntrenador);
+	list_destroy(pokemonEntrenador);
+
 	return nuevoEntrenador;
-
-	//mete eso en el struct t_entrenador
-	//retorna el entrenador
 }
 
 // EMMA | Agrego que generarEntreadores reciba como parametro un team
 void generarEntrenadores(t_team* team){
 	t_entrenador* unEntrenador = malloc(sizeof(t_entrenador));
-	t_list* posiciones = obtenerObjetivos("POSICIONES_ENTRENADORES");
-	t_list* objetivos = obtenerObjetivos("OBJETIVO_ENTRENADORES");
-	t_list* pokemones = obtenerObjetivos("POKEMON_ENTRENADORES");
+	t_list* posiciones = list_create();
+	t_list* objetivos  = list_create();
+	t_list* pokemones = list_create();
 
+	obtenerDeConfig("POSICIONES_ENTRENADORES",posiciones);
+	obtenerDeConfig("OBJETIVO_ENTRENADORES",objetivos);
+	obtenerDeConfig("POKEMON_ENTRENADORES",pokemones);
 	for(int contador = 0; contador < list_size(posiciones); contador++) {
 		unEntrenador = armarEntrenador(list_get(posiciones, contador), list_get(objetivos, contador), list_get(pokemones, contador));
 
 		list_add(team->entrenadores,unEntrenador);
 	}
+	list_destroy(posiciones);
+	list_destroy(objetivos);
+	list_destroy(pokemones);
 }
+
+
+
 
 void planificador(){
 	/*
@@ -117,7 +118,6 @@ void planificador(){
 	 */
 }
 
-//16-04 | Nico | No sé si debería poner "TIPO\n" o "TIPO" en los case
 e_algoritmo obtenerAlgoritmoPlanificador(){
 	char* algoritmo = malloc(strlen(config_get_string_value(config, "ALGORITMO_PLANIFICACION"))+1);
 	algoritmo = config_get_string_value(config, "ALGORITMO_PLANIFICACION");
@@ -142,41 +142,41 @@ e_algoritmo obtenerAlgoritmoPlanificador(){
 int main(){
 
 
-	//Se setean todos los datos
-	inicializarVariablesGlobales();
-
-	char * ipServidor = malloc(strlen(config_get_string_value(config,"IP"))+1);
-	ipServidor = config_get_string_value(config,"IP");
-
-	char * puertoServidor = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
-	puertoServidor = config_get_string_value(config,"PUERTO");
-
-	e_algoritmo algoritmoPlanificador = obtenerAlgoritmoPlanificador();
-
-	log_info(logger,"Se ha iniciado el cliente team\n");
-
-    //Se crea la conexion con el broker. Esto posteriormente debe ir con un sistema de reintentos por si el broker esta off
-	int socketBroker = crearConexionCliente(ipServidor,puertoServidor);
-	log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
-			 config_get_string_value(config,"IP"),config_get_string_value(config,"PUERTO"));
-
-	free(ipServidor);
-	free(puertoServidor);
-
-
+//	//Se setean todos los datos
+//	inicializarVariablesGlobales();
+//
+//	char * ipServidor = malloc(strlen(config_get_string_value(config,"IP"))+1);
+//	ipServidor = config_get_string_value(config,"IP");
+//
+//	char * puertoServidor = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
+//	puertoServidor = config_get_string_value(config,"PUERTO");
+//
+//	e_algoritmo algoritmoPlanificador = obtenerAlgoritmoPlanificador();
+//
+//	log_info(logger,"Se ha iniciado el cliente team\n");
+//
+//    //Se crea la conexion con el broker. Esto posteriormente debe ir con un sistema de reintentos por si el broker esta off
+//	int socketBroker = crearConexionCliente(ipServidor,puertoServidor);
+//	log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
+//			 config_get_string_value(config,"IP"),config_get_string_value(config,"PUERTO"));
+//
+//	free(ipServidor);
+//	free(puertoServidor);
 
 
-	//Se suscribe el Team a las colas
-	suscribirseACola(APPEARED, socketBroker);
-	suscribirseACola(LOCALIZED, socketBroker);
-	suscribirseACola(CAUGHT, socketBroker);
 
-	//Procedimiento auxiliar para que no rompa el server en las pruebas
-	int codigoOP = FINALIZAR;
-	send(socketBroker,(void*)&codigoOP,sizeof(opCode),0);
-    close(socketBroker);
-    log_info(logger,"Finalizó la conexión con el servidor\n");
-    log_info(logger,"El proceso team finalizó su ejecución\n");
+//
+//	//Se suscribe el Team a las colas
+//	suscribirseACola(APPEARED, socketBroker);
+//	suscribirseACola(LOCALIZED, socketBroker);
+//	suscribirseACola(CAUGHT, socketBroker);
+//
+//	//Procedimiento auxiliar para que no rompa el server en las pruebas
+//	int codigoOP = FINALIZAR;
+//	send(socketBroker,(void*)&codigoOP,sizeof(opCode),0);
+//    close(socketBroker);
+//    log_info(logger,"Finalizó la conexión con el servidor\n");
+//    log_info(logger,"El proceso team finalizó su ejecución\n");
 
     log_destroy(logger);
     config_destroy(config);
