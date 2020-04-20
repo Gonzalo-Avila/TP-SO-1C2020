@@ -31,9 +31,14 @@ typedef enum{ //
 
 typedef struct {
 	t_list *entrenadores;
+	t_objetivo objetivos;
 	e_algoritmo algoritmoPlanificacion;
 }t_team;
 
+typedef struct{
+	t_list *pokemones;
+	t_list *cantidades;
+}t_objetivo;
 
 typedef struct{
 	int id;
@@ -43,5 +48,7 @@ typedef struct{
 	e_estado estado;
 }t_entrenador;
 
+t_team *team;
+t_list *listaHilos;
 
 #endif /* TEAM_H_ */

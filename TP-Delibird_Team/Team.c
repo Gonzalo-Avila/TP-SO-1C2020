@@ -1,9 +1,5 @@
 #include "Team.h"
 
-
-t_team* team; //No se pueden usar mallocs fuera de funciones
-t_list *listaHilos;
-
 void inicializarVariablesGlobales(){
 
 	config = config_create("team.config");
@@ -27,7 +23,8 @@ void enlistar(char *elemento,t_list *lista){
 
 //implementacion generica para obtener de configs
 void obtenerDeConfig(char *clave,t_list *lista){
-	char** listaDeConfig = config_get_array_value(config,clave);
+	char** listaDeConfig = malloc(sizeof(config_get_array_value(config,clave)));
+	listaDeConfig = config_get_array_value(config,clave);
 
 	array_iterate_element(listaDeConfig,enlistar,lista);
 }
@@ -64,7 +61,7 @@ t_entrenador* armarEntrenador(char *posicionesEntrenador,char *objetivosEntrenad
 	array_iterate_element((char **)string_split(pokemonesEntrenador, "|"),(void *)enlistar,pokemonEntrenador);
 
 	for(int i = 0; i < 2;i++){
-		nuevoEntrenador->pos[i] = (int)list_get(posicionEntrenador,i);
+		nuevoEntrenador->pos[i] = atoi(list_get(posicionEntrenador,i));
 	}
 	nuevoEntrenador->objetivos = objetivoEntrenador;
 	nuevoEntrenador->pokemones = pokemonEntrenador;
@@ -162,7 +159,13 @@ int main(){
 //
 //	free(ipServidor);
 //	free(puertoServidor);
+	inicializarVariablesGlobales();
+	generarEntrenadores(team);
 
+	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+	entrenador = list_get(team->entrenadores,0);
+
+	printf("posicion del entrenador 1: [%d,%d]",(entrenador->pos)[0],(entrenador->pos)[1]);
 
 
 //
