@@ -12,12 +12,12 @@
 
 
 
-t_queue * NEW_POKEMON;
-t_queue * APPEARED_POKEMON;
-t_queue * CATCH_POKEMON;
-t_queue * CAUGHT_POKEMON;
-t_queue * GET_POKEMON;
-t_queue * LOCALIZED_POKEMON;
+t_list * NEW_POKEMON;
+t_list * APPEARED_POKEMON;
+t_list * CATCH_POKEMON;
+t_list * CAUGHT_POKEMON;
+t_list * GET_POKEMON;
+t_list * LOCALIZED_POKEMON;
 
 t_list * suscriptoresNEW;
 t_list * suscriptoresAPP;

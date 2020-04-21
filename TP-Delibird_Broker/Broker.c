@@ -135,8 +135,8 @@ char* getCodeStringByNum(int nro) {
 	return codigo[nro];
 }
 
-t_queue* getColaByNum(int nro) {
-	t_queue* codigo[6] = { NEW_POKEMON, APPEARED_POKEMON, CATCH_POKEMON,
+t_list * getColaByNum(int nro) {
+	t_list* codigo[6] = { NEW_POKEMON, APPEARED_POKEMON, CATCH_POKEMON,
 			CAUGHT_POKEMON, GET_POKEMON, LOCALIZED_POKEMON };
 	return codigo[nro];
 }
@@ -206,7 +206,7 @@ int agregarMensajeACola(int socketEmisor,cola tipoCola, int idCorrelativo){
 
 
 
-    queue_push(getColaByNum(tipoCola),&mensajeNuevo);
+    list_add(getColaByNum(tipoCola),&mensajeNuevo);
 
     imprimirEstructuraDeDatos(mensajeNuevo);
 
@@ -258,33 +258,7 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
          }
     }
 
-
 	//-------------------------
-
-	//int checklistSuscriptor[2];
-	/*
-	log_debug(logger, "atenderMensaje");
-	tPaqueteCola* paquete = malloc(sizeof(tPaqueteCola));
-	paquete->buffer = malloc(sizeof(tBuffer));
-	paquete->codOperacion = NUEVO_MENSAJE;
-	recv(socketSuscriptor, &(paquete->tipoCola), sizeof(int), MSG_WAITALL);
-	recv(socketSuscriptor, &(paquete->buffer->size), sizeof(int), MSG_WAITALL);
-
-	log_info(logger, getCodeStringByNum(paquete->tipoCola));
-
-	char* a = malloc(sizeof(int));
-	sprintf(a, "%d", paquete->buffer->size);
-	log_info(logger, a);
-
-	paquete->buffer->stream = malloc(paquete->buffer->size);
-	recv(socketSuscriptor, paquete->buffer->stream, paquete->buffer->size,
-	MSG_WAITALL);
-
-	queue_push(paquete->tipoCola, paquete->buffer->stream);
-	log_info(logger, "----> %s (%d): %s",
-			getCodeStringByNum(paquete->codOperacion), socketSuscriptor,
-			(char *) paquete->buffer->stream);
-	 */
 }
 
 void enviarMensajesCacheados(int socketSuscriptor,int codSuscripcion){
@@ -476,8 +450,8 @@ void atenderColas() {
 	log_debug(logger, "atenderColas");
 	while (1) {
 		for (int i = 0; i < 6; i++) { //Revisar cada una de las 6 colas
-			t_queue* colaActual = getColaByNum(i);
-			if (queue_size(colaActual) > 0) { // Fijarse si en cada cola hay mensajes pendientes
+			t_list * colaActual = getColaByNum(i);
+			if (list_size(colaActual) > 0) { // Fijarse si en cada cola hay mensajes pendientes
 				//	TODO
 				// - Tomar elemento de queue
 				// - Decidir si tiene idCorrelativo
@@ -492,12 +466,12 @@ void atenderColas() {
 
 void inicializarColasYListas() {
 
-	NEW_POKEMON = queue_create();
-	APPEARED_POKEMON = queue_create();
-	CATCH_POKEMON = queue_create();
-	CAUGHT_POKEMON = queue_create();
-	GET_POKEMON = queue_create();
-	LOCALIZED_POKEMON = queue_create();
+	NEW_POKEMON = list_create();
+	APPEARED_POKEMON = list_create();
+	CATCH_POKEMON = list_create();
+	CAUGHT_POKEMON = list_create();
+	GET_POKEMON = list_create();
+	LOCALIZED_POKEMON = list_create();
 
 	suscriptoresNEW = list_create();
 	suscriptoresAPP = list_create();
