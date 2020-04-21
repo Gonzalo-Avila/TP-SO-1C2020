@@ -7,6 +7,10 @@ void inicializarVariablesGlobales(){
 	listaHilos = list_create();
 	team = malloc(sizeof(t_team));
 	team->entrenadores = list_create();
+	team->objetivos = malloc(sizeof(t_objetivo));
+	colaDeReady = queue_create();//esto se necesita para el FIFO.
+	colaDeBloqued = queue_create();//esto es necesario??
+
 }
 
 void array_iterate_element(char** strings, void (*closure)(char*,t_list*),t_list *lista){
@@ -29,6 +33,25 @@ void obtenerDeConfig(char *clave,t_list *lista){
 	array_iterate_element(listaDeConfig,enlistar,lista);
 }
 
+
+bool verificarPokemonEnLista(char * pokemon,t_list *lista){
+	bool verifica = false;
+
+	for(int i = 0 ; i < list_size(lista);i++){
+		if(strcmp(list_get(lista,i),pokemon) == 0){
+			verifica = true;
+			return verifica;
+		}
+	}
+	return verifica;
+}
+
+
+//void setearObjetivoDeTeam(){
+//	for(int i =0;list_size();i++){
+//
+//	}
+//}
 /*MANEJA EL FUNCIONAMIENTO INTERNO DE CADA ENTRENADOR(trabajo en un hilo separado)*/
 //void gestionarEntrenador(t_entrenador *entrenador,char *pokemon,t_posicion posPokemon){
 //
@@ -73,7 +96,6 @@ t_entrenador* armarEntrenador(char *posicionesEntrenador,char *objetivosEntrenad
 	return nuevoEntrenador;
 }
 
-// EMMA | Agrego que generarEntreadores reciba como parametro un team
 void generarEntrenadores(t_team* team){
 	t_entrenador* unEntrenador = malloc(sizeof(t_entrenador));
 	t_list* posiciones = list_create();
@@ -85,17 +107,13 @@ void generarEntrenadores(t_team* team){
 	obtenerDeConfig("POKEMON_ENTRENADORES",pokemones);
 	for(int contador = 0; contador < list_size(posiciones); contador++) {
 		unEntrenador = armarEntrenador(list_get(posiciones, contador), list_get(objetivos, contador), list_get(pokemones, contador));
-
 		list_add(team->entrenadores,unEntrenador);
 	}
 	list_destroy(posiciones);
 	list_destroy(objetivos);
 	list_destroy(pokemones);
+	free(unEntrenador);
 }
-
-
-
-
 void planificador(){
 	/*
 	Nuevo Hilo por cada entrenador
@@ -136,8 +154,24 @@ e_algoritmo obtenerAlgoritmoPlanificador(){
 	}
 }
 
+void liberarMemoria(){
+	list_destroy(team->objetivos->cantidades);
+	list_destroy(team->objetivos->pokemones);
+	for(int i = 0;i < list_size(team->entrenadores);i++){
+		list_destroy(((t_entrenador*)(list_get(team->entrenadores,i)))->objetivos);
+		list_destroy(((t_entrenador*)(list_get(team->entrenadores,i)))->pokemones);
+	}
+	free(team->objetivos);
+	list_destroy(team->entrenadores);
+	list_destroy(listaHilos);
+    log_destroy(logger);
+    config_destroy(config);
+}
+
 int main(){
 
+	inicializarVariablesGlobales();
+	generarEntrenadores(team);
 
 //	//Se setean todos los datos
 //	inicializarVariablesGlobales();
@@ -167,8 +201,6 @@ int main(){
 
 	printf("posicion del entrenador 1: [%d,%d]",(entrenador->pos)[0],(entrenador->pos)[1]);
 
-
-//
 //	//Se suscribe el Team a las colas
 //	suscribirseACola(APPEARED, socketBroker);
 //	suscribirseACola(LOCALIZED, socketBroker);
@@ -181,7 +213,9 @@ int main(){
 //    log_info(logger,"Finalizó la conexión con el servidor\n");
 //    log_info(logger,"El proceso team finalizó su ejecución\n");
 
-    log_destroy(logger);
-    config_destroy(config);
+	list_destroy(entrenador->objetivos);
+	list_destroy(entrenador->pokemones);
+	free(entrenador);
+	liberarMemoria();
     return 0;
 }

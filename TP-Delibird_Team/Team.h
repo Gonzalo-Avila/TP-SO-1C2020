@@ -29,16 +29,16 @@ typedef enum{ //
 	FIN  	  //
 }e_estado;
 
-typedef struct {
-	t_list *entrenadores;
-	t_objetivo objetivos;
-	e_algoritmo algoritmoPlanificacion;
-}t_team;
-
 typedef struct{
 	t_list *pokemones;
 	t_list *cantidades;
 }t_objetivo;
+
+typedef struct {
+	t_list *entrenadores;
+	t_objetivo *objetivos;
+	e_algoritmo algoritmoPlanificacion;
+}t_team;
 
 typedef struct{
 	int id;
@@ -50,5 +50,7 @@ typedef struct{
 
 t_team *team;
 t_list *listaHilos;
+t_queue *colaDeReady;
+t_queue *colaDeBloqued;
 
 #endif /* TEAM_H_ */
