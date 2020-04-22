@@ -7,7 +7,7 @@ void inicializarVariablesGlobales(){
 	listaHilos = list_create();
 	team = malloc(sizeof(t_team));
 	team->entrenadores = list_create();
-	team->objetivos = malloc(sizeof(t_objetivo));
+	team->objetivo = list_create();
 	colaDeReady = queue_create();//esto se necesita para el FIFO.
 	colaDeBloqued = queue_create();//esto es necesario??
 
@@ -31,19 +31,6 @@ void obtenerDeConfig(char *clave,t_list *lista){
 	listaDeConfig = config_get_array_value(config,clave);
 
 	array_iterate_element(listaDeConfig,enlistar,lista);
-}
-
-
-bool verificarPokemonEnLista(char * pokemon,t_list *lista){
-	bool verifica = false;
-
-	for(int i = 0 ; i < list_size(lista);i++){
-		if(strcmp(list_get(lista,i),pokemon) == 0){
-			verifica = true;
-			return verifica;
-		}
-	}
-	return verifica;
 }
 
 
@@ -96,7 +83,7 @@ t_entrenador* armarEntrenador(char *posicionesEntrenador,char *objetivosEntrenad
 	return nuevoEntrenador;
 }
 
-void generarEntrenadores(t_team* team){
+void generarEntrenadores(){
 	t_entrenador* unEntrenador = malloc(sizeof(t_entrenador));
 	t_list* posiciones = list_create();
 	t_list* objetivos  = list_create();
@@ -155,23 +142,49 @@ e_algoritmo obtenerAlgoritmoPlanificador(){
 }
 
 void liberarMemoria(){
-	list_destroy(team->objetivos->cantidades);
-	list_destroy(team->objetivos->pokemones);
 	for(int i = 0;i < list_size(team->entrenadores);i++){
 		list_destroy(((t_entrenador*)(list_get(team->entrenadores,i)))->objetivos);
 		list_destroy(((t_entrenador*)(list_get(team->entrenadores,i)))->pokemones);
 	}
-	free(team->objetivos);
+	list_destroy(team->objetivo);
 	list_destroy(team->entrenadores);
 	list_destroy(listaHilos);
     log_destroy(logger);
     config_destroy(config);
 }
 
+bool elementoEstaEnLista(t_list *lista, char *elemento){
+	bool verifica = false;
+	for(int i = 0;i < list_size(lista);i++){
+		if(strcmp(list_get(lista,i),elemento))
+			verifica = true;
+	}
+	return verifica;
+}
+
+void setearObjetivosDeTeam(t_team *team){
+	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+	entrenador->objetivos = list_create();
+	char *objetivo = string_new();
+
+	for(int i = 0;i < list_size(team->entrenadores);i++){
+		entrenador = list_get(team->entrenadores,i);
+		for(int j = 0; j < list_size(entrenador->objetivos); j++){
+			//strcpy(objetivo,(char *)list_get(entrenador->objetivos,j));
+			//memcpy(objetivo,list_get(entrenador->objetivos,j),sizeof(list_get(entrenador->objetivos,j)));
+			objetivo = list_get(entrenador->objetivos,i);
+			list_add(team->objetivo,objetivo);
+		}
+	}
+	list_destroy(entrenador->objetivos);
+	free(objetivo);
+	free(entrenador);
+}
+
 int main(){
 
 	inicializarVariablesGlobales();
-	generarEntrenadores(team);
+	generarEntrenadores();
 
 //	//Se setean todos los datos
 //	inicializarVariablesGlobales();
@@ -193,14 +206,17 @@ int main(){
 //
 //	free(ipServidor);
 //	free(puertoServidor);
-	inicializarVariablesGlobales();
-	generarEntrenadores(team);
 
 	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
 	entrenador = list_get(team->entrenadores,0);
 
-	printf("posicion del entrenador 1: [%d,%d]",(entrenador->pos)[0],(entrenador->pos)[1]);
+	printf("Posicion del entrenador 1: [%d,%d]\n",(entrenador->pos)[0],(entrenador->pos)[1]);
+	for(int i = 0;i < list_size(entrenador->objetivos);i++){
+		printf("Su objetivo es: %s\n",(char *)list_get(entrenador->objetivos,i));
+	};
 
+//	setearObjetivosDeTeam(team);
+//	printf("%s",(char*)list_get(team->objetivo,0));
 //	//Se suscribe el Team a las colas
 //	suscribirseACola(APPEARED, socketBroker);
 //	suscribirseACola(LOCALIZED, socketBroker);
@@ -213,9 +229,9 @@ int main(){
 //    log_info(logger,"Finalizó la conexión con el servidor\n");
 //    log_info(logger,"El proceso team finalizó su ejecución\n");
 
-	list_destroy(entrenador->objetivos);
-	list_destroy(entrenador->pokemones);
-	free(entrenador);
-	liberarMemoria();
+//	list_destroy(entrenador->objetivos);
+//	list_destroy(entrenador->pokemones);
+//	free(entrenador);
+//	liberarMemoria();
     return 0;
 }
