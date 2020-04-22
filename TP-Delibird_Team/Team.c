@@ -10,6 +10,7 @@ void inicializarVariablesGlobales(){
 	team->objetivos = malloc(sizeof(t_objetivo));
 	colaDeReady = queue_create();//esto se necesita para el FIFO.
 	colaDeBloqued = queue_create();//esto es necesario??
+	colaDeMensajes = queue_create();
 
 }
 
@@ -72,7 +73,7 @@ bool verificarPokemonEnLista(char * pokemon,t_list *lista){
 //}
 
 
-/*arma el entrenador*/
+/*Arma el Entrenador*/
 t_entrenador* armarEntrenador(char *posicionesEntrenador,char *objetivosEntrenador,char *pokemonesEntrenador){
 	t_entrenador* nuevoEntrenador = malloc(sizeof(t_entrenador));
 	t_list *posicionEntrenador = list_create();
@@ -96,6 +97,7 @@ t_entrenador* armarEntrenador(char *posicionesEntrenador,char *objetivosEntrenad
 	return nuevoEntrenador;
 }
 
+/* Genera los Entrenadores con los datos del Config */
 void generarEntrenadores(t_team* team){
 	t_entrenador* unEntrenador = malloc(sizeof(t_entrenador));
 	t_list* posiciones = list_create();
@@ -114,6 +116,8 @@ void generarEntrenadores(t_team* team){
 	list_destroy(pokemones);
 	free(unEntrenador);
 }
+
+/* Planificador */
 void planificador(){
 	/*
 	Nuevo Hilo por cada entrenador
@@ -136,16 +140,16 @@ void planificador(){
 e_algoritmo obtenerAlgoritmoPlanificador(){
 	char* algoritmo = malloc(strlen(config_get_string_value(config, "ALGORITMO_PLANIFICACION"))+1);
 	algoritmo = config_get_string_value(config, "ALGORITMO_PLANIFICACION");
-	if(strcmp(algoritmo, "FIFO")){
+	if(strcmp(algoritmo, "FIFO") == 0){
 		return FIFO;
 	}
-	else if(strcmp(algoritmo, "RR")){
+	else if(strcmp(algoritmo, "RR") == 0){
 		return RR;
 	}
-	else if(strcmp(algoritmo, "SJFCD")){
+	else if(strcmp(algoritmo, "SJFCD") == 0){
 		return SJFCD;
 	}
-	else if(strcmp(algoritmo, "SJFSD")){
+	else if(strcmp(algoritmo, "SJFSD") == 0){
 		return SJFSD;
 	}
 	else{
@@ -154,6 +158,115 @@ e_algoritmo obtenerAlgoritmoPlanificador(){
 	}
 }
 
+/* Atender al Broker */
+void atenderBroker(int socketBroker) {
+	tPaquete* mensajeRecibido = malloc(sizeof(tPaquete));
+
+	while(1) {
+		mensajeRecibido = recibirMensaje(socketBroker);
+
+		if(mensajeRecibido->codOperacion == FINALIZAR) {
+			break;
+		}
+		log_info(logger, "Mensaje recibido: %s\n", mensajeRecibido->buffer->stream);
+		queue_push(colaDeMensajes, mensajeRecibido);
+	}
+
+	//Libero memoria
+	free(mensajeRecibido->buffer);
+	free(mensajeRecibido);
+}
+
+void crearHiloParaAtenderBroker(int socketBroker) {
+	pthread_t hiloAtenderBroker;
+	pthread_create(&hiloAtenderBroker, NULL, (void*) atenderBroker, socketBroker); //No entiendo el warning
+	pthread_detach(hiloAtenderBroker);
+}
+
+/* Se suscribe a las colas del Broker */
+void suscribirseALasColas(int socketBroker) {
+	suscribirseACola(APPEARED, socketBroker);
+	suscribirseACola(LOCALIZED, socketBroker);
+	suscribirseACola(CAUGHT, socketBroker);
+}
+
+/* Parsear mensaje: funcion para TESTING */
+t_mensaje* parsearMensaje(char* mensaje) {
+	t_mensaje* nuevoMensaje = malloc(sizeof(t_mensaje));
+	char** mensajeSeparado = malloc(strlen(mensaje));
+
+	nuevoMensaje->pokemonSize = strlen(mensajeSeparado[1]);
+	//trim en caso de que tenga espacios atras o adelante
+	string_trim(mensajeSeparado);
+
+	mensajeSeparado = string_split(mensaje, " ");
+
+	//el primer elemento siempre debe ser Tipo de Mensaje, el segundo un pokemon, y el tercero y cuarto son opcionales y tienen las coordenadas
+	for(int i = 0; i < 4; i++) {
+			if(i == 0) {
+				if(strcmp("APPEARED", mensajeSeparado[i]) == 0){
+					nuevoMensaje->tipoDeMensaje = APPEARED;
+					}
+				else if(strcmp("LOCALIZED", mensajeSeparado[i]) == 0){
+					nuevoMensaje->tipoDeMensaje = LOCALIZED;
+					}
+				else if(strcmp("CAUGHT", mensajeSeparado[i]) == 0){
+					nuevoMensaje->tipoDeMensaje = CAUGHT;
+					}
+			}
+			if(i == 1) {
+				strcpy(mensajeSeparado[i], nuevoMensaje->pokemon);
+			}
+
+			//Si el mensaje contiene coordenadas, agregarlas
+			if(sizeof(mensajeSeparado) > (nuevoMensaje->pokemonSize + sizeof(int))){
+				if(i == 2) {
+					nuevoMensaje->posicionX = atoi(mensajeSeparado[i]);
+				}
+				if(i == 3) {
+					nuevoMensaje->posicionY = atoi(mensajeSeparado[i]);
+				}
+			}
+			/*else if(i > 1){
+				break;
+			}*/ //22-04 | Nico | Dejo este if comentado pq no se si cortaría todo el ciclo. Sería solo un cambio para evitar que el ciclo
+				//se ejecute 2 veces mas en caso de que no haya coordenadas
+	}
+	return nuevoMensaje;
+}
+
+t_mensaje* deserializar(void* paquete) {
+	t_mensaje* mensaje = malloc(sizeof(paquete));
+	int offset = 0;
+
+	memcpy((void*)mensaje->tipoDeMensaje, paquete, sizeof(int));
+	offset += sizeof(int);
+	memcpy((void*)mensaje->pokemonSize, paquete+offset, sizeof(int));
+	offset += sizeof(int);
+	memcpy((void*)mensaje->pokemon, paquete+offset, mensaje->pokemonSize);
+	offset += mensaje->pokemonSize;
+	if(sizeof(paquete) != offset){ //si el tamaño es distinto, entonces también hay coordenadas
+		memcpy((void*)mensaje->posicionX, paquete+offset, sizeof(int));
+		offset += sizeof(int);
+		memcpy((void*)mensaje->posicionY, paquete+offset, sizeof(int));
+	}
+	return mensaje;
+}
+
+/* Gestiona los mensajes de la cola */
+void gestionarMensajes() {
+	void* paqueteRecibido = malloc(sizeof(t_queue));
+		  paqueteRecibido = queue_pop(colaDeMensajes);
+	t_mensaje* nuevoMensaje = malloc(sizeof(t_mensaje));
+			   nuevoMensaje->pokemon = string_new();
+
+	nuevoMensaje = deserializar(paqueteRecibido);
+	//TODO para enviar al planificador
+
+
+}
+
+/* Liberar memoria al finalizar el programa */
 void liberarMemoria(){
 	list_destroy(team->objetivos->cantidades);
 	list_destroy(team->objetivos->pokemones);
@@ -164,58 +277,56 @@ void liberarMemoria(){
 	free(team->objetivos);
 	list_destroy(team->entrenadores);
 	list_destroy(listaHilos);
+	queue_destroy(colaDeReady);
+	queue_destroy(colaDeBloqued);
+	queue_destroy(colaDeMensajes);
     log_destroy(logger);
     config_destroy(config);
 }
 
 int main(){
 
+	//Inicializacion
 	inicializarVariablesGlobales();
 	generarEntrenadores(team);
 
-//	//Se setean todos los datos
-//	inicializarVariablesGlobales();
-//
-//	char * ipServidor = malloc(strlen(config_get_string_value(config,"IP"))+1);
-//	ipServidor = config_get_string_value(config,"IP");
-//
-//	char * puertoServidor = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
-//	puertoServidor = config_get_string_value(config,"PUERTO");
-//
-//	e_algoritmo algoritmoPlanificador = obtenerAlgoritmoPlanificador();
-//
-//	log_info(logger,"Se ha iniciado el cliente team\n");
-//
-//    //Se crea la conexion con el broker. Esto posteriormente debe ir con un sistema de reintentos por si el broker esta off
-//	int socketBroker = crearConexionCliente(ipServidor,puertoServidor);
-//	log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
-//			 config_get_string_value(config,"IP"),config_get_string_value(config,"PUERTO"));
-//
-//	free(ipServidor);
-//	free(puertoServidor);
-	inicializarVariablesGlobales();
-	generarEntrenadores(team);
+	//Se setean todos los datos de la conexion
+	char * ipServidor = malloc(strlen(config_get_string_value(config,"IP"))+1);
+	ipServidor = config_get_string_value(config,"IP");
 
-	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
-	entrenador = list_get(team->entrenadores,0);
+	char * puertoServidor = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
+	puertoServidor = config_get_string_value(config,"PUERTO");
 
-	printf("posicion del entrenador 1: [%d,%d]",(entrenador->pos)[0],(entrenador->pos)[1]);
+    //Se crea la conexion con el broker. Esto posteriormente debe ir con un sistema de reintentos por si el broker esta off
+	int socketBroker = crearConexionCliente(ipServidor,puertoServidor);
+	log_info(logger,"Se ha iniciado el cliente team\n");
+	log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
+			 ipServidor,puertoServidor, socketBroker);
 
-//	//Se suscribe el Team a las colas
-//	suscribirseACola(APPEARED, socketBroker);
-//	suscribirseACola(LOCALIZED, socketBroker);
-//	suscribirseACola(CAUGHT, socketBroker);
-//
-//	//Procedimiento auxiliar para que no rompa el server en las pruebas
-//	int codigoOP = FINALIZAR;
-//	send(socketBroker,(void*)&codigoOP,sizeof(opCode),0);
-//    close(socketBroker);
-//    log_info(logger,"Finalizó la conexión con el servidor\n");
-//    log_info(logger,"El proceso team finalizó su ejecución\n");
+	free(ipServidor);
+	free(puertoServidor);
 
-	list_destroy(entrenador->objetivos);
-	list_destroy(entrenador->pokemones);
-	free(entrenador);
+	//Se obtiene el algoritmo planificador
+	e_algoritmo algoritmoPlanificador = obtenerAlgoritmoPlanificador();
+		log_info(logger, "Algoritmo de planificacion a utilizar: %s\n", config_get_string_value(config, "ALGORITMO_PLANIFICACION"));
+
+	// Se crea un hilo para atender los mensajes del Broker
+	crearHiloParaAtenderBroker(socketBroker);
+
+	//Se suscribe el Team a las colas
+	suscribirseALasColas(socketBroker);
+
+	//Gestiono los mensajes de la cola
+	gestionarMensajes();
+
+	//Procedimiento auxiliar para que no rompa el server en las pruebas
+	int codigoOP = FINALIZAR;
+	send(socketBroker,(void*)&codigoOP,sizeof(opCode),0);
+    close(socketBroker);
+    log_info(logger,"Finalizó la conexión con el servidor\n");
+    log_info(logger,"El proceso team finalizó su ejecución\n");
+
 	liberarMemoria();
     return 0;
 }
+

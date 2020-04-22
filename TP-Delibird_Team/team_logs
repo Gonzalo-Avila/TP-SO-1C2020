@@ -111,3 +111,156 @@ Número de socket: 1
 IP: 127.0.0.1
 Puerto: 9898
 Número de socket: 1
+[INFO] 20:43:35:421 Team/(5598:5598): Se ha iniciado el cliente team
+
+[INFO] 20:43:35:424 Team/(5598:5598): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:02:30:42 Team/(5289:5289): Se ha iniciado el cliente team
+
+[INFO] 11:02:30:46 Team/(5289:5289): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:11:26:967 Team/(5540:5540): Se ha iniciado el cliente team
+
+[INFO] 11:11:26:970 Team/(5540:5540): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:12:37:378 Team/(5599:5599): Se ha iniciado el cliente team
+
+[INFO] 11:12:37:379 Team/(5599:5599): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:12:51:618 Team/(5643:5643): Se ha iniciado el cliente team
+
+[INFO] 11:12:51:621 Team/(5643:5643): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:13:10:922 Team/(5694:5694): Se ha iniciado el cliente team
+
+[INFO] 11:13:10:922 Team/(5694:5694): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:14:05:88 Team/(5755:5755): Se ha iniciado el cliente team
+
+[INFO] 11:14:05:94 Team/(5755:5755): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:14:35:959 Team/(5810:5810): Se ha iniciado el cliente team
+
+[INFO] 11:14:35:959 Team/(5810:5810): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:15:36:728 Team/(5873:5873): Se ha iniciado el cliente team
+
+[INFO] 11:15:36:729 Team/(5873:5873): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:18:51:396 Team/(6038:6038): Algoritmo de planificacion a utilizar: FIFO
+[INFO] 11:18:51:416 Team/(6038:6038): Se ha iniciado el cliente team
+
+[INFO] 11:18:51:418 Team/(6038:6038): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:19:32:355 Team/(6099:6099): Algoritmo de planificacion a utilizar: FIFO
+
+[INFO] 11:19:32:360 Team/(6099:6099): Se ha iniciado el cliente team
+
+[INFO] 11:19:32:361 Team/(6099:6099): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:21:25:60 Team/(6222:6222): Algoritmo de planificacion a utilizar: FIFO
+
+[INFO] 11:21:25:69 Team/(6222:6222): Se ha iniciado el cliente team
+
+[INFO] 11:21:25:69 Team/(6222:6222): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:21:57:107 Team/(6276:6276): Algoritmo de planificacion a utilizar: FIFO
+
+[INFO] 11:21:57:113 Team/(6276:6276): Se ha iniciado el cliente team
+
+[INFO] 11:21:57:116 Team/(6276:6276): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:22:19:252 Team/(6341:6341): Algoritmo de planificacion a utilizar: FIFO
+
+[INFO] 11:22:19:267 Team/(6341:6341): Se ha iniciado el cliente team
+
+[INFO] 11:22:19:267 Team/(6341:6341): Se ha establecido conexión con el servidor
+IP: �(m)m
+Puerto: )m
+Número de socket: 1
+[INFO] 11:23:06:90 Team/(6399:6399): Algoritmo de planificacion a utilizar: FIFO
+
+[INFO] 11:23:06:100 Team/(6399:6399): Se ha iniciado el cliente team
+
+[INFO] 11:23:06:102 Team/(6399:6399): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 4
+[INFO] 11:26:19:714 Team/(6520:6520): Algoritmo de planificacion a utilizar: FIFO
+
+[INFO] 11:26:19:730 Team/(6520:6520): Se ha iniciado el cliente team
+
+[INFO] 11:27:21:531 Team/(6593:6593): Algoritmo de planificacion a utilizar: FIFO
+
+[INFO] 11:27:21:535 Team/(6593:6593): Se ha iniciado el cliente team
+
+[INFO] 11:27:39:559 Team/(6644:6644): Algoritmo de planificacion a utilizar: FIFO
+
+[INFO] 11:27:39:566 Team/(6644:6644): Se ha iniciado el cliente team
+
+[INFO] 11:31:44:973 Team/(6801:6801): Algoritmo de planificacion a utilizar: FIFO
+
+[INFO] 11:31:44:980 Team/(6801:6801): Se ha iniciado el cliente team
+
+[INFO] 11:31:44:980 Team/(6801:6801): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 4
+[INFO] 11:32:40:554 Team/(6908:6908): Algoritmo de planificacion a utilizar: FIFO
+
+[INFO] 11:32:40:563 Team/(6908:6908): Se ha iniciado el cliente team
+
+[INFO] 11:32:40:564 Team/(6908:6908): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 4
+[INFO] 11:33:02:647 Team/(6962:6962): Algoritmo de planificacion a utilizar: FIFO
+
+[INFO] 11:33:02:660 Team/(6962:6962): Se ha iniciado el cliente team
+
+[INFO] 11:33:02:661 Team/(6962:6962): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 4
+[INFO] 11:33:26:554 Team/(7018:7018): Algoritmo de planificacion a utilizar: FIFO
+
+[INFO] 11:33:26:571 Team/(7018:7018): Se ha iniciado el cliente team
+
+[INFO] 11:33:26:574 Team/(7018:7018): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 4
+[INFO] 12:49:18:235 Team/(9069:9069): Se ha iniciado el cliente team
+
+[INFO] 12:49:18:237 Team/(9069:9069): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 4
+[INFO] 12:49:18:237 Team/(9069:9069): Algoritmo de planificacion a utilizar: FIFO
+

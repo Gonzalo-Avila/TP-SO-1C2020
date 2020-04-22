@@ -21,6 +21,7 @@
 #include <commons/collections/list.h>
 #include <commons/collections/queue.h>
 #include <commons/config.h>
+#include <commons/string.h>
 #include <inttypes.h>
 
 

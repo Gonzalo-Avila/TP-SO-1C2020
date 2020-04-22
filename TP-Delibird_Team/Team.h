@@ -10,7 +10,7 @@
 
 #include <Utils.h>
 
-#define MAXSIZE = 1024;
+#define MAXSIZE 1024
 
 typedef int t_posicion[2];
 
@@ -48,9 +48,18 @@ typedef struct{
 	e_estado estado;
 }t_entrenador;
 
+typedef struct{
+	cola tipoDeMensaje;
+	int pokemonSize;
+	char* pokemon;
+	int posicionX;
+	int posicionY;
+}t_mensaje;
+
 t_team *team;
 t_list *listaHilos;
 t_queue *colaDeReady;
 t_queue *colaDeBloqued;
+t_queue *colaDeMensajes;
 
 #endif /* TEAM_H_ */
