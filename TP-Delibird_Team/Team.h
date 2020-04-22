@@ -29,14 +29,9 @@ typedef enum{ //
 	FIN  	  //
 }e_estado;
 
-typedef struct{
-	t_list *pokemones;
-	t_list *cantidades;
-}t_objetivo;
-
 typedef struct {
 	t_list *entrenadores;
-	t_objetivo *objetivos;
+	t_list *objetivo;
 	e_algoritmo algoritmoPlanificacion;
 }t_team;
 

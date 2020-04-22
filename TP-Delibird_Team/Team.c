@@ -7,7 +7,7 @@ void inicializarVariablesGlobales(){
 	listaHilos = list_create();
 	team = malloc(sizeof(t_team));
 	team->entrenadores = list_create();
-	team->objetivos = malloc(sizeof(t_objetivo));
+	team->objetivo = list_create();
 	colaDeReady = queue_create();//esto se necesita para el FIFO.
 	colaDeBloqued = queue_create();//esto es necesario??
 	colaDeMensajes = queue_create();
@@ -32,19 +32,6 @@ void obtenerDeConfig(char *clave,t_list *lista){
 	listaDeConfig = config_get_array_value(config,clave);
 
 	array_iterate_element(listaDeConfig,enlistar,lista);
-}
-
-
-bool verificarPokemonEnLista(char * pokemon,t_list *lista){
-	bool verifica = false;
-
-	for(int i = 0 ; i < list_size(lista);i++){
-		if(strcmp(list_get(lista,i),pokemon) == 0){
-			verifica = true;
-			return verifica;
-		}
-	}
-	return verifica;
 }
 
 
@@ -98,7 +85,7 @@ t_entrenador* armarEntrenador(char *posicionesEntrenador,char *objetivosEntrenad
 }
 
 /* Genera los Entrenadores con los datos del Config */
-void generarEntrenadores(t_team* team){
+void generarEntrenadores(){
 	t_entrenador* unEntrenador = malloc(sizeof(t_entrenador));
 	t_list* posiciones = list_create();
 	t_list* objetivos  = list_create();
@@ -268,13 +255,11 @@ void gestionarMensajes() {
 
 /* Liberar memoria al finalizar el programa */
 void liberarMemoria(){
-	list_destroy(team->objetivos->cantidades);
-	list_destroy(team->objetivos->pokemones);
 	for(int i = 0;i < list_size(team->entrenadores);i++){
 		list_destroy(((t_entrenador*)(list_get(team->entrenadores,i)))->objetivos);
 		list_destroy(((t_entrenador*)(list_get(team->entrenadores,i)))->pokemones);
 	}
-	free(team->objetivos);
+	list_destroy(team->objetivo);
 	list_destroy(team->entrenadores);
 	list_destroy(listaHilos);
 	queue_destroy(colaDeReady);
@@ -284,49 +269,95 @@ void liberarMemoria(){
     config_destroy(config);
 }
 
+bool elementoEstaEnLista(t_list *lista, char *elemento){
+	bool verifica = false;
+	for(int i = 0;i < list_size(lista);i++){
+		if(strcmp(list_get(lista,i),elemento))
+			verifica = true;
+	}
+	return verifica;
+}
+
+void setearObjetivosDeTeam(t_team *team){
+	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+	entrenador->objetivos = list_create();
+	char *objetivo = string_new();
+
+	for(int i = 0;i < list_size(team->entrenadores);i++){
+		entrenador = list_get(team->entrenadores,i);
+		for(int j = 0; j < list_size(entrenador->objetivos); j++){
+			//strcpy(objetivo,(char *)list_get(entrenador->objetivos,j));
+			//memcpy(objetivo,list_get(entrenador->objetivos,j),sizeof(list_get(entrenador->objetivos,j)));
+			objetivo = list_get(entrenador->objetivos,i);
+			list_add(team->objetivo,objetivo);
+		}
+	}
+	list_destroy(entrenador->objetivos);
+	free(objetivo);
+	free(entrenador);
+}
+
 int main(){
 
 	//Inicializacion
 	inicializarVariablesGlobales();
-	generarEntrenadores(team);
+	generarEntrenadores();
 
-	//Se setean todos los datos de la conexion
-	char * ipServidor = malloc(strlen(config_get_string_value(config,"IP"))+1);
-	ipServidor = config_get_string_value(config,"IP");
+//	//Se setean todos los datos
+//	inicializarVariablesGlobales();
+//
+//	char * ipServidor = malloc(strlen(config_get_string_value(config,"IP"))+1);
+//	ipServidor = config_get_string_value(config,"IP");
+//
+//	char * puertoServidor = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
+//	puertoServidor = config_get_string_value(config,"PUERTO");
+//
+//	e_algoritmo algoritmoPlanificador = obtenerAlgoritmoPlanificador();
+//
+//	log_info(logger,"Se ha iniciado el cliente team\n");
+//
+//    //Se crea la conexion con el broker. Esto posteriormente debe ir con un sistema de reintentos por si el broker esta off
+//	int socketBroker = crearConexionCliente(ipServidor,puertoServidor);
+//	log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
+//			 config_get_string_value(config,"IP"),config_get_string_value(config,"PUERTO"));
+//
+//	free(ipServidor);
+//	free(puertoServidor);
 
-	char * puertoServidor = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
-	puertoServidor = config_get_string_value(config,"PUERTO");
+//	char * puertoServidor = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
+//	puertoServidor = config_get_string_value(config,"PUERTO");
 
     //Se crea la conexion con el broker. Esto posteriormente debe ir con un sistema de reintentos por si el broker esta off
-	int socketBroker = crearConexionCliente(ipServidor,puertoServidor);
-	log_info(logger,"Se ha iniciado el cliente team\n");
-	log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
-			 ipServidor,puertoServidor, socketBroker);
-
-	free(ipServidor);
-	free(puertoServidor);
+//	int socketBroker = crearConexionCliente(ipServidor,puertoServidor);
+//	log_info(logger,"Se ha iniciado el cliente team\n");
+//	log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
+//			 ipServidor,puertoServidor, socketBroker);
+//
+//	free(ipServidor);
+//	free(puertoServidor);
 
 	//Se obtiene el algoritmo planificador
-	e_algoritmo algoritmoPlanificador = obtenerAlgoritmoPlanificador();
-		log_info(logger, "Algoritmo de planificacion a utilizar: %s\n", config_get_string_value(config, "ALGORITMO_PLANIFICACION"));
+//	e_algoritmo algoritmoPlanificador = obtenerAlgoritmoPlanificador();
+//		log_info(logger, "Algoritmo de planificacion a utilizar: %s\n", config_get_string_value(config, "ALGORITMO_PLANIFICACION"));
 
 	// Se crea un hilo para atender los mensajes del Broker
-	crearHiloParaAtenderBroker(socketBroker);
+//	crearHiloParaAtenderBroker(socketBroker);
 
 	//Se suscribe el Team a las colas
-	suscribirseALasColas(socketBroker);
+//	suscribirseALasColas(socketBroker);
 
 	//Gestiono los mensajes de la cola
-	gestionarMensajes();
+//	gestionarMensajes();
 
-	//Procedimiento auxiliar para que no rompa el server en las pruebas
-	int codigoOP = FINALIZAR;
-	send(socketBroker,(void*)&codigoOP,sizeof(opCode),0);
-    close(socketBroker);
-    log_info(logger,"Finalizó la conexión con el servidor\n");
-    log_info(logger,"El proceso team finalizó su ejecución\n");
+//	//Procedimiento auxiliar para que no rompa el server en las pruebas
+//	int codigoOP = FINALIZAR;
+//	send(socketBroker,(void*)&codigoOP,sizeof(opCode),0);
+//    close(socketBroker);
+//    log_info(logger,"Finalizó la conexión con el servidor\n");
+//    log_info(logger,"El proceso team finalizó su ejecución\n");
+//
+//	liberarMemoria();
 
-	liberarMemoria();
     return 0;
 }
 
