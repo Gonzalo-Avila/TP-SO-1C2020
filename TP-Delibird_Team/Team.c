@@ -206,7 +206,7 @@ t_mensaje* parsearMensaje(char* mensaje) {
 			}
 
 			//Si el mensaje contiene coordenadas, agregarlas
-			if(sizeof(mensajeSeparado) > (nuevoMensaje->pokemonSize + sizeof(int))){
+			if(nuevoMensaje->tipoDeMensaje == LOCALIZED || nuevoMensaje->tipoDeMensaje == CAUGHT){
 				if(i == 2) {
 					nuevoMensaje->posicionX = atoi(mensajeSeparado[i]);
 				}
@@ -232,7 +232,7 @@ t_mensaje* deserializar(void* paquete) {
 	offset += sizeof(int);
 	memcpy((void*)mensaje->pokemon, paquete+offset, mensaje->pokemonSize);
 	offset += mensaje->pokemonSize;
-	if(sizeof(paquete) != offset){ //si el tamaño es distinto, entonces también hay coordenadas
+	if(mensaje->tipoDeMensaje == LOCALIZED || mensaje->tipoDeMensaje == CAUGHT) {
 		memcpy((void*)mensaje->posicionX, paquete+offset, sizeof(int));
 		offset += sizeof(int);
 		memcpy((void*)mensaje->posicionY, paquete+offset, sizeof(int));
