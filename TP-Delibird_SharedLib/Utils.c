@@ -200,18 +200,15 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,i
           default:{
         	  log_error(logger,"[ERROR]");
               log_error(logger,"No se pudo leer la cola destino");
-
           }
         }
         mensajeSerializado = serializarPaquete(paquete,sizeTotal);
         send(socketBroker,mensajeSerializado,sizeTotal,0);
-
         free(mensaje);
         free(mensajeSerializado);
         free(paquete);
         free(buffer->stream);
         free(buffer);
-
 }
 
 /* Permite enviar un mensaje a cualquier cliente, de forma que estos lo puedan interpretar

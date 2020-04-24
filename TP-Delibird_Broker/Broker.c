@@ -203,8 +203,6 @@ int agregarMensajeACola(int socketEmisor,cola tipoCola, int idCorrelativo){
 	mensajeNuevo.mensaje = malloc(mensajeNuevo.sizeMensaje);
     recv(socketEmisor,mensajeNuevo.mensaje,mensajeNuevo.sizeMensaje,MSG_WAITALL);
 
-
-
     list_add(getColaByNum(tipoCola),&mensajeNuevo);
 
     imprimirEstructuraDeDatos(mensajeNuevo);
@@ -463,14 +461,10 @@ void atenderColas() {
 	                	{
 	                		enviarMensajeASuscriptor(sus.socketSuscriptor,i,*mensaje);
 	                	}
-
 	                }
-
 				}
-
 			}
 		}
-
 	}
 }
 

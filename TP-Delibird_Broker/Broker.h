@@ -31,8 +31,6 @@ t_list * IDs;
 void * cacheBroker;
 int CACHESIZE;
 
-
-
 typedef enum{
 	NUEVO=0,
     ENVIADO=1,
@@ -42,8 +40,16 @@ typedef enum{
 typedef struct{
 	int socketSuscriptor;
     statusMensaje status;
-
 }suscriptor;
+
+typedef struct {
+	int id;
+	int idCorrelativo;			// Si no se usa idCorrelativo = -1
+	int socket;
+	statusMensaje status;
+	int sizeMensaje;
+	void* mensaje;
+} estructuraMensaje;
 
 int generarID();
 t_list* getListaSuscriptoresByNum(int nro);
