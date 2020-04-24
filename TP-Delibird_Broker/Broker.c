@@ -172,12 +172,13 @@ t_list * generarListaDeSuscriptoresActuales(cola tipoCola){
         /* Convención utilizada para el vector:
          * - La primera posición es el suscriptor (o sea el numero de socket)
          * - La segunda posición es el estado del mensaje en relación al suscriptor
-         * |- NO_CONFIRMADO (0):  el suscriptor aun no confirmó recepción
+         * |- NUEVO (0):  el mensaje aun no fue enviado
+         * |- ENVIADO (1): el mensaje se envió, pero no fue confirmado
          * |- CONFIRMADO (1): el suscriptor confirmó recepción del mensaje
          */
         int vec[2];
         vec[0]=*(int *)list_get(suscriptoresDeLaCola,index);
-        vec[1]=NO_CONFIRMADO;
+        vec[1]=NUEVO;
         list_add(listaGenerada,vec);
     }
 
@@ -448,6 +449,7 @@ void enviarASuscriptores(estructuraMensaje *estMsj) {
 
 void atenderColas() {
 	log_debug(logger, "atenderColas");
+    estructuraMensaje *mensaje;
 	while (1) {
 		for (int i = 0; i < 6; i++) { //Revisar cada una de las 6 colas
 			t_list * colaActual = getColaByNum(i);
@@ -458,6 +460,21 @@ void atenderColas() {
 				// - Serializar con o sin idCorrelativo
 				// - Enviar a todos los suscriptores
                 // - Agregar a lista de mensajes enviados
+				for(int j=0;j<list_size(colaActual);j++)
+				{
+	                mensaje=list_get(colaActual,j);
+	                for(int k=0;k<list_size(mensaje->listaSuscriptores);k++)
+	                {
+	                	int suscriptor[2]=list_get(mensaje->listaSuscriptores,k);
+	                	if(suscriptor[1]!=CONFIRMADO)
+	                	{
+	                		//Enviar mensaje a suscriptor
+	                	}
+
+	                }
+
+				}
+
 			}
 		}
 

@@ -10,5 +10,12 @@
 
 #include <Utils.h>
 
+typedef enum{
+	BROKER=0,
+	TEAM=1,
+	GAMECARD=2,
+    SUSCRIPTOR=3
+}proceso;
+
 
 #endif /* GAME_BOY_H_ */

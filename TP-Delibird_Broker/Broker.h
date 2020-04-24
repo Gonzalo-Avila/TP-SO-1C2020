@@ -40,8 +40,9 @@ typedef struct {
 } estructuraMensaje;
 
 typedef enum{
-    NO_CONFIRMADO=0,
-	CONFIRMADO=1
+	NUEVO=0,
+    ENVIADO=1,
+	CONFIRMADO=2
 }statusMensaje;
 
 int generarID();

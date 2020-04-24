@@ -5,41 +5,66 @@ void inicializarVariablesGlobales(){
 	config = config_create("gameboy.config");
 	logger = log_create("gameboy_logs","GameBoy",1,LOG_LEVEL_TRACE);
 }
-int main(){
+
+int conectarseADestino(proceso destino){
+
+	 char * ipDestino = malloc(16);
+	 char * puertoDestino = malloc(6);
+	 int socketDestino;
+
+     switch(destino){
+         case SUSCRIPTOR:
+		 case BROKER:{
+			 ipDestino = config_get_string_value(config,"IP_BROKER");
+			 puertoDestino = config_get_string_value(config,"PUERTO_BROKER");
+			 break;
+		 }
+		 case TEAM:{
+			 ipDestino = config_get_string_value(config,"IP_TEAM");
+			 puertoDestino = config_get_string_value(config,"PUERTO_TEAM");
+			 break;
+		 }
+		 case GAMECARD:{
+			 ipDestino = config_get_string_value(config,"IP_TEAM");
+			 puertoDestino = config_get_string_value(config,"PUERTO_TEAM");
+			 break;
+		 }
+		 default:{
+			 log_error(logger,"Error obteniendo el destino del mensaje");
+			 return -1;
+		 }
+     }
+     socketDestino = crearConexionCliente(ipDestino,puertoDestino);
+     free(ipDestino);
+     free(puertoDestino);
+     return socketDestino;
+}
+int main(int argc, char** argv){
+
 	//Se setean todos los datos
+	log_info(logger,"Se ha iniciado el cliente gameboy\n");
 	inicializarVariablesGlobales();
 
-	char * ipServidor = malloc(strlen(config_get_string_value(config,"IP"))+1);
-	ipServidor = config_get_string_value(config,"IP");
-	char * puertoServidor = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
-	puertoServidor = config_get_string_value(config,"PUERTO");
-    log_info(logger,"Se ha iniciado el cliente gameboy\n");
+	proceso destino = argv[0];
+    cola tipoMensaje = argv[1];
+    int socketDestino = conectarseADestino(destino);
+    if(destino==SUSCRIPTOR){
+       suscribirseACola(socketDestino,tipoMensaje);
+       while(sleep(argv[3])!=0){
+    	  //Recibir mensaje
+    	  //Imprimir mensaje
+       }
+    }
+    else{
+    	//Hay que armar una funcion personalizada
+    	enviarMensajeACola(socketDestino,tipoMensaje,argv);
+    }
 
-    //Se crea la conexion con el broker. Esto posteriormente debe ir con un sistema de reintentos por si el broker esta off
-	int socketBroker = crearConexionCliente(ipServidor,puertoServidor);
-	log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
-			config_get_string_value(config,"IP"),config_get_string_value(config,"PUERTO"));
 
-	free(ipServidor);
-	free(puertoServidor);
 
-	suscribirseACola(socketBroker, NEW);
-	//suscribirseACola(socketBroker, LOCALIZED);
-	//suscribirseACola(socketBroker, CAUGHT);
 
-	//char* msjTest = malloc(sizeof("115elias"));
-	//msjTest = 1 + 1 + "5elias"; // 115elias = MENSAJE NEW <sizeMsj> <Msj>
-	//log_info(logger, msjTest);
-	//enviarMensaje(socketBroker, msjTest);
-	//enviarMensajeACola(socketBroker, NEW, "elias");
-	while(1){
-		recibirMensaje(socketBroker);
-	}
 
-	//Procedimiento auxiliar para que no rompa el server en las pruebas
-	int codigoOP = FINALIZAR;
-	send(socketBroker,(void*)&codigoOP,sizeof(opCode),0);
-    close(socketBroker);
+
     log_info(logger,"Finalizó la conexión con el servidor\n");
     log_info(logger,"El proceso team finalizó su ejecución\n");
 

@@ -70,9 +70,11 @@ int esperarCliente(int socketEscucha)
     return socketCliente;
 }
 
+
 /* Serializa un paquete de formato estandar (Código de operación / Tamaño de buffer / Stream)
  *
  */
+
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar)
 {
 	int offset=0;
@@ -87,26 +89,163 @@ void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar)
     return aEnviar;
 }
 
-void * serializarPaqueteCola(tPaqueteCola* paquete, int tamanioAEnviar)
-{
-	int offset=0;
-	void* aEnviar=malloc(tamanioAEnviar);
+//EDIT GONZALO 23/04
+//------------------
+void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,int sizeMensaje,
+		                  void * mensaje){
+	    int offset = 0;
+	    int sizeTotal;
+	    void *mensajeSerializado;
 
-	memcpy(aEnviar+offset,&(paquete->codOperacion),sizeof(int));
-	offset+=sizeof(int);
-	memcpy(aEnviar+offset,&(paquete->tipoCola),sizeof(int));
-	offset+=sizeof(int);
-    memcpy(aEnviar+offset,&(paquete->buffer->size),sizeof(int));
-    offset+=sizeof(int);
-    memcpy(aEnviar+offset,paquete->buffer->stream,paquete->buffer->size);
 
-    return aEnviar;
+        tPaquete *paquete=malloc(sizeof(tPaquete));
+        tBuffer *buffer = malloc(sizeof(tBuffer));
+        buffer->stream=malloc(sizeMensaje);
+        buffer->size=sizeMensaje;
+
+        paquete->codOperacion=NUEVO_MENSAJE;
+
+        memcpy(buffer->stream+offset,&(colaDestino),sizeof(cola));
+        offset+=sizeof(cola);
+        memcpy(buffer->stream+offset,&(idCorrelativo),sizeof(int));
+        offset+=sizeof(int);
+        memcpy(buffer->stream+offset,&(sizeMensaje),sizeof(int));
+        offset+=sizeof(int);
+
+        sizeTotal=sizeof(opCode)+sizeof(cola)+sizeof(int)*2;
+
+        switch(colaDestino){
+          case NEW:{
+              mensajeNew * msg = mensaje;
+        	  memcpy(buffer->stream+offset,&(msg->longPokemon),sizeof(uint32_t));
+        	  offset+=sizeof(uint32_t);
+        	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
+              offset+=sizeof(msg->longPokemon);
+              memcpy(buffer->stream+offset,msg->posicionX,sizeof(uint32_t));
+              offset+=sizeof(uint32_t);
+              memcpy(buffer->stream+offset,msg->posicionY,sizeof(uint32_t));
+              offset+=sizeof(uint32_t);
+              memcpy(buffer->stream+offset,&(msg->cantPokemon),sizeof(uint32_t));
+              paquete->buffer=buffer;
+              sizeTotal += sizeof(uint32_t)*4+msg->longPokemon;
+              break;
+          }
+          case APPEARED:{
+        	  mensajeAppeared * msg = mensaje;
+        	  memcpy(buffer->stream+offset,&(msg->longPokemon),sizeof(uint32_t));
+        	  offset+=sizeof(uint32_t);
+        	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
+              offset+=sizeof(msg->longPokemon);
+              memcpy(buffer->stream+offset,msg->posicionX,sizeof(uint32_t));
+              offset+=sizeof(uint32_t);
+              memcpy(buffer->stream+offset,msg->posicionY,sizeof(uint32_t));
+              offset+=sizeof(uint32_t);
+              sizeTotal += sizeof(uint32_t)*3+msg->longPokemon;
+        	  break;
+          }
+          case CATCH:{
+        	  mensajeCatch * msg = mensaje;
+        	  memcpy(buffer->stream+offset,&(msg->longPokemon),sizeof(uint32_t));
+        	  offset+=sizeof(uint32_t);
+        	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
+              offset+=sizeof(msg->longPokemon);
+              memcpy(buffer->stream+offset,msg->posicionX,sizeof(uint32_t));
+              offset+=sizeof(uint32_t);
+              memcpy(buffer->stream+offset,msg->posicionY,sizeof(uint32_t));
+              offset+=sizeof(uint32_t);
+              sizeTotal += sizeof(uint32_t)*3+msg->longPokemon;
+        	  break;
+          }
+          case CAUGHT:{
+        	  mensajeCaught * msg = mensaje;
+        	  memcpy(buffer->stream+offset,&(msg->resultado),sizeof(uint32_t));
+        	  offset+=sizeof(uint32_t);
+        	  sizeTotal += sizeof(uint32_t);
+        	  break;
+          }
+          case GET:{
+              mensajeGet * msg = mensaje;
+              memcpy(buffer->stream+offset,&(msg->longPokemon),sizeof(uint32_t));
+              offset+=sizeof(uint32_t);
+          	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
+              offset+=sizeof(msg->longPokemon);
+        	  sizeTotal += sizeof(uint32_t)+msg->longPokemon;
+        	  break;
+          }
+          case LOCALIZED:{
+        	  mensajeLocalized * msg = mensaje;
+        	  posicYCant a;
+        	  memcpy(buffer->stream+offset,&(msg->longPokemon),sizeof(uint32_t));
+        	  offset+=sizeof(uint32_t);
+  	    	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
+  	    	  offset+=sizeof(msg->longPokemon);
+  	    	  memcpy(buffer->stream+offset,&(msg->listSize),sizeof(uint32_t));
+  	    	  offset+=sizeof(uint32_t);
+              for(int i=0;i<msg->listSize;i++)
+              {
+                  a=list_get(msg->posicionYCant,i);
+            	  memcpy(buffer->stream+offset,&(a.posicionX),sizeof(uint32_t));
+            	  offset+=sizeof(uint32_t);
+            	  memcpy(buffer->stream+offset,&(a.posicionY),sizeof(uint32_t));
+            	  offset+=sizeof(uint32_t);
+            	  memcpy(buffer->stream+offset,&(a.posicionX),sizeof(uint32_t));
+            	  offset+=sizeof(uint32_t);
+              }
+              sizeTotal+=sizeof(uint32_t)*(2+(3*msg->listSize))+msg->longPokemon;
+        	  break;
+          }
+          default:{
+        	  log_error(logger,"[ERROR]");
+              log_error(logger,"No se pudo leer la cola destino");
+
+          }
+        }
+        mensajeSerializado = serializarPaquete(paquete,sizeTotal);
+        send(socketBroker,mensajeSerializado,sizeTotal,0);
+
+        free(mensaje);
+        free(mensajeSerializado);
+        free(paquete);
+        free(buffer->stream);
+        free(buffer);
+
 }
+
+
+/* Luego de creada la conexión con el broker, esta función envía el código de la cola a la que se va a suscribir.
+ * Nota: no usa serialización, por lo que se mandan dos mensajes en lugar de uno, pero funciona. ¿Esta mal?
+ */
+void suscribirseACola(int socketBroker, cola tipoCola){
+    tPaquete * paquete = malloc(sizeof(tPaquete));
+    paquete->buffer=malloc(sizeof(tBuffer));
+    paquete->buffer->stream=malloc(sizeof(cola));
+
+    paquete->codOperacion=SUSCRIPCION;
+    paquete->buffer->size=sizeof(cola);
+    memcpy(paquete->buffer->stream,&(tipoCola),sizeof(cola));
+    int sizeTotal = sizeof(opCode)+sizeof(cola)+sizeof(int);
+    void * paqueteSerializado = serializarPaquete(paquete,sizeTotal);
+    send(socketBroker,paqueteSerializado,sizeTotal,0);
+    free(paquete->buffer->stream);
+    free(paquete->buffer);
+    free(paquete);
+    free(paqueteSerializado);
+}
+
+//------------------
+
+
+
+
+
+
+
+
 
 /* Envía un string al socket destino
  *
  */
-void enviarMensaje(int socketDestino, char * mensaje){
+/*void enviarMensaje(int socketDestino, char * mensaje){
 
 	int longMensaje = strlen(mensaje);
     tBuffer *buffer = malloc(sizeof(tBuffer));
@@ -132,8 +271,8 @@ void enviarMensaje(int socketDestino, char * mensaje){
     free(buffer);
     free(paquete);
     free(aEnviar);
-}
-
+}*/
+/*
 void enviarMensajeACola(int socketDestino, cola tipoCola, char * mensaje){
 
 	int longMensaje = strlen(mensaje);
@@ -163,11 +302,12 @@ void enviarMensajeACola(int socketDestino, cola tipoCola, char * mensaje){
     free(paquete);
     free(aEnviar);
 }
+*/
 
 /* Recibe un string enviado por el socket fuente
  * RECORDAR HACER LOS FREE CORRESPONDIENTES EN LA FUNCIÓN QUE LLAMA
  */
-tPaquete *recibirMensaje(int socketFuente){
+/*tPaquete *recibirMensaje(int socketFuente){
 
 	tPaquete *paqueteRecibido = malloc(sizeof(tPaquete));
 	paqueteRecibido->buffer=malloc(sizeof(tBuffer));
@@ -179,26 +319,7 @@ tPaquete *recibirMensaje(int socketFuente){
 
 	return paqueteRecibido;
 
-}
-
-
-/* Funcion de prueba
- *
- */
-int test(){
-  return 10;
-}
-
-
-/* Luego de creada la conexión con el broker, esta función envía el código de la cola a la que se va a suscribir.
- * Nota: no usa serialización, por lo que se mandan dos mensajes en lugar de uno, pero funciona. ¿Esta mal?
- */
-void suscribirseACola(int socketBroker, cola tipoCola){
-    opCode tipoMensaje = SUSCRIPCION;
-	send(socketBroker,(void*)(&tipoMensaje),sizeof(opCode),0);
-    send(socketBroker,(void*)(&tipoCola),sizeof(cola),0);
-}
-
+}*/
 /*void enviarACola(int socketBroker, cola tipoCola, char* msj, int msjSize){
 	int msjSizeReal = msjSize + 1;
 	int size = sizeof(int) + sizeof(int) + msjSizeReal;

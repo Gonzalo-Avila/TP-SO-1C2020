@@ -70,18 +70,18 @@ typedef struct
 	void* stream;
 } tBuffer;
 
+/*
+typedef struct
+{
+	opCode codOperacion;
+	tBuffer* buffer; //Buffer = size + stream
+} tPaquete;*/
+
 typedef struct
 {
 	opCode codOperacion;
 	tBuffer* buffer; //Buffer = size + stream
 } tPaquete;
-
-typedef struct
-{
-	opCode codOperacion;
-	cola tipoCola;
-	tBuffer* buffer; //Buffer = size + stream
-} tPaqueteCola;
 
 //Este mensaje hace aparecer un nuevo pokemon en la posicion indicada
 typedef struct
@@ -89,7 +89,8 @@ typedef struct
 	//uint32_t id;            //ID del mensaje. Entiendo que el emisor lo manda inicializado en 0,y el broker le asigna valor.
 	uint32_t longPokemon;   //Longitud del nombre del pokemon.
 	char * pokemon;         //Nombre del pokemon a agregar.
-	uint32_t posicion [2];  //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
+	uint32_t posicionX;
+	uint32_t posicionY;;  //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
     uint32_t cantPokemon;   //Cantidad pokemons a agregar en la posición.
 }mensajeNew;
 
@@ -100,7 +101,8 @@ typedef struct
 	//uint32_t idC;           //ID del mensaje al que responde (correlacional).
 	uint32_t longPokemon;   //Longitud del nombre del pokemon.
 	char * pokemon;         //Nombre del pokemon que apareció.
-	uint32_t posicion [2];  //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
+	uint32_t posicionX;
+	uint32_t posicionY;  //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
 }mensajeAppeared;
 
 //Este mensaje indica que se va a atrapar un pokemon en determinada posicion
@@ -109,7 +111,8 @@ typedef struct
 	//uint32_t id;            //ID del mensaje. Entiendo que el emisor lo manda inicializado en 0,y el broker le asigna valor.
 	uint32_t longPokemon;   //Longitud del nombre del pokemon.
 	char * pokemon;         //Nombre del pokemon a atrapar.
-	uint32_t posicion [2];  //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
+	uint32_t posicionX;
+	uint32_t posicionY;;  //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
 }mensajeCatch;
 
 //Este mensaje confirma si el resultado de la operacion "Catch" fue correcto o fallo
@@ -135,13 +138,15 @@ typedef struct
 	//uint32_t idC;           //ID del mensaje al que responde (correlacional).
 	uint32_t longPokemon;   //Longitud del nombre del pokemon.
 	char * pokemon;         //Nombre del pokemon cuyas posiciones se esta informando.
+    uint32_t listSize;
     t_list * posicionYCant; //Lista de todas las posiciones donde esta el pokemon y cantidad en cada una, seria un struct.
 }mensajeLocalized;
 
 //Estructura para las componentes de la lista de posiciones y cantidades
 typedef struct
 {
-	uint32_t posicion[2];   //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
+	uint32_t posicionX;
+	uint32_t posicionY;   //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
 	uint32_t cantidad;      //Cantidad de pokemons que hay en la posición.
 }posicYCant;
 
@@ -151,7 +156,7 @@ int crearConexionCliente(char * ip, char * puerto);
 int esperarCliente(int socketEscucha);
 void inicializarColas();
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar);
-void * serializarPaqueteCola(tPaqueteCola* paquete, int tamanioAEnviar);
+void * serializarPaqueteCola(tPaquete* paquete, int tamanioAEnviar);
 void enviarMensaje(int socketDestino, char * mensaje);
 void enviarMensajeACola(int socketDestino, cola tipoCola, char * mensaje);
 tPaquete *recibirMensaje(int socketFuente);
