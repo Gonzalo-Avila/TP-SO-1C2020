@@ -124,9 +124,9 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,i
         	  offset+=sizeof(uint32_t);
         	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
               offset+=sizeof(msg->longPokemon);
-              memcpy(buffer->stream+offset,msg->posicionX,sizeof(uint32_t));
+              memcpy(buffer->stream+offset,&(msg->posicionX),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
-              memcpy(buffer->stream+offset,msg->posicionY,sizeof(uint32_t));
+              memcpy(buffer->stream+offset,&(msg->posicionY),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
               memcpy(buffer->stream+offset,&(msg->cantPokemon),sizeof(uint32_t));
               paquete->buffer=buffer;
@@ -139,9 +139,9 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,i
         	  offset+=sizeof(uint32_t);
         	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
               offset+=sizeof(msg->longPokemon);
-              memcpy(buffer->stream+offset,msg->posicionX,sizeof(uint32_t));
+              memcpy(buffer->stream+offset,&(msg->posicionX),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
-              memcpy(buffer->stream+offset,msg->posicionY,sizeof(uint32_t));
+              memcpy(buffer->stream+offset,&(msg->posicionY),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
               sizeTotal += sizeof(uint32_t)*3+msg->longPokemon;
         	  break;
@@ -152,9 +152,9 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,i
         	  offset+=sizeof(uint32_t);
         	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
               offset+=sizeof(msg->longPokemon);
-              memcpy(buffer->stream+offset,msg->posicionX,sizeof(uint32_t));
+              memcpy(buffer->stream+offset,&(msg->posicionX),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
-              memcpy(buffer->stream+offset,msg->posicionY,sizeof(uint32_t));
+              memcpy(buffer->stream+offset,&(msg->posicionY),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
               sizeTotal += sizeof(uint32_t)*3+msg->longPokemon;
         	  break;
@@ -186,12 +186,12 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,i
   	    	  offset+=sizeof(uint32_t);
               for(int i=0;i<msg->listSize;i++)
               {
-                  a=list_get(msg->posicionYCant,i);
+                  a=*(posicYCant *)(list_get(msg->posicionYCant,i));
             	  memcpy(buffer->stream+offset,&(a.posicionX),sizeof(uint32_t));
             	  offset+=sizeof(uint32_t);
             	  memcpy(buffer->stream+offset,&(a.posicionY),sizeof(uint32_t));
             	  offset+=sizeof(uint32_t);
-            	  memcpy(buffer->stream+offset,&(a.posicionX),sizeof(uint32_t));
+            	  memcpy(buffer->stream+offset,&(a.cantidad),sizeof(uint32_t));
             	  offset+=sizeof(uint32_t);
               }
               sizeTotal+=sizeof(uint32_t)*(2+(3*msg->listSize))+msg->longPokemon;
@@ -292,7 +292,7 @@ void suscribirseACola(int socketBroker, cola tipoCola){
 /* Envía un string al socket destino
  *
  */
-/*void enviarMensaje(int socketDestino, char * mensaje){
+void enviarString(int socketDestino, char * mensaje){
 
 	int longMensaje = strlen(mensaje);
     tBuffer *buffer = malloc(sizeof(tBuffer));
@@ -318,7 +318,7 @@ void suscribirseACola(int socketBroker, cola tipoCola){
     free(buffer);
     free(paquete);
     free(aEnviar);
-}*/
+}
 /*
 void enviarMensajeACola(int socketDestino, cola tipoCola, char * mensaje){
 

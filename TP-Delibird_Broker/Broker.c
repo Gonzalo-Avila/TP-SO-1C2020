@@ -169,17 +169,15 @@ t_list * generarListaDeSuscriptoresActuales(cola tipoCola){
 	t_list * suscriptoresDeLaCola = getListaSuscriptoresByNum(tipoCola);
 
     for(int index=0; index<list_size(suscriptoresDeLaCola);index++){
-        /* Convención utilizada para el vector:
-         * - La primera posición es el suscriptor (o sea el numero de socket)
-         * - La segunda posición es el estado del mensaje en relación al suscriptor
+        /*
          * |- NUEVO (0):  el mensaje aun no fue enviado
          * |- ENVIADO (1): el mensaje se envió, pero no fue confirmado
          * |- CONFIRMADO (1): el suscriptor confirmó recepción del mensaje
          */
-        int vec[2];
-        vec[0]=*(int *)list_get(suscriptoresDeLaCola,index);
-        vec[1]=NUEVO;
-        list_add(listaGenerada,vec);
+        suscriptor sus;
+        sus.socketSuscriptor=*(int *)list_get(suscriptoresDeLaCola,index);
+        sus.status=NUEVO;
+        list_add(listaGenerada,&sus);
     }
 
 	return listaGenerada;
@@ -284,7 +282,7 @@ void atenderSuscripcion(int socketSuscriptor) {
 		log_info(logger,
 				"Hay un nuevo suscriptor en la cola NEW_POKEMON. Número de socket suscriptor: %d",
 				socketSuscriptor);
-		enviarMensaje(socketSuscriptor,
+		enviarString(socketSuscriptor,
 				"Se suscribio satisfactoriamente a la cola de mensajes NEW_POKEMON");
 		break;
 	}
@@ -294,7 +292,7 @@ void atenderSuscripcion(int socketSuscriptor) {
 		log_info(logger,
 				"Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: %d",
 				socketSuscriptor);
-		enviarMensaje(socketSuscriptor,
+		enviarString(socketSuscriptor,
 				"Se suscribio satisfactoriamente a la cola de mensajes APPEARED_POKEMON");
 		break;
 	}
@@ -304,7 +302,7 @@ void atenderSuscripcion(int socketSuscriptor) {
 		log_info(logger,
 				"Hay un nuevo suscriptor en la cola CATCH_POKEMON. Número de socket suscriptor: %d",
 				socketSuscriptor);
-		enviarMensaje(socketSuscriptor,
+		enviarString(socketSuscriptor,
 				"Se suscribio satisfactoriamente a la cola de mensajes CATCH_POKEMON");
 		break;
 	}
@@ -314,7 +312,7 @@ void atenderSuscripcion(int socketSuscriptor) {
 		log_info(logger,
 				"Hay un nuevo suscriptor en la cola CAUGHT_POKEMON. Número de socket suscriptor: %d",
 				socketSuscriptor);
-		enviarMensaje(socketSuscriptor,
+		enviarString(socketSuscriptor,
 				"Se suscribio satisfactoriamente a la cola de mensajes CAUGHT_POKEMON");
 		break;
 	}
@@ -324,7 +322,7 @@ void atenderSuscripcion(int socketSuscriptor) {
 		log_info(logger,
 				"Hay un nuevo suscriptor en la cola GET_POKEMON. Número de socket suscriptor: %d",
 				socketSuscriptor);
-		enviarMensaje(socketSuscriptor,
+		enviarString(socketSuscriptor,
 				"Se suscribio satisfactoriamente a la cola de mensajes GET_POKEMON");
 		break;
 	}
@@ -334,7 +332,7 @@ void atenderSuscripcion(int socketSuscriptor) {
 		log_info(logger,
 				"Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: %d",
 				socketSuscriptor);
-		enviarMensaje(socketSuscriptor,
+		enviarString(socketSuscriptor,
 				"Se suscribio satisfactoriamente a la cola de mensajes LOCALIZED_POKEMON");
 		break;
 	}
@@ -351,12 +349,10 @@ void atenderSuscripcion(int socketSuscriptor) {
  */
 void esperarMensajes(int socketCliente) {
 	int codOperacion;
-	int desconectar = 0;
-	while (desconectar == 0) {
 
-		recv(socketCliente, &codOperacion, sizeof(int), MSG_WAITALL);
+	recv(socketCliente, &codOperacion, sizeof(int), MSG_WAITALL);
 
-		switch (codOperacion) {
+	switch (codOperacion) {
 		case SUSCRIPCION: {
 			log_info(logger, "[SUSCRIPCION]");
 			atenderSuscripcion(socketCliente);
@@ -371,17 +367,16 @@ void esperarMensajes(int socketCliente) {
 			 *   |- Averiguar qué guardar en la cache, porque el enunciado dice que solo se puede guardar el payload
 			 * - ...
 			 */
+					log_info(logger, "[NUEVO_MENSAJE]");
+					//Edit Gonzalo - 19/04
+			//---------------
+			cola tipoCola;
+			recv(socketCliente, &tipoCola, sizeof(cola), MSG_WAITALL);
+			atenderMensaje(socketCliente,tipoCola);
 
-			log_info(logger, "[NUEVO_MENSAJE]");
+			//Como es un connect para cada mensaje, aca habria que cerrar la conexion al socket
 
-            //Edit Gonzalo - 19/04
-            //---------------
-            cola tipoCola;
-            recv(socketCliente, &tipoCola, sizeof(cola), MSG_WAITALL);
-            atenderMensaje(socketCliente,tipoCola);
-
-
-            //---------------
+			//---------------
 			break;
 		}
 		case CONFIRMACION_MENSAJE: {
@@ -391,23 +386,20 @@ void esperarMensajes(int socketCliente) {
 			break;
 		}
 		case FINALIZAR: {
-			/* Finaliza la conexión con el broker de forma ordenada.
+	     	/* Finaliza la conexión con el broker de forma ordenada.
 			 * No creo que tenga mucho sentido en el TP, seria para hacer pruebas.
 			 */
 			log_info(logger, "[FINALIZAR]");
-			desconectar = 1;
+			log_info(logger, "El cliente con socket %d se ha desconectado",socketCliente);
+			free(socketCliente);
 			break;
 		}
 		default: {
 			log_error(logger, "El mensaje recibido está dañado");
 			break;
 		}
-		}
 	}
-	log_info(logger, "El cliente con socket %d se ha desconectado",
-			socketCliente);
 }
-
 /* Espera nuevas conexiones en el socket de escucha. Al establecerse una nueva, envía esa conexión a un nuevo hilo para que
  * sea gestionada y vuelve a esperar nuevas conexiones.
  */
@@ -440,9 +432,9 @@ void enviarASuscriptores(estructuraMensaje *estMsj) {
 
 		int socketSuscriptor;
 		//memcpy(&socketSuscriptor, list_get(estMsj->listaSuscriptores, i), sizeof(int));
-		socketSuscriptor = list_get(estMsj->listaSuscriptores, i);
+		socketSuscriptor = *(int *)list_get(estMsj->listaSuscriptores, i);
 		//enviarMensaje(socketSuscriptor, (char*) estMsj->msj);
-		enviarMensaje(socketSuscriptor, "hola");
+		enviarString(socketSuscriptor, "hola");
 
 	}
 }
@@ -465,10 +457,11 @@ void atenderColas() {
 	                mensaje=list_get(colaActual,j);
 	                for(int k=0;k<list_size(mensaje->listaSuscriptores);k++)
 	                {
-	                	int suscriptor[2]=list_get(mensaje->listaSuscriptores,k);
-	                	if(suscriptor[1]!=CONFIRMADO)
+	                	suscriptor sus;
+	                	sus=*(suscriptor *)list_get(mensaje->listaSuscriptores,k);
+	                	if(sus.status!=CONFIRMADO)
 	                	{
-	                		//Enviar mensaje a suscriptor
+	                		enviarMensajeASuscriptor(sus.socketSuscriptor,i,*mensaje);
 	                	}
 
 	                }

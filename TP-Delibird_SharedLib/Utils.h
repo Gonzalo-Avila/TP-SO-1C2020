@@ -48,12 +48,12 @@ typedef enum
 
 typedef enum
 {
-	NEW=1,
-	APPEARED=2,
-	CATCH=3,
-	CAUGHT=4,
-	GET=5,
-	LOCALIZED=6
+	NEW=0,
+	APPEARED=1,
+	CATCH=2,
+	CAUGHT=3,
+	GET=4,
+	LOCALIZED=5
 }cola;
 
 /*typedef struct
@@ -166,8 +166,9 @@ int esperarCliente(int socketEscucha);
 void inicializarColas();
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar);
 void * serializarPaqueteCola(tPaquete* paquete, int tamanioAEnviar);
-void enviarMensaje(int socketDestino, char * mensaje);
+void enviarString(int socketDestino, char * mensaje);
 void enviarMensajeACola(int socketDestino, cola tipoCola, char * mensaje);
+void enviarMensajeASuscriptor(int socketSuscriptor,cola colaEmisora, estructuraMensaje datosMensaje);
 tPaquete *recibirMensaje(int socketFuente);
 void loggearMensaje(t_log *logger,char * mensaje);
 int test();

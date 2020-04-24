@@ -39,52 +39,64 @@ int conectarseADestino(proceso destino){
      free(puertoDestino);
      return socketDestino;
 }
-cola definirTipoMensaje(char * parametro){
-	 cola tipo;
-     switch(parametro){
-		 case "NEW_POKEMON":{
-			 tipo=NEW;
-			 break;
-		 }
-		 case "APPEARED_POKEMON":{
-			 tipo=APPEARED;
-			 break;
-		 }
-		 case "CATCH_POKEMON":{
-			 tipo=CATCH;
-			 break;
-		 }
-		 case "CAUGHT_POKEMON":{
-			 tipo=CAUGHT;
-			 break;
-		 }
-		 case "GET_POKEMON":{
-			 tipo=GET;
-			 break;
-		 }
-		 case "LOCALIZED_POKEMON":{
-			 tipo=LOCALIZED;
-			 break;
-		 }
-		 default:{
-			 log_error(logger,"[ERROR]");
-			 log_error(logger,"No se pudo identificar el tipo de mensaje");
-		 }
+cola definirTipoMensaje(char * argumento){
+     if(strcmp("NEW_POKEMON",argumento)==0){
+    	 return NEW;
      }
-     return tipo;
+     if(strcmp("APPEARED_POKEMON",argumento)==0){
+         return APPEARED;
+     }
+     if(strcmp("CATCH_POKEMON",argumento)==0){
+         return CATCH;
+     }
+     if(strcmp("CAUGHT_POKEMON",argumento)==0){
+         return CAUGHT;
+     }
+     if(strcmp("GET_POKEMON",argumento)==0){
+       	 return GET;
+     }
+     if(strcmp("LOCALIZED_POKEMON",argumento)==0){
+       	 return LOCALIZED;
+     }
+     log_error(logger,"[ERROR]");
+     log_error(logger,"No se pudo determinar el tipo de cola o suscripción");
+     return -1;
 }
+
+proceso definirDestino(char * argumento){
+     if(strcmp("TEAM",argumento)==0){
+         return TEAM;
+     }
+     if(strcmp("GAMECARD",argumento)==0){
+          return GAMECARD;
+     }
+     if(strcmp("BROKER",argumento)==0){
+    	 return BROKER;
+     }
+     if(strcmp("SUSCRIPTOR",argumento)==0){
+    	 return SUSCRIPTOR;
+     }
+     log_error(logger,"[ERROR]");
+     log_error(logger,"No se pudo determinar el proceso destino");
+     return -1;
+
+}
+
+
+
 int main(int argc, char** argv){
 
 	//Se setean todos los datos
 	log_info(logger,"Se ha iniciado el cliente gameboy\n");
 	inicializarVariablesGlobales();
 
-	proceso destino = argv[0];
+	proceso destino = definirDestino(argv[0]);
     cola tipoMensaje = definirTipoMensaje(argv[1]);
     int socketDestino = conectarseADestino(destino);
     if(destino==SUSCRIPTOR){
        suscribirseACola(socketDestino,tipoMensaje);
-       while(sleep(argv[3])!=0){
+       while(sleep(atoi(argv[3]))!=0){
+    	  log_info(logger,"Paso un segundo");
     	  //Recibir mensaje
     	  //Imprimir mensaje
        }

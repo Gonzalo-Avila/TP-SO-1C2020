@@ -39,6 +39,12 @@ typedef enum{
 	CONFIRMADO=2
 }statusMensaje;
 
+typedef struct{
+	int socketSuscriptor;
+    statusMensaje status;
+
+}suscriptor;
+
 int generarID();
 t_list* getListaSuscriptoresByNum(int nro);
 
