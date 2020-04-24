@@ -78,8 +78,6 @@ t_entrenador* armarEntrenador(char *posicionesEntrenador,char *objetivosEntrenad
 	nuevoEntrenador->pokemones = pokemonEntrenador;
 
 	list_destroy(posicionEntrenador);
-	list_destroy(objetivoEntrenador);
-	list_destroy(pokemonEntrenador);
 
 	return nuevoEntrenador;
 }
