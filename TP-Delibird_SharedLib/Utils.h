@@ -150,6 +150,15 @@ typedef struct
 	uint32_t cantidad;      //Cantidad de pokemons que hay en la posición.
 }posicYCant;
 
+typedef struct {
+	int id;
+	int idCorrelativo;			// Si no se usa idCorrelativo = -1
+	t_list *listaSuscriptores;
+	int sizeMensaje;
+	void* mensaje;
+} estructuraMensaje;
+
+
 void atenderConexionEn(int socket, int backlog);
 int crearConexionServer(char * ip, char * puerto);
 int crearConexionCliente(char * ip, char * puerto);

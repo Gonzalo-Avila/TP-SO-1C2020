@@ -31,13 +31,7 @@ t_list * IDs;
 void * cacheBroker;
 int CACHESIZE;
 
-typedef struct {
-	int id;
-	int idCorrelativo;			// Si no se usa idCorrelativo = -1
-	t_list *listaSuscriptores;
-	int sizeMensaje;
-	void* mensaje;
-} estructuraMensaje;
+
 
 typedef enum{
 	NUEVO=0,

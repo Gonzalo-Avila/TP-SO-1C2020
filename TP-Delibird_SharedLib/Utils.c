@@ -80,8 +80,8 @@ void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar)
 	int offset=0;
 	void* aEnviar=malloc(tamanioAEnviar);
 
-	memcpy(aEnviar+offset,&(paquete->codOperacion),sizeof(int));
-	offset+=sizeof(int);
+	memcpy(aEnviar+offset,&(paquete->codOperacion),sizeof(opCode));
+	offset+=sizeof(opCode);
     memcpy(aEnviar+offset,&(paquete->buffer->size),sizeof(int));
     offset+=sizeof(int);
     memcpy(aEnviar+offset,paquete->buffer->stream,paquete->buffer->size);
@@ -91,6 +91,9 @@ void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar)
 
 //EDIT GONZALO 23/04
 //------------------
+/* Permite envíar un mensaje desde cualquier cliente, que el broker sepa interpretar.
+ *
+ */
 void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,int sizeMensaje,
 		                  void * mensaje){
 	    int offset = 0;
@@ -211,9 +214,53 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,i
 
 }
 
+/* Permite enviar un mensaje a cualquier cliente, de forma que estos lo puedan interpretar
+ *
+ */
+void enviarMensajeASuscriptor(int socketSuscriptor,cola colaEmisora, estructuraMensaje datosMensaje){
+
+         tPaquete * paquete = malloc (sizeof(tPaquete));
+         tBuffer * buffer = malloc (sizeof(tBuffer));
+         void * paqueteSerializado;
+
+         int offset=0;
+         int sizeTotal;
+
+         paquete->codOperacion=NUEVO_MENSAJE;
+
+         buffer->size=sizeof(cola)+sizeof(int)*3+datosMensaje.sizeMensaje;
+         buffer->stream=malloc(buffer->size);
+
+         memcpy(buffer->stream+offset,&colaEmisora,sizeof(cola));
+         offset+=sizeof(cola);
+         memcpy(buffer->stream+offset,&(datosMensaje.id),sizeof(int));
+         offset+=sizeof(int);
+         memcpy(buffer->stream+offset,&(datosMensaje.idCorrelativo),sizeof(int));
+         offset+=sizeof(int);
+         memcpy(buffer->stream+offset,&(datosMensaje.sizeMensaje),sizeof(int));
+         offset+=sizeof(int);
+         memcpy(buffer->stream+offset,&(datosMensaje.mensaje),datosMensaje.sizeMensaje);
+
+         paquete->buffer=buffer;
+
+         sizeTotal=sizeof(opCode)+sizeof(int)+buffer->size;
+
+         paqueteSerializado=serializarPaquete(paquete,sizeTotal);
+
+         send(socketSuscriptor,paqueteSerializado,sizeTotal,0);
+
+         free(paqueteSerializado);
+         free(paquete);
+         free(buffer->stream);
+         free(buffer);
+
+
+
+}
+
 
 /* Luego de creada la conexión con el broker, esta función envía el código de la cola a la que se va a suscribir.
- * Nota: no usa serialización, por lo que se mandan dos mensajes en lugar de uno, pero funciona. ¿Esta mal?
+ *
  */
 void suscribirseACola(int socketBroker, cola tipoCola){
     tPaquete * paquete = malloc(sizeof(tPaquete));

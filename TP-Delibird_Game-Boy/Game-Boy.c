@@ -39,6 +39,40 @@ int conectarseADestino(proceso destino){
      free(puertoDestino);
      return socketDestino;
 }
+cola definirTipoMensaje(char * parametro){
+	 cola tipo;
+     switch(parametro){
+		 case "NEW_POKEMON":{
+			 tipo=NEW;
+			 break;
+		 }
+		 case "APPEARED_POKEMON":{
+			 tipo=APPEARED;
+			 break;
+		 }
+		 case "CATCH_POKEMON":{
+			 tipo=CATCH;
+			 break;
+		 }
+		 case "CAUGHT_POKEMON":{
+			 tipo=CAUGHT;
+			 break;
+		 }
+		 case "GET_POKEMON":{
+			 tipo=GET;
+			 break;
+		 }
+		 case "LOCALIZED_POKEMON":{
+			 tipo=LOCALIZED;
+			 break;
+		 }
+		 default:{
+			 log_error(logger,"[ERROR]");
+			 log_error(logger,"No se pudo identificar el tipo de mensaje");
+		 }
+     }
+     return tipo;
+}
 int main(int argc, char** argv){
 
 	//Se setean todos los datos
@@ -46,7 +80,7 @@ int main(int argc, char** argv){
 	inicializarVariablesGlobales();
 
 	proceso destino = argv[0];
-    cola tipoMensaje = argv[1];
+    cola tipoMensaje = definirTipoMensaje(argv[1]);
     int socketDestino = conectarseADestino(destino);
     if(destino==SUSCRIPTOR){
        suscribirseACola(socketDestino,tipoMensaje);
@@ -55,9 +89,29 @@ int main(int argc, char** argv){
     	  //Imprimir mensaje
        }
     }
-    else{
-    	//Hay que armar una funcion personalizada
-    	enviarMensajeACola(socketDestino,tipoMensaje,argv);
+    else
+    {
+    	switch(tipoMensaje){
+    		case NEW:{
+    			break;
+    		}
+    		case APPEARED:{
+    			break;
+    		}
+    		case CATCH:{
+    			break;
+    		}
+    		case CAUGHT:{
+    			break;
+    		}
+    		case GET:{
+    			break;
+    		}
+    		case LOCALIZED:{
+    			break;
+    		}
+
+    	}
     }
 
 
