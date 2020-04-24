@@ -278,20 +278,20 @@ bool elementoEstaEnLista(t_list *lista, char *elemento){
 
 void setearObjetivosDeTeam(t_team *team){
 	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
-	entrenador->objetivos = list_create();
-	char *objetivo = string_new();
+	//entrenador->objetivos = list_create(); 	EMMA - Por algun motivo no cargaba los objetivos del ultimo entrenador, al deletear esta linea pasó a hacerlo.
+	//char *objetivo = string_new();
 
 	for(int i = 0;i < list_size(team->entrenadores);i++){
 		entrenador = list_get(team->entrenadores,i);
 		for(int j = 0; j < list_size(entrenador->objetivos); j++){
 			//strcpy(objetivo,(char *)list_get(entrenador->objetivos,j));
 			//memcpy(objetivo,list_get(entrenador->objetivos,j),sizeof(list_get(entrenador->objetivos,j)));
-			objetivo = list_get(entrenador->objetivos,i);
-			list_add(team->objetivo,objetivo);
+			//objetivo = list_get(entrenador->objetivos,j); EMMA -- Añadía erroneamente los elementos a la lista en la linea de abajo
+			list_add(team->objetivo,list_get(entrenador->objetivos,j));
 		}
 	}
 	list_destroy(entrenador->objetivos);
-	free(objetivo);
+	//free(objetivo);
 	free(entrenador);
 }
 
