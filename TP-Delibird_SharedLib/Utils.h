@@ -132,6 +132,16 @@ typedef struct {
 	void* mensaje;
 } estructuraMensaje;
 
+typedef struct {
+	opCode codeOP;
+	int sizePayload;
+	cola colaEmisora;
+	int idMensaje;
+	int idCorrelativo;
+    int sizeMensaje;
+    void * mensaje;
+}mensajeRecibido;
+
 
 void atenderConexionEn(int socket, int backlog);
 int crearConexionServer(char * ip, char * puerto);

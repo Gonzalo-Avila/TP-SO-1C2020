@@ -129,7 +129,6 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,i
               memcpy(buffer->stream+offset,&(msg->posicionY),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
               memcpy(buffer->stream+offset,&(msg->cantPokemon),sizeof(uint32_t));
-              paquete->buffer=buffer;
               sizeTotal += sizeof(uint32_t)*4+msg->longPokemon;
               break;
           }
@@ -202,6 +201,7 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,i
               log_error(logger,"No se pudo leer la cola destino");
           }
         }
+        paquete->buffer=buffer;
         mensajeSerializado = serializarPaquete(paquete,sizeTotal);
         send(socketBroker,mensajeSerializado,sizeTotal,0);
         free(mensaje);
@@ -255,11 +255,26 @@ void enviarMensajeASuscriptor(int socketSuscriptor,cola colaEmisora, estructuraM
 
 }
 
+/* Recibe un mensaje del broker y lo guarda en un struct con formato mensajeRecibido
+ *
+ */
+mensajeRecibido recibirMensajeDeBroker(int socketBroker){
+	mensajeRecibido mensaje;
+	recv(socketBroker,&(mensaje.codeOP),sizeof(opCode),MSG_WAITALL);
+	recv(socketBroker,&(mensaje.sizePayload),sizeof(int),MSG_WAITALL);
+	recv(socketBroker,&(mensaje.colaEmisora),sizeof(cola),MSG_WAITALL);
+	recv(socketBroker,&(mensaje.idMensaje),sizeof(int),MSG_WAITALL);
+	recv(socketBroker,&(mensaje.idCorrelativo),sizeof(int),MSG_WAITALL);
+	recv(socketBroker,&(mensaje.sizeMensaje),sizeof(int),MSG_WAITALL);
+	recv(socketBroker,mensaje.mensaje,mensaje.sizeMensaje,MSG_WAITALL);
+	return mensaje;
+}
 
 /* Luego de creada la conexión con el broker, esta función envía el código de la cola a la que se va a suscribir.
  *
  */
 void suscribirseACola(int socketBroker, cola tipoCola){
+
     tPaquete * paquete = malloc(sizeof(tPaquete));
     paquete->buffer=malloc(sizeof(tBuffer));
     paquete->buffer->stream=malloc(sizeof(cola));
@@ -277,7 +292,6 @@ void suscribirseACola(int socketBroker, cola tipoCola){
 }
 
 //------------------
-
 
 
 
