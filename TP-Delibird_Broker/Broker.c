@@ -155,13 +155,8 @@ t_list* getListaSuscriptoresByNum(int nro) {
 /* Chequea los index de la lista global de IDs, a partir de uno, y cuando encuentra alguno libre se carga ahi
  *
  */
-int generarID(){
-    int count = 1;
-    while(list_get(IDs,count)!=NULL){
-       count++;
-    }
-    list_add_in_index(IDs,count,&count);
-	return  count;
+long generarID(){
+	return globalID++;
 }
 
 t_list * generarListaDeSuscriptoresActuales(cola tipoCola){
@@ -216,6 +211,7 @@ int agregarMensajeACola(int socketEmisor,cola tipoCola, int idCorrelativo){
 
 void atenderMensaje(int socketEmisor, cola tipoCola) {
 	int idMensaje;
+	uint32_t idCorrelativo;
 
 	// TODO
 	// - Crear estructura de mensaje (Done)
@@ -235,17 +231,18 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
          case NEW:
          case CATCH:
          case GET: {
+        	 recv(socketEmisor,&idCorrelativo,sizeof(uint32_t),MSG_WAITALL);
         	 idMensaje=agregarMensajeACola(socketEmisor,tipoCola, -1);
-        	 send(socketEmisor,&idMensaje,sizeof(int),0);
+        	 send(socketEmisor,&idMensaje,sizeof(uint32_t),0);
         	 break;
          }
          case APPEARED:
          case CAUGHT:
          case LOCALIZED: {
-        	 int idCorrelativo;
-        	 recv(socketEmisor,&idCorrelativo,sizeof(int),MSG_WAITALL);
+
+        	 recv(socketEmisor,&idCorrelativo,sizeof(uint32_t),MSG_WAITALL);
         	 idMensaje=agregarMensajeACola(socketEmisor,tipoCola, idCorrelativo);
-        	 send(socketEmisor,&idMensaje,sizeof(int),0);
+        	 send(socketEmisor,&idMensaje,sizeof(uint32_t),0);
         	 break;
 
          }
@@ -347,6 +344,7 @@ void atenderSuscripcion(int socketSuscriptor) {
  */
 void esperarMensajes(int socketCliente) {
 	int codOperacion;
+	int sizeDelMensaje;
 
 	recv(socketCliente, &codOperacion, sizeof(int), MSG_WAITALL);
 
@@ -369,6 +367,7 @@ void esperarMensajes(int socketCliente) {
 					//Edit Gonzalo - 19/04
 			//---------------
 			cola tipoCola;
+			recv(socketCliente, &sizeDelMensaje, sizeof(uint32_t), MSG_WAITALL);
 			recv(socketCliente, &tipoCola, sizeof(cola), MSG_WAITALL);
 			atenderMensaje(socketCliente,tipoCola);
 
@@ -389,7 +388,7 @@ void esperarMensajes(int socketCliente) {
 			 */
 			log_info(logger, "[FINALIZAR]");
 			log_info(logger, "El cliente con socket %d se ha desconectado",socketCliente);
-			free(socketCliente);
+			close(socketCliente);
 			break;
 		}
 		default: {
@@ -438,8 +437,9 @@ void enviarASuscriptores(estructuraMensaje *estMsj) {
 }
 
 void atenderColas() {
-	log_debug(logger, "atenderColas");
-    estructuraMensaje *mensaje;
+	//log_debug(logger, "atenderColas");
+	estructuraMensaje * mensaje;
+
 	while (1) {
 		for (int i = 0; i < 6; i++) { //Revisar cada una de las 6 colas
 			t_list * colaActual = getColaByNum(i);
@@ -534,10 +534,10 @@ int main() {
 	 pthread_create(&hiloAtenderCliente, NULL, (void*) atenderConexiones, socketEscucha);
 
 	 pthread_t hiloAtenderColas;
-	 pthread_create(&hiloAtenderColas, NULL, (void*) atenderColas, NULL);
+	 //pthread_create(&hiloAtenderColas, NULL, (void*) atenderColas, NULL);
 
 	 pthread_join(hiloAtenderCliente, NULL);
-	 pthread_join(hiloAtenderColas, NULL);
+	 //pthread_join(hiloAtenderColas, NULL);
 
 
 
