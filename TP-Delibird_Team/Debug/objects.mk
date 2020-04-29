@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -lTP-Delibird_SharedLib -lpthread -lcommons
+LIBS := -lTP-Delibird_SharedLib -lm -lpthread -lcommons
 

@@ -296,54 +296,153 @@ void enviarGetSegunObjetivo(char *ip, char *puerto){
 	}
 }
 
+float calcularDistancia(int posX1, int posY1,int posX2,int posY2){
+	int cat1,cat2;
+	float distancia;
+
+	cat1 = abs(posX2 - posX1);
+	cat2 = abs(posY2 - posY1);
+	distancia=sqrt(pow(cat1,2)+pow(cat2,2));
+
+	return distancia;
+}
+
+//setea la distancia de todos los entrenadores del team al pokemon localizado
+void setearDistanciaEntrenadores(t_team *team,int posX,int posY){
+	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+
+	for(int i=0;i<list_size(team->entrenadores);i++){
+			entrenador = list_get(team->entrenadores,i);
+			float distancia = calcularDistancia(entrenador->pos[0],entrenador->pos[1],posX,posY);
+			list_replace(team->entrenadores,i,distancia);
+		}
+
+	free(entrenador);
+}
+
+//Esta funcion se podria codear para que sea una funcion generica, pero por el momento solo me sirve saber si está o no en ready.
+bool estaEnReady(t_entrenador *entrenador){
+		return string_equals_ignore_case(entrenador->estado,"LISTO");
+}
+
+bool distanciaMasCorta(t_entrenador *entrenador1,t_entrenador *entrenador2){
+	bool verifica = false;
+			if(entrenador1->distancia < entrenador2->distancia)
+				verifica = true;
+
+	return verifica;
+}
+
+t_entrenador entrenadorPorAlgoritmoPlanificador(t_list * entrenadores){
+	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+
+	//Falta logica
+
+	free(entrenadores);
+	return entrenador;
+
+}
+
+
+//Llega como parametro el team, y las posiciones del pokemon localizado
+t_entrenador entrenadorMasCercano(t_team *team,int posX,int posY){
+	t_entrenador *entrenador1 = malloc(sizeof(t_entrenador));
+	t_entrenador *entrenador2 = malloc(sizeof(t_entrenador));
+	t_list* entrenadoresReady = list_create();
+	t_list* entrenadoresPlanificados = list_create();
+
+	setearDistanciaEntrenadores(team,posX,posY);
+	//Obtengo una lista con los entrenadores en ready (esta linea de codigo puede estar arriba de setearDistanciaEntrenadores
+	// para que solo setee las distancias de los entrenadores que estan en ready.)
+	entrenadoresReady =list_filter(team->entrenadores,estaEnReady);
+
+	//Ordeno la lista de entrenadoresReady, del entrenador mas cercano al mas lejano
+	list_sort(entrenadoresReady,distanciaMasCorta);
+
+	entrenador1 = list_get(entrenadoresReady,0);
+	entrenador2 = list_get(entrenadoresReady,1);
+	if(entrenador1->distancia == entrenador2->distancia){
+		int i=0;
+		int j=1;
+		while(entrenador1->distancia == entrenador2->distancia){
+			//Como hay mas de un entrenador con la distancia mas corta, hay que resolver mediante algoritmo planificador
+			// asi que agrego al primer entrenador a la lista de entrenadoresPlanificados.
+			list_add(entrenadoresPlanificados,list_get(entrenadoresReady,i));
+			//remuevo ese entrenador de la lista de ready para seguir comparando
+			list_remove(entrenadoresReady,0);
+
+			i++;
+			j++;
+			entrenador1 = list_get(entrenadoresReady,i);
+			entrenador2 = list_get(entrenadoresReady,j);
+		}
+		//Agrego el ultimo entrenador con la misma distancia mas corta.
+		list_add(entrenadoresPlanificados,list_get(entrenadoresReady,i-1));
+
+		list_destroy(entrenadoresReady);
+		free(entrenador1);
+		free(entrenador2);
+
+		return entrenadorPorAlgoritmoPlanificador(entrenadoresPlanificados);
+
+	}
+	else {
+		list_destroy(entrenadoresReady);
+		list_destroy(entrenadoresPlanificados);
+		free(entrenador2);
+		return entrenador1;
+	}
+
+}
+
 int main(){
-	char * ipServidor = malloc(strlen(config_get_string_value(config,"IP"))+1);
-	ipServidor = config_get_string_value(config,"IP");
-
-	char * puertoServidor = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
-	puertoServidor = config_get_string_value(config,"PUERTO");
-
-	//Se crea la conexion con el broker. Esto posteriormente debe ir con un sistema de reintentos por si el broker esta off
-	int socketBroker = crearConexionCliente(ipServidor,puertoServidor);
-
-	//Inicializacion
-	inicializarVariablesGlobales();
-
-	generarEntrenadores();
-
-	//Se obtiene el algoritmo planificador
-	e_algoritmo algoritmoPlanificador = obtenerAlgoritmoPlanificador();
-
-	setearObjetivoDeTeam();
-
-	enviarGetSegunObjetivo(ipServidor,puertoServidor);
-
-	/*Ahora que hago, llamo al planificador o me quedo esperando a que me llegue un pokemon?*/
-
-	log_info(logger, "Algoritmo de planificacion a utilizar: %s\n", config_get_string_value(config, "ALGORITMO_PLANIFICACION"));
-
-	//Se crea un hilo para atender los mensajes del Broker
-	crearHiloParaAtenderBroker(socketBroker);
-
-	//Se suscribe el Team a las colas
-	suscribirseALasColas(socketBroker);
-
-	//Gestiono los mensajes de la cola
-	gestionarMensajes();
-
-	//Procedimiento auxiliar para que no rompa el server en las pruebas
-	int codigoOP = FINALIZAR;
-
-	send(socketBroker,(void*)&codigoOP,sizeof(opCode),0);
-    close(socketBroker);
-
-    log_info(logger,"Finalizó la conexión con el servidor\n");
-    log_info(logger,"El proceso team finalizó su ejecución\n");
-
-	free(ipServidor);
-	free(puertoServidor);
-
-	liberarMemoria();
+//	char * ipServidor = malloc(strlen(config_get_string_value(config,"IP"))+1);
+//	ipServidor = config_get_string_value(config,"IP");
+//
+//	char * puertoServidor = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
+//	puertoServidor = config_get_string_value(config,"PUERTO");
+//
+//	//Se crea la conexion con el broker. Esto posteriormente debe ir con un sistema de reintentos por si el broker esta off
+//	int socketBroker = crearConexionCliente(ipServidor,puertoServidor);
+//
+//	//Inicializacion
+//	inicializarVariablesGlobales();
+//
+//	generarEntrenadores();
+//
+//	//Se obtiene el algoritmo planificador
+//	e_algoritmo algoritmoPlanificador = obtenerAlgoritmoPlanificador();
+//
+//	setearObjetivoDeTeam();
+//
+//	enviarGetSegunObjetivo(ipServidor,puertoServidor);
+//
+//	/*Ahora que hago, llamo al planificador o me quedo esperando a que me llegue un pokemon?*/
+//
+//	log_info(logger, "Algoritmo de planificacion a utilizar: %s\n", config_get_string_value(config, "ALGORITMO_PLANIFICACION"));
+//
+//	//Se crea un hilo para atender los mensajes del Broker
+//	crearHiloParaAtenderBroker(socketBroker);
+//
+//	//Se suscribe el Team a las colas
+//	suscribirseALasColas(socketBroker);
+//
+//	//Gestiono los mensajes de la cola
+//	gestionarMensajes();
+//
+//	//Procedimiento auxiliar para que no rompa el server en las pruebas
+//	int codigoOP = FINALIZAR;
+//
+//	send(socketBroker,(void*)&codigoOP,sizeof(opCode),0);
+//    close(socketBroker);
+//
+//    log_info(logger,"Finalizó la conexión con el servidor\n");
+//    log_info(logger,"El proceso team finalizó su ejecución\n");
+//
+//	free(ipServidor);
+//	free(puertoServidor);
+//
+//	liberarMemoria();
 
     return 0;
 }

@@ -22,7 +22,8 @@
 #include <commons/collections/queue.h>
 #include <commons/config.h>
 #include <inttypes.h>
-
+#include <math.h>
+#include <commons/string.h>
 t_log * logger;
 t_config * config;
 

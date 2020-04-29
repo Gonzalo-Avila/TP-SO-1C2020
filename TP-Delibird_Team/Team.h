@@ -41,6 +41,7 @@ typedef struct{
 	t_list *objetivos;
 	t_list *pokemones;
 	e_estado estado;
+	float distancia;
 }t_entrenador;
 
 typedef struct{
