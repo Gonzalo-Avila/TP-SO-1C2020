@@ -243,10 +243,46 @@ void enviarMensajeASuscriptor(int socketSuscriptor,cola colaEmisora, estructuraM
          free(paquete);
          free(buffer->stream);
          free(buffer);
-
-
-
 }
+
+void enviarNuevoMensajeASuscriptor(nodoMensaje nodoMsj ,cola colaEmisora){
+
+         tPaquete * paquete = malloc (sizeof(tPaquete));
+         tBuffer * buffer = malloc (sizeof(tBuffer));
+         void * paqueteSerializado;
+
+         int offset=0;
+         int sizeTotal;
+
+         paquete->codOperacion=NUEVO_MENSAJE;
+
+         buffer->size=sizeof(cola)+sizeof(uint32_t)*3+datosMensaje.sizeMensaje;
+         buffer->stream=malloc(buffer->size);
+
+         memcpy(buffer->stream+offset,&colaEmisora,sizeof(cola));
+         offset+=sizeof(cola);
+         memcpy(buffer->stream+offset,&(datosMensaje.id),sizeof(uint32_t));
+         offset+=sizeof(uint32_t);
+         memcpy(buffer->stream+offset,&(datosMensaje.idCorrelativo),sizeof(uint32_t));
+         offset+=sizeof(uint32_t);
+         memcpy(buffer->stream+offset,&(datosMensaje.sizeMensaje),sizeof(uint32_t));
+         offset+=sizeof(uint32_t);
+         memcpy(buffer->stream+offset,&(datosMensaje.mensaje),datosMensaje.sizeMensaje);
+
+         paquete->buffer=buffer;
+
+         sizeTotal=sizeof(opCode)+sizeof(uint32_t)+buffer->size;
+
+         paqueteSerializado=serializarPaquete(paquete,sizeTotal);
+
+         send(socketSuscriptor,paqueteSerializado,sizeTotal,0);
+
+         free(paqueteSerializado);
+         free(paquete);
+         free(buffer->stream);
+         free(buffer);
+}
+
 
 /* Recibe un mensaje del broker y lo guarda en un struct con formato mensajeRecibido
  *

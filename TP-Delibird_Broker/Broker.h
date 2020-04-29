@@ -53,7 +53,14 @@ typedef struct {
 	void* mensaje;
 } estructuraMensaje2;*/
 
-
+typedef struct {
+	uint32_t id;
+	uint32_t idCorrelativo;			// Si no se usa idCorrelativo = -1
+	uint32_t sizeMensaje;
+	void* mensaje;
+	int socketSuscriptor;
+	statusMensaje estado;
+}nodoMensaje;
 
 t_list* getListaSuscriptoresByNum(int nro);
 

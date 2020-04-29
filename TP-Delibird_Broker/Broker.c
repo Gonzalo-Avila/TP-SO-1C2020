@@ -1,4 +1,5 @@
 #include "Broker.h"
+//#include <stdbool.h>
 
 /* Chequea la disponibilidad de tantas posiciones contiguas como sea el tamaño del mensaje. Si en el proceso encuentra alguna
  * ocupada retorna 0 (no alcanza el espacio), si termina sin encontrar ninguna ocupada retorna 1 (espacio suficiente).
@@ -147,6 +148,16 @@ t_list* getListaSuscriptoresByNum(int nro) {
 	return lista[nro];
 }
 
+void *getEnviarAColaByNum(int num) {
+	void (*codigo[6])(nodoMensaje nodoMsj) =
+					  { enviarMensajeASuscriptorNEW,
+						enviarMensajeASuscriptorAPP,
+						enviarMensajeASuscriptorCAT,
+						enviarMensajeASuscriptorCAU,
+						enviarMensajeASuscriptorGET,
+						enviarMensajeASuscriptorLOC };
+	return codigo[num];
+}
 
 //Edit Gonzalo - 19/04
 //----------
@@ -155,58 +166,104 @@ t_list* getListaSuscriptoresByNum(int nro) {
 /* Chequea los index de la lista global de IDs, a partir de uno, y cuando encuentra alguno libre se carga ahi
  *
  */
-long generarID(){
+long generarID() {
 	return globalID++;
 }
 
-t_list * generarListaDeSuscriptoresActuales(cola tipoCola){
+t_list * generarListaDeSuscriptoresActuales(cola tipoCola) {
 	t_list * listaGenerada = list_create();
 	t_list * suscriptoresDeLaCola = getListaSuscriptoresByNum(tipoCola);
 
-    for(int index=0; index<list_size(suscriptoresDeLaCola);index++){
-        /*
-         * |- NUEVO (0):  el mensaje aun no fue enviado
-         * |- ENVIADO (1): el mensaje se envió, pero no fue confirmado
-         * |- CONFIRMADO (1): el suscriptor confirmó recepción del mensaje
-         */
-        suscriptor sus;
-        sus.socketSuscriptor=*(int *)list_get(suscriptoresDeLaCola,index);
-        sus.status=NUEVO;
-        list_add(listaGenerada,&sus);
-    }
+	for (int index = 0; index < list_size(suscriptoresDeLaCola); index++) {
+		/*
+		 * |- NUEVO (0):  el mensaje aun no fue enviado
+		 * |- ENVIADO (1): el mensaje se envió, pero no fue confirmado
+		 * |- CONFIRMADO (1): el suscriptor confirmó recepción del mensaje
+		 */
+		suscriptor sus;
+		sus.socketSuscriptor = *(int *) list_get(suscriptoresDeLaCola, index);
+		sus.status = NUEVO;
+		list_add(listaGenerada, &sus);
+	}
 
 	return listaGenerada;
 }
-void imprimirEstructuraDeDatos(estructuraMensaje mensaje){
+/*
+ void imprimirEstructuraDeDatos(estructuraMensaje mensaje) {
+ log_info(logger, "[NUEVO MENSAJE RECIBIDO]");
+ log_info(logger, "ID: %d", mensaje.id);
+ log_info(logger, "ID correlativo: %d", mensaje.idCorrelativo);
+ log_info(logger, "Tamaño de mensaje: %d", mensaje.sizeMensaje);
+ //TODO
+ //Imprimir lista de suscriptores y datos del mensaje
+ }
+
+ int agregarMensajeACola(int socketEmisor,cola tipoCola, int idCorrelativo){
+ estructuraMensaje mensajeNuevo;
+ mensajeNuevo.id=generarID();
+ mensajeNuevo.idCorrelativo=idCorrelativo;
+
+ mensajeNuevo.listaSuscriptores=list_create();
+ mensajeNuevo.listaSuscriptores=generarListaDeSuscriptoresActuales(tipoCola);
+
+ recv(socketEmisor,&mensajeNuevo.sizeMensaje,sizeof(int),MSG_WAITALL);
+
+ mensajeNuevo.mensaje = malloc(mensajeNuevo.sizeMensaje);
+ recv(socketEmisor,mensajeNuevo.mensaje,mensajeNuevo.sizeMensaje,MSG_WAITALL);
+
+ list_add(getColaByNum(tipoCola),&mensajeNuevo);
+
+ imprimirEstructuraDeDatos(mensajeNuevo);
+
+ if(idCorrelativo!=-1)
+ cachearMensaje(mensajeNuevo.mensaje, mensajeNuevo.sizeMensaje);
+
+ return mensajeNuevo.id;
+ }
+ */
+void imprimirEstructuraDeDatos(nodoMensaje mensaje) {
 	log_info(logger, "[NUEVO MENSAJE RECIBIDO]");
 	log_info(logger, "ID: %d", mensaje.id);
-	log_info(logger,"ID correlativo: %d",mensaje.idCorrelativo);
-	log_info(logger,"Tamaño de mensaje: %d",mensaje.sizeMensaje);
+	log_info(logger, "ID correlativo: %d", mensaje.idCorrelativo);
+	log_info(logger, "Tamaño de mensaje: %d", mensaje.sizeMensaje);
 	//TODO
 	//Imprimir lista de suscriptores y datos del mensaje
 }
-int agregarMensajeACola(int socketEmisor,cola tipoCola, int idCorrelativo){
-	estructuraMensaje mensajeNuevo;
-	mensajeNuevo.id=generarID();
-	mensajeNuevo.idCorrelativo=idCorrelativo;
 
-	mensajeNuevo.listaSuscriptores=list_create();
-	mensajeNuevo.listaSuscriptores=generarListaDeSuscriptoresActuales(tipoCola);
+int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 
-	recv(socketEmisor,&mensajeNuevo.sizeMensaje,sizeof(int),MSG_WAITALL);
+	t_list* suscriptoresActuales = generarListaDeSuscriptoresActuales(tipoCola);
+	int sizeMensaje;
+	void* mensaje;
 
-	mensajeNuevo.mensaje = malloc(mensajeNuevo.sizeMensaje);
-    recv(socketEmisor,mensajeNuevo.mensaje,mensajeNuevo.sizeMensaje,MSG_WAITALL);
+	recv(socketEmisor, sizeMensaje, sizeof(int), MSG_WAITALL);
+	mensaje = malloc(sizeMensaje);
+	recv(socketEmisor, mensaje, sizeMensaje, MSG_WAITALL);
 
-    list_add(getColaByNum(tipoCola),&mensajeNuevo);
+	int id = generarID();
 
-    imprimirEstructuraDeDatos(mensajeNuevo);
+	for (int i = 0; i <= list_size(suscriptoresActuales); i++) {
 
-    if(idCorrelativo!=-1)
-      cachearMensaje(mensajeNuevo.mensaje, mensajeNuevo.sizeMensaje);
+		nodoMensaje mensajeNuevo;
+		mensajeNuevo.id = id;
+		mensajeNuevo.idCorrelativo = idCorrelativo;
+		mensajeNuevo.estado = NUEVO;
+		mensajeNuevo.sizeMensaje = sizeMensaje;
+		mensajeNuevo.mensaje = mensaje;
+		mensajeNuevo.socketSuscriptor = list_get(suscriptoresActuales, i);
 
-    return mensajeNuevo.id;
+		list_add(getColaByNum(tipoCola), &mensajeNuevo);
+
+		imprimirEstructuraDeDatos(mensajeNuevo);
+
+		if (idCorrelativo != -1)
+			cachearMensaje(mensajeNuevo.mensaje, mensajeNuevo.sizeMensaje);
+
+	}
+
+	return id;
 }
+
 //----------
 
 void atenderMensaje(int socketEmisor, cola tipoCola) {
@@ -226,36 +283,36 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 
 	// Edit Gonzalo - 19/04
 	//-------------------------
-    switch(tipoCola)
-    {
-         case NEW:
-         case CATCH:
-         case GET: {
-        	 recv(socketEmisor,&idCorrelativo,sizeof(uint32_t),MSG_WAITALL);
-        	 idMensaje=agregarMensajeACola(socketEmisor,tipoCola, -1);
-        	 send(socketEmisor,&idMensaje,sizeof(uint32_t),0);
-        	 break;
-         }
-         case APPEARED:
-         case CAUGHT:
-         case LOCALIZED: {
+	switch (tipoCola) {
+	case NEW:
+	case CATCH:
+	case GET: {
+		recv(socketEmisor, &idCorrelativo, sizeof(uint32_t), MSG_WAITALL);
+		idMensaje = agregarMensajeACola(socketEmisor, tipoCola, -1);
+		send(socketEmisor, &idMensaje, sizeof(uint32_t), 0);
+		break;
+	}
+	case APPEARED:
+	case CAUGHT:
+	case LOCALIZED: {
 
-        	 recv(socketEmisor,&idCorrelativo,sizeof(uint32_t),MSG_WAITALL);
-        	 idMensaje=agregarMensajeACola(socketEmisor,tipoCola, idCorrelativo);
-        	 send(socketEmisor,&idMensaje,sizeof(uint32_t),0);
-        	 break;
+		recv(socketEmisor, &idCorrelativo, sizeof(uint32_t), MSG_WAITALL);
+		idMensaje = agregarMensajeACola(socketEmisor, tipoCola, idCorrelativo);
+		send(socketEmisor, &idMensaje, sizeof(uint32_t), 0);
+		break;
 
-         }
-         default:{
-        	 log_error(logger,"[ERROR]");
-        	 log_error(logger,"No pudo obtenerse el tipo de cola en el mensaje recibido");
-         }
-    }
+	}
+	default: {
+		log_error(logger, "[ERROR]");
+		log_error(logger,
+				"No pudo obtenerse el tipo de cola en el mensaje recibido");
+	}
+	}
 
 	//-------------------------
 }
 
-void enviarMensajesCacheados(int socketSuscriptor,int codSuscripcion){
+void enviarMensajesCacheados(int socketSuscriptor, int codSuscripcion) {
 	//TODO
 
 }
@@ -268,7 +325,7 @@ void atenderSuscripcion(int socketSuscriptor) {
 	int codSuscripcion;
 	recv(socketSuscriptor, &codSuscripcion, sizeof(int), MSG_WAITALL);
 
-	enviarMensajesCacheados(socketSuscriptor,codSuscripcion);
+	enviarMensajesCacheados(socketSuscriptor, codSuscripcion);
 
 	switch (codSuscripcion) {
 	case NEW: {
@@ -345,56 +402,70 @@ void atenderSuscripcion(int socketSuscriptor) {
 void esperarMensajes(int socketCliente) {
 	int codOperacion;
 	int sizeDelMensaje;
+	cola tipoCola;
 
 	recv(socketCliente, &codOperacion, sizeof(int), MSG_WAITALL);
 
 	switch (codOperacion) {
-		case SUSCRIPCION: {
-			log_info(logger, "[SUSCRIPCION]");
-			atenderSuscripcion(socketCliente);
-			break;
-		}
-		case NUEVO_MENSAJE: {
-			/* En este punto habria que:
-			 * - Determinar a que cola va a ir ese mensaje, y agregarlo. (Done)
-			 * - Reenviar el mensaje a todos los suscriptores de dicha cola (¿o eso se hace en otro proceso asincronico?).
-			 *   |- Concluimos en realizarlo mediante la funcion/hilo "atenderColas"
-			 * - Guardar el mensaje en la caché. (Done)
-			 *   |- Averiguar qué guardar en la cache, porque el enunciado dice que solo se puede guardar el payload
-			 * - ...
-			 */
-					log_info(logger, "[NUEVO_MENSAJE]");
-					//Edit Gonzalo - 19/04
-			//---------------
-			cola tipoCola;
-			recv(socketCliente, &sizeDelMensaje, sizeof(uint32_t), MSG_WAITALL);
-			recv(socketCliente, &tipoCola, sizeof(cola), MSG_WAITALL);
-			atenderMensaje(socketCliente,tipoCola);
+	case SUSCRIPCION: {
+		log_info(logger, "[SUSCRIPCION]");
+		atenderSuscripcion(socketCliente);
+		break;
+	}
+	case NUEVO_MENSAJE: {
+		/* En este punto habria que:
+		 * - Determinar a que cola va a ir ese mensaje, y agregarlo. (Done)
+		 * - Reenviar el mensaje a todos los suscriptores de dicha cola (¿o eso se hace en otro proceso asincronico?).
+		 *   |- Concluimos en realizarlo mediante la funcion/hilo "atenderColas"
+		 * - Guardar el mensaje en la caché. (Done)
+		 *   |- Averiguar qué guardar en la cache, porque el enunciado dice que solo se puede guardar el payload
+		 * - ...
+		 */
+		log_info(logger, "[NUEVO_MENSAJE]");
+		//Edit Gonzalo - 19/04
+		//---------------
+		recv(socketCliente, &sizeDelMensaje, sizeof(uint32_t), MSG_WAITALL);
+		recv(socketCliente, &tipoCola, sizeof(cola), MSG_WAITALL);
+		atenderMensaje(socketCliente, tipoCola);
 
-			//Como es un connect para cada mensaje, aca habria que cerrar la conexion al socket
+		//Como es un connect para cada mensaje, aca habria que cerrar la conexion al socket
 
-			//---------------
-			break;
+		//---------------
+		break;
+	}
+	case CONFIRMACION_MENSAJE: {
+		// TODO
+		// - Obtener id del mensaje y socket
+		// -
+
+		uint32_t idConfirmacion;
+		recv(socketCliente, &tipoCola, sizeof(cola), MSG_WAITALL);
+		recv(socketCliente, &idConfirmacion, sizeof(uint32_t), MSG_WAITALL);
+
+		bool coincideId(nodoMensaje nodoMsj){
+			bool encontro = true;
+			if(nodoMsj.id == idConfirmacion)
+			return encontro;
 		}
-		case CONFIRMACION_MENSAJE: {
-			// TODO
-			// - Obtener id del mensaje y socket
-			// -
-			break;
-		}
-		case FINALIZAR: {
-	     	/* Finaliza la conexión con el broker de forma ordenada.
-			 * No creo que tenga mucho sentido en el TP, seria para hacer pruebas.
-			 */
-			log_info(logger, "[FINALIZAR]");
-			log_info(logger, "El cliente con socket %d se ha desconectado",socketCliente);
-			close(socketCliente);
-			break;
-		}
-		default: {
-			log_error(logger, "El mensaje recibido está dañado");
-			break;
-		}
+
+		nodoMensaje nodoMsj = list_find(tipoCola, coincideId);
+		nodoMsj.estado = CONFIRMADO;
+		break;
+	}
+	case FINALIZAR: {
+		/* Finaliza la conexión con el broker de forma ordenada.
+		 * No creo que tenga mucho sentido en el TP, seria para hacer pruebas.
+		 */
+		log_info(logger, "[FINALIZAR]");
+		log_info(logger, "El cliente con socket %d se ha desconectado",
+				socketCliente);
+		close(socketCliente);
+		break;
+	}
+	default: {
+		log_error(logger, "El mensaje recibido está dañado");
+		break;
+	}
 	}
 }
 /* Espera nuevas conexiones en el socket de escucha. Al establecerse una nueva, envía esa conexión a un nuevo hilo para que
@@ -419,7 +490,6 @@ void atenderConexiones(int socketEscucha) {
 	}
 }
 
-
 void enviarASuscriptores(estructuraMensaje *estMsj) {
 	log_debug(logger, ">>>>>>>>>>>>>>>>>>>>>>>>>>>> Enviando a todos los subs");
 	for (int i = 0; i < list_size(estMsj->listaSuscriptores); i++) {
@@ -429,44 +499,111 @@ void enviarASuscriptores(estructuraMensaje *estMsj) {
 
 		int socketSuscriptor;
 		//memcpy(&socketSuscriptor, list_get(estMsj->listaSuscriptores, i), sizeof(int));
-		socketSuscriptor = *(int *)list_get(estMsj->listaSuscriptores, i);
+		socketSuscriptor = *(int *) list_get(estMsj->listaSuscriptores, i);
 		//enviarMensaje(socketSuscriptor, (char*) estMsj->msj);
 		enviarString(socketSuscriptor, "hola");
 
 	}
 }
 
-void atenderColas() {
-	//log_debug(logger, "atenderColas");
-	estructuraMensaje * mensaje;
+//	TODO
+// - Tomar elemento de queue
+// - Decidir si tiene idCorrelativo
+// - Serializar con o sin idCorrelativo
+// - Enviar a todos los suscriptores
+/*
+ void atenderColas() {
+ //log_debug(logger, "atenderColas");
+ estructuraMensaje * mensaje;
 
+ while (1) {
+ for (int i = 0; i < 6; i++) { //Revisar cada una de las 6 colas
+ t_list * colaActual = getColaByNum(i);
+ if (list_size(colaActual) > 0) { // Fijarse si en cada cola hay mensajes pendientes
+
+ for (int j = 0; j < list_size(colaActual); j++) {
+ mensaje = list_get(colaActual, j);
+ for (int k = 0; k < list_size(mensaje->listaSuscriptores);
+ k++) {
+ suscriptor sus;
+ sus = *(suscriptor *) list_get(
+ mensaje->listaSuscriptores, k);
+ if (sus.status != CONFIRMADO) {
+ enviarMensajeASuscriptor(sus.socketSuscriptor, i,
+ *mensaje);
+ }
+ }
+ }
+ }
+ }
+ }
+ }
+ */
+//list_iterate(getColaByNum(i), enviarMensajePendiente);
+
+
+// Funcion que adapta la estructua nodoMensaje a estructuraMensaje para poder utilizar fuinciones de estructuraMensaje
+estructuraMensaje nodoAEstructura(nodoMensaje nodoMsj){
+	estructuraMensaje estMsj;
+	estMsj.id = nodoMsj.id;
+	estMsj.idCorrelativo = nodoMsj.idCorrelativo;
+	estMsj.sizeMensaje = nodoMsj.sizeMensaje;
+	estMsj.mensaje = malloc(estMsj.sizeMensaje);
+	estMsj.mensaje = nodoMsj.mensaje;
+
+	return estMsj;
+}
+
+void enviarMensajeASuscriptorNEW(nodoMensaje nodoMsj) {
+	enviarMensajeASuscriptor(nodoMsj.socketSuscriptor, NEW_POKEMON, nodoAEstructura(nodoMsj));
+	nodoMsj.estado = ENVIADO;
+}
+
+void enviarMensajeASuscriptorAPP(nodoMensaje nodoMsj) {
+	enviarMensajeASuscriptor(nodoMsj.socketSuscriptor, APPEARED_POKEMON, nodoAEstructura(nodoMsj));
+	nodoMsj.estado = ENVIADO;
+}
+
+void enviarMensajeASuscriptorCAT(nodoMensaje nodoMsj) {
+	enviarMensajeASuscriptor(nodoMsj.socketSuscriptor, CATCH_POKEMON, nodoAEstructura(nodoMsj));
+	nodoMsj.estado = ENVIADO;
+}
+
+void enviarMensajeASuscriptorCAU(nodoMensaje nodoMsj) {
+	enviarMensajeASuscriptor(nodoMsj.socketSuscriptor, CAUGHT_POKEMON, nodoAEstructura(nodoMsj));
+	nodoMsj.estado = ENVIADO;
+}
+
+void enviarMensajeASuscriptorGET(nodoMensaje nodoMsj) {
+	enviarMensajeASuscriptor(nodoMsj.socketSuscriptor, GET_POKEMON, nodoAEstructura(nodoMsj));
+	nodoMsj.estado = ENVIADO;
+}
+
+void enviarMensajeASuscriptorLOC(nodoMensaje nodoMsj) {
+	enviarMensajeASuscriptor(nodoMsj.socketSuscriptor, LOCALIZED_POKEMON, nodoAEstructura(nodoMsj));
+	nodoMsj.estado = ENVIADO;
+}
+
+// Chequea si un nodoMensaje tiene estado NUEVO. Devuelve bool porque list_filter requiere ese
+bool esMensajeNuevo(nodoMensaje mensaje) {
+	bool esNuevo = false;
+	if (mensaje.estado == NUEVO) {
+		esNuevo = true;
+	}
+	return esNuevo;
+}
+
+
+void atenderColas() {
 	while (1) {
-		for (int i = 0; i < 6; i++) { //Revisar cada una de las 6 colas
-			t_list * colaActual = getColaByNum(i);
-			if (list_size(colaActual) > 0) { // Fijarse si en cada cola hay mensajes pendientes
-				//	TODO
-				// - Tomar elemento de queue
-				// - Decidir si tiene idCorrelativo
-				// - Serializar con o sin idCorrelativo
-				// - Enviar a todos los suscriptores
-                // - Agregar a lista de mensajes enviados
-				for(int j=0;j<list_size(colaActual);j++)
-				{
-	                mensaje=list_get(colaActual,j);
-	                for(int k=0;k<list_size(mensaje->listaSuscriptores);k++)
-	                {
-	                	suscriptor sus;
-	                	sus=*(suscriptor *)list_get(mensaje->listaSuscriptores,k);
-	                	if(sus.status!=CONFIRMADO)
-	                	{
-	                		enviarMensajeASuscriptor(sus.socketSuscriptor,i,*mensaje);
-	                	}
-	                }
-				}
-			}
+		for (int i = 0; i < 6; i++) {
+			// Se filtran los mensajes que tienen estado nuevo y se envian, segun tipo
+			nodoMensaje* mensajesNuevos = list_filter(getColaByNum(i), esMensajeNuevo);
+			list_iterate(mensajesNuevos, getEnviarAColaByNum(i));
 		}
 	}
 }
+
 
 void inicializarColasYListas() {
 
@@ -484,7 +621,7 @@ void inicializarColasYListas() {
 	suscriptoresCAT = list_create();
 	suscriptoresCAU = list_create();
 
-	IDs=list_create();
+	IDs = list_create();
 }
 
 /*
@@ -527,19 +664,17 @@ int main() {
 			socketEscucha);
 
 	//atenderConexiones(socketEscucha); // Agregar suscriptores a listas, Agregar mensajes a colas y Recibir confirmacion de mensajes
-    //	atenderColas(); 				// Verifica mensajes encolados y los envia
+	//	atenderColas(); 				// Verifica mensajes encolados y los envia
 
+	pthread_t hiloAtenderCliente;
+	pthread_create(&hiloAtenderCliente, NULL, (void*) atenderConexiones,
+			socketEscucha);
 
-	 pthread_t hiloAtenderCliente;
-	 pthread_create(&hiloAtenderCliente, NULL, (void*) atenderConexiones, socketEscucha);
+	pthread_t hiloAtenderColas;
+	//pthread_create(&hiloAtenderColas, NULL, (void*) atenderColas, NULL);
 
-	 pthread_t hiloAtenderColas;
-	 //pthread_create(&hiloAtenderColas, NULL, (void*) atenderColas, NULL);
-
-	 pthread_join(hiloAtenderCliente, NULL);
-	 //pthread_join(hiloAtenderColas, NULL);
-
-
+	pthread_join(hiloAtenderCliente, NULL);
+	//pthread_join(hiloAtenderColas, NULL);
 
 	//Otros hilos seguirian aca
 	free(puertoEscucha);
