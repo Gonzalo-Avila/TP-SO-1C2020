@@ -35,29 +35,23 @@ void obtenerDeConfig(char *clave,t_list *lista){
 }
 
 
-//void setearObjetivoDeTeam(){
-//	for(int i =0;list_size();i++){
-//
-//	}
-//}
 /*MANEJA EL FUNCIONAMIENTO INTERNO DE CADA ENTRENADOR(trabajo en un hilo separado)*/
-//void gestionarEntrenador(t_entrenador *entrenador,char *pokemon,t_posicion posPokemon){
-//
-//	//mueve el entrenador una posicion y ejecuta SLEEP(RETARDO_CICLO_CPU)
-//	while(moverEntrenadorPorUnidad(entrenador,posPokemon)){
-//
-//	}
-//	//Tira un catch de pokemon
-//}
+void gestionarEntrenador(t_entrenador *entrenador){
+	//mover entrenador a posicion del pokemon que necesita
+	pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
+	pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
 
-//void crearEntrenador(t_entrenador* entrenador,char *pokemon,t_posicion posPokemon){
-//	pthread_t nuevoHilo;
-//
-//	pthread_create(&nuevoHilo, NULL, (void*)gestionarEntrenador,entrenador);
-//	list_add(listaHilos,nuevoHilo);
-//
-//	pthread_detach(nuevoHilo);
-//}
+
+}
+
+void crearHiloEntrenador(t_entrenador* entrenador){
+	pthread_t nuevoHilo;
+
+	pthread_create(&nuevoHilo, NULL, (void*)gestionarEntrenador,entrenador);
+	list_add(listaHilos,nuevoHilo);
+
+	pthread_detach(nuevoHilo);
+}
 
 
 /*Arma el Entrenador*/
@@ -105,7 +99,6 @@ void generarEntrenadores(){
 /* Planificador */
 void planificador(){
 	/*
-
 	Nuevo Hilo por cada entrenador
 
 	APARECE UN POKEMON
@@ -119,8 +112,13 @@ void planificador(){
 
 	Despierta el Hilo del entrenador con estado EJEC de listaHilos = [threadEntrenador1,threadEntrenador2,...]
 	Cuando termina el Hilo lo pasa a BLOQUEADO o FIN segun corresponda
-
 	 */
+
+	for(int i = 0; i < list_size(team->entrenadores);i++){
+		crearHiloEntrenador(list_get(team->entrenadores,i));
+	}//Arma un hilo por entrenador
+
+
 }
 
 e_algoritmo obtenerAlgoritmoPlanificador(){
@@ -288,42 +286,40 @@ void setearObjetivosDeTeam(t_team *team){
 	free(entrenador);
 }
 
+void enviarGetSegunObjetivo(char *ip, char *puerto){
+	for(int i = 0;i < list_size(team->objetivo);i++){
+		int *socketBroker = malloc(sizeof(int));
+		*socketBroker = crearConexionCliente(ip,puerto);
+
+		enviarMensajeABroker(*socketBroker,GET,-1,sizeof(list_get(team->objetivo,i)),list_get(team->objetivo,i));
+		free(socketBroker);
+	}
+}
+
 int main(){
-	//Todo Agregar un issue para preguntar como hacer el tema del FIFO o del algoritmo.
-
-	//Inicializacion
-	inicializarVariablesGlobales();
-	generarEntrenadores();
-
 	char * ipServidor = malloc(strlen(config_get_string_value(config,"IP"))+1);
 	ipServidor = config_get_string_value(config,"IP");
 
 	char * puertoServidor = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
 	puertoServidor = config_get_string_value(config,"PUERTO");
 
-	e_algoritmo algoritmoPlanificador = obtenerAlgoritmoPlanificador();
-
-	log_info(logger,"Se ha iniciado el cliente team\n");
-
-  //Se crea la conexion con el broker. Esto posteriormente debe ir con un sistema de reintentos por si el broker esta off
+	//Se crea la conexion con el broker. Esto posteriormente debe ir con un sistema de reintentos por si el broker esta off
 	int socketBroker = crearConexionCliente(ipServidor,puertoServidor);
-	log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
-			 config_get_string_value(config,"IP"),config_get_string_value(config,"PUERTO"));
 
-	char * puertoServidor = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
-	puertoServidor = config_get_string_value(config,"PUERTO");
+	//Inicializacion
+	inicializarVariablesGlobales();
 
-    //Se crea la conexion con el broker. Esto posteriormente debe ir con un sistema de reintentos por si el broker esta off
-	int socketBroker = crearConexionCliente(ipServidor,puertoServidor);
-	log_info(logger,"Se ha iniciado el cliente team\n");
-	log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
-			 ipServidor,puertoServidor, socketBroker);
-
-	free(ipServidor);
-	free(puertoServidor);
+	generarEntrenadores();
 
 	//Se obtiene el algoritmo planificador
 	e_algoritmo algoritmoPlanificador = obtenerAlgoritmoPlanificador();
+
+	setearObjetivoDeTeam();
+
+	enviarGetSegunObjetivo(ipServidor,puertoServidor);
+
+	/*Ahora que hago, llamo al planificador o me quedo esperando a que me llegue un pokemon?*/
+
 	log_info(logger, "Algoritmo de planificacion a utilizar: %s\n", config_get_string_value(config, "ALGORITMO_PLANIFICACION"));
 
 	//Se crea un hilo para atender los mensajes del Broker
@@ -337,10 +333,15 @@ int main(){
 
 	//Procedimiento auxiliar para que no rompa el server en las pruebas
 	int codigoOP = FINALIZAR;
+
 	send(socketBroker,(void*)&codigoOP,sizeof(opCode),0);
     close(socketBroker);
+
     log_info(logger,"Finalizó la conexión con el servidor\n");
     log_info(logger,"El proceso team finalizó su ejecución\n");
+
+	free(ipServidor);
+	free(puertoServidor);
 
 	liberarMemoria();
 
