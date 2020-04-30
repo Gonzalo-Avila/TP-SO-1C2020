@@ -11,6 +11,7 @@ void inicializarVariablesGlobales(){
 	colaDeReady = queue_create();//esto se necesita para el FIFO.
 	colaDeBloqued = queue_create();//esto es necesario??
 	colaDeMensajes = queue_create();
+	pokemonRecibido = string_new();
 
 }
 
@@ -46,9 +47,14 @@ void gestionarEntrenador(t_entrenador *entrenador){
 
 void crearHiloEntrenador(t_entrenador* entrenador){
 	pthread_t nuevoHilo;
+	t_listaHilos* nodoListaDeHilos=malloc(sizeof(t_listaHilos));
 
 	pthread_create(&nuevoHilo, NULL, (void*)gestionarEntrenador,entrenador);
-	list_add(listaHilos,nuevoHilo);
+
+	nodoListaDeHilos->hilo = nuevoHilo;
+	nodoListaDeHilos->idEntrenador = entrenador->id;
+
+	list_add(listaHilos,nodoListaDeHilos);
 
 	pthread_detach(nuevoHilo);
 }
@@ -98,30 +104,6 @@ void generarEntrenadores(){
 	//free(unEntrenador); Por algun motivo si liberamos la memoria de unEntrenador, el ultimo entrenador añadido a la lista cambia su id a 0.
 }
 
-/* Planificador */
-void planificador(){
-	/*
-	Nuevo Hilo por cada entrenador
-
-	APARECE UN POKEMON
-
-	Me fijo algun entrendaro libre (NUEVO/BLOQUEADO)
-		idEntrenadorLibreMasCercano= masCercano(team->entrenadores,pokemon);
-	(team->entrenadores[idEntrenadorLibreMasCercano])->estado = READY
-
-	meterProcesosListosEnLaColaDeListos();
-	FIFO con la cola --> cambio estado del Entrenador a EJEC
-
-	Despierta el Hilo del entrenador con estado EJEC de listaHilos = [threadEntrenador1,threadEntrenador2,...]
-	Cuando termina el Hilo lo pasa a BLOQUEADO o FIN segun corresponda
-	 */
-
-	for(int i = 0; i < list_size(team->entrenadores);i++){
-		crearHiloEntrenador(list_get(team->entrenadores,i));
-	}//Arma un hilo por entrenador
-
-
-}
 
 e_algoritmo obtenerAlgoritmoPlanificador(){
 	char* algoritmo = malloc(strlen(config_get_string_value(config, "ALGORITMO_PLANIFICACION"))+1);
@@ -146,21 +128,21 @@ e_algoritmo obtenerAlgoritmoPlanificador(){
 
 /* Atender al Broker */
 void atenderBroker(int socketBroker) {
-	tPaquete* mensajeRecibido = malloc(sizeof(tPaquete));
+	mensajeRecibido miMensajeRecibido;
+	mensajeRecibido* mensajeAGuardar = malloc(sizeof(mensajeRecibido));
 
 	while(1) {
-		mensajeRecibido = recibirMensaje(socketBroker);
+		miMensajeRecibido = recibirMensajeDeBroker(socketBroker);
 
-		if(mensajeRecibido->codOperacion == FINALIZAR) {
+		if(miMensajeRecibido.codeOP == FINALIZAR) {
 			break;
 		}
-		log_info(logger, "Mensaje recibido: %s\n", mensajeRecibido->buffer->stream);
-		queue_push(colaDeMensajes, mensajeRecibido);
-	}
+		log_info(logger, "Mensaje recibido: %s\n", miMensajeRecibido.mensaje);
 
-	//Libero memoria
-	free(mensajeRecibido->buffer);
-	free(mensajeRecibido);
+		//paso el struct a un puntero para guardarlo en la cola
+		mensajeAGuardar = &miMensajeRecibido;
+		queue_push(colaDeMensajes, mensajeAGuardar);
+	}
 }
 
 void crearHiloParaAtenderBroker(int socketBroker) {
@@ -240,14 +222,33 @@ t_mensaje* deserializar(void* paquete) {
 }
 
 /* Gestiona los mensajes de la cola */
-void gestionarMensajes() {
+void gestionarMensajes(char* ip, char* puerto) {
 	void* paqueteRecibido = malloc(sizeof(t_queue));
-		  paqueteRecibido = queue_pop(colaDeMensajes);
 	t_mensaje* nuevoMensaje = malloc(sizeof(t_mensaje));
 			   nuevoMensaje->pokemon = string_new();
 
-	nuevoMensaje = deserializar(paqueteRecibido);
+	while(!queue_is_empty(colaDeMensajes)){
+		  paqueteRecibido = queue_pop(colaDeMensajes);
+
+		  nuevoMensaje = deserializar(paqueteRecibido);
+
+		  if(nuevoMensaje->tipoDeMensaje == APPEARED) {
+			  pokemonRecibido = nuevoMensaje->pokemon;
+
+			  if(list_any_satisfy(team->objetivo, esUnObjetivo)){
+				  enviarGetSegunObjetivo(ip, puerto, nuevoMensaje->pokemon);
+			  }
+		  }
+		  else if(nuevoMensaje->tipoDeMensaje == LOCALIZED) {
+			  planificar(nuevoMensaje->pokemon, nuevoMensaje->posicionX, nuevoMensaje->posicionY);
+		  }
+		  else if(nuevoMensaje->tipoDeMensaje == CAUGHT) {
+			  //TODO CAUGHT
+			  log_info(logger, "Recibi un CAUGHT. ¿Que es eso?¿Se come?");
+		  }
 	//TODO para enviar al planificador
+
+	}
 }
 
 /* Liberar memoria al finalizar el programa */
@@ -288,14 +289,14 @@ void setearObjetivosDeTeam(t_team *team){
 	free(entrenador);
 }
 
-void enviarGetSegunObjetivo(char *ip, char *puerto){
-	for(int i = 0;i < list_size(team->objetivo);i++){
-		int *socketBroker = malloc(sizeof(int));
-		*socketBroker = crearConexionCliente(ip,puerto);
+void enviarGetSegunObjetivo(char *ip, char *puerto, char* pokemon){
+//	for(int i = 0;i < list_size(team->objetivo);i++){
+	int *socketBroker = malloc(sizeof(int));
+	*socketBroker = crearConexionCliente(ip,puerto);
 
-		enviarMensajeABroker(*socketBroker,GET,-1,sizeof(list_get(team->objetivo,i)),list_get(team->objetivo,i));
-		free(socketBroker);
-	}
+	enviarMensajeABroker(*socketBroker,GET,-1,sizeof(pokemon),pokemon);
+	free(socketBroker);
+
 }
 
 float calcularDistancia(int posX1, int posY1,int posX2,int posY2){
@@ -333,6 +334,14 @@ bool estaEnEspera(void *entrenador){
 	return verifica;
 }
 
+bool esUnObjetivo(void* objetivo) {
+	bool verifica = false;
+		if(string_equals_ignore_case(pokemonRecibido, objetivo)) {
+			verifica = true;
+		}
+	return verifica;
+}
+
 bool distanciaMasCorta(void *entrenador1,void *entrenador2){
 	t_entrenador *trainer1 = malloc(sizeof(t_entrenador));
 	t_entrenador *trainer2 = malloc(sizeof(t_entrenador));
@@ -360,6 +369,34 @@ t_entrenador* entrenadorMasCercano(t_team *team,int posX,int posY){
 		list_destroy(entrenadoresenEspera);
 		return entrenador1;
 	}
+
+/* Planificar */
+void planificar(char* pokemon, int posicionX, int posicionY){
+	/*
+	Nuevo Hilo por cada entrenador
+
+	APARECE UN POKEMON
+
+	Me fijo algun entrendaro libre (NUEVO/BLOQUEADO)
+		idEntrenadorLibreMasCercano= masCercano(team->entrenadores,pokemon);
+	(team->entrenadores[idEntrenadorLibreMasCercano])->estado = READY
+
+	meterProcesosListosEnLaColaDeListos();
+	FIFO con la cola --> cambio estado del Entrenador a EJEC
+
+	Despierta el Hilo del entrenador con estado EJEC de listaHilos = [threadEntrenador1,threadEntrenador2,...]
+	Cuando termina el Hilo lo pasa a BLOQUEADO o FIN segun corresponda
+	 */
+
+	for(int i = 0; i < list_size(team->entrenadores);i++){
+		crearHiloEntrenador(list_get(team->entrenadores,i));
+	}//Arma un hilo por entrenador
+
+	t_entrenador* elEntrenadorMasCercano = malloc(sizeof(t_entrenador));
+	elEntrenadorMasCercano = entrenadorMasCercano(team, posicionX, posicionY);
+	elEntrenadorMasCercano->estado = LISTO;
+
+}
 
 int main(){
 //	char * ipServidor = malloc(strlen(config_get_string_value(config,"IP"))+1);
@@ -394,7 +431,7 @@ int main(){
 //	suscribirseALasColas(socketBroker);
 //
 //	//Gestiono los mensajes de la cola
-//	gestionarMensajes();
+//	gestionarMensajes(ipServidor, puertoServidor);
 //
 //	//Procedimiento auxiliar para que no rompa el server en las pruebas
 //	int codigoOP = FINALIZAR;

@@ -52,10 +52,44 @@ typedef struct{
 	int posicionY;
 }t_mensaje;
 
+typedef struct{
+	pthread_t hilo;
+	int idEntrenador;
+}t_listaHilos;
+
 t_team *team;
 t_list *listaHilos;
 t_queue *colaDeReady;
 t_queue *colaDeBloqued;
 t_queue *colaDeMensajes;
+char* pokemonRecibido;
+
+/* Funciones */
+void inicializarVariablesGlobales();
+void array_iterate_element(char** strings, void (*closure)(char*,t_list*),t_list *lista);
+void enlistar(char *elemento,t_list *lista);
+void obtenerDeConfig(char *clave,t_list *lista);
+void gestionarEntrenador(t_entrenador *entrenador);
+void crearHiloEntrenador(t_entrenador* entrenador);
+t_entrenador* armarEntrenador(int id,char *posicionesEntrenador,char *objetivosEntrenador,char *pokemonesEntrenador);
+void generarEntrenadores();
+e_algoritmo obtenerAlgoritmoPlanificador();
+void atenderBroker(int socketBroker);
+void crearHiloParaAtenderBroker(int socketBroker);
+void suscribirseALasColas(int socketBroker);
+t_mensaje* parsearMensaje(char* mensaje);
+t_mensaje* deserializar(void* paquete);
+void gestionarMensajes(char* ip, char* puerto);
+void liberarMemoria();
+bool elementoEstaEnLista(t_list *lista, char *elemento);
+void setearObjetivosDeTeam(t_team *team);
+void enviarGetSegunObjetivo(char *ip, char *puerto, char* pokemon);
+float calcularDistancia(int posX1, int posY1,int posX2,int posY2);
+void setearDistanciaEntrenadores(t_list *entrenadores,int posX,int posY);
+bool estaEnEspera(void *entrenador);
+bool esUnObjetivo(void *objetivo);
+bool distanciaMasCorta(void *entrenador1,void *entrenador2);
+t_entrenador* entrenadorMasCercano(t_team *team,int posX,int posY);
+void planificar(char* pokemon, int posicionX, int posicionY);
 
 #endif /* TEAM_H_ */
