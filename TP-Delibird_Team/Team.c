@@ -55,7 +55,7 @@ void crearHiloEntrenador(t_entrenador* entrenador){
 
 
 /*Arma el Entrenador*/
-t_entrenador* armarEntrenador(char *posicionesEntrenador,char *objetivosEntrenador,char *pokemonesEntrenador){
+t_entrenador* armarEntrenador(int id,char *posicionesEntrenador,char *objetivosEntrenador,char *pokemonesEntrenador){
 	t_entrenador* nuevoEntrenador = malloc(sizeof(t_entrenador));
 	t_list *posicionEntrenador = list_create();
 	t_list *objetivoEntrenador = list_create();
@@ -68,8 +68,10 @@ t_entrenador* armarEntrenador(char *posicionesEntrenador,char *objetivosEntrenad
 	for(int i = 0; i < 2;i++){
 		nuevoEntrenador->pos[i] = atoi(list_get(posicionEntrenador,i));
 	}
+	nuevoEntrenador->id = id;
 	nuevoEntrenador->objetivos = objetivoEntrenador;
 	nuevoEntrenador->pokemones = pokemonEntrenador;
+	nuevoEntrenador->estado = NUEVO; // Debugeando de mi cuenta que sin esta linea de codigo solo el ultimo elemento lo pasa a new
 
 	list_destroy(posicionEntrenador);
 
@@ -87,13 +89,13 @@ void generarEntrenadores(){
 	obtenerDeConfig("OBJETIVO_ENTRENADORES",objetivos);
 	obtenerDeConfig("POKEMON_ENTRENADORES",pokemones);
 	for(int contador = 0; contador < list_size(posiciones); contador++) {
-		unEntrenador = armarEntrenador(list_get(posiciones, contador), list_get(objetivos, contador), list_get(pokemones, contador));
+		unEntrenador = armarEntrenador(contador,list_get(posiciones, contador), list_get(objetivos, contador), list_get(pokemones, contador));
 		list_add(team->entrenadores,unEntrenador);
 	}
 	list_destroy(posiciones);
 	list_destroy(objetivos);
 	list_destroy(pokemones);
-	free(unEntrenador);
+	//free(unEntrenador); Por algun motivo si liberamos la memoria de unEntrenador, el ultimo entrenador añadido a la lista cambia su id a 0.
 }
 
 /* Planificador */
@@ -310,33 +312,40 @@ float calcularDistancia(int posX1, int posY1,int posX2,int posY2){
 //setea la distancia de todos los entrenadores del team al pokemon localizado
 void setearDistanciaEntrenadores(t_list *entrenadores,int posX,int posY){
 	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+		for(int i=0;i<list_size(entrenadores);i++){
+				entrenador = list_get(entrenadores,i);
+				float distancia = calcularDistancia(entrenador->pos[0],entrenador->pos[1],posX,posY);
 
-	for(int i=0;i<list_size(entrenadores);i++){
-			entrenador = list_get(entrenadores,i);
-			float distancia = calcularDistancia(entrenador->pos[0],entrenador->pos[1],posX,posY);
-			list_replace(entrenadores,i,distancia);
+				entrenador->distancia= distancia;
+				list_replace(entrenadores,i,entrenador);
 		}
 
-	free(entrenador);
 }
 
 //Esta funcion se podria codear para que sea una funcion generica, pero por el momento solo me sirve saber si está o no en ready.
-bool estaEnEspera(t_entrenador *entrenador){
+bool estaEnEspera(void *entrenador){
 	bool verifica = false;
-			if((string_equals_ignore_case(entrenador->estado,"NUEVO"))||(string_equals_ignore_case(entrenador->estado,"BLOQUEADO")))
+	t_entrenador *trainer = malloc(sizeof(t_entrenador));
+	trainer = entrenador;
+			if(((trainer->estado) == NUEVO)||((trainer->estado) == BLOQUEADO))
 				verifica = true;
+
 	return verifica;
 }
 
-bool distanciaMasCorta(t_entrenador *entrenador1,t_entrenador *entrenador2){
+bool distanciaMasCorta(void *entrenador1,void *entrenador2){
+	t_entrenador *trainer1 = malloc(sizeof(t_entrenador));
+	t_entrenador *trainer2 = malloc(sizeof(t_entrenador));
+	trainer1 = entrenador1;
+	trainer2 = entrenador2;
 	bool verifica = false;
-			if(entrenador1->distancia < entrenador2->distancia)
+			if(trainer1->distancia < trainer2->distancia)
 				verifica = true;
 
 	return verifica;
 }
 //Llega como parametro el team, y las posiciones del pokemon localizado
-t_entrenador entrenadorMasCercano(t_team *team,int posX,int posY){
+t_entrenador* entrenadorMasCercano(t_team *team,int posX,int posY){
 	t_entrenador *entrenador1 = malloc(sizeof(t_entrenador));
 	t_list* entrenadoresenEspera = list_create();
 
@@ -351,8 +360,6 @@ t_entrenador entrenadorMasCercano(t_team *team,int posX,int posY){
 		list_destroy(entrenadoresenEspera);
 		return entrenador1;
 	}
-
-
 
 int main(){
 //	char * ipServidor = malloc(strlen(config_get_string_value(config,"IP"))+1);
