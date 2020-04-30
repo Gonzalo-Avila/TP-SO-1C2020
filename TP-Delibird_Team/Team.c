@@ -308,21 +308,24 @@ float calcularDistancia(int posX1, int posY1,int posX2,int posY2){
 }
 
 //setea la distancia de todos los entrenadores del team al pokemon localizado
-void setearDistanciaEntrenadores(t_team *team,int posX,int posY){
+void setearDistanciaEntrenadores(t_list *entrenadores,int posX,int posY){
 	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
 
-	for(int i=0;i<list_size(team->entrenadores);i++){
-			entrenador = list_get(team->entrenadores,i);
+	for(int i=0;i<list_size(entrenadores);i++){
+			entrenador = list_get(entrenadores,i);
 			float distancia = calcularDistancia(entrenador->pos[0],entrenador->pos[1],posX,posY);
-			list_replace(team->entrenadores,i,distancia);
+			list_replace(entrenadores,i,distancia);
 		}
 
 	free(entrenador);
 }
 
 //Esta funcion se podria codear para que sea una funcion generica, pero por el momento solo me sirve saber si está o no en ready.
-bool estaEnReady(t_entrenador *entrenador){
-		return string_equals_ignore_case(entrenador->estado,"LISTO");
+bool estaEnEspera(t_entrenador *entrenador){
+	bool verifica = false;
+			if((string_equals_ignore_case(entrenador->estado,"NUEVO"))||(string_equals_ignore_case(entrenador->estado,"BLOQUEADO")))
+				verifica = true;
+	return verifica;
 }
 
 bool distanciaMasCorta(t_entrenador *entrenador1,t_entrenador *entrenador2){
@@ -332,68 +335,24 @@ bool distanciaMasCorta(t_entrenador *entrenador1,t_entrenador *entrenador2){
 
 	return verifica;
 }
-
-t_entrenador entrenadorPorAlgoritmoPlanificador(t_list * entrenadores){
-	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
-
-	//Falta logica
-
-	free(entrenadores);
-	return entrenador;
-
-}
-
-
 //Llega como parametro el team, y las posiciones del pokemon localizado
 t_entrenador entrenadorMasCercano(t_team *team,int posX,int posY){
 	t_entrenador *entrenador1 = malloc(sizeof(t_entrenador));
-	t_entrenador *entrenador2 = malloc(sizeof(t_entrenador));
-	t_list* entrenadoresReady = list_create();
-	t_list* entrenadoresPlanificados = list_create();
+	t_list* entrenadoresenEspera = list_create();
 
-	setearDistanciaEntrenadores(team,posX,posY);
-	//Obtengo una lista con los entrenadores en ready (esta linea de codigo puede estar arriba de setearDistanciaEntrenadores
-	// para que solo setee las distancias de los entrenadores que estan en ready.)
-	entrenadoresReady =list_filter(team->entrenadores,estaEnReady);
+	entrenadoresenEspera =list_filter(team->entrenadores,estaEnEspera);
+	setearDistanciaEntrenadores(entrenadoresenEspera,posX,posY);
 
-	//Ordeno la lista de entrenadoresReady, del entrenador mas cercano al mas lejano
-	list_sort(entrenadoresReady,distanciaMasCorta);
+	//Ordeno la lista de entrenadoresenEspera, del entrenador mas cercano al mas lejano
+	list_sort(entrenadoresenEspera,distanciaMasCorta);
 
-	entrenador1 = list_get(entrenadoresReady,0);
-	entrenador2 = list_get(entrenadoresReady,1);
-	if(entrenador1->distancia == entrenador2->distancia){
-		int i=0;
-		int j=1;
-		while(entrenador1->distancia == entrenador2->distancia){
-			//Como hay mas de un entrenador con la distancia mas corta, hay que resolver mediante algoritmo planificador
-			// asi que agrego al primer entrenador a la lista de entrenadoresPlanificados.
-			list_add(entrenadoresPlanificados,list_get(entrenadoresReady,i));
-			//remuevo ese entrenador de la lista de ready para seguir comparando
-			list_remove(entrenadoresReady,0);
+	entrenador1 = list_get(entrenadoresenEspera,0);
 
-			i++;
-			j++;
-			entrenador1 = list_get(entrenadoresReady,i);
-			entrenador2 = list_get(entrenadoresReady,j);
-		}
-		//Agrego el ultimo entrenador con la misma distancia mas corta.
-		list_add(entrenadoresPlanificados,list_get(entrenadoresReady,i-1));
-
-		list_destroy(entrenadoresReady);
-		free(entrenador1);
-		free(entrenador2);
-
-		return entrenadorPorAlgoritmoPlanificador(entrenadoresPlanificados);
-
-	}
-	else {
-		list_destroy(entrenadoresReady);
-		list_destroy(entrenadoresPlanificados);
-		free(entrenador2);
+		list_destroy(entrenadoresenEspera);
 		return entrenador1;
 	}
 
-}
+
 
 int main(){
 //	char * ipServidor = malloc(strlen(config_get_string_value(config,"IP"))+1);
