@@ -15,18 +15,32 @@ int main(){
     log_info(logger,"Se ha iniciado el cliente team\n");
 
     //Se crea la conexion con el broker. Esto posteriormente debe ir con un sistema de reintentos por si el broker esta off
-	int socketBroker = crearConexionCliente(ipServidor,puertoServidor);
+	int socketBrokerAPP = crearConexionCliente(ipServidor,puertoServidor);
 	log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
 			config_get_string_value(config,"IP"),config_get_string_value(config,"PUERTO"));
 
-	free(ipServidor);
-	free(puertoServidor);
+	/*int socketBrokerLOC = crearConexionCliente(ipServidor,puertoServidor);
+		log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
+				config_get_string_value(config,"IP"),config_get_string_value(config,"PUERTO"));
 
-	suscribirseACola(socketBroker, APPEARED);
-	//suscribirseACola(socketBroker, LOCALIZED);
-	//suscribirseACola(socketBroker, CAUGHT);
+	int socketBrokerCAU = crearConexionCliente(ipServidor,puertoServidor);
+		log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
+				config_get_string_value(config,"IP"),config_get_string_value(config,"PUERTO"));*/
 
-	//enviarMensajeABroker(socketBroker, APPEARED, -1, sizeof("elias"), (void *) "elias");
+
+
+	suscribirseACola(socketBrokerAPP, APPEARED);
+	/*suscribirseACola(socketBrokerLOC, LOCALIZED);
+	suscribirseACola(socketBrokerCAU, CAUGHT);*/
+
+
+	int socketBrokerParaMensaje = crearConexionCliente(ipServidor,puertoServidor);
+    mensajeAppeared mensaje;
+    mensaje.longPokemon=strlen("Pikachu")+1;
+    mensaje.pokemon=malloc(mensaje.longPokemon);
+    strcpy(mensaje.pokemon,"Pikachu");
+
+	enviarMensajeABroker(socketBrokerParaMensaje, APPEARED, -1, sizeof(uint32_t)+mensaje.longPokemon, &mensaje);
 
 	//char* msjTest = malloc(sizeof("115elias"));
 	//msjTest = 1 + 1 + "5elias"; // 115elias = MENSAJE NEW <sizeMsj> <Msj>
@@ -35,12 +49,20 @@ int main(){
 	//enviarMensajeACola(socketBroker, NEW, "elias");
 
 	//Procedimiento auxiliar para que no rompa el server en las pruebas
-	int codigoOP = FINALIZAR;
-	send(socketBroker,(void*)&codigoOP,sizeof(opCode),0);
-    close(socketBroker);
-    log_info(logger,"Finalizó la conexión con el servidor\n");
-    log_info(logger,"El proceso team finalizó su ejecución\n");
+	/*int codigoOP = FINALIZAR;
+	send(socketBrokerAPP,(void*)&codigoOP,sizeof(opCode),0);
+	//send(socketBrokerLOC,(void*)&codigoOP,sizeof(opCode),0);
+	//send(socketBrokerCAU,(void*)&codigoOP,sizeof(opCode),0);
+    close(socketBrokerAPP);
+    close(socketBrokerLOC);
+    close(socketBrokerCAU);*/
+    /*log_info(logger,"Finalizó la conexión con el servidor\n");
+    log_info(logger,"El proceso team finalizó su ejecución\n");*/
+    mensajeRecibido * msgRecibido = recibirMensajeDeBroker(socketBrokerAPP);
+    log_info(logger,"Mensaje chorizeado: %s",(char *)msgRecibido->mensaje);
 
+	free(ipServidor);
+	free(puertoServidor);
     log_destroy(logger);
     config_destroy(config);
     return 0;

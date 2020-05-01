@@ -260,3 +260,389 @@
 [INFO] 12:04:39:425 Broker/(32016:32020): Hay un nuevo suscriptor en la cola GET_POKEMON. Número de socket suscriptor: 5
 [INFO] 12:04:39:425 Broker/(32016:32020): [SUSCRIPCION-END]
 [DEBUG] 12:04:39:425 Broker/(32016:32017): Esperando cliente...
+[INFO] 13:06:19:610 Broker/(5945:5945): Se ha iniciado el servidor broker
+
+[INFO] 13:06:19:617 Broker/(5945:5945): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 13:06:19:617 Broker/(5945:5947): Esperando cliente...
+[INFO] 13:06:29:821 Broker/(5945:5947): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 13:06:54:725 Broker/(5945:5955): Esperando mensaje de cliente 5...
+[INFO] 13:06:54:725 Broker/(5945:5955): [NUEVO_MENSAJE]
+[INFO] 13:06:54:725 Broker/(5945:5955): [NUEVO MENSAJE RECIBIDO]
+[INFO] 13:06:54:725 Broker/(5945:5955): ID: 1
+[INFO] 13:06:54:725 Broker/(5945:5955): ID correlativo: -1
+[INFO] 13:06:54:725 Broker/(5945:5955): Tamaño de mensaje: 24
+[DEBUG] 13:06:54:726 Broker/(5945:5947): Esperando cliente...
+[INFO] 15:10:15:362 Broker/(9255:9255): Se ha iniciado el servidor broker
+
+[INFO] 15:10:15:362 Broker/(9255:9255): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 15:10:15:362 Broker/(9255:9256): Esperando cliente...
+[INFO] 15:10:20:164 Broker/(9255:9256): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 15:10:20:165 Broker/(9255:9266): Esperando mensaje de cliente 5...
+[INFO] 15:10:20:166 Broker/(9255:9266): [SUSCRIPCION]
+[DEBUG] 15:10:20:166 Broker/(9255:9266): 4
+[INFO] 15:10:20:166 Broker/(9255:9266): Hay un nuevo suscriptor en la cola GET_POKEMON. Número de socket suscriptor: 5
+[INFO] 15:10:20:166 Broker/(9255:9266): [SUSCRIPCION-END]
+[DEBUG] 15:10:20:166 Broker/(9255:9256): Esperando cliente...
+[INFO] 15:13:14:890 Broker/(9255:9256): Se ha conectado un cliente. Número de socket cliente: 6
+[DEBUG] 15:13:14:893 Broker/(9255:9395): Esperando mensaje de cliente 6...
+[INFO] 15:13:14:893 Broker/(9255:9395): [SUSCRIPCION]
+[DEBUG] 15:13:14:893 Broker/(9255:9395): 4
+[INFO] 15:13:14:893 Broker/(9255:9395): Hay un nuevo suscriptor en la cola GET_POKEMON. Número de socket suscriptor: 6
+[INFO] 15:13:14:894 Broker/(9255:9395): [SUSCRIPCION-END]
+[DEBUG] 15:13:14:894 Broker/(9255:9256): Esperando cliente...
+[INFO] 15:21:26:170 Broker/(9729:9729): Se ha iniciado el servidor broker
+
+[INFO] 15:21:26:170 Broker/(9729:9729): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 15:21:26:170 Broker/(9729:9730): Esperando cliente...
+[INFO] 15:21:29:11 Broker/(9729:9730): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 15:21:29:15 Broker/(9729:9733): Esperando mensaje de cliente 5...
+[INFO] 15:21:29:15 Broker/(9729:9733): [SUSCRIPCION]
+[DEBUG] 15:21:29:15 Broker/(9729:9733): 1
+[INFO] 15:21:29:15 Broker/(9729:9733): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 15:21:29:15 Broker/(9729:9733): [SUSCRIPCION-END]
+[DEBUG] 15:21:29:16 Broker/(9729:9730): Esperando cliente...
+[INFO] 15:23:49:739 Broker/(9915:9915): Se ha iniciado el servidor broker
+
+[INFO] 15:23:49:739 Broker/(9915:9915): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 15:23:49:740 Broker/(9915:9916): Esperando cliente...
+[INFO] 15:23:52:164 Broker/(9915:9916): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 15:23:52:168 Broker/(9915:9919): Esperando mensaje de cliente 5...
+[INFO] 15:23:52:168 Broker/(9915:9919): [SUSCRIPCION]
+[DEBUG] 15:23:52:168 Broker/(9915:9919): 1
+[INFO] 15:23:52:168 Broker/(9915:9919): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 15:23:52:168 Broker/(9915:9919): [SUSCRIPCION-END]
+[DEBUG] 15:23:52:168 Broker/(9915:9916): Esperando cliente...
+[INFO] 15:23:52:168 Broker/(9915:9916): Se ha conectado un cliente. Número de socket cliente: 6
+[DEBUG] 15:23:52:173 Broker/(9915:9920): Esperando mensaje de cliente 6...
+[INFO] 15:23:52:181 Broker/(9915:9920): [SUSCRIPCION]
+[DEBUG] 15:23:52:181 Broker/(9915:9920): 5
+[INFO] 15:23:52:182 Broker/(9915:9920): Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: 6
+[INFO] 15:23:52:182 Broker/(9915:9920): [SUSCRIPCION-END]
+[DEBUG] 15:23:52:182 Broker/(9915:9916): Esperando cliente...
+[INFO] 15:23:52:182 Broker/(9915:9916): Se ha conectado un cliente. Número de socket cliente: 7
+[DEBUG] 15:23:52:183 Broker/(9915:9922): Esperando mensaje de cliente 7...
+[INFO] 15:23:52:183 Broker/(9915:9922): [SUSCRIPCION]
+[DEBUG] 15:23:52:183 Broker/(9915:9922): 3
+[INFO] 15:23:52:183 Broker/(9915:9922): Hay un nuevo suscriptor en la cola CAUGHT_POKEMON. Número de socket suscriptor: 7
+[INFO] 15:23:52:183 Broker/(9915:9922): [SUSCRIPCION-END]
+[DEBUG] 15:23:52:183 Broker/(9915:9916): Esperando cliente...
+[INFO] 15:34:20:109 Broker/(10599:10599): Se ha iniciado el servidor broker
+
+[INFO] 15:34:20:110 Broker/(10599:10599): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 15:34:20:110 Broker/(10599:10600): Esperando cliente...
+[INFO] 15:34:24:414 Broker/(10599:10600): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 15:34:24:419 Broker/(10599:10605): Esperando mensaje de cliente 5...
+[INFO] 15:34:24:420 Broker/(10599:10605): [SUSCRIPCION]
+[DEBUG] 15:34:24:421 Broker/(10599:10605): 1
+[INFO] 15:34:24:421 Broker/(10599:10605): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 15:34:24:421 Broker/(10599:10605): [SUSCRIPCION-END]
+[DEBUG] 15:34:24:422 Broker/(10599:10600): Esperando cliente...
+[INFO] 15:34:24:422 Broker/(10599:10600): Se ha conectado un cliente. Número de socket cliente: 6
+[DEBUG] 15:34:24:433 Broker/(10599:10606): Esperando mensaje de cliente 6...
+[INFO] 15:34:24:436 Broker/(10599:10606): [SUSCRIPCION]
+[DEBUG] 15:34:24:436 Broker/(10599:10606): 5
+[INFO] 15:34:24:436 Broker/(10599:10606): Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: 6
+[INFO] 15:34:24:442 Broker/(10599:10606): [SUSCRIPCION-END]
+[DEBUG] 15:34:24:442 Broker/(10599:10600): Esperando cliente...
+[INFO] 15:34:24:442 Broker/(10599:10600): Se ha conectado un cliente. Número de socket cliente: 7
+[DEBUG] 15:34:24:442 Broker/(10599:10609): Esperando mensaje de cliente 7...
+[INFO] 15:34:24:443 Broker/(10599:10609): [SUSCRIPCION]
+[DEBUG] 15:34:24:443 Broker/(10599:10609): 3
+[INFO] 15:34:24:443 Broker/(10599:10609): Hay un nuevo suscriptor en la cola CAUGHT_POKEMON. Número de socket suscriptor: 7
+[INFO] 15:34:24:443 Broker/(10599:10609): [SUSCRIPCION-END]
+[DEBUG] 15:34:24:443 Broker/(10599:10600): Esperando cliente...
+[INFO] 15:36:19:455 Broker/(10669:10669): Se ha iniciado el servidor broker
+
+[INFO] 15:36:19:455 Broker/(10669:10669): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 15:36:19:455 Broker/(10669:10670): Esperando cliente...
+[INFO] 15:36:21:45 Broker/(10669:10670): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 15:36:21:49 Broker/(10669:10675): Esperando mensaje de cliente 5...
+[INFO] 15:36:21:50 Broker/(10669:10675): [SUSCRIPCION]
+[DEBUG] 15:36:21:50 Broker/(10669:10675): 1
+[INFO] 15:36:21:50 Broker/(10669:10675): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 15:36:21:51 Broker/(10669:10675): [SUSCRIPCION-END]
+[DEBUG] 15:36:21:52 Broker/(10669:10670): Esperando cliente...
+[INFO] 15:36:21:52 Broker/(10669:10670): Se ha conectado un cliente. Número de socket cliente: 6
+[DEBUG] 15:36:21:65 Broker/(10669:10676): Esperando mensaje de cliente 6...
+[INFO] 15:36:21:66 Broker/(10669:10676): [SUSCRIPCION]
+[DEBUG] 15:36:21:66 Broker/(10669:10676): 5
+[INFO] 15:36:21:66 Broker/(10669:10676): Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: 6
+[INFO] 15:36:21:66 Broker/(10669:10676): [SUSCRIPCION-END]
+[DEBUG] 15:36:21:66 Broker/(10669:10670): Esperando cliente...
+[INFO] 15:36:21:66 Broker/(10669:10670): Se ha conectado un cliente. Número de socket cliente: 7
+[DEBUG] 15:36:21:67 Broker/(10669:10679): Esperando mensaje de cliente 7...
+[INFO] 15:36:21:67 Broker/(10669:10679): [SUSCRIPCION]
+[DEBUG] 15:36:21:67 Broker/(10669:10679): 3
+[INFO] 15:36:21:67 Broker/(10669:10679): Hay un nuevo suscriptor en la cola CAUGHT_POKEMON. Número de socket suscriptor: 7
+[INFO] 15:36:21:67 Broker/(10669:10679): [SUSCRIPCION-END]
+[DEBUG] 15:36:21:67 Broker/(10669:10670): Esperando cliente...
+[INFO] 15:36:48:878 Broker/(10737:10737): Se ha iniciado el servidor broker
+
+[INFO] 15:36:48:878 Broker/(10737:10737): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 15:36:48:879 Broker/(10737:10738): Esperando cliente...
+[INFO] 15:36:51:137 Broker/(10737:10738): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 15:36:51:143 Broker/(10737:10741): Esperando mensaje de cliente 5...
+[INFO] 15:36:51:143 Broker/(10737:10741): [SUSCRIPCION]
+[DEBUG] 15:36:51:143 Broker/(10737:10741): 1
+[INFO] 15:36:51:143 Broker/(10737:10741): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 15:36:51:143 Broker/(10737:10741): [SUSCRIPCION-END]
+[DEBUG] 15:36:51:144 Broker/(10737:10738): Esperando cliente...
+[INFO] 15:36:51:144 Broker/(10737:10738): Se ha conectado un cliente. Número de socket cliente: 6
+[DEBUG] 15:36:51:172 Broker/(10737:10742): Esperando mensaje de cliente 6...
+[INFO] 15:36:51:172 Broker/(10737:10742): [SUSCRIPCION]
+[DEBUG] 15:36:51:172 Broker/(10737:10742): 5
+[INFO] 15:36:51:172 Broker/(10737:10742): Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: 6
+[INFO] 15:36:51:172 Broker/(10737:10742): [SUSCRIPCION-END]
+[DEBUG] 15:36:51:172 Broker/(10737:10738): Esperando cliente...
+[INFO] 15:36:51:172 Broker/(10737:10738): Se ha conectado un cliente. Número de socket cliente: 7
+[DEBUG] 15:36:51:172 Broker/(10737:10745): Esperando mensaje de cliente 7...
+[INFO] 15:36:51:172 Broker/(10737:10745): [SUSCRIPCION]
+[DEBUG] 15:36:51:172 Broker/(10737:10745): 3
+[INFO] 15:36:51:173 Broker/(10737:10745): Hay un nuevo suscriptor en la cola CAUGHT_POKEMON. Número de socket suscriptor: 7
+[INFO] 15:36:51:173 Broker/(10737:10745): [SUSCRIPCION-END]
+[DEBUG] 15:36:51:173 Broker/(10737:10738): Esperando cliente...
+[INFO] 15:37:47:753 Broker/(10813:10813): Se ha iniciado el servidor broker
+
+[INFO] 15:37:47:753 Broker/(10813:10813): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 15:37:47:753 Broker/(10813:10814): Esperando cliente...
+[INFO] 15:37:52:748 Broker/(10813:10814): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 15:37:52:751 Broker/(10813:10817): Esperando mensaje de cliente 5...
+[INFO] 15:37:52:751 Broker/(10813:10817): [SUSCRIPCION]
+[DEBUG] 15:37:52:751 Broker/(10813:10817): 1
+[INFO] 15:37:52:752 Broker/(10813:10817): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 15:37:52:752 Broker/(10813:10817): [SUSCRIPCION-END]
+[DEBUG] 15:37:52:752 Broker/(10813:10814): Esperando cliente...
+[INFO] 15:37:52:752 Broker/(10813:10814): Se ha conectado un cliente. Número de socket cliente: 6
+[DEBUG] 15:37:52:765 Broker/(10813:10818): Esperando mensaje de cliente 6...
+[INFO] 15:37:52:765 Broker/(10813:10818): [SUSCRIPCION]
+[DEBUG] 15:37:52:765 Broker/(10813:10818): 5
+[INFO] 15:37:52:765 Broker/(10813:10818): Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: 6
+[INFO] 15:37:52:765 Broker/(10813:10818): [SUSCRIPCION-END]
+[DEBUG] 15:37:52:766 Broker/(10813:10814): Esperando cliente...
+[INFO] 15:37:52:766 Broker/(10813:10814): Se ha conectado un cliente. Número de socket cliente: 7
+[DEBUG] 15:37:52:766 Broker/(10813:10820): Esperando mensaje de cliente 7...
+[INFO] 15:37:52:767 Broker/(10813:10820): [SUSCRIPCION]
+[DEBUG] 15:37:52:767 Broker/(10813:10820): 3
+[INFO] 15:37:52:767 Broker/(10813:10820): Hay un nuevo suscriptor en la cola CAUGHT_POKEMON. Número de socket suscriptor: 7
+[INFO] 15:37:52:767 Broker/(10813:10820): [SUSCRIPCION-END]
+[DEBUG] 15:37:52:767 Broker/(10813:10814): Esperando cliente...
+[INFO] 15:38:09:415 Broker/(10833:10833): Se ha iniciado el servidor broker
+
+[INFO] 15:38:09:416 Broker/(10833:10833): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 15:38:09:416 Broker/(10833:10834): Esperando cliente...
+[INFO] 15:38:29:441 Broker/(10833:10834): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 15:38:48:132 Broker/(10833:10914): Esperando mensaje de cliente 5...
+[INFO] 15:38:48:133 Broker/(10833:10914): [SUSCRIPCION]
+[DEBUG] 15:38:48:133 Broker/(10833:10914): 1
+[INFO] 15:38:48:133 Broker/(10833:10914): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 15:38:48:133 Broker/(10833:10914): [SUSCRIPCION-END]
+[DEBUG] 15:38:48:133 Broker/(10833:10834): Esperando cliente...
+[INFO] 15:38:48:133 Broker/(10833:10834): Se ha conectado un cliente. Número de socket cliente: 6
+[INFO] 15:39:22:192 Broker/(11000:11000): Se ha iniciado el servidor broker
+
+[INFO] 15:39:22:192 Broker/(11000:11000): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 15:39:22:192 Broker/(11000:11001): Esperando cliente...
+[INFO] 15:42:25:621 Broker/(11151:11151): Se ha iniciado el servidor broker
+
+[INFO] 15:42:25:621 Broker/(11151:11151): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 15:42:25:621 Broker/(11151:11152): Esperando cliente...
+[INFO] 15:42:28:177 Broker/(11151:11152): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 15:42:28:183 Broker/(11151:11155): Esperando mensaje de cliente 5...
+[INFO] 15:42:28:184 Broker/(11151:11155): [SUSCRIPCION]
+[DEBUG] 15:42:28:184 Broker/(11151:11155): 1
+[INFO] 15:42:28:184 Broker/(11151:11155): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 15:42:28:185 Broker/(11151:11155): [SUSCRIPCION-END]
+[DEBUG] 15:42:28:185 Broker/(11151:11152): Esperando cliente...
+[INFO] 15:42:28:185 Broker/(11151:11152): Se ha conectado un cliente. Número de socket cliente: 6
+[DEBUG] 15:42:28:195 Broker/(11151:11156): Esperando mensaje de cliente 6...
+[INFO] 15:42:28:195 Broker/(11151:11156): [SUSCRIPCION]
+[DEBUG] 15:42:28:196 Broker/(11151:11156): 5
+[INFO] 15:42:28:196 Broker/(11151:11156): Hay un nuevo suscriptor en la cola LOCALIZED_POKEMON. Número de socket suscriptor: 6
+[INFO] 15:42:28:196 Broker/(11151:11156): [SUSCRIPCION-END]
+[DEBUG] 15:42:28:203 Broker/(11151:11152): Esperando cliente...
+[INFO] 15:42:28:203 Broker/(11151:11152): Se ha conectado un cliente. Número de socket cliente: 7
+[DEBUG] 15:42:28:203 Broker/(11151:11159): Esperando mensaje de cliente 7...
+[INFO] 15:42:28:203 Broker/(11151:11159): [SUSCRIPCION]
+[DEBUG] 15:42:28:203 Broker/(11151:11159): 3
+[INFO] 15:42:28:203 Broker/(11151:11159): Hay un nuevo suscriptor en la cola CAUGHT_POKEMON. Número de socket suscriptor: 7
+[INFO] 15:42:28:203 Broker/(11151:11159): [SUSCRIPCION-END]
+[DEBUG] 15:42:28:204 Broker/(11151:11152): Esperando cliente...
+[INFO] 15:42:28:204 Broker/(11151:11152): Se ha conectado un cliente. Número de socket cliente: 8
+[DEBUG] 15:42:28:204 Broker/(11151:11160): Esperando mensaje de cliente 8...
+[INFO] 15:42:28:204 Broker/(11151:11160): [NUEVO_MENSAJE]
+[INFO] 15:42:28:204 Broker/(11151:11160): [NUEVO MENSAJE RECIBIDO]
+[INFO] 15:42:28:204 Broker/(11151:11160): ID: 1
+[INFO] 15:42:28:204 Broker/(11151:11160): ID correlativo: -1
+[INFO] 15:42:28:204 Broker/(11151:11160): Tamaño de mensaje: 12
+[INFO] 15:42:28:204 Broker/(11151:11160): [NUEVO MENSAJE RECIBIDO]
+[INFO] 15:42:28:204 Broker/(11151:11160): ID: 1
+[INFO] 15:42:28:204 Broker/(11151:11160): ID correlativo: -1
+[INFO] 15:42:28:207 Broker/(11151:11160): Tamaño de mensaje: 12
+[DEBUG] 15:42:28:209 Broker/(11151:11152): Esperando cliente...
+[INFO] 15:46:01:499 Broker/(11342:11342): Se ha iniciado el servidor broker
+
+[INFO] 15:46:01:499 Broker/(11342:11342): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 15:46:01:499 Broker/(11342:11343): Esperando cliente...
+[INFO] 15:47:10:740 Broker/(11342:11343): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 15:47:18:630 Broker/(11342:11455): Esperando mensaje de cliente 5...
+[INFO] 15:47:18:631 Broker/(11342:11455): [SUSCRIPCION]
+[DEBUG] 15:47:18:631 Broker/(11342:11455): 1
+[INFO] 15:47:18:631 Broker/(11342:11455): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 15:47:18:631 Broker/(11342:11455): [SUSCRIPCION-END]
+[DEBUG] 15:47:18:631 Broker/(11342:11343): Esperando cliente...
+[INFO] 15:47:21:150 Broker/(11342:11343): Se ha conectado un cliente. Número de socket cliente: 6
+[DEBUG] 15:47:24:674 Broker/(11342:11461): Esperando mensaje de cliente 6...
+[INFO] 15:47:24:674 Broker/(11342:11461): [NUEVO_MENSAJE]
+[INFO] 15:47:24:674 Broker/(11342:11461): [NUEVO MENSAJE RECIBIDO]
+[INFO] 15:47:24:674 Broker/(11342:11461): ID: 1
+[INFO] 15:47:24:674 Broker/(11342:11461): ID correlativo: -1
+[INFO] 15:47:24:674 Broker/(11342:11461): Tamaño de mensaje: 12
+[INFO] 15:47:24:674 Broker/(11342:11461): [NUEVO MENSAJE RECIBIDO]
+[INFO] 15:47:24:674 Broker/(11342:11461): ID: 1
+[INFO] 15:47:24:674 Broker/(11342:11461): ID correlativo: -1
+[INFO] 15:47:24:674 Broker/(11342:11461): Tamaño de mensaje: 12
+[DEBUG] 15:47:24:675 Broker/(11342:11343): Esperando cliente...
+[INFO] 15:48:12:609 Broker/(11538:11538): Se ha iniciado el servidor broker
+
+[INFO] 15:48:12:610 Broker/(11538:11538): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 15:48:12:610 Broker/(11538:11539): Esperando cliente...
+[INFO] 15:48:27:682 Broker/(11538:11539): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 15:48:31:611 Broker/(11538:11589): Esperando mensaje de cliente 5...
+[INFO] 15:48:31:611 Broker/(11538:11589): [SUSCRIPCION]
+[DEBUG] 15:48:31:611 Broker/(11538:11589): 1
+[INFO] 15:48:31:611 Broker/(11538:11589): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 15:48:31:611 Broker/(11538:11589): [SUSCRIPCION-END]
+[DEBUG] 15:48:31:611 Broker/(11538:11539): Esperando cliente...
+[INFO] 15:48:38:403 Broker/(11538:11539): Se ha conectado un cliente. Número de socket cliente: 6
+[DEBUG] 15:48:41:14 Broker/(11538:11594): Esperando mensaje de cliente 6...
+[INFO] 15:48:41:15 Broker/(11538:11594): [NUEVO_MENSAJE]
+[INFO] 15:48:41:15 Broker/(11538:11594): [NUEVO MENSAJE RECIBIDO]
+[INFO] 15:48:41:15 Broker/(11538:11594): ID: -1217089536
+[INFO] 15:48:41:15 Broker/(11538:11594): ID correlativo: 4001536
+[INFO] 15:48:41:15 Broker/(11538:11594): Tamaño de mensaje: -1228934360
+[DEBUG] 15:48:41:15 Broker/(11538:11539): Esperando cliente...
+[INFO] 16:03:11:628 Broker/(12492:12492): Se ha iniciado el servidor broker
+
+[INFO] 16:03:11:629 Broker/(12492:12492): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 16:03:11:629 Broker/(12492:12493): Esperando cliente...
+[INFO] 16:03:39:25 Broker/(12540:12540): Se ha iniciado el servidor broker
+
+[INFO] 16:03:39:25 Broker/(12540:12540): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 16:03:39:25 Broker/(12540:12541): Esperando cliente...
+[INFO] 16:05:26:442 Broker/(12703:12703): Se ha iniciado el servidor broker
+
+[INFO] 16:05:26:442 Broker/(12703:12703): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 16:05:26:443 Broker/(12703:12704): Esperando cliente...
+[INFO] 16:05:41:114 Broker/(12703:12704): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 16:05:59:911 Broker/(12703:12751): Esperando mensaje de cliente 5...
+[INFO] 16:05:59:911 Broker/(12703:12751): [SUSCRIPCION]
+[DEBUG] 16:05:59:911 Broker/(12703:12751): 1
+[INFO] 16:05:59:911 Broker/(12703:12751): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 16:05:59:911 Broker/(12703:12751): [SUSCRIPCION-END]
+[DEBUG] 16:05:59:912 Broker/(12703:12704): Esperando cliente...
+[INFO] 16:06:08:950 Broker/(12703:12704): Se ha conectado un cliente. Número de socket cliente: 6
+[DEBUG] 16:06:27:584 Broker/(12703:12780): Esperando mensaje de cliente 6...
+[INFO] 16:06:27:584 Broker/(12703:12780): [NUEVO_MENSAJE]
+[INFO] 16:06:27:584 Broker/(12703:12780): [NUEVO MENSAJE RECIBIDO]
+[INFO] 16:06:27:584 Broker/(12703:12780): ID: 1
+[INFO] 16:06:27:584 Broker/(12703:12780): ID correlativo: -1
+[INFO] 16:06:27:584 Broker/(12703:12780): Tamaño de mensaje: 12
+[DEBUG] 16:06:27:585 Broker/(12703:12704): Esperando cliente...
+[INFO] 16:32:17:113 Broker/(14326:14326): Se ha iniciado el servidor broker
+
+[INFO] 16:32:17:114 Broker/(14326:14326): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 16:32:17:114 Broker/(14326:14327): Esperando cliente...
+[INFO] 16:32:18:578 Broker/(14326:14327): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 16:32:18:583 Broker/(14326:14330): Esperando mensaje de cliente 5...
+[INFO] 16:32:18:584 Broker/(14326:14330): [SUSCRIPCION]
+[DEBUG] 16:32:18:584 Broker/(14326:14330): 1
+[INFO] 16:32:18:584 Broker/(14326:14330): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 16:32:18:584 Broker/(14326:14330): [SUSCRIPCION-END]
+[DEBUG] 16:32:18:584 Broker/(14326:14327): Esperando cliente...
+[INFO] 16:32:18:584 Broker/(14326:14327): Se ha conectado un cliente. Número de socket cliente: 6
+[DEBUG] 16:32:18:595 Broker/(14326:14332): Esperando mensaje de cliente 6...
+[INFO] 16:32:18:595 Broker/(14326:14332): [NUEVO_MENSAJE]
+[INFO] 16:32:18:595 Broker/(14326:14332): [NUEVO MENSAJE RECIBIDO]
+[INFO] 16:32:18:595 Broker/(14326:14332): ID: 1
+[INFO] 16:32:18:596 Broker/(14326:14332): ID correlativo: -1
+[INFO] 16:32:18:596 Broker/(14326:14332): Tamaño de mensaje: 12
+[INFO] 16:32:39:937 Broker/(14363:14363): Se ha iniciado el servidor broker
+
+[INFO] 16:32:39:937 Broker/(14363:14363): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 16:32:39:937 Broker/(14363:14364): Esperando cliente...
+[INFO] 16:32:56:926 Broker/(14363:14364): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 16:32:58:625 Broker/(14363:14395): Esperando mensaje de cliente 5...
+[INFO] 16:32:58:625 Broker/(14363:14395): [SUSCRIPCION]
+[DEBUG] 16:32:58:625 Broker/(14363:14395): 1
+[INFO] 16:32:58:625 Broker/(14363:14395): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 16:32:58:625 Broker/(14363:14395): [SUSCRIPCION-END]
+[DEBUG] 16:32:58:626 Broker/(14363:14364): Esperando cliente...
+[INFO] 16:32:59:665 Broker/(14363:14364): Se ha conectado un cliente. Número de socket cliente: 6
+[DEBUG] 16:33:01:955 Broker/(14363:14399): Esperando mensaje de cliente 6...
+[INFO] 16:33:01:955 Broker/(14363:14399): [NUEVO_MENSAJE]
+[INFO] 16:33:01:955 Broker/(14363:14399): [NUEVO MENSAJE RECIBIDO]
+[INFO] 16:33:01:955 Broker/(14363:14399): ID: 1
+[INFO] 16:33:01:955 Broker/(14363:14399): ID correlativo: -1
+[INFO] 16:33:01:956 Broker/(14363:14399): Tamaño de mensaje: 12
+[INFO] 16:37:45:920 Broker/(14571:14571): Se ha iniciado el servidor broker
+
+[INFO] 16:37:45:921 Broker/(14571:14571): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 16:37:45:921 Broker/(14571:14572): Esperando cliente...
+[INFO] 16:38:24:208 Broker/(14571:14572): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 16:38:24:231 Broker/(14571:14606): Esperando mensaje de cliente 5...
+[INFO] 16:38:24:231 Broker/(14571:14606): [SUSCRIPCION]
+[DEBUG] 16:38:24:231 Broker/(14571:14606): 1
+[INFO] 16:38:24:231 Broker/(14571:14606): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 16:38:24:231 Broker/(14571:14606): [SUSCRIPCION-END]
+[DEBUG] 16:38:24:231 Broker/(14571:14572): Esperando cliente...
+[INFO] 16:38:24:234 Broker/(14571:14572): Se ha conectado un cliente. Número de socket cliente: 6
+[DEBUG] 16:38:24:243 Broker/(14571:14607): Esperando mensaje de cliente 6...
+[INFO] 16:38:24:243 Broker/(14571:14607): [NUEVO_MENSAJE]
+[INFO] 16:38:24:243 Broker/(14571:14607): [NUEVO MENSAJE RECIBIDO]
+[INFO] 16:38:24:243 Broker/(14571:14607): ID: 1
+[INFO] 16:38:24:243 Broker/(14571:14607): ID correlativo: -1
+[INFO] 16:38:24:243 Broker/(14571:14607): Tamaño de mensaje: 12
+[INFO] 16:40:03:247 Broker/(14662:14662): Se ha iniciado el servidor broker
+
+[INFO] 16:40:03:248 Broker/(14662:14662): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 16:40:03:248 Broker/(14662:14663): Esperando cliente...
+[INFO] 16:41:00:811 Broker/(14727:14727): Se ha iniciado el servidor broker
+
+[INFO] 16:41:00:812 Broker/(14727:14727): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 16:41:00:812 Broker/(14727:14728): Esperando cliente...
+[INFO] 16:41:04:846 Broker/(14727:14728): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 16:41:04:865 Broker/(14727:14730): Esperando mensaje de cliente 5...
+[INFO] 16:41:04:866 Broker/(14727:14730): [SUSCRIPCION]
+[DEBUG] 16:41:04:866 Broker/(14727:14730): 1
+[INFO] 16:41:04:866 Broker/(14727:14730): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 16:41:04:866 Broker/(14727:14730): [SUSCRIPCION-END]
+[DEBUG] 16:41:04:866 Broker/(14727:14728): Esperando cliente...
+[INFO] 16:41:04:869 Broker/(14727:14728): Se ha conectado un cliente. Número de socket cliente: 6
+[DEBUG] 16:41:04:877 Broker/(14727:14731): Esperando mensaje de cliente 6...
+[INFO] 16:41:04:877 Broker/(14727:14731): [NUEVO_MENSAJE]
+[INFO] 16:41:04:877 Broker/(14727:14731): [NUEVO MENSAJE RECIBIDO]
+[INFO] 16:41:04:877 Broker/(14727:14731): ID: 1
+[INFO] 16:41:04:877 Broker/(14727:14731): ID correlativo: -1
+[INFO] 16:41:04:877 Broker/(14727:14731): Tamaño de mensaje: 12
+[INFO] 16:41:55:318 Broker/(14750:14750): Se ha iniciado el servidor broker
+
+[INFO] 16:41:55:318 Broker/(14750:14750): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 16:41:55:318 Broker/(14750:14751): Esperando cliente...
+[INFO] 16:42:48:422 Broker/(14774:14774): Se ha iniciado el servidor broker
+
+[INFO] 16:42:48:422 Broker/(14774:14774): El servidor está configurado y a la espera de un cliente. Número de socket servidor: 4
+[DEBUG] 16:42:48:423 Broker/(14774:14775): Esperando cliente...
+[INFO] 16:42:54:860 Broker/(14774:14775): Se ha conectado un cliente. Número de socket cliente: 5
+[DEBUG] 16:42:54:874 Broker/(14774:14782): Esperando mensaje de cliente 5...
+[INFO] 16:42:54:875 Broker/(14774:14782): [SUSCRIPCION]
+[DEBUG] 16:42:54:875 Broker/(14774:14782): 1
+[INFO] 16:42:54:875 Broker/(14774:14782): Hay un nuevo suscriptor en la cola APPEARED_POKEMON. Número de socket suscriptor: 5
+[INFO] 16:42:54:875 Broker/(14774:14782): [SUSCRIPCION-END]
+[DEBUG] 16:42:54:876 Broker/(14774:14775): Esperando cliente...
+[INFO] 16:42:54:887 Broker/(14774:14775): Se ha conectado un cliente. Número de socket cliente: 6
+[DEBUG] 16:42:54:897 Broker/(14774:14783): Esperando mensaje de cliente 6...
+[INFO] 16:42:54:897 Broker/(14774:14783): [NUEVO_MENSAJE]
+[INFO] 16:42:54:897 Broker/(14774:14783): [NUEVO MENSAJE RECIBIDO]
+[INFO] 16:42:54:897 Broker/(14774:14783): ID: 1
+[INFO] 16:42:54:897 Broker/(14774:14783): ID correlativo: -1
+[INFO] 16:42:54:897 Broker/(14774:14783): Tamaño de mensaje: 12

@@ -169,6 +169,7 @@ void * serializarPaqueteCola(tPaquete* paquete, int tamanioAEnviar);
 void enviarString(int socketDestino, char * mensaje);
 void enviarMensajeASuscriptor(int socketSuscriptor,cola colaEmisora, estructuraMensaje datosMensaje);
 void enviarMensajeABroker(int socketBroker, cola colaDestino,uint32_t idCorrelativo,uint32_t sizeMensaje,void * mensaje);
+mensajeRecibido * recibirMensajeDeBroker(int socketBroker);
 tPaquete *recibirMensaje(int socketFuente);
 void loggearMensaje(t_log *logger,char * mensaje);
 int test();

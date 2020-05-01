@@ -32,6 +32,7 @@ void * cacheBroker;
 int CACHESIZE;
 long globalID=1;
 
+
 //t_list* getListaSuscriptoresByNum(int nro);
 int chequearSiAlcanza(int sizeMensaje, void * posicionActual, int memoriaRecorrida);
 void * buscarEspacio(int sizeMensaje, void *posicionInicial);
