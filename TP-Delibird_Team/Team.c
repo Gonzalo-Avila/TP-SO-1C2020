@@ -23,16 +23,16 @@ int main(){
 	free(puertoServidor);
 
 	suscribirseACola(socketBroker, APPEARED);
-	suscribirseACola(socketBroker, LOCALIZED);
-	suscribirseACola(socketBroker, CAUGHT);
+	//suscribirseACola(socketBroker, LOCALIZED);
+	//suscribirseACola(socketBroker, CAUGHT);
+
+	//enviarMensajeABroker(socketBroker, APPEARED, -1, sizeof("elias"), (void *) "elias");
 
 	//char* msjTest = malloc(sizeof("115elias"));
 	//msjTest = 1 + 1 + "5elias"; // 115elias = MENSAJE NEW <sizeMsj> <Msj>
 	//log_info(logger, msjTest);
 	//enviarMensaje(socketBroker, msjTest);
 	//enviarMensajeACola(socketBroker, NEW, "elias");
-
-
 
 	//Procedimiento auxiliar para que no rompa el server en las pruebas
 	int codigoOP = FINALIZAR;

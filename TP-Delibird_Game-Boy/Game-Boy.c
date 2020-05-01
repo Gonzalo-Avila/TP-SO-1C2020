@@ -125,7 +125,6 @@ int main(int argc, char** argv) {
 				mensaje.posicionY = atoi(argv[5]);
 				mensaje.cantPokemon = atoi(argv[6]);
 				size = sizeof(uint32_t) * 4 + mensaje.longPokemon;
-
 				enviarMensajeABroker(socketDestino, tipoMensaje, -1, size,
 						&mensaje);
 				log_info(logger,
@@ -338,11 +337,11 @@ int main(int argc, char** argv) {
 			//Este mensaje no se utiliza desde el gameboy
 			break;
 		}
-			detault: {
-				log_error(logger, "[ERROR]");
-				log_error(logger, "No se pudo determinar el tipo de mensaje");
-				break;
-			}
+		default: {
+			log_error(logger, "[ERROR]");
+			log_error(logger, "No se pudo determinar el tipo de mensaje");
+			break;
+		}
 		}
 	}
 	close(socketDestino);

@@ -124,12 +124,28 @@ typedef struct
 	uint32_t cantidad;      //Cantidad de pokemons que hay en la posición.
 }posicYCant;
 
-typedef struct {
+/*typedef struct {
 	uint32_t id;
 	uint32_t idCorrelativo;			// Si no se usa idCorrelativo = -1
 	t_list *listaSuscriptores;
 	uint32_t sizeMensaje;
 	void* mensaje;
+}estructuraMensaje;*/
+
+typedef enum{
+	NUEVO=0,
+    ENVIADO=1,
+	CONFIRMADO=2
+}statusMensaje;
+
+typedef struct {
+	uint32_t id;
+	uint32_t idCorrelativo;			// Si no se usa idCorrelativo = -1
+	uint32_t sizeMensaje;
+	void* mensaje;
+	int socketSuscriptor;
+	statusMensaje estado;
+	cola colaMensajeria;
 }estructuraMensaje;
 
 typedef struct {
@@ -146,7 +162,7 @@ typedef struct {
 void atenderConexionEn(int socket, int backlog);
 int crearConexionServer(char * ip, char * puerto);
 int crearConexionCliente(char * ip, char * puerto);
-int esperarCliente(int socketEscucha);
+int* esperarCliente(int socketEscucha);
 void inicializarColas();
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar);
 void * serializarPaqueteCola(tPaquete* paquete, int tamanioAEnviar);

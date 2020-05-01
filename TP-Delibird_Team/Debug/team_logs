@@ -538,3 +538,271 @@ Número de socket: 1
 
 [INFO] 19:55:39:169 Team/(18435:18435): El proceso team finalizó su ejecución
 
+[INFO] 11:05:02:955 Team/(28894:28894): Se ha iniciado el cliente team
+
+[INFO] 11:05:02:957 Team/(28894:28894): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:05:02:957 Team/(28894:28894): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:05:02:957 Team/(28894:28894): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:05:02:958 Team/(28894:28894): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:05:02:958 Team/(28894:28894): Finalizó la conexión con el servidor
+
+[INFO] 11:05:02:958 Team/(28894:28894): El proceso team finalizó su ejecución
+
+[INFO] 11:06:57:568 Team/(28987:28987): Se ha iniciado el cliente team
+
+[INFO] 11:06:57:568 Team/(28987:28987): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:06:57:569 Team/(28987:28987): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:06:57:569 Team/(28987:28987): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:06:57:569 Team/(28987:28987): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:06:57:569 Team/(28987:28987): Finalizó la conexión con el servidor
+
+[INFO] 11:06:57:569 Team/(28987:28987): El proceso team finalizó su ejecución
+
+[INFO] 11:08:09:363 Team/(29072:29072): Se ha iniciado el cliente team
+
+[INFO] 11:08:09:363 Team/(29072:29072): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:08:09:364 Team/(29072:29072): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:08:09:364 Team/(29072:29072): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:08:09:364 Team/(29072:29072): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:08:09:364 Team/(29072:29072): Finalizó la conexión con el servidor
+
+[INFO] 11:08:09:364 Team/(29072:29072): El proceso team finalizó su ejecución
+
+[INFO] 11:12:06:379 Team/(29240:29240): Se ha iniciado el cliente team
+
+[INFO] 11:12:06:380 Team/(29240:29240): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:12:06:380 Team/(29240:29240): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:12:06:380 Team/(29240:29240): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:12:06:380 Team/(29240:29240): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:12:06:380 Team/(29240:29240): Finalizó la conexión con el servidor
+
+[INFO] 11:12:06:380 Team/(29240:29240): El proceso team finalizó su ejecución
+
+[INFO] 11:13:55:689 Team/(29421:29421): Se ha iniciado el cliente team
+
+[INFO] 11:13:55:689 Team/(29421:29421): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:13:55:689 Team/(29421:29421): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:13:55:689 Team/(29421:29421): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:13:55:690 Team/(29421:29421): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:13:55:690 Team/(29421:29421): Finalizó la conexión con el servidor
+
+[INFO] 11:13:55:690 Team/(29421:29421): El proceso team finalizó su ejecución
+
+[INFO] 11:15:34:870 Team/(29520:29520): Se ha iniciado el cliente team
+
+[INFO] 11:15:34:870 Team/(29520:29520): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:15:34:871 Team/(29520:29520): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:15:34:871 Team/(29520:29520): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:15:34:871 Team/(29520:29520): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:15:34:871 Team/(29520:29520): Finalizó la conexión con el servidor
+
+[INFO] 11:15:34:871 Team/(29520:29520): El proceso team finalizó su ejecución
+
+[INFO] 11:16:41:202 Team/(29588:29588): Se ha iniciado el cliente team
+
+[INFO] 11:16:41:202 Team/(29588:29588): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:16:41:202 Team/(29588:29588): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:16:41:202 Team/(29588:29588): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:16:41:203 Team/(29588:29588): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:16:41:203 Team/(29588:29588): Finalizó la conexión con el servidor
+
+[INFO] 11:16:41:203 Team/(29588:29588): El proceso team finalizó su ejecución
+
+[INFO] 11:18:56:660 Team/(29723:29723): Se ha iniciado el cliente team
+
+[INFO] 11:18:56:660 Team/(29723:29723): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:18:56:660 Team/(29723:29723): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:18:56:661 Team/(29723:29723): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:18:56:661 Team/(29723:29723): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:18:56:661 Team/(29723:29723): Finalizó la conexión con el servidor
+
+[INFO] 11:18:56:661 Team/(29723:29723): El proceso team finalizó su ejecución
+
+[INFO] 11:22:41:266 Team/(29942:29942): Se ha iniciado el cliente team
+
+[INFO] 11:22:41:266 Team/(29942:29942): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:22:41:266 Team/(29942:29942): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:22:41:267 Team/(29942:29942): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:22:41:267 Team/(29942:29942): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:22:41:267 Team/(29942:29942): Finalizó la conexión con el servidor
+
+[INFO] 11:22:41:267 Team/(29942:29942): El proceso team finalizó su ejecución
+
+[INFO] 11:25:42:513 Team/(30087:30087): Se ha iniciado el cliente team
+
+[INFO] 11:25:42:513 Team/(30087:30087): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:25:42:513 Team/(30087:30087): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:25:42:513 Team/(30087:30087): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:25:42:513 Team/(30087:30087): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:25:42:514 Team/(30087:30087): Finalizó la conexión con el servidor
+
+[INFO] 11:25:42:514 Team/(30087:30087): El proceso team finalizó su ejecución
+
+[INFO] 11:29:54:777 Team/(30298:30298): Se ha iniciado el cliente team
+
+[INFO] 11:29:54:777 Team/(30298:30298): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:29:54:778 Team/(30298:30298): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:29:54:778 Team/(30298:30298): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:29:54:778 Team/(30298:30298): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:29:54:778 Team/(30298:30298): Finalizó la conexión con el servidor
+
+[INFO] 11:29:54:778 Team/(30298:30298): El proceso team finalizó su ejecución
+
+[INFO] 11:30:23:912 Team/(30361:30361): Se ha iniciado el cliente team
+
+[INFO] 11:30:23:912 Team/(30361:30361): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:30:23:912 Team/(30361:30361): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:30:23:912 Team/(30361:30361): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:30:23:912 Team/(30361:30361): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:30:23:913 Team/(30361:30361): Finalizó la conexión con el servidor
+
+[INFO] 11:30:23:913 Team/(30361:30361): El proceso team finalizó su ejecución
+
+[INFO] 11:37:12:77 Team/(30706:30706): Se ha iniciado el cliente team
+
+[INFO] 11:37:12:78 Team/(30706:30706): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:37:12:78 Team/(30706:30706): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:37:12:78 Team/(30706:30706): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:37:12:78 Team/(30706:30706): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:37:12:78 Team/(30706:30706): Finalizó la conexión con el servidor
+
+[INFO] 11:37:12:78 Team/(30706:30706): El proceso team finalizó su ejecución
+
+[INFO] 11:38:53:819 Team/(30775:30775): Se ha iniciado el cliente team
+
+[INFO] 11:38:53:819 Team/(30775:30775): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:39:02:921 Team/(30785:30785): Se ha iniciado el cliente team
+
+[INFO] 11:39:02:921 Team/(30785:30785): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:39:02:921 Team/(30785:30785): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:39:02:921 Team/(30785:30785): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:39:02:922 Team/(30785:30785): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:39:02:922 Team/(30785:30785): Finalizó la conexión con el servidor
+
+[INFO] 11:39:02:922 Team/(30785:30785): El proceso team finalizó su ejecución
+
+[INFO] 11:40:49:74 Team/(30856:30856): Se ha iniciado el cliente team
+
+[INFO] 11:40:49:75 Team/(30856:30856): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:40:49:75 Team/(30856:30856): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:40:49:75 Team/(30856:30856): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:40:49:75 Team/(30856:30856): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:40:49:75 Team/(30856:30856): Finalizó la conexión con el servidor
+
+[INFO] 11:40:49:76 Team/(30856:30856): El proceso team finalizó su ejecución
+
+[INFO] 11:41:27:602 Team/(30911:30911): Se ha iniciado el cliente team
+
+[INFO] 11:41:27:602 Team/(30911:30911): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:41:27:602 Team/(30911:30911): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:41:27:602 Team/(30911:30911): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:41:27:602 Team/(30911:30911): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:41:27:603 Team/(30911:30911): Finalizó la conexión con el servidor
+
+[INFO] 11:41:27:603 Team/(30911:30911): El proceso team finalizó su ejecución
+
+[INFO] 11:42:36:371 Team/(30964:30964): Se ha iniciado el cliente team
+
+[INFO] 11:42:36:371 Team/(30964:30964): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:42:36:372 Team/(30964:30964): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:42:36:372 Team/(30964:30964): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:42:36:372 Team/(30964:30964): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:42:36:372 Team/(30964:30964): Finalizó la conexión con el servidor
+
+[INFO] 11:42:36:372 Team/(30964:30964): El proceso team finalizó su ejecución
+
+[INFO] 11:44:59:70 Team/(31095:31095): Se ha iniciado el cliente team
+
+[INFO] 11:44:59:71 Team/(31095:31095): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:44:59:71 Team/(31095:31095): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:44:59:71 Team/(31095:31095): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 11:44:59:71 Team/(31095:31095): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 11:44:59:71 Team/(31095:31095): Finalizó la conexión con el servidor
+
+[INFO] 11:44:59:71 Team/(31095:31095): El proceso team finalizó su ejecución
+
+[INFO] 11:48:20:293 Team/(31256:31256): Se ha iniciado el cliente team
+
+[INFO] 11:48:20:293 Team/(31256:31256): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:48:20:293 Team/(31256:31256): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:50:31:997 Team/(31408:31408): Se ha iniciado el cliente team
+
+[INFO] 11:50:31:997 Team/(31408:31408): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:50:31:998 Team/(31408:31408): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 11:50:59:350 Team/(31412:31412): Se ha iniciado el cliente team
+
+[INFO] 11:50:59:350 Team/(31412:31412): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 11:50:59:350 Team/(31412:31412): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 12:04:39:424 Team/(32019:32019): Se ha iniciado el cliente team
+
+[INFO] 12:04:39:424 Team/(32019:32019): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 12:04:39:424 Team/(32019:32019): Se ha suscrito a la cola APPEARED_POKEMON

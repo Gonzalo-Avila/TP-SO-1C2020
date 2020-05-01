@@ -61,12 +61,12 @@ int crearConexionCliente(char * ip, char * puerto){
 /* Espera un cliente y cuando recibe una conexion, devuelve el socket correspondiente al cliente conectado.
  * RECORDAR HACER EL FREE AL PUNTERO SOCKETCLIENTE EN LA FUNCIÓN CORRESPONDIENTE Y EL CLOSE AL SOCKET
  */
-int esperarCliente(int socketEscucha)
+int* esperarCliente(int socketEscucha)
 {
 	struct sockaddr_in addr;
     socklen_t addrlen = sizeof(addr);
-    int socketCliente;
-    socketCliente=accept(socketEscucha, (struct sockaddr *) &addr, &addrlen);
+    int* socketCliente = malloc(sizeof(int));
+    *socketCliente=accept(socketEscucha, (struct sockaddr *) &addr, &addrlen);
     return socketCliente;
 }
 
@@ -207,7 +207,7 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,uint32_t idCorrelat
 /* Permite enviar un mensaje a cualquier cliente, de forma que estos lo puedan interpretar
  *
  */
-void enviarMensajeASuscriptor(int socketSuscriptor,cola colaEmisora, estructuraMensaje datosMensaje){
+void enviarMensajeASuscriptor(int socketSuscriptor, cola colaEmisora, estructuraMensaje datosMensaje){
 
          tPaquete * paquete = malloc (sizeof(tPaquete));
          tBuffer * buffer = malloc (sizeof(tBuffer));
@@ -245,6 +245,9 @@ void enviarMensajeASuscriptor(int socketSuscriptor,cola colaEmisora, estructuraM
          free(buffer);
 }
 
+
+
+/*
 void enviarNuevoMensajeASuscriptor(nodoMensaje nodoMsj ,cola colaEmisora){
 
          tPaquete * paquete = malloc (sizeof(tPaquete));
@@ -282,6 +285,7 @@ void enviarNuevoMensajeASuscriptor(nodoMensaje nodoMsj ,cola colaEmisora){
          free(buffer->stream);
          free(buffer);
 }
+*/
 
 
 /* Recibe un mensaje del broker y lo guarda en un struct con formato mensajeRecibido
