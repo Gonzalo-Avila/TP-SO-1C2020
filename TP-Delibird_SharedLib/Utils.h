@@ -92,7 +92,7 @@ typedef struct
 	uint32_t longPokemon;   //Longitud del nombre del pokemon.
 	char * pokemon;         //Nombre del pokemon a atrapar.
 	uint32_t posicionX;
-	uint32_t posicionY;;  //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
+	uint32_t posicionY;  //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
 }mensajeCatch;
 
 //Este mensaje confirma si el resultado de la operacion "Catch" fue correcto o fallo

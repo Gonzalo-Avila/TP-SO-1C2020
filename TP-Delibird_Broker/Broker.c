@@ -291,11 +291,10 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 void atenderSuscripcion(int *socketSuscriptor) {
 
 	int codSuscripcion, sizePaquete;
-	//char* aEnviar = "Se suscribio satisfactoriamente a la cola de mensajes";
+
 	recv(*socketSuscriptor, &sizePaquete, sizeof(uint32_t), MSG_WAITALL);
 	recv(*socketSuscriptor, &codSuscripcion, sizeof(cola), MSG_WAITALL);
 	log_debug(logger, "%d", codSuscripcion);
-	//log_debug(logger, getCodeStringByNum(codSuscripcion));
 
 	enviarMensajesCacheados(*socketSuscriptor, codSuscripcion);
 
@@ -305,10 +304,6 @@ void atenderSuscripcion(int *socketSuscriptor) {
 			"Hay un nuevo suscriptor en la cola %s. Número de socket suscriptor: %d",
 			getCodeStringByNum(codSuscripcion), *socketSuscriptor);
 	sem_post(&mutexColas);
-	//strcat(aEnviar, getCodeStringByNum(codSuscripcion));
-	//enviarString(socketSuscriptor, aEnviar);
-	//enviarString(socketSuscriptor, "[Broker]: Se suscribio satisfactoriamente a la cola de mensajes");
-
 }
 
 /* Espera mensajes de una conexión ya establecida. Según el código de operación recibido, delega tareas a distintos modulos.
@@ -345,8 +340,9 @@ void esperarMensajes(int *socketCliente) {
 		recv(*socketCliente, &tipoCola, sizeof(cola), MSG_WAITALL);
 		atenderMensaje(*socketCliente, tipoCola);
 
-		//Como es un connect para cada mensaje, aca habria que cerrar la conexion al socket
 
+		//Como es un connect para cada mensaje, aca habria que cerrar la conexion al socket
+		close(*socketCliente);
 		//---------------
 		break;
 	}
@@ -388,6 +384,7 @@ void esperarMensajes(int *socketCliente) {
 	}
 	}
 }
+
 /* Espera nuevas conexiones en el socket de escucha. Al establecerse una nueva, envía esa conexión a un nuevo hilo para que
  * sea gestionada y vuelve a esperar nuevas conexiones.
  */
@@ -403,18 +400,16 @@ void atenderConexiones(int *socketEscucha) {
 		/* Esto me habia traido problemas antes, ¿andará asi?
 		 * Sino habria que crear una lista de hilos e ir agregando/quitando
 		 */
-		pthread_t nuevoHilo;
-		pthread_create(&nuevoHilo, NULL, (void*) esperarMensajes,
-				socketCliente); //No entiendo el warning, si le paso un puntero no anda
-		pthread_join(nuevoHilo, NULL);
-		//pthread_detach(nuevoHilo);
+
+        esperarMensajes(socketCliente);
 	}
 }
 
 // Chequea si un nodoMensaje tiene estado NUEVO. Devuelve bool porque list_filter requiere ese
 void enviarEstructuraMensajeASuscriptor(void* estMensaje) {
-	log_debug(logger, "Se está enviando un mensaje al suscriptor");
+	//¿Por que hacemos esto si conocemos el tipo que deberia llegarle a estMensaje? ¿Por que usar void *?
 	estructuraMensaje* estMsj = (estructuraMensaje*) estMensaje;
+	log_debug(logger, "Se está enviando un mensaje al suscriptor %d",estMsj->socketSuscriptor);
     log_debug(logger,"Se esta enviando el mensaje\nID: %d\nSuscriptor: %d\nID Correlativo: %d\nCola: %d\nSize: %d\nMensaje chorizeado: %s",
     		estMsj->id, estMsj->socketSuscriptor,estMsj->idCorrelativo,estMsj->colaMensajeria,estMsj->sizeMensaje,(char*)(estMsj->mensaje));
 	enviarMensajeASuscriptor(*estMsj);
@@ -539,7 +534,8 @@ int main() {
 	int socketEscucha = getSocketEscuchaBroker();
 
 	empezarAAtenderCliente(socketEscucha);
-	empezarAtenderColas();
+	//empezarAtenderColas();  Al pedo armar un nuevo thread por ahora
+	atenderColas();
 
 	destruirVariablesGlobales();
 	liberarSocket(&socketEscucha);

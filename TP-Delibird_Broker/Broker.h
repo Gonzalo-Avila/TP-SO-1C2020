@@ -8,8 +8,8 @@
 #ifndef BROKER_H_
 #define BROKER_H_
 
-#include <Utils.h>
 
+#include <Utils.h>
 
 
 t_list * NEW_POKEMON;
