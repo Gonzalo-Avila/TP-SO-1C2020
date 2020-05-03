@@ -189,7 +189,6 @@ t_list * generarListaDeSuscriptoresActuales(cola tipoCola) {
 	for (int index = 0; index < list_size(suscriptoresDeLaCola); index++) {
 		//FIXME
 		socketSus = (int *) list_get(suscriptoresDeLaCola, index);
-		(*socketSus)=(*socketSus)-1;
 		list_add(listaGenerada, socketSus);
 	}
 	return listaGenerada;
@@ -240,14 +239,15 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 
 	imprimirEstructuraDeDatos(mensajeNuevo);
 
-	wait(&mutex);
+	sem_wait(&mutexColas);
 	for (int i = 0; i < list_size(suscriptoresActuales); i++) {
 
 		mensajeNuevo.socketSuscriptor = * (int *) list_get(suscriptoresActuales, i);
 		list_add(getColaByNum(tipoCola), generarNodo(mensajeNuevo));
 		//if (idCorrelativo != -1) cachearMensaje(mensajeNuevo.mensaje, mensajeNuevo.sizeMensaje);
 	}
-	signal(&mutex);
+	sem_post(&mutexColas);
+	sem_post(&habilitarEnvio);
 
 	return id;
 }
@@ -288,23 +288,23 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 /* Recibe el código de suscripción desde el socket a suscribirse, eligiendo de esta manera la cola y agregando el socket
  * a la lista de suscriptores de la misma.
  */
-void atenderSuscripcion(int socketSuscriptor) {
+void atenderSuscripcion(int *socketSuscriptor) {
 
 	int codSuscripcion, sizePaquete;
 	//char* aEnviar = "Se suscribio satisfactoriamente a la cola de mensajes";
-	recv(socketSuscriptor, &sizePaquete, sizeof(uint32_t), MSG_WAITALL);
-	recv(socketSuscriptor, &codSuscripcion, sizeof(cola), MSG_WAITALL);
+	recv(*socketSuscriptor, &sizePaquete, sizeof(uint32_t), MSG_WAITALL);
+	recv(*socketSuscriptor, &codSuscripcion, sizeof(cola), MSG_WAITALL);
 	log_debug(logger, "%d", codSuscripcion);
 	//log_debug(logger, getCodeStringByNum(codSuscripcion));
 
-	enviarMensajesCacheados(socketSuscriptor, codSuscripcion);
+	enviarMensajesCacheados(*socketSuscriptor, codSuscripcion);
 
-	wait(&mutex);
-	list_add(getListaSuscriptoresByNum(codSuscripcion), &socketSuscriptor);
+	sem_wait(&mutexColas);
+	list_add(getListaSuscriptoresByNum(codSuscripcion), socketSuscriptor);
 	log_info(logger,
 			"Hay un nuevo suscriptor en la cola %s. Número de socket suscriptor: %d",
-			getCodeStringByNum(codSuscripcion), socketSuscriptor);
-	signal(&mutex);
+			getCodeStringByNum(codSuscripcion), *socketSuscriptor);
+	sem_post(&mutexColas);
 	//strcat(aEnviar, getCodeStringByNum(codSuscripcion));
 	//enviarString(socketSuscriptor, aEnviar);
 	//enviarString(socketSuscriptor, "[Broker]: Se suscribio satisfactoriamente a la cola de mensajes");
@@ -314,7 +314,7 @@ void atenderSuscripcion(int socketSuscriptor) {
 /* Espera mensajes de una conexión ya establecida. Según el código de operación recibido, delega tareas a distintos modulos.
  *
  */
-void esperarMensajes(int* socketCliente) {
+void esperarMensajes(int *socketCliente) {
 	int codOperacion;
 	int sizeDelMensaje;
 	cola tipoCola;
@@ -325,7 +325,7 @@ void esperarMensajes(int* socketCliente) {
 	switch (codOperacion) {
 	case SUSCRIPCION: {
 		log_info(logger, "[SUSCRIPCION]");
-		atenderSuscripcion(*socketCliente);
+		atenderSuscripcion(socketCliente);
 		log_info(logger, "[SUSCRIPCION-END]");
 		break;
 	}
@@ -391,12 +391,12 @@ void esperarMensajes(int* socketCliente) {
 /* Espera nuevas conexiones en el socket de escucha. Al establecerse una nueva, envía esa conexión a un nuevo hilo para que
  * sea gestionada y vuelve a esperar nuevas conexiones.
  */
-void atenderConexiones(int* socketEscucha) {
+void atenderConexiones(int *socketEscucha) {
 	int backlog_server = config_get_int_value(config, "BACKLOG_SERVER");
 	atenderConexionEn(*socketEscucha, backlog_server);
 	while (1) {
 		log_debug(logger, "Esperando cliente...");
-		int* socketCliente = esperarCliente(*socketEscucha);
+		int *socketCliente = esperarCliente(*socketEscucha);
 		log_info(logger,
 				"Se ha conectado un cliente. Número de socket cliente: %d",
 				*socketCliente);
@@ -433,7 +433,8 @@ bool esMensajeNuevo(void* mensaje) {
 // Se filtran los mensajes que tienen estado nuevo y se envian, segun tipo
 void atenderColas() {
 	while (1) {
-		wait(&mutex);
+		sem_wait(&habilitarEnvio);
+		sem_wait(&mutexColas);
 		for (int numCola = 0; numCola < 6; numCola++) {
 			if (list_size(getColaByNum(numCola)) > 0) {
 				t_list* mensajesNuevos = list_filter(getColaByNum(numCola),
@@ -442,7 +443,7 @@ void atenderColas() {
 						&enviarEstructuraMensajeASuscriptor);
 			}
 		}
-		signal(&mutex);
+		sem_post(&mutexColas);
 
 	}
 }
@@ -483,6 +484,9 @@ void inicializarVariablesGlobales() {
 
 	inicializarColasYListas();
 	inicializarCache();
+
+	sem_init(&mutexColas,0,1);
+	sem_init(&habilitarEnvio,0,0);
 }
 
 void destruirVariablesGlobales() {

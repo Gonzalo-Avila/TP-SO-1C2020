@@ -32,9 +32,9 @@ void * cacheBroker;
 int CACHESIZE;
 long globalID=1;
 
-sem_t semaforo;
+sem_t mutexColas;
+sem_t habilitarEnvio;
 
-int mutex=1;
 
 //t_list* getListaSuscriptoresByNum(int nro);
 int chequearSiAlcanza(int sizeMensaje, void * posicionActual, int memoriaRecorrida);
@@ -54,9 +54,9 @@ long getID();
 void imprimirEstructuraDeDatos(estructuraMensaje mensaje);
 int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo);
 void atenderMensaje(int socketEmisor, cola tipoCola);
-void atenderSuscripcion(int socketSuscriptor);
+void atenderSuscripcion(int *socketSuscriptor);
 void esperarMensajes(int *socketCliente);
-void atenderConexiones(int* socketEscucha);
+void atenderConexiones(int *socketEscucha);
 /*estructuraMensaje nodoAEstructura(estructuraMensaje nodoMsj);
 void enviarMensajeASuscriptorNEW(estructuraMensaje nodoMsj);
 void enviarMensajeASuscriptorAPP(estructuraMensaje nodoMsj);

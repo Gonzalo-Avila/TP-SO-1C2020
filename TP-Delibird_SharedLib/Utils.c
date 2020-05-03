@@ -61,11 +61,11 @@ int crearConexionCliente(char * ip, char * puerto){
 /* Espera un cliente y cuando recibe una conexion, devuelve el socket correspondiente al cliente conectado.
  * RECORDAR HACER EL FREE AL PUNTERO SOCKETCLIENTE EN LA FUNCIÓN CORRESPONDIENTE Y EL CLOSE AL SOCKET
  */
-int* esperarCliente(int socketEscucha)
+int * esperarCliente(int socketEscucha)
 {
 	struct sockaddr_in addr;
     socklen_t addrlen = sizeof(addr);
-    int* socketCliente = malloc(sizeof(int));
+    int *socketCliente = malloc(sizeof(int));
     *socketCliente=accept(socketEscucha, (struct sockaddr *) &addr, &addrlen);
     return socketCliente;
 }
@@ -297,11 +297,11 @@ mensajeRecibido * recibirMensajeDeBroker(int socketBroker){
 	mensajeRecibido * mensaje = malloc(sizeof(mensajeRecibido));
 
 	recv(socketBroker,&(mensaje->codeOP),sizeof(opCode),MSG_WAITALL);
-	recv(socketBroker,&(mensaje->sizePayload),sizeof(int),MSG_WAITALL);
+	recv(socketBroker,&(mensaje->sizePayload),sizeof(uint32_t),MSG_WAITALL);
 	recv(socketBroker,&(mensaje->colaEmisora),sizeof(cola),MSG_WAITALL);
-	recv(socketBroker,&(mensaje->idMensaje),sizeof(int),MSG_WAITALL);
-	recv(socketBroker,&(mensaje->idCorrelativo),sizeof(int),MSG_WAITALL);
-	recv(socketBroker,&(mensaje->sizeMensaje),sizeof(int),MSG_WAITALL);
+	recv(socketBroker,&(mensaje->idMensaje),sizeof(uint32_t),MSG_WAITALL);
+	recv(socketBroker,&(mensaje->idCorrelativo),sizeof(uint32_t),MSG_WAITALL);
+	recv(socketBroker,&(mensaje->sizeMensaje),sizeof(uint32_t),MSG_WAITALL);
 	mensaje->mensaje=malloc(mensaje->sizeMensaje);
 	recv(socketBroker,mensaje->mensaje,mensaje->sizeMensaje,MSG_WAITALL);
 	return mensaje;

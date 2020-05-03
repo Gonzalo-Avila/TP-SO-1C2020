@@ -138,3 +138,30 @@ IP: 127.0.0.1
 Puerto: 9898
 N√∫mero de socket: 1
 [INFO] 20:58:20:100 Team/(14736:14736): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 13:08:19:213 Team/(5812:5812): Se ha iniciado el cliente team
+
+[INFO] 13:08:20:886 Team/(5812:5812): Se ha establecido conexi√≥n con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+N√∫mero de socket: 1
+[INFO] 13:08:22:436 Team/(5812:5812): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 13:08:44:686 Team/(5812:5812): El broker ha respondido el ID del mensaje enviado: 1
+[INFO] 13:09:35:255 Team/(5812:5812): Mensaje chorizeado: ‹#
+[INFO] 13:11:36:779 Team/(6127:6127): Se ha iniciado el cliente team
+
+[INFO] 13:11:37:985 Team/(6127:6127): Se ha establecido conexi√≥n con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+N√∫mero de socket: 1
+[INFO] 13:11:39:459 Team/(6127:6127): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 13:12:05:934 Team/(6127:6127): El broker ha respondido el ID del mensaje enviado: 2
+[INFO] 13:12:49:284 Team/(6127:6127): Mensaje chorizeado: (-$
+[INFO] 14:11:18:234 Team/(9251:9251): Se ha iniciado el cliente team
+
+[INFO] 14:11:19:150 Team/(9251:9251): Se ha establecido conexi√≥n con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+N√∫mero de socket: 1
+[INFO] 14:11:19:589 Team/(9251:9251): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 14:11:27:213 Team/(9251:9251): El broker ha respondido el ID del mensaje enviado: 1
+[INFO] 14:11:42:180 Team/(9251:9251): Mensaje chorizeado: ‡‹#

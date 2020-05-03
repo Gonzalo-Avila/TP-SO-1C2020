@@ -162,7 +162,7 @@ typedef struct {
 void atenderConexionEn(int socket, int backlog);
 int crearConexionServer(char * ip, char * puerto);
 int crearConexionCliente(char * ip, char * puerto);
-int* esperarCliente(int socketEscucha);
+int *esperarCliente(int socketEscucha);
 void inicializarColas();
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar);
 void * serializarPaqueteCola(tPaquete* paquete, int tamanioAEnviar);
