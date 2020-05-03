@@ -22,6 +22,7 @@
 #include <commons/collections/queue.h>
 #include <commons/config.h>
 #include <inttypes.h>
+#include <semaphore.h>
 
 t_log * logger;
 t_config * config;

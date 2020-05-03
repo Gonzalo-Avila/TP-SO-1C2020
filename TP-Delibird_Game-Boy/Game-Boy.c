@@ -160,8 +160,10 @@ int main(int argc, char** argv) {
 				memcpy(datosMensaje.mensaje + offset, &(mensaje.cantPokemon),
 						sizeof(uint32_t));
 				offset += sizeof(uint32_t);
-				enviarMensajeASuscriptor(socketDestino, tipoMensaje,
-						datosMensaje);
+
+				datosMensaje.colaMensajeria = tipoMensaje;
+				datosMensaje.socketSuscriptor = socketDestino;
+				enviarMensajeASuscriptor(datosMensaje);
 
 				log_info(logger, "Se envió un mensaje al proceso %s", argv[1]);
 
@@ -213,8 +215,9 @@ int main(int argc, char** argv) {
 						sizeof(uint32_t));
 				offset += sizeof(uint32_t);
 
-				enviarMensajeASuscriptor(socketDestino, tipoMensaje,
-						datosMensaje);
+				datosMensaje.colaMensajeria = tipoMensaje;
+				datosMensaje.socketSuscriptor = socketDestino;
+				enviarMensajeASuscriptor(datosMensaje);
 				log_info(logger, "Se envió un mensaje al proceso %s", argv[1]);
 
 				free(datosMensaje.mensaje);
@@ -265,8 +268,9 @@ int main(int argc, char** argv) {
 						sizeof(uint32_t));
 				offset += sizeof(uint32_t);
 
-				enviarMensajeASuscriptor(socketDestino, tipoMensaje,
-						datosMensaje);
+				datosMensaje.colaMensajeria = tipoMensaje;
+				datosMensaje.socketSuscriptor = socketDestino;
+				enviarMensajeASuscriptor(datosMensaje);
 				log_info(logger, "Se envió un mensaje al proceso %s", argv[1]);
 
 				free(datosMensaje.mensaje);
@@ -324,8 +328,9 @@ int main(int argc, char** argv) {
 						mensaje.longPokemon);
 				offset += mensaje.longPokemon;
 
-				enviarMensajeASuscriptor(socketDestino, tipoMensaje,
-						datosMensaje);
+				datosMensaje.colaMensajeria = tipoMensaje;
+				datosMensaje.socketSuscriptor = socketDestino;
+				enviarMensajeASuscriptor(datosMensaje);
 				log_info(logger, "Se envió un mensaje al proceso %s", argv[1]);
 
 				free(datosMensaje.mensaje);

@@ -1536,3 +1536,147 @@ Número de socket: -1
 [DEBUG] 16:16:58:463 Team/(4392:4392): El broker ha respondido el ID del mensaje enviado: 1
 [INFO] 16:16:58:480 Team/(4392:4392): Long: 158738888
 [INFO] 16:16:58:480 Team/(4392:4392): Mensaje chorizeado: ��#
+[INFO] 17:03:35:418 Team/(16514:16514): Se ha iniciado el cliente team
+
+[INFO] 17:03:35:422 Team/(16514:16514): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: -1
+[INFO] 17:03:35:422 Team/(16514:16514): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 17:03:35:475 Team/(16514:16514): El broker ha respondido el ID del mensaje enviado: 1
+[INFO] 17:03:35:487 Team/(16514:16514): Long: 8
+[INFO] 17:03:35:488 Team/(16514:16514): Pokemon: Pikachu
+[INFO] 17:03:35:488 Team/(16514:16514): PosX: 5
+[INFO] 17:03:35:488 Team/(16514:16514): PosY: 10
+[INFO] 17:04:34:469 Team/(16567:16567): Se ha iniciado el cliente team
+
+[INFO] 17:04:34:470 Team/(16567:16567): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: -1
+[INFO] 17:04:34:471 Team/(16567:16567): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 17:04:34:488 Team/(16567:16567): El broker ha respondido el ID del mensaje enviado: 2
+[INFO] 17:04:34:488 Team/(16567:16567): Long: 8
+[INFO] 17:04:34:488 Team/(16567:16567): Pokemon: Pikachu
+[INFO] 17:04:34:488 Team/(16567:16567): PosX: 5
+[INFO] 17:04:34:488 Team/(16567:16567): PosY: 10
+[INFO] 17:04:48:965 Team/(16578:16578): Se ha iniciado el cliente team
+
+[INFO] 17:04:48:971 Team/(16578:16578): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: -1
+[INFO] 17:04:48:972 Team/(16578:16578): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 17:04:49:170 Team/(16578:16578): El broker ha respondido el ID del mensaje enviado: -1217099464
+[INFO] 17:04:49:170 Team/(16578:16578): Long: 0
+[INFO] 17:04:49:171 Team/(16578:16578): Pokemon: 
+[INFO] 17:04:49:171 Team/(16578:16578): PosX: 0
+[INFO] 17:04:49:171 Team/(16578:16578): PosY: 0
+[INFO] 17:10:38:915 Team/(17104:17104): Se ha iniciado el cliente team
+
+[INFO] 17:10:38:922 Team/(17104:17104): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: -1
+[INFO] 17:10:38:924 Team/(17104:17104): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 17:10:38:927 Team/(17104:17104): El broker ha respondido el ID del mensaje enviado: 2
+[INFO] 17:10:38:927 Team/(17104:17104): Long: 8
+[INFO] 17:10:38:927 Team/(17104:17104): Pokemon: Pikachu
+[INFO] 17:10:38:927 Team/(17104:17104): PosX: 5
+[INFO] 17:10:38:927 Team/(17104:17104): PosY: 10
+[INFO] 17:10:43:150 Team/(17113:17113): Se ha iniciado el cliente team
+
+[INFO] 17:10:43:158 Team/(17113:17113): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: -1
+[INFO] 17:10:43:166 Team/(17113:17113): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 17:10:43:167 Team/(17113:17113): El broker ha respondido el ID del mensaje enviado: 3
+[INFO] 17:10:43:170 Team/(17113:17113): Long: 8
+[INFO] 17:10:43:170 Team/(17113:17113): Pokemon: Pikachu
+[INFO] 17:10:43:170 Team/(17113:17113): PosX: 5
+[INFO] 17:10:43:170 Team/(17113:17113): PosY: 10
+[INFO] 17:10:54:461 Team/(17118:17118): Se ha iniciado el cliente team
+
+[INFO] 17:10:54:462 Team/(17118:17118): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: -1
+[INFO] 17:10:54:462 Team/(17118:17118): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 17:10:54:481 Team/(17118:17118): El broker ha respondido el ID del mensaje enviado: -1217423048
+[INFO] 17:10:54:481 Team/(17118:17118): Long: 0
+[INFO] 17:10:54:482 Team/(17118:17118): Pokemon: 
+[INFO] 17:10:54:482 Team/(17118:17118): PosX: 0
+[INFO] 17:10:54:482 Team/(17118:17118): PosY: 0
+[INFO] 17:12:14:415 Team/(17161:17161): Se ha iniciado el cliente team
+
+[INFO] 17:12:14:416 Team/(17161:17161): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: -1
+[INFO] 17:12:14:417 Team/(17161:17161): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 17:12:14:426 Team/(17161:17161): El broker ha respondido el ID del mensaje enviado: 1
+[INFO] 17:12:14:426 Team/(17161:17161): Long: 8
+[INFO] 17:12:14:426 Team/(17161:17161): Pokemon: Pikachu
+[INFO] 17:12:14:426 Team/(17161:17161): PosX: 5
+[INFO] 17:12:14:426 Team/(17161:17161): PosY: 10
+[INFO] 17:12:31:746 Team/(17172:17172): Se ha iniciado el cliente team
+
+[INFO] 17:12:31:747 Team/(17172:17172): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: -1
+[INFO] 17:12:31:747 Team/(17172:17172): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 17:12:31:754 Team/(17172:17172): El broker ha respondido el ID del mensaje enviado: 2
+[INFO] 17:12:31:755 Team/(17172:17172): Long: 8
+[INFO] 17:12:31:755 Team/(17172:17172): Pokemon: Pikachu
+[INFO] 17:12:31:755 Team/(17172:17172): PosX: 5
+[INFO] 17:12:31:755 Team/(17172:17172): PosY: 10
+[INFO] 17:12:42:212 Team/(17177:17177): Se ha iniciado el cliente team
+
+[INFO] 17:12:42:212 Team/(17177:17177): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: -1
+[INFO] 17:12:42:213 Team/(17177:17177): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 17:12:42:224 Team/(17177:17177): El broker ha respondido el ID del mensaje enviado: -1217476296
+[INFO] 17:12:42:224 Team/(17177:17177): Long: 0
+[INFO] 17:12:42:224 Team/(17177:17177): Pokemon: 
+[INFO] 17:12:42:224 Team/(17177:17177): PosX: 0
+[INFO] 17:12:42:224 Team/(17177:17177): PosY: 0
+[INFO] 17:15:02:601 Team/(17229:17229): Se ha iniciado el cliente team
+
+[INFO] 17:15:02:605 Team/(17229:17229): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: -1
+[INFO] 17:15:02:606 Team/(17229:17229): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 17:15:02:620 Team/(17229:17229): El broker ha respondido el ID del mensaje enviado: 1
+[INFO] 17:15:02:620 Team/(17229:17229): Long: 8
+[INFO] 17:15:02:620 Team/(17229:17229): Pokemon: Pikachu
+[INFO] 17:15:02:620 Team/(17229:17229): PosX: 5
+[INFO] 17:15:02:620 Team/(17229:17229): PosY: 10
+[INFO] 17:15:07:448 Team/(17234:17234): Se ha iniciado el cliente team
+
+[INFO] 17:15:07:455 Team/(17234:17234): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: -1
+[INFO] 17:15:07:456 Team/(17234:17234): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 17:15:07:463 Team/(17234:17234): El broker ha respondido el ID del mensaje enviado: 2
+[INFO] 17:15:07:463 Team/(17234:17234): Long: 8
+[INFO] 17:15:07:463 Team/(17234:17234): Pokemon: Pikachu
+[INFO] 17:15:07:463 Team/(17234:17234): PosX: 5
+[INFO] 17:15:07:463 Team/(17234:17234): PosY: 10
+[INFO] 17:15:11:306 Team/(17238:17238): Se ha iniciado el cliente team
+
+[INFO] 17:15:11:312 Team/(17238:17238): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: -1
+[INFO] 17:15:11:312 Team/(17238:17238): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 17:15:11:315 Team/(17238:17238): El broker ha respondido el ID del mensaje enviado: -1217021640
+[INFO] 17:15:11:315 Team/(17238:17238): Long: 0
+[INFO] 17:15:11:315 Team/(17238:17238): Pokemon: 
+[INFO] 17:15:11:315 Team/(17238:17238): PosX: 0
+[INFO] 17:15:11:315 Team/(17238:17238): PosY: 0

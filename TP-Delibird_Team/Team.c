@@ -69,20 +69,17 @@ int main(){
 
     memcpy(&(msjApp->longPokemon), msgRecibido->mensaje + offset, sizeof(uint32_t));
     offset += sizeof(uint32_t);
-    log_info(logger, "Long: %d", &(msjApp->longPokemon));
-    /*memcpy(msjApp->pokemon, msgRecibido->mensaje + offset, msjApp->longPokemon);
+    log_info(logger, "Long: %d", msjApp->longPokemon);
+    memcpy(msjApp->pokemon, msgRecibido->mensaje + offset, msjApp->longPokemon);
     offset += msjApp->longPokemon;
-    log_info(logger, "Pokemon: %d", msjApp->pokemon);*/
-    /*memcpy(&(msjApp.posicionX), msgRecibido->mensaje + offset, sizeof(uint32_t));
+    log_info(logger, "Pokemon: %s", msjApp->pokemon);
+    memcpy(&(msjApp->posicionX), msgRecibido->mensaje + offset, sizeof(uint32_t));
     offset += sizeof(uint32_t);
-    memcpy(&(msjApp.posicionY), msgRecibido->mensaje + offset, sizeof(uint32_t));
-    offset += sizeof(uint32_t);*/
+    memcpy(&(msjApp->posicionY), msgRecibido->mensaje + offset, sizeof(uint32_t));
+    offset += sizeof(uint32_t);
 
-    log_info(logger,"Mensaje chorizeado: %s",(char *)msgRecibido->mensaje);
-
-    /*log_info(logger, "Pokemon: %s",msjApp.pokemon);
-    log_info(logger, "PosX: %d", msjApp.posicionX);
-    log_info(logger, "PosY: %d", msjApp.posicionY);*/
+    log_info(logger, "PosX: %d", msjApp->posicionX);
+    log_info(logger, "PosY: %d", msjApp->posicionY);
 
 	free(ipServidor);
 	free(puertoServidor);

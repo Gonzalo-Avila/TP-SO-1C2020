@@ -232,7 +232,7 @@ void enviarMensajeASuscriptor(estructuraMensaje datosMensaje){
          offset+=sizeof(uint32_t);
          memcpy(buffer->stream+offset,&(datosMensaje.sizeMensaje),sizeof(uint32_t));
          offset+=sizeof(uint32_t);
-         memcpy(buffer->stream+offset,&(datosMensaje.mensaje),datosMensaje.sizeMensaje);
+         memcpy(buffer->stream+offset,datosMensaje.mensaje,datosMensaje.sizeMensaje);
 
          paquete->buffer=buffer;
 

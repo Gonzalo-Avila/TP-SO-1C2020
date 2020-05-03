@@ -179,3 +179,33 @@ Número de socket: 1
 
 [INFO] 16:12:46:620 Team/(4275:4275): Se ha iniciado el cliente team
 
+[INFO] 16:48:05:243 Team/(15160:15160): Se ha iniciado el cliente team
+
+[INFO] 16:48:07:749 Team/(15160:15160): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: -1
+[INFO] 16:48:08:903 Team/(15160:15160): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 16:48:13:843 Team/(15160:15160): El broker ha respondido el ID del mensaje enviado: 1
+[INFO] 16:48:20:841 Team/(15160:15160): Long: 134527432
+[INFO] 16:48:57:561 Team/(15255:15255): Se ha iniciado el cliente team
+
+[INFO] 16:48:58:39 Team/(15255:15255): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: -1
+[INFO] 16:48:58:275 Team/(15255:15255): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 16:49:01:398 Team/(15255:15255): El broker ha respondido el ID del mensaje enviado: 2
+[INFO] 16:49:09:707 Team/(15255:15255): Long: 8
+[INFO] 16:51:05:273 Team/(15426:15426): Se ha iniciado el cliente team
+
+[INFO] 16:51:05:281 Team/(15426:15426): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: -1
+[INFO] 16:51:05:282 Team/(15426:15426): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 16:51:05:818 Team/(15426:15426): El broker ha respondido el ID del mensaje enviado: -1217222440
+[INFO] 16:51:05:818 Team/(15426:15426): Long: 0
+[INFO] 16:51:05:818 Team/(15426:15426): Pokemon: 
+[INFO] 16:51:05:818 Team/(15426:15426): PosX: 0
+[INFO] 16:51:05:820 Team/(15426:15426): PosY: 0

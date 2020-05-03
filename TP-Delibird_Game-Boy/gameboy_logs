@@ -82,3 +82,11 @@ Tipo de proceso: BROKER
 IP: 127.0.0.1
 PUERTO: 9898
 Socket:4
+[INFO] 17:08:03:132 GameBoy/(16952:16952): Se ha iniciado el cliente gameboy
+
+[INFO] 17:08:06:57 GameBoy/(16952:16952): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:4
+[INFO] 17:08:19:815 GameBoy/(16952:16952): Se envió un mensaje a la cola NEW_POKEMON del proceso BROKER
