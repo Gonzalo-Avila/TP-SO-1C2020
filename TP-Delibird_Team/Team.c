@@ -1,7 +1,6 @@
 #include "Team.h"
 
 void inicializarVariablesGlobales(){
-
 	config = config_create("team.config");
 	logger = log_create("team_logs","Team",1,LOG_LEVEL_TRACE);
 	listaHilos = list_create();
@@ -39,8 +38,8 @@ void obtenerDeConfig(char *clave,t_list *lista){
 /*MANEJA EL FUNCIONAMIENTO INTERNO DE CADA ENTRENADOR(trabajo en un hilo separado)*/
 void gestionarEntrenador(t_entrenador *entrenador){
 	//mover entrenador a posicion del pokemon que necesita
-	pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
-	pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
+	//pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
+	//pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
 
 
 }
@@ -147,7 +146,7 @@ void atenderBroker(int socketBroker) {
 
 void crearHiloParaAtenderBroker(int socketBroker) {
 	pthread_t hiloAtenderBroker;
-	pthread_create(&hiloAtenderBroker, NULL, (void*) atenderBroker, socketBroker); //No entiendo el warning
+	pthread_create(&hiloAtenderBroker, NULL, (void*) atenderBroker, (void*) socketBroker); //No entiendo el warning
 	pthread_detach(hiloAtenderBroker);
 }
 
@@ -401,10 +400,10 @@ void planificar(char* pokemon, int posicionX, int posicionY){
 int main(){
 //	char * ipServidor = malloc(strlen(config_get_string_value(config,"IP"))+1);
 //	ipServidor = config_get_string_value(config,"IP");
-//
+
 //	char * puertoServidor = malloc(strlen(config_get_string_value(config,"PUERTO"))+1);
 //	puertoServidor = config_get_string_value(config,"PUERTO");
-//
+
 //	//Se crea la conexion con el broker. Esto posteriormente debe ir con un sistema de reintentos por si el broker esta off
 //	int socketBroker = crearConexionCliente(ipServidor,puertoServidor);
 //
@@ -416,7 +415,7 @@ int main(){
 //	//Se obtiene el algoritmo planificador
 //	e_algoritmo algoritmoPlanificador = obtenerAlgoritmoPlanificador();
 //
-//	setearObjetivoDeTeam();
+//	setearObjetivosDeTeam(team);
 //
 //	enviarGetSegunObjetivo(ipServidor,puertoServidor);
 //
@@ -432,7 +431,7 @@ int main(){
 //
 //	//Gestiono los mensajes de la cola
 //	gestionarMensajes(ipServidor, puertoServidor);
-//
+//	log_info(logger, "se llega hasta acá bien");
 //	//Procedimiento auxiliar para que no rompa el server en las pruebas
 //	int codigoOP = FINALIZAR;
 //
