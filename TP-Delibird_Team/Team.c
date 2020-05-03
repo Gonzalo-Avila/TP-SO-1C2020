@@ -27,21 +27,18 @@ int main(){
 		log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
 				config_get_string_value(config,"IP"),config_get_string_value(config,"PUERTO"));*/
 
-
-
 	suscribirseACola(socketBrokerAPP, APPEARED);
 	/*suscribirseACola(socketBrokerLOC, LOCALIZED);
 	suscribirseACola(socketBrokerCAU, CAUGHT);*/
 
-
 	int socketBrokerParaMensaje = crearConexionCliente(ipServidor,puertoServidor);
+
     mensajeAppeared mensaje;
     mensaje.longPokemon=strlen("Pikachu")+1;
     mensaje.pokemon=malloc(mensaje.longPokemon);
     strcpy(mensaje.pokemon,"Pikachu");
     mensaje.posicionX=5;
     mensaje.posicionY=10;
-
 
 	enviarMensajeABroker(socketBrokerParaMensaje, APPEARED, -1, sizeof(uint32_t)*3+mensaje.longPokemon, &mensaje);
     int idMensaje;
@@ -64,8 +61,28 @@ int main(){
     close(socketBrokerCAU);*/
     /*log_info(logger,"Finalizó la conexión con el servidor\n");
     log_info(logger,"El proceso team finalizó su ejecución\n");*/
+
     mensajeRecibido * msgRecibido = recibirMensajeDeBroker(socketBrokerAPP);
+    mensajeAppeared* msjApp = malloc(sizeof(mensajeAppeared));
+    int offset = 0;
+    msjApp->pokemon=malloc(msgRecibido->sizeMensaje);
+
+    memcpy(&(msjApp->longPokemon), msgRecibido->mensaje + offset, sizeof(uint32_t));
+    offset += sizeof(uint32_t);
+    log_info(logger, "Long: %d", &(msjApp->longPokemon));
+    /*memcpy(msjApp->pokemon, msgRecibido->mensaje + offset, msjApp->longPokemon);
+    offset += msjApp->longPokemon;
+    log_info(logger, "Pokemon: %d", msjApp->pokemon);*/
+    /*memcpy(&(msjApp.posicionX), msgRecibido->mensaje + offset, sizeof(uint32_t));
+    offset += sizeof(uint32_t);
+    memcpy(&(msjApp.posicionY), msgRecibido->mensaje + offset, sizeof(uint32_t));
+    offset += sizeof(uint32_t);*/
+
     log_info(logger,"Mensaje chorizeado: %s",(char *)msgRecibido->mensaje);
+
+    /*log_info(logger, "Pokemon: %s",msjApp.pokemon);
+    log_info(logger, "PosX: %d", msjApp.posicionX);
+    log_info(logger, "PosY: %d", msjApp.posicionY);*/
 
 	free(ipServidor);
 	free(puertoServidor);
