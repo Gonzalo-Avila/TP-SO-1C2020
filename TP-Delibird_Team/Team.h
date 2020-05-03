@@ -57,6 +57,11 @@ typedef struct{
 	int idEntrenador;
 }t_listaHilos;
 
+typedef struct{
+	float dist;
+	int idEntrenador;
+}t_dist;
+
 t_team *team;
 t_list *listaHilos;
 t_queue *colaDeReady;
@@ -85,7 +90,7 @@ bool elementoEstaEnLista(t_list *lista, char *elemento);
 void setearObjetivosDeTeam(t_team *team);
 void enviarGetSegunObjetivo(char *ip, char *puerto, char* pokemon);
 float calcularDistancia(int posX1, int posY1,int posX2,int posY2);
-void setearDistanciaEntrenadores(t_list *entrenadores,int posX,int posY);
+t_list *setearDistanciaEntrenadores(t_team *team,int posX,int posY);
 bool estaEnEspera(void *entrenador);
 bool esUnObjetivo(void *objetivo);
 bool distanciaMasCorta(void *entrenador1,void *entrenador2);

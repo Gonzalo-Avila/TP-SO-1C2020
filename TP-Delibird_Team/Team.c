@@ -310,16 +310,48 @@ float calcularDistancia(int posX1, int posY1,int posX2,int posY2){
 }
 
 //setea la distancia de todos los entrenadores del team al pokemon localizado
-void setearDistanciaEntrenadores(t_list *entrenadores,int posX,int posY){
+t_list *setearDistanciaEntrenadores(t_team *team,int posX,int posY){
 	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
-		for(int i=0;i<list_size(entrenadores);i++){
-				entrenador = list_get(entrenadores,i);
-				float distancia = calcularDistancia(entrenador->pos[0],entrenador->pos[1],posX,posY);
+	t_list *listaDistancias = list_create();
 
-				entrenador->distancia= distancia;
-				list_replace(entrenadores,i,entrenador);
+	for(int i=0;i<list_size(team->entrenadores);i++){
+			entrenador = list_get(team->entrenadores,i);
+
+			t_dist *distancia = malloc(sizeof(t_dist));
+
+			distancia->dist = calcularDistancia(entrenador->pos[0],entrenador->pos[1],posX,posY);
+			distancia->idEntrenador = i;
+
+			list_add(listaDistancias,distancia);
+
+			free(distancia);
 		}
+	free(entrenador);
 
+	return listaDistancias;
+}
+
+
+bool menorDist(t_dist *dist1,t_dist *dist2){
+	bool verifica = false;
+
+	if(dist1->dist < dist2->dist)
+			verifica = true;
+
+	return verifica;
+}
+
+//Llega como parametro el team, y las posiciones del pokemon localizado
+t_entrenador *entrenadorMasCercano(t_team *team,int posX,int posY){
+	t_list* listaDistancias = list_create();
+
+	listaDistancias = setearDistanciaEntrenadores(team,posX,posY);
+
+	list_sort(listaDistancias, (bool*) menorDist);
+
+	int idEntrenadorConDistMenor = ((t_dist*)list_get(listaDistancias,0))->idEntrenador;
+
+	return list_get(team->entrenadores,idEntrenadorConDistMenor);
 }
 
 //Esta funcion se podria codear para que sea una funcion generica, pero por el momento solo me sirve saber si está o no en ready.
@@ -340,34 +372,6 @@ bool esUnObjetivo(void* objetivo) {
 		}
 	return verifica;
 }
-
-bool distanciaMasCorta(void *entrenador1,void *entrenador2){
-	t_entrenador *trainer1 = malloc(sizeof(t_entrenador));
-	t_entrenador *trainer2 = malloc(sizeof(t_entrenador));
-	trainer1 = entrenador1;
-	trainer2 = entrenador2;
-	bool verifica = false;
-			if(trainer1->distancia < trainer2->distancia)
-				verifica = true;
-
-	return verifica;
-}
-//Llega como parametro el team, y las posiciones del pokemon localizado
-t_entrenador* entrenadorMasCercano(t_team *team,int posX,int posY){
-	t_entrenador *entrenador1 = malloc(sizeof(t_entrenador));
-	t_list* entrenadoresenEspera = list_create();
-
-	entrenadoresenEspera =list_filter(team->entrenadores,estaEnEspera);
-	setearDistanciaEntrenadores(entrenadoresenEspera,posX,posY);
-
-	//Ordeno la lista de entrenadoresenEspera, del entrenador mas cercano al mas lejano
-	list_sort(entrenadoresenEspera,distanciaMasCorta);
-
-	entrenador1 = list_get(entrenadoresenEspera,0);
-
-		list_destroy(entrenadoresenEspera);
-		return entrenador1;
-	}
 
 /* Planificar */
 void planificar(char* pokemon, int posicionX, int posicionY){
