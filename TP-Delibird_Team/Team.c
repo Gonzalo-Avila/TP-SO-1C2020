@@ -39,8 +39,14 @@ int main(){
     mensaje.longPokemon=strlen("Pikachu")+1;
     mensaje.pokemon=malloc(mensaje.longPokemon);
     strcpy(mensaje.pokemon,"Pikachu");
+    mensaje.posicionX=5;
+    mensaje.posicionY=10;
 
-	enviarMensajeABroker(socketBrokerParaMensaje, APPEARED, -1, sizeof(uint32_t)+mensaje.longPokemon, &mensaje);
+
+	enviarMensajeABroker(socketBrokerParaMensaje, APPEARED, -1, sizeof(uint32_t)*3+mensaje.longPokemon, &mensaje);
+    int idMensaje;
+    recv(socketBrokerParaMensaje,&idMensaje,sizeof(int),MSG_WAITALL);
+    log_debug(logger,"El broker ha respondido el ID del mensaje enviado: %d", idMensaje);
 
 	//char* msjTest = malloc(sizeof("115elias"));
 	//msjTest = 1 + 1 + "5elias"; // 115elias = MENSAJE NEW <sizeMsj> <Msj>

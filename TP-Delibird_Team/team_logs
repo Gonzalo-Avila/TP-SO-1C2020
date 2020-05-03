@@ -75,3 +75,66 @@ Número de socket: 1
 IP: 127.0.0.1
 Puerto: 9898
 Número de socket: 1
+[INFO] 17:46:52:571 Team/(5820:5820): Se ha iniciado el cliente team
+
+[INFO] 17:46:53:344 Team/(5820:5820): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 17:46:53:651 Team/(5820:5820): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 17:49:49:381 Team/(6058:6058): Se ha iniciado el cliente team
+
+[INFO] 17:49:50:241 Team/(6058:6058): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 17:51:34:757 Team/(6164:6164): Se ha iniciado el cliente team
+
+[INFO] 17:51:38:507 Team/(6164:6164): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 17:51:41:100 Team/(6164:6164): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 17:53:03:882 Team/(6239:6239): Se ha iniciado el cliente team
+
+[INFO] 17:53:04:0 Team/(6239:6239): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 17:53:05:355 Team/(6239:6239): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 18:12:24:285 Team/(7156:7156): Se ha iniciado el cliente team
+
+[INFO] 18:12:24:888 Team/(7156:7156): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 18:12:25:323 Team/(7156:7156): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 18:33:23:887 Team/(8109:8109): Se ha iniciado el cliente team
+
+[INFO] 18:33:24:917 Team/(8109:8109): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 18:33:28:405 Team/(8109:8109): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 18:42:42:303 Team/(8699:8699): Se ha iniciado el cliente team
+
+[INFO] 18:42:44:82 Team/(8699:8699): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 18:42:47:689 Team/(8699:8699): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 20:26:45:789 Team/(13379:13379): Se ha iniciado el cliente team
+
+[INFO] 20:26:46:530 Team/(13379:13379): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 20:26:46:960 Team/(13379:13379): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 20:27:24:243 Team/(13379:13379): El broker ha respondido el ID del mensaje enviado: 1
+[INFO] 20:58:18:681 Team/(14736:14736): Se ha iniciado el cliente team
+
+[INFO] 20:58:19:679 Team/(14736:14736): Se ha establecido conexión con el servidor
+IP: 127.0.0.1
+Puerto: 9898
+Número de socket: 1
+[INFO] 20:58:20:100 Team/(14736:14736): Se ha suscrito a la cola APPEARED_POKEMON

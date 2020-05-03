@@ -9,7 +9,7 @@
 #define BROKER_H_
 
 #include <Utils.h>
-
+#include <semaphore.h>
 
 
 t_list * NEW_POKEMON;
@@ -32,6 +32,9 @@ void * cacheBroker;
 int CACHESIZE;
 long globalID=1;
 
+sem_t semaforo;
+
+int mutex=1;
 
 //t_list* getListaSuscriptoresByNum(int nro);
 int chequearSiAlcanza(int sizeMensaje, void * posicionActual, int memoriaRecorrida);

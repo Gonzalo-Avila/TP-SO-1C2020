@@ -82,8 +82,8 @@ void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar)
 
 	memcpy(aEnviar+offset,&(paquete->codOperacion),sizeof(opCode));
 	offset+=sizeof(opCode);
-    memcpy(aEnviar+offset,&(paquete->buffer->size),sizeof(int));
-    offset+=sizeof(int);
+    memcpy(aEnviar+offset,&(paquete->buffer->size),sizeof(uint32_t));
+    offset+=sizeof(uint32_t);
     memcpy(aEnviar+offset,paquete->buffer->stream,paquete->buffer->size);
 
     return aEnviar;
@@ -105,8 +105,9 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,uint32_t idCorrelat
 
         tPaquete *paquete=malloc(sizeof(tPaquete));
         tBuffer *buffer = malloc(sizeof(tBuffer));
-        buffer->stream=malloc(sizeMensaje);
         buffer->size=sizeMensaje+sizeof(cola)+sizeof(uint32_t)*2;
+        buffer->stream=malloc(buffer->size);
+
 
         paquete->codOperacion=NUEVO_MENSAJE;
 
@@ -123,7 +124,7 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,uint32_t idCorrelat
         	  memcpy(buffer->stream+offset,&(msg->longPokemon),sizeof(uint32_t));
         	  offset+=sizeof(uint32_t);
         	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
-              offset+=sizeof(msg->longPokemon);
+              offset+=msg->longPokemon;
               memcpy(buffer->stream+offset,&(msg->posicionX),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
               memcpy(buffer->stream+offset,&(msg->posicionY),sizeof(uint32_t));
@@ -135,8 +136,8 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,uint32_t idCorrelat
         	  mensajeAppeared * msg = mensaje;
         	  memcpy(buffer->stream+offset,&(msg->longPokemon),sizeof(uint32_t));
         	  offset+=sizeof(uint32_t);
-        	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
-              offset+=sizeof(msg->longPokemon);
+        	  memcpy(buffer->stream+offset,msg->pokemon,msg->longPokemon);
+              offset+=msg->longPokemon;
               memcpy(buffer->stream+offset,&(msg->posicionX),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
               memcpy(buffer->stream+offset,&(msg->posicionY),sizeof(uint32_t));
@@ -147,8 +148,8 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,uint32_t idCorrelat
         	  mensajeCatch * msg = mensaje;
         	  memcpy(buffer->stream+offset,&(msg->longPokemon),sizeof(uint32_t));
         	  offset+=sizeof(uint32_t);
-        	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
-              offset+=sizeof(msg->longPokemon);
+        	  memcpy(buffer->stream+offset,msg->pokemon,msg->longPokemon);
+              offset+=msg->longPokemon;
               memcpy(buffer->stream+offset,&(msg->posicionX),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
               memcpy(buffer->stream+offset,&(msg->posicionY),sizeof(uint32_t));
@@ -165,7 +166,7 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,uint32_t idCorrelat
               mensajeGet * msg = mensaje;
               memcpy(buffer->stream+offset,&(msg->longPokemon),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
-          	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
+          	  memcpy(buffer->stream+offset,msg->pokemon,msg->longPokemon);
               offset+=sizeof(msg->longPokemon);
         	  break;
           }
@@ -174,8 +175,8 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,uint32_t idCorrelat
         	  posicYCant variableAuxiliar;
         	  memcpy(buffer->stream+offset,&(msg->longPokemon),sizeof(uint32_t));
         	  offset+=sizeof(uint32_t);
-  	    	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
-  	    	  offset+=sizeof(msg->longPokemon);
+  	    	  memcpy(buffer->stream+offset,msg->pokemon,msg->longPokemon);
+  	    	  offset+=msg->longPokemon;
   	    	  memcpy(buffer->stream+offset,&(msg->listSize),sizeof(uint32_t));
   	    	  offset+=sizeof(uint32_t);
               for(int i=0;i<msg->listSize;i++)
@@ -199,17 +200,17 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,uint32_t idCorrelat
         sizeTotal=buffer->size+sizeof(uint32_t)+sizeof(opCode);
         mensajeSerializado = serializarPaquete(paquete,sizeTotal);
         send(socketBroker,mensajeSerializado,sizeTotal,0);
-        //free(mensaje); //Esto crashea
-        //free(mensajeSerializado);
-        //free(paquete);
-        //free(buffer->stream); //Esto tambien
-        ///free(buffer);
+        //free(mensaje); Valgrind tira que esto es invalido porque esta variable esta en el stack del thread 1
+        free(mensajeSerializado);
+        free(paquete);
+        free(buffer->stream);
+        free(buffer);
 }
 
 /* Permite enviar un mensaje a cualquier cliente, de forma que estos lo puedan interpretar
  *
  */
-void enviarMensajeASuscriptor(int socketSuscriptor, cola colaEmisora, estructuraMensaje datosMensaje){
+void enviarMensajeASuscriptor(estructuraMensaje datosMensaje){
 
          tPaquete * paquete = malloc (sizeof(tPaquete));
          tBuffer * buffer = malloc (sizeof(tBuffer));
@@ -223,7 +224,7 @@ void enviarMensajeASuscriptor(int socketSuscriptor, cola colaEmisora, estructura
          buffer->size=sizeof(cola)+sizeof(uint32_t)*3+datosMensaje.sizeMensaje;
          buffer->stream=malloc(buffer->size);
 
-         memcpy(buffer->stream+offset,&colaEmisora,sizeof(cola));
+         memcpy(buffer->stream+offset,&(datosMensaje.colaMensajeria),sizeof(cola));
          offset+=sizeof(cola);
          memcpy(buffer->stream+offset,&(datosMensaje.id),sizeof(uint32_t));
          offset+=sizeof(uint32_t);
@@ -239,8 +240,7 @@ void enviarMensajeASuscriptor(int socketSuscriptor, cola colaEmisora, estructura
 
          paqueteSerializado=serializarPaquete(paquete,sizeTotal);
 
-         send(socketSuscriptor,paqueteSerializado,sizeTotal,0);
-
+         send(datosMensaje.socketSuscriptor,paqueteSerializado,sizeTotal,0);
          free(paqueteSerializado);
          free(paquete);
          free(buffer->stream);

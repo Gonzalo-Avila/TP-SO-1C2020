@@ -187,7 +187,9 @@ t_list * generarListaDeSuscriptoresActuales(cola tipoCola) {
 	int* socketSus;
 
 	for (int index = 0; index < list_size(suscriptoresDeLaCola); index++) {
+		//FIXME
 		socketSus = (int *) list_get(suscriptoresDeLaCola, index);
+		(*socketSus)=(*socketSus)-1;
 		list_add(listaGenerada, socketSus);
 	}
 	return listaGenerada;
@@ -218,32 +220,34 @@ estructuraMensaje * generarNodo(estructuraMensaje mensaje) {
 }
 int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 
+	/* TODO
+	 * Al usarse semaforos, ya no tiene sentido hacer una copia de los suscriptores actuales. Quitar.
+	 */
 	t_list* suscriptoresActuales = generarListaDeSuscriptoresActuales(tipoCola);
-	int sizeMensaje;
-	void* mensaje;
+
 	estructuraMensaje mensajeNuevo;
 
-	recv(socketEmisor, &sizeMensaje, sizeof(int), MSG_WAITALL);
-	mensaje = malloc(sizeMensaje);
-	recv(socketEmisor, mensaje, sizeMensaje, MSG_WAITALL);
+	recv(socketEmisor, &mensajeNuevo.sizeMensaje, sizeof(int), MSG_WAITALL);
+	mensajeNuevo.mensaje = malloc(mensajeNuevo.sizeMensaje);
+	recv(socketEmisor, mensajeNuevo.mensaje, mensajeNuevo.sizeMensaje, MSG_WAITALL);
 
 	int id = getID();
 
 	mensajeNuevo.id = id;
 	mensajeNuevo.idCorrelativo = idCorrelativo;
 	mensajeNuevo.estado = NUEVO;
-	mensajeNuevo.sizeMensaje = sizeMensaje;
-	mensajeNuevo.mensaje = mensaje;
 	mensajeNuevo.colaMensajeria = tipoCola;
 
 	imprimirEstructuraDeDatos(mensajeNuevo);
 
+	wait(&mutex);
 	for (int i = 0; i < list_size(suscriptoresActuales); i++) {
 
-		mensajeNuevo.socketSuscriptor = (int) list_get(suscriptoresActuales, i);
+		mensajeNuevo.socketSuscriptor = * (int *) list_get(suscriptoresActuales, i);
 		list_add(getColaByNum(tipoCola), generarNodo(mensajeNuevo));
 		//if (idCorrelativo != -1) cachearMensaje(mensajeNuevo.mensaje, mensajeNuevo.sizeMensaje);
 	}
+	signal(&mutex);
 
 	return id;
 }
@@ -270,27 +274,15 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 	uint32_t idCorrelativo;
 	recv(socketEmisor, &idCorrelativo, sizeof(uint32_t), MSG_WAITALL);
 
-	switch (tipoCola) {
-	case NEW:
-	case CATCH:
-	case GET: {
+	if (tipoCola >= 0 && tipoCola <= 5) {
 		idMensaje = agregarMensajeACola(socketEmisor, tipoCola, -1);
 		send(socketEmisor, &idMensaje, sizeof(uint32_t), 0);
-		break;
-	}
-	case APPEARED:
-	case CAUGHT:
-	case LOCALIZED: {
-		idMensaje = agregarMensajeACola(socketEmisor, tipoCola, idCorrelativo);
-		send(socketEmisor, &idMensaje, sizeof(uint32_t), 0);
-		break;
-	}
-	default: {
+	} else {
 		log_error(logger, "[ERROR]");
 		log_error(logger,
 				"No pudo obtenerse el tipo de cola en el mensaje recibido");
 	}
-	}
+
 }
 
 /* Recibe el código de suscripción desde el socket a suscribirse, eligiendo de esta manera la cola y agregando el socket
@@ -307,10 +299,12 @@ void atenderSuscripcion(int socketSuscriptor) {
 
 	enviarMensajesCacheados(socketSuscriptor, codSuscripcion);
 
+	wait(&mutex);
 	list_add(getListaSuscriptoresByNum(codSuscripcion), &socketSuscriptor);
 	log_info(logger,
 			"Hay un nuevo suscriptor en la cola %s. Número de socket suscriptor: %d",
 			getCodeStringByNum(codSuscripcion), socketSuscriptor);
+	signal(&mutex);
 	//strcat(aEnviar, getCodeStringByNum(codSuscripcion));
 	//enviarString(socketSuscriptor, aEnviar);
 	//enviarString(socketSuscriptor, "[Broker]: Se suscribio satisfactoriamente a la cola de mensajes");
@@ -419,9 +413,12 @@ void atenderConexiones(int* socketEscucha) {
 
 // Chequea si un nodoMensaje tiene estado NUEVO. Devuelve bool porque list_filter requiere ese
 void enviarEstructuraMensajeASuscriptor(void* estMensaje) {
+	log_debug(logger, "Se está enviando un mensaje al suscriptor");
 	estructuraMensaje* estMsj = (estructuraMensaje*) estMensaje;
-	enviarMensajeASuscriptor(estMsj->socketSuscriptor, estMsj->colaMensajeria,
-			*estMsj);
+    log_debug(logger,"Se esta enviando el mensaje\nID: %d\nSuscriptor: %d\nID Correlativo: %d\nCola: %d\nSize: %d\nMensaje chorizeado: %s",
+    		estMsj->id, estMsj->socketSuscriptor,estMsj->idCorrelativo,estMsj->colaMensajeria,estMsj->sizeMensaje,(char*)(estMsj->mensaje));
+	enviarMensajeASuscriptor(*estMsj);
+    estMsj->estado=ENVIADO;
 }
 
 bool esMensajeNuevo(void* mensaje) {
@@ -436,13 +433,16 @@ bool esMensajeNuevo(void* mensaje) {
 // Se filtran los mensajes que tienen estado nuevo y se envian, segun tipo
 void atenderColas() {
 	while (1) {
+		wait(&mutex);
 		for (int numCola = 0; numCola < 6; numCola++) {
-			t_list* mensajesNuevos = list_filter(getColaByNum(numCola),
-					&esMensajeNuevo);
-			list_iterate(mensajesNuevos,
-					&enviarEstructuraMensajeASuscriptor);
+			if (list_size(getColaByNum(numCola)) > 0) {
+				t_list* mensajesNuevos = list_filter(getColaByNum(numCola),
+						&esMensajeNuevo);
+				list_iterate(mensajesNuevos,
+						&enviarEstructuraMensajeASuscriptor);
+			}
 		}
-
+		signal(&mutex);
 
 	}
 }
@@ -519,7 +519,7 @@ void empezarAAtenderCliente(int socketEscucha) {
 	pthread_t hiloAtenderCliente;
 	pthread_create(&hiloAtenderCliente, NULL, (void*) atenderConexiones,
 			&socketEscucha);
-	pthread_join(hiloAtenderCliente, NULL);
+	pthread_detach(hiloAtenderCliente);
 }
 
 void empezarAtenderColas() {
@@ -535,7 +535,7 @@ int main() {
 	int socketEscucha = getSocketEscuchaBroker();
 
 	empezarAAtenderCliente(socketEscucha);
-	//empezarAtenderColas();
+	empezarAtenderColas();
 
 	destruirVariablesGlobales();
 	liberarSocket(&socketEscucha);
