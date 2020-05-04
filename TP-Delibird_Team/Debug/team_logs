@@ -233,3 +233,154 @@
 
 [INFO] 19:20:44:419 Team/(6245:6245): El proceso team finalizó su ejecución
 
+[INFO] 19:40:44:33 Team/(6795:6795): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 19:40:44:34 Team/(6795:6795): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 19:40:44:34 Team/(6795:6795): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 19:40:44:35 Team/(6795:6795): Enviando mensaje...
+[DEBUG] 19:40:44:36 Team/(6795:6795): Mensaje enviado :smilieface:
+[INFO] 19:40:44:36 Team/(6795:6795): Respuesta del Broker: 0
+[DEBUG] 19:40:44:36 Team/(6795:6795): Enviando mensaje...
+[DEBUG] 19:40:44:37 Team/(6795:6795): Mensaje enviado :smilieface:
+[INFO] 19:40:44:37 Team/(6795:6795): Respuesta del Broker: 0
+[DEBUG] 19:40:44:37 Team/(6795:6795): Enviando mensaje...
+[DEBUG] 19:40:44:38 Team/(6795:6795): Mensaje enviado :smilieface:
+[INFO] 19:40:44:38 Team/(6795:6795): Respuesta del Broker: 0
+[DEBUG] 19:40:44:38 Team/(6795:6795): Enviando mensaje...
+[DEBUG] 19:40:44:39 Team/(6795:6795): Mensaje enviado :smilieface:
+[INFO] 19:40:44:39 Team/(6795:6795): Respuesta del Broker: 0
+[DEBUG] 19:40:44:40 Team/(6795:6795): Enviando mensaje...
+[DEBUG] 19:40:44:40 Team/(6795:6795): Mensaje enviado :smilieface:
+[INFO] 19:40:44:40 Team/(6795:6795): Respuesta del Broker: 0
+[DEBUG] 19:40:44:40 Team/(6795:6795): Enviando mensaje...
+[DEBUG] 19:40:44:41 Team/(6795:6795): Mensaje enviado :smilieface:
+[INFO] 19:40:44:42 Team/(6795:6795): Respuesta del Broker: 0
+[DEBUG] 19:40:44:42 Team/(6795:6795): Enviando mensaje...
+[DEBUG] 19:40:44:42 Team/(6795:6795): Mensaje enviado :smilieface:
+[INFO] 19:40:44:43 Team/(6795:6795): Respuesta del Broker: 0
+[DEBUG] 19:40:44:43 Team/(6795:6795): Enviando mensaje...
+[DEBUG] 19:40:44:49 Team/(6795:6795): Mensaje enviado :smilieface:
+[INFO] 19:40:44:49 Team/(6795:6798): Llega hasta antes de recibirMensajeDeBroker
+[INFO] 19:40:44:49 Team/(6795:6795): Respuesta del Broker: 0
+[DEBUG] 19:40:44:49 Team/(6795:6795): Enviando mensaje...
+[DEBUG] 19:40:44:50 Team/(6795:6795): Mensaje enviado :smilieface:
+[INFO] 19:40:44:50 Team/(6795:6795): Respuesta del Broker: 0
+[INFO] 19:40:44:50 Team/(6795:6795): Finalizó la conexión con el servidor
+
+[INFO] 19:40:44:50 Team/(6795:6795): El proceso team finalizó su ejecución
+
+[INFO] 19:44:10:752 Team/(6962:6962): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 19:44:10:753 Team/(6962:6962): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 19:44:10:754 Team/(6962:6962): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 19:44:10:754 Team/(6962:6962): Enviando mensaje...
+[INFO] 19:45:31:537 Team/(7031:7031): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 19:45:31:538 Team/(7031:7031): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 19:45:31:538 Team/(7031:7031): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 19:45:31:539 Team/(7031:7031): Enviando mensaje...
+[DEBUG] 19:45:31:540 Team/(7031:7031): Mensaje enviado :smilieface:
+[INFO] 19:45:31:540 Team/(7031:7031): Respuesta del Broker: 0
+[DEBUG] 19:45:31:540 Team/(7031:7031): Enviando mensaje...
+[DEBUG] 19:45:31:541 Team/(7031:7031): Mensaje enviado :smilieface:
+[INFO] 19:45:31:541 Team/(7031:7031): Respuesta del Broker: 0
+[DEBUG] 19:45:31:541 Team/(7031:7031): Enviando mensaje...
+[DEBUG] 19:45:31:542 Team/(7031:7031): Mensaje enviado :smilieface:
+[INFO] 19:45:31:542 Team/(7031:7031): Respuesta del Broker: 0
+[DEBUG] 19:45:31:542 Team/(7031:7031): Enviando mensaje...
+[DEBUG] 19:45:31:543 Team/(7031:7031): Mensaje enviado :smilieface:
+[INFO] 19:45:31:543 Team/(7031:7031): Respuesta del Broker: 0
+[DEBUG] 19:45:31:544 Team/(7031:7031): Enviando mensaje...
+[DEBUG] 19:45:31:544 Team/(7031:7031): Mensaje enviado :smilieface:
+[INFO] 19:45:31:544 Team/(7031:7031): Respuesta del Broker: 0
+[DEBUG] 19:45:31:544 Team/(7031:7031): Enviando mensaje...
+[DEBUG] 19:45:31:545 Team/(7031:7031): Mensaje enviado :smilieface:
+[INFO] 19:45:31:546 Team/(7031:7031): Respuesta del Broker: 0
+[DEBUG] 19:45:31:546 Team/(7031:7031): Enviando mensaje...
+[DEBUG] 19:45:31:546 Team/(7031:7031): Mensaje enviado :smilieface:
+[INFO] 19:45:31:547 Team/(7031:7031): Respuesta del Broker: 0
+[DEBUG] 19:45:31:550 Team/(7031:7031): Enviando mensaje...
+[DEBUG] 19:45:31:551 Team/(7031:7031): Mensaje enviado :smilieface:
+[INFO] 19:45:31:551 Team/(7031:7034): Llega hasta antes de recibirMensajeDeBroker
+[INFO] 19:45:31:551 Team/(7031:7031): Respuesta del Broker: 0
+[DEBUG] 19:45:31:551 Team/(7031:7031): Enviando mensaje...
+[DEBUG] 19:45:31:552 Team/(7031:7031): Mensaje enviado :smilieface:
+[INFO] 19:45:31:552 Team/(7031:7031): Respuesta del Broker: 0
+[INFO] 19:45:31:554 Team/(7031:7031): Finalizó la conexión con el servidor
+
+[INFO] 19:45:31:554 Team/(7031:7031): El proceso team finalizó su ejecución
+
+[INFO] 19:47:25:815 Team/(7114:7114): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 19:47:25:816 Team/(7114:7114): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 19:47:25:816 Team/(7114:7114): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 19:47:25:817 Team/(7114:7114): Enviando mensaje...
+[DEBUG] 19:47:25:818 Team/(7114:7114): Mensaje enviado :smilieface:
+[INFO] 19:47:25:818 Team/(7114:7114): Respuesta del Broker: 
+[DEBUG] 19:47:25:818 Team/(7114:7114): Enviando mensaje...
+[DEBUG] 19:47:25:819 Team/(7114:7114): Mensaje enviado :smilieface:
+[INFO] 19:47:25:819 Team/(7114:7114): Respuesta del Broker: 
+[DEBUG] 19:47:25:819 Team/(7114:7114): Enviando mensaje...
+[DEBUG] 19:47:25:820 Team/(7114:7114): Mensaje enviado :smilieface:
+[INFO] 19:47:25:820 Team/(7114:7114): Respuesta del Broker: 
+[DEBUG] 19:47:25:820 Team/(7114:7114): Enviando mensaje...
+[DEBUG] 19:47:25:821 Team/(7114:7114): Mensaje enviado :smilieface:
+[INFO] 19:47:25:821 Team/(7114:7114): Respuesta del Broker: 
+[DEBUG] 19:47:25:821 Team/(7114:7114): Enviando mensaje...
+[DEBUG] 19:47:25:822 Team/(7114:7114): Mensaje enviado :smilieface:
+[INFO] 19:47:25:822 Team/(7114:7114): Respuesta del Broker: 
+[DEBUG] 19:47:25:822 Team/(7114:7114): Enviando mensaje...
+[DEBUG] 19:47:25:823 Team/(7114:7114): Mensaje enviado :smilieface:
+[INFO] 19:47:25:824 Team/(7114:7114): Respuesta del Broker: 
+[DEBUG] 19:47:25:824 Team/(7114:7114): Enviando mensaje...
+[DEBUG] 19:47:25:824 Team/(7114:7114): Mensaje enviado :smilieface:
+[INFO] 19:47:25:824 Team/(7114:7114): Respuesta del Broker: 
+[DEBUG] 19:47:25:825 Team/(7114:7114): Enviando mensaje...
+[DEBUG] 19:47:25:825 Team/(7114:7114): Mensaje enviado :smilieface:
+[INFO] 19:47:25:829 Team/(7114:7114): Respuesta del Broker: 
+[INFO] 19:47:25:829 Team/(7114:7117): Llega hasta antes de recibirMensajeDeBroker
+[DEBUG] 19:47:25:829 Team/(7114:7114): Enviando mensaje...
+[DEBUG] 19:47:25:830 Team/(7114:7114): Mensaje enviado :smilieface:
+[INFO] 19:47:25:830 Team/(7114:7114): Respuesta del Broker: 
+[INFO] 19:47:25:830 Team/(7114:7114): Finalizó la conexión con el servidor
+
+[INFO] 19:47:25:830 Team/(7114:7114): El proceso team finalizó su ejecución
+
+[INFO] 19:50:38:927 Team/(7314:7314): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 19:50:38:928 Team/(7314:7314): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 19:50:38:929 Team/(7314:7314): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 19:50:38:929 Team/(7314:7314): Enviando mensaje...
+[DEBUG] 19:50:38:930 Team/(7314:7314): Mensaje enviado :smilieface:
+[INFO] 19:51:52:467 Team/(7381:7381): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 19:51:52:467 Team/(7381:7381): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 19:51:52:468 Team/(7381:7381): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 19:51:52:468 Team/(7381:7381): Enviando mensaje...
+[DEBUG] 19:51:52:469 Team/(7381:7381): Mensaje enviado :smilieface:
+[INFO] 19:51:52:469 Team/(7381:7381): Respuesta del Broker: 1
+[DEBUG] 19:51:52:469 Team/(7381:7381): Enviando mensaje...
+[DEBUG] 19:51:52:470 Team/(7381:7381): Mensaje enviado :smilieface:
+[INFO] 19:51:52:471 Team/(7381:7381): Respuesta del Broker: 2
+[DEBUG] 19:51:52:471 Team/(7381:7381): Enviando mensaje...
+[DEBUG] 19:51:52:472 Team/(7381:7381): Mensaje enviado :smilieface:
+[INFO] 19:51:52:472 Team/(7381:7381): Respuesta del Broker: 3
+[DEBUG] 19:51:52:473 Team/(7381:7381): Enviando mensaje...
+[DEBUG] 19:51:52:474 Team/(7381:7381): Mensaje enviado :smilieface:
+[INFO] 19:51:52:474 Team/(7381:7384): Llega hasta antes de recibirMensajeDeBroker
+[INFO] 19:51:52:475 Team/(7381:7381): Respuesta del Broker: 4
+[DEBUG] 19:51:52:484 Team/(7381:7381): Enviando mensaje...
+[DEBUG] 19:51:52:485 Team/(7381:7381): Mensaje enviado :smilieface:
+[INFO] 19:51:52:485 Team/(7381:7383): Llega hasta antes de recibirMensajeDeBroker
+[INFO] 19:51:52:488 Team/(7381:7381): Respuesta del Broker: 5
+[DEBUG] 19:51:52:489 Team/(7381:7381): Enviando mensaje...
+[DEBUG] 19:51:52:489 Team/(7381:7381): Mensaje enviado :smilieface:
+[INFO] 19:51:52:489 Team/(7381:7381): Respuesta del Broker: 6
+[DEBUG] 19:51:52:490 Team/(7381:7381): Enviando mensaje...
+[DEBUG] 19:51:52:490 Team/(7381:7381): Mensaje enviado :smilieface:
+[INFO] 19:51:52:490 Team/(7381:7382): Llega hasta antes de recibirMensajeDeBroker
+[INFO] 19:51:52:490 Team/(7381:7381): Respuesta del Broker: 7
+[DEBUG] 19:51:52:491 Team/(7381:7381): Enviando mensaje...
+[DEBUG] 19:51:52:491 Team/(7381:7381): Mensaje enviado :smilieface:
+[INFO] 19:51:52:491 Team/(7381:7381): Respuesta del Broker: 8
+[DEBUG] 19:51:52:492 Team/(7381:7381): Enviando mensaje...
+[DEBUG] 19:51:52:492 Team/(7381:7381): Mensaje enviado :smilieface:
+[INFO] 19:51:52:492 Team/(7381:7381): Respuesta del Broker: 9
+[INFO] 19:51:52:493 Team/(7381:7381): Finalizó la conexión con el servidor
+
+[INFO] 19:51:52:493 Team/(7381:7381): El proceso team finalizó su ejecución
+

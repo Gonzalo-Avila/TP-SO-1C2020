@@ -27,6 +27,7 @@ void array_iterate_element(char** strings, void (*closure)(char*, t_list*),
 void enviarGetDePokemon(char *ip, char *puerto, char *pokemon) {
 	int *socketBroker = malloc(sizeof(int));
 	*socketBroker = crearConexionCliente(ip, puerto);
+	uint32_t idRespuesta;
 
 	mensajeGet *msg = malloc(sizeof(mensajeGet));
 
@@ -36,7 +37,9 @@ void enviarGetDePokemon(char *ip, char *puerto, char *pokemon) {
 
 	log_debug(logger,"Enviando mensaje...");
 	enviarMensajeABroker(*socketBroker, GET, -1, sizeof(uint32_t) + msg->longPokemon, msg);
+	recv(*socketBroker,&(idRespuesta),sizeof(uint32_t),MSG_WAITALL);
 	log_debug(logger,"Mensaje enviado :smilieface:");
+	log_info(logger, "Respuesta del Broker: %d", idRespuesta);
 	free(msg);
 	close(*socketBroker);
 	free(socketBroker);
@@ -193,8 +196,6 @@ void atenderBroker(int *socketBroker) {
 		free(miMensajeRecibido);
 	}
 }
-
-
 
 void crearHiloParaAtenderBroker(int *socketBroker) {
 	pthread_t hiloAtenderBroker;
