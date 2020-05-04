@@ -65,8 +65,9 @@ t_team *team;
 t_list *listaHilos;
 t_queue *colaDeReady;
 t_queue *colaDeBloqued;
-t_queue *colaDeMensajes;
 char* pokemonRecibido;
+char* ipServidor;
+char* puertoServidor;
 
 /* Funciones */
 void inicializarVariablesGlobales();
