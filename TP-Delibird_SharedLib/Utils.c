@@ -61,12 +61,12 @@ int crearConexionCliente(char * ip, char * puerto){
 /* Espera un cliente y cuando recibe una conexion, devuelve el socket correspondiente al cliente conectado.
  * RECORDAR HACER EL FREE AL PUNTERO SOCKETCLIENTE EN LA FUNCIÓN CORRESPONDIENTE Y EL CLOSE AL SOCKET
  */
-int esperarCliente(int socketEscucha)
+int * esperarCliente(int socketEscucha)
 {
 	struct sockaddr_in addr;
     socklen_t addrlen = sizeof(addr);
-    int socketCliente;
-    socketCliente=accept(socketEscucha, (struct sockaddr *) &addr, &addrlen);
+    int *socketCliente = malloc(sizeof(int));
+    *socketCliente=accept(socketEscucha, (struct sockaddr *) &addr, &addrlen);
     return socketCliente;
 }
 
@@ -82,8 +82,8 @@ void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar)
 
 	memcpy(aEnviar+offset,&(paquete->codOperacion),sizeof(opCode));
 	offset+=sizeof(opCode);
-    memcpy(aEnviar+offset,&(paquete->buffer->size),sizeof(int));
-    offset+=sizeof(int);
+    memcpy(aEnviar+offset,&(paquete->buffer->size),sizeof(uint32_t));
+    offset+=sizeof(uint32_t);
     memcpy(aEnviar+offset,paquete->buffer->stream,paquete->buffer->size);
 
     return aEnviar;
@@ -91,10 +91,12 @@ void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar)
 
 //EDIT GONZALO 23/04
 //------------------
-/* Permite envíar un mensaje desde cualquier cliente, que el broker sepa interpretar.
- *
+/* Permite envíar un mensaje desde cualquier cliente, que el broker sepa interpretar. El size del mensaje que requiere como
+ * parametro es el del contenido del struct GET, CATCH, etc., que se esta mandando.
+ * TODO
+ * Evaluar si crear una nueva conexión al broker en este modulo, y cerrarla al finalizar o devolver el socket.
  */
-void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,int sizeMensaje,
+void enviarMensajeABroker(int socketBroker, cola colaDestino,uint32_t idCorrelativo,uint32_t sizeMensaje,
 		                  void * mensaje){
 	    int offset = 0;
 	    int sizeTotal;
@@ -103,19 +105,18 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,i
 
         tPaquete *paquete=malloc(sizeof(tPaquete));
         tBuffer *buffer = malloc(sizeof(tBuffer));
-        buffer->stream=malloc(sizeMensaje);
-        buffer->size=sizeMensaje;
+        buffer->size=sizeMensaje+sizeof(cola)+sizeof(uint32_t)*2;
+        buffer->stream=malloc(buffer->size);
+
 
         paquete->codOperacion=NUEVO_MENSAJE;
 
         memcpy(buffer->stream+offset,&(colaDestino),sizeof(cola));
         offset+=sizeof(cola);
-        memcpy(buffer->stream+offset,&(idCorrelativo),sizeof(int));
-        offset+=sizeof(int);
-        memcpy(buffer->stream+offset,&(sizeMensaje),sizeof(int));
-        offset+=sizeof(int);
-
-        sizeTotal=sizeof(opCode)+sizeof(cola)+sizeof(int)*2;
+        memcpy(buffer->stream+offset,&(idCorrelativo),sizeof(uint32_t));
+        offset+=sizeof(uint32_t);
+        memcpy(buffer->stream+offset,&(sizeMensaje),sizeof(uint32_t));
+        offset+=sizeof(uint32_t);
 
         switch(colaDestino){
           case NEW:{
@@ -123,77 +124,71 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,i
         	  memcpy(buffer->stream+offset,&(msg->longPokemon),sizeof(uint32_t));
         	  offset+=sizeof(uint32_t);
         	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
-              offset+=sizeof(msg->longPokemon);
+              offset+=msg->longPokemon;
               memcpy(buffer->stream+offset,&(msg->posicionX),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
               memcpy(buffer->stream+offset,&(msg->posicionY),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
               memcpy(buffer->stream+offset,&(msg->cantPokemon),sizeof(uint32_t));
-              sizeTotal += sizeof(uint32_t)*4+msg->longPokemon;
               break;
           }
           case APPEARED:{
         	  mensajeAppeared * msg = mensaje;
         	  memcpy(buffer->stream+offset,&(msg->longPokemon),sizeof(uint32_t));
         	  offset+=sizeof(uint32_t);
-        	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
-              offset+=sizeof(msg->longPokemon);
+        	  memcpy(buffer->stream+offset,msg->pokemon,msg->longPokemon);
+              offset+=msg->longPokemon;
               memcpy(buffer->stream+offset,&(msg->posicionX),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
               memcpy(buffer->stream+offset,&(msg->posicionY),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
-              sizeTotal += sizeof(uint32_t)*3+msg->longPokemon;
         	  break;
           }
           case CATCH:{
         	  mensajeCatch * msg = mensaje;
         	  memcpy(buffer->stream+offset,&(msg->longPokemon),sizeof(uint32_t));
         	  offset+=sizeof(uint32_t);
-        	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
-              offset+=sizeof(msg->longPokemon);
+        	  memcpy(buffer->stream+offset,msg->pokemon,msg->longPokemon);
+              offset+=msg->longPokemon;
               memcpy(buffer->stream+offset,&(msg->posicionX),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
               memcpy(buffer->stream+offset,&(msg->posicionY),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
-              sizeTotal += sizeof(uint32_t)*3+msg->longPokemon;
         	  break;
           }
           case CAUGHT:{
         	  mensajeCaught * msg = mensaje;
         	  memcpy(buffer->stream+offset,&(msg->resultado),sizeof(uint32_t));
         	  offset+=sizeof(uint32_t);
-        	  sizeTotal += sizeof(uint32_t);
         	  break;
           }
           case GET:{
               mensajeGet * msg = mensaje;
               memcpy(buffer->stream+offset,&(msg->longPokemon),sizeof(uint32_t));
               offset+=sizeof(uint32_t);
-          	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
+          	  memcpy(buffer->stream+offset,msg->pokemon,msg->longPokemon);
               offset+=sizeof(msg->longPokemon);
-        	  sizeTotal += sizeof(uint32_t)+msg->longPokemon;
         	  break;
           }
           case LOCALIZED:{
         	  mensajeLocalized * msg = mensaje;
-        	  posicYCant a;
+        	  posicYCant variableAuxiliar;
         	  memcpy(buffer->stream+offset,&(msg->longPokemon),sizeof(uint32_t));
         	  offset+=sizeof(uint32_t);
-  	    	  memcpy(buffer->stream+offset,msg->pokemon,sizeof(msg->longPokemon));
-  	    	  offset+=sizeof(msg->longPokemon);
+  	    	  memcpy(buffer->stream+offset,msg->pokemon,msg->longPokemon);
+  	    	  offset+=msg->longPokemon;
   	    	  memcpy(buffer->stream+offset,&(msg->listSize),sizeof(uint32_t));
   	    	  offset+=sizeof(uint32_t);
               for(int i=0;i<msg->listSize;i++)
               {
-                  a=*(posicYCant *)(list_get(msg->posicionYCant,i));
-            	  memcpy(buffer->stream+offset,&(a.posicionX),sizeof(uint32_t));
+            	  variableAuxiliar=*(posicYCant *)(list_get(msg->posicionYCant,i));
+            	  memcpy(buffer->stream+offset,&(variableAuxiliar.posicionX),sizeof(uint32_t));
             	  offset+=sizeof(uint32_t);
-            	  memcpy(buffer->stream+offset,&(a.posicionY),sizeof(uint32_t));
+            	  memcpy(buffer->stream+offset,&(variableAuxiliar.posicionY),sizeof(uint32_t));
             	  offset+=sizeof(uint32_t);
-            	  memcpy(buffer->stream+offset,&(a.cantidad),sizeof(uint32_t));
+            	  memcpy(buffer->stream+offset,&(variableAuxiliar.cantidad),sizeof(uint32_t));
             	  offset+=sizeof(uint32_t);
               }
-              sizeTotal+=sizeof(uint32_t)*(2+(3*msg->listSize))+msg->longPokemon;
         	  break;
           }
           default:{
@@ -202,9 +197,10 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,i
           }
         }
         paquete->buffer=buffer;
+        sizeTotal=buffer->size+sizeof(uint32_t)+sizeof(opCode);
         mensajeSerializado = serializarPaquete(paquete,sizeTotal);
         send(socketBroker,mensajeSerializado,sizeTotal,0);
-        free(mensaje);
+        //free(mensaje); Valgrind tira que esto es invalido porque esta variable esta en el stack del thread 1
         free(mensajeSerializado);
         free(paquete);
         free(buffer->stream);
@@ -214,7 +210,7 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,i
 /* Permite enviar un mensaje a cualquier cliente, de forma que estos lo puedan interpretar
  *
  */
-void enviarMensajeASuscriptor(int socketSuscriptor,cola colaEmisora, estructuraMensaje datosMensaje){
+void enviarMensajeASuscriptor(estructuraMensaje datosMensaje){
 
          tPaquete * paquete = malloc (sizeof(tPaquete));
          tBuffer * buffer = malloc (sizeof(tBuffer));
@@ -225,22 +221,62 @@ void enviarMensajeASuscriptor(int socketSuscriptor,cola colaEmisora, estructuraM
 
          paquete->codOperacion=NUEVO_MENSAJE;
 
-         buffer->size=sizeof(cola)+sizeof(int)*3+datosMensaje.sizeMensaje;
+         buffer->size=sizeof(cola)+sizeof(uint32_t)*3+datosMensaje.sizeMensaje;
+         buffer->stream=malloc(buffer->size);
+
+         memcpy(buffer->stream+offset,&(datosMensaje.colaMensajeria),sizeof(cola));
+         offset+=sizeof(cola);
+         memcpy(buffer->stream+offset,&(datosMensaje.id),sizeof(uint32_t));
+         offset+=sizeof(uint32_t);
+         memcpy(buffer->stream+offset,&(datosMensaje.idCorrelativo),sizeof(uint32_t));
+         offset+=sizeof(uint32_t);
+         memcpy(buffer->stream+offset,&(datosMensaje.sizeMensaje),sizeof(uint32_t));
+         offset+=sizeof(uint32_t);
+         memcpy(buffer->stream+offset,datosMensaje.mensaje,datosMensaje.sizeMensaje);
+
+         paquete->buffer=buffer;
+
+         sizeTotal=sizeof(opCode)+sizeof(uint32_t)+buffer->size;
+
+         paqueteSerializado=serializarPaquete(paquete,sizeTotal);
+
+         send(datosMensaje.socketSuscriptor,paqueteSerializado,sizeTotal,0);
+         free(paqueteSerializado);
+         free(paquete);
+         free(buffer->stream);
+         free(buffer);
+}
+
+
+
+/*
+void enviarNuevoMensajeASuscriptor(nodoMensaje nodoMsj ,cola colaEmisora){
+
+         tPaquete * paquete = malloc (sizeof(tPaquete));
+         tBuffer * buffer = malloc (sizeof(tBuffer));
+         void * paqueteSerializado;
+
+         int offset=0;
+         int sizeTotal;
+
+         paquete->codOperacion=NUEVO_MENSAJE;
+
+         buffer->size=sizeof(cola)+sizeof(uint32_t)*3+datosMensaje.sizeMensaje;
          buffer->stream=malloc(buffer->size);
 
          memcpy(buffer->stream+offset,&colaEmisora,sizeof(cola));
          offset+=sizeof(cola);
-         memcpy(buffer->stream+offset,&(datosMensaje.id),sizeof(int));
-         offset+=sizeof(int);
-         memcpy(buffer->stream+offset,&(datosMensaje.idCorrelativo),sizeof(int));
-         offset+=sizeof(int);
-         memcpy(buffer->stream+offset,&(datosMensaje.sizeMensaje),sizeof(int));
-         offset+=sizeof(int);
+         memcpy(buffer->stream+offset,&(datosMensaje.id),sizeof(uint32_t));
+         offset+=sizeof(uint32_t);
+         memcpy(buffer->stream+offset,&(datosMensaje.idCorrelativo),sizeof(uint32_t));
+         offset+=sizeof(uint32_t);
+         memcpy(buffer->stream+offset,&(datosMensaje.sizeMensaje),sizeof(uint32_t));
+         offset+=sizeof(uint32_t);
          memcpy(buffer->stream+offset,&(datosMensaje.mensaje),datosMensaje.sizeMensaje);
 
          paquete->buffer=buffer;
 
-         sizeTotal=sizeof(opCode)+sizeof(int)+buffer->size;
+         sizeTotal=sizeof(opCode)+sizeof(uint32_t)+buffer->size;
 
          paqueteSerializado=serializarPaquete(paquete,sizeTotal);
 
@@ -250,28 +286,30 @@ void enviarMensajeASuscriptor(int socketSuscriptor,cola colaEmisora, estructuraM
          free(paquete);
          free(buffer->stream);
          free(buffer);
-
-
-
 }
+*/
+
 
 /* Recibe un mensaje del broker y lo guarda en un struct con formato mensajeRecibido
  *
  */
-mensajeRecibido recibirMensajeDeBroker(int socketBroker){
-	mensajeRecibido mensaje;
-	recv(socketBroker,&(mensaje.codeOP),sizeof(opCode),MSG_WAITALL);
-	recv(socketBroker,&(mensaje.sizePayload),sizeof(int),MSG_WAITALL);
-	recv(socketBroker,&(mensaje.colaEmisora),sizeof(cola),MSG_WAITALL);
-	recv(socketBroker,&(mensaje.idMensaje),sizeof(int),MSG_WAITALL);
-	recv(socketBroker,&(mensaje.idCorrelativo),sizeof(int),MSG_WAITALL);
-	recv(socketBroker,&(mensaje.sizeMensaje),sizeof(int),MSG_WAITALL);
-	recv(socketBroker,mensaje.mensaje,mensaje.sizeMensaje,MSG_WAITALL);
+mensajeRecibido * recibirMensajeDeBroker(int socketBroker){
+	mensajeRecibido * mensaje = malloc(sizeof(mensajeRecibido));
+
+	recv(socketBroker,&(mensaje->codeOP),sizeof(opCode),MSG_WAITALL);
+	recv(socketBroker,&(mensaje->sizePayload),sizeof(uint32_t),MSG_WAITALL);
+	recv(socketBroker,&(mensaje->colaEmisora),sizeof(cola),MSG_WAITALL);
+	recv(socketBroker,&(mensaje->idMensaje),sizeof(uint32_t),MSG_WAITALL);
+	recv(socketBroker,&(mensaje->idCorrelativo),sizeof(uint32_t),MSG_WAITALL);
+	recv(socketBroker,&(mensaje->sizeMensaje),sizeof(uint32_t),MSG_WAITALL);
+	mensaje->mensaje=malloc(mensaje->sizeMensaje);
+	recv(socketBroker,mensaje->mensaje,mensaje->sizeMensaje,MSG_WAITALL);
 	return mensaje;
 }
 
 /* Luego de creada la conexión con el broker, esta función envía el código de la cola a la que se va a suscribir.
- *
+ * TODO
+ * Evaluar si crear una nueva conexión al broker en este modulo, y cerrarla al finalizar o devolver el socket.
  */
 void suscribirseACola(int socketBroker, cola tipoCola){
 
@@ -289,16 +327,10 @@ void suscribirseACola(int socketBroker, cola tipoCola){
     free(paquete->buffer);
     free(paquete);
     free(paqueteSerializado);
+    log_info(logger,"Se ha suscrito a la cola %s",obtenerNombreCola(tipoCola));
 }
 
 //------------------
-
-
-
-
-
-
-
 
 /* Envía un string al socket destino
  *
@@ -330,6 +362,49 @@ void enviarString(int socketDestino, char * mensaje){
     free(paquete);
     free(aEnviar);
 }
+
+//Funciones auxiliares para logs
+//---------------------------------------------------
+char * obtenerNombreCola(cola tipoCola){
+	char * cola = malloc(18);
+
+     switch(tipoCola){
+		 case NEW:{
+			 strcpy(cola,"NEW_POKEMON");
+			 break;
+		 }
+		 case APPEARED:{
+			 strcpy(cola,"APPEARED_POKEMON");
+			 break;
+		 }
+		 case CATCH:{
+			 strcpy(cola,"CATCH_POKEMON");
+			 break;
+		 }
+		 case CAUGHT:{
+			 strcpy(cola,"CAUGHT_POKEMON");
+			 break;
+		 }
+		 case GET:{
+			 strcpy(cola,"GET_POKEMON");
+			 break;
+		 }
+		 case LOCALIZED:{
+			 strcpy(cola,"LOCALIZED_POKEMON");
+			 break;
+		 }
+		 default:{
+			 strcpy(cola,"UNDEFINED_QUEUE");
+			 break;
+		 }
+     }
+     return cola;
+}
+
+//---------------------------------------------------
+
+
+
 /*
 void enviarMensajeACola(int socketDestino, cola tipoCola, char * mensaje){
 

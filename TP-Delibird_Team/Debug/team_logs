@@ -1,154 +1,179 @@
-[INFO] 15:10:12:646 Team/(17083:17083): Se ha iniciado el cliente team
+[INFO] 06:12:54:888 Team/(5175:5175): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 06:12:54:889 Team/(5175:5175): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 06:12:54:889 Team/(5175:5175): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 06:12:54:889 Team/(5175:5175): Enviando mensaje...
+[DEBUG] 06:12:54:889 Team/(5175:5175): Mensaje enviado :smilieface:
+[DEBUG] 06:12:54:890 Team/(5175:5175): Enviando mensaje...
+[DEBUG] 06:12:54:890 Team/(5175:5175): Mensaje enviado :smilieface:
+[DEBUG] 06:12:54:890 Team/(5175:5175): Enviando mensaje...
+[DEBUG] 06:12:54:890 Team/(5175:5175): Mensaje enviado :smilieface:
+[DEBUG] 06:12:54:890 Team/(5175:5175): Enviando mensaje...
+[DEBUG] 06:12:54:891 Team/(5175:5175): Mensaje enviado :smilieface:
+[DEBUG] 06:12:54:891 Team/(5175:5175): Enviando mensaje...
+[DEBUG] 06:12:54:891 Team/(5175:5175): Mensaje enviado :smilieface:
+[DEBUG] 06:12:54:891 Team/(5175:5175): Enviando mensaje...
+[DEBUG] 06:12:54:892 Team/(5175:5175): Mensaje enviado :smilieface:
+[DEBUG] 06:12:54:892 Team/(5175:5175): Enviando mensaje...
+[DEBUG] 06:12:54:892 Team/(5175:5175): Mensaje enviado :smilieface:
+[DEBUG] 06:12:54:892 Team/(5175:5175): Enviando mensaje...
+[DEBUG] 06:12:54:893 Team/(5175:5175): Mensaje enviado :smilieface:
+[DEBUG] 06:12:54:893 Team/(5175:5175): Enviando mensaje...
+[DEBUG] 06:12:54:893 Team/(5175:5175): Mensaje enviado :smilieface:
+[INFO] 06:12:54:893 Team/(5175:5175): se llega hasta acá bien
+[INFO] 06:12:54:893 Team/(5175:5175): Finalizó la conexión con el servidor
 
-[INFO] 15:10:12:646 Team/(17083:17083): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 15:28:36:874 Team/(17700:17700): Se ha iniciado el cliente team
+[INFO] 06:12:54:893 Team/(5175:5175): El proceso team finalizó su ejecución
 
-[INFO] 15:28:36:875 Team/(17700:17700): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 15:30:14:995 Team/(17821:17821): Se ha iniciado el cliente team
+[INFO] 06:14:27:541 Team/(5237:5237): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 06:14:27:541 Team/(5237:5237): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 06:14:27:542 Team/(5237:5237): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 06:14:27:542 Team/(5237:5237): Enviando mensaje...
+[DEBUG] 06:14:27:542 Team/(5237:5237): Mensaje enviado :smilieface:
+[DEBUG] 06:14:27:542 Team/(5237:5237): Enviando mensaje...
+[DEBUG] 06:14:27:543 Team/(5237:5237): Mensaje enviado :smilieface:
+[DEBUG] 06:14:27:543 Team/(5237:5237): Enviando mensaje...
+[DEBUG] 06:14:27:543 Team/(5237:5237): Mensaje enviado :smilieface:
+[DEBUG] 06:14:27:543 Team/(5237:5237): Enviando mensaje...
+[DEBUG] 06:14:27:544 Team/(5237:5237): Mensaje enviado :smilieface:
+[DEBUG] 06:14:27:544 Team/(5237:5237): Enviando mensaje...
+[DEBUG] 06:14:27:544 Team/(5237:5237): Mensaje enviado :smilieface:
+[DEBUG] 06:14:27:544 Team/(5237:5237): Enviando mensaje...
+[DEBUG] 06:14:27:545 Team/(5237:5237): Mensaje enviado :smilieface:
+[DEBUG] 06:14:27:545 Team/(5237:5237): Enviando mensaje...
+[DEBUG] 06:14:27:545 Team/(5237:5237): Mensaje enviado :smilieface:
+[DEBUG] 06:14:27:545 Team/(5237:5237): Enviando mensaje...
+[DEBUG] 06:14:27:546 Team/(5237:5237): Mensaje enviado :smilieface:
+[DEBUG] 06:14:27:546 Team/(5237:5237): Enviando mensaje...
+[DEBUG] 06:14:27:546 Team/(5237:5237): Mensaje enviado :smilieface:
+[INFO] 06:14:27:546 Team/(5237:5237): se llega hasta acá bien
+[INFO] 06:14:27:546 Team/(5237:5237): Finalizó la conexión con el servidor
 
-[INFO] 15:30:14:995 Team/(17821:17821): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 15:30:22:286 Team/(17824:17824): Se ha iniciado el cliente team
+[INFO] 06:14:27:546 Team/(5237:5237): El proceso team finalizó su ejecución
 
-[INFO] 15:30:22:287 Team/(17824:17824): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 15:30:33:634 Team/(17824:17824): Finalizó la conexión con el servidor
+[INFO] 06:15:20:557 Team/(5296:5296): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 06:15:20:557 Team/(5296:5296): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 06:15:20:557 Team/(5296:5296): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 06:15:20:557 Team/(5296:5296): Enviando mensaje...
+[DEBUG] 06:15:20:558 Team/(5296:5296): Mensaje enviado :smilieface:
+[DEBUG] 06:15:20:558 Team/(5296:5296): Enviando mensaje...
+[DEBUG] 06:15:20:558 Team/(5296:5296): Mensaje enviado :smilieface:
+[DEBUG] 06:15:20:558 Team/(5296:5296): Enviando mensaje...
+[DEBUG] 06:15:20:559 Team/(5296:5296): Mensaje enviado :smilieface:
+[DEBUG] 06:15:20:559 Team/(5296:5296): Enviando mensaje...
+[DEBUG] 06:15:20:559 Team/(5296:5296): Mensaje enviado :smilieface:
+[DEBUG] 06:15:20:559 Team/(5296:5296): Enviando mensaje...
+[DEBUG] 06:15:20:560 Team/(5296:5296): Mensaje enviado :smilieface:
+[DEBUG] 06:15:20:560 Team/(5296:5296): Enviando mensaje...
+[DEBUG] 06:15:20:560 Team/(5296:5296): Mensaje enviado :smilieface:
+[DEBUG] 06:15:20:560 Team/(5296:5296): Enviando mensaje...
+[DEBUG] 06:15:20:561 Team/(5296:5296): Mensaje enviado :smilieface:
+[DEBUG] 06:15:20:561 Team/(5296:5296): Enviando mensaje...
+[DEBUG] 06:15:20:561 Team/(5296:5296): Mensaje enviado :smilieface:
+[DEBUG] 06:15:20:561 Team/(5296:5296): Enviando mensaje...
+[DEBUG] 06:15:20:561 Team/(5296:5296): Mensaje enviado :smilieface:
+[INFO] 06:15:20:562 Team/(5296:5296): se llega hasta acá bien
+[INFO] 06:15:20:562 Team/(5296:5296): Finalizó la conexión con el servidor
 
-[INFO] 15:30:33:634 Team/(17824:17824): El proceso team finalizó su ejecución
+[INFO] 06:15:20:562 Team/(5296:5296): El proceso team finalizó su ejecución
 
-[INFO] 18:52:39:848 Team/(6249:6249): Se ha iniciado el cliente team
+[INFO] 06:19:26:201 Team/(5547:5547): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 06:19:26:201 Team/(5547:5547): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 06:19:26:202 Team/(5547:5547): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 06:19:26:202 Team/(5547:5547): Enviando mensaje...
+[DEBUG] 06:19:26:202 Team/(5547:5547): Mensaje enviado :smilieface:
+[DEBUG] 06:19:26:202 Team/(5547:5547): Enviando mensaje...
+[DEBUG] 06:19:26:203 Team/(5547:5547): Mensaje enviado :smilieface:
+[DEBUG] 06:19:26:203 Team/(5547:5547): Enviando mensaje...
+[DEBUG] 06:19:26:203 Team/(5547:5547): Mensaje enviado :smilieface:
+[DEBUG] 06:19:26:203 Team/(5547:5547): Enviando mensaje...
+[DEBUG] 06:19:26:204 Team/(5547:5547): Mensaje enviado :smilieface:
+[DEBUG] 06:19:26:204 Team/(5547:5547): Enviando mensaje...
+[DEBUG] 06:19:26:204 Team/(5547:5547): Mensaje enviado :smilieface:
+[DEBUG] 06:19:26:204 Team/(5547:5547): Enviando mensaje...
+[DEBUG] 06:19:26:205 Team/(5547:5547): Mensaje enviado :smilieface:
+[DEBUG] 06:19:26:205 Team/(5547:5547): Enviando mensaje...
+[DEBUG] 06:19:26:205 Team/(5547:5547): Mensaje enviado :smilieface:
+[DEBUG] 06:19:26:205 Team/(5547:5547): Enviando mensaje...
+[DEBUG] 06:19:26:205 Team/(5547:5547): Mensaje enviado :smilieface:
+[DEBUG] 06:19:26:206 Team/(5547:5547): Enviando mensaje...
+[DEBUG] 06:19:26:206 Team/(5547:5547): Mensaje enviado :smilieface:
+[INFO] 06:19:26:206 Team/(5547:5547): se llega hasta acá bien
+[INFO] 06:19:26:206 Team/(5547:5547): Finalizó la conexión con el servidor
 
-[INFO] 18:52:39:849 Team/(6249:6249): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 18:52:47:0 Team/(6249:6249): Finalizó la conexión con el servidor
+[INFO] 06:19:26:206 Team/(5547:5547): El proceso team finalizó su ejecución
 
-[INFO] 18:52:47:1 Team/(6249:6249): El proceso team finalizó su ejecución
+[INFO] 06:21:22:47 Team/(5649:5649): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 06:21:22:47 Team/(5649:5649): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 06:21:22:47 Team/(5649:5649): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 06:21:22:47 Team/(5649:5649): Enviando mensaje...
+[DEBUG] 06:21:22:48 Team/(5649:5649): Mensaje enviado :smilieface:
+[DEBUG] 06:21:22:48 Team/(5649:5649): Enviando mensaje...
+[DEBUG] 06:21:22:49 Team/(5649:5649): Mensaje enviado :smilieface:
+[DEBUG] 06:21:22:49 Team/(5649:5649): Enviando mensaje...
+[DEBUG] 06:21:22:49 Team/(5649:5649): Mensaje enviado :smilieface:
+[DEBUG] 06:21:22:49 Team/(5649:5649): Enviando mensaje...
+[DEBUG] 06:21:22:49 Team/(5649:5649): Mensaje enviado :smilieface:
+[DEBUG] 06:21:22:50 Team/(5649:5649): Enviando mensaje...
+[DEBUG] 06:21:22:50 Team/(5649:5649): Mensaje enviado :smilieface:
+[DEBUG] 06:21:22:50 Team/(5649:5649): Enviando mensaje...
+[DEBUG] 06:21:22:50 Team/(5649:5649): Mensaje enviado :smilieface:
+[DEBUG] 06:21:22:51 Team/(5649:5649): Enviando mensaje...
+[DEBUG] 06:21:22:51 Team/(5649:5649): Mensaje enviado :smilieface:
+[DEBUG] 06:21:22:51 Team/(5649:5649): Enviando mensaje...
+[DEBUG] 06:21:22:51 Team/(5649:5649): Mensaje enviado :smilieface:
+[DEBUG] 06:21:22:51 Team/(5649:5649): Enviando mensaje...
+[DEBUG] 06:21:22:52 Team/(5649:5649): Mensaje enviado :smilieface:
+[INFO] 06:21:22:52 Team/(5649:5649): Finalizó la conexión con el servidor
 
-[INFO] 20:09:39:423 Team/(8781:8781): Se ha iniciado el cliente team
+[INFO] 06:21:22:52 Team/(5649:5649): El proceso team finalizó su ejecución
 
-[INFO] 20:09:39:424 Team/(8781:8781): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 154301104
-[INFO] 20:09:46:980 Team/(8781:8781): Finalizó la conexión con el servidor
+[INFO] 06:23:24:309 Team/(5783:5783): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 06:23:24:309 Team/(5783:5783): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 06:23:24:310 Team/(5783:5783): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 06:23:24:310 Team/(5783:5783): Enviando mensaje...
+[DEBUG] 06:23:24:310 Team/(5783:5783): Mensaje enviado :smilieface:
+[DEBUG] 06:23:24:311 Team/(5783:5783): Enviando mensaje...
+[DEBUG] 06:23:24:314 Team/(5783:5783): Mensaje enviado :smilieface:
+[DEBUG] 06:23:24:314 Team/(5783:5783): Enviando mensaje...
+[DEBUG] 06:23:24:314 Team/(5783:5783): Mensaje enviado :smilieface:
+[DEBUG] 06:23:24:314 Team/(5783:5783): Enviando mensaje...
+[DEBUG] 06:23:24:315 Team/(5783:5783): Mensaje enviado :smilieface:
+[DEBUG] 06:23:24:315 Team/(5783:5783): Enviando mensaje...
+[DEBUG] 06:23:24:315 Team/(5783:5783): Mensaje enviado :smilieface:
+[DEBUG] 06:23:24:315 Team/(5783:5783): Enviando mensaje...
+[DEBUG] 06:23:24:316 Team/(5783:5783): Mensaje enviado :smilieface:
+[DEBUG] 06:23:24:316 Team/(5783:5783): Enviando mensaje...
+[DEBUG] 06:23:24:316 Team/(5783:5783): Mensaje enviado :smilieface:
+[DEBUG] 06:23:24:316 Team/(5783:5783): Enviando mensaje...
+[DEBUG] 06:23:24:316 Team/(5783:5783): Mensaje enviado :smilieface:
+[DEBUG] 06:23:24:317 Team/(5783:5783): Enviando mensaje...
+[DEBUG] 06:23:24:317 Team/(5783:5783): Mensaje enviado :smilieface:
+[INFO] 06:23:24:317 Team/(5783:5783): Finalizó la conexión con el servidor
 
-[INFO] 20:09:46:980 Team/(8781:8781): El proceso team finalizó su ejecución
+[INFO] 06:23:24:317 Team/(5783:5783): El proceso team finalizó su ejecución
 
-[INFO] 16:14:30:137 Team/(11019:11019): Se ha iniciado el cliente team
+[INFO] 06:25:52:274 Team/(5913:5913): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 06:25:52:274 Team/(5913:5913): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 06:25:52:275 Team/(5913:5913): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 06:25:52:275 Team/(5913:5913): Enviando mensaje...
+[DEBUG] 06:25:52:275 Team/(5913:5913): Mensaje enviado :smilieface:
+[DEBUG] 06:25:52:275 Team/(5913:5913): Enviando mensaje...
+[DEBUG] 06:25:52:276 Team/(5913:5913): Mensaje enviado :smilieface:
+[DEBUG] 06:25:52:276 Team/(5913:5913): Enviando mensaje...
+[DEBUG] 06:25:52:276 Team/(5913:5913): Mensaje enviado :smilieface:
+[DEBUG] 06:25:52:276 Team/(5913:5913): Enviando mensaje...
+[DEBUG] 06:25:52:277 Team/(5913:5913): Mensaje enviado :smilieface:
+[DEBUG] 06:25:52:277 Team/(5913:5913): Enviando mensaje...
+[DEBUG] 06:25:52:277 Team/(5913:5913): Mensaje enviado :smilieface:
+[DEBUG] 06:25:52:277 Team/(5913:5913): Enviando mensaje...
+[DEBUG] 06:25:52:277 Team/(5913:5913): Mensaje enviado :smilieface:
+[DEBUG] 06:25:52:278 Team/(5913:5913): Enviando mensaje...
+[DEBUG] 06:25:52:278 Team/(5913:5913): Mensaje enviado :smilieface:
+[DEBUG] 06:25:52:278 Team/(5913:5913): Enviando mensaje...
+[DEBUG] 06:25:52:278 Team/(5913:5913): Mensaje enviado :smilieface:
+[DEBUG] 06:25:52:279 Team/(5913:5913): Enviando mensaje...
+[DEBUG] 06:25:52:279 Team/(5913:5913): Mensaje enviado :smilieface:
+[INFO] 06:25:52:279 Team/(5913:5913): Finalizó la conexión con el servidor
 
-[INFO] 16:14:30:138 Team/(11019:11019): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 16:14:30:138 Team/(11019:11019): Finalizó la conexión con el servidor
+[INFO] 06:25:52:279 Team/(5913:5913): El proceso team finalizó su ejecución
 
-[INFO] 16:14:30:138 Team/(11019:11019): El proceso team finalizó su ejecución
-
-[INFO] 16:15:59:699 Team/(11107:11107): Se ha iniciado el cliente team
-
-[INFO] 16:15:59:699 Team/(11107:11107): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 16:16:29:536 Team/(11136:11136): Se ha iniciado el cliente team
-
-[INFO] 16:16:29:540 Team/(11136:11136): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 16:16:55:316 Team/(11173:11173): Se ha iniciado el cliente team
-
-[INFO] 16:16:55:320 Team/(11173:11173): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 14:34:40:247 Team/(9673:9673): Se ha iniciado el cliente team
-
-[INFO] 14:34:40:248 Team/(9673:9673): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 14:34:40:248 Team/(9673:9673): Finalizó la conexión con el servidor
-
-[INFO] 14:34:40:249 Team/(9673:9673): El proceso team finalizó su ejecución
-
-[INFO] 14:47:56:862 Team/(10262:10262): Se ha iniciado el cliente team
-
-[INFO] 14:47:56:862 Team/(10262:10262): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 14:47:56:863 Team/(10262:10262): Finalizó la conexión con el servidor
-
-[INFO] 14:47:56:863 Team/(10262:10262): El proceso team finalizó su ejecución
-
-[INFO] 14:54:04:683 Team/(10625:10625): Se ha iniciado el cliente team
-
-[INFO] 14:54:04:684 Team/(10625:10625): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 14:54:04:684 Team/(10625:10625): Finalizó la conexión con el servidor
-
-[INFO] 14:54:04:685 Team/(10625:10625): El proceso team finalizó su ejecución
-
-[INFO] 18:06:28:384 Team/(16321:16321): Se ha iniciado el cliente team
-
-[INFO] 18:06:28:385 Team/(16321:16321): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 18:06:28:385 Team/(16321:16321): Finalizó la conexión con el servidor
-
-[INFO] 18:06:28:385 Team/(16321:16321): El proceso team finalizó su ejecución
-
-[INFO] 18:36:53:230 Team/(17042:17042): Se ha iniciado el cliente team
-
-[INFO] 18:36:53:292 Team/(17042:17042): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 18:36:53:299 Team/(17042:17042): Finalizó la conexión con el servidor
-
-[INFO] 18:36:53:303 Team/(17042:17042): El proceso team finalizó su ejecución
-
-[INFO] 18:46:05:436 Team/(17509:17509): Se ha iniciado el cliente team
-
-[INFO] 18:46:05:495 Team/(17509:17509): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 18:46:05:513 Team/(17509:17509): Finalizó la conexión con el servidor
-
-[INFO] 18:46:05:513 Team/(17509:17509): El proceso team finalizó su ejecución
-
-[INFO] 16:41:38:839 Team/(15465:15465): Se ha iniciado el cliente team
-
-[INFO] 16:41:38:839 Team/(15465:15465): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 16:42:11:26 Team/(15484:15484): Se ha iniciado el cliente team
-
-[INFO] 16:42:11:26 Team/(15484:15484): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1
-[INFO] 16:42:14:332 Team/(15486:15486): Se ha iniciado el cliente team
-
-[INFO] 16:42:14:332 Team/(15486:15486): Se ha establecido conexión con el servidor
-IP: 127.0.0.1
-Puerto: 9898
-Número de socket: 1

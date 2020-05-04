@@ -21,9 +21,11 @@
 #include <commons/collections/list.h>
 #include <commons/collections/queue.h>
 #include <commons/config.h>
-#include <inttypes.h>
-#include <math.h>
 #include <commons/string.h>
+#include <inttypes.h>
+#include <semaphore.h>
+#include <math.h>
+
 t_log * logger;
 t_config * config;
 
@@ -57,7 +59,7 @@ typedef enum
 
 typedef struct
 {
-	int size;//Cuanto pesa el STREAM
+	uint32_t size;//Cuanto pesa el STREAM
 	void* stream;
 } tBuffer;
 
@@ -125,21 +127,37 @@ typedef struct
 	uint32_t cantidad;      //Cantidad de pokemons que hay en la posición.
 }posicYCant;
 
-typedef struct {
-	int id;
-	int idCorrelativo;			// Si no se usa idCorrelativo = -1
+/*typedef struct {
+	uint32_t id;
+	uint32_t idCorrelativo;			// Si no se usa idCorrelativo = -1
 	t_list *listaSuscriptores;
-	int sizeMensaje;
+	uint32_t sizeMensaje;
 	void* mensaje;
-} estructuraMensaje;
+}estructuraMensaje;*/
+
+typedef enum{
+	ESTADO_NUEVO=0,
+    ESTADO_ENVIADO=1,
+	ESTADO_CONFIRMADO=2
+}statusMensaje;
+
+typedef struct {
+	uint32_t id;
+	uint32_t idCorrelativo;			// Si no se usa idCorrelativo = -1
+	uint32_t sizeMensaje;
+	void* mensaje;
+	int socketSuscriptor;
+	statusMensaje estado;
+	cola colaMensajeria;
+}estructuraMensaje;
 
 typedef struct {
 	opCode codeOP;
-	int sizePayload;
+	uint32_t sizePayload;
 	cola colaEmisora;
-	int idMensaje;
-	int idCorrelativo;
-    int sizeMensaje;
+	uint32_t idMensaje;
+	uint32_t idCorrelativo;
+	uint32_t sizeMensaje;
     void * mensaje;
 }mensajeRecibido;
 
@@ -147,18 +165,19 @@ typedef struct {
 void atenderConexionEn(int socket, int backlog);
 int crearConexionServer(char * ip, char * puerto);
 int crearConexionCliente(char * ip, char * puerto);
-int esperarCliente(int socketEscucha);
+int *esperarCliente(int socketEscucha);
 void inicializarColas();
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar);
 void * serializarPaqueteCola(tPaquete* paquete, int tamanioAEnviar);
 void enviarString(int socketDestino, char * mensaje);
-void enviarMensajeACola(int socketDestino, cola tipoCola, char * mensaje);
-void enviarMensajeASuscriptor(int socketSuscriptor,cola colaEmisora, estructuraMensaje datosMensaje);
-void enviarMensajeABroker(int socketBroker, cola colaDestino,int idCorrelativo,int sizeMensaje, void * mensaje);
-mensajeRecibido recibirMensajeDeBroker(int socketFuente);
+void enviarMensajeASuscriptor(estructuraMensaje datosMensaje);
+void enviarMensajeABroker(int socketBroker, cola colaDestino,uint32_t idCorrelativo,uint32_t sizeMensaje,void * mensaje);
+mensajeRecibido * recibirMensajeDeBroker(int socketBroker);
+tPaquete *recibirMensaje(int socketFuente);
 void loggearMensaje(t_log *logger,char * mensaje);
 int test();
 void suscribirseACola(int socketBroker, cola tipoCola);
 void enviarACola(int socketBroker, cola tipoCola, char* msj, int msjSize);
+char * obtenerNombreCola(cola tipoCola);
 
 #endif /* UTILS_H_ */
