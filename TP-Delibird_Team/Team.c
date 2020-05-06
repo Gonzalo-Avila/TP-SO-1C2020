@@ -14,6 +14,7 @@ void inicializarVariablesGlobales() {
 	ipServidor = config_get_string_value(config, "IP");
 	puertoServidor = malloc(strlen(config_get_string_value(config, "PUERTO")) + 1);
 	puertoServidor = config_get_string_value(config, "PUERTO");
+	team->algoritmoPlanificacion = obtenerAlgoritmoPlanificador();
 }
 
 void array_iterate_element(char** strings, void (*closure)(char*, t_list*),
@@ -127,7 +128,6 @@ void generarEntrenadores() {
 	list_destroy(posiciones);
 	list_destroy(objetivos);
 	list_destroy(pokemones);
-	//free(unEntrenador); //Por algun motivo si liberamos la memoria de unEntrenador, el ultimo entrenador añadido a la lista cambia su id a 0.
 }
 
 e_algoritmo obtenerAlgoritmoPlanificador() {
@@ -176,10 +176,44 @@ void atenderBroker(int *socketBroker) {
 				free(pokemonRecibido);
 				break;
 			}
-			case LOCALIZED:
-				//planificar(nuevoMensaje->pokemon, nuevoMensaje->posicionX, nuevoMensaje->posicionY);
-				break;
+			case LOCALIZED:{
+				t_pokemonesLocalized *p = malloc(sizeof(t_pokemonesLocalized));
+				int cantPokes,longPokemon;
+				int offset = 0;
 
+				memcpy(&longPokemon,miMensajeRecibido->mensaje,sizeof(uint32_t));
+				offset = sizeof(uint32_t);
+
+				char *pokemon = malloc(longPokemon);
+				memcpy(pokemon,miMensajeRecibido->mensaje + offset,longPokemon);
+
+				offset += longPokemon;
+				memcpy(&cantPokes,miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
+
+				offset += sizeof(uint32_t);
+				int x[cantPokes],y[cantPokes],cant[cantPokes];
+
+				for(int i = 0;i < cantPokes;i++){
+					memcpy(&x[i],miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
+					offset += sizeof(uint32_t);
+					memcpy(&y[i],miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
+					offset += sizeof(uint32_t);
+					memcpy(&cant[i],miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
+					offset += sizeof(uint32_t);
+
+					//prototipo para agregar a una estructura que se envie al planificador.
+					list_add(p->x,&x[i]);
+					list_add(p->y,&y[i]);
+					list_add(p->cantidades,&cant[i]);
+				}
+				//agrego tambien a la estructura el nombre del pokemon y la cant
+				p->pokemon = malloc(longPokemon);
+				strcpy(p->pokemon,pokemon);
+				p->cantPokes = cantPokes;
+
+				//planificador(p);
+				break;
+			}
 			case CAUGHT:
 				//TODO CAUGHT
 				log_info(logger, "Recibi un CAUGHT. ¿Que es eso?¿Se come?");
@@ -269,7 +303,6 @@ void setearObjetivosDeTeam(t_team *team) {
 			list_add(team->objetivo, list_get(entrenador->objetivos, j));
 		}
 	}
-	list_destroy(entrenador->objetivos);
 }
 
 void enviarGetSegunObjetivo(char *ip, char *puerto) {
@@ -353,8 +386,49 @@ bool esUnObjetivo(void* objetivo) {
 	return verifica;
 }
 
+void planificarFifo(){
+	t_list *entrenadoresReady = list_create();
+
+	for(int i = 0;i < list_size(team->entrenadores);i++){
+		t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+
+		entrenador = list_get(team->entrenadores,i);
+
+		if(entrenador->estado == LISTO)
+			list_add(entrenadoresReady,entrenador);
+	}
+	//como esto es por FIFO tengo que poner en EXEC a solo uno y elegir por FIFO
+	//------cuando sale ese de EXEC entra el que sigue
+
+	for(int j = 0; j < list_size(entrenadoresReady);j++){
+		t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+
+		entrenador = list_get(entrenadoresReady,j);
+
+		activarHiloDe(entrenador->id);
+	}
+}
+
+void planificador(t_pokemonesLocalized *pLocalized){
+	//En caso que tengamos varias posiciones y varios entrenadores libres, con que criterio elegimos???
+	t_entrenador* elEntrenadorMasCercano = malloc(sizeof(t_entrenador));
+
+	elEntrenadorMasCercano = entrenadorMasCercano((int)list_get(pLocalized->x,0),(int)list_get(pLocalized->y,0));
+	elEntrenadorMasCercano->estado = LISTO;//me aseguro de que tengo uno en READY antes de llamar para planificar
+
+	switch(team->algoritmoPlanificacion){
+			case FIFO:
+				planificarFifo();
+				break;
+			//en caso que tengamos otro algoritmo usamos la funcion de ese algoritmo
+			default:
+				planificarFifo();
+				break;
+	}
+}
+
 /* Planificar */
-void planificar(char* pokemon, int posicionX, int posicionY) {
+void planificar() {
 	/*
 	 Nuevo Hilo por cada entrenador
 
@@ -373,16 +447,13 @@ void planificar(char* pokemon, int posicionX, int posicionY) {
 
 	for (int i = 0; i < list_size(team->entrenadores); i++) {
 		crearHiloEntrenador(list_get(team->entrenadores, i));
-	}				//Arma un hilo por entrenador
-
-	t_entrenador* elEntrenadorMasCercano = malloc(sizeof(t_entrenador));
-	elEntrenadorMasCercano = entrenadorMasCercano(posicionX, posicionY);
-	elEntrenadorMasCercano->estado = LISTO;
+	}//Arma un hilo por entrenador
 
 }
 
 int main() {
 	inicializarVariablesGlobales();
+
 
 	int *socketBrokerApp = malloc(sizeof(int));
 	*socketBrokerApp = crearConexionCliente(ipServidor, puertoServidor);
@@ -399,17 +470,14 @@ int main() {
 
 	generarEntrenadores();
 
-	//Se obtiene el algoritmo planificador
-	team->algoritmoPlanificacion = obtenerAlgoritmoPlanificador();
 
 	setearObjetivosDeTeam(team);
 
 	enviarGetSegunObjetivo(ipServidor,puertoServidor);
 
-	/*Ahora que hago, llamo al planificador o me quedo esperando a que me llegue un pokemon?*/
-
-//	//Gestiono los mensajes de la cola
-//	gestionarMensajes(ipServidor,puertoServidor);
+	/*Ahora me quedo esperando a que me llegue un LOCALIZED o en su defecto si no
+	 * hay conexion con el broker, un APPEARED.
+	 */
 
 	log_info(logger, "Finalizó la conexión con el servidor\n");
 	log_info(logger, "El proceso team finalizó su ejecución\n");

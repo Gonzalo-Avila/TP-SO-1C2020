@@ -61,6 +61,14 @@ typedef struct{
 	int idEntrenador;
 }t_dist;
 
+typedef struct{
+	char *pokemon;
+	int cantPokes;
+	t_list *x;
+	t_list *y;
+	t_list *cantidades;
+}t_pokemonesLocalized;
+
 t_team *team;
 t_list *listaHilos;
 t_queue *colaDeReady;
@@ -95,6 +103,6 @@ bool estaEnEspera(void *entrenador);
 bool esUnObjetivo(void *objetivo);
 bool distanciaMasCorta(void *entrenador1,void *entrenador2);
 t_entrenador* entrenadorMasCercano(int posX,int posY);
-void planificar(char* pokemon, int posicionX, int posicionY);
+void planificar();
 
 #endif /* TEAM_H_ */
