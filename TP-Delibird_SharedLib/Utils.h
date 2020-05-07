@@ -21,8 +21,10 @@
 #include <commons/collections/list.h>
 #include <commons/collections/queue.h>
 #include <commons/config.h>
+#include <commons/string.h>
 #include <inttypes.h>
 #include <semaphore.h>
+#include <math.h>
 
 t_log * logger;
 t_config * config;
@@ -125,18 +127,11 @@ typedef struct
 	uint32_t cantidad;      //Cantidad de pokemons que hay en la posición.
 }posicYCant;
 
-/*typedef struct {
-	uint32_t id;
-	uint32_t idCorrelativo;			// Si no se usa idCorrelativo = -1
-	t_list *listaSuscriptores;
-	uint32_t sizeMensaje;
-	void* mensaje;
-}estructuraMensaje;*/
 
 typedef enum{
-	NUEVO=0,
-    ENVIADO=1,
-	CONFIRMADO=2
+	ESTADO_NUEVO=0,
+    ESTADO_ENVIADO=1,
+	ESTADO_CONFIRMADO=2
 }statusMensaje;
 
 typedef struct {
@@ -174,7 +169,7 @@ mensajeRecibido * recibirMensajeDeBroker(int socketBroker);
 tPaquete *recibirMensaje(int socketFuente);
 void loggearMensaje(t_log *logger,char * mensaje);
 int test();
-void suscribirseACola(int socketBroker, cola tipoCola);
+void suscribirseACola(int socketBroker, cola tipoCola, uint32_t pidSuscriptor);
 void enviarACola(int socketBroker, cola tipoCola, char* msj, int msjSize);
 char * obtenerNombreCola(cola tipoCola);
 

@@ -244,7 +244,7 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 	/* TODO
 	 * Al usarse semaforos, ya no tiene sentido hacer una copia de los suscriptores actuales. Quitar.
 	 */
-	t_list* suscriptoresActuales = generarListaDeSuscriptoresActuales(tipoCola);
+	//t_list* suscriptoresActuales = generarListaDeSuscriptoresActuales(tipoCola);
 
 	estructuraMensaje mensajeNuevo;
 
@@ -256,15 +256,20 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 
 	mensajeNuevo.id = id;
 	mensajeNuevo.idCorrelativo = idCorrelativo;
-	mensajeNuevo.estado = NUEVO;
+	mensajeNuevo.estado = ESTADO_NUEVO;
 	mensajeNuevo.colaMensajeria = tipoCola;
 
 	imprimirEstructuraDeDatos(mensajeNuevo);
 
 	sem_wait(&mutexColas);
-	for (int i = 0; i < list_size(suscriptoresActuales); i++) {
+	for (int i = 0; i < list_size(getListaSuscriptoresByNum(tipoCola)); i++) {
 
-		mensajeNuevo.socketSuscriptor = * (int *) list_get(suscriptoresActuales, i);
+		/* TODO
+		 *  - Evaluar reemplazar socket por PID en estructura mensaje, y que se busque en la lista de suscriptores
+		 *    el socket correspondiente al mismo, que a su vez se estaria manteniendo al dia por otro modulo.
+		 *
+		 */
+		mensajeNuevo.socketSuscriptor = * (int *) list_get(getListaSuscriptoresByNum(tipoCola), i);
 		list_add(getColaByNum(tipoCola), generarNodo(mensajeNuevo));
 		//if (idCorrelativo != -1) cachearMensaje(mensajeNuevo.mensaje, mensajeNuevo.sizeMensaje);
 	}
@@ -304,7 +309,33 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 		log_error(logger,
 				"No pudo obtenerse el tipo de cola en el mensaje recibido");
 	}
+}
 
+/* TODO
+ * Implementar esta función
+ */
+int getSocketActualDelSuscriptor(uint32_t pidSuscriptor){
+	return 0;
+}
+
+/* TODO
+ * - Arreglar los warnings
+ *
+ */
+bool yaExisteSuscriptor(uint32_t pid, cola codSuscripcion){
+   bool existePid(suscriptor * suscriptor){
+	   return suscriptor->pid==pid;
+   }
+   t_list * listaSuscriptores = getListaSuscriptoresByNum(codSuscripcion);
+   return list_any_satisfy(listaSuscriptores,&existePid);
+}
+
+suscriptor * buscarSuscriptor(uint32_t pid, cola codSuscripcion){
+	   bool existePid(suscriptor * suscriptor){
+		   return suscriptor->pid==pid;
+	   }
+	   t_list * listaSuscriptores = getListaSuscriptoresByNum(codSuscripcion);
+	   return list_find(listaSuscriptores,&existePid);
 }
 
 /* Recibe el código de suscripción desde el socket a suscribirse, eligiendo de esta manera la cola y agregando el socket
@@ -312,19 +343,34 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
  */
 void atenderSuscripcion(int *socketSuscriptor) {
 
-	int codSuscripcion, sizePaquete;
+	cola codSuscripcion;
+	uint32_t sizePaquete;
+	suscriptor * nuevoSuscriptor = malloc(sizeof(suscriptor));
+	nuevoSuscriptor->socket=*socketSuscriptor;
 
 	recv(*socketSuscriptor, &sizePaquete, sizeof(uint32_t), MSG_WAITALL);
 	recv(*socketSuscriptor, &codSuscripcion, sizeof(cola), MSG_WAITALL);
-	log_debug(logger, "%d", codSuscripcion);
-
-	enviarMensajesCacheados(*socketSuscriptor, codSuscripcion);
+	recv(*socketSuscriptor, &(nuevoSuscriptor->pid), sizeof(uint32_t), MSG_WAITALL);
 
 	sem_wait(&mutexColas);
-	list_add(getListaSuscriptoresByNum(codSuscripcion), socketSuscriptor);
-	log_info(logger,
-			"Hay un nuevo suscriptor en la cola %s. Número de socket suscriptor: %d",
-			getCodeStringByNum(codSuscripcion), *socketSuscriptor);
+	if(yaExisteSuscriptor(nuevoSuscriptor->pid,codSuscripcion)==true){
+		suscriptor * suscriptorYaAlmacenado = buscarSuscriptor(nuevoSuscriptor->pid,codSuscripcion);
+        suscriptorYaAlmacenado->socket=nuevoSuscriptor->socket;
+
+		enviarMensajesCacheados(*socketSuscriptor, codSuscripcion);
+	}
+	else
+	{
+		log_debug(logger, "%d", codSuscripcion);
+
+
+		list_add(getListaSuscriptoresByNum(codSuscripcion), nuevoSuscriptor);
+		log_info(logger,
+				"Hay un nuevo suscriptor en la cola %s. Número de socket suscriptor: %d",
+				getCodeStringByNum(codSuscripcion), *socketSuscriptor);
+
+		enviarMensajesCacheados(*socketSuscriptor, codSuscripcion);
+	}
 	sem_post(&mutexColas);
 }
 
@@ -361,6 +407,7 @@ void esperarMensajes(int *socketCliente) {
 		recv(*socketCliente, &sizeDelMensaje, sizeof(uint32_t), MSG_WAITALL);
 		recv(*socketCliente, &tipoCola, sizeof(cola), MSG_WAITALL);
 		atenderMensaje(*socketCliente, tipoCola);
+
 
 
 		//Como es un connect para cada mensaje, aca habria que cerrar la conexion al socket
@@ -435,13 +482,15 @@ void enviarEstructuraMensajeASuscriptor(void* estMensaje) {
     log_debug(logger,"Se esta enviando el mensaje\nID: %d\nSuscriptor: %d\nID Correlativo: %d\nCola: %d\nSize: %d\nMensaje chorizeado: %s",
     		estMsj->id, estMsj->socketSuscriptor,estMsj->idCorrelativo,estMsj->colaMensajeria,estMsj->sizeMensaje,(char*)(estMsj->mensaje));
 	enviarMensajeASuscriptor(*estMsj);
-    estMsj->estado=ENVIADO;
+	estMsj->estado=ESTADO_ENVIADO;
+    //Esperar X cantidad de tiempo a recibir confirmacion
+
 }
 
 bool esMensajeNuevo(void* mensaje) {
 	estructuraMensaje* estMsj = (estructuraMensaje*) mensaje;
 	bool esNuevo = false;
-	if (estMsj->estado == NUEVO) {
+	if (estMsj->estado == ESTADO_NUEVO) {
 		esNuevo = true;
 	}
 	return esNuevo;

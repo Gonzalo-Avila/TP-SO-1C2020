@@ -28,6 +28,11 @@ t_list * suscriptoresLOC;
 
 t_list * IDs;
 
+typedef struct{
+   int socket;
+   uint32_t pid;
+}suscriptor;
+
 void * cacheBroker;
 int CACHESIZE;
 long globalID=1;

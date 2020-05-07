@@ -311,15 +311,19 @@ mensajeRecibido * recibirMensajeDeBroker(int socketBroker){
  * TODO
  * Evaluar si crear una nueva conexión al broker en este modulo, y cerrarla al finalizar o devolver el socket.
  */
-void suscribirseACola(int socketBroker, cola tipoCola){
+void suscribirseACola(int socketBroker, cola tipoCola, uint32_t pidSuscriptor){
 
     tPaquete * paquete = malloc(sizeof(tPaquete));
     paquete->buffer=malloc(sizeof(tBuffer));
-    paquete->buffer->stream=malloc(sizeof(cola));
-
     paquete->codOperacion=SUSCRIPCION;
-    paquete->buffer->size=sizeof(cola);
+
+    paquete->buffer->size=sizeof(cola)+sizeof(uint32_t);
+    paquete->buffer->stream=malloc(sizeof(cola)+sizeof(uint32_t));
+
+
+
     memcpy(paquete->buffer->stream,&(tipoCola),sizeof(cola));
+    memcpy(paquete->buffer->stream + sizeof(cola), &(pidSuscriptor),sizeof(uint32_t));
     int sizeTotal = sizeof(opCode)+sizeof(cola)+sizeof(int);
     void * paqueteSerializado = serializarPaquete(paquete,sizeTotal);
     send(socketBroker,paqueteSerializado,sizeTotal,0);
@@ -405,64 +409,6 @@ char * obtenerNombreCola(cola tipoCola){
 
 
 
-/*
-void enviarMensajeACola(int socketDestino, cola tipoCola, char * mensaje){
-
-	int longMensaje = strlen(mensaje);
-    tBuffer *buffer = malloc(sizeof(tBuffer));
-    tPaqueteCola *paquete = malloc(sizeof(tPaqueteCola));
-
-    buffer->size = longMensaje+1;
-    buffer->stream = malloc(buffer->size);
-
-    memcpy(buffer->stream, mensaje, buffer->size);
-
-    paquete->buffer=buffer;
-    if(strcmp(mensaje,"exit")==0)
-    	paquete->codOperacion=FINALIZAR;
-    else
-        paquete->codOperacion=NUEVO_MENSAJE;
-
-    paquete->tipoCola = tipoCola;
-
-    int tamanioAEnviar = sizeof(cola) + 2*sizeof(int)+buffer->size;
-    void* aEnviar = serializarPaqueteCola(paquete, tamanioAEnviar);
-
-    send(socketDestino,aEnviar,tamanioAEnviar,0);
-
-    free(buffer->stream);
-    free(buffer);
-    free(paquete);
-    free(aEnviar);
-}
-*/
-
-/* Recibe un string enviado por el socket fuente
- * RECORDAR HACER LOS FREE CORRESPONDIENTES EN LA FUNCIÓN QUE LLAMA
- */
-/*tPaquete *recibirMensaje(int socketFuente){
-
-	tPaquete *paqueteRecibido = malloc(sizeof(tPaquete));
-	paqueteRecibido->buffer=malloc(sizeof(tBuffer));
-
-	recv(socketFuente,&(paqueteRecibido->codOperacion),sizeof(int),MSG_WAITALL);
-	recv(socketFuente,&(paqueteRecibido->buffer->size),sizeof(int),MSG_WAITALL);
-	paqueteRecibido->buffer->stream = malloc(paqueteRecibido->buffer->size);
-	recv(socketFuente,paqueteRecibido->buffer->stream,paqueteRecibido->buffer->size, MSG_WAITALL);
-
-	return paqueteRecibido;
-
-}*/
-/*void enviarACola(int socketBroker, cola tipoCola, char* msj, int msjSize){
-	int msjSizeReal = msjSize + 1;
-	int size = sizeof(int) + sizeof(int) + msjSizeReal;
-	void* aEnviar = malloc(size);
-	memcpy(aEnviar, &tipoCola, sizeof(int));
-	memcpy(aEnviar, &msjSize, sizeof(int));
-	memcpy(aEnviar, msj, msjSizeReal);
-	printf("%s", (char*) aEnviar);
-	enviarMensaje(socketBroker, (char *) aEnviar);
-}*/
 
 
 
