@@ -97,6 +97,10 @@ void compactarMemoria() {
 void eliminarMensaje() {
 }
 
+void cachearConBuddySystem(void * mensaje, int sizeMensaje){
+
+}
+
 /* Guarda el mensaje en memoria cache mediante algoritmo first fit
  * 1) Busca ponerlo en un espacio libre.
  * 2) Si no puede, compacta la memoria y vuelve a probar.
@@ -107,8 +111,11 @@ void eliminarMensaje() {
  * - Hay que validar el caso extremo en el que el mensaje que se quiere guardar no entre en toda cache, en esta función o en otra
  * - Hay que ver como poner las distintos criterios de victima
  */
-void cachearMensaje(void * mensaje, int sizeMensaje) {
 
+void usarBestFit(){
+
+}
+void usarFirstFit(void * mensaje, int sizeMensaje){
 	void * particion;
 	particion = buscarEspacio(sizeMensaje, cacheBroker);
 	while (particion == NULL) {
@@ -120,6 +127,20 @@ void cachearMensaje(void * mensaje, int sizeMensaje) {
 		}
 	}
 	memcpy(particion, mensaje, sizeMensaje);
+}
+
+void cachearConParticionesDinamicas(void * mensaje, int sizeMensaje){
+	if(strcmp("FF",config_get_string_value(config,"ALGORITMO_PARTICION_LIBRE"))==0)
+       usarFirstFit(mensaje,sizeMensaje);
+	else
+       usarBestFit(mensaje,sizeMensaje);
+}
+
+void cachearMensaje(void * mensaje, int sizeMensaje){
+   if(strcmp("BD",config_get_string_value(config, "ALGORITMO_MEMORIA"))==0)
+	   cachearConBuddySystem(mensaje, sizeMensaje);
+   else
+	   cachearConParticionesDinamicas(mensaje, sizeMensaje);
 }
 
 void enviarMensajesCacheados(int socketSuscriptor, int codSuscripcion) {
@@ -199,6 +220,7 @@ void imprimirEstructuraDeDatos(estructuraMensaje mensaje) {
 	log_info(logger, "ID: %d", mensaje.id);
 	log_info(logger, "ID correlativo: %d", mensaje.idCorrelativo);
 	log_info(logger, "Tamaño de mensaje: %d", mensaje.sizeMensaje);
+	log_info(logger, "Tipo mensaje: %s", getCodeStringByNum(mensaje.colaMensajeria));
 	//DONE
 	//Imprimir lista de suscriptores y datos del mensaje
 }
