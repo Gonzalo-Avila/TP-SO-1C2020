@@ -62,6 +62,32 @@ void obtenerDeConfig(char *clave, t_list *lista) {
 
 /*MANEJA EL FUNCIONAMIENTO INTERNO DE CADA ENTRENADOR(trabajo en un hilo separado)*/
 void gestionarEntrenador(t_entrenador *entrenador) {
+	while(entrenador->estado == EJEC){
+		if(entrenador->pos[0] < 'X'/*X POKEMON*/){
+			entrenador->pos[0]++;
+		}
+		else if(entrenador->pos[0] > 'X'/*X POKEMON*/){
+			entrenador->pos[0]--;
+		}
+		if(entrenador->pos[1] < 'Y'/*Y POKEMON*/){
+			entrenador->pos[1]++;
+		}
+		else if(entrenador->pos[1] > 'Y' /*Y POKEMON*/){
+			entrenador->pos[1]--;
+		}
+		if(entrenador->pos[0] == 'X'/*X POKEMON*/ && entrenador->pos[1] == 'Y'/* Y POKEMON */){
+			//send(CATCH pokemon);
+			//esperaCAUGHT
+			/*if(pokemones.contains(objetivos)){
+				estado = FIN;
+			}
+			else{
+				estado = BLOCKED;
+			}*/
+		}
+		/* RETARDO DEL CPU. LA FUNCION RECIBE MICROSEGUNDOS */
+		usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) / 100000);
+	}
 	//mover entrenador a posicion del pokemon que necesita
 	//pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
 	//pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
@@ -384,6 +410,10 @@ bool esUnObjetivo(void* objetivo) {
 		verifica = true;
 	}
 	return verifica;
+}
+
+void activarHiloDe(int id){
+
 }
 
 void planificarFifo(){
