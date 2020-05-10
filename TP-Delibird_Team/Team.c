@@ -89,6 +89,12 @@ void gestionarEntrenador(t_entrenador *entrenador) {
 		/* RETARDO DEL CPU. LA FUNCION RECIBE MICROSEGUNDOS */
 		usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) / 100000);
 	}
+	//mover entrenador a posicion del pokemon que necesita
+	//pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
+	//pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
+
+}
+
 
 void crearHiloEntrenador(t_entrenador* entrenador) {
 	pthread_t nuevoHilo;
@@ -418,6 +424,7 @@ void activarHiloDe(int id){
 }
 
 
+
 t_list *obtenerEntrenadoresReady(){
 	t_list *entrenadoresReady = list_create();
 	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
@@ -431,6 +438,7 @@ t_list *obtenerEntrenadoresReady(){
 
 	return entrenadoresReady;
 }
+
 bool hayaAlgunEntrenadorEnFin(){
 	bool verifica = false;
 	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
