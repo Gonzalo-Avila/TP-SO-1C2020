@@ -35,7 +35,9 @@ typedef struct{
 
 void * cacheBroker;
 int CACHESIZE;
-long globalID=1;
+
+long globalIDMensaje=1;
+long globalIDProceso=1;
 
 sem_t mutexColas;
 sem_t habilitarEnvio;
@@ -55,7 +57,7 @@ char* getCodeStringByNum(int nro);
 t_list * getColaByNum(int nro);
 t_list* getListaSuscriptoresByNum(opCode nro);
 void *getEnviarAColaByNum(int num);
-long getID();
+long getIDMensaje();
 void imprimirEstructuraDeDatos(estructuraMensaje mensaje);
 int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo);
 void atenderMensaje(int socketEmisor, cola tipoCola);

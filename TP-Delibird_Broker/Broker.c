@@ -190,8 +190,12 @@ t_list* getListaSuscriptoresByNum(opCode nro) {
  return codigo[num];
  }*/
 
-long getID() {
-	return globalID++;
+long getIDMensaje() {
+	return globalIDMensaje++;
+}
+
+long getIDProceso(){
+	return globalIDProceso++;
 }
 
 //Edit Gonzalo - 19/04
@@ -252,7 +256,7 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 	mensajeNuevo.mensaje = malloc(mensajeNuevo.sizeMensaje);
 	recv(socketEmisor, mensajeNuevo.mensaje, mensajeNuevo.sizeMensaje, MSG_WAITALL);
 
-	int id = getID();
+	int id = getIDMensaje();
 
 	mensajeNuevo.id = id;
 	mensajeNuevo.idCorrelativo = idCorrelativo;
@@ -386,6 +390,11 @@ void esperarMensajes(int *socketCliente) {
 	log_debug(logger, "Esperando mensaje de cliente %d...", *socketCliente);
 
 	switch (codOperacion) {
+	case NUEVA_CONEXION:{
+        uint32_t idProceso= getIDProceso();
+        send(*socketCliente, &idProceso,sizeof(uint32_t),0);
+		break;
+	}
 	case SUSCRIPCION: {
 		log_info(logger, "[SUSCRIPCION]");
 		atenderSuscripcion(socketCliente);
