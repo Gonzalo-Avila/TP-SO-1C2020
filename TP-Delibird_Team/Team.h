@@ -76,6 +76,7 @@ t_queue *colaDeBloqued;
 char* pokemonRecibido;
 char* ipServidor;
 char* puertoServidor;
+t_list *listaMensajesRecibidosLocalized;
 
 /* Funciones */
 void inicializarVariablesGlobales();
@@ -99,10 +100,10 @@ void setearObjetivosDeTeam(t_team *team);
 void enviarGetSegunObjetivo(char *ip, char *puerto);
 float calcularDistancia(int posX1, int posY1,int posX2,int posY2);
 t_dist *setearDistanciaEntrenadores(int id,int posX,int posY);
-bool estaEnEspera(void *entrenador);
+bool estaEnEspera(t_entrenador *entrenador);
 bool esUnObjetivo(void *objetivo);
 bool distanciaMasCorta(void *entrenador1,void *entrenador2);
-t_entrenador* entrenadorMasCercano(int posX,int posY);
+t_entrenador* entrenadorMasCercanoEnEspera(int posX,int posY);
 void planificar();
 
 #endif /* TEAM_H_ */

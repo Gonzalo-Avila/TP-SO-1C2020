@@ -15,6 +15,7 @@ void inicializarVariablesGlobales() {
 	puertoServidor = malloc(strlen(config_get_string_value(config, "PUERTO")) + 1);
 	puertoServidor = config_get_string_value(config, "PUERTO");
 	team->algoritmoPlanificacion = obtenerAlgoritmoPlanificador();
+	listaMensajesRecibidosLocalized = list_create();
 }
 
 void array_iterate_element(char** strings, void (*closure)(char*, t_list*),
@@ -62,11 +63,32 @@ void obtenerDeConfig(char *clave, t_list *lista) {
 
 /*MANEJA EL FUNCIONAMIENTO INTERNO DE CADA ENTRENADOR(trabajo en un hilo separado)*/
 void gestionarEntrenador(t_entrenador *entrenador) {
-	//mover entrenador a posicion del pokemon que necesita
-	//pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
-	//pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
-
-}
+	while(entrenador->estado == EJEC){
+		if(entrenador->pos[0] < 'X'/*X POKEMON*/){
+			entrenador->pos[0]++;
+		}
+		else if(entrenador->pos[0] > 'X'/*X POKEMON*/){
+			entrenador->pos[0]--;
+		}
+		if(entrenador->pos[1] < 'Y'/*Y POKEMON*/){
+			entrenador->pos[1]++;
+		}
+		else if(entrenador->pos[1] > 'Y' /*Y POKEMON*/){
+			entrenador->pos[1]--;
+		}
+		if(entrenador->pos[0] == 'X'/*X POKEMON*/ && entrenador->pos[1] == 'Y'/* Y POKEMON */){
+			//send(CATCH pokemon);
+			//esperaCAUGHT
+			/*if(pokemones.contains(objetivos)){
+				estado = FIN;
+			}
+			else{
+				estado = BLOCKED;
+			}*/
+		}
+		/* RETARDO DEL CPU. LA FUNCION RECIBE MICROSEGUNDOS */
+		usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) / 100000);
+	}
 
 void crearHiloEntrenador(t_entrenador* entrenador) {
 	pthread_t nuevoHilo;
@@ -211,7 +233,7 @@ void atenderBroker(int *socketBroker) {
 				strcpy(p->pokemon,pokemon);
 				p->cantPokes = cantPokes;
 
-				//planificador(p);
+				list_add(listaMensajesRecibidosLocalized,p);
 				break;
 			}
 			case CAUGHT:
@@ -350,9 +372,11 @@ bool menorDist(void *dist1, void *dist2) {
 	return verifica;
 }
 
-t_entrenador *entrenadorMasCercano(int posX, int posY) {
+t_entrenador *entrenadorMasCercanoEnEspera(int posX, int posY) {
 	t_list* listaDistancias = list_create();
 	t_dist *distancia = malloc(sizeof(t_dist));
+	int idEntrenadorConDistMenor;
+	int i = 0;
 
 	for (int i = 0; i < list_size(team->entrenadores); i++) {
 		distancia = setearDistanciaEntrenadores(i, posX, posY);
@@ -360,18 +384,21 @@ t_entrenador *entrenadorMasCercano(int posX, int posY) {
 	}
 	list_sort(listaDistancias, menorDist);
 
-	int idEntrenadorConDistMenor =
-			((t_dist*) list_get(listaDistancias, 0))->idEntrenador;
+	while(listaDistancias){
+		idEntrenadorConDistMenor = ((t_dist*) list_get(listaDistancias, i))->idEntrenador;
 
+		if(estaEnEspera(((t_entrenador*) list_get(team->entrenadores,
+				idEntrenadorConDistMenor))))
+			break;
+		i++;
+	}//esta estructura se fija si el entrenador esta en espera.
 	return ((t_entrenador*) list_get(team->entrenadores,
 			idEntrenadorConDistMenor));
 }
 
 //Esta funcion se podria codear para que sea una funcion generica, pero por el momento solo me sirve saber si está o no en ready.
-bool estaEnEspera(void *entrenador) {
+bool estaEnEspera(t_entrenador *trainer) {
 	bool verifica = false;
-	t_entrenador *trainer = malloc(sizeof(t_entrenador));
-	trainer = entrenador;
 	if (((trainer->estado) == NUEVO) || ((trainer->estado) == BLOQUEADO))
 		verifica = true;
 
@@ -386,36 +413,71 @@ bool esUnObjetivo(void* objetivo) {
 	return verifica;
 }
 
-void planificarFifo(){
+void activarHiloDe(int id){
+
+}
+
+
+t_list *obtenerEntrenadoresReady(){
 	t_list *entrenadoresReady = list_create();
+	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
 
 	for(int i = 0;i < list_size(team->entrenadores);i++){
-		t_entrenador *entrenador = malloc(sizeof(t_entrenador));
-
 		entrenador = list_get(team->entrenadores,i);
 
 		if(entrenador->estado == LISTO)
 			list_add(entrenadoresReady,entrenador);
-	}
-	//como esto es por FIFO tengo que poner en EXEC a solo uno y elegir por FIFO
-	//------cuando sale ese de EXEC entra el que sigue
+		}
 
-	for(int j = 0; j < list_size(entrenadoresReady);j++){
+	return entrenadoresReady;
+}
+bool hayaAlgunEntrenadorEnFin(){
+	bool verifica = false;
+	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+
+	for(int i = 0; i < list_size(team->entrenadores);i++){
+		entrenador = list_get(team->entrenadores,i);
+
+		if(entrenador->estado == FIN)
+			verifica = true;
+	}
+	return verifica;
+}
+
+void planificarFifo(){
+	t_list *entrenadoresReady = list_create();
+	//Agarro un mensaje recibido del Broker q sea APP o LOC Y me sirva.
+	//Antes entro a REGION CRITICA y bloqueo para que pueda sacar solo yo
+	//y evitar que otro hilo meta mas mensajes mientras saco.
+
+	t_entrenador* elEntrenadorMasCercano = malloc(sizeof(t_entrenador));
+
+	t_list *posx = list_create();
+	t_list *posy = list_create();
+
+	posx = ((t_pokemonesLocalized*)list_get(listaMensajesRecibidosLocalized,0))->x;
+	posy = ((t_pokemonesLocalized*)list_get(listaMensajesRecibidosLocalized,0))->y;
+
+	elEntrenadorMasCercano = entrenadorMasCercanoEnEspera((int)list_get(posx,0),(int)list_get(posy,0));
+	elEntrenadorMasCercano->estado = LISTO;//me aseguro de que tengo uno en READY antes de llamar para planificar
+
+	while(!hayaAlgunEntrenadorEnFin()){
+		//recibo una senial de que vuelve de excec
 		t_entrenador *entrenador = malloc(sizeof(t_entrenador));
 
-		entrenador = list_get(entrenadoresReady,j);
+		entrenadoresReady = obtenerEntrenadoresReady();
 
-		activarHiloDe(entrenador->id);
+		for(int j = 0; j < list_size(entrenadoresReady);j++){
+
+			entrenador = list_get(entrenadoresReady,j);
+
+			activarHiloDe(entrenador->id);
+		//se bloque el planificador hasta que termine el ciclo de ejecucion del hilo.
+		}
 	}
 }
 
-void planificador(t_pokemonesLocalized *pLocalized){
-	//En caso que tengamos varias posiciones y varios entrenadores libres, con que criterio elegimos???
-	t_entrenador* elEntrenadorMasCercano = malloc(sizeof(t_entrenador));
-
-	elEntrenadorMasCercano = entrenadorMasCercano((int)list_get(pLocalized->x,0),(int)list_get(pLocalized->y,0));
-	elEntrenadorMasCercano->estado = LISTO;//me aseguro de que tengo uno en READY antes de llamar para planificar
-
+void planificador(){
 	switch(team->algoritmoPlanificacion){
 			case FIFO:
 				planificarFifo();
