@@ -140,7 +140,7 @@ typedef struct {
 	uint32_t idCorrelativo;			// Si no se usa idCorrelativo = -1
 	uint32_t sizeMensaje;
 	void* mensaje;
-	int socketSuscriptor;
+	int clientID;
 	statusMensaje estado;
 	cola colaMensajeria;
 }estructuraMensaje;
@@ -156,6 +156,12 @@ typedef struct {
 }mensajeRecibido;
 
 
+typedef struct{
+   int socket;
+   uint32_t clientID;
+}suscriptor;
+
+
 void atenderConexionEn(int socket, int backlog);
 int crearConexionServer(char * ip, char * puerto);
 int crearConexionCliente(char * ip, char * puerto);
@@ -164,7 +170,8 @@ void inicializarColas();
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar);
 void * serializarPaqueteCola(tPaquete* paquete, int tamanioAEnviar);
 void enviarString(int socketDestino, char * mensaje);
-void enviarMensajeASuscriptor(estructuraMensaje datosMensaje);
+void enviarMensajeASuscriptor(estructuraMensaje datosMensaje,
+		int socketSuscriptor);
 void enviarMensajeABroker(int socketBroker, cola colaDestino,uint32_t idCorrelativo,uint32_t sizeMensaje,void * mensaje);
 mensajeRecibido * recibirMensajeDeBroker(int socketBroker);
 tPaquete *recibirMensaje(int socketFuente);
@@ -172,6 +179,5 @@ void loggearMensaje(t_log *logger,char * mensaje);
 int test();
 void suscribirseACola(int socketBroker, cola tipoCola, uint32_t pidSuscriptor);
 void enviarACola(int socketBroker, cola tipoCola, char* msj, int msjSize);
-char * obtenerNombreCola(cola tipoCola);
-
+char* getCodeStringByNum(int nro);
 #endif /* UTILS_H_ */
