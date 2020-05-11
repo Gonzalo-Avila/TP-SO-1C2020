@@ -99,14 +99,6 @@ bool yaExisteSuscriptor(uint32_t clientID, cola codSuscripcion){
    return list_any_satisfy(listaSuscriptores,&existeClientID);
 }
 
-suscriptor * buscarSuscriptor(uint32_t clientID, cola codSuscripcion){
-	   bool existeClientID(void * _suscriptor){
-		   suscriptor* sus = (suscriptor *) _suscriptor;
-		   return sus->clientID==clientID;
-	   }
-	   t_list * listaSuscriptores = getListaSuscriptoresByNum(codSuscripcion);
-	   return list_find(listaSuscriptores,&existeClientID);
-}
 
 
 void atenderSuscripcion(int *socketSuscriptor){
@@ -116,7 +108,7 @@ void atenderSuscripcion(int *socketSuscriptor){
 	cola codSuscripcion;
 	uint32_t sizePaquete;
 	suscriptor * nuevoSuscriptor = malloc(sizeof(suscriptor));
-	nuevoSuscriptor->socket=*socketSuscriptor;
+	nuevoSuscriptor->socketCliente=*socketSuscriptor;
 
 	recv(*socketSuscriptor, &sizePaquete, sizeof(uint32_t), MSG_WAITALL);
 	recv(*socketSuscriptor, &codSuscripcion, sizeof(cola), MSG_WAITALL);
@@ -127,13 +119,13 @@ void atenderSuscripcion(int *socketSuscriptor){
 	sem_wait(&mutexColas);
 	if(yaExisteSuscriptor(nuevoSuscriptor->clientID,codSuscripcion)==true){
 		suscriptor * suscriptorYaAlmacenado = buscarSuscriptor(nuevoSuscriptor->clientID,codSuscripcion);
-        suscriptorYaAlmacenado->socket=nuevoSuscriptor->socket;
+        suscriptorYaAlmacenado->socketCliente=nuevoSuscriptor->socketCliente;
 
         log_info(logger,
         				"El cliente %d ha actualizado el socket: %d",
-						suscriptorYaAlmacenado->clientID, suscriptorYaAlmacenado->socket);
+						suscriptorYaAlmacenado->clientID, suscriptorYaAlmacenado->socketCliente);
 
-		enviarMensajesCacheados(&(suscriptorYaAlmacenado->socket), codSuscripcion);
+		enviarMensajesCacheados(suscriptorYaAlmacenado->socketCliente, codSuscripcion);
 	}
 	else
 	{
@@ -142,7 +134,7 @@ void atenderSuscripcion(int *socketSuscriptor){
 				"Hay un nuevo suscriptor en la cola %s. Número de socket suscriptor: %d",
 				getCodeStringByNum(codSuscripcion), *socketSuscriptor);
 
-		enviarMensajesCacheados(&(nuevoSuscriptor->socket), codSuscripcion);
+		enviarMensajesCacheados(nuevoSuscriptor->socketCliente, codSuscripcion);
 	}
 	sem_post(&mutexColas);
 }

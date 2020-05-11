@@ -215,7 +215,6 @@ void atenderBroker(int *socketBroker) {
 				break;
 			}
 			case CAUGHT:
-				//TODO CAUGHT
 				log_info(logger, "Recibi un CAUGHT. ¿Que es eso?¿Se come?");
 				break;
 			default:

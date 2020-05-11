@@ -1,5 +1,10 @@
 #include "Broker.h"
 
+void eliminarMensaje(estructuraMensaje* estMsj){
+	t_list* colaMensaje = getColaByNum(estMsj->colaMensajeria);
+	//TODO
+	// - Usar get, take o alguna funcion de las commons de listas para eliminar ese nodo
+}
 
 void enviarEstructuraMensajeASuscriptor(void* estMensaje) {
 	//TODO

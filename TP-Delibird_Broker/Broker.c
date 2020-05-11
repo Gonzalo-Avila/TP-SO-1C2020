@@ -1,6 +1,5 @@
 #include "Broker.h"
 
-
 void inicializarVariablesGlobales() {
 	config = config_create("broker.config");
 	logger = log_create("broker_logs", "Broker", 1, LOG_LEVEL_TRACE);
@@ -63,25 +62,7 @@ int getSocketEscuchaBroker() {
 
 }
 
-int getSocketActualDelSuscriptor(uint32_t clientID, cola colaSuscripcion) {
-	//TODO
-	// - Encontrar el nodo suscriptor en la cola (parametro) con el clientID (parametro) requerido
-	// - Retornar socket actual de ese suscriptor
 
-	return 0;
-}
-
-
-void desuscribir(uint32_t clientID, cola colaSuscripcion) {
-	//TODO
-	// - Buscar el clientID en todas las listas de suscripcion
-	// - Hacer close(socket) por cada uno encontrado
-	// - Borrar nodo suscriptor
-
-	int socketCliente = getSocketActualDelSuscriptor(clientID, colaSuscripcion);
-
-	close(socketCliente);
-}
 
 void* deserializarPayload(int socketSuscriptor) {
 	log_debug(logger, "deserializarPayload");
@@ -104,6 +85,47 @@ t_list* getListaSuscriptoresByNum(opCode nro) {
 			suscriptoresCAU, suscriptoresGET, suscriptoresLOC };
 	return lista[nro];
 }
+void eliminarSuscriptor(t_list* listaSuscriptores, uint32_t clientID){
+	bool existeClientID(void * _suscriptor){
+		   suscriptor* sus = (suscriptor *) _suscriptor;
+		   return sus->clientID==clientID;
+	   }
+	list_remove_by_condition(listaSuscriptores, existeClientID);
+}
+
+void desuscribir(uint32_t clientID, cola colaSuscripcion) {
+	//TODO - DONE
+	// - Buscar el clientID en la lista de suscriptores de la cola pasada
+	// - Hacer close(socket)
+	// - Borrar nodo suscriptor
+
+	int socketCliente = getSocketActualDelSuscriptor(clientID, colaSuscripcion);
+	close(socketCliente);
+	eliminarSuscriptor(getListaSuscriptoresByNum(colaSuscripcion), clientID);
+
+}
+
+int getSocketActualDelSuscriptor(uint32_t clientID, cola colaSuscripcion) {
+	//TODO - DONE
+	// - Encontrar el nodo suscriptor en la cola (parametro) con el clientID (parametro) requerido
+	// - Retornar socket actual de ese suscriptor
+
+	suscriptor* sus;
+	sus = buscarSuscriptor(clientID, colaSuscripcion);
+	return sus->socketCliente;
+}
+
+
+suscriptor * buscarSuscriptor(uint32_t clientID, cola codSuscripcion){
+	   bool existeClientID(void * _suscriptor){
+		   suscriptor* sus = (suscriptor *) _suscriptor;
+		   return sus->clientID==clientID;
+	   }
+	   t_list * listaSuscriptores = getListaSuscriptoresByNum(codSuscripcion);
+	   return list_find(listaSuscriptores,&existeClientID);
+}
+
+
 
 uint32_t getIDMensaje() {
 	return globalIDMensaje++;

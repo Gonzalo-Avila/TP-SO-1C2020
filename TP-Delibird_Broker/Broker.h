@@ -54,7 +54,6 @@ void empezarAAtenderCliente(int socketEscucha);
 void atenderConexiones(int *socketEscucha);
 void esperarMensajes(int *socketCliente);
 bool yaExisteSuscriptor(uint32_t clientID, cola codSuscripcion);
-suscriptor * buscarSuscriptor(uint32_t clientID, cola codSuscripcion);
 void atenderSuscripcion(int *socketSuscriptor);
 void atenderMensaje(int socketEmisor, cola tipoCola);
 void imprimirEstructuraDeDatos(estructuraMensaje mensaje);
@@ -73,14 +72,15 @@ void destruirVariablesGlobales();
 void liberarSocket(int* socket);
 void inicializarColasYListas();
 int getSocketEscuchaBroker();
-int getSocketActualDelSuscriptor(uint32_t clientID, cola colaSuscripcion);
-void desuscribir(uint32_t clientID, cola colaSuscripcion);
 void* deserializarPayload(int socketSuscriptor);
 t_list * getColaByNum(int nro);
 t_list* getListaSuscriptoresByNum(opCode nro);
 uint32_t getIDMensaje();
 uint32_t getIDProceso();
-
+void desuscribir(uint32_t clientID, cola colaSuscripcion);
+void eliminarSuscriptor(t_list* listaSuscriptores, uint32_t clientID);
+int getSocketActualDelSuscriptor(uint32_t clientID, cola colaSuscripcion);
+suscriptor * buscarSuscriptor(uint32_t clientID, cola codSuscripcion);
 
 
 #endif /* BROKER_H_ */

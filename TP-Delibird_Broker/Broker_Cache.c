@@ -110,10 +110,6 @@ void compactarMemoria() {
 }
 
 
-void eliminarMensaje() {
-	//TODO
-}
-
 void cachearConBuddySystem(void * mensaje, int sizeMensaje){
 
 }

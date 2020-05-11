@@ -163,8 +163,6 @@ void armarPaqueteLocalized(int offset, void* mensaje, tBuffer* buffer) {
 //------------------
 /* Permite envíar un mensaje desde cualquier cliente, que el broker sepa interpretar. El size del mensaje que requiere como
  * parametro es el del contenido del struct GET, CATCH, etc., que se esta mandando.
- * TODO
- * Evaluar si crear una nueva conexión al broker en este modulo, y cerrarla al finalizar o devolver el socket.
  */
 void enviarMensajeABroker(int socketBroker, cola colaDestino,
 		uint32_t idCorrelativo, uint32_t sizeMensaje, void * mensaje) {
@@ -230,8 +228,10 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,
 /* Permite enviar un mensaje a cualquier cliente, de forma que estos lo puedan interpretar
  *
  */
-void enviarMensajeASuscriptor(estructuraMensaje datosMensaje,
+int enviarMensajeASuscriptor(estructuraMensaje datosMensaje,
 		int socketSuscriptor) {
+
+	int returnValueSend;
 
 	tPaquete * paquete = malloc(sizeof(tPaquete));
 	tBuffer * buffer = malloc(sizeof(tBuffer));
@@ -266,11 +266,13 @@ void enviarMensajeASuscriptor(estructuraMensaje datosMensaje,
 
 	paqueteSerializado = serializarPaquete(paquete, sizeTotal);
 
-	send(socketSuscriptor, paqueteSerializado, sizeTotal, 0);
+	returnValueSend = send(socketSuscriptor, paqueteSerializado, sizeTotal, 0);
 	free(paqueteSerializado);
 	free(paquete);
 	free(buffer->stream);
 	free(buffer);
+
+	return returnValueSend;
 }
 
 /*
@@ -331,9 +333,8 @@ mensajeRecibido * recibirMensajeDeBroker(int socketBroker) {
 	return mensaje;
 }
 
-/* Luego de creada la conexión con el broker, esta función envía el código de la cola a la que se va a suscribir.
- * TODO
- * Evaluar si crear una nueva conexión al broker en este modulo, y cerrarla al finalizar o devolver el socket.
+/*
+ * Luego de creada la conexión con el broker, esta función envía el código de la cola a la que se va a suscribir.
  */
 void suscribirseACola(int socketBroker, cola tipoCola, uint32_t pidSuscriptor) {
 
