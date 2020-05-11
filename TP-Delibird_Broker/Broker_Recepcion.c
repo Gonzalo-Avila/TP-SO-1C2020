@@ -125,7 +125,8 @@ void atenderSuscripcion(int *socketSuscriptor){
         				"El cliente %d ha actualizado el socket: %d",
 						suscriptorYaAlmacenado->clientID, suscriptorYaAlmacenado->socketCliente);
 
-		enviarMensajesCacheados(suscriptorYaAlmacenado->socketCliente, codSuscripcion);
+        //TODO - COMENTAR ESTA LINEA Y REALIZAR TESTING
+		enviarMensajesCacheados(suscriptorYaAlmacenado, codSuscripcion);
 	}
 	else
 	{
@@ -134,9 +135,11 @@ void atenderSuscripcion(int *socketSuscriptor){
 				"Hay un nuevo suscriptor en la cola %s. Número de socket suscriptor: %d",
 				getCodeStringByNum(codSuscripcion), *socketSuscriptor);
 
-		enviarMensajesCacheados(nuevoSuscriptor->socketCliente, codSuscripcion);
+		enviarMensajesCacheados(nuevoSuscriptor, codSuscripcion);
 	}
+	free(nuevoSuscriptor);
 	sem_post(&mutexColas);
+
 }
 
 void atenderMensaje(int socketEmisor, cola tipoCola) {
@@ -186,7 +189,7 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 	mensajeNuevo.mensaje = malloc(mensajeNuevo.sizeMensaje);
 	recv(socketEmisor, mensajeNuevo.mensaje, mensajeNuevo.sizeMensaje, MSG_WAITALL);
 
-	int id = getIDMensaje();
+	uint32_t id = getIDMensaje();
 
 	mensajeNuevo.id = id;
 	mensajeNuevo.idCorrelativo = idCorrelativo;
@@ -202,7 +205,8 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 		sus = (suscriptor *) (list_get(getListaSuscriptoresByNum(tipoCola), i));
 		mensajeNuevo.clientID = sus->clientID;
 		list_add(getColaByNum(tipoCola), generarNodo(mensajeNuevo));
-		//if (idCorrelativo != -1) cachearMensaje(mensajeNuevo.mensaje, mensajeNuevo.sizeMensaje);
+
+		cachearMensaje(mensajeNuevo.id,mensajeNuevo.idCorrelativo, mensajeNuevo.colaMensajeria, mensajeNuevo.sizeMensaje,mensajeNuevo.mensaje);
 	}
 	sem_post(&mutexColas);
 	sem_post(&habilitarEnvio);

@@ -26,13 +26,29 @@ t_list * suscriptoresCAU;
 t_list * suscriptoresGET;
 t_list * suscriptoresLOC;
 
-t_list * IDs;
+t_list * registrosDeCache;
 
 uint32_t globalIDMensaje;
 uint32_t globalIDProceso;
 
 sem_t mutexColas;
 sem_t habilitarEnvio;
+
+typedef struct {
+	int socketCliente;
+	uint32_t clientID;
+} suscriptor;
+
+
+typedef struct {
+  uint32_t idMensaje;
+  uint32_t idCorrelativo;
+  cola colaMensaje;
+  uint32_t sizeMensaje;
+  t_list * procesosALosQueSeEnvio;
+  t_list * procesosQueConfirmaronRecepcion;
+  void * posicionEnMemoria;
+} registroCache;
 
 //#include "Broker_Cache.h"
 void inicializarCache();
@@ -42,12 +58,12 @@ int tamanioDelMensaje(int offset, int *cacheExcedida);
 void * buscarProximoMensaje(int offset, int * tamanio, int *cacheExcedida);
 void compactarMemoria();
 void eliminarMensaje();
-void cachearConBuddySystem(void * mensaje, int sizeMensaje);
-void usarBestFit();
-void usarFirstFit(void * mensaje, int sizeMensaje);
-void cachearConParticionesDinamicas(void * mensaje, int sizeMensaje);
-void cachearMensaje(void * mensaje, int sizeMensaje);
-void enviarMensajesCacheados(int socketSuscriptor, int codSuscripcion);
+void * usarBestFit();
+void * usarFirstFit(void * mensaje, int sizeMensaje);
+void * cachearConBuddySystem(void * mensaje, int sizeMensaje);
+void * cachearConParticionesDinamicas(void * mensaje, int sizeMensaje);
+void cachearMensaje(uint32_t idMensaje, uint32_t idCorrelativo, cola colaMensaje, uint32_t sizeMensaje, void * mensaje);
+void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion);
 
 //#include "Broker_Recepcion.h"
 void empezarAAtenderCliente(int socketEscucha);
@@ -65,6 +81,9 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo);
 void enviarEstructuraMensajeASuscriptor(void* estMensaje);
 bool esMensajeNuevo(void* mensaje);
 void atenderColas();
+void agregarAListaDeConfirmados(uint32_t idMsg, uint32_t idProceso);
+void agregarAListaDeEnviados(uint32_t idMsg, uint32_t idProceso);
+void destructorNodos(void * nodo);
 
 //#include "Broker_Aux.h"
 void inicializarVariablesGlobales();

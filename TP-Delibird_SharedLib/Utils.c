@@ -229,7 +229,7 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,
  *
  */
 int enviarMensajeASuscriptor(estructuraMensaje datosMensaje,
-		int socketSuscriptor) {
+	int socketSuscriptor) {
 
 	int returnValueSend;
 
@@ -275,46 +275,6 @@ int enviarMensajeASuscriptor(estructuraMensaje datosMensaje,
 	return returnValueSend;
 }
 
-/*
- void enviarNuevoMensajeASuscriptor(nodoMensaje nodoMsj ,cola colaEmisora){
-
- tPaquete * paquete = malloc (sizeof(tPaquete));
- tBuffer * buffer = malloc (sizeof(tBuffer));
- void * paqueteSerializado;
-
- int offset=0;
- int sizeTotal;
-
- paquete->codOperacion=NUEVO_MENSAJE;
-
- buffer->size=sizeof(cola)+sizeof(uint32_t)*3+datosMensaje.sizeMensaje;
- buffer->stream=malloc(buffer->size);
-
- memcpy(buffer->stream+offset,&colaEmisora,sizeof(cola));
- offset+=sizeof(cola);
- memcpy(buffer->stream+offset,&(datosMensaje.id),sizeof(uint32_t));
- offset+=sizeof(uint32_t);
- memcpy(buffer->stream+offset,&(datosMensaje.idCorrelativo),sizeof(uint32_t));
- offset+=sizeof(uint32_t);
- memcpy(buffer->stream+offset,&(datosMensaje.sizeMensaje),sizeof(uint32_t));
- offset+=sizeof(uint32_t);
- memcpy(buffer->stream+offset,&(datosMensaje.mensaje),datosMensaje.sizeMensaje);
-
- paquete->buffer=buffer;
-
- sizeTotal=sizeof(opCode)+sizeof(uint32_t)+buffer->size;
-
- paqueteSerializado=serializarPaquete(paquete,sizeTotal);
-
- send(socketSuscriptor,paqueteSerializado,sizeTotal,0);
-
- free(paqueteSerializado);
- free(paquete);
- free(buffer->stream);
- free(buffer);
- }
- */
-
 /* Recibe un mensaje del broker y lo guarda en un struct con formato mensajeRecibido
  *
  */
@@ -336,7 +296,7 @@ mensajeRecibido * recibirMensajeDeBroker(int socketBroker) {
 /*
  * Luego de creada la conexión con el broker, esta función envía el código de la cola a la que se va a suscribir.
  */
-void suscribirseACola(int socketBroker, cola tipoCola, uint32_t pidSuscriptor) {
+void suscribirseACola(int socketBroker, cola tipoCola, uint32_t idSuscriptor) {
 
 	tPaquete * paquete = malloc(sizeof(tPaquete));
 	paquete->buffer = malloc(sizeof(tBuffer));
@@ -346,7 +306,7 @@ void suscribirseACola(int socketBroker, cola tipoCola, uint32_t pidSuscriptor) {
 	paquete->buffer->stream = malloc(sizeof(cola) + sizeof(uint32_t));
 
 	memcpy(paquete->buffer->stream, &(tipoCola), sizeof(cola));
-	memcpy(paquete->buffer->stream + sizeof(cola), &(pidSuscriptor),
+	memcpy(paquete->buffer->stream + sizeof(cola), &(idSuscriptor),
 			sizeof(uint32_t));
 	int sizeTotal = sizeof(opCode) + sizeof(cola) + sizeof(int);
 	void * paqueteSerializado = serializarPaquete(paquete, sizeTotal);

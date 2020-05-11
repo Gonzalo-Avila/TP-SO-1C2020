@@ -109,9 +109,13 @@ void compactarMemoria() {
 	}
 }
 
+void eliminarMensaje(){
 
-void cachearConBuddySystem(void * mensaje, int sizeMensaje){
+}
 
+void * cachearConBuddySystem(void * mensaje, int sizeMensaje){
+    void * particion;
+    return particion;
 }
 
 /* Guarda el mensaje en memoria cache mediante algoritmo first fit
@@ -125,11 +129,12 @@ void cachearConBuddySystem(void * mensaje, int sizeMensaje){
  * - Hay que ver como poner las distintos criterios de victima
  */
 
-void usarBestFit(){
-
+void * usarBestFit(){
+    void * particion;
+    return particion;
 }
 
-void usarFirstFit(void * mensaje, int sizeMensaje){
+void * usarFirstFit(void * mensaje, int sizeMensaje){
 	void * particion;
 	particion = buscarEspacio(sizeMensaje, cacheBroker);
 	while (particion == NULL) {
@@ -141,24 +146,109 @@ void usarFirstFit(void * mensaje, int sizeMensaje){
 		}
 	}
 	memcpy(particion, mensaje, sizeMensaje);
+	return particion;
+
 }
 
-void cachearConParticionesDinamicas(void * mensaje, int sizeMensaje){
+void * cachearConParticionesDinamicas(void * mensaje, int sizeMensaje){
 	if(strcmp("FF",config_get_string_value(config,"ALGORITMO_PARTICION_LIBRE"))==0)
-       usarFirstFit(mensaje,sizeMensaje);
+       return usarFirstFit(mensaje,sizeMensaje);
 	else
-       usarBestFit(mensaje,sizeMensaje);
+      return usarBestFit(mensaje,sizeMensaje);
 }
 
-void cachearMensaje(void * mensaje, int sizeMensaje){
+
+void cachearMensaje(uint32_t idMensaje, uint32_t idCorrelativo, cola colaMensaje, uint32_t sizeMensaje, void * mensaje){
+
+   registroCache * nuevoRegistro = malloc(sizeof(registroCache));
+
+
+   nuevoRegistro->idMensaje=idMensaje;
+   nuevoRegistro->idCorrelativo=idCorrelativo;
+   nuevoRegistro->colaMensaje=colaMensaje;
+   nuevoRegistro->procesosALosQueSeEnvio=list_create();
+   nuevoRegistro->procesosQueConfirmaronRecepcion=list_create();
+   nuevoRegistro->sizeMensaje=sizeMensaje;
+
+
    if(strcmp("BD",config_get_string_value(config, "ALGORITMO_MEMORIA"))==0)
-	   cachearConBuddySystem(mensaje, sizeMensaje);
+	   nuevoRegistro->posicionEnMemoria=cachearConBuddySystem(mensaje, sizeMensaje);
    else
-	   cachearConParticionesDinamicas(mensaje, sizeMensaje);
+	   nuevoRegistro->posicionEnMemoria=cachearConParticionesDinamicas(mensaje, sizeMensaje);
+
+   list_add(registrosDeCache,nuevoRegistro);
 }
 
-void enviarMensajesCacheados(int socketSuscriptor, int codSuscripcion) {
-	//TODO
+
+
+bool elSuscriptorNoEstaEnLaLista( t_list * lista, uint32_t idSuscriptor){
+   bool esDistinto(void * suscriptor){
+        uint32_t * sus = (uint32_t *) suscriptor;
+        return *sus != idSuscriptor;
+   }
+   return list_all_satisfy(lista,&esDistinto);
+}
+
+t_list * getListaDeRegistrosFiltrados(suscriptor * nuevoSuscriptor, cola codSuscripcion)
+{
+	bool estaEnLaColaYNoSeConfirmoAun(void * registro){
+	     registroCache * reg = (registroCache *) registro;
+         return reg->colaMensaje==codSuscripcion &&
+        		 elSuscriptorNoEstaEnLaLista(reg->procesosQueConfirmaronRecepcion, nuevoSuscriptor->clientID);
+	}
+	return list_filter(getListaSuscriptoresByNum(codSuscripcion),&estaEnLaColaYNoSeConfirmoAun);
+}
+
+
+
+
+void enviarMensajes(t_list * mensajesAEnviar, suscriptor * suscriptor )
+{
+	void enviarMensajeAlSuscriptor(void * registro){
+	    registroCache * reg = (registroCache *) registro;
+	    estructuraMensaje mensajeAEnviar;
+	    int socketSuscriptor, statusEnvio, ack=0;
+
+	    mensajeAEnviar.colaMensajeria=reg->colaMensaje;
+	    mensajeAEnviar.id=reg->idMensaje;
+	    mensajeAEnviar.idCorrelativo=reg->idCorrelativo;
+	    mensajeAEnviar.sizeMensaje=reg->sizeMensaje;
+
+	    mensajeAEnviar.mensaje=malloc(mensajeAEnviar.sizeMensaje);
+	    memcpy(mensajeAEnviar.mensaje,reg->posicionEnMemoria,mensajeAEnviar.sizeMensaje);
+
+	    socketSuscriptor = getSocketActualDelSuscriptor(suscriptor->clientID,reg->colaMensaje);
+
+	    statusEnvio=enviarMensajeASuscriptor(mensajeAEnviar, socketSuscriptor);
+
+		if(statusEnvio>=0)
+			agregarAListaDeEnviados(mensajeAEnviar.id,suscriptor->clientID);
+
+		recv(socketSuscriptor,&ack, sizeof(uint32_t),MSG_WAITALL);
+
+		if(ack==1)
+			agregarAListaDeConfirmados(mensajeAEnviar.id,suscriptor->clientID);
+
+		free(mensajeAEnviar.mensaje);
+	}
+
+	    list_iterate(mensajesAEnviar, &enviarMensajeAlSuscriptor);
+}
+
+void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion) {
+	/*TODO - DONE
+	 *	- Filtrar los registros pertenecientes a la cola del codSuscripcion, en las cuales no figure registrado el ID del
+	 *    nuevoSuscriptor en la lista de cofirmados. (DONE)
+	 *  - Por cada nodo de la lista resultante, llenar una instancia de estructuraMensaje con los datos registrados, y enviar
+	 *    el mensaje al suscriptor con la funcion enviarMensajeASuscriptor.
+	 *  - Segun el resultado del send, agregar o no a la lista de enviados.
+	 *  - Esperar ack del suscriptor.
+	 *  - Segun resultado del recv, agregar o no a la lista de confirmados.
+	 *
+	 */
+    t_list * mensajesAEnviar = getListaDeRegistrosFiltrados(nuevoSuscriptor,codSuscripcion);
+    enviarMensajes(mensajesAEnviar,nuevoSuscriptor);
+
 
 }
 

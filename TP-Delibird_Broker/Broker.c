@@ -39,6 +39,8 @@ void inicializarColasYListas() {
 	suscriptoresCAT = list_create();
 	suscriptoresCAU = list_create();
 
+	registrosDeCache = list_create();
+
 }
 
 int getSocketEscuchaBroker() {

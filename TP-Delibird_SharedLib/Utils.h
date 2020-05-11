@@ -138,10 +138,6 @@ typedef struct {
 	void * mensaje;
 } mensajeRecibido;
 
-typedef struct {
-	int socketCliente;
-	uint32_t clientID;
-} suscriptor;
 
 void atenderConexionEn(int socket, int backlog);
 int crearConexionServer(char * ip, char * puerto);
@@ -159,7 +155,7 @@ mensajeRecibido * recibirMensajeDeBroker(int socketBroker);
 tPaquete *recibirMensaje(int socketFuente);
 void loggearMensaje(t_log *logger, char * mensaje);
 int test();
-void suscribirseACola(int socketBroker, cola tipoCola, uint32_t pidSuscriptor);
+void suscribirseACola(int socketBroker, cola tipoCola, uint32_t idSuscriptor);
 void enviarACola(int socketBroker, cola tipoCola, char* msj, int msjSize);
 char* getCodeStringByNum(int nro);
 
