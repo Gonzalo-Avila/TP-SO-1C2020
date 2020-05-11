@@ -240,11 +240,11 @@ void crearHiloParaAtenderBroker(int *socketBroker) {
 /* Se suscribe a las colas del Broker */
 void suscribirseALasColas(int socketA,int socketL,int socketC) {
 
-	suscribirseACola(socketA,APPEARED);
+	suscribirseACola(socketA,APPEARED, 1);
 
-	suscribirseACola(socketL,LOCALIZED);
+	suscribirseACola(socketL,LOCALIZED, 1);
 
-	suscribirseACola(socketC,CAUGHT);
+	suscribirseACola(socketC,CAUGHT,1);
 
 }
 

@@ -47,6 +47,7 @@ typedef enum {
 	NUEVA_CONEXION = 5
 } opCode;
 
+
 typedef enum {
 	NEW = 0, APPEARED = 1, CATCH = 2, CAUGHT = 3, GET = 4, LOCALIZED = 5
 } cola;

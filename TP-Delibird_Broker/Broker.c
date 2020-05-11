@@ -60,6 +60,10 @@ int getSocketEscuchaBroker() {
 			"El servidor está configurado y a la espera de un cliente. Número de socket servidor: %d",
 			socketEscucha);
 
+
+	free(ipEscucha);
+	free(puertoEscucha);
+
 	return socketEscucha;
 
 }
