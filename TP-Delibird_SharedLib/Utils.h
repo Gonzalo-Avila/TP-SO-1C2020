@@ -39,117 +39,95 @@ t_config * config;
  * MENSAJE 		LOCALIZED	<MsjLenght> <NombrePokemon> = 1 6 <MsjLenght> <NombrePokemon>
  * */
 
-typedef enum
-{
-	NUEVO_MENSAJE=1,
-	FINALIZAR=2,
-	SUSCRIPCION=3,
-	CONFIRMACION_MENSAJE=4
-}opCode;
+typedef enum {
+	NUEVO_MENSAJE = 1,
+	FINALIZAR = 2,
+	SUSCRIPCION = 3,
+	CONFIRMACION_MENSAJE = 4,
+	NUEVA_CONEXION = 5
+} opCode;
 
-typedef enum
-{
-	NEW=0,
-	APPEARED=1,
-	CATCH=2,
-	CAUGHT=3,
-	GET=4,
-	LOCALIZED=5
-}cola;
 
-typedef struct
-{
-	uint32_t size;//Cuanto pesa el STREAM
+typedef enum {
+	NEW = 0, APPEARED = 1, CATCH = 2, CAUGHT = 3, GET = 4, LOCALIZED = 5
+} cola;
+
+typedef enum {
+	ESTADO_NUEVO = 0, ESTADO_ENVIADO = 1, ESTADO_CONFIRMADO = 2
+} statusMensaje;
+
+typedef struct {
+	uint32_t size; //Cuanto pesa el STREAM
 	void* stream;
 } tBuffer;
 
-typedef struct
-{
+typedef struct {
 	opCode codOperacion;
 	tBuffer* buffer; //Buffer = size + stream
 } tPaquete;
 
 //Este mensaje hace aparecer un nuevo pokemon en la posicion indicada
-typedef struct
-{
+typedef struct {
 	uint32_t longPokemon;   //Longitud del nombre del pokemon.
 	char * pokemon;         //Nombre del pokemon a agregar.
 	uint32_t posicionX;
-	uint32_t posicionY;;  //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
-    uint32_t cantPokemon;   //Cantidad pokemons a agregar en la posición.
-}mensajeNew;
+	uint32_t posicionY;
+	;
+	//Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
+	uint32_t cantPokemon;   //Cantidad pokemons a agregar en la posición.
+} mensajeNew;
 
 //Este mensaje avisa que ha aparecido un nuevo pokemon en la posicion indicada
-typedef struct
-{
+typedef struct {
 	uint32_t longPokemon;   //Longitud del nombre del pokemon.
 	char * pokemon;         //Nombre del pokemon que apareció.
 	uint32_t posicionX;
-	uint32_t posicionY;  //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
-}mensajeAppeared;
+	uint32_t posicionY; //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
+} mensajeAppeared;
 
 //Este mensaje indica que se va a atrapar un pokemon en determinada posicion
-typedef struct
-{
+typedef struct {
 	uint32_t longPokemon;   //Longitud del nombre del pokemon.
 	char * pokemon;         //Nombre del pokemon a atrapar.
 	uint32_t posicionX;
-	uint32_t posicionY;;  //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
-}mensajeCatch;
+	uint32_t posicionY; //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
+} mensajeCatch;
 
 //Este mensaje confirma si el resultado de la operacion "Catch" fue correcto o fallo
-typedef struct
-{
-    uint32_t resultado;     //Define si se atrapo correctamente o no. Habria que ver que tipo de variable seria.
-}mensajeCaught;
+typedef struct {
+	uint32_t resultado; //Define si se atrapo correctamente o no. Habria que ver que tipo de variable seria.
+} mensajeCaught;
 
 //Este mensaje solicita todas las posiciones en las que se puede encontrar determinado pokemon
-typedef struct
-{
+typedef struct {
 	uint32_t longPokemon;   //Longitud del nombre del pokemon.
-	char * pokemon;         //Nombre del pokemon cuyas posiciones se desea conocer.
-}mensajeGet;
+	char * pokemon;      //Nombre del pokemon cuyas posiciones se desea conocer.
+} mensajeGet;
 
 //Este mensaje informa todas las posiciones donde se puede encontrar un pokemon, y en que cantidades
-typedef struct
-{
+typedef struct {
 	uint32_t longPokemon;   //Longitud del nombre del pokemon.
-	char * pokemon;         //Nombre del pokemon cuyas posiciones se esta informando.
-    uint32_t listSize;
-    t_list * posicionYCant; //Lista de todas las posiciones donde esta el pokemon y cantidad en cada una, seria un struct.
-}mensajeLocalized;
+	char * pokemon;    //Nombre del pokemon cuyas posiciones se esta informando.
+	uint32_t listSize;
+	t_list * posicionYCant; //Lista de todas las posiciones donde esta el pokemon y cantidad en cada una, seria un struct.
+} mensajeLocalized;
 
 //Estructura para las componentes de la lista de posiciones y cantidades
-typedef struct
-{
+typedef struct {
 	uint32_t posicionX;
-	uint32_t posicionY;   //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
+	uint32_t posicionY; //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
 	uint32_t cantidad;      //Cantidad de pokemons que hay en la posición.
-}posicYCant;
-
-/*typedef struct {
-	uint32_t id;
-	uint32_t idCorrelativo;			// Si no se usa idCorrelativo = -1
-	t_list *listaSuscriptores;
-	uint32_t sizeMensaje;
-	void* mensaje;
-}estructuraMensaje;*/
-
-typedef enum{
-	ESTADO_NUEVO=0,
-    ESTADO_ENVIADO=1,
-	ESTADO_CONFIRMADO=2
-}statusMensaje;
+} posicYCant;
 
 typedef struct {
 	uint32_t id;
 	uint32_t idCorrelativo;			// Si no se usa idCorrelativo = -1
 	uint32_t sizeMensaje;
 	void* mensaje;
-	int socketSuscriptor;
+	int clientID;
 	statusMensaje estado;
 	cola colaMensajeria;
-}estructuraMensaje;
+} estructuraMensaje;
 
 typedef struct {
 	opCode codeOP;
@@ -158,8 +136,8 @@ typedef struct {
 	uint32_t idMensaje;
 	uint32_t idCorrelativo;
 	uint32_t sizeMensaje;
-    void * mensaje;
-}mensajeRecibido;
+	void * mensaje;
+} mensajeRecibido;
 
 
 void atenderConexionEn(int socket, int backlog);
@@ -170,14 +148,17 @@ void inicializarColas();
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar);
 void * serializarPaqueteCola(tPaquete* paquete, int tamanioAEnviar);
 void enviarString(int socketDestino, char * mensaje);
-void enviarMensajeASuscriptor(estructuraMensaje datosMensaje);
-void enviarMensajeABroker(int socketBroker, cola colaDestino,uint32_t idCorrelativo,uint32_t sizeMensaje,void * mensaje);
+int enviarMensajeASuscriptor(estructuraMensaje datosMensaje,
+		int socketSuscriptor);
+void enviarMensajeABroker(int socketBroker, cola colaDestino,
+		uint32_t idCorrelativo, uint32_t sizeMensaje, void * mensaje);
 mensajeRecibido * recibirMensajeDeBroker(int socketBroker);
 tPaquete *recibirMensaje(int socketFuente);
-void loggearMensaje(t_log *logger,char * mensaje);
+void loggearMensaje(t_log *logger, char * mensaje);
 int test();
-void suscribirseACola(int socketBroker, cola tipoCola);
+void suscribirseACola(int socketBroker, cola tipoCola, uint32_t idSuscriptor);
 void enviarACola(int socketBroker, cola tipoCola, char* msj, int msjSize);
-char * obtenerNombreCola(cola tipoCola);
+char* getCodeStringByNum(int nro);
+
 
 #endif /* UTILS_H_ */

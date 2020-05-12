@@ -244,8 +244,14 @@ bool esUnObjetivo(void* objetivo) {
 //}
 
 int main() {
+	uint32_t idDelProceso;
+
 	inicializarVariablesGlobales();
 
+	//Obtengo el ID del proceso
+	idDelProceso = obtenerIdDelProceso(ipServidor, puertoServidor);
+
+	//Creo 3 conexiones con el Broker, una por cada cola
 	int *socketBrokerApp = malloc(sizeof(int));
 	*socketBrokerApp = crearConexionCliente(ipServidor, puertoServidor);
 	int *socketBrokerLoc = malloc(sizeof(int));
@@ -254,7 +260,7 @@ int main() {
 	*socketBrokerCau = crearConexionCliente(ipServidor, puertoServidor);
 
 	//Se suscribe el Team a las colas
-	suscribirseALasColas(*socketBrokerApp,*socketBrokerLoc,*socketBrokerCau);
+	suscribirseALasColas(*socketBrokerApp,*socketBrokerLoc,*socketBrokerCau, idDelProceso);
 	crearHiloParaAtenderBroker(socketBrokerApp);
 	crearHiloParaAtenderBroker(socketBrokerLoc);
 	crearHiloParaAtenderBroker(socketBrokerCau);

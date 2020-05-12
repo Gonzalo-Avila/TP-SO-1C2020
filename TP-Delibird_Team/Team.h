@@ -83,6 +83,7 @@ sem_t mutexMensajes;
 
 /* Funciones */
 void inicializarVariablesGlobales();
+uint32_t obtenerIdDelProceso(char* ip, char* puerto);
 void array_iterate_element(char** strings, void (*closure)(char*,t_list*),t_list *lista);
 void enlistar(char *elemento,t_list *lista);
 void obtenerDeConfig(char *clave,t_list *lista);
@@ -93,7 +94,7 @@ void generarEntrenadores();
 e_algoritmo obtenerAlgoritmoPlanificador();
 void atenderBroker(int *socketBroker);
 void crearHiloParaAtenderBroker(int *socketBroker);
-void suscribirseALasColas(int socketA,int socketL,int socketC);
+void suscribirseALasColas(int socketA,int socketL,int socketC, uint32_t idProceso);
 t_mensaje* parsearMensaje(char* mensaje);
 t_mensaje* deserializar(void* paquete);
 void gestionarMensajes(char* ip, char* puerto);

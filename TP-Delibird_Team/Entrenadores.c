@@ -59,17 +59,6 @@ void setearObjetivosDeTeam(t_team *team) {
 	}
 }
 
-void enviarGetSegunObjetivo(char *ip, char *puerto) {
-	char *pokemon = malloc(MAXSIZE);
-
-	for (int i = 0; i < list_size(team->objetivo); i++) {
-		pokemon = list_get(team->objetivo, 0);
-		enviarGetDePokemon(ip, puerto, pokemon);
-	}
-	free(pokemon);
-
-}
-
 void crearHiloEntrenador(t_entrenador* entrenador) {
 	pthread_t nuevoHilo;
 	t_listaHilos* nodoListaDeHilos = malloc(sizeof(t_listaHilos));
