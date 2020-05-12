@@ -77,6 +77,9 @@ char* pokemonRecibido;
 char* ipServidor;
 char* puertoServidor;
 t_list *listaMensajesRecibidosLocalized;
+t_list *listaCondsEntrenadores;
+pthread_mutex_t mutexHilosEntrenadores;
+sem_t mutexMensajes;
 
 /* Funciones */
 void inicializarVariablesGlobales();
@@ -94,16 +97,21 @@ void suscribirseALasColas(int socketA,int socketL,int socketC);
 t_mensaje* parsearMensaje(char* mensaje);
 t_mensaje* deserializar(void* paquete);
 void gestionarMensajes(char* ip, char* puerto);
+bool menorDist(void *dist1,void *dist2);
+bool hayaAlgunEntrenadorActivo();
 void liberarMemoria();
+t_list *obtenerEntrenadoresReady();
 bool elementoEstaEnLista(t_list *lista, char *elemento);
 void setearObjetivosDeTeam(t_team *team);
 void enviarGetSegunObjetivo(char *ip, char *puerto);
+void enviarGetDePokemon(char *ip, char *puerto, char *pokemon);
 float calcularDistancia(int posX1, int posY1,int posX2,int posY2);
 t_dist *setearDistanciaEntrenadores(int id,int posX,int posY);
 bool estaEnEspera(t_entrenador *entrenador);
 bool esUnObjetivo(void *objetivo);
 bool distanciaMasCorta(void *entrenador1,void *entrenador2);
 t_entrenador* entrenadorMasCercanoEnEspera(int posX,int posY);
-void planificar();
+void planificarFifo();
+void planificador();
 
 #endif /* TEAM_H_ */

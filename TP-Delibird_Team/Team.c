@@ -16,6 +16,11 @@ void inicializarVariablesGlobales() {
 	puertoServidor = config_get_string_value(config, "PUERTO");
 	team->algoritmoPlanificacion = obtenerAlgoritmoPlanificador();
 	listaMensajesRecibidosLocalized = list_create();
+	listaCondsEntrenadores = list_create();
+	//inicializo el mutex para los hilos de entrenador
+	pthread_mutex_init(mutexHilosEntrenadores,1);
+	//inicializo el mutex para los mensajes que llegan del broker
+	sem_init(mutexMensajes, 1, 0);
 }
 
 void array_iterate_element(char** strings, void (*closure)(char*, t_list*),
@@ -59,123 +64,6 @@ void obtenerDeConfig(char *clave, t_list *lista) {
 	listaDeConfig = config_get_array_value(config, clave);
 
 	array_iterate_element(listaDeConfig, enlistar, lista);
-}
-
-/*MANEJA EL FUNCIONAMIENTO INTERNO DE CADA ENTRENADOR(trabajo en un hilo separado)*/
-void gestionarEntrenador(t_entrenador *entrenador) {
-	while(entrenador->estado == EJEC){
-		if(entrenador->pos[0] < 'X'/*X POKEMON*/){
-			entrenador->pos[0]++;
-		}
-		else if(entrenador->pos[0] > 'X'/*X POKEMON*/){
-			entrenador->pos[0]--;
-		}
-		if(entrenador->pos[1] < 'Y'/*Y POKEMON*/){
-			entrenador->pos[1]++;
-		}
-		else if(entrenador->pos[1] > 'Y' /*Y POKEMON*/){
-			entrenador->pos[1]--;
-		}
-		if(entrenador->pos[0] == 'X'/*X POKEMON*/ && entrenador->pos[1] == 'Y'/* Y POKEMON */){
-			//send(CATCH pokemon);
-			//esperaCAUGHT
-			/*if(pokemones.contains(objetivos)){
-				estado = FIN;
-			}
-			else{
-				estado = BLOCKED;
-			}*/
-		}
-		/* RETARDO DEL CPU. LA FUNCION RECIBE MICROSEGUNDOS */
-		usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) / 100000);
-	}
-	//mover entrenador a posicion del pokemon que necesita
-	//pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
-	//pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
-
-}
-
-
-void crearHiloEntrenador(t_entrenador* entrenador) {
-	pthread_t nuevoHilo;
-	t_listaHilos* nodoListaDeHilos = malloc(sizeof(t_listaHilos));
-
-	pthread_create(&nuevoHilo, NULL, (void*) gestionarEntrenador, entrenador);
-
-	nodoListaDeHilos->hilo = nuevoHilo;
-	nodoListaDeHilos->idEntrenador = entrenador->id;
-
-	list_add(listaHilos, nodoListaDeHilos);
-
-	pthread_detach(nuevoHilo);
-}
-
-/*Arma el Entrenador*/
-t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,
-		char *objetivosEntrenador, char *pokemonesEntrenador) {
-	t_entrenador* nuevoEntrenador = malloc(sizeof(t_entrenador));
-	t_list *posicionEntrenador = list_create();
-	t_list *objetivoEntrenador = list_create();
-	t_list *pokemonEntrenador = list_create();
-
-	array_iterate_element((char **) string_split(posicionesEntrenador, "|"),
-			(void *) enlistar, posicionEntrenador);
-	array_iterate_element((char **) string_split(objetivosEntrenador, "|"),
-			(void *) enlistar, objetivoEntrenador);
-	array_iterate_element((char **) string_split(pokemonesEntrenador, "|"),
-			(void *) enlistar, pokemonEntrenador);
-
-	for (int i = 0; i < 2; i++) {
-		nuevoEntrenador->pos[i] = atoi(list_get(posicionEntrenador, i));
-	}
-	nuevoEntrenador->id = id;
-	nuevoEntrenador->objetivos = objetivoEntrenador;
-	nuevoEntrenador->pokemones = pokemonEntrenador;
-	nuevoEntrenador->estado = NUEVO; // Debugeando de mi cuenta que sin esta linea de codigo solo el ultimo elemento lo pasa a new
-
-	list_destroy(posicionEntrenador);
-
-	return nuevoEntrenador;
-}
-
-/* Genera los Entrenadores con los datos del Config */
-void generarEntrenadores() {
-	t_entrenador* unEntrenador = malloc(sizeof(t_entrenador));
-	t_list* posiciones = list_create();
-	t_list* objetivos = list_create();
-	t_list* pokemones = list_create();
-
-	obtenerDeConfig("POSICIONES_ENTRENADORES", posiciones);
-	obtenerDeConfig("OBJETIVO_ENTRENADORES", objetivos);
-	obtenerDeConfig("POKEMON_ENTRENADORES", pokemones);
-	for (int contador = 0; contador < list_size(posiciones); contador++) {
-		unEntrenador = armarEntrenador(contador, list_get(posiciones, contador),
-				list_get(objetivos, contador), list_get(pokemones, contador));
-		list_add(team->entrenadores, unEntrenador);
-	}
-	list_destroy(posiciones);
-	list_destroy(objetivos);
-	list_destroy(pokemones);
-}
-
-e_algoritmo obtenerAlgoritmoPlanificador() {
-	char* algoritmo = malloc(
-			strlen(config_get_string_value(config, "ALGORITMO_PLANIFICACION"))
-					+ 1);
-	algoritmo = config_get_string_value(config, "ALGORITMO_PLANIFICACION");
-	if (strcmp(algoritmo, "FIFO") == 0) {
-		return FIFO;
-	} else if (strcmp(algoritmo, "RR") == 0) {
-		return RR;
-	} else if (strcmp(algoritmo, "SJFCD") == 0) {
-		return SJFCD;
-	} else if (strcmp(algoritmo, "SJFSD") == 0) {
-		return SJFSD;
-	} else {
-		log_info(logger,
-				"No se ingresó un algoritmo válido en team.config. Se toma FIFO por defecto.\n");
-		return FIFO;
-	}
 }
 
 /* Atender al Broker */
@@ -239,7 +127,10 @@ void atenderBroker(int *socketBroker) {
 				strcpy(p->pokemon,pokemon);
 				p->cantPokes = cantPokes;
 
+
+				sem_wait(mutexMensajes);
 				list_add(listaMensajesRecibidosLocalized,p);
+				sem_post(mutexMensajes);
 				break;
 			}
 			case CAUGHT:
@@ -322,95 +213,6 @@ bool elementoEstaEnLista(t_list *lista, char *elemento) {
 	return verifica;
 }
 
-void setearObjetivosDeTeam(t_team *team) {
-	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
-
-	for (int i = 0; i < list_size(team->entrenadores); i++) {
-		entrenador = list_get(team->entrenadores, i);
-		for (int j = 0; j < list_size(entrenador->objetivos); j++) {
-			list_add(team->objetivo, list_get(entrenador->objetivos, j));
-		}
-	}
-}
-
-void enviarGetSegunObjetivo(char *ip, char *puerto) {
-	char *pokemon = malloc(MAXSIZE);
-
-	for (int i = 0; i < list_size(team->objetivo); i++) {
-		pokemon = list_get(team->objetivo, 0);
-		enviarGetDePokemon(ip, puerto, pokemon);
-	}
-	free(pokemon);
-
-}
-
-float calcularDistancia(int posX1, int posY1, int posX2, int posY2) {
-	int cat1, cat2;
-	float distancia;
-
-	cat1 = abs(posX2 - posX1);
-	cat2 = abs(posY2 - posY1);
-	distancia = sqrt(pow(cat1, 2) + pow(cat2, 2));
-
-	return distancia;
-}
-
-//setea la distancia de todos los entrenadores del team al pokemon localizado
-t_dist *setearDistanciaEntrenadores(int id, int posX, int posY) {
-	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
-	t_dist *distancia = malloc(sizeof(t_dist));
-
-	entrenador = list_get(team->entrenadores, id);
-
-	distancia->dist = calcularDistancia(entrenador->pos[0], entrenador->pos[1],
-			posX, posY);
-	distancia->idEntrenador = id;
-
-	return distancia;
-}
-
-bool menorDist(void *dist1, void *dist2) {
-	bool verifica = false;
-
-	if (((t_dist*) dist1)->dist < ((t_dist*) dist2)->dist)
-		verifica = true;
-
-	return verifica;
-}
-
-t_entrenador *entrenadorMasCercanoEnEspera(int posX, int posY) {
-	t_list* listaDistancias = list_create();
-	t_dist *distancia = malloc(sizeof(t_dist));
-	int idEntrenadorConDistMenor;
-	int i = 0;
-
-	for (int i = 0; i < list_size(team->entrenadores); i++) {
-		distancia = setearDistanciaEntrenadores(i, posX, posY);
-		list_add(listaDistancias, distancia);
-	}
-	list_sort(listaDistancias, menorDist);
-
-	while(listaDistancias){
-		idEntrenadorConDistMenor = ((t_dist*) list_get(listaDistancias, i))->idEntrenador;
-
-		if(estaEnEspera(((t_entrenador*) list_get(team->entrenadores,
-				idEntrenadorConDistMenor))))
-			break;
-		i++;
-	}//esta estructura se fija si el entrenador esta en espera.
-	return ((t_entrenador*) list_get(team->entrenadores,
-			idEntrenadorConDistMenor));
-}
-
-//Esta funcion se podria codear para que sea una funcion generica, pero por el momento solo me sirve saber si está o no en ready.
-bool estaEnEspera(t_entrenador *trainer) {
-	bool verifica = false;
-	if (((trainer->estado) == NUEVO) || ((trainer->estado) == BLOQUEADO))
-		verifica = true;
-
-	return verifica;
-}
-
 bool esUnObjetivo(void* objetivo) {
 	bool verifica = false;
 	if (string_equals_ignore_case(pokemonRecibido, objetivo)) {
@@ -419,111 +221,30 @@ bool esUnObjetivo(void* objetivo) {
 	return verifica;
 }
 
-void activarHiloDe(int id){
-
-}
-
-
-
-t_list *obtenerEntrenadoresReady(){
-	t_list *entrenadoresReady = list_create();
-	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
-
-	for(int i = 0;i < list_size(team->entrenadores);i++){
-		entrenador = list_get(team->entrenadores,i);
-
-		if(entrenador->estado == LISTO)
-			list_add(entrenadoresReady,entrenador);
-		}
-
-	return entrenadoresReady;
-}
-
-bool hayaAlgunEntrenadorEnFin(){
-	bool verifica = false;
-	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
-
-	for(int i = 0; i < list_size(team->entrenadores);i++){
-		entrenador = list_get(team->entrenadores,i);
-
-		if(entrenador->estado == FIN)
-			verifica = true;
-	}
-	return verifica;
-}
-
-void planificarFifo(){
-	t_list *entrenadoresReady = list_create();
-	//Agarro un mensaje recibido del Broker q sea APP o LOC Y me sirva.
-	//Antes entro a REGION CRITICA y bloqueo para que pueda sacar solo yo
-	//y evitar que otro hilo meta mas mensajes mientras saco.
-
-	t_entrenador* elEntrenadorMasCercano = malloc(sizeof(t_entrenador));
-
-	t_list *posx = list_create();
-	t_list *posy = list_create();
-
-	posx = ((t_pokemonesLocalized*)list_get(listaMensajesRecibidosLocalized,0))->x;
-	posy = ((t_pokemonesLocalized*)list_get(listaMensajesRecibidosLocalized,0))->y;
-
-	elEntrenadorMasCercano = entrenadorMasCercanoEnEspera((int)list_get(posx,0),(int)list_get(posy,0));
-	elEntrenadorMasCercano->estado = LISTO;//me aseguro de que tengo uno en READY antes de llamar para planificar
-
-	while(!hayaAlgunEntrenadorEnFin()){
-		//recibo una senial de que vuelve de excec
-		t_entrenador *entrenador = malloc(sizeof(t_entrenador));
-
-		entrenadoresReady = obtenerEntrenadoresReady();
-
-		for(int j = 0; j < list_size(entrenadoresReady);j++){
-
-			entrenador = list_get(entrenadoresReady,j);
-
-			activarHiloDe(entrenador->id);
-		//se bloque el planificador hasta que termine el ciclo de ejecucion del hilo.
-		}
-	}
-}
-
-void planificador(){
-	switch(team->algoritmoPlanificacion){
-			case FIFO:
-				planificarFifo();
-				break;
-			//en caso que tengamos otro algoritmo usamos la funcion de ese algoritmo
-			default:
-				planificarFifo();
-				break;
-	}
-}
-
 /* Planificar */
-void planificar() {
-	/*
-	 Nuevo Hilo por cada entrenador
-
-	 APARECE UN POKEMON
-
-	 Me fijo algun entrendaro libre (NUEVO/BLOQUEADO)
-	 idEntrenadorLibreMasCercano= masCercano(team->entrenadores,pokemon);
-	 (team->entrenadores[idEntrenadorLibreMasCercano])->estado = READY
-
-	 meterProcesosListosEnLaColaDeListos();
-	 FIFO con la cola --> cambio estado del Entrenador a EJEC
-
-	 Despierta el Hilo del entrenador con estado EJEC de listaHilos = [threadEntrenador1,threadEntrenador2,...]
-	 Cuando termina el Hilo lo pasa a BLOQUEADO o FIN segun corresponda
-	 */
-
-	for (int i = 0; i < list_size(team->entrenadores); i++) {
-		crearHiloEntrenador(list_get(team->entrenadores, i));
-	}//Arma un hilo por entrenador
-
-}
+//void planificar() {
+//	/*
+//	 Nuevo Hilo por cada entrenador
+//
+//	 APARECE UN POKEMON
+//
+//	 Me fijo algun entrendaro libre (NUEVO/BLOQUEADO)
+//	 idEntrenadorLibreMasCercano= masCercano(team->entrenadores,pokemon);
+//	 (team->entrenadores[idEntrenadorLibreMasCercano])->estado = READY
+//
+//	 meterProcesosListosEnLaColaDeListos();
+//	 FIFO con la cola --> cambio estado del Entrenador a EJEC
+//
+//	 Despierta el Hilo del entrenador con estado EJEC de listaHilos = [threadEntrenador1,threadEntrenador2,...]
+//	 Cuando termina el Hilo lo pasa a BLOQUEADO o FIN segun corresponda
+//	 */
+//
+//	//Arma un hilo por entrenador
+//
+//}
 
 int main() {
 	inicializarVariablesGlobales();
-
 
 	int *socketBrokerApp = malloc(sizeof(int));
 	*socketBrokerApp = crearConexionCliente(ipServidor, puertoServidor);
@@ -540,10 +261,21 @@ int main() {
 
 	generarEntrenadores();
 
-
 	setearObjetivosDeTeam(team);
 
+	for(int j = 0; j < list_size(team->entrenadores);j++){
+		pthread_cond_t *cond = malloc(sizeof(pthread_cond_t));
+
+		pthread_cond_init(cond,1);
+
+		list_add(listaCondsEntrenadores,cond);
+	}
+
 	enviarGetSegunObjetivo(ipServidor,puertoServidor);
+
+	for (int i = 0; i < list_size(team->entrenadores); i++) {
+		crearHiloEntrenador(list_get(team->entrenadores, i));
+	}//Que cada hilo se bloquee a penas empieza.
 
 	/*Ahora me quedo esperando a que me llegue un LOCALIZED o en su defecto si no
 	 * hay conexion con el broker, un APPEARED.
