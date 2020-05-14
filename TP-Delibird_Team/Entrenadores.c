@@ -48,7 +48,7 @@ void generarEntrenadores() {
 	list_destroy(pokemones);
 }
 
-void setearObjetivosDeTeam(t_team *team) {
+void setearObjetivosDeTeam() {
 	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
 
 	for (int i = 0; i < list_size(team->entrenadores); i++) {
@@ -59,6 +59,18 @@ void setearObjetivosDeTeam(t_team *team) {
 	}
 }
 
+void setearCondsEntrenadores(){
+	for(int i = 0; i < list_size(team->entrenadores);i++){
+			pthread_cond_t *cond = malloc(sizeof(pthread_cond_t));
+			t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+
+			pthread_cond_init(cond,1);
+			entrenador = list_get(team->entrenadores,i);
+
+			entrenador->cond = cond;
+		}
+}
+
 void crearHiloEntrenador(t_entrenador* entrenador) {
 	pthread_t nuevoHilo;
 	t_listaHilos* nodoListaDeHilos = malloc(sizeof(t_listaHilos));
@@ -66,21 +78,52 @@ void crearHiloEntrenador(t_entrenador* entrenador) {
 	pthread_create(&nuevoHilo, NULL, (void*) gestionarEntrenador, entrenador);
 
 	nodoListaDeHilos->hilo = nuevoHilo;
-	nodoListaDeHilos->idEntrenador = entrenador->id;
+	nodoListaDeHilos->id = entrenador->id;
 
 	list_add(listaHilos, nodoListaDeHilos);
 
 	pthread_detach(nuevoHilo);
 }
 
+t_dist *setearDistanciaPokemones(int id, int x, int y){
+	t_dist *distancia = malloc(sizeof(t_dist));
+
+//	distancia->dist = calcularDistancia((t_posicionEnMapa*)list_get(listaPosicionesInternas,0)),,x, y);
+	//Todo fijarse como agarra la posicion del pokemon de las internas.
+	//preguntar.
+	distancia->id = id;
+
+	return distancia;
+}
+int encontrarPokemonMasCercano(int x,int y){
+	t_list* listaDistancias = list_create();
+	t_dist *distancia = malloc(sizeof(t_dist));
+
+	for (int i = 0; i < list_size(listaPosicionesInternas); i++) {
+		distancia = setearDistanciaPokemones(i, x, y);
+		list_add(listaDistancias, distancia);
+	}
+	list_sort(listaDistancias, menorDist);
+
+	t_dist *idPokemonConDistMenor = ((t_dist*)list_get(listaDistancias,0))->id;
+
+	return ((t_entrenador*) list_get(listaPosicionesInternas,
+				idPokemonConDistMenor));
+}
+
 /*MANEJA EL FUNCIONAMIENTO INTERNO DE CADA ENTRENADOR(trabajo en un hilo separado)*/
 void gestionarEntrenador(t_entrenador *entrenador) {
 
-	//Estoy pensando como implementar algo para que cada entrenador sepa su Cond
-	//y se pueda bloquear solo.
-	pthread_cond_wait(cond,mutexHilosEntrenadores);
+	pthread_mutex_lock(&mutexHilosEntrenadores);
+	pthread_cond_wait(entrenador->cond,&mutexHilosEntrenadores);
+	pthread_mutex_unlock(&mutexHilosEntrenadores);
 
-	while(entrenador->estado == EJEC){
+	//pokemon mas cercano al entrenador
+	int idPokeMasCercano = encontrarPokemonMasCercano(entrenador->pos[0],entrenador->pos[1]);
+	//Todo esto es muy feo tengo que buscar una forma mas facil de acomodar esto.
+	//Preguntar esto.
+	while(entrenador->pos[0] != (int)list_get(((t_posicionEnMapa*)list_get(listaPosicionesInternas,idPokeMasCercano))->x,0)){
+		sem_wait(mutexEntrenadores);
 		if(entrenador->pos[0] < 'X'/*X POKEMON*/){
 			entrenador->pos[0]++;
 		}
@@ -102,11 +145,15 @@ void gestionarEntrenador(t_entrenador *entrenador) {
 			else{
 				estado = BLOCKED;
 			}*/
+		sem_post(mutexEntrenadores);
 		}
-		/* RETARDO DEL CPU. LA FUNCION RECIBE MICROSEGUNDOS */
-		usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) / 100000);
+		usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 100000);
 	}
-	//mover entrenador a posicion del pokemon que necesita
+
+	//send catch
+	//pthread_cond_wait();
+
+
 }
 
 

@@ -49,7 +49,7 @@ t_dist *setearDistanciaEntrenadores(int id, int posX, int posY) {
 
 	distancia->dist = calcularDistancia(entrenador->pos[0], entrenador->pos[1],
 			posX, posY);
-	distancia->idEntrenador = id;
+	distancia->id = id;
 
 	return distancia;
 }
@@ -76,13 +76,14 @@ t_entrenador *entrenadorMasCercanoEnEspera(int posX, int posY) {
 	list_sort(listaDistancias, menorDist);
 
 	while(listaDistancias){
-		idEntrenadorConDistMenor = ((t_dist*) list_get(listaDistancias, i))->idEntrenador;
+		idEntrenadorConDistMenor = ((t_dist*) list_get(listaDistancias, i))->id;
 
 		if(estaEnEspera(((t_entrenador*) list_get(team->entrenadores,
 				idEntrenadorConDistMenor))))
 			break;
 		i++;
 	}//esta estructura se fija si el entrenador esta en espera.
+	//problema: si no tengo ningun entrenador en espera se queda en el while?
 	return ((t_entrenador*) list_get(team->entrenadores,
 			idEntrenadorConDistMenor));
 }
@@ -119,53 +120,42 @@ bool hayaAlgunEntrenadorActivo(){
 }
 
 
-void activarHiloDe(int id){
+void ponerEnReadyAlMasCercano(int x, int y){
+	t_entrenador* entrenadorMasCercano = malloc(sizeof(t_entrenador));
 
+	entrenadorMasCercano = entrenadorMasCercanoEnEspera(x,y);
+	sem_wait(mutexEntrenadores);
+	entrenadorMasCercano->estado = LISTO;//me aseguro de que tengo uno en READY antes de llamar para planificar
+	list_add(listaDeReady,entrenadorMasCercano);
+	sem_wait(mutexEntrenadores);
 }
 
-	//Agarro un mensaje recibido del Broker q sea APP o LOC Y me sirva.
-	//Antes entro a REGION CRITICA y bloqueo para que pueda sacar solo yo
-	//y evitar que otro hilo meta mas mensajes mientras saco.
-void planificarFifo(t_list *entrenadoresReady){
-	//signal(hiloEntrenadorMasCercano);
-	//pthread_cond_signal(list_get(listaCondsEntrenadores,entrenadorMasCercano->id));
+void activarHiloDe(int id){
+	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
 
-		//se bloquea el planificador hasta que termine el ciclo de ejecucion del hilo.
-		//wait(semPlanificador)
+	entrenador = list_get(team->entrenadores,id);
+
+	pthread_mutex_lock(&mutexHilosEntrenadores);
+	pthread_cond_signal(entrenador->cond);
+	pthread_mutex_unlock(&mutexHilosEntrenadores);
+}
+
+void planificarFifo(){
+		while(1/*haya alguno que no este en FIN*/){
 		t_entrenador *entrenador = malloc(sizeof(t_entrenador));
 
-		entrenadoresReady = obtenerEntrenadoresReady();
-
-		entrenador = list_get(entrenadoresReady,0);
+		entrenador = list_get(listaDeReady,0);
 		entrenador->estado = EJEC;
 		activarHiloDe(entrenador->id);
+		sem_wait(semPlanif);
+		}
 }
 
 void planificador(){
-	t_list *entrenadoresReady = list_create();
-	t_entrenador* entrenadorMasCercano = malloc(sizeof(t_entrenador));
-	t_list *posx = list_create();
-	t_list *posy = list_create();
-
-	sem_wait(mutexMensajes);
-	posx = ((t_pokemonesLocalized*)list_get(listaMensajesRecibidosLocalized,0))->x;
-	posy = ((t_pokemonesLocalized*)list_get(listaMensajesRecibidosLocalized,0))->y;
-	sem_post(mutexMensajes);
-
-	entrenadorMasCercano = entrenadorMasCercanoEnEspera((int)list_get(posx,0),(int)list_get(posy,0));
-	entrenadorMasCercano->estado = LISTO;//me aseguro de que tengo uno en READY antes de llamar para planificar
-
-	for(int i = 0;i < list_size(team->entrenadores);i++){
-		t_entrenador entr = malloc(sizeof(t_entrenador));
-		entr = list_get(team->entrenadores,i);
-
-		if(entr->estado == LISTO)
-			list_add(entrenadoresReady,entr);
-	}
 
 	switch(team->algoritmoPlanificacion){
 			case FIFO:
-				planificarFifo(entrenadoresReady);
+				planificarFifo(listaDeReady);
 				break;
 			//en caso que tengamos otro algoritmo usamos la funcion de ese algoritmo
 			default:
@@ -173,3 +163,6 @@ void planificador(){
 				break;
 	}
 }
+
+
+

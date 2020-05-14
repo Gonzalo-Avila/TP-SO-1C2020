@@ -1,4 +1,5 @@
 #include "Team.h"
+
 uint32_t obtenerIdDelProceso(char* ip, char* puerto) {
 	int* socketBroker = crearConexionCliente(ip, puerto);
 	uint32_t idProceso;
@@ -59,9 +60,9 @@ void atenderBroker(int *socketBroker) {
 				break;
 			}
 			case LOCALIZED:{
-				t_pokemonesLocalized *p = malloc(sizeof(t_pokemonesLocalized));
 				int cantPokes,longPokemon;
 				int offset = 0;
+				t_posicionEnMapa *pos = malloc(sizeof(t_posicionEnMapa));
 
 				memcpy(&longPokemon,miMensajeRecibido->mensaje,sizeof(uint32_t));
 				offset = sizeof(uint32_t);
@@ -71,6 +72,8 @@ void atenderBroker(int *socketBroker) {
 
 				offset += longPokemon;
 				memcpy(&cantPokes,miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
+
+				pos->pokemon = malloc(longPokemon);
 
 				offset += sizeof(uint32_t);
 				int x[cantPokes],y[cantPokes],cant[cantPokes];
@@ -83,20 +86,17 @@ void atenderBroker(int *socketBroker) {
 					memcpy(&cant[i],miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
 					offset += sizeof(uint32_t);
 
-					//prototipo para agregar a una estructura que se envie al planificador.
-					list_add(p->x,&x[i]);
-					list_add(p->y,&y[i]);
-					list_add(p->cantidades,&cant[i]);
+					//los agrego al mapa interno
+					list_add(pos->x,&x[i]);
+					list_add(pos->y,&y[i]);
+					list_add(pos->cantidades,&cant[i]);
 				}
-				//agrego tambien a la estructura el nombre del pokemon y la cant
-				p->pokemon = malloc(longPokemon);
-				strcpy(p->pokemon,pokemon);
-				p->cantPokes = cantPokes;
+				strcpy(pos->pokemon,pokemon);
+				list_add(listaPosicionesInternas,pos);
 
-
-				sem_wait(mutexMensajes);
-				list_add(listaMensajesRecibidosLocalized,p);
-				sem_post(mutexMensajes);
+				if(esUnObjetivo(pokemon)){
+					ponerEnReadyAlMasCercano(x[0],y[0]);
+				}
 				break;
 			}
 			case CAUGHT:

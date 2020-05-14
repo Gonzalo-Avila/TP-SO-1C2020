@@ -41,6 +41,7 @@ typedef struct{
 	t_list *objetivos;
 	t_list *pokemones;
 	e_estado estado;
+	pthread_cond_t *cond;
 }t_entrenador;
 
 typedef struct{
@@ -53,33 +54,36 @@ typedef struct{
 
 typedef struct{
 	pthread_t hilo;
-	int idEntrenador;
+	int id;
 }t_listaHilos;
 
 typedef struct{
 	float dist;
-	int idEntrenador;
+	int id;
 }t_dist;
 
 typedef struct{
 	char *pokemon;
-	int cantPokes;
 	t_list *x;
 	t_list *y;
 	t_list *cantidades;
-}t_pokemonesLocalized;
+}t_posicionEnMapa;
 
 t_team *team;
 t_list *listaHilos;
-t_queue *colaDeReady;
-t_queue *colaDeBloqued;
+t_list *listaDeReady;
+t_list *listaDeBloqued;
 char* pokemonRecibido;
 char* ipServidor;
 char* puertoServidor;
-t_list *listaMensajesRecibidosLocalized;
+
 t_list *listaCondsEntrenadores;
+t_list *listaPosicionesInternas;
+
 pthread_mutex_t mutexHilosEntrenadores;
-sem_t mutexMensajes;
+sem_t *mutexMensajes;
+sem_t *mutexEntrenadores;
+sem_t *semPlanif;
 
 /* Funciones */
 void inicializarVariablesGlobales();
@@ -103,7 +107,7 @@ bool hayaAlgunEntrenadorActivo();
 void liberarMemoria();
 t_list *obtenerEntrenadoresReady();
 bool elementoEstaEnLista(t_list *lista, char *elemento);
-void setearObjetivosDeTeam(t_team *team);
+void setearObjetivosDeTeam();
 void enviarGetSegunObjetivo(char *ip, char *puerto);
 void enviarGetDePokemon(char *ip, char *puerto, char *pokemon);
 float calcularDistancia(int posX1, int posY1,int posX2,int posY2);
@@ -114,5 +118,7 @@ bool distanciaMasCorta(void *entrenador1,void *entrenador2);
 t_entrenador* entrenadorMasCercanoEnEspera(int posX,int posY);
 void planificarFifo();
 void planificador();
+void setearCondsEntrenadores();
+void ponerEnReadyAlMasCercano(int x, int y);
 
 #endif /* TEAM_H_ */
