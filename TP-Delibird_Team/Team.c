@@ -100,11 +100,14 @@ int main() {
 	int *socketBrokerCau = malloc(sizeof(int));
 	*socketBrokerCau = crearConexionCliente(ipServidor, puertoServidor);
 
+	//Creo conexión con Gameboy
+	int *socketGameboy = malloc(sizeof(int));
+	*socketGameboy = crearConexionEscuchaGameboy();
+
 	//Se suscribe el Team a las colas
 	suscribirseALasColas(*socketBrokerApp,*socketBrokerLoc,*socketBrokerCau, idDelProceso);
-	crearHiloParaAtenderBroker(socketBrokerApp);
-	crearHiloParaAtenderBroker(socketBrokerLoc);
-	crearHiloParaAtenderBroker(socketBrokerCau);
+
+	crearHilosParaAtenderBroker(socketBrokerApp, socketBrokerLoc, socketBrokerCau);
 
 	generarEntrenadores();
 

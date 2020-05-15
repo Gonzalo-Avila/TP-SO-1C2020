@@ -1,0 +1,45 @@
+BROKER NEW_POKEMON [POKEMON] [POSX] [POSY] [CANTIDAD]
+
+${selected_text:BROKER} ${selected_text:NEW_POKEMON} ${selected_text:Pikachu} ${selected_text:5} ${selected_text:2} ${selected_text:4}
+
+BROKER APPEARED_POKEMON [POKEMON] [POSX] [POSY] [ID_MENSAJE]
+
+${selected_text:BROKER} ${selected_text:APPEARED_POKEMON} ${selected_text:Pikachu} ${selected_text:5} ${selected_text:2} ${selected_text:-5}
+
+BROKER CATCH_POKEMON [POKEMON] [POSX] [POSY]
+
+${selected_text:BROKER} ${selected_text:CATCH_POKEMON} ${selected_text:Pikachu} ${selected_text:5} ${selected_text:2} 
+
+BROKER CAUGHT_POKEMON [ID_MENSAJE] [OK/FAIL]
+
+${selected_text:BROKER} ${selected_text:CAUGHT_POKEMON} ${selected_text:-5} ${selected_text:1}
+
+BROKER GET_POKEMON [POKEMON]
+
+${selected_text:BROKER} ${selected_text:GET_POKEMON} ${selected_text:Pikachu}
+
+TEAM APPEARED_POKEMON [POKEMON] [POSX] [POSY]
+
+${selected_text:TEAM} ${selected_text:APPEARED_POKEMON} ${selected_text:Pikachu} ${selected_text:5} ${selected_text:2} 
+
+GAMECARD NEW_POKEMON [POKEMON] [POSX] [POSY] [CANTIDAD]
+
+${selected_text:GAMECARD} ${selected_text:NEW_POKEMON} ${selected_text:Pikachu} ${selected_text:5} ${selected_text:2} ${selected_text:4}
+
+GAMECARD CATCH_POKEMON [POKEMON] [POSX] [POSY] [ID_MENSAJE]
+
+${selected_text:GAMECARD} ${selected_text:CATCH_POKEMON} ${selected_text:Pikachu} ${selected_text:5} ${selected_text:2} ${selected_text:-5}
+
+GAMECARD GET_POKEMON [POKEMON]
+
+${selected_text:GAMECARD} ${selected_text:GET_POKEMON} ${selected_text:Pikachu}
+
+SUSCRIPTOR [COLA_DE_MENSAJES] [TIEMPO]
+
+${selected_text:SUSCRIPTOR} ${selected_text:APPEARED_POKEMON} ${selected_text:60}
+
+
+
+
+
+

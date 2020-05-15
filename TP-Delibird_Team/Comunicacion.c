@@ -1,13 +1,13 @@
 #include "Team.h"
 
 uint32_t obtenerIdDelProceso(char* ip, char* puerto) {
-	int* socketBroker = crearConexionCliente(ip, puerto);
+	int socketBroker = crearConexionCliente(ip, puerto);
 	uint32_t idProceso;
 
 	opCode codigoOP = NUEVA_CONEXION;
 	send(socketBroker, &codigoOP, sizeof(opCode), 0);
-	recv(*socketBroker, &idProceso, sizeof(uint32_t), MSG_WAITALL);
-	close(*socketBroker);
+	recv(socketBroker, &idProceso, sizeof(uint32_t), MSG_WAITALL);
+	close(socketBroker);
 
 	return idProceso;
 }
@@ -33,13 +33,13 @@ void enviarGetDePokemon(char *ip, char *puerto, char *pokemon) {
 	free(socketBroker);
 }
 
-/* Atender al Broker */
-void atenderBroker(int *socketBroker) {
+/* Atender al Broker y Gameboy */
+void atenderServidor(int *socketServidor) {
 	mensajeRecibido *miMensajeRecibido = malloc(sizeof(mensajeRecibido));
 
-	log_info(logger, "Llega hasta antes de recibirMensajeDeBroker");
+	log_debug(logger, "Se atiende al servidor");
 	while (1) {
-		miMensajeRecibido = recibirMensajeDeBroker(*socketBroker);
+		miMensajeRecibido = recibirMensajeDeBroker(*socketServidor);
 
 		if (miMensajeRecibido->codeOP == FINALIZAR) {
 			break;
@@ -114,21 +114,64 @@ void atenderBroker(int *socketBroker) {
 
 		free(miMensajeRecibido);
 	}
+	close(*socketServidor);
 }
 
-void crearHiloParaAtenderBroker(int *socketBroker) {
-	pthread_t hiloAtenderBroker;
-	pthread_create(&hiloAtenderBroker, NULL, (void*) atenderBroker,
-				socketBroker);
-	pthread_detach(hiloAtenderBroker);
+void crearHiloParaAtenderServidor(int *socketServidor) {
+	pthread_t hiloAtenderServidor;
+	pthread_create(&hiloAtenderServidor, NULL, (void*) atenderServidor,
+				socketServidor);
+	pthread_detach(hiloAtenderServidor);
+}
+
+void crearHilosParaAtenderBroker(int *socketBrokerApp, int *socketBrokerLoc, int *socketBrokerCau) {
+	crearHiloParaAtenderServidor(socketBrokerApp);
+	crearHiloParaAtenderServidor(socketBrokerLoc);
+	crearHiloParaAtenderServidor(socketBrokerCau);
 }
 
 /* Se suscribe a las colas del Broker */
 void suscribirseALasColas(int socketA,int socketL,int socketC, uint32_t idProceso) {
-
 	suscribirseACola(socketA,APPEARED, idProceso);
 	suscribirseACola(socketL,LOCALIZED, idProceso);
 	suscribirseACola(socketC,CAUGHT, idProceso);
+}
+
+int crearConexionEscuchaGameboy() {
+
+	char * ipEscucha = malloc(
+			strlen(config_get_string_value(config, "IP_TEAM")) + 1);
+	ipEscucha = config_get_string_value(config, "IP_TEAM");
+
+	char * puertoEscucha = malloc(
+			strlen(config_get_string_value(config, "PUERTO_TEAM")) + 1);
+	puertoEscucha = config_get_string_value(config, "PUERTO_TEAM");
+
+	int socketEscucha = crearConexionServer(ipEscucha, puertoEscucha);
+
+	log_info(logger, "Se ha iniciada la conexión con el Gameboy\n");
+	log_info(logger,"El Gameboy ya está conectado y puede enviar un mensaje");
+
+
+	free(ipEscucha);
+	free(puertoEscucha);
+
+	return socketEscucha;
+
+}
+
+void atenderGameboy(int *socketEscucha) {
+	int backlogGameboy = config_get_int_value(config, "BACKLOG_GAMEBOY");
+	atenderConexionEn(*socketEscucha, backlogGameboy);
+	log_debug(logger, "Esperando Gameboy...");
+
+	//Capaz tiene que ir un while(1) acá. Hay que probar
+	while(1) {
+		int *socketGameboy = esperarCliente(*socketEscucha);
+		log_info(logger,"Se ha conectado el Gameboy.");
+
+		crearHiloParaAtenderServidor(socketGameboy);
+	}
 }
 
 t_mensaje* deserializar(void* paquete) {

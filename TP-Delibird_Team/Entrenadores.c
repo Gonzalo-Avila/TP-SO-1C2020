@@ -95,6 +95,7 @@ t_dist *setearDistanciaPokemones(int id, int x, int y){
 
 	return distancia;
 }
+
 int encontrarPokemonMasCercano(int x,int y){
 	t_list* listaDistancias = list_create();
 	t_dist *distancia = malloc(sizeof(t_dist));
@@ -105,10 +106,9 @@ int encontrarPokemonMasCercano(int x,int y){
 	}
 	list_sort(listaDistancias, menorDist);
 
-	t_dist *idPokemonConDistMenor = ((t_dist*)list_get(listaDistancias,0))->id;
+	t_dist *idPokemonConDistMenor = ((t_dist*)list_get(listaDistancias,0));
 
-	return ((t_entrenador*) list_get(listaPosicionesInternas,
-				idPokemonConDistMenor));
+	return ((t_entrenador*) list_get(listaPosicionesInternas,idPokemonConDistMenor->id))->id;
 }
 
 /*MANEJA EL FUNCIONAMIENTO INTERNO DE CADA ENTRENADOR(trabajo en un hilo separado)*/
