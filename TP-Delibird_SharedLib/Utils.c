@@ -228,8 +228,7 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,
 /* Permite enviar un mensaje a cualquier cliente, de forma que estos lo puedan interpretar
  *
  */
-int enviarMensajeASuscriptor(estructuraMensaje datosMensaje,
-	int socketSuscriptor) {
+int enviarMensajeASuscriptor(estructuraMensaje datosMensaje, int socketSuscriptor) {
 
 	int returnValueSend;
 

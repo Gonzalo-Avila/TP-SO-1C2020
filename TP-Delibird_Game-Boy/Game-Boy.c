@@ -103,7 +103,7 @@ int main(int argc, char** argv) {
 	int socketDestino = conectarseADestino(destino);
 
 	if (destino == SUSCRIPTOR) {
-		suscribirseACola(socketDestino, tipoMensaje);
+		suscribirseACola(socketDestino, tipoMensaje,100);
 		while (sleep(atoi(argv[4])) != 0) {
 			log_info(logger, "Paso un segundo");
 			//Recibir mensaje
@@ -162,8 +162,8 @@ int main(int argc, char** argv) {
 				offset += sizeof(uint32_t);
 
 				datosMensaje.colaMensajeria = tipoMensaje;
-				datosMensaje.socketSuscriptor = socketDestino;
-				enviarMensajeASuscriptor(datosMensaje);
+				//datosMensaje.socketSuscriptor = socketDestino;
+				enviarMensajeASuscriptor(datosMensaje, socketDestino);
 
 				log_info(logger, "Se envió un mensaje al proceso %s", argv[1]);
 
@@ -216,8 +216,8 @@ int main(int argc, char** argv) {
 				offset += sizeof(uint32_t);
 
 				datosMensaje.colaMensajeria = tipoMensaje;
-				datosMensaje.socketSuscriptor = socketDestino;
-				enviarMensajeASuscriptor(datosMensaje);
+				//datosMensaje. = socketDestino;
+				enviarMensajeASuscriptor(datosMensaje, socketDestino);
 				log_info(logger, "Se envió un mensaje al proceso %s", argv[1]);
 
 				free(datosMensaje.mensaje);
@@ -269,8 +269,8 @@ int main(int argc, char** argv) {
 				offset += sizeof(uint32_t);
 
 				datosMensaje.colaMensajeria = tipoMensaje;
-				datosMensaje.socketSuscriptor = socketDestino;
-				enviarMensajeASuscriptor(datosMensaje);
+				//datosMensaje.socketSuscriptor = socketDestino;
+				enviarMensajeASuscriptor(datosMensaje, socketDestino);
 				log_info(logger, "Se envió un mensaje al proceso %s", argv[1]);
 
 				free(datosMensaje.mensaje);
@@ -329,8 +329,8 @@ int main(int argc, char** argv) {
 				offset += mensaje.longPokemon;
 
 				datosMensaje.colaMensajeria = tipoMensaje;
-				datosMensaje.socketSuscriptor = socketDestino;
-				enviarMensajeASuscriptor(datosMensaje);
+				//datosMensaje.socketSuscriptor = socketDestino;
+				enviarMensajeASuscriptor(datosMensaje, socketDestino);
 				log_info(logger, "Se envió un mensaje al proceso %s", argv[1]);
 
 				free(datosMensaje.mensaje);

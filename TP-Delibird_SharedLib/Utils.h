@@ -148,8 +148,7 @@ void inicializarColas();
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar);
 void * serializarPaqueteCola(tPaquete* paquete, int tamanioAEnviar);
 void enviarString(int socketDestino, char * mensaje);
-int enviarMensajeASuscriptor(estructuraMensaje datosMensaje,
-		int socketSuscriptor);
+int enviarMensajeASuscriptor(estructuraMensaje datosMensaje, int socketSuscriptor);
 void enviarMensajeABroker(int socketBroker, cola colaDestino,
 		uint32_t idCorrelativo, uint32_t sizeMensaje, void * mensaje);
 mensajeRecibido * recibirMensajeDeBroker(int socketBroker);

@@ -126,7 +126,7 @@ void atenderSuscripcion(int *socketSuscriptor){
 						suscriptorYaAlmacenado->clientID, suscriptorYaAlmacenado->socketCliente);
 
         //TODO - COMENTAR ESTA LINEA Y REALIZAR TESTING
-		enviarMensajesCacheados(suscriptorYaAlmacenado, codSuscripcion);
+		//enviarMensajesCacheados(suscriptorYaAlmacenado, codSuscripcion);
 	}
 	else
 	{
