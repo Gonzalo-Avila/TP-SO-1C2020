@@ -22,6 +22,7 @@ void atenderConexiones(int *socketEscucha) {
 				*socketCliente);
 
         esperarMensajes(socketCliente);
+        free(socketCliente);
 	}
 }
 
@@ -32,11 +33,11 @@ void esperarMensajes(int *socketCliente) {
 	 *
 	 */
 
-	int codOperacion;
+	opCode codOperacion;
 	int sizeDelMensaje;
 	cola tipoCola;
 
-	recv(*socketCliente, &codOperacion, sizeof(int), MSG_WAITALL);
+	recv(*socketCliente, &codOperacion, sizeof(opCode), MSG_WAITALL);
 	log_debug(logger, "Esperando mensaje de cliente %d...", *socketCliente);
 
 
@@ -89,14 +90,14 @@ void esperarMensajes(int *socketCliente) {
 }
 
 
-
 bool yaExisteSuscriptor(uint32_t clientID, cola codSuscripcion){
-   bool existeClientID(void * _suscriptor){
-	   suscriptor* sus = (suscriptor *) _suscriptor;
-	   return sus->clientID==clientID;
-   }
+    bool existeClientID(void * nodoLista){
+		   suscriptor* sus = (suscriptor *) nodoLista;
+		   return sus->clientID==clientID;
+	}
    t_list * listaSuscriptores = getListaSuscriptoresByNum(codSuscripcion);
-   return list_any_satisfy(listaSuscriptores,&existeClientID);
+
+   return list_any_satisfy(listaSuscriptores,(void *)existeClientID);;
 }
 
 
@@ -135,9 +136,8 @@ void atenderSuscripcion(int *socketSuscriptor){
 				"Hay un nuevo suscriptor en la cola %s. Número de socket suscriptor: %d",
 				getCodeStringByNum(codSuscripcion), *socketSuscriptor);
 
-		enviarMensajesCacheados(nuevoSuscriptor, codSuscripcion);
+		//enviarMensajesCacheados(nuevoSuscriptor, codSuscripcion);
 	}
-	free(nuevoSuscriptor);
 	sem_post(&mutexColas);
 
 }

@@ -128,7 +128,7 @@ suscriptor * buscarSuscriptor(uint32_t clientID, cola codSuscripcion){
 		   return sus->clientID==clientID;
 	   }
 	   t_list * listaSuscriptores = getListaSuscriptoresByNum(codSuscripcion);
-	   return list_find(listaSuscriptores,&existeClientID);
+	   return list_find(listaSuscriptores,(void *)existeClientID);
 }
 
 

@@ -4,12 +4,21 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Comunicacion.c \
+../Entrenadores.c \
+../Planificador.c \
 ../Team.c 
 
 OBJS += \
+./Comunicacion.o \
+./Entrenadores.o \
+./Planificador.o \
 ./Team.o 
 
 C_DEPS += \
+./Comunicacion.d \
+./Entrenadores.d \
+./Planificador.d \
 ./Team.d 
 
 

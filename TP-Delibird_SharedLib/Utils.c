@@ -302,12 +302,11 @@ void suscribirseACola(int socketBroker, cola tipoCola, uint32_t idSuscriptor) {
 	paquete->codOperacion = SUSCRIPCION;
 
 	paquete->buffer->size = sizeof(cola) + sizeof(uint32_t);
-	paquete->buffer->stream = malloc(sizeof(cola) + sizeof(uint32_t));
+	paquete->buffer->stream = malloc(paquete->buffer->size);
 
 	memcpy(paquete->buffer->stream, &(tipoCola), sizeof(cola));
-	memcpy(paquete->buffer->stream + sizeof(cola), &(idSuscriptor),
-			sizeof(uint32_t));
-	int sizeTotal = sizeof(opCode) + sizeof(cola) + sizeof(int);
+	memcpy(paquete->buffer->stream + sizeof(cola), &(idSuscriptor),sizeof(uint32_t));
+	int sizeTotal = sizeof(opCode) + sizeof(uint32_t) + sizeof(cola) + sizeof(uint32_t);
 	void * paqueteSerializado = serializarPaquete(paquete, sizeTotal);
 	send(socketBroker, paqueteSerializado, sizeTotal, 0);
 	free(paquete->buffer->stream);

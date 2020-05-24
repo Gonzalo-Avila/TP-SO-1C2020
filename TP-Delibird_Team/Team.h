@@ -10,7 +10,6 @@
 
 #include <Utils.h>
 
-
 #define MAXSIZE 1024
 
 typedef int t_posicion[2];
@@ -42,6 +41,7 @@ typedef struct{
 	t_list *objetivos;
 	t_list *pokemones;
 	e_estado estado;
+	pthread_cond_t *cond;
 }t_entrenador;
 
 typedef struct{
@@ -54,32 +54,40 @@ typedef struct{
 
 typedef struct{
 	pthread_t hilo;
-	int idEntrenador;
+	int id;
 }t_listaHilos;
 
 typedef struct{
 	float dist;
-	int idEntrenador;
+	int id;
 }t_dist;
 
 typedef struct{
 	char *pokemon;
-	int cantPokes;
 	t_list *x;
 	t_list *y;
 	t_list *cantidades;
-}t_pokemonesLocalized;
+}t_posicionEnMapa;
 
 t_team *team;
 t_list *listaHilos;
-t_queue *colaDeReady;
-t_queue *colaDeBloqued;
+t_list *listaDeReady;
+t_list *listaDeBloqued;
 char* pokemonRecibido;
 char* ipServidor;
 char* puertoServidor;
 
+t_list *listaCondsEntrenadores;
+t_list *listaPosicionesInternas;
+
+pthread_mutex_t mutexHilosEntrenadores;
+sem_t mutexMensajes;
+sem_t mutexEntrenadores;
+sem_t semPlanif;
+
 /* Funciones */
 void inicializarVariablesGlobales();
+uint32_t obtenerIdDelProceso(char* ip, char* puerto);
 void array_iterate_element(char** strings, void (*closure)(char*,t_list*),t_list *lista);
 void enlistar(char *elemento,t_list *lista);
 void obtenerDeConfig(char *clave,t_list *lista);
@@ -88,22 +96,32 @@ void crearHiloEntrenador(t_entrenador* entrenador);
 t_entrenador* armarEntrenador(int id,char *posicionesEntrenador,char *objetivosEntrenador,char *pokemonesEntrenador);
 void generarEntrenadores();
 e_algoritmo obtenerAlgoritmoPlanificador();
-void atenderBroker(int *socketBroker);
-void crearHiloParaAtenderBroker(int *socketBroker);
-void suscribirseALasColas(int socketA,int socketL,int socketC);
-t_mensaje* parsearMensaje(char* mensaje);
+void atenderServidor(int *socketServidor);
+void crearHiloParaAtenderServidor(int *socketServidor);
+void crearHilosParaAtenderBroker(int *socketBrokerApp, int *socketBrokerLoc, int *socketBrokerCau);
+void suscribirseALasColas(int socketA,int socketL,int socketC, uint32_t idProceso);
+int crearConexionEscuchaGameboy();
+void atenderGameboy(int *socketEscucha);
+void esperarMensajes(int *socketCliente);
 t_mensaje* deserializar(void* paquete);
 void gestionarMensajes(char* ip, char* puerto);
+bool menorDist(void *dist1,void *dist2);
+bool hayaAlgunEntrenadorActivo();
 void liberarMemoria();
+t_list *obtenerEntrenadoresReady();
 bool elementoEstaEnLista(t_list *lista, char *elemento);
-void setearObjetivosDeTeam(t_team *team);
+void setearObjetivosDeTeam();
 void enviarGetSegunObjetivo(char *ip, char *puerto);
+void enviarGetDePokemon(char *ip, char *puerto, char *pokemon);
 float calcularDistancia(int posX1, int posY1,int posX2,int posY2);
 t_dist *setearDistanciaEntrenadores(int id,int posX,int posY);
-bool estaEnEspera(void *entrenador);
+bool estaEnEspera(t_entrenador *entrenador);
 bool esUnObjetivo(void *objetivo);
 bool distanciaMasCorta(void *entrenador1,void *entrenador2);
-t_entrenador* entrenadorMasCercano(int posX,int posY);
-void planificar();
+t_entrenador* entrenadorMasCercanoEnEspera(int posX,int posY);
+void planificarFifo();
+void planificador();
+void setearCondsEntrenadores();
+void ponerEnReadyAlMasCercano(int x, int y);
 
 #endif /* TEAM_H_ */
