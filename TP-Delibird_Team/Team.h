@@ -41,7 +41,7 @@ typedef struct{
 	t_list *objetivos;
 	t_list *pokemones;
 	e_estado estado;
-	pthread_cond_t *cond;
+	t_posicion posAMover;
 }t_entrenador;
 
 typedef struct{
@@ -73,6 +73,7 @@ t_team *team;
 t_list *listaHilos;
 t_list *listaDeReady;
 t_list *listaDeBloqued;
+
 char* pokemonRecibido;
 char* ipServidor;
 char* puertoServidor;
@@ -80,10 +81,10 @@ char* puertoServidor;
 t_list *listaCondsEntrenadores;
 t_list *listaPosicionesInternas;
 
-pthread_mutex_t mutexHilosEntrenadores;
-sem_t *mutexMensajes;
-sem_t *mutexEntrenadores;
-sem_t *semPlanif;
+sem_t mutexMensajes;
+sem_t mutexEntrenadores;
+sem_t semPlanif;
+sem_t *semEntrenadores;
 
 /* Funciones */
 void inicializarVariablesGlobales();
@@ -121,7 +122,7 @@ bool distanciaMasCorta(void *entrenador1,void *entrenador2);
 t_entrenador* entrenadorMasCercanoEnEspera(int posX,int posY);
 void planificarFifo();
 void planificador();
-void setearCondsEntrenadores();
 void ponerEnReadyAlMasCercano(int x, int y);
+void moverEntrenador(t_entrenador *entrenador);
 
 #endif /* TEAM_H_ */

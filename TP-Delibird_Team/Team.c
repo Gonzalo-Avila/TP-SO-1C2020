@@ -17,14 +17,10 @@ void inicializarVariablesGlobales() {
 	team->algoritmoPlanificacion = obtenerAlgoritmoPlanificador();
 	listaCondsEntrenadores = list_create();
 	listaPosicionesInternas = list_create();
-
-	//inicializo el mutex para los hilos de entrenador
-	pthread_mutex_init(&mutexHilosEntrenadores,NULL);
-
 	//inicializo el mutex para los mensajes que llegan del broker
-	sem_init(mutexMensajes, 1, 0);
-	sem_init(mutexEntrenadores,1,0);
-	sem_init(semPlanif, 1, 0);
+	sem_init(&mutexMensajes, 1, 0);
+	sem_init(&mutexEntrenadores,1,0);
+	sem_init(&semPlanif, 1, 0);
 }
 
 void array_iterate_element(char** strings, void (*closure)(char*, t_list*),
@@ -104,6 +100,9 @@ int main() {
 	int *socketGameboy = malloc(sizeof(int));
 	*socketGameboy = crearConexionEscuchaGameboy();
 
+	//Crea hilo para atender al Gameboy
+	atenderGameboy(socketGameboy);
+
 	//Se suscribe el Team a las colas
 	suscribirseALasColas(*socketBrokerApp,*socketBrokerLoc,*socketBrokerCau, idDelProceso);
 
@@ -113,7 +112,14 @@ int main() {
 
 	setearObjetivosDeTeam();
 
-	setearCondsEntrenadores();
+	semEntrenadores = malloc(list_size(team->entrenadores) * sizeof(sem_t));
+
+	for(int j = 0; j < list_size(team->entrenadores);j++){
+
+		sem_init(&semEntrenadores[j], 1, 0);
+		log_info(logger,"%d",semEntrenadores[j]);
+	}
+
 
 	enviarGetSegunObjetivo(ipServidor,puertoServidor);
 

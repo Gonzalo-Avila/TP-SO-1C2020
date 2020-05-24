@@ -92,9 +92,9 @@ void atenderServidor(int *socketServidor) {
 					list_add(pos->cantidades,&cant[i]);
 				}
 				strcpy(pos->pokemon,pokemon);
-				list_add(listaPosicionesInternas,pos);
 
 				if(esUnObjetivo(pokemon)){
+					list_add(listaPosicionesInternas,pos);
 					ponerEnReadyAlMasCercano(x[0],y[0]);
 				}
 				break;
