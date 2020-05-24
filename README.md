@@ -7,6 +7,7 @@ Bug fixes:
 - En la funcion suscribirseACola de la utils faltaba tomar en cuenta el sizeof del buffer->size, no estaba mandando bien el ID de proceso.
 - Al final de atender suscripcion habia un free(nuevoSuscriptor). Como lo que se añade a la lista de suscriptores es ese puntero, basicamente estabamos destruyendo el nodo despues de agregarlo.
 - Solucionado bug en la busqueda de espacio libre cuando se quería agregar un nuevo mensaje a la cache (nunca encontraba).
+- Saqué el cachearMensaje de adentro del bucle creador de nodos, porque si no había ningún suscriptor en la cola, no se cacheaba. Además debería cachearse una sola vez, y no tantas como suscriptores haya. 
 
 
 Otros:
