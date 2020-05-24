@@ -24,7 +24,7 @@ int chequearSiAlcanza(int sizeMensaje, void * posicionActual,
 	 */
 	for (int offset = 1; offset < sizeMensaje; offset++) {
 		if (memoriaRecorrida == CACHESIZE
-				|| *(char *) (posicionActual + offset) == 'f') //LAZY EVALUATION POWA
+				|| *(char *) (posicionActual + offset) != 'f') //LAZY EVALUATION POWA
 			return 0;
 		memoriaRecorrida++;
 	}
@@ -38,8 +38,9 @@ void * buscarEspacio(int sizeMensaje, void *posicionInicial) {
 	 *
 	 */
 	int espacioSuficiente = 0;
-	int offset = 0;
+	int offset = -1;
 	while (!espacioSuficiente) {
+		offset++;
 		if (offset == CACHESIZE)
 			return NULL;
 
@@ -47,7 +48,7 @@ void * buscarEspacio(int sizeMensaje, void *posicionInicial) {
 			espacioSuficiente = chequearSiAlcanza(sizeMensaje,
 					posicionInicial + offset, offset);
 		}
-		offset++;
+
 
 	}
 	return posicionInicial + offset;
@@ -110,6 +111,7 @@ void compactarMemoria() {
 }
 
 void eliminarMensaje(){
+	//Seleccionar victima segun criterio definido en config
 
 }
 
@@ -171,7 +173,7 @@ void cachearMensaje(uint32_t idMensaje, uint32_t idCorrelativo, cola colaMensaje
    nuevoRegistro->sizeMensaje=sizeMensaje;
 
 
-   if(strcmp("BD",config_get_string_value(config, "ALGORITMO_MEMORIA"))==0)
+   if(strcmp("BS",config_get_string_value(config, "ALGORITMO_MEMORIA"))==0)
 	   nuevoRegistro->posicionEnMemoria=cachearConBuddySystem(mensaje, sizeMensaje);
    else
 	   nuevoRegistro->posicionEnMemoria=cachearConParticionesDinamicas(mensaje, sizeMensaje);

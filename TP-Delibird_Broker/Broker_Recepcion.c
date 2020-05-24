@@ -205,9 +205,8 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 		sus = (suscriptor *) (list_get(getListaSuscriptoresByNum(tipoCola), i));
 		mensajeNuevo.clientID = sus->clientID;
 		list_add(getColaByNum(tipoCola), generarNodo(mensajeNuevo));
-
-		cachearMensaje(mensajeNuevo.id,mensajeNuevo.idCorrelativo, mensajeNuevo.colaMensajeria, mensajeNuevo.sizeMensaje,mensajeNuevo.mensaje);
 	}
+	cachearMensaje(mensajeNuevo.id,mensajeNuevo.idCorrelativo, mensajeNuevo.colaMensajeria, mensajeNuevo.sizeMensaje,mensajeNuevo.mensaje);
 	sem_post(&mutexColas);
 	sem_post(&habilitarEnvio);
 
