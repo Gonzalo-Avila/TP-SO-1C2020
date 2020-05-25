@@ -5,6 +5,20 @@ void inicializarVariablesGlobales(){
 	config = config_create("gamecard.config");
 	logger = log_create("gamecard_logs","GameCard",1,LOG_LEVEL_TRACE);
 }
+
+
+uint32_t obtenerIdDelProceso(char* ip, char* puerto) {
+	int socketBroker = crearConexionCliente(ip, puerto);
+	uint32_t idProceso;
+
+	opCode codigoOP = NUEVA_CONEXION;
+	send(socketBroker, &codigoOP, sizeof(opCode), 0);
+	recv(socketBroker, &idProceso, sizeof(uint32_t), MSG_WAITALL);
+	close(socketBroker);
+
+	return idProceso;
+}
+
 int main(){
     //Se setean todos los datos
 	inicializarVariablesGlobales();
@@ -20,9 +34,11 @@ int main(){
     log_info(logger,"Se ha establecido conexión con el servidor\nIP: %s\nPuerto: %s\nNúmero de socket: %d",
     		config_get_string_value(config,"IP"),config_get_string_value(config,"PUERTO"));
 
-    suscribirseACola(NEW, socketBroker);
-    suscribirseACola(GET, socketBroker);
-    suscribirseACola(CATCH, socketBroker);
+    uint32_t idProceso = obtenerIdDelProceso(ipServidor, puertoServidor);
+
+    suscribirseACola(socketBroker, NEW, idProceso);
+    suscribirseACola(socketBroker, GET, idProceso);
+    suscribirseACola(socketBroker, CATCH, idProceso);
 
     free(ipServidor);
     free(puertoServidor);
