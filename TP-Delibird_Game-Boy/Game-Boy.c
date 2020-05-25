@@ -16,20 +16,20 @@ int conectarseADestino(proceso destino) {
 	switch (destino) {
 	case SUSCRIPTOR:
 	case BROKER: {
-		ipDestino = config_get_string_value(config, "IP_BROKER");
-		puertoDestino = config_get_string_value(config, "PUERTO_BROKER");
+		strcpy(ipDestino,config_get_string_value(config, "IP_BROKER"));
+		strcpy(puertoDestino,config_get_string_value(config, "PUERTO_BROKER"));
 		strcpy(proceso, "BROKER");
 		break;
 	}
 	case TEAM: {
-		ipDestino = config_get_string_value(config, "IP_TEAM");
-		puertoDestino = config_get_string_value(config, "PUERTO_TEAM");
+		strcpy(ipDestino,config_get_string_value(config, "IP_TEAM"));
+		strcpy(puertoDestino,config_get_string_value(config, "PUERTO_TEAM"));
 		strcpy(proceso, "TEAM");
 		break;
 	}
 	case GAMECARD: {
-		ipDestino = config_get_string_value(config, "IP_TEAM");
-		puertoDestino = config_get_string_value(config, "PUERTO_TEAM");
+		strcpy(ipDestino,config_get_string_value(config, "IP_GAMECARD"));
+		strcpy(puertoDestino,config_get_string_value(config, "PUERTO_GAMECARD"));
 		strcpy(proceso, "GAMECARD");
 		break;
 	}
@@ -103,11 +103,29 @@ int main(int argc, char** argv) {
 	int socketDestino = conectarseADestino(destino);
 
 	if (destino == SUSCRIPTOR) {
-		suscribirseACola(socketDestino, tipoMensaje,100);
-		while (sleep(atoi(argv[4])) != 0) {
-			log_info(logger, "Paso un segundo");
-			//Recibir mensaje
-			//Imprimir mensaje
+		uint32_t ack = 1;
+		uint32_t idProceso;
+		opCode crearConexion = NUEVA_CONEXION;
+
+		send(socketDestino,&crearConexion,sizeof(opCode),0);
+		recv(socketDestino,&idProceso,sizeof(uint32_t),MSG_WAITALL);
+		log_debug(logger,"El broker ha asignado el siguiente ID de proceso: %d",idProceso);
+
+		int socketSuscripcion = conectarseADestino(destino);
+		suscribirseACola(socketSuscripcion, tipoMensaje,idProceso);
+		log_debug(logger,"Se realizó suscripción a la cola %s", getCodeStringByNum(tipoMensaje));
+
+		while (1) {
+			log_info(logger,"Eperando mensajes...");
+			mensajeRecibido * mensaje = recibirMensajeDeBroker(socketSuscripcion);
+			send(socketSuscripcion, &ack, sizeof(uint32_t), 0);
+            log_info(logger,"Se recibió un nuevo mensaje del broker\n"
+            		"Cola: %s\n"
+            		"ID del mensaje: %d\n"
+            		"ID correlativo: %d\n"
+            		"Tamaño del mensaje: %d\n",
+					getCodeStringByNum(mensaje->colaEmisora),mensaje->idMensaje, mensaje->idCorrelativo,mensaje->sizeMensaje);
+
 		}
 	} else {
 		int size;
@@ -175,7 +193,7 @@ int main(int argc, char** argv) {
 		case APPEARED: {
 			mensajeAppeared mensaje;
 			if (destino == BROKER) {
-				//./gameboy BROKER APPEARED_POKEMON [POKEMON] [POSX] [POSY] [ID_MENSAJE]
+				//./gameboy BROKER APPEARED_POKEMON [POKEMON] [POSX] [POSY] [ID_MENSAJE_CORRELATIVO]
 				mensaje.longPokemon = strlen(argv[3]) + 1;
 				mensaje.pokemon = malloc(mensaje.longPokemon);
 				strcpy(mensaje.pokemon, argv[3]);
@@ -281,7 +299,7 @@ int main(int argc, char** argv) {
 		case CAUGHT: {
 			mensajeCaught mensaje;
 			if (destino == BROKER) {
-				//./gameboy BROKER CAUGHT_POKEMON [ID_MENSAJE] [OK/FAIL]
+				//./gameboy BROKER CAUGHT_POKEMON [ID_MENSAJE_CORRELATIVO] [OK/FAIL]
 				mensaje.resultado = atoi(argv[4]);
 				size = sizeof(uint32_t);
 				enviarMensajeABroker(socketDestino, tipoMensaje, atoi(argv[3]),
@@ -311,12 +329,13 @@ int main(int argc, char** argv) {
 
 				free(mensaje.pokemon);
 			} else {
-				//./gameboy GAMECARD GET_POKEMON [POKEMON]
+				//./gameboy GAMECARD GET_POKEMON [POKEMON] [ID_MENSAJE]
+
 				mensaje.longPokemon = strlen(argv[3]) + 1;
 				mensaje.pokemon = malloc(mensaje.longPokemon);
 				strcpy(mensaje.pokemon, argv[3]);
 
-				datosMensaje.id = -10;
+				datosMensaje.id = atoi(argv[4]);
 				datosMensaje.idCorrelativo = -1;
 				datosMensaje.sizeMensaje = sizeof(uint32_t)
 						+ mensaje.longPokemon;

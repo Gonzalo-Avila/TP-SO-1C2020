@@ -2,15 +2,15 @@ BROKER NEW_POKEMON [POKEMON] [POSX] [POSY] [CANTIDAD]
 
 ${selected_text:BROKER} ${selected_text:NEW_POKEMON} ${selected_text:Pikachu} ${selected_text:5} ${selected_text:2} ${selected_text:4}
 
-BROKER APPEARED_POKEMON [POKEMON] [POSX] [POSY] [ID_MENSAJE]
+BROKER APPEARED_POKEMON [POKEMON] [POSX] [POSY] [ID_MENSAJE_CORRELATIVO]
 
-${selected_text:BROKER} ${selected_text:APPEARED_POKEMON} ${selected_text:Pikachu} ${selected_text:5} ${selected_text:2} ${selected_text:-5}
+${selected_text:BROKER} ${selected_text:APPEARED_POKEMON} ${selected_text:Pikachu} ${selected_text:5} ${selected_text:2} ${selected_text:-5} 
 
 BROKER CATCH_POKEMON [POKEMON] [POSX] [POSY]
 
 ${selected_text:BROKER} ${selected_text:CATCH_POKEMON} ${selected_text:Pikachu} ${selected_text:5} ${selected_text:2} 
 
-BROKER CAUGHT_POKEMON [ID_MENSAJE] [OK/FAIL]
+BROKER CAUGHT_POKEMON [ID_MENSAJE_CORRELATIVO] [OK/FAIL] 
 
 ${selected_text:BROKER} ${selected_text:CAUGHT_POKEMON} ${selected_text:-5} ${selected_text:1}
 
@@ -22,17 +22,17 @@ TEAM APPEARED_POKEMON [POKEMON] [POSX] [POSY]
 
 ${selected_text:TEAM} ${selected_text:APPEARED_POKEMON} ${selected_text:Pikachu} ${selected_text:5} ${selected_text:2} 
 
-GAMECARD NEW_POKEMON [POKEMON] [POSX] [POSY] [CANTIDAD]
+GAMECARD NEW_POKEMON [POKEMON] [POSX] [POSY] [CANTIDAD] [ID_MENSAJE]
 
-${selected_text:GAMECARD} ${selected_text:NEW_POKEMON} ${selected_text:Pikachu} ${selected_text:5} ${selected_text:2} ${selected_text:4}
+${selected_text:GAMECARD} ${selected_text:NEW_POKEMON} ${selected_text:Pikachu} ${selected_text:5} ${selected_text:2} ${selected_text:4} ${selected_text:-5}
 
 GAMECARD CATCH_POKEMON [POKEMON] [POSX] [POSY] [ID_MENSAJE]
 
 ${selected_text:GAMECARD} ${selected_text:CATCH_POKEMON} ${selected_text:Pikachu} ${selected_text:5} ${selected_text:2} ${selected_text:-5}
 
-GAMECARD GET_POKEMON [POKEMON]
+GAMECARD GET_POKEMON [POKEMON] [ID_MENSAJE]
 
-${selected_text:GAMECARD} ${selected_text:GET_POKEMON} ${selected_text:Pikachu}
+${selected_text:GAMECARD} ${selected_text:GET_POKEMON} ${selected_text:Pikachu} ${selected_text:-5}
 
 SUSCRIPTOR [COLA_DE_MENSAJES] [TIEMPO]
 
