@@ -100,7 +100,7 @@ void eliminarSuscriptor(t_list* listaSuscriptores, uint32_t clientID){
 }
 
 void desuscribir(uint32_t clientID, cola colaSuscripcion) {
-	//TODO - DONE
+	//TODO_OLD
 	// - Buscar el clientID en la lista de suscriptores de la cola pasada
 	// - Hacer close(socket)
 	// - Borrar nodo suscriptor
@@ -112,7 +112,7 @@ void desuscribir(uint32_t clientID, cola colaSuscripcion) {
 }
 
 int getSocketActualDelSuscriptor(uint32_t clientID, cola colaSuscripcion) {
-	//TODO - DONE
+	//TODO_OLD
 	// - Encontrar el nodo suscriptor en la cola (parametro) con el clientID (parametro) requerido
 	// - Retornar socket actual de ese suscriptor
 
@@ -142,6 +142,7 @@ uint32_t getIDProceso() {
 }
 
 int main() {
+
 
 	inicializarVariablesGlobales();
 

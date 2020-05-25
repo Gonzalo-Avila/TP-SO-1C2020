@@ -29,7 +29,8 @@ void atenderConexiones(int *socketEscucha) {
 
 
 void esperarMensajes(int *socketCliente) {
-	/* Espera mensajes de una conexión ya establecida. Según el código de operación recibido, delega tareas a distintos modulos.
+	/* Espera mensajes de una conexión ya establecida. Según el
+	 * código de operación recibido, delega tareas a distintos modulos.
 	 *
 	 */
 
@@ -79,7 +80,11 @@ void esperarMensajes(int *socketCliente) {
 		desuscribir(clientID, tipoCola);
 		log_info(logger, "El cliente con ID %d se ha desconectado",
 				clientID);
-
+		break;
+	}
+	case DUMPCACHE: {
+		log_info(logger, "[DUMP DE LA CACHE]");
+		dumpCache();
 		break;
 	}
 	default: {
@@ -88,7 +93,6 @@ void esperarMensajes(int *socketCliente) {
 	}
 	}
 }
-
 
 bool yaExisteSuscriptor(uint32_t clientID, cola codSuscripcion){
     bool existeClientID(void * nodoLista){
@@ -99,8 +103,6 @@ bool yaExisteSuscriptor(uint32_t clientID, cola codSuscripcion){
 
    return list_any_satisfy(listaSuscriptores,(void *)existeClientID);;
 }
-
-
 
 void atenderSuscripcion(int *socketSuscriptor){
 	/* Recibe el código de suscripción desde el socket a suscribirse, eligiendo de esta manera la cola y agregando el socket
@@ -126,7 +128,7 @@ void atenderSuscripcion(int *socketSuscriptor){
         				"El cliente %d ha actualizado el socket: %d",
 						suscriptorYaAlmacenado->clientID, suscriptorYaAlmacenado->socketCliente);
 
-        //TODO - COMENTAR ESTA LINEA Y REALIZAR TESTING
+        //COMENTAR ESTA LINEA Y REALIZAR TESTING
 		//enviarMensajesCacheados(suscriptorYaAlmacenado, codSuscripcion);
 	}
 	else
@@ -156,7 +158,6 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 				"No pudo obtenerse el tipo de cola en el mensaje recibido");
 	}
 }
-
 
 void imprimirEstructuraDeDatos(estructuraMensaje mensaje) {
 	log_info(logger, "[NUEVO MENSAJE RECIBIDO]");

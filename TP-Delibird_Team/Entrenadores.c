@@ -89,7 +89,7 @@ t_dist *setearDistanciaPokemones(int id, int x, int y){
 	t_dist *distancia = malloc(sizeof(t_dist));
 
 //	distancia->dist = calcularDistancia((t_posicionEnMapa*)list_get(listaPosicionesInternas,0)),,x, y);
-	//Todo fijarse como agarra la posicion del pokemon de las internas.
+	//Todo_OLD fijarse como agarra la posicion del pokemon de las internas.
 	//preguntar.
 	distancia->id = id;
 
@@ -120,7 +120,7 @@ void gestionarEntrenador(t_entrenador *entrenador) {
 
 	//pokemon mas cercano al entrenador
 	int idPokeMasCercano = encontrarPokemonMasCercano(entrenador->pos[0],entrenador->pos[1]);
-	//Todo esto es muy feo tengo que buscar una forma mas facil de acomodar esto.
+	//Todo_OLD esto es muy feo tengo que buscar una forma mas facil de acomodar esto.
 	//Preguntar esto.
 	while(entrenador->pos[0] != (int)list_get(((t_posicionEnMapa*)list_get(listaPosicionesInternas,idPokeMasCercano))->x,0)){
 		sem_wait(&mutexEntrenadores);

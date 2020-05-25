@@ -2,7 +2,7 @@
 
 /*void eliminarMensaje(estructuraMensaje* estMsj){
 	t_list* colaMensaje = getColaByNum(estMsj->colaMensajeria);
-	//TODO -> no se uso al final, se quitan todos de una en vez de elemento por elemento
+	//TODO_OLD -> no se uso al final, se quitan todos de una en vez de elemento por element
 	// - Usar get, take o alguna funcion de las commons de listas para eliminar ese nodo
 }*/
 
@@ -25,7 +25,7 @@ void agregarAListaDeConfirmados(uint32_t idMsg, uint32_t idProceso){
 }
 
 void enviarEstructuraMensajeASuscriptor(void* estMensaje) {
-	//TODO - DONE
+	//TODO_OLD
 	// - Hacer send() del mensaje al suscriptor
 	// - Evaluar retorno del send()
 	// - Cambiar estado "enviado" en cache

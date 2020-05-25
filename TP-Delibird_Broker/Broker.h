@@ -11,6 +11,7 @@
 #include <Utils.h>
 #include <string.h>
 #include <stdbool.h>
+#include <time.h>
 
 t_list * NEW_POKEMON;
 t_list * APPEARED_POKEMON;
@@ -64,6 +65,7 @@ void * cachearConBuddySystem(void * mensaje, int sizeMensaje);
 void * cachearConParticionesDinamicas(void * mensaje, int sizeMensaje);
 void cachearMensaje(uint32_t idMensaje, uint32_t idCorrelativo, cola colaMensaje, uint32_t sizeMensaje, void * mensaje);
 void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion);
+void dumpCache();
 
 //#include "Broker_Recepcion.h"
 void empezarAAtenderCliente(int socketEscucha);

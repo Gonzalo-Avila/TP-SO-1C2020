@@ -5,13 +5,18 @@ int CACHESIZE;
 
 void inicializarCache() {
 	/*
-	 * La cache tiene que ser un espacio fijo, reservado al momento de ejecutar el broker. Tiene que ser un espacio tipo void
-	 * porque no se sabe que se va a guardar ahi, pero tambien tiene que estar inicializado para poder diferenciar que espacios
-	 * estan vacios. Hay que averiguar como hacer esto bien, puse un caracter para llenar.
+	 * La cache tiene que ser un espacio fijo, reservado al
+	 * momento de ejecutar el broker. Tiene que ser un espacio
+	 * tipo void * porque no se sabe que se va a guardar ahi, pero tambien
+	 * tiene que estar inicializado para poder diferenciar que espacios
+	 * estan vacios. Hay que averiguar como hacer esto bien,
+	 * puse un caracter para llenar.
 	 */
+
 	CACHESIZE = config_get_int_value(config, "TAMANO_MEMORIA");
 	cacheBroker = malloc(CACHESIZE);
 	memset(cacheBroker, 'f', CACHESIZE);
+
 }
 
 //----------------------- [CACHE] -------------------------//
@@ -56,7 +61,8 @@ void * buscarEspacio(int sizeMensaje, void *posicionInicial) {
 
 
 int tamanioDelMensaje(int offset, int *cacheExcedida) {
-	/* Partiendo desde una posición ocupada, cuenta todas las posiciónes contiguas llenas para determinar el tamaño del mensaje
+	/* Partiendo desde una posición ocupada, cuenta todas las
+	 * posiciónes contiguas llenas para determinar el tamaño del mensaje
 	 *
 	 */
 	int tamanio = 0;
@@ -72,7 +78,8 @@ int tamanioDelMensaje(int offset, int *cacheExcedida) {
 }
 
 void * buscarProximoMensaje(int offset, int * tamanio, int *cacheExcedida) {
-	/* Partiendo desde una posición vacia, busca secuencialmente hasta encontrar una posición ocupada
+	/* Partiendo desde una posición vacia, busca secuencialmente
+	 * hasta encontrar una posición ocupada
 	 *
 	 */
 	while (*(char *) (cacheBroker + offset) != 'f') {
@@ -116,7 +123,7 @@ void eliminarMensaje(){
 }
 
 void * cachearConBuddySystem(void * mensaje, int sizeMensaje){
-    void * particion;
+    void * particion = 0;
     return particion;
 }
 
@@ -132,7 +139,7 @@ void * cachearConBuddySystem(void * mensaje, int sizeMensaje){
  */
 
 void * usarBestFit(){
-    void * particion;
+    void * particion = 0;
     return particion;
 }
 
@@ -163,7 +170,6 @@ void * cachearConParticionesDinamicas(void * mensaje, int sizeMensaje){
 void cachearMensaje(uint32_t idMensaje, uint32_t idCorrelativo, cola colaMensaje, uint32_t sizeMensaje, void * mensaje){
 
    registroCache * nuevoRegistro = malloc(sizeof(registroCache));
-
 
    nuevoRegistro->idMensaje=idMensaje;
    nuevoRegistro->idCorrelativo=idCorrelativo;
@@ -238,7 +244,7 @@ void enviarMensajes(t_list * mensajesAEnviar, suscriptor * suscriptor )
 }
 
 void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion) {
-	/*TODO - DONE
+	/*TODO_OLD
 	 *	- Filtrar los registros pertenecientes a la cola del codSuscripcion, en las cuales no figure registrado el ID del
 	 *    nuevoSuscriptor en la lista de cofirmados. (DONE)
 	 *  - Por cada nodo de la lista resultante, llenar una instancia de estructuraMensaje con los datos registrados, y enviar
@@ -254,7 +260,73 @@ void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion) 
 
 }
 
+void * posicionInicial(registroCache* regCache){
 
+	return regCache->posicionEnMemoria;
+}
+
+void * posicionFinal(registroCache* regCache){
+	/* TODO
+	 * - Calcular posicion final (inicial + tamanio)
+	 */
+	return 0;
+}
+
+int obtenerTamanioParticion(registroCache* regCache){
+	/* TODO
+	* - Calcular tamanio y devolver int
+	*/
+	return 0;
+}
+
+char* obtenerLRU(registroCache* regCache){
+	/* TODO
+	* - Sacar LRU
+	*/
+	return "X";
+}
+
+void dumpCache(){
+/* TODO - DONE
+ * - Crear archivo o abrir archivo existente
+ * - Escribir titulo ("Dump: <timestamp>")
+ * - Tomar cada registro de "registrosDeCache"
+ * - Escribir datos de cada registro en el archivo
+ * - Cerrar
+ */
+	log_info(logger, "Ejecutando dump de la cache...");
+
+	FILE* cacheDumpFile = fopen("dumpCacheBroker.txt", "a"); //mode = a (Append en el final. Si no existe lo crea)
+	int i = 0;
+
+	if(cacheDumpFile == NULL){
+		log_error(logger,"Ocurrio un error con el archivo de dump de la cache");
+		return;
+	}
+
+	fprintf(cacheDumpFile, "------------------------------------------------------------------------------------------------------------------\n\n");
+	time_t currentTime = time(NULL);
+	fprintf(cacheDumpFile, "Dump: %s \n\n", ctime(&currentTime));
+
+	void escribirRegistro(void* registro){
+		registroCache * regCache = (registroCache*) registro;
+		//fprintf(cacheDumpFile, "%-15s %-15s %-15s %-15s \n", "A", "B", "C", "D");
+		i++;
+		fprintf(cacheDumpFile, "Particion #%d : %-15s - %-15s ", i, (char *) posicionInicial(regCache->posicionEnMemoria), (char *) posicionFinal(regCache));
+		fprintf(cacheDumpFile, "[%s]     ", "X");
+		fprintf(cacheDumpFile, "Size: %-15d b", obtenerTamanioParticion(regCache));
+		fprintf(cacheDumpFile, "LRU: %-15s", obtenerLRU(regCache));
+		fprintf(cacheDumpFile, "Cola: %-15s", getCodeStringByNum(regCache->colaMensaje));
+		fprintf(cacheDumpFile, "ID: %-15d", regCache->idMensaje);
+
+		fprintf(cacheDumpFile, "\n");
+	}
+
+	list_iterate(registrosDeCache, escribirRegistro);
+
+	fclose(cacheDumpFile);
+
+}
 
 
 
