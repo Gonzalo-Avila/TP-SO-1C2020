@@ -1,5 +1,7 @@
 # tp-2020-1c-Ripped-Dinos
 
+![](Diagrama%20mensajes.png)
+
 **Commit 24/05**
 
 Bug fixes:
