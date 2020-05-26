@@ -1,5 +1,5 @@
 #include "Game-Boy.h"
-//#include "Team.h"
+
 
 void inicializarVariablesGlobales() {
 	config = config_create("gameboy.config");
@@ -92,22 +92,28 @@ proceso definirDestino(char * argumento) {
 
 }
 
+
+
 int main(int argc, char** argv) {
+
 
 	//Se setean todos los datos
 	inicializarVariablesGlobales();
 	log_info(logger, "Se ha iniciado el cliente gameboy\n");
+	pthread_t hiloCountdown;
+
 
 	proceso destino = definirDestino(argv[1]);
 	cola tipoMensaje = definirTipoMensaje(argv[2]);
 	int socketDestino = conectarseADestino(destino);
 
 	if (destino == SUSCRIPTOR) {
+
 		uint32_t ack = 1;
 		uint32_t idProceso;
-		opCode crearConexion = NUEVA_CONEXION;
+		opCode operacion = NUEVA_CONEXION;
 
-		send(socketDestino,&crearConexion,sizeof(opCode),0);
+		send(socketDestino,&operacion,sizeof(opCode),0);
 		recv(socketDestino,&idProceso,sizeof(uint32_t),MSG_WAITALL);
 		log_debug(logger,"El broker ha asignado el siguiente ID de proceso: %d",idProceso);
 
@@ -115,8 +121,30 @@ int main(int argc, char** argv) {
 		suscribirseACola(socketSuscripcion, tipoMensaje,idProceso);
 		log_debug(logger,"Se realizó suscripción a la cola %s", getCodeStringByNum(tipoMensaje));
 
+		void tiempoLimiteDeSuscripcion(char * tiempo){
+			opCode operacion2 = FINALIZAR;
+			sleep(atoi(tiempo));
+			int socketFinalizacion = conectarseADestino(destino);
+			send(socketFinalizacion,&operacion2,sizeof(opCode),0);
+			send(socketFinalizacion,&tipoMensaje,sizeof(cola),0);
+			send(socketFinalizacion,&idProceso,sizeof(uint32_t),0);
+			log_info(logger,"El gameboy se ha desconectado del broker");
+			//close(socketDestino);
+			//close(socketFinalizacion);
+			//close(socketSuscripcion);
+			log_destroy(logger);
+			config_destroy(config);
+			log_info(logger, "El proceso GameBoy finalizó su ejecución");
+			exit(0);
+		}
+
+		pthread_create(&hiloCountdown, NULL, (void*) tiempoLimiteDeSuscripcion,
+								argv[3]);
+		pthread_detach(hiloCountdown);
+
+
 		while (1) {
-			log_info(logger,"Eperando mensajes...");
+			log_info(logger,"Esperando mensajes...");
 			mensajeRecibido * mensaje = recibirMensajeDeBroker(socketSuscripcion);
 			send(socketSuscripcion, &ack, sizeof(uint32_t), 0);
             log_info(logger,"Se recibió un nuevo mensaje del broker\n"
@@ -125,8 +153,8 @@ int main(int argc, char** argv) {
             		"ID correlativo: %d\n"
             		"Tamaño del mensaje: %d\n",
 					getCodeStringByNum(mensaje->colaEmisora),mensaje->idMensaje, mensaje->idCorrelativo,mensaje->sizeMensaje);
-
 		}
+
 	} else {
 		int size;
 		estructuraMensaje datosMensaje;
@@ -368,10 +396,12 @@ int main(int argc, char** argv) {
 		}
 		}
 	}
+
+
 	close(socketDestino);
 	log_destroy(logger);
 	config_destroy(config);
-	log_info(logger, "El proceso GameBoy finalizó su ejecución\n");
+	log_info(logger, "El proceso GameBoy finalizó su ejecución");
 	return 0;
 
 }

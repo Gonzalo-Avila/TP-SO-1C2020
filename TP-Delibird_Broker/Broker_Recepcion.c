@@ -80,6 +80,7 @@ void esperarMensajes(int *socketCliente) {
 		desuscribir(clientID, tipoCola);
 		log_info(logger, "El cliente con ID %d se ha desconectado",
 				clientID);
+		close(*socketCliente);
 		break;
 	}
 	case DUMPCACHE: {
@@ -128,7 +129,7 @@ void atenderSuscripcion(int *socketSuscriptor){
         				"El cliente %d ha actualizado el socket: %d",
 						suscriptorYaAlmacenado->clientID, suscriptorYaAlmacenado->socketCliente);
 
-        //COMENTAR ESTA LINEA Y REALIZAR TESTING
+        //COMENTAR ESTA LINEA Y REALIZAR TESTING - NO BORRAR COMMENT
 		//enviarMensajesCacheados(suscriptorYaAlmacenado, codSuscripcion);
 	}
 	else
@@ -138,7 +139,7 @@ void atenderSuscripcion(int *socketSuscriptor){
 				"Hay un nuevo suscriptor en la cola %s. Número de socket suscriptor: %d",
 				getCodeStringByNum(codSuscripcion), *socketSuscriptor);
 
-		//enviarMensajesCacheados(nuevoSuscriptor, codSuscripcion);
+		//enviarMensajesCacheados(nuevoSuscriptor, codSuscripcion); - NO BORRAR COMMENT
 	}
 	sem_post(&mutexColas);
 
@@ -148,6 +149,10 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 	int idMensaje;
 	uint32_t idCorrelativo;
 	recv(socketEmisor, &idCorrelativo, sizeof(uint32_t), MSG_WAITALL);
+
+	//TODO
+	// |- Ver si el ID correlativo ya fue recibido, y si es asi, ignorar el mensaje.
+	// |- Podemos usar una lista de IDs correlativos ya recibidos.
 
 	if (tipoCola >= 0 && tipoCola <= 5) {
 		idMensaje = agregarMensajeACola(socketEmisor, tipoCola, idCorrelativo);

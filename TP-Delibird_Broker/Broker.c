@@ -108,7 +108,6 @@ void desuscribir(uint32_t clientID, cola colaSuscripcion) {
 	int socketCliente = getSocketActualDelSuscriptor(clientID, colaSuscripcion);
 	close(socketCliente);
 	eliminarSuscriptor(getListaSuscriptoresByNum(colaSuscripcion), clientID);
-
 }
 
 int getSocketActualDelSuscriptor(uint32_t clientID, cola colaSuscripcion) {
