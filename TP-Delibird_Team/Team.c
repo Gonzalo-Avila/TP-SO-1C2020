@@ -17,6 +17,7 @@ void inicializarVariablesGlobales() {
 	team->algoritmoPlanificacion = obtenerAlgoritmoPlanificador();
 	listaCondsEntrenadores = list_create();
 	listaPosicionesInternas = list_create();
+	semEntrenadores = malloc(list_size(team->entrenadores) * sizeof(sem_t));
 	//inicializo el mutex para los mensajes que llegan del broker
 	sem_init(&mutexMensajes, 1, 0);
 	sem_init(&mutexEntrenadores,1,0);
@@ -80,6 +81,21 @@ bool esUnObjetivo(void* objetivo) {
 	return verifica;
 }
 
+void inicializarSemEntrenadores() {
+	for (int j = 0; j < list_size(team->entrenadores); j++) {
+		sem_init(&semEntrenadores[j], 1, 0);
+		log_info(logger, "Iniciado semáforo para entrenador %d",
+				semEntrenadores[j]);
+	}
+}
+
+void crearHilosDeEntrenadores() {
+	for (int i = 0; i < list_size(team->entrenadores); i++) {
+		crearHiloEntrenador(list_get(team->entrenadores, i));
+     	//Que cada hilo se bloquee a penas empieza.
+	}
+}
+
 int main() {
 	uint32_t idDelProceso;
 
@@ -112,25 +128,17 @@ int main() {
 
 	setearObjetivosDeTeam();
 
-	semEntrenadores = malloc(list_size(team->entrenadores) * sizeof(sem_t));
 
-	for(int j = 0; j < list_size(team->entrenadores);j++){
-
-		sem_init(&semEntrenadores[j], 1, 0);
-		log_info(logger,"%d",semEntrenadores[j]);
-	}
-
+	inicializarSemEntrenadores();
 
 	enviarGetSegunObjetivo(ipServidor,puertoServidor);
 
-	for (int i = 0; i < list_size(team->entrenadores); i++) {
-		crearHiloEntrenador(list_get(team->entrenadores, i));
-	}//Que cada hilo se bloquee a penas empieza.
+	crearHilosDeEntrenadores();
 
 	planificador();
 
 	log_info(logger, "Finalizó la conexión con el servidor\n");
-	log_info(logger, "El proceso team finalizó su ejecución\n");
+	log_info(logger, "El proceso Team finalizó su ejecución\n");
 
 	free(ipServidor);
 	free(puertoServidor);

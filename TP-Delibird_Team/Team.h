@@ -94,6 +94,7 @@ void enlistar(char *elemento,t_list *lista);
 void obtenerDeConfig(char *clave,t_list *lista);
 void gestionarEntrenador(t_entrenador *entrenador);
 void crearHiloEntrenador(t_entrenador* entrenador);
+void crearHilosDeEntrenadores();
 t_entrenador* armarEntrenador(int id,char *posicionesEntrenador,char *objetivosEntrenador,char *pokemonesEntrenador);
 void generarEntrenadores();
 e_algoritmo obtenerAlgoritmoPlanificador();
@@ -124,5 +125,6 @@ void planificarFifo();
 void planificador();
 void ponerEnReadyAlMasCercano(int x, int y);
 void moverEntrenador(t_entrenador *entrenador);
+void inicializarSemEntrenadores();
 
 #endif /* TEAM_H_ */
