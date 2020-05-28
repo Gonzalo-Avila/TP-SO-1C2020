@@ -1,16 +1,5 @@
 #include "Team.h"
 
-uint32_t obtenerIdDelProceso(char* ip, char* puerto) {
-	int socketBroker = crearConexionCliente(ip, puerto);
-	uint32_t idProceso;
-
-	opCode codigoOP = NUEVA_CONEXION;
-	send(socketBroker, &codigoOP, sizeof(opCode), 0);
-	recv(socketBroker, &idProceso, sizeof(uint32_t), MSG_WAITALL);
-	close(socketBroker);
-
-	return idProceso;
-}
 
 void enviarGetDePokemon(char *ip, char *puerto, char *pokemon) {
 	int *socketBroker = malloc(sizeof(int));

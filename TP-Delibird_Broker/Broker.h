@@ -102,6 +102,7 @@ void desuscribir(uint32_t clientID, cola colaSuscripcion);
 void eliminarSuscriptor(t_list* listaSuscriptores, uint32_t clientID);
 int getSocketActualDelSuscriptor(uint32_t clientID, cola colaSuscripcion);
 suscriptor * buscarSuscriptor(uint32_t clientID, cola codSuscripcion);
+int XOR(int a, int b);
 
 
 #endif /* BROKER_H_ */

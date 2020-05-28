@@ -159,6 +159,7 @@ int test();
 void suscribirseACola(int socketBroker, cola tipoCola, uint32_t idSuscriptor);
 void enviarACola(int socketBroker, cola tipoCola, char* msj, int msjSize);
 char* getCodeStringByNum(int nro);
+uint32_t obtenerIdDelProceso(char* ip, char* puerto);
 
 
 #endif /* UTILS_H_ */

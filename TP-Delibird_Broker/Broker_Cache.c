@@ -19,6 +19,9 @@ void inicializarCache() {
 
 }
 
+int XOR(int a, int b){
+	return a^b;
+}
 //----------------------- [CACHE] -------------------------//
 
 
