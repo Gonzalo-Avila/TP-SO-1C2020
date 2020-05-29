@@ -64,7 +64,8 @@ void setearCondsEntrenadores(){
 			pthread_cond_t *cond = malloc(sizeof(pthread_cond_t));
 			t_entrenador *entrenador = malloc(sizeof(t_entrenador));
 
-			pthread_cond_init(cond,1);
+
+			//pthread_cond_init(cond,1);
 			entrenador = list_get(team->entrenadores,i);
 
 			entrenador->cond = cond;

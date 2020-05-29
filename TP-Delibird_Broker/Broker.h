@@ -27,7 +27,9 @@ t_list * suscriptoresCAU;
 t_list * suscriptoresGET;
 t_list * suscriptoresLOC;
 
+//Listas Cache
 t_list * registrosDeCache;
+t_list * registrosDeParticiones;
 
 uint32_t globalIDMensaje;
 uint32_t globalIDProceso;
@@ -41,6 +43,11 @@ typedef struct {
 } suscriptor;
 
 
+typedef enum{
+	LIBRE = 0,
+	OCUPADO = 1
+}estadoParticion;
+
 typedef struct {
   uint32_t idMensaje;
   uint32_t idCorrelativo;
@@ -50,6 +57,18 @@ typedef struct {
   t_list * procesosQueConfirmaronRecepcion;
   void * posicionEnMemoria;
 } registroCache;
+
+typedef struct{
+	int nroParticion;
+	int posInicialLogica;
+	void* posInicialFisica;
+	int tamanioParticion;
+	estadoParticion estado;
+	int idMensaje;
+	time_t tiempoArribo;
+	time_t tiempoUltimoUso;
+}registroParticion;
+
 
 //#include "Broker_Cache.h"
 void inicializarCache();
@@ -63,7 +82,7 @@ void * usarBestFit();
 void * usarFirstFit(void * mensaje, int sizeMensaje);
 void * cachearConBuddySystem(void * mensaje, int sizeMensaje);
 void * cachearConParticionesDinamicas(void * mensaje, int sizeMensaje);
-void cachearMensaje(uint32_t idMensaje, uint32_t idCorrelativo, cola colaMensaje, uint32_t sizeMensaje, void * mensaje);
+void cachearMensaje(estructuraMensaje estMensaje);
 void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion);
 void dumpCache();
 
