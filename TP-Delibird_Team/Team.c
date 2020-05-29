@@ -128,7 +128,6 @@ int main() {
 
 	setearObjetivosDeTeam();
 
-
 	inicializarSemEntrenadores();
 
 	enviarGetSegunObjetivo(ipServidor,puertoServidor);

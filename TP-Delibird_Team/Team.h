@@ -115,6 +115,7 @@ bool elementoEstaEnLista(t_list *lista, char *elemento);
 void setearObjetivosDeTeam();
 void enviarGetSegunObjetivo(char *ip, char *puerto);
 void enviarGetDePokemon(char *ip, char *puerto, char *pokemon);
+void enviarCatchDePokemon(char *ip, char *puerto, char *pokemon, uint32_t posX, uint32_t posY);
 float calcularDistancia(int posX1, int posY1,int posX2,int posY2);
 t_dist *setearDistanciaEntrenadores(int id,int posX,int posY);
 bool estaEnEspera(t_entrenador *entrenador);

@@ -23,10 +23,35 @@ void enviarGetDePokemon(char *ip, char *puerto, char *pokemon) {
 	msg->pokemon = malloc(msg->longPokemon);
 	strcpy(msg->pokemon, pokemon);
 
-	log_debug(logger,"Enviando mensaje...");
+	log_debug(logger,"Enviando mensaje GET...");
 	enviarMensajeABroker(*socketBroker, GET, -1, sizeof(uint32_t) + msg->longPokemon, msg);
 	recv(*socketBroker,&idRespuesta,sizeof(uint32_t),MSG_WAITALL);
-	log_debug(logger,"Mensaje enviado :smilieface:");
+	log_debug(logger,"Mensaje enviado GET :smilieface:");
+	log_info(logger, "Respuesta del Broker: %d", idRespuesta);
+	free(msg);
+	close(*socketBroker);
+	free(socketBroker);
+}
+
+//TODO Ver si tiene que devolver el ID de rta
+void enviarCatchDePokemon(char *ip, char *puerto, char *pokemon, uint32_t posX, uint32_t posY) {
+	int *socketBroker = malloc(sizeof(int));
+	*socketBroker = crearConexionCliente(ip, puerto);
+	uint32_t idRespuesta;
+
+	mensajeCatch *msg = malloc(sizeof(mensajeCatch));
+
+	msg->longPokemon = strlen(pokemon) + 1;
+	msg->pokemon = malloc(msg->longPokemon);
+	strcpy(msg->pokemon, pokemon);
+	msg->posicionX = posX;
+	msg->posicionY = posY;
+
+	log_debug(logger,"Enviando mensaje CATCH...");
+	//TODO Ver si se necesita enviar idCorrelativo. Iría en el -1 del enviarMensajeABroker
+	enviarMensajeABroker(*socketBroker, CATCH, -1, sizeof(uint32_t)*3 + msg->longPokemon, msg);
+	recv(*socketBroker,&idRespuesta,sizeof(uint32_t),MSG_WAITALL);
+	log_debug(logger,"Mensaje enviado CATCH :smilieface:");
 	log_info(logger, "Respuesta del Broker: %d", idRespuesta);
 	free(msg);
 	close(*socketBroker);
