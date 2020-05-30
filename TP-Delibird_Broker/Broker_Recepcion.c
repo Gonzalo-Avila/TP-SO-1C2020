@@ -45,7 +45,7 @@ void esperarMensajes(int *socketCliente) {
 	switch (codOperacion) {
 
 	case NUEVA_CONEXION:{
-        uint32_t idProceso= getIDProceso();
+        uint32_t idProceso = getIDProceso();
         send(*socketCliente, &idProceso,sizeof(uint32_t),0);
         close(*socketCliente);
 		break;
@@ -90,6 +90,7 @@ void esperarMensajes(int *socketCliente) {
 	}
 	default: {
 		log_error(logger, "El mensaje recibido está dañado");
+		close(*socketCliente);
 		break;
 	}
 	}
@@ -213,7 +214,7 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 		list_add(getColaByNum(tipoCola), generarNodo(mensajeNuevo));
 	}
 
-	cachearMensaje(mensajeNuevo);
+	//cachearMensaje(mensajeNuevo);
 	sem_post(&mutexColas);
 	sem_post(&habilitarEnvio);
 

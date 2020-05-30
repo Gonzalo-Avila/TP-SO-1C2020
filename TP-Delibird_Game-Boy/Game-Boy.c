@@ -386,7 +386,7 @@ int main(int argc, char** argv) {
 			break;
 		}
 		case LOCALIZED: {
-			//Este mensaje no se utiliza desde el gameboy
+			//TODO - Implementar este mensaje para poder probar el Team
 			break;
 		}
 		default: {

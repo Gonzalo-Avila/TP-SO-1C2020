@@ -41,7 +41,7 @@ typedef struct{
 	t_list *objetivos;
 	t_list *pokemones;
 	e_estado estado;
-	pthread_cond_t *cond;
+	t_posicion posAMover;
 }t_entrenador;
 
 typedef struct{
@@ -73,6 +73,7 @@ t_team *team;
 t_list *listaHilos;
 t_list *listaDeReady;
 t_list *listaDeBloqued;
+
 char* pokemonRecibido;
 char* ipServidor;
 char* puertoServidor;
@@ -80,19 +81,21 @@ char* puertoServidor;
 t_list *listaCondsEntrenadores;
 t_list *listaPosicionesInternas;
 
-pthread_mutex_t mutexHilosEntrenadores;
 sem_t mutexMensajes;
 sem_t mutexEntrenadores;
 sem_t semPlanif;
+sem_t *semEntrenadores;
+sem_t procesoEnReady;
 
 /* Funciones */
 void inicializarVariablesGlobales();
-uint32_t obtenerIdDelProceso(char* ip, char* puerto);
+//uint32_t obtenerIdDelProceso(char* ip, char* puerto);
 void array_iterate_element(char** strings, void (*closure)(char*,t_list*),t_list *lista);
 void enlistar(char *elemento,t_list *lista);
 void obtenerDeConfig(char *clave,t_list *lista);
 void gestionarEntrenador(t_entrenador *entrenador);
 void crearHiloEntrenador(t_entrenador* entrenador);
+void crearHilosDeEntrenadores();
 t_entrenador* armarEntrenador(int id,char *posicionesEntrenador,char *objetivosEntrenador,char *pokemonesEntrenador);
 void generarEntrenadores();
 e_algoritmo obtenerAlgoritmoPlanificador();
@@ -106,13 +109,14 @@ void esperarMensajes(int *socketCliente);
 t_mensaje* deserializar(void* paquete);
 void gestionarMensajes(char* ip, char* puerto);
 bool menorDist(void *dist1,void *dist2);
-bool hayaAlgunEntrenadorActivo();
+bool noSeCumplieronLosObjetivos();
 void liberarMemoria();
 t_list *obtenerEntrenadoresReady();
 bool elementoEstaEnLista(t_list *lista, char *elemento);
 void setearObjetivosDeTeam();
 void enviarGetSegunObjetivo(char *ip, char *puerto);
 void enviarGetDePokemon(char *ip, char *puerto, char *pokemon);
+void enviarCatchDePokemon(char *ip, char *puerto, char *pokemon, uint32_t posX, uint32_t posY);
 float calcularDistancia(int posX1, int posY1,int posX2,int posY2);
 t_dist *setearDistanciaEntrenadores(int id,int posX,int posY);
 bool estaEnEspera(t_entrenador *entrenador);
@@ -121,7 +125,8 @@ bool distanciaMasCorta(void *entrenador1,void *entrenador2);
 t_entrenador* entrenadorMasCercanoEnEspera(int posX,int posY);
 void planificarFifo();
 void planificador();
-void setearCondsEntrenadores();
 void ponerEnReadyAlMasCercano(int x, int y);
+void moverEntrenador(t_entrenador *entrenador);
+void inicializarSemEntrenadores();
 
 #endif /* TEAM_H_ */

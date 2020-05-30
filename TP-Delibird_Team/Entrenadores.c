@@ -59,19 +59,6 @@ void setearObjetivosDeTeam() {
 	}
 }
 
-void setearCondsEntrenadores(){
-	for(int i = 0; i < list_size(team->entrenadores);i++){
-			pthread_cond_t *cond = malloc(sizeof(pthread_cond_t));
-			t_entrenador *entrenador = malloc(sizeof(t_entrenador));
-
-
-			//pthread_cond_init(cond,1);
-			entrenador = list_get(team->entrenadores,i);
-
-			entrenador->cond = cond;
-		}
-}
-
 void crearHiloEntrenador(t_entrenador* entrenador) {
 	pthread_t nuevoHilo;
 	t_listaHilos* nodoListaDeHilos = malloc(sizeof(t_listaHilos));
@@ -86,74 +73,42 @@ void crearHiloEntrenador(t_entrenador* entrenador) {
 	pthread_detach(nuevoHilo);
 }
 
-t_dist *setearDistanciaPokemones(int id, int x, int y){
-	t_dist *distancia = malloc(sizeof(t_dist));
+void moverEntrenador(t_entrenador *entrenador){
 
-//	distancia->dist = calcularDistancia((t_posicionEnMapa*)list_get(listaPosicionesInternas,0)),,x, y);
-	//Todo_OLD fijarse como agarra la posicion del pokemon de las internas.
-	//preguntar.
-	distancia->id = id;
+	if(entrenador->pos[0] < entrenador->posAMover[0]){
+			entrenador->pos[0]++;
+		}
+		else if(entrenador->pos[0] > entrenador->posAMover[0]){
+			entrenador->pos[0]--;
+		}
+		if(entrenador->pos[1] < entrenador->posAMover[1]){
+			entrenador->pos[1]++;
+		}
+		else if(entrenador->pos[1] > entrenador->posAMover[1]){
+			entrenador->pos[1]--;
+		}
 
-	return distancia;
-}
-
-int encontrarPokemonMasCercano(int x,int y){
-	t_list* listaDistancias = list_create();
-	t_dist *distancia = malloc(sizeof(t_dist));
-
-	for (int i = 0; i < list_size(listaPosicionesInternas); i++) {
-		distancia = setearDistanciaPokemones(i, x, y);
-		list_add(listaDistancias, distancia);
-	}
-	list_sort(listaDistancias, menorDist);
-
-	t_dist *idPokemonConDistMenor = ((t_dist*)list_get(listaDistancias,0));
-
-	return ((t_entrenador*) list_get(listaPosicionesInternas,idPokemonConDistMenor->id))->id;
 }
 
 /*MANEJA EL FUNCIONAMIENTO INTERNO DE CADA ENTRENADOR(trabajo en un hilo separado)*/
 void gestionarEntrenador(t_entrenador *entrenador) {
+	//me quedo esperando a estar en EJEC
+	sem_wait(&semEntrenadores[entrenador->id]);
 
-	pthread_mutex_lock(&mutexHilosEntrenadores);
-	pthread_cond_wait(entrenador->cond,&mutexHilosEntrenadores);
-	pthread_mutex_unlock(&mutexHilosEntrenadores);
-
-	//pokemon mas cercano al entrenador
-	int idPokeMasCercano = encontrarPokemonMasCercano(entrenador->pos[0],entrenador->pos[1]);
-	//Todo_OLD esto es muy feo tengo que buscar una forma mas facil de acomodar esto.
-	//Preguntar esto.
-	while(entrenador->pos[0] != (int)list_get(((t_posicionEnMapa*)list_get(listaPosicionesInternas,idPokeMasCercano))->x,0)){
+	while(entrenador->pos[0] != entrenador->posAMover[0] && entrenador->pos[1] != entrenador->posAMover[1]){
 		sem_wait(&mutexEntrenadores);
-		if(entrenador->pos[0] < 'X'/*X POKEMON*/){
-			entrenador->pos[0]++;
-		}
-		else if(entrenador->pos[0] > 'X'/*X POKEMON*/){
-			entrenador->pos[0]--;
-		}
-		if(entrenador->pos[1] < 'Y'/*Y POKEMON*/){
-			entrenador->pos[1]++;
-		}
-		else if(entrenador->pos[1] > 'Y' /*Y POKEMON*/){
-			entrenador->pos[1]--;
-		}
-		if(entrenador->pos[0] == 'X'/*X POKEMON*/ && entrenador->pos[1] == 'Y'/* Y POKEMON */){
-			//send(CATCH pokemon);
-			//esperaCAUGHT
-			/*if(pokemones.contains(objetivos)){
-				estado = FIN;
-			}
-			else{
-				estado = BLOCKED;
-			}*/
+		moverEntrenador(entrenador);
 		sem_post(&mutexEntrenadores);
-		}
 		usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 100000);
 	}
+	//TODO ver si el pokemonRecibido es el string correcto, o de dónde sacarlo
+	enviarCatchDePokemon(ipServidor, puertoServidor, pokemonRecibido, entrenador->posAMover[0], entrenador->posAMover[1]);
+	entrenador->estado = BLOQUEADO;
 
-	//send catch
-	//pthread_cond_wait();
-
+	//sem_signal(&semPlanif);
+	//sem_wait(&semEntrenadores[entrenador->id]);
+	//recibir caught
+	//me bloqueo
 
 }
 

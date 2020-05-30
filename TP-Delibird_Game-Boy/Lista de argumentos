@@ -41,5 +41,9 @@ ${selected_text:SUSCRIPTOR} ${selected_text:APPEARED_POKEMON} ${selected_text:60
 
 
 
+argv[0]       argv[1]     argv[2]
+ 			BROKER LOCALIZED_POKEMON [POKEMON] [POSX1] [POSY1] [CANTIDAD1] [POSX2] [POSY2] [CANTIDAD2]
 
+${selected_text:BROKER} ${selected_text:LOCALIZED_POKEMON} ${selected_text:Pikachu} ${selected_text:5} ${selected_text:2} ${selected_text:4} ${selected_text:7} ${selected_text:5} ${selected_text:10}
+ 
 

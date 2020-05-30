@@ -21,9 +21,9 @@ e_algoritmo obtenerAlgoritmoPlanificador() {
 }
 
 //Esta funcion se podria codear para que sea una funcion generica, pero por el momento solo me sirve saber si está o no en ready.
-bool estaEnEspera(t_entrenador *trainer) {
+bool estaEnEspera(t_entrenador *trainer) { // @suppress("Type cannot be resolved")
 	bool verifica = false;
-	if (((trainer->estado) == NUEVO) || ((trainer->estado) == BLOQUEADO))
+	if (trainer->estado == NUEVO || trainer->estado == BLOQUEADO)
 		verifica = true;
 
 	return verifica;
@@ -102,11 +102,12 @@ t_list *obtenerEntrenadoresReady(){
 	return entrenadoresReady;
 }
 
-bool hayaAlgunEntrenadorActivo(){
+bool noSeCumplieronLosObjetivos(){
 	bool verifica = false;
-	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+	t_entrenador *entrenador;
 
 	int i = 0;
+
 	while(i < list_size(team->entrenadores)){
 		entrenador = list_get(team->entrenadores,i);
 
@@ -126,43 +127,45 @@ void ponerEnReadyAlMasCercano(int x, int y){
 	entrenadorMasCercano = entrenadorMasCercanoEnEspera(x,y);
 	sem_wait(&mutexEntrenadores);
 	entrenadorMasCercano->estado = LISTO;//me aseguro de que tengo uno en READY antes de llamar para planificar
+	entrenadorMasCercano->posAMover[0] = x;
+	entrenadorMasCercano->posAMover[1] = y;
 	list_add(listaDeReady,entrenadorMasCercano);
-	sem_wait(&mutexEntrenadores);
+	sem_post(&mutexEntrenadores);
 }
 
 void activarHiloDe(int id){
-	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
-
-	entrenador = list_get(team->entrenadores,id);
-
-	pthread_mutex_lock(&mutexHilosEntrenadores);
-	pthread_cond_signal(entrenador->cond);
-	pthread_mutex_unlock(&mutexHilosEntrenadores);
+	sem_post(&semEntrenadores[id]);
 }
 
 void planificarFifo(){
-		while(1/*haya alguno que no este en FIN*/){
-		t_entrenador *entrenador = malloc(sizeof(t_entrenador));
 
-		entrenador = list_get(listaDeReady,0);
-		entrenador->estado = EJEC;
-		activarHiloDe(entrenador->id);
-		sem_wait(&semPlanif);
+
+		while(noSeCumplieronLosObjetivos()){
+			t_entrenador *entrenador;
+
+			if(!list_is_empty(listaDeReady)){
+				sem_wait(&mutexEntrenadores);
+				entrenador = list_get(listaDeReady,0);
+				entrenador->estado = EJEC;
+				sem_post(&mutexEntrenadores);
+				activarHiloDe(entrenador->id);
+				sem_wait(&semPlanif);
+			}
+
 		}
 }
 
 void planificador(){
-
+    sem_wait(&procesoEnReady);
 	switch(team->algoritmoPlanificacion){
-			case FIFO:
-				planificarFifo(listaDeReady);
-				break;
-			//en caso que tengamos otro algoritmo usamos la funcion de ese algoritmo
-			default:
+			case FIFO:{
 				planificarFifo();
 				break;
+			}
+			//en caso que tengamos otro algoritmo usamos la funcion de ese algoritmo
+			default:{
+				planificarFifo();
+				break;
+			}
 	}
 }
-
-
-

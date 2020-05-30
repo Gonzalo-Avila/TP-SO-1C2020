@@ -5,7 +5,7 @@ void inicializarVariablesGlobales() {
 	logger = log_create("broker_logs", "Broker", 1, LOG_LEVEL_TRACE);
 
 	inicializarColasYListas();
-	inicializarCache();
+	//inicializarCache();
 
 	sem_init(&mutexColas, 0, 1);
 	sem_init(&habilitarEnvio, 0, 0);
@@ -141,7 +141,6 @@ uint32_t getIDProceso() {
 }
 
 int main() {
-
 
 	inicializarVariablesGlobales();
 

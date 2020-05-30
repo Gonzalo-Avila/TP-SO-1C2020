@@ -9,7 +9,7 @@ void inicializarVariablesGlobales() {
 	team->objetivo = list_create();
 	listaDeReady = list_create(); //esto se necesita para el FIFO.
 	listaDeBloqued = list_create(); //esto es necesario??
-	pokemonRecibido = string_new();
+	//pokemonRecibido = string_new();
 	ipServidor = malloc(strlen(config_get_string_value(config, "IP")) + 1);
 	ipServidor = config_get_string_value(config, "IP");
 	puertoServidor = malloc(strlen(config_get_string_value(config, "PUERTO")) + 1);
@@ -18,13 +18,11 @@ void inicializarVariablesGlobales() {
 	listaCondsEntrenadores = list_create();
 	listaPosicionesInternas = list_create();
 
-	//inicializo el mutex para los hilos de entrenador
-	pthread_mutex_init(&mutexHilosEntrenadores,NULL);
-
 	//inicializo el mutex para los mensajes que llegan del broker
-	sem_init(&mutexMensajes, 1, 0);
-	sem_init(&mutexEntrenadores,1,0);
-	sem_init(&semPlanif, 1, 0);
+	sem_init(&mutexMensajes, 0, 1);
+	sem_init(&mutexEntrenadores,0,1);
+	sem_init(&semPlanif, 0, 0);
+	sem_init(&procesoEnReady,0,0);
 }
 
 void array_iterate_element(char** strings, void (*closure)(char*, t_list*),
@@ -84,6 +82,22 @@ bool esUnObjetivo(void* objetivo) {
 	return verifica;
 }
 
+void inicializarSemEntrenadores() {
+	semEntrenadores = malloc(list_size(team->entrenadores) * sizeof(sem_t));
+	for (int j = 0; j < list_size(team->entrenadores); j++) {
+		sem_init(&(semEntrenadores[j]), 0, 0);
+		log_info(logger, "Iniciado semáforo para entrenador %d",
+				semEntrenadores[j]);
+	}
+}
+
+void crearHilosDeEntrenadores() {
+	for (int i = 0; i < list_size(team->entrenadores); i++) {
+		crearHiloEntrenador(list_get(team->entrenadores, i));
+     	//Que cada hilo se bloquee a penas empieza.
+	}
+}
+
 int main() {
 	uint32_t idDelProceso;
 
@@ -104,6 +118,9 @@ int main() {
 	int *socketGameboy = malloc(sizeof(int));
 	*socketGameboy = crearConexionEscuchaGameboy();
 
+	//Crea hilo para atender al Gameboy
+	//atenderGameboy(socketGameboy);
+
 	//Se suscribe el Team a las colas
 	suscribirseALasColas(*socketBrokerApp,*socketBrokerLoc,*socketBrokerCau, idDelProceso);
 
@@ -113,18 +130,16 @@ int main() {
 
 	setearObjetivosDeTeam();
 
-	setearCondsEntrenadores();
+	inicializarSemEntrenadores();
 
 	enviarGetSegunObjetivo(ipServidor,puertoServidor);
 
-	for (int i = 0; i < list_size(team->entrenadores); i++) {
-		crearHiloEntrenador(list_get(team->entrenadores, i));
-	}//Que cada hilo se bloquee a penas empieza.
+	crearHilosDeEntrenadores();
 
 	planificador();
 
 	log_info(logger, "Finalizó la conexión con el servidor\n");
-	log_info(logger, "El proceso team finalizó su ejecución\n");
+	log_info(logger, "El proceso Team finalizó su ejecución\n");
 
 	free(ipServidor);
 	free(puertoServidor);
@@ -135,7 +150,7 @@ int main() {
 	free(socketBrokerLoc);
 	free(socketBrokerCau);
 //	liberarMemoria();
-	//Todo_OLD revisar porque pincha en LiberarMemoria().
+	//Todo revisar porque pincha en LiberarMemoria().
 	return 0;
 }
 
