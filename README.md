@@ -2,6 +2,25 @@
 
 ![](Diagrama%20mensajes.png)
 
+
+**Commit 31/05**
+
+- Cambie la firma de las siguientes funciones porque necesitan saber el ID del mensaje. Quedaron así:
+* void * usarBestFit(estructuraMensaje mensaje);
+* void * usarFirstFit(estructuraMensaje mensaje);
+* void * cachearConBuddySystem(estructuraMensaje mensaje);
+* void * cachearConParticionesDinamicas(estructuraMensaje mensaje);
+
+- Implemente:
+* bool hayEspacioLibrePara(int sizeMensaje) 
+* void vaciarParticion()
+* compactarCache()
+* usarFirstFit(estructuraMensaje mensaje)
+* Varias otras funciones auxiliares. 
+
+- Creé los enums para los algoritmos sacados de config.
+
+
 **Commit 24/05**
 
 Bug fixes:
