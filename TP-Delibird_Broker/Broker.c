@@ -40,6 +40,7 @@ void inicializarColasYListas() {
 	suscriptoresCAU = list_create();
 
 	registrosDeCache = list_create();
+	registrosDeParticiones = list_create();
 
 }
 

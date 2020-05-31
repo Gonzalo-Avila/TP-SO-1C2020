@@ -1,9 +1,8 @@
 #include "Broker.h"
 
-void * cacheBroker;
-int CACHESIZE;
-
-void crearRegistroInicial() {
+//Almacenamiento en cache
+//--------------------------------------------------------------------------
+void crearRegistroInicial(t_list * listaDeRegistrosDestino) {
 
 	registroParticion * regParticion = malloc(sizeof(registroParticion));
 	regParticion->nroParticion = 0;
@@ -12,7 +11,7 @@ void crearRegistroInicial() {
 	regParticion->estado = LIBRE;
 	regParticion->idMensaje = -1;
 
-	list_add(registrosDeParticiones, regParticion);
+	list_add(listaDeRegistrosDestino, regParticion);
 
 }
 
@@ -22,7 +21,6 @@ int BSCacheSize(int size) {
 		if (sizeAux * 2 > size) {
 			return sizeAux;
 		}
-
 		else {
 			sizeAux = sizeAux * 2;
 		}
@@ -32,17 +30,36 @@ int BSCacheSize(int size) {
 }
 
 int adaptarCacheSize(int size) {
-	if (strcmp("BS", config_get_string_value(config, "ALGORITMO_MEMORIA")) == 0)
+	if (algoritmoMemoria==BUDDY_SYSTEM)
 		size = BSCacheSize(size);
 	return size;
 }
 
+void setearAlgoritmos(){
+
+	if(strcmp(config_get_string_value(config,"ALGORITMO_MEMORIA"),"BS")==0)
+		algoritmoMemoria=BUDDY_SYSTEM;
+	else
+		algoritmoMemoria=PARTICIONES_DINAMICAS;
+
+	if(strcmp(config_get_string_value(config,"ALGORITMO_REEMPLAZO"),"LRU")==0)
+		algoritmoReemplazo=LRU;
+	else
+		algoritmoReemplazo=FIFO;
+
+	if(strcmp(config_get_string_value(config,"ALGORITMO_PARTICION_LIBRE"),"FF")==0)
+		algoritmoParticionLibre=FIRST_FIT;
+	else
+		algoritmoParticionLibre=BEST_FIT;
+}
+
 void inicializarCache() {
 
-	CACHESIZE = adaptarCacheSize(
-			config_get_int_value(config, "TAMANO_MEMORIA"));
+	setearAlgoritmos();
+
+	CACHESIZE = adaptarCacheSize(config_get_int_value(config, "TAMANO_MEMORIA"));
 	cacheBroker = malloc(CACHESIZE);
-	crearRegistroInicial();
+	crearRegistroInicial(registrosDeParticiones);
 
 }
 
@@ -50,13 +67,13 @@ int XOR(int a, int b) {
 	return a ^ b;
 }
 
-void * cachearConBuddySystem(void * mensaje, int sizeMensaje) {
+void * cachearConBuddySystem(estructuraMensaje mensaje) {
 	// TODO
 	void * particion = 0;
 	return particion;
 }
 
-void * usarBestFit(void * mensaje, int sizeMensaje) {
+void * usarBestFit(estructuraMensaje mensaje) {
 	/* TODO
 	 * -
 	 * - Filtrar en registrosDeCache TODOS los que:
@@ -75,50 +92,159 @@ void * usarBestFit(void * mensaje, int sizeMensaje) {
 	return particion;
 }
 
-void * usarFirstFit(void * mensaje, int sizeMensaje) {
-	/* TODO
+void reasignarNumerosDeParticion(t_list * listaAReasignar){
+	int numero=0;
+	void asignarNumero(void * particion){
+		registroParticion * registro = (registroParticion *) particion;
+		registro->nroParticion=numero;
+		numero++;
+	}
+	list_iterate(listaAReasignar,(void *) asignarNumero);
+}
+
+void aniadirNuevoRegistro(registroParticion * registroAnterior, int sizeMensajeRecibido){
+	registroParticion * registroNuevo = malloc(sizeof(registroParticion));
+	registroNuevo->nroParticion=registroAnterior->nroParticion+1; //Igualmente se va a reasignar despues
+	registroNuevo->idMensaje=-1;
+	registroNuevo->posInicialLogica=registroAnterior->posInicialLogica+sizeMensajeRecibido;
+	registroNuevo->posInicialFisica=registroAnterior->posInicialFisica+sizeMensajeRecibido;
+	registroNuevo->estado=LIBRE;
+	registroNuevo->tamanioParticion=registroAnterior->tamanioParticion-sizeMensajeRecibido;
+	list_add_in_index(registrosDeParticiones,registroAnterior->nroParticion+1,registroNuevo);
+}
+void * usarFirstFit(estructuraMensaje mensaje) {
+	/* TODO - DONE
 	 * -
 	 * - Buscar en registrosDeCache el PRIMERO que:
 	 *		- Estado = LIBRE
 	 *		- Tamanio >= sizeMensaje
-	 * - Si no encontro ==> Vaciar/Compactar Particion Segun Algoritmo
-	 * - Si encontro ==>
-	 * 		- Copiar "mensaje" en posInicialFisica del registro elegido
-	 * 		- Crear registro nuevo con datos de mensaje
-	 * 		- Crear registro nuevo con particion libre restante
-	 * 		- Reasignar nroParticion a todos los registros en "registrosDeCache"
+	 *
+	 * - Copiar "mensaje" en posInicialFisica del registro elegido
+	 * - Crear registro nuevo con datos de mensaje
+	 * - Crear registro nuevo con particion libre restante
+	 * - Reasignar nroParticion a todos los registros en "registrosDeCache"
 	 */
+    bool estaVaciaYAlcanza(void * particion){
+    	registroParticion * registro = (registroParticion *) particion;
+    	return registro->estado==LIBRE && registro->tamanioParticion>=mensaje.sizeMensaje;
+    }
+	registroParticion * registro = (registroParticion *) list_find(registrosDeParticiones,(void *)estaVaciaYAlcanza);
+	if(registro->tamanioParticion>mensaje.sizeMensaje){
+		aniadirNuevoRegistro(registro,mensaje.sizeMensaje);
+		reasignarNumerosDeParticion(registrosDeParticiones);
+	}
 
-	void * particion = 0;
-	return particion;
+	memcpy(registro->posInicialFisica,mensaje.mensaje,mensaje.sizeMensaje);
+	registro->estado=OCUPADO;
+	registro->idMensaje=mensaje.id;
+	registro->tamanioParticion=mensaje.sizeMensaje;
+	registro->tiempoArribo=time(NULL);
+	registro->tiempoUltimoUso=time(NULL);
+
+
+	return registro->posInicialFisica;
 
 }
 
 bool hayEspacioLibrePara(int sizeMensaje) {
-
-	return true;
+	bool estaVaciaYAlcanza(void * particion){
+	    	registroParticion * registro = (registroParticion *) particion;
+	    	return registro->estado==LIBRE && registro->tamanioParticion>=sizeMensaje;
+	}
+	return list_any_satisfy(registrosDeParticiones,(void *)estaVaciaYAlcanza);
 }
 
+bool compararPorFIFO(void * particion1, void * particion2){
+	registroParticion * registro1 = (registroParticion *) particion1;
+	registroParticion * registro2 = (registroParticion *) particion2;
+
+    return registro1->tiempoArribo<registro2->tiempoArribo;
+}
+bool compararPorLRU(void * particion1, void * particion2){
+	registroParticion * registro1 = (registroParticion *) particion1;
+	registroParticion * registro2 = (registroParticion *) particion2;
+
+    return registro1->tiempoUltimoUso<registro2->tiempoUltimoUso;
+}
+
+void eliminarRegistroDeCache(int IDMensaje){
+	bool coincideID(void * registro){
+		registroCache * reg= (registroCache *) registro;
+		return reg->idMensaje==IDMensaje;
+	}
+	list_remove_by_condition(registrosDeCache,(void *)coincideID);
+
+}
+void liberarSegunFIFO(){
+	t_list * particionesOcupadas = list_filter(registrosDeParticiones,(void *)estaOcupado);
+	t_list * particionesOrdenadasPorFIFO=list_sorted(particionesOcupadas,(void *) compararPorFIFO);
+	registroParticion * particionALiberar = (registroParticion *)list_get(particionesOrdenadasPorFIFO,0);
+	particionALiberar->estado=LIBRE;
+	eliminarRegistroDeCache(particionALiberar->idMensaje);
+	particionALiberar->idMensaje=-1;
+}
+void liberarSegunLRU(){
+	t_list * particionesOcupadas = list_filter(registrosDeParticiones,(void *)estaOcupado);
+	t_list * particionesOrdenadasPorLRU=list_sorted(particionesOcupadas,(void *) compararPorLRU);
+	registroParticion * particionALiberar = (registroParticion *)list_get(particionesOrdenadasPorLRU,0);
+	particionALiberar->estado=LIBRE;
+	eliminarRegistroDeCache(particionALiberar->idMensaje);
+	particionALiberar->idMensaje=-1;
+
+}
 void vaciarParticion() {
-
+	if(algoritmoReemplazo==FIFO)
+		liberarSegunFIFO();
+	else
+		liberarSegunLRU();
 }
+
 
 void compactarCache() {
+	t_list * listaAuxiliar = list_create();
+	crearRegistroInicial(listaAuxiliar);
+
+
+	void guardarEnListaAuxiliar(void * registroOcupado){
+		registroParticion * registroAMover = (registroParticion *) registroOcupado;
+
+	    bool estaVaciaYAlcanza(void * particion){
+	    	registroParticion * registro = (registroParticion *) particion;
+	    	return registro->estado==LIBRE && registro->tamanioParticion>=registroAMover->tamanioParticion;
+	    }
+		registroParticion * registro = (registroParticion *) list_find(listaAuxiliar,(void *)estaVaciaYAlcanza);
+		if(registro->tamanioParticion>registroAMover->tamanioParticion){
+			aniadirNuevoRegistro(registro,registroAMover->tamanioParticion);
+			reasignarNumerosDeParticion(listaAuxiliar);
+		}
+
+		memcpy(registro->posInicialFisica,registroAMover->posInicialFisica,registroAMover->tamanioParticion);
+		registro->estado=OCUPADO;
+		registro->idMensaje=registroAMover->idMensaje;
+		registro->tamanioParticion=registroAMover->tamanioParticion;
+		registro->tiempoArribo=registroAMover->tiempoArribo;
+		registro->tiempoUltimoUso=registroAMover->tiempoUltimoUso;
+
+	}
+
+	t_list * registrosOcupados = list_filter(registrosDeParticiones,(void *)estaOcupado);
+	list_iterate(registrosOcupados, (void *) guardarEnListaAuxiliar);
+
+	list_clean(registrosDeParticiones);
+	registrosDeParticiones = listaAuxiliar;
 
 }
 
 void limpiarCache() {
-	void destroyer(void* elem){
-	}
-	list_clean_and_destroy_elements(registrosDeParticiones,(void* ) destroyer);
-	crearRegistroInicial();
+	list_clean(registrosDeParticiones);
+	crearRegistroInicial(registrosDeParticiones);
 }
 
+bool estaOcupado(void* regParticion){
+	registroParticion* regPart = (registroParticion*) regParticion;
+	return regPart->estado == OCUPADO;
+}
 bool hayMensajes(){
-	bool estaOcupado(void* regParticion){
-		registroParticion* regPart = (registroParticion*) regParticion;
-		return regPart->estado == OCUPADO;
-	}
 	return list_any_satisfy(registrosDeParticiones, (void *)estaOcupado);
 }
 
@@ -151,29 +277,40 @@ void asegurarEspacioLibrePara(int sizeMensaje) {
 	}
 }
 
-void * cachearConParticionesDinamicas(void * mensaje, int sizeMensaje) {
+void * cachearConParticionesDinamicas(estructuraMensaje mensaje) {
 
-	asegurarEspacioLibrePara(sizeMensaje);
+	asegurarEspacioLibrePara(mensaje.sizeMensaje);
 
-	if (strcmp("FF",
-			config_get_string_value(config, "ALGORITMO_PARTICION_LIBRE")) == 0)
-		return usarFirstFit(mensaje, sizeMensaje);
+	if (algoritmoParticionLibre==FIRST_FIT)
+		return usarFirstFit(mensaje);
 	else
-		return usarBestFit(mensaje, sizeMensaje);
+		return usarBestFit(mensaje);
 }
 
 void *asignarParticion(estructuraMensaje mensaje) {
 
 	void* posicionMemoriaParticion;
-	if (strcmp("BS", config_get_string_value(config, "ALGORITMO_MEMORIA")) == 0)
-		posicionMemoriaParticion = cachearConBuddySystem(mensaje.mensaje,
-				mensaje.sizeMensaje);
+	if (algoritmoMemoria==BUDDY_SYSTEM)
+		posicionMemoriaParticion = cachearConBuddySystem(mensaje);
 	else
-		posicionMemoriaParticion = cachearConParticionesDinamicas(
-				mensaje.mensaje, mensaje.sizeMensaje);
+		posicionMemoriaParticion = cachearConParticionesDinamicas(mensaje);
 
 	return posicionMemoriaParticion;
 }
+
+void cachearMensaje(estructuraMensaje mensaje) {
+
+	if (mensaje.sizeMensaje <= CACHESIZE) {
+		void* posicionMemoriaParticion = asignarParticion(mensaje);
+		crearRegistroCache(mensaje, posicionMemoriaParticion);
+	} else {
+		log_info(logger,
+				"No se pudo cachear el mensaje con ID %d por ser mas grande que la cache",
+				mensaje.id);
+	}
+
+}
+//--------------------------------------------------------------------------
 
 void crearRegistroCache(estructuraMensaje mensaje, void* posInicialMemoria) {
 
@@ -190,19 +327,8 @@ void crearRegistroCache(estructuraMensaje mensaje, void* posInicialMemoria) {
 	list_add(registrosDeCache, nuevoRegistro);
 }
 
-void cachearMensaje(estructuraMensaje mensaje) {
-
-	if (mensaje.sizeMensaje <= CACHESIZE) {
-		void* posicionMemoriaParticion = asignarParticion(mensaje);
-		crearRegistroCache(mensaje, posicionMemoriaParticion);
-	} else {
-		log_info(logger,
-				"No se pudo cachear el mensaje con ID %d por ser mas grande que la cache",
-				mensaje.id);
-	}
-
-}
-
+//Envío de mensajes cacheados a nuevos suscriptores
+//--------------------------------------------------------------------------
 bool elSuscriptorNoEstaEnLaLista(t_list * lista, uint32_t idSuscriptor) {
 	bool esDistinto(void * suscriptor) {
 		uint32_t * sus = (uint32_t *) suscriptor;
@@ -273,8 +399,13 @@ void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion) 
 	t_list * mensajesAEnviar = getListaDeRegistrosFiltrados(nuevoSuscriptor,
 			codSuscripcion);
 	enviarMensajes(mensajesAEnviar, nuevoSuscriptor);
-
 }
+//--------------------------------------------------------------------------
+
+
+
+//Impresión de dump de cache
+//--------------------------------------------------------------------------
 
 void * posicionInicial(registroCache* regCache) {
 
@@ -355,6 +486,6 @@ void dumpCache() {
 	list_iterate(registrosDeCache, escribirRegistro);
 
 	fclose(cacheDumpFile);
-
 }
+//--------------------------------------------------------------------------
 
