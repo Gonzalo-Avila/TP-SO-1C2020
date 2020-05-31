@@ -92,8 +92,6 @@ proceso definirDestino(char * argumento) {
 
 }
 
-
-
 int main(int argc, char** argv) {
 
 
@@ -386,7 +384,46 @@ int main(int argc, char** argv) {
 			break;
 		}
 		case LOCALIZED: {
-			//TODO - Implementar este mensaje para poder probar el Team
+			mensajeLocalized mensaje;
+			//./broker BROKER LOCALIZED_POKEMON [POKEMON] [CANTIDAD] [POSX] [POSY] (UN PAR DE COORDENADAS X CANTIDAD)
+			mensaje.longPokemon = strlen(argv[3]) + 1;
+			mensaje.pokemon = malloc(mensaje.longPokemon);
+			strcpy(mensaje.pokemon, argv[3]);
+			mensaje.listSize = atoi(argv[4]);
+
+			posicYCant *parDeCoordenadas = malloc(sizeof(posicYCant));
+
+			//Funcion interna para poder usar commons con mas parametros
+			bool coordenadaEstaEnLista(void* coordenada){
+				posicYCant* coordenadaEnLista = coordenada;
+					return (coordenadaEnLista->posicionX == parDeCoordenadas->posicionX &&
+							coordenadaEnLista->posicionY == parDeCoordenadas->posicionY);
+			}
+
+			for(int i=0;i<mensaje.listSize;i++){
+				int cont=0;
+				parDeCoordenadas->posicionX = atoi(argv[5+cont]);
+				parDeCoordenadas->posicionY = atoi(argv[6+cont]);
+
+				//Chequeo si hay mas de un pokemon en la misma posicion
+				if(list_any_satisfy(mensaje.posicionYCant,coordenadaEstaEnLista)){
+					posicYCant* posicionAModificarCantidad =list_find(mensaje.posicionYCant,coordenadaEstaEnLista);
+					posicionAModificarCantidad->cantidad++;
+				}
+				else{
+					parDeCoordenadas->cantidad = 1;
+					list_add(mensaje.posicionYCant,parDeCoordenadas);
+				}
+				cont=cont+2;
+			}
+			size = sizeof(uint32_t) * 8 + mensaje.longPokemon;
+			enviarMensajeABroker(socketDestino, tipoMensaje, -1, size,
+					&mensaje);
+			log_info(logger,
+					"Se envió un mensaje a la cola %s del proceso %s",
+					argv[2], argv[1]);
+			free(mensaje.pokemon);
+			free(parDeCoordenadas);
 			break;
 		}
 		default: {
