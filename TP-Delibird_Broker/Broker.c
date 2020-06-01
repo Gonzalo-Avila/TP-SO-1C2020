@@ -1,5 +1,6 @@
 #include "Broker.h"
 
+
 void inicializarVariablesGlobales() {
 	config = config_create("broker.config");
 	logger = log_create("broker_logs", "Broker", 1, LOG_LEVEL_TRACE);
@@ -142,6 +143,8 @@ uint32_t getIDProceso() {
 }
 
 int main() {
+
+	//signal(SIGUSR1,dumpCache);
 
 	inicializarVariablesGlobales();
 

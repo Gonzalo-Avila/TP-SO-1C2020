@@ -9,9 +9,8 @@
 #define BROKER_H_
 
 #include <Utils.h>
-#include <string.h>
-#include <stdbool.h>
 #include <time.h>
+#include <signal.h>
 
 t_list * NEW_POKEMON;
 t_list * APPEARED_POKEMON;
@@ -33,6 +32,7 @@ t_list * registrosDeCache;
 t_list * registrosDeParticiones;
 void * cacheBroker;
 int CACHESIZE;
+int minimoTamanioParticion;
 
 typedef enum{
 	LIBRE = 0,
@@ -110,6 +110,12 @@ void cachearMensaje(estructuraMensaje estMensaje);
 void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion);
 void dumpCache();
 bool estaOcupado(void* regParticion);
+registroParticion * vaciarParticion();
+bool hayEspacioLibrePara(int sizeMensaje);
+
+
+
+
 //#include "Broker_Recepcion.h"
 void empezarAAtenderCliente(int socketEscucha);
 void atenderConexiones(int *socketEscucha);

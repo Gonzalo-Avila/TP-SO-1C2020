@@ -3,6 +3,13 @@
 ![](Diagrama%20mensajes.png)
 
 
+**Commit 01/06**
+
+Avancé con buddy system, implementé varias funciones.
+
+Agregué la variable global para el tamaño mínimo de partición. 
+
+
 **Commit 31/05**
 
 Cambie la firma de las siguientes funciones porque necesitan saber el ID del mensaje. Quedaron así:
