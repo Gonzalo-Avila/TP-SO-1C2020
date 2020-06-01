@@ -121,6 +121,9 @@ void imprimirEstructuraDeDatos(estructuraMensaje mensaje);
 estructuraMensaje * generarNodo(estructuraMensaje mensaje);
 int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo);
 void crearRegistroCache(estructuraMensaje mensaje, void* posInicialMemoria);
+bool compararPorMenorTamanio(void * particion1, void * particion2);
+void reasignarNumerosDeParticion(t_list * listaAReasignar);
+void aniadirNuevoRegistroALista(t_list * listaDeRegistros, registroParticion * registroAnterior, int sizeMensajeRecibido);
 
 
 //#include "Broker_Envio.h"

@@ -79,17 +79,36 @@ void * usarBestFit(estructuraMensaje mensaje) {
 	 * - Filtrar en registrosDeCache TODOS los que:
 	 *		- Estado = LIBRE
 	 *		- Tamanio >= sizeMensaje
-	 * - Si no encontro ==> Vaciar/Compactar Particion Segun Algoritmo
-	 * - Si encontro ==>
-	 * 		- Tomar el de menor "tamanio"
-	 * 		- Copiar "mensaje" en posInicialFisica del registro elegido
-	 * 		- Crear registro nuevo con datos de mensaje
-	 * 		- Crear registro nuevo con particion libre restante
-	 * 		- Reasignar nroParticion a todos los registros en "registrosDeCache"
+	 *
+	 * - Tomar el de menor "tamanio"
+	 * - Copiar "mensaje" en posInicialFisica del registro elegido
+	 * - Crear registro nuevo con datos de mensaje
+	 * - Crear registro nuevo con particion libre restante
+	 * - Reasignar nroParticion a todos los registros en "registrosDeCache"
 	 */
+	 bool estaVaciaYAlcanza(void * particion){
+	    	registroParticion * reg = (registroParticion *) particion;
+	    	return reg->estado==LIBRE && reg->tamanioParticion>=mensaje.sizeMensaje;
+	 }
 
-	void * particion = 0;
-	return particion;
+	t_list * particionesValidas =  list_filter(registrosDeParticiones,(void *)estaVaciaYAlcanza);
+	t_list * particionesOrdenadasPorTamanio = list_sorted(particionesValidas, (void *)compararPorMenorTamanio);
+	registroParticion * registro = (registroParticion *)list_get(particionesOrdenadasPorTamanio,0);
+
+	if(registro->tamanioParticion>mensaje.sizeMensaje){
+		aniadirNuevoRegistroALista(registrosDeParticiones,registro,mensaje.sizeMensaje);
+		reasignarNumerosDeParticion(registrosDeParticiones);
+	}
+
+	memcpy(registro->posInicialFisica,mensaje.mensaje,mensaje.sizeMensaje);
+	registro->estado=OCUPADO;
+	registro->idMensaje=mensaje.id;
+	registro->tamanioParticion=mensaje.sizeMensaje;
+	registro->tiempoArribo=time(NULL);
+	registro->tiempoUltimoUso=time(NULL);
+
+
+	return registro->posInicialFisica;
 }
 
 void reasignarNumerosDeParticion(t_list * listaAReasignar){
@@ -102,7 +121,7 @@ void reasignarNumerosDeParticion(t_list * listaAReasignar){
 	list_iterate(listaAReasignar,(void *) asignarNumero);
 }
 
-void aniadirNuevoRegistro(registroParticion * registroAnterior, int sizeMensajeRecibido){
+void aniadirNuevoRegistroALista(t_list * listaDeRegistros, registroParticion * registroAnterior, int sizeMensajeRecibido){
 	registroParticion * registroNuevo = malloc(sizeof(registroParticion));
 	registroNuevo->nroParticion=registroAnterior->nroParticion+1; //Igualmente se va a reasignar despues
 	registroNuevo->idMensaje=-1;
@@ -110,7 +129,7 @@ void aniadirNuevoRegistro(registroParticion * registroAnterior, int sizeMensajeR
 	registroNuevo->posInicialFisica=registroAnterior->posInicialFisica+sizeMensajeRecibido;
 	registroNuevo->estado=LIBRE;
 	registroNuevo->tamanioParticion=registroAnterior->tamanioParticion-sizeMensajeRecibido;
-	list_add_in_index(registrosDeParticiones,registroAnterior->nroParticion+1,registroNuevo);
+	list_add_in_index(listaDeRegistros,registroAnterior->nroParticion+1,registroNuevo);
 }
 void * usarFirstFit(estructuraMensaje mensaje) {
 	/* TODO - DONE
@@ -130,7 +149,7 @@ void * usarFirstFit(estructuraMensaje mensaje) {
     }
 	registroParticion * registro = (registroParticion *) list_find(registrosDeParticiones,(void *)estaVaciaYAlcanza);
 	if(registro->tamanioParticion>mensaje.sizeMensaje){
-		aniadirNuevoRegistro(registro,mensaje.sizeMensaje);
+		aniadirNuevoRegistroALista(registrosDeParticiones,registro,mensaje.sizeMensaje);
 		reasignarNumerosDeParticion(registrosDeParticiones);
 	}
 
@@ -152,6 +171,14 @@ bool hayEspacioLibrePara(int sizeMensaje) {
 	    	return registro->estado==LIBRE && registro->tamanioParticion>=sizeMensaje;
 	}
 	return list_any_satisfy(registrosDeParticiones,(void *)estaVaciaYAlcanza);
+}
+
+
+bool compararPorMenorTamanio(void * particion1, void * particion2){
+	registroParticion * registro1 = (registroParticion *) particion1;
+	registroParticion * registro2 = (registroParticion *) particion2;
+
+    return registro1->tamanioParticion<registro2->tamanioParticion;
 }
 
 bool compararPorFIFO(void * particion1, void * particion2){
@@ -212,9 +239,10 @@ void compactarCache() {
 	    	registroParticion * registro = (registroParticion *) particion;
 	    	return registro->estado==LIBRE && registro->tamanioParticion>=registroAMover->tamanioParticion;
 	    }
+
 		registroParticion * registro = (registroParticion *) list_find(listaAuxiliar,(void *)estaVaciaYAlcanza);
 		if(registro->tamanioParticion>registroAMover->tamanioParticion){
-			aniadirNuevoRegistro(registro,registroAMover->tamanioParticion);
+			aniadirNuevoRegistroALista(listaAuxiliar,registro,registroAMover->tamanioParticion);
 			reasignarNumerosDeParticion(listaAuxiliar);
 		}
 
