@@ -22,28 +22,30 @@ void atenderConexiones(int *socketEscucha) {
 				*socketCliente);
 
         esperarMensajes(socketCliente);
+        free(socketCliente);
 	}
 }
 
 
 
 void esperarMensajes(int *socketCliente) {
-	/* Espera mensajes de una conexión ya establecida. Según el código de operación recibido, delega tareas a distintos modulos.
+	/* Espera mensajes de una conexión ya establecida. Según el
+	 * código de operación recibido, delega tareas a distintos modulos.
 	 *
 	 */
 
-	int codOperacion;
+	opCode codOperacion;
 	int sizeDelMensaje;
 	cola tipoCola;
 
-	recv(*socketCliente, &codOperacion, sizeof(int), MSG_WAITALL);
+	recv(*socketCliente, &codOperacion, sizeof(opCode), MSG_WAITALL);
 	log_debug(logger, "Esperando mensaje de cliente %d...", *socketCliente);
 
 
 	switch (codOperacion) {
 
 	case NUEVA_CONEXION:{
-        uint32_t idProceso= getIDProceso();
+        uint32_t idProceso = getIDProceso();
         send(*socketCliente, &idProceso,sizeof(uint32_t),0);
         close(*socketCliente);
 		break;
@@ -78,28 +80,31 @@ void esperarMensajes(int *socketCliente) {
 		desuscribir(clientID, tipoCola);
 		log_info(logger, "El cliente con ID %d se ha desconectado",
 				clientID);
-
+		close(*socketCliente);
+		break;
+	}
+	case DUMPCACHE: {
+		log_info(logger, "[DUMP DE LA CACHE]");
+		dumpCache();
 		break;
 	}
 	default: {
 		log_error(logger, "El mensaje recibido está dañado");
+		close(*socketCliente);
 		break;
 	}
 	}
 }
 
-
-
 bool yaExisteSuscriptor(uint32_t clientID, cola codSuscripcion){
-   bool existeClientID(void * _suscriptor){
-	   suscriptor* sus = (suscriptor *) _suscriptor;
-	   return sus->clientID==clientID;
-   }
+    bool existeClientID(void * nodoLista){
+		   suscriptor* sus = (suscriptor *) nodoLista;
+		   return sus->clientID==clientID;
+	}
    t_list * listaSuscriptores = getListaSuscriptoresByNum(codSuscripcion);
-   return list_any_satisfy(listaSuscriptores,&existeClientID);
+
+   return list_any_satisfy(listaSuscriptores,(void *)existeClientID);;
 }
-
-
 
 void atenderSuscripcion(int *socketSuscriptor){
 	/* Recibe el código de suscripción desde el socket a suscribirse, eligiendo de esta manera la cola y agregando el socket
@@ -125,8 +130,8 @@ void atenderSuscripcion(int *socketSuscriptor){
         				"El cliente %d ha actualizado el socket: %d",
 						suscriptorYaAlmacenado->clientID, suscriptorYaAlmacenado->socketCliente);
 
-        //TODO - COMENTAR ESTA LINEA Y REALIZAR TESTING
-		enviarMensajesCacheados(suscriptorYaAlmacenado, codSuscripcion);
+        //COMENTAR ESTA LINEA Y REALIZAR TESTING - NO BORRAR COMMENT
+		//enviarMensajesCacheados(suscriptorYaAlmacenado, codSuscripcion);
 	}
 	else
 	{
@@ -135,9 +140,8 @@ void atenderSuscripcion(int *socketSuscriptor){
 				"Hay un nuevo suscriptor en la cola %s. Número de socket suscriptor: %d",
 				getCodeStringByNum(codSuscripcion), *socketSuscriptor);
 
-		enviarMensajesCacheados(nuevoSuscriptor, codSuscripcion);
+		//enviarMensajesCacheados(nuevoSuscriptor, codSuscripcion); - NO BORRAR COMMENT
 	}
-	free(nuevoSuscriptor);
 	sem_post(&mutexColas);
 
 }
@@ -146,6 +150,10 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 	int idMensaje;
 	uint32_t idCorrelativo;
 	recv(socketEmisor, &idCorrelativo, sizeof(uint32_t), MSG_WAITALL);
+
+	//TODO
+	// |- Ver si el ID correlativo ya fue recibido, y si es asi, ignorar el mensaje.
+	// |- Podemos usar una lista de IDs correlativos ya recibidos.
 
 	if (tipoCola >= 0 && tipoCola <= 5) {
 		idMensaje = agregarMensajeACola(socketEmisor, tipoCola, idCorrelativo);
@@ -156,7 +164,6 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 				"No pudo obtenerse el tipo de cola en el mensaje recibido");
 	}
 }
-
 
 void imprimirEstructuraDeDatos(estructuraMensaje mensaje) {
 	log_info(logger, "[NUEVO MENSAJE RECIBIDO]");
@@ -205,9 +212,9 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 		sus = (suscriptor *) (list_get(getListaSuscriptoresByNum(tipoCola), i));
 		mensajeNuevo.clientID = sus->clientID;
 		list_add(getColaByNum(tipoCola), generarNodo(mensajeNuevo));
-
-		cachearMensaje(mensajeNuevo.id,mensajeNuevo.idCorrelativo, mensajeNuevo.colaMensajeria, mensajeNuevo.sizeMensaje,mensajeNuevo.mensaje);
 	}
+
+	//cachearMensaje(mensajeNuevo);
 	sem_post(&mutexColas);
 	sem_post(&habilitarEnvio);
 

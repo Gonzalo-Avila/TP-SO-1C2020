@@ -19,4 +19,6 @@ typedef enum{
 }proceso;
 
 
+
+
 #endif /* GAME_BOY_H_ */

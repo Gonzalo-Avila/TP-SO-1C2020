@@ -85,10 +85,11 @@ sem_t mutexMensajes;
 sem_t mutexEntrenadores;
 sem_t semPlanif;
 sem_t *semEntrenadores;
+sem_t procesoEnReady;
 
 /* Funciones */
 void inicializarVariablesGlobales();
-uint32_t obtenerIdDelProceso(char* ip, char* puerto);
+//uint32_t obtenerIdDelProceso(char* ip, char* puerto);
 void array_iterate_element(char** strings, void (*closure)(char*,t_list*),t_list *lista);
 void enlistar(char *elemento,t_list *lista);
 void obtenerDeConfig(char *clave,t_list *lista);
@@ -108,7 +109,7 @@ void esperarMensajes(int *socketCliente);
 t_mensaje* deserializar(void* paquete);
 void gestionarMensajes(char* ip, char* puerto);
 bool menorDist(void *dist1,void *dist2);
-bool hayaAlgunEntrenadorActivo();
+bool noSeCumplieronLosObjetivos();
 void liberarMemoria();
 t_list *obtenerEntrenadoresReady();
 bool elementoEstaEnLista(t_list *lista, char *elemento);

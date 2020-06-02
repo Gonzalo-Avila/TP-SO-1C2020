@@ -44,7 +44,8 @@ typedef enum {
 	FINALIZAR = 2,
 	SUSCRIPCION = 3,
 	CONFIRMACION_MENSAJE = 4,
-	NUEVA_CONEXION = 5
+	NUEVA_CONEXION = 5,
+	DUMPCACHE = 6
 } opCode;
 
 
@@ -148,8 +149,7 @@ void inicializarColas();
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar);
 void * serializarPaqueteCola(tPaquete* paquete, int tamanioAEnviar);
 void enviarString(int socketDestino, char * mensaje);
-int enviarMensajeASuscriptor(estructuraMensaje datosMensaje,
-		int socketSuscriptor);
+int enviarMensajeASuscriptor(estructuraMensaje datosMensaje, int socketSuscriptor);
 void enviarMensajeABroker(int socketBroker, cola colaDestino,
 		uint32_t idCorrelativo, uint32_t sizeMensaje, void * mensaje);
 mensajeRecibido * recibirMensajeDeBroker(int socketBroker);
@@ -159,6 +159,7 @@ int test();
 void suscribirseACola(int socketBroker, cola tipoCola, uint32_t idSuscriptor);
 void enviarACola(int socketBroker, cola tipoCola, char* msj, int msjSize);
 char* getCodeStringByNum(int nro);
+uint32_t obtenerIdDelProceso(char* ip, char* puerto);
 
 
 #endif /* UTILS_H_ */

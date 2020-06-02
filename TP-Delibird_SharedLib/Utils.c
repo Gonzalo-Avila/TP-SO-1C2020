@@ -228,8 +228,7 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,
 /* Permite enviar un mensaje a cualquier cliente, de forma que estos lo puedan interpretar
  *
  */
-int enviarMensajeASuscriptor(estructuraMensaje datosMensaje,
-	int socketSuscriptor) {
+int enviarMensajeASuscriptor(estructuraMensaje datosMensaje, int socketSuscriptor) {
 
 	int returnValueSend;
 
@@ -303,12 +302,11 @@ void suscribirseACola(int socketBroker, cola tipoCola, uint32_t idSuscriptor) {
 	paquete->codOperacion = SUSCRIPCION;
 
 	paquete->buffer->size = sizeof(cola) + sizeof(uint32_t);
-	paquete->buffer->stream = malloc(sizeof(cola) + sizeof(uint32_t));
+	paquete->buffer->stream = malloc(paquete->buffer->size);
 
 	memcpy(paquete->buffer->stream, &(tipoCola), sizeof(cola));
-	memcpy(paquete->buffer->stream + sizeof(cola), &(idSuscriptor),
-			sizeof(uint32_t));
-	int sizeTotal = sizeof(opCode) + sizeof(cola) + sizeof(int);
+	memcpy(paquete->buffer->stream + sizeof(cola), &(idSuscriptor),sizeof(uint32_t));
+	int sizeTotal = sizeof(opCode) + sizeof(uint32_t) + sizeof(cola) + sizeof(uint32_t);
 	void * paqueteSerializado = serializarPaquete(paquete, sizeTotal);
 	send(socketBroker, paqueteSerializado, sizeTotal, 0);
 	free(paquete->buffer->stream);
@@ -352,6 +350,19 @@ void enviarString(int socketDestino, char * mensaje) {
 	free(aEnviar);
 }
 
+
+uint32_t obtenerIdDelProceso(char* ip, char* puerto) {
+	int socketBroker = crearConexionCliente(ip, puerto);
+	uint32_t idProceso;
+
+	opCode codigoOP = NUEVA_CONEXION;
+	send(socketBroker, &codigoOP, sizeof(opCode), 0);
+	recv(socketBroker, &idProceso, sizeof(uint32_t), MSG_WAITALL);
+	close(socketBroker);
+
+	return idProceso;
+}
+
 //Funciones auxiliares para logs
 //---------------------------------------------------
 
@@ -365,3 +376,4 @@ char* getCodeStringByNum(int nro) {
 
 
 //---------------------------------------------------
+

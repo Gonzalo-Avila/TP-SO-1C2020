@@ -1,6 +1,6 @@
 #include "Team.h"
 
-uint32_t obtenerIdDelProceso(char* ip, char* puerto) {
+/*uint32_t obtenerIdDelProceso(char* ip, char* puerto) {
 	int socketBroker = crearConexionCliente(ip, puerto);
 	uint32_t idProceso;
 
@@ -10,7 +10,7 @@ uint32_t obtenerIdDelProceso(char* ip, char* puerto) {
 	close(socketBroker);
 
 	return idProceso;
-}
+}*/
 
 void enviarGetDePokemon(char *ip, char *puerto, char *pokemon) {
 	int *socketBroker = malloc(sizeof(int));
@@ -60,19 +60,22 @@ void enviarCatchDePokemon(char *ip, char *puerto, char *pokemon, uint32_t posX, 
 
 /* Atender al Broker y Gameboy */
 void atenderServidor(int *socketServidor) {
-	mensajeRecibido *miMensajeRecibido = malloc(sizeof(mensajeRecibido));
+	//mensajeRecibido *miMensajeRecibido = malloc(sizeof(mensajeRecibido));
 
 	log_debug(logger, "Se atiende al servidor");
+	uint32_t ack=1;
 	while (1) {
-		miMensajeRecibido = recibirMensajeDeBroker(*socketServidor);
+		mensajeRecibido * miMensajeRecibido = recibirMensajeDeBroker(*socketServidor);
 
 		if (miMensajeRecibido->codeOP == FINALIZAR) {
 			break;
 		}
 
+		//TODO - Corregir recepciones, separar el void
 		switch(miMensajeRecibido->colaEmisora){
 			case APPEARED:{
-				void* pokemonRecibido = malloc((miMensajeRecibido->sizeMensaje)+1);
+				send(*socketServidor, &ack, sizeof(uint32_t), 0);
+				pokemonRecibido = malloc((miMensajeRecibido->sizeMensaje)+1);
 				int offset = (miMensajeRecibido->sizePayload) - (miMensajeRecibido->sizeMensaje);
 				memcpy(pokemonRecibido, miMensajeRecibido + offset,sizeof(miMensajeRecibido->sizeMensaje));
 
@@ -81,10 +84,12 @@ void atenderServidor(int *socketServidor) {
 					log_info(logger, "Pokemon: %s", *(char*)pokemonRecibido);
 					enviarGetDePokemon(ipServidor, puertoServidor, pokemonRecibido);
 				}
+
 				free(pokemonRecibido);
 				break;
 			}
 			case LOCALIZED:{
+				send(*socketServidor, &ack, sizeof(uint32_t), 0);
 				int cantPokes,longPokemon;
 				int offset = 0;
 				t_posicionEnMapa *pos = malloc(sizeof(t_posicionEnMapa));
@@ -121,17 +126,20 @@ void atenderServidor(int *socketServidor) {
 				if(esUnObjetivo(pokemon)){
 					list_add(listaPosicionesInternas,pos);
 					ponerEnReadyAlMasCercano(x[0],y[0]);
+					sem_post(&procesoEnReady);
 				}
 				break;
 			}
-			case CAUGHT:
+			case CAUGHT:{
+				send(*socketServidor, &ack, sizeof(uint32_t), 0);
 				//TODO CAUGHT
 				log_info(logger, "Recibi un CAUGHT. ¿Que es eso?¿Se come?");
 				break;
-			default:
+			}
+			default:{
 				log_error(logger, "Cola de Mensaje Erronea.");
 				break;
-
+			}
 		}
 		if(miMensajeRecibido->mensaje != NULL){
 			log_info(logger, "Mensaje recibido: %s\n", miMensajeRecibido->mensaje);
@@ -139,7 +147,6 @@ void atenderServidor(int *socketServidor) {
 
 		free(miMensajeRecibido);
 	}
-	close(*socketServidor);
 }
 
 void crearHiloParaAtenderServidor(int *socketServidor) {

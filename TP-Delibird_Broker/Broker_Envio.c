@@ -2,7 +2,7 @@
 
 /*void eliminarMensaje(estructuraMensaje* estMsj){
 	t_list* colaMensaje = getColaByNum(estMsj->colaMensajeria);
-	//TODO -> no se uso al final, se quitan todos de una en vez de elemento por elemento
+	//TODO_OLD -> no se uso al final, se quitan todos de una en vez de elemento por element
 	// - Usar get, take o alguna funcion de las commons de listas para eliminar ese nodo
 }*/
 
@@ -12,7 +12,8 @@ void agregarAListaDeEnviados(uint32_t idMsg, uint32_t idProceso){
         return reg->idMensaje==idMsg;
     }
 	registroCache * registroAActualizar = list_find(registrosDeCache,&esElRegistroQueBusco);
-    list_add(registroAActualizar->procesosALosQueSeEnvio,&idProceso);
+	if(registroAActualizar!=NULL)
+      list_add(registroAActualizar->procesosALosQueSeEnvio,&idProceso);
 }
 
 void agregarAListaDeConfirmados(uint32_t idMsg, uint32_t idProceso){
@@ -21,11 +22,12 @@ void agregarAListaDeConfirmados(uint32_t idMsg, uint32_t idProceso){
         return reg->idMensaje==idMsg;
     }
 	registroCache * registroAActualizar = list_find(registrosDeCache,&esElRegistroQueBusco);
-    list_add(registroAActualizar->procesosQueConfirmaronRecepcion,&idProceso);
+	if(registroAActualizar!=NULL)
+      list_add(registroAActualizar->procesosQueConfirmaronRecepcion,&idProceso);
 }
 
 void enviarEstructuraMensajeASuscriptor(void* estMensaje) {
-	//TODO - DONE
+	//TODO_OLD
 	// - Hacer send() del mensaje al suscriptor
 	// - Evaluar retorno del send()
 	// - Cambiar estado "enviado" en cache
@@ -51,6 +53,7 @@ void enviarEstructuraMensajeASuscriptor(void* estMensaje) {
 		agregarAListaDeEnviados(estMsj->id,estMsj->clientID);
 		estMsj->estado=ESTADO_ENVIADO;
 	}
+	//TODO - Caso en que no se conteste el ACK
 	recv(socketDelSuscriptor,&ack, sizeof(uint32_t),MSG_WAITALL);
 	if(ack==1){
 		agregarAListaDeConfirmados(estMsj->id,estMsj->clientID);
@@ -68,6 +71,7 @@ bool esMensajeNuevo(void* mensaje) {
 }
 
 void destructorNodos(void * nodo){
+	//TODO - Revisar por que crashea esto para poder usar el list_clean_and_destroy
 	estructuraMensaje * estMsj = (estructuraMensaje *) nodo;
 	free(estMsj->mensaje);
 }
@@ -78,12 +82,10 @@ void atenderColas() {
 		sem_wait(&mutexColas);
 		for (int numCola = 0; numCola < 6; numCola++) {
 			if (list_size(getColaByNum(numCola)) > 0) {
-				//t_list* mensajesNuevos = list_filter(getColaByNum(numCola), &esMensajeNuevo);
-				//list_iterate(mensajesNuevos, &enviarEstructuraMensajeASuscriptor);
+
 				list_iterate(getColaByNum(numCola), &enviarEstructuraMensajeASuscriptor);
-
-				list_clean_and_destroy_elements(getColaByNum(numCola), &destructorNodos);
-
+				list_clean(getColaByNum(numCola));
+				//list_clean_and_destroy_elements(getColaByNum(numCola), &destructorNodos);
 			}
 		}
 		sem_post(&mutexColas);

@@ -9,8 +9,8 @@
 #define BROKER_H_
 
 #include <Utils.h>
-#include <string.h>
-#include <stdbool.h>
+#include <time.h>
+#include <signal.h>
 
 t_list * NEW_POKEMON;
 t_list * APPEARED_POKEMON;
@@ -26,19 +26,29 @@ t_list * suscriptoresCAU;
 t_list * suscriptoresGET;
 t_list * suscriptoresLOC;
 
+//Variables de Cache
+//--------------------------------
 t_list * registrosDeCache;
+t_list * registrosDeParticiones;
+void * cacheBroker;
+int CACHESIZE;
+int minimoTamanioParticion;
 
-uint32_t globalIDMensaje;
-uint32_t globalIDProceso;
+typedef enum{
+	LIBRE = 0,
+	OCUPADO = 1
+}estadoParticion;
 
-sem_t mutexColas;
-sem_t habilitarEnvio;
-
-typedef struct {
-	int socketCliente;
-	uint32_t clientID;
-} suscriptor;
-
+typedef struct{
+	int nroParticion;
+	int posInicialLogica;
+	void* posInicialFisica;
+	int tamanioParticion;
+	estadoParticion estado;
+	int idMensaje;
+	time_t tiempoArribo;
+	time_t tiempoUltimoUso;
+}registroParticion;
 
 typedef struct {
   uint32_t idMensaje;
@@ -50,6 +60,40 @@ typedef struct {
   void * posicionEnMemoria;
 } registroCache;
 
+typedef enum {
+PARTICIONES_DINAMICAS = 0,
+BUDDY_SYSTEM = 1
+}t_algoritmoMemoria;
+typedef enum{
+FIFO = 0,
+LRU = 1
+}t_algoritmoReemplazo;
+typedef enum{
+FIRST_FIT = 0,
+BEST_FIT = 1
+}t_algoritmoParticionLibre;
+
+t_algoritmoMemoria algoritmoMemoria;
+t_algoritmoReemplazo algoritmoReemplazo;
+t_algoritmoParticionLibre algoritmoParticionLibre;
+//--------------------------------
+
+
+uint32_t globalIDMensaje;
+uint32_t globalIDProceso;
+
+sem_t mutexColas;
+sem_t habilitarEnvio;
+
+
+
+typedef struct {
+	int socketCliente;
+	uint32_t clientID;
+} suscriptor;
+
+
+
 //#include "Broker_Cache.h"
 void inicializarCache();
 int chequearSiAlcanza(int sizeMensaje, void * posicionActual, int memoriaRecorrida);
@@ -58,12 +102,19 @@ int tamanioDelMensaje(int offset, int *cacheExcedida);
 void * buscarProximoMensaje(int offset, int * tamanio, int *cacheExcedida);
 void compactarMemoria();
 void eliminarMensaje();
-void * usarBestFit();
-void * usarFirstFit(void * mensaje, int sizeMensaje);
-void * cachearConBuddySystem(void * mensaje, int sizeMensaje);
-void * cachearConParticionesDinamicas(void * mensaje, int sizeMensaje);
-void cachearMensaje(uint32_t idMensaje, uint32_t idCorrelativo, cola colaMensaje, uint32_t sizeMensaje, void * mensaje);
+void * usarBestFit(estructuraMensaje mensaje);
+void * usarFirstFit(estructuraMensaje mensaje);
+void * cachearConBuddySystem(estructuraMensaje mensaje);
+void * cachearConParticionesDinamicas(estructuraMensaje mensaje);
+void cachearMensaje(estructuraMensaje estMensaje);
 void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion);
+void dumpCache();
+bool estaOcupado(void* regParticion);
+registroParticion * vaciarParticion();
+bool hayEspacioLibrePara(int sizeMensaje);
+
+
+
 
 //#include "Broker_Recepcion.h"
 void empezarAAtenderCliente(int socketEscucha);
@@ -75,6 +126,10 @@ void atenderMensaje(int socketEmisor, cola tipoCola);
 void imprimirEstructuraDeDatos(estructuraMensaje mensaje);
 estructuraMensaje * generarNodo(estructuraMensaje mensaje);
 int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo);
+void crearRegistroCache(estructuraMensaje mensaje, void* posInicialMemoria);
+bool compararPorMenorTamanio(void * particion1, void * particion2);
+void reasignarNumerosDeParticion(t_list * listaAReasignar);
+void aniadirNuevoRegistroALista(t_list * listaDeRegistros, registroParticion * registroAnterior, int sizeMensajeRecibido);
 
 
 //#include "Broker_Envio.h"
@@ -100,6 +155,7 @@ void desuscribir(uint32_t clientID, cola colaSuscripcion);
 void eliminarSuscriptor(t_list* listaSuscriptores, uint32_t clientID);
 int getSocketActualDelSuscriptor(uint32_t clientID, cola colaSuscripcion);
 suscriptor * buscarSuscriptor(uint32_t clientID, cola codSuscripcion);
+int XOR(int a, int b);
 
 
 #endif /* BROKER_H_ */

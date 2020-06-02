@@ -102,9 +102,9 @@ t_list *obtenerEntrenadoresReady(){
 	return entrenadoresReady;
 }
 
-bool hayaAlgunEntrenadorActivo(){
+bool noSeCumplieronLosObjetivos(){
 	bool verifica = false;
-	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+	t_entrenador *entrenador;
 
 	int i = 0;
 
@@ -138,8 +138,10 @@ void activarHiloDe(int id){
 }
 
 void planificarFifo(){
-		while(hayaAlgunEntrenadorActivo()){
-			t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+
+
+		while(noSeCumplieronLosObjetivos()){
+			t_entrenador *entrenador;
 
 			if(!list_is_empty(listaDeReady)){
 				sem_wait(&mutexEntrenadores);
@@ -149,11 +151,12 @@ void planificarFifo(){
 				activarHiloDe(entrenador->id);
 				sem_wait(&semPlanif);
 			}
+
 		}
 }
 
 void planificador(){
-
+    sem_wait(&procesoEnReady);
 	switch(team->algoritmoPlanificacion){
 			case FIFO:{
 				planificarFifo();

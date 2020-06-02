@@ -1,11 +1,12 @@
 #include "Broker.h"
 
+
 void inicializarVariablesGlobales() {
 	config = config_create("broker.config");
 	logger = log_create("broker_logs", "Broker", 1, LOG_LEVEL_TRACE);
 
 	inicializarColasYListas();
-	inicializarCache();
+	//inicializarCache();
 
 	sem_init(&mutexColas, 0, 1);
 	sem_init(&habilitarEnvio, 0, 0);
@@ -40,6 +41,7 @@ void inicializarColasYListas() {
 	suscriptoresCAU = list_create();
 
 	registrosDeCache = list_create();
+	registrosDeParticiones = list_create();
 
 }
 
@@ -100,7 +102,7 @@ void eliminarSuscriptor(t_list* listaSuscriptores, uint32_t clientID){
 }
 
 void desuscribir(uint32_t clientID, cola colaSuscripcion) {
-	//TODO - DONE
+	//TODO_OLD
 	// - Buscar el clientID en la lista de suscriptores de la cola pasada
 	// - Hacer close(socket)
 	// - Borrar nodo suscriptor
@@ -108,11 +110,10 @@ void desuscribir(uint32_t clientID, cola colaSuscripcion) {
 	int socketCliente = getSocketActualDelSuscriptor(clientID, colaSuscripcion);
 	close(socketCliente);
 	eliminarSuscriptor(getListaSuscriptoresByNum(colaSuscripcion), clientID);
-
 }
 
 int getSocketActualDelSuscriptor(uint32_t clientID, cola colaSuscripcion) {
-	//TODO - DONE
+	//TODO_OLD
 	// - Encontrar el nodo suscriptor en la cola (parametro) con el clientID (parametro) requerido
 	// - Retornar socket actual de ese suscriptor
 
@@ -128,7 +129,7 @@ suscriptor * buscarSuscriptor(uint32_t clientID, cola codSuscripcion){
 		   return sus->clientID==clientID;
 	   }
 	   t_list * listaSuscriptores = getListaSuscriptoresByNum(codSuscripcion);
-	   return list_find(listaSuscriptores,&existeClientID);
+	   return list_find(listaSuscriptores,(void *)existeClientID);
 }
 
 
@@ -142,6 +143,8 @@ uint32_t getIDProceso() {
 }
 
 int main() {
+
+	//signal(SIGUSR1,dumpCache);
 
 	inicializarVariablesGlobales();
 
