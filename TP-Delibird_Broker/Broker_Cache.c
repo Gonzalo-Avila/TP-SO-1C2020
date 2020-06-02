@@ -7,7 +7,7 @@ void crearRegistroInicial(t_list * listaDeRegistrosDestino) {
 	registroParticion * regParticion = malloc(sizeof(registroParticion));
 	regParticion->nroParticion = 0;
 	regParticion->posInicialFisica = cacheBroker;
-	regParticion->posInicialLogica=0;
+	regParticion->posInicialLogica = 0;
 	regParticion->tamanioParticion = CACHESIZE;
 	regParticion->estado = LIBRE;
 	regParticion->idMensaje = -1;
@@ -30,35 +30,39 @@ int BSCacheSize(int size) {
 }
 
 int adaptarCacheSize(int size) {
-	if (algoritmoMemoria==BUDDY_SYSTEM)
+	if (algoritmoMemoria == BUDDY_SYSTEM)
 		size = BSCacheSize(size);
 	return size;
 }
 
-void setearAlgoritmos(){
+void setearAlgoritmos() {
 
-	if(strcmp(config_get_string_value(config,"ALGORITMO_MEMORIA"),"BS")==0)
-		algoritmoMemoria=BUDDY_SYSTEM;
+	if (strcmp(config_get_string_value(config, "ALGORITMO_MEMORIA"), "BS") == 0)
+		algoritmoMemoria = BUDDY_SYSTEM;
 	else
-		algoritmoMemoria=PARTICIONES_DINAMICAS;
+		algoritmoMemoria = PARTICIONES_DINAMICAS;
 
-	if(strcmp(config_get_string_value(config,"ALGORITMO_REEMPLAZO"),"LRU")==0)
-		algoritmoReemplazo=LRU;
+	if (strcmp(config_get_string_value(config, "ALGORITMO_REEMPLAZO"), "LRU")
+			== 0)
+		algoritmoReemplazo = LRU;
 	else
-		algoritmoReemplazo=FIFO;
+		algoritmoReemplazo = FIFO;
 
-	if(strcmp(config_get_string_value(config,"ALGORITMO_PARTICION_LIBRE"),"FF")==0)
-		algoritmoParticionLibre=FIRST_FIT;
+	if (strcmp(config_get_string_value(config, "ALGORITMO_PARTICION_LIBRE"),
+			"FF") == 0)
+		algoritmoParticionLibre = FIRST_FIT;
 	else
-		algoritmoParticionLibre=BEST_FIT;
+		algoritmoParticionLibre = BEST_FIT;
 }
 
 void inicializarCache() {
 
 	setearAlgoritmos();
 
-	CACHESIZE = adaptarCacheSize(config_get_int_value(config, "TAMANO_MEMORIA"));
-	minimoTamanioParticion = config_get_int_value(config, "TAMANO_MINIMO_PARTICION");
+	CACHESIZE = adaptarCacheSize(
+			config_get_int_value(config, "TAMANO_MEMORIA"));
+	minimoTamanioParticion = config_get_int_value(config,
+			"TAMANO_MINIMO_PARTICION");
 	cacheBroker = malloc(CACHESIZE);
 	crearRegistroInicial(registrosDeParticiones);
 
@@ -68,63 +72,73 @@ int XOR(int a, int b) {
 	return a ^ b;
 }
 
-void crearNuevoBuddy(t_list * listaDeParticiones, registroParticion * registro, int tamanioMensaje){
+void crearNuevoBuddy(t_list * listaDeParticiones, registroParticion * registro,
+		int tamanioMensaje) {
 
-	registro->tamanioParticion=registro->tamanioParticion/2;
-
+	registro->tamanioParticion = registro->tamanioParticion / 2;
 
 	registroParticion * registroNuevo = malloc(sizeof(registroParticion));
-	registroNuevo->nroParticion=registro->nroParticion+1; //Igualmente se va a reasignar despues
-	registroNuevo->idMensaje=-1;
-	registroNuevo->posInicialLogica=registro->posInicialLogica+registro->tamanioParticion;
-	registroNuevo->posInicialFisica=registro->posInicialFisica+registro->tamanioParticion;
-	registroNuevo->estado=LIBRE;
-	registroNuevo->tamanioParticion=registro->tamanioParticion;
-	list_add_in_index(listaDeParticiones,registro->nroParticion+1,registroNuevo);
+	registroNuevo->nroParticion = registro->nroParticion + 1; //Igualmente se va a reasignar despues
+	registroNuevo->idMensaje = -1;
+	registroNuevo->posInicialLogica = registro->posInicialLogica
+			+ registro->tamanioParticion;
+	registroNuevo->posInicialFisica = registro->posInicialFisica
+			+ registro->tamanioParticion;
+	registroNuevo->estado = LIBRE;
+	registroNuevo->tamanioParticion = registro->tamanioParticion;
+	list_add_in_index(listaDeParticiones, registro->nroParticion + 1,
+			registroNuevo);
 }
 
-registroParticion * obtenerBuddy(registroParticion * particionLiberada){
-	bool esContiguaAnterior(void * particion){
+registroParticion * obtenerBuddy(registroParticion * particionLiberada) {
+	bool esContiguaAnterior(void * particion) {
 		registroParticion * reg = (registroParticion *) particion;
-		return reg->nroParticion==particionLiberada->nroParticion-1;
-	}
-	bool esContiguaPosterior(void * particion){
-		registroParticion * reg = (registroParticion *) particion;
-		return reg->nroParticion==particionLiberada->nroParticion+1;
-	}
-	registroParticion * posibleBuddy1 = list_find(registrosDeParticiones,(void *)esContiguaAnterior);
-	registroParticion * posibleBuddy2 = list_find(registrosDeParticiones,(void *)esContiguaPosterior);
 
-	if(posibleBuddy1->tamanioParticion==particionLiberada->tamanioParticion &&
-	   posibleBuddy1->posInicialLogica==XOR(particionLiberada->posInicialLogica,posibleBuddy1->tamanioParticion) &&
-	   particionLiberada->posInicialLogica==XOR(posibleBuddy1->posInicialLogica,particionLiberada->tamanioParticion)){
+		return reg->nroParticion == particionLiberada->nroParticion - 1;
+	}
+	bool esContiguaPosterior(void * particion) {
+		registroParticion * reg = (registroParticion *) particion;
+
+		return reg->nroParticion == particionLiberada->nroParticion + 1;
+	}
+
+	registroParticion * posibleBuddy1 = list_find(registrosDeParticiones,
+			(void *) esContiguaAnterior);
+	registroParticion * posibleBuddy2 = list_find(registrosDeParticiones,
+			(void *) esContiguaPosterior);
+
+	if (particionLiberada->nroParticion != 0
+			&& posibleBuddy1->tamanioParticion
+					== particionLiberada->tamanioParticion
+			&& posibleBuddy1->posInicialLogica
+					== XOR(particionLiberada->posInicialLogica,
+							posibleBuddy1->tamanioParticion)
+			&& particionLiberada->posInicialLogica
+					== XOR(posibleBuddy1->posInicialLogica,
+							particionLiberada->tamanioParticion)) {
 		return posibleBuddy1;
 	}
 
-
 	return posibleBuddy2;
 }
-void consolidar(registroParticion * particionLiberada){
+void consolidar(registroParticion * particionLiberada) {
 	registroParticion * buddy = obtenerBuddy(particionLiberada);
-	if(buddy->estado==LIBRE){
+	if (buddy->estado == LIBRE) {
 		//TODO - Mergear los buddys
+
 	}
 
 }
 
-void compactarCacheSegunBS(){
-	//TODO
-}
-
-void asegurarQueHayaEspacio(int sizeMensaje){
+void asegurarQueHayaEspacio(int sizeMensaje) {
 
 	int cantBusquedas = config_get_int_value(config, "FRECUENCIA_COMPACTACION");
 	if (cantBusquedas != -1) {
 		int i = 0;
 		while (!hayEspacioLibrePara(sizeMensaje)) {
 			registroParticion * particionLiberada = vaciarParticion();
-			if(list_size(registrosDeParticiones)>0)
-			   consolidar(particionLiberada);
+			if (list_size(registrosDeParticiones) > 1)
+				consolidar(particionLiberada);
 			if (hayEspacioLibrePara(sizeMensaje)) {
 				break;
 			}
@@ -137,33 +151,38 @@ void asegurarQueHayaEspacio(int sizeMensaje){
 	} else {
 		while (!hayEspacioLibrePara(sizeMensaje)) {
 			registroParticion * particionLiberada = vaciarParticion();
-			if(list_size(registrosDeParticiones)>0)
-			  consolidar(particionLiberada);
+			if (list_size(registrosDeParticiones) > 1)
+				consolidar(particionLiberada);
 		}
-    }
+	}
 }
 void * cachearConBuddySystem(estructuraMensaje mensaje) {
 	// TODO
 	asegurarQueHayaEspacio(mensaje.sizeMensaje);
 
-	bool estaVaciaYAlcanza(void * particion){
-		    	registroParticion * reg = (registroParticion *) particion;
-		    	return reg->estado==LIBRE && reg->tamanioParticion>=mensaje.sizeMensaje;
-		 }
-
-	t_list * particionesValidas =  list_filter(registrosDeParticiones,(void *)estaVaciaYAlcanza);
-	t_list * particionesOrdenadasPorTamanio = list_sorted(particionesValidas, (void *)compararPorMenorTamanio);
-	registroParticion * registro = (registroParticion *)list_get(particionesOrdenadasPorTamanio,0);
-
-	while(registro->tamanioParticion>=2*mensaje.sizeMensaje && registro->tamanioParticion>minimoTamanioParticion){
-		crearNuevoBuddy(registrosDeParticiones,registro,mensaje.sizeMensaje);
+	bool estaVaciaYAlcanza(void * particion) {
+		registroParticion * reg = (registroParticion *) particion;
+		return reg->estado == LIBRE
+				&& reg->tamanioParticion >= mensaje.sizeMensaje;
 	}
 
-	memcpy(registro->posInicialFisica,mensaje.mensaje,mensaje.sizeMensaje);
-	registro->estado=OCUPADO;
-	registro->idMensaje=mensaje.id;
-	registro->tiempoArribo=time(NULL);
-	registro->tiempoUltimoUso=time(NULL);
+	t_list * particionesValidas = list_filter(registrosDeParticiones,
+			(void *) estaVaciaYAlcanza);
+	t_list * particionesOrdenadasPorTamanio = list_sorted(particionesValidas,
+			(void *) compararPorMenorTamanio);
+	registroParticion * registro = (registroParticion *) list_get(
+			particionesOrdenadasPorTamanio, 0);
+
+	while (registro->tamanioParticion >= 2 * mensaje.sizeMensaje
+			&& registro->tamanioParticion > minimoTamanioParticion) {
+		crearNuevoBuddy(registrosDeParticiones, registro, mensaje.sizeMensaje);
+	}
+
+	memcpy(registro->posInicialFisica, mensaje.mensaje, mensaje.sizeMensaje);
+	registro->estado = OCUPADO;
+	registro->idMensaje = mensaje.id;
+	registro->tiempoArribo = time(NULL);
+	registro->tiempoUltimoUso = time(NULL);
 
 	reasignarNumerosDeParticion(registrosDeParticiones);
 
@@ -184,50 +203,59 @@ void * usarBestFit(estructuraMensaje mensaje) {
 	 * - Crear registro nuevo con particion libre restante
 	 * - Reasignar nroParticion a todos los registros en "registrosDeCache"
 	 */
-	 bool estaVaciaYAlcanza(void * particion){
-	    	registroParticion * reg = (registroParticion *) particion;
-	    	return reg->estado==LIBRE && reg->tamanioParticion>=mensaje.sizeMensaje;
-	 }
+	bool estaVaciaYAlcanza(void * particion) {
+		registroParticion * reg = (registroParticion *) particion;
+		return reg->estado == LIBRE
+				&& reg->tamanioParticion >= mensaje.sizeMensaje;
+	}
 
-	t_list * particionesValidas =  list_filter(registrosDeParticiones,(void *)estaVaciaYAlcanza);
-	t_list * particionesOrdenadasPorTamanio = list_sorted(particionesValidas, (void *)compararPorMenorTamanio);
-	registroParticion * registro = (registroParticion *)list_get(particionesOrdenadasPorTamanio,0);
+	t_list * particionesValidas = list_filter(registrosDeParticiones,
+			(void *) estaVaciaYAlcanza);
+	t_list * particionesOrdenadasPorTamanio = list_sorted(particionesValidas,
+			(void *) compararPorMenorTamanio);
+	registroParticion * registro = (registroParticion *) list_get(
+			particionesOrdenadasPorTamanio, 0);
 
-	if(registro->tamanioParticion>mensaje.sizeMensaje){
-		aniadirNuevoRegistroALista(registrosDeParticiones,registro,mensaje.sizeMensaje);
+	if (registro->tamanioParticion > mensaje.sizeMensaje) {
+		aniadirNuevoRegistroALista(registrosDeParticiones, registro,
+				mensaje.sizeMensaje);
 		reasignarNumerosDeParticion(registrosDeParticiones);
 	}
 
-	memcpy(registro->posInicialFisica,mensaje.mensaje,mensaje.sizeMensaje);
-	registro->estado=OCUPADO;
-	registro->idMensaje=mensaje.id;
-	registro->tamanioParticion=mensaje.sizeMensaje;
-	registro->tiempoArribo=time(NULL);
-	registro->tiempoUltimoUso=time(NULL);
-
+	memcpy(registro->posInicialFisica, mensaje.mensaje, mensaje.sizeMensaje);
+	registro->estado = OCUPADO;
+	registro->idMensaje = mensaje.id;
+	registro->tamanioParticion = mensaje.sizeMensaje;
+	registro->tiempoArribo = time(NULL);
+	registro->tiempoUltimoUso = time(NULL);
 
 	return registro->posInicialFisica;
 }
 
-void reasignarNumerosDeParticion(t_list * listaAReasignar){
-	int numero=0;
-	void asignarNumero(void * particion){
+void reasignarNumerosDeParticion(t_list * listaAReasignar) {
+	int numero = 0;
+	void asignarNumero(void * particion) {
 		registroParticion * registro = (registroParticion *) particion;
-		registro->nroParticion=numero;
+		registro->nroParticion = numero;
 		numero++;
 	}
-	list_iterate(listaAReasignar,(void *) asignarNumero);
+	list_iterate(listaAReasignar, (void *) asignarNumero);
 }
 
-void aniadirNuevoRegistroALista(t_list * listaDeRegistros, registroParticion * registroAnterior, int sizeMensajeRecibido){
+void aniadirNuevoRegistroALista(t_list * listaDeRegistros,
+		registroParticion * registroAnterior, int sizeMensajeRecibido) {
 	registroParticion * registroNuevo = malloc(sizeof(registroParticion));
-	registroNuevo->nroParticion=registroAnterior->nroParticion+1; //Igualmente se va a reasignar despues
-	registroNuevo->idMensaje=-1;
-	registroNuevo->posInicialLogica=registroAnterior->posInicialLogica+sizeMensajeRecibido;
-	registroNuevo->posInicialFisica=registroAnterior->posInicialFisica+sizeMensajeRecibido;
-	registroNuevo->estado=LIBRE;
-	registroNuevo->tamanioParticion=registroAnterior->tamanioParticion-sizeMensajeRecibido;
-	list_add_in_index(listaDeRegistros,registroAnterior->nroParticion+1,registroNuevo);
+	registroNuevo->nroParticion = registroAnterior->nroParticion + 1; //Igualmente se va a reasignar despues
+	registroNuevo->idMensaje = -1;
+	registroNuevo->posInicialLogica = registroAnterior->posInicialLogica
+			+ sizeMensajeRecibido;
+	registroNuevo->posInicialFisica = registroAnterior->posInicialFisica
+			+ sizeMensajeRecibido;
+	registroNuevo->estado = LIBRE;
+	registroNuevo->tamanioParticion = registroAnterior->tamanioParticion
+			- sizeMensajeRecibido;
+	list_add_in_index(listaDeRegistros, registroAnterior->nroParticion + 1,
+			registroNuevo);
 }
 void * usarFirstFit(estructuraMensaje mensaje) {
 	/* TODO - DONE
@@ -241,88 +269,102 @@ void * usarFirstFit(estructuraMensaje mensaje) {
 	 * - Crear registro nuevo con particion libre restante
 	 * - Reasignar nroParticion a todos los registros en "registrosDeCache"
 	 */
-    bool estaVaciaYAlcanza(void * particion){
-    	registroParticion * registro = (registroParticion *) particion;
-    	return registro->estado==LIBRE && registro->tamanioParticion>=mensaje.sizeMensaje;
-    }
-	registroParticion * registro = (registroParticion *) list_find(registrosDeParticiones,(void *)estaVaciaYAlcanza);
-	if(registro->tamanioParticion>mensaje.sizeMensaje){
-		aniadirNuevoRegistroALista(registrosDeParticiones,registro,mensaje.sizeMensaje);
+	bool estaVaciaYAlcanza(void * particion) {
+		registroParticion * registro = (registroParticion *) particion;
+		return registro->estado == LIBRE
+				&& registro->tamanioParticion >= mensaje.sizeMensaje;
+	}
+	registroParticion * registro = (registroParticion *) list_find(
+			registrosDeParticiones, (void *) estaVaciaYAlcanza);
+	if (registro->tamanioParticion > mensaje.sizeMensaje) {
+		aniadirNuevoRegistroALista(registrosDeParticiones, registro,
+				mensaje.sizeMensaje);
 		reasignarNumerosDeParticion(registrosDeParticiones);
 	}
 
-	memcpy(registro->posInicialFisica,mensaje.mensaje,mensaje.sizeMensaje);
-	registro->estado=OCUPADO;
-	registro->idMensaje=mensaje.id;
-	registro->tamanioParticion=mensaje.sizeMensaje;
-	registro->tiempoArribo=time(NULL);
-	registro->tiempoUltimoUso=time(NULL);
-
+	memcpy(registro->posInicialFisica, mensaje.mensaje, mensaje.sizeMensaje);
+	registro->estado = OCUPADO;
+	registro->idMensaje = mensaje.id;
+	registro->tamanioParticion = mensaje.sizeMensaje;
+	registro->tiempoArribo = time(NULL);
+	registro->tiempoUltimoUso = time(NULL);
 
 	return registro->posInicialFisica;
 
 }
 
 bool hayEspacioLibrePara(int sizeMensaje) {
-	bool estaVaciaYAlcanza(void * particion){
-	    	registroParticion * registro = (registroParticion *) particion;
-	    	return registro->estado==LIBRE && registro->tamanioParticion>=sizeMensaje;
+	bool estaVaciaYAlcanza(void * particion) {
+		registroParticion * registro = (registroParticion *) particion;
+		return registro->estado == LIBRE
+				&& registro->tamanioParticion >= sizeMensaje;
 	}
-	return list_any_satisfy(registrosDeParticiones,(void *)estaVaciaYAlcanza);
+	return list_any_satisfy(registrosDeParticiones, (void *) estaVaciaYAlcanza);
 }
 
-
-bool compararPorMenorTamanio(void * particion1, void * particion2){
+bool compararPorMenorTamanio(void * particion1, void * particion2) {
 	registroParticion * registro1 = (registroParticion *) particion1;
 	registroParticion * registro2 = (registroParticion *) particion2;
 
-    return registro1->tamanioParticion<registro2->tamanioParticion;
+	return registro1->tamanioParticion < registro2->tamanioParticion;
 }
 
-bool compararPorFIFO(void * particion1, void * particion2){
+bool compararPorMayorTamanio(void * particion1, void * particion2) {
 	registroParticion * registro1 = (registroParticion *) particion1;
 	registroParticion * registro2 = (registroParticion *) particion2;
 
-    return registro1->tiempoArribo<registro2->tiempoArribo;
+	return registro1->tamanioParticion > registro2->tamanioParticion;
 }
-bool compararPorLRU(void * particion1, void * particion2){
+
+bool compararPorFIFO(void * particion1, void * particion2) {
 	registroParticion * registro1 = (registroParticion *) particion1;
 	registroParticion * registro2 = (registroParticion *) particion2;
 
-    return registro1->tiempoUltimoUso<registro2->tiempoUltimoUso;
+	return registro1->tiempoArribo < registro2->tiempoArribo;
+}
+bool compararPorLRU(void * particion1, void * particion2) {
+	registroParticion * registro1 = (registroParticion *) particion1;
+	registroParticion * registro2 = (registroParticion *) particion2;
+
+	return registro1->tiempoUltimoUso < registro2->tiempoUltimoUso;
 }
 
-void eliminarRegistroDeCache(int IDMensaje){
-	bool coincideID(void * registro){
-		registroCache * reg= (registroCache *) registro;
-		return reg->idMensaje==IDMensaje;
+void eliminarRegistroDeCache(int IDMensaje) {
+	bool coincideID(void * registro) {
+		registroCache * reg = (registroCache *) registro;
+		return reg->idMensaje == IDMensaje;
 	}
-	list_remove_by_condition(registrosDeCache,(void *)coincideID);
+	list_remove_by_condition(registrosDeCache, (void *) coincideID);
 
 }
 
-
-registroParticion * liberarSegunFIFO(){
-	t_list * particionesOcupadas = list_filter(registrosDeParticiones,(void *)estaOcupado);
-	t_list * particionesOrdenadasPorFIFO=list_sorted(particionesOcupadas,(void *) compararPorFIFO);
-	registroParticion * particionALiberar = (registroParticion *)list_get(particionesOrdenadasPorFIFO,0);
-	particionALiberar->estado=LIBRE;
+registroParticion * liberarSegunFIFO() {
+	t_list * particionesOcupadas = list_filter(registrosDeParticiones,
+			(void *) estaOcupado);
+	t_list * particionesOrdenadasPorFIFO = list_sorted(particionesOcupadas,
+			(void *) compararPorFIFO);
+	registroParticion * particionALiberar = (registroParticion *) list_get(
+			particionesOrdenadasPorFIFO, 0);
+	particionALiberar->estado = LIBRE;
 	eliminarRegistroDeCache(particionALiberar->idMensaje);
-	particionALiberar->idMensaje=-1;
+	particionALiberar->idMensaje = -1;
 	return particionALiberar;
 }
-registroParticion * liberarSegunLRU(){
-	t_list * particionesOcupadas = list_filter(registrosDeParticiones,(void *)estaOcupado);
-	t_list * particionesOrdenadasPorLRU=list_sorted(particionesOcupadas,(void *) compararPorLRU);
-	registroParticion * particionALiberar = (registroParticion *)list_get(particionesOrdenadasPorLRU,0);
-	particionALiberar->estado=LIBRE;
+registroParticion * liberarSegunLRU() {
+	t_list * particionesOcupadas = list_filter(registrosDeParticiones,
+			(void *) estaOcupado);
+	t_list * particionesOrdenadasPorLRU = list_sorted(particionesOcupadas,
+			(void *) compararPorLRU);
+	registroParticion * particionALiberar = (registroParticion *) list_get(
+			particionesOrdenadasPorLRU, 0);
+	particionALiberar->estado = LIBRE;
 	eliminarRegistroDeCache(particionALiberar->idMensaje);
-	particionALiberar->idMensaje=-1;
+	particionALiberar->idMensaje = -1;
 	return particionALiberar;
 }
 registroParticion * vaciarParticion() {
 	//Libera y retorna el registro liberado (nos sirve para buddy system)
-	if(algoritmoReemplazo==FIFO)
+	if (algoritmoReemplazo == FIFO)
 		return liberarSegunFIFO();
 	else
 		return liberarSegunLRU();
@@ -332,32 +374,39 @@ void compactarCacheSegunPD() {
 	t_list * listaAuxiliar = list_create();
 	crearRegistroInicial(listaAuxiliar);
 
+	void guardarEnListaAuxiliar(void * registroOcupado) {
+		registroParticion * registroAMover =
+				(registroParticion *) registroOcupado;
 
-	void guardarEnListaAuxiliar(void * registroOcupado){
-		registroParticion * registroAMover = (registroParticion *) registroOcupado;
-
-	    bool estaVaciaYAlcanza(void * particion){
-	    	registroParticion * registro = (registroParticion *) particion;
-	    	return registro->estado==LIBRE && registro->tamanioParticion>=registroAMover->tamanioParticion;
-	    }
-
-		registroParticion * registro = (registroParticion *) list_find(listaAuxiliar,(void *)estaVaciaYAlcanza);
-		if(registro->tamanioParticion>registroAMover->tamanioParticion){
-			aniadirNuevoRegistroALista(listaAuxiliar,registro,registroAMover->tamanioParticion);
-			reasignarNumerosDeParticion(listaAuxiliar);
+		bool estaVaciaYAlcanza(void * particion) {
+			registroParticion * registro = (registroParticion *) particion;
+			return registro->estado == LIBRE
+					&& registro->tamanioParticion
+							>= registroAMover->tamanioParticion;
 		}
 
-		memcpy(registro->posInicialFisica,registroAMover->posInicialFisica,registroAMover->tamanioParticion);
-		registro->estado=OCUPADO;
-		registro->idMensaje=registroAMover->idMensaje;
-		registro->tamanioParticion=registroAMover->tamanioParticion;
-		registro->tiempoArribo=registroAMover->tiempoArribo;
-		registro->tiempoUltimoUso=registroAMover->tiempoUltimoUso;
+		registroParticion * registro = (registroParticion *) list_find(
+				listaAuxiliar, (void *) estaVaciaYAlcanza);
+		if (registro->tamanioParticion > registroAMover->tamanioParticion) {
+			aniadirNuevoRegistroALista(listaAuxiliar, registro,
+					registroAMover->tamanioParticion);
+		}
+
+		memcpy(registro->posInicialFisica, registroAMover->posInicialFisica,
+				registroAMover->tamanioParticion);
+		registro->estado = OCUPADO;
+		registro->idMensaje = registroAMover->idMensaje;
+		registro->tamanioParticion = registroAMover->tamanioParticion;
+		registro->tiempoArribo = registroAMover->tiempoArribo;
+		registro->tiempoUltimoUso = registroAMover->tiempoUltimoUso;
 
 	}
 
-	t_list * registrosOcupados = list_filter(registrosDeParticiones,(void *)estaOcupado);
+	t_list * registrosOcupados = list_filter(registrosDeParticiones,
+			(void *) estaOcupado);
 	list_iterate(registrosOcupados, (void *) guardarEnListaAuxiliar);
+
+	reasignarNumerosDeParticion(registrosOcupados);
 
 	list_clean(registrosDeParticiones);
 	registrosDeParticiones = listaAuxiliar;
@@ -369,16 +418,71 @@ void limpiarCache() {
 	crearRegistroInicial(registrosDeParticiones);
 }
 
-void compactarCacheSegunBuddySystem(){
+void compactarCacheSeguvnBuddySystem() {
+	/*	TODO ver...
+	 *  - Crear "listaAuxiliar" de particiones
+	 *  - Guardar en "listaAuxiliar" particiones ocupadas de "registrosParticiones"
+	 *  - Ordenar de mayor a menor segun tamaño particion
+	 *
+	 *  - Crear cada particion cache segun lista auxiliar
+	 *  - Reasignamos nroParticion a listaauxiliar
+	 *  - Apuntamos registrosParticiones a listaAuxiliar
+	 *  - Liberamos listaAuxiliar
+	 */
 
+	t_list * listaAuxiliar = list_create();
+	crearRegistroInicial(listaAuxiliar);
+
+	t_list * particionesOcupadas = list_filter(registrosDeParticiones,
+			(void *) estaOcupado);
+	t_list * particionesOcupadasOrdenadasPorTamanio = list_sorted(
+			particionesOcupadas, (void *) compararPorMayorTamanio);
+
+	void guardarEnListaAuxiliar(void * registroOcupado) {
+
+		registroParticion * regOcupado = (registroParticion *) registroOcupado;
+
+		bool estaVaciaYAlcanza(void * particion) {
+			registroParticion * reg = (registroParticion *) particion;
+			return reg->estado == LIBRE
+					&& reg->tamanioParticion >= regOcupado->tamanioParticion;
+		}
+
+		t_list * particionesValidas = list_filter(listaAuxiliar,
+				(void *) estaVaciaYAlcanza);
+
+		t_list * particionesOrdenadasPorTamanio = list_sorted(
+				particionesValidas, (void *) compararPorMenorTamanio);
+
+		registroParticion * registro = (registroParticion *) list_get(
+				particionesOrdenadasPorTamanio, 0);
+
+		while (registro->tamanioParticion >= 2 * regOcupado->tamanioParticion
+				&& registro->tamanioParticion > minimoTamanioParticion) {
+			crearNuevoBuddy(listaAuxiliar, registro,
+					regOcupado->tamanioParticion);
+		}
+
+		memcpy(registro->posInicialFisica, regOcupado->posInicialFisica,
+				regOcupado->tamanioParticion);
+		registro->estado = OCUPADO;
+		registro->idMensaje = regOcupado->idMensaje;
+		registro->tiempoArribo = regOcupado->tiempoArribo;
+		registro->tiempoUltimoUso = regOcupado->tiempoUltimoUso;
+
+		reasignarNumerosDeParticion(listaAuxiliar);
+
+	}
+
+	list_iterate(particionesOcupadasOrdenadasPorTamanio, guardarEnListaAuxiliar);
 }
 
-bool estaOcupado(void* regParticion){
+bool estaOcupado(void* regParticion) {
 	registroParticion* regPart = (registroParticion*) regParticion;
 	return regPart->estado == OCUPADO;
 }
-bool hayMensajes(){
-	return list_any_satisfy(registrosDeParticiones, (void *)estaOcupado);
+bool hayMensajes() {
+	return list_any_satisfy(registrosDeParticiones, (void *) estaOcupado);
 }
 
 void asegurarEspacioLibrePara(int sizeMensaje) {
@@ -414,7 +518,7 @@ void * cachearConParticionesDinamicas(estructuraMensaje mensaje) {
 
 	asegurarEspacioLibrePara(mensaje.sizeMensaje);
 
-	if (algoritmoParticionLibre==FIRST_FIT)
+	if (algoritmoParticionLibre == FIRST_FIT)
 		return usarFirstFit(mensaje);
 	else
 		return usarBestFit(mensaje);
@@ -423,10 +527,10 @@ void * cachearConParticionesDinamicas(estructuraMensaje mensaje) {
 void *asignarParticion(estructuraMensaje mensaje) {
 
 	void* posicionMemoriaParticion;
-	if (algoritmoMemoria==BUDDY_SYSTEM)
+	if (algoritmoMemoria == BUDDY_SYSTEM)
 		posicionMemoriaParticion = cachearConBuddySystem(mensaje);
 	else
-		posicionMemoriaParticion = cachearConParticionesDinamicas(mensaje);
+		posicionMemoriaParticion = cachearConParticionesDinamicas(mensaje); //DONE
 
 	return posicionMemoriaParticion;
 }
@@ -534,8 +638,6 @@ void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion) 
 	enviarMensajes(mensajesAEnviar, nuevoSuscriptor);
 }
 //--------------------------------------------------------------------------
-
-
 
 //Impresión de dump de cache
 //--------------------------------------------------------------------------

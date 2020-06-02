@@ -44,6 +44,7 @@ typedef struct{
 	int posInicialLogica;
 	void* posInicialFisica;
 	int tamanioParticion;
+	int tamanioMensaje;
 	estadoParticion estado;
 	int idMensaje;
 	time_t tiempoArribo;
