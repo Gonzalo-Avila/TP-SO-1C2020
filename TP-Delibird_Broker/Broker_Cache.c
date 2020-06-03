@@ -418,25 +418,14 @@ void limpiarCache() {
 	crearRegistroInicial(registrosDeParticiones);
 }
 
-void compactarCacheSeguvnBuddySystem() {
-	/*	TODO ver...
-	 *  - Crear "listaAuxiliar" de particiones
-	 *  - Guardar en "listaAuxiliar" particiones ocupadas de "registrosParticiones"
-	 *  - Ordenar de mayor a menor segun tamaño particion
+void compactarCacheSegunBuddySystem() {
+	/*	TODO
 	 *
-	 *  - Crear cada particion cache segun lista auxiliar
-	 *  - Reasignamos nroParticion a listaauxiliar
-	 *  - Apuntamos registrosParticiones a listaAuxiliar
-	 *  - Liberamos listaAuxiliar
+	 *
 	 */
 
 	t_list * listaAuxiliar = list_create();
 	crearRegistroInicial(listaAuxiliar);
-
-	t_list * particionesOcupadas = list_filter(registrosDeParticiones,
-			(void *) estaOcupado);
-	t_list * particionesOcupadasOrdenadasPorTamanio = list_sorted(
-			particionesOcupadas, (void *) compararPorMayorTamanio);
 
 	void guardarEnListaAuxiliar(void * registroOcupado) {
 
@@ -474,7 +463,12 @@ void compactarCacheSeguvnBuddySystem() {
 
 	}
 
-	list_iterate(particionesOcupadasOrdenadasPorTamanio, guardarEnListaAuxiliar);
+
+	t_list * particionesOcupadas = list_filter(registrosDeParticiones,
+			(void *) estaOcupado);
+	//t_list * particionesOcupadasOrdenadasPorTamanio = list_sorted(particionesOcupadas, (void *) compararPorMayorTamanio);
+
+	list_iterate(particionesOcupadas, guardarEnListaAuxiliar);
 }
 
 bool estaOcupado(void* regParticion) {
