@@ -58,7 +58,7 @@ typedef struct {
   uint32_t sizeMensaje;
   t_list * procesosALosQueSeEnvio;
   t_list * procesosQueConfirmaronRecepcion;
-  void * posicionEnMemoria;
+  void * posicionEnMemoria; //TODO Borrar y FIXME
 } registroCache;
 
 typedef enum {
@@ -129,6 +129,7 @@ estructuraMensaje * generarNodo(estructuraMensaje mensaje);
 int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo);
 void crearRegistroCache(estructuraMensaje mensaje, void* posInicialMemoria);
 bool compararPorMenorTamanio(void * particion1, void * particion2);
+bool compararPorMayorTamanio(void * particion1, void * particion2);
 void reasignarNumerosDeParticion(t_list * listaAReasignar);
 void aniadirNuevoRegistroALista(t_list * listaDeRegistros, registroParticion * registroAnterior, int sizeMensajeRecibido);
 
@@ -157,6 +158,43 @@ void eliminarSuscriptor(t_list* listaSuscriptores, uint32_t clientID);
 int getSocketActualDelSuscriptor(uint32_t clientID, cola colaSuscripcion);
 suscriptor * buscarSuscriptor(uint32_t clientID, cola codSuscripcion);
 int XOR(int a, int b);
-
+void crearRegistroInicial(t_list * listaDeRegistrosDestino);
+int BSCacheSize(int size);
+void setearAlgoritmos();
+void crearNuevoBuddy(t_list * listaDeParticiones, registroParticion * registro,
+		int tamanioMensaje);
+registroParticion * obtenerBuddy(registroParticion * particionLiberada);
+void consolidar(registroParticion * particionLiberada, t_list * registros);
+void asegurarQueHayaEspacio(int sizeMensaje);
+void * cachearConBuddySystem(estructuraMensaje mensaje);
+void * usarBestFit(estructuraMensaje mensaje);
+void reasignarNumerosDeParticion(t_list * listaAReasignar);
+void aniadirNuevoRegistroALista(t_list * listaDeRegistros, registroParticion * registroAnterior, int sizeMensajeRecibido);
+bool compararPorFIFO(void * particion1, void * particion2);
+bool compararPorLRU(void * particion1, void * particion2);
+void eliminarRegistroDeCache(int IDMensaje);
+registroParticion * liberarSegunFIFO();
+registroParticion * liberarSegunLRU();
+registroParticion * vaciarParticion();
+void compactarCacheSegunPD();
+void limpiarCache();
+void compactarCacheSegunBuddySystem();
+bool estaOcupado(void* regParticion) ;
+bool hayMensajes();
+void asegurarEspacioLibrePara(int sizeMensaje);
+void * cachearConParticionesDinamicas(estructuraMensaje mensaje);
+void *asignarParticion(estructuraMensaje mensaje);
+void cachearMensaje(estructuraMensaje mensaje);
+void crearRegistroCache(estructuraMensaje mensaje, void* posInicialMemoria);
+bool elSuscriptorNoEstaEnLaLista(t_list * lista, uint32_t idSuscriptor) ;
+t_list * getListaDeRegistrosFiltrados(suscriptor * nuevoSuscriptor, cola codSuscripcion);
+void enviarMensajes(t_list * mensajesAEnviar, suscriptor * suscriptor);
+void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion);
+void * posicionInicial(registroCache* regCache);
+void * posicionFinal(registroCache* regCache);
+int obtenerTamanioParticion(registroCache* regCache);
+char* obtenerLRU(registroCache* regCache);
+time_t getTime() ;
+char* timeToString(time_t time);
 
 #endif /* BROKER_H_ */

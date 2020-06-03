@@ -101,7 +101,7 @@ void gestionarEntrenador(t_entrenador *entrenador) {
 		sem_post(&mutexEntrenadores);
 		usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 100000);
 	}
-	//TODO ver si el pokemonRecibido es el string correcto, o de dónde sacarlo
+
 	enviarCatchDePokemon(ipServidor, puertoServidor, pokemonRecibido, entrenador->posAMover[0], entrenador->posAMover[1]);
 	entrenador->estado = BLOQUEADO;
 

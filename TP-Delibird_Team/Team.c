@@ -150,7 +150,7 @@ int main() {
 	free(socketBrokerLoc);
 	free(socketBrokerCau);
 //	liberarMemoria();
-	//Todo revisar porque pincha en LiberarMemoria().
+
 	return 0;
 }
 

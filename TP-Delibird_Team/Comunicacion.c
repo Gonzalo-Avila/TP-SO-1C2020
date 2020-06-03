@@ -33,7 +33,7 @@ void enviarGetDePokemon(char *ip, char *puerto, char *pokemon) {
 	free(socketBroker);
 }
 
-//TODO Ver si tiene que devolver el ID de rta
+
 void enviarCatchDePokemon(char *ip, char *puerto, char *pokemon, uint32_t posX, uint32_t posY) {
 	int *socketBroker = malloc(sizeof(int));
 	*socketBroker = crearConexionCliente(ip, puerto);
@@ -48,7 +48,7 @@ void enviarCatchDePokemon(char *ip, char *puerto, char *pokemon, uint32_t posX, 
 	msg->posicionY = posY;
 
 	log_debug(logger,"Enviando mensaje CATCH...");
-	//TODO Ver si se necesita enviar idCorrelativo. Iría en el -1 del enviarMensajeABroker
+
 	enviarMensajeABroker(*socketBroker, CATCH, -1, sizeof(uint32_t)*3 + msg->longPokemon, msg);
 	recv(*socketBroker,&idRespuesta,sizeof(uint32_t),MSG_WAITALL);
 	log_debug(logger,"Mensaje enviado CATCH :smilieface:");
@@ -71,7 +71,7 @@ void atenderServidor(int *socketServidor) {
 			break;
 		}
 
-		//TODO - Corregir recepciones, separar el void
+
 		switch(miMensajeRecibido->colaEmisora){
 			case APPEARED:{
 				send(*socketServidor, &ack, sizeof(uint32_t), 0);
@@ -132,7 +132,7 @@ void atenderServidor(int *socketServidor) {
 			}
 			case CAUGHT:{
 				send(*socketServidor, &ack, sizeof(uint32_t), 0);
-				//TODO CAUGHT
+
 				log_info(logger, "Recibi un CAUGHT. ¿Que es eso?¿Se come?");
 				break;
 			}

@@ -53,7 +53,7 @@ void enviarEstructuraMensajeASuscriptor(void* estMensaje) {
 		agregarAListaDeEnviados(estMsj->id,estMsj->clientID);
 		estMsj->estado=ESTADO_ENVIADO;
 	}
-	//TODO - Caso en que no se conteste el ACK
+
 	recv(socketDelSuscriptor,&ack, sizeof(uint32_t),MSG_WAITALL);
 	if(ack==1){
 		agregarAListaDeConfirmados(estMsj->id,estMsj->clientID);
@@ -71,7 +71,7 @@ bool esMensajeNuevo(void* mensaje) {
 }
 
 void destructorNodos(void * nodo){
-	//TODO - Revisar por que crashea esto para poder usar el list_clean_and_destroy
+
 	estructuraMensaje * estMsj = (estructuraMensaje *) nodo;
 	free(estMsj->mensaje);
 }
