@@ -63,26 +63,32 @@ bool menorDist(void *dist1, void *dist2) {
 	return verifica;
 }
 
+bool puedaAtraparPokemones(t_entrenador *entrenador){
+	return list_size(entrenador->pokemones) < list_size(entrenador->objetivos);
+}
+
 t_entrenador *entrenadorMasCercanoEnEspera(int posX, int posY) {
 	t_list* listaDistancias = list_create();
 	t_dist *distancia = malloc(sizeof(t_dist));
 	int idEntrenadorConDistMenor;
-	int i = 0;
+	int j = 0;
 
 	for (int i = 0; i < list_size(team->entrenadores); i++) {
 		distancia = setearDistanciaEntrenadores(i, posX, posY);
 		list_add(listaDistancias, distancia);
 	}
+
 	list_sort(listaDistancias, menorDist);
 
 	while(listaDistancias){
-		idEntrenadorConDistMenor = ((t_dist*) list_get(listaDistancias, i))->id;
+		idEntrenadorConDistMenor = ((t_dist*) list_get(listaDistancias, j))->id;
 
-		if(estaEnEspera(((t_entrenador*) list_get(team->entrenadores,
-				idEntrenadorConDistMenor))))
+		if(estaEnEspera(((t_entrenador*) list_get(team->entrenadores,idEntrenadorConDistMenor))) &&
+				puedaAtraparPokemones((t_entrenador*)list_get(team->entrenadores,idEntrenadorConDistMenor)))
 			break;
-		i++;
+		j++;
 	}//esta estructura se fija si el entrenador esta en espera.
+
 	//problema: si no tengo ningun entrenador en espera se queda en el while?
 	return ((t_entrenador*) list_get(team->entrenadores,
 			idEntrenadorConDistMenor));
@@ -95,8 +101,10 @@ t_list *obtenerEntrenadoresReady(){
 	for(int i = 0;i < list_size(team->entrenadores);i++){
 		entrenador = list_get(team->entrenadores,i);
 
+		sem_wait(&mutexEntrenadores);
 		if(entrenador->estado == LISTO)
 			list_add(entrenadoresReady,entrenador);
+		sem_post(&mutexEntrenadores);
 		}
 
 	return entrenadoresReady;
@@ -142,20 +150,29 @@ void planificarFifo(){
 		while(noSeCumplieronLosObjetivos()){
 			t_entrenador *entrenador;
 
+			sem_wait(&procesoEnReady);
+			log_debug(logger,"Hurra, tengo algo en ready");
+
 			if(!list_is_empty(listaDeReady)){
+				//es necesario este if? si tengo el semaforo...
+
 				sem_wait(&mutexEntrenadores);
 				entrenador = list_get(listaDeReady,0);
 				entrenador->estado = EJEC;
 				sem_post(&mutexEntrenadores);
-				activarHiloDe(entrenador->id);
-				sem_wait(&semPlanif);
-			}
 
+				list_remove(listaDeReady,0);
+				//No esta mas en ready el entrenador, esta en EXEC.
+				//El entrenador debe poder cambiar su estado para que no sea mas EXEC luego de ejecutar.
+				//Porque esto es FIFO baby.
+
+				activarHiloDe(entrenador->id);
+			}
+			sem_wait(&semPlanif);
 		}
 }
 
 void planificador(){
-    sem_wait(&procesoEnReady);
 	switch(team->algoritmoPlanificacion){
 			case FIFO:{
 				planificarFifo();

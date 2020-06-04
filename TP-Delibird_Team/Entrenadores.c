@@ -112,22 +112,25 @@ void gestionarEntrenador(t_entrenador *entrenador) {
 		//me quedo esperando a estar en EJEC
 		sem_wait(&semEntrenadores[entrenador->id]);
 
+
 		while(entrenador->pos[0] != entrenador->posAMover[0] && entrenador->pos[1] != entrenador->posAMover[1]){
 			sem_wait(&mutexEntrenadores);
 			moverEntrenador(entrenador);
 			sem_post(&mutexEntrenadores);
 			usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 100000);
 		}
-		//TODO comentamos pokemonRecibido porke funciona con otra logica.
+		//TODO
+//		Comentamos pokemonRecibido porke funciona con otra logica.
 //			-acomodar appeared y caught.
 
 //		enviarCatchDePokemon(ipServidor, puertoServidor, pokemonRecibido, entrenador->posAMover[0], entrenador->posAMover[1]);
 //		entrenador->estado = BLOQUEADO;
 
-		//sem_signal(&semPlanif);
-		//sem_wait(&semEntrenadores[entrenador->id]);
 		//recibir caught
+		//agrego el pokemon a la lista de pokemones del entrenador
+		//remuevo al pokempn del obetivo global????
 		//me bloqueo
+
 		sem_post(&semPlanif);
 	}
 }
