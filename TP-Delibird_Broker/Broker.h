@@ -58,7 +58,7 @@ typedef struct {
   uint32_t sizeMensaje;
   t_list * procesosALosQueSeEnvio;
   t_list * procesosQueConfirmaronRecepcion;
-  void * posicionEnMemoria; //TODO Borrar y FIXME
+  //void * posicionEnMemoria; //TODO Borrar y FIXME
 } registroCache;
 
 typedef enum {
@@ -127,7 +127,7 @@ void atenderMensaje(int socketEmisor, cola tipoCola);
 void imprimirEstructuraDeDatos(estructuraMensaje mensaje);
 estructuraMensaje * generarNodo(estructuraMensaje mensaje);
 int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo);
-void crearRegistroCache(estructuraMensaje mensaje, void* posInicialMemoria);
+void crearRegistroCache(estructuraMensaje mensaje);
 bool compararPorMenorTamanio(void * particion1, void * particion2);
 bool compararPorMayorTamanio(void * particion1, void * particion2);
 void reasignarNumerosDeParticion(t_list * listaAReasignar);
@@ -185,7 +185,6 @@ void asegurarEspacioLibrePara(int sizeMensaje);
 void * cachearConParticionesDinamicas(estructuraMensaje mensaje);
 void *asignarParticion(estructuraMensaje mensaje);
 void cachearMensaje(estructuraMensaje mensaje);
-void crearRegistroCache(estructuraMensaje mensaje, void* posInicialMemoria);
 bool elSuscriptorNoEstaEnLaLista(t_list * lista, uint32_t idSuscriptor) ;
 t_list * getListaDeRegistrosFiltrados(suscriptor * nuevoSuscriptor, cola codSuscripcion);
 void enviarMensajes(t_list * mensajesAEnviar, suscriptor * suscriptor);

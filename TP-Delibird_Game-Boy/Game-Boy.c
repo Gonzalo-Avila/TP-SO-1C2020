@@ -344,7 +344,7 @@ int main(int argc, char** argv) {
 				//./gameboy BROKER GET_POKEMON [POKEMON]
 				mensaje.longPokemon = strlen(argv[3]) + 1;
 				mensaje.pokemon = malloc(mensaje.longPokemon);
-				strcpy(mensaje.pokemon, argv[4]);
+				strcpy(mensaje.pokemon, argv[3]);
 				size = sizeof(uint32_t) + mensaje.longPokemon;
 
 				enviarMensajeABroker(socketDestino, tipoMensaje, -1, size,

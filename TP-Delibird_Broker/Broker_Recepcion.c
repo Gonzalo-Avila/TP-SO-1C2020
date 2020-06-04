@@ -131,7 +131,7 @@ void atenderSuscripcion(int *socketSuscriptor){
 						suscriptorYaAlmacenado->clientID, suscriptorYaAlmacenado->socketCliente);
 
         //COMENTAR ESTA LINEA Y REALIZAR TESTING - NO BORRAR COMMENT
-		//enviarMensajesCacheados(suscriptorYaAlmacenado, codSuscripcion);
+		enviarMensajesCacheados(suscriptorYaAlmacenado, codSuscripcion);
 	}
 	else
 	{
@@ -140,7 +140,7 @@ void atenderSuscripcion(int *socketSuscriptor){
 				"Hay un nuevo suscriptor en la cola %s. Número de socket suscriptor: %d",
 				getCodeStringByNum(codSuscripcion), *socketSuscriptor);
 
-		//enviarMensajesCacheados(nuevoSuscriptor, codSuscripcion); - NO BORRAR COMMENT
+		enviarMensajesCacheados(nuevoSuscriptor, codSuscripcion);
 	}
 	sem_post(&mutexColas);
 
@@ -214,7 +214,7 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 		list_add(getColaByNum(tipoCola), generarNodo(mensajeNuevo));
 	}
 
-	//cachearMensaje(mensajeNuevo);
+	cachearMensaje(mensajeNuevo);
 	sem_post(&mutexColas);
 	sem_post(&habilitarEnvio);
 

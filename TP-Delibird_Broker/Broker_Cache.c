@@ -9,6 +9,7 @@ void crearRegistroInicial(t_list * listaDeRegistrosDestino) {
 	regParticion->posInicialFisica = cacheBroker;
 	regParticion->posInicialLogica = 0;
 	regParticion->tamanioParticion = CACHESIZE;
+	regParticion->tamanioMensaje = 0;
 	regParticion->estado = LIBRE;
 	regParticion->idMensaje = -1;
 
@@ -345,15 +346,13 @@ void eliminarRegistroDeCache(int IDMensaje) {
 }
 
 registroParticion * liberarSegunFIFO() {
-	t_list * particionesOcupadas = list_filter(registrosDeParticiones,
-			(void *) estaOcupado);
-	t_list * particionesOrdenadasPorFIFO = list_sorted(particionesOcupadas,
-			(void *) compararPorFIFO);
-	registroParticion * particionALiberar = (registroParticion *) list_get(
-			particionesOrdenadasPorFIFO, 0);
+	t_list * particionesOcupadas = list_filter(registrosDeParticiones,(void *) estaOcupado);
+	t_list * particionesOrdenadasPorFIFO = list_sorted(particionesOcupadas,(void *) compararPorFIFO);
+	registroParticion * particionALiberar = (registroParticion *) list_get(particionesOrdenadasPorFIFO, 0);
 	particionALiberar->estado = LIBRE;
 	eliminarRegistroDeCache(particionALiberar->idMensaje);
 	particionALiberar->idMensaje = -1;
+	particionALiberar->tamanioMensaje=0;
 	return particionALiberar;
 }
 registroParticion * liberarSegunLRU() {
@@ -366,6 +365,7 @@ registroParticion * liberarSegunLRU() {
 	particionALiberar->estado = LIBRE;
 	eliminarRegistroDeCache(particionALiberar->idMensaje);
 	particionALiberar->idMensaje = -1;
+	particionALiberar->tamanioMensaje=0;
 	return particionALiberar;
 }
 registroParticion * vaciarParticion() {
@@ -453,13 +453,14 @@ void compactarCacheSegunBuddySystem() {
 
 						regAEvaluar->estado = OCUPADO;
 						regAEvaluar->idMensaje = regParcial->idMensaje;
-						regAEvaluar->tamanioParticion =
-								regParcial->tamanioParticion;
+						regAEvaluar->tamanioParticion =regParcial->tamanioParticion;
 						regAEvaluar->tiempoArribo = regParcial->tiempoArribo;
-						regAEvaluar->tiempoUltimoUso =
-								regParcial->tiempoUltimoUso;
+						regAEvaluar->tiempoUltimoUso =regParcial->tiempoUltimoUso;
+						regAEvaluar->tamanioMensaje=regParcial->tamanioMensaje;
 
 						regParcial->estado = LIBRE;
+						regParcial->idMensaje=-1;
+						regParcial->tamanioMensaje=0;
 						consolidar(regParcial, registrosDeParticiones);
 						seMovioParticion = true;
 						break;
@@ -538,8 +539,8 @@ void *asignarParticion(estructuraMensaje mensaje) {
 void cachearMensaje(estructuraMensaje mensaje) {
 
 	if (mensaje.sizeMensaje <= CACHESIZE) {
-		void* posicionMemoriaParticion = asignarParticion(mensaje);
-		crearRegistroCache(mensaje, posicionMemoriaParticion);
+		asignarParticion(mensaje);
+		crearRegistroCache(mensaje);
 	} else {
 		log_info(logger,
 				"No se pudo cachear el mensaje con ID %d por ser mas grande que la cache",
@@ -549,7 +550,7 @@ void cachearMensaje(estructuraMensaje mensaje) {
 }
 //--------------------------------------------------------------------------
 
-void crearRegistroCache(estructuraMensaje mensaje, void* posInicialMemoria) {
+void crearRegistroCache(estructuraMensaje mensaje) {
 
 	registroCache * nuevoRegistro = malloc(sizeof(registroCache));
 
@@ -559,7 +560,6 @@ void crearRegistroCache(estructuraMensaje mensaje, void* posInicialMemoria) {
 	nuevoRegistro->procesosALosQueSeEnvio = list_create();
 	nuevoRegistro->procesosQueConfirmaronRecepcion = list_create();
 	nuevoRegistro->sizeMensaje = mensaje.sizeMensaje;
-	nuevoRegistro->posicionEnMemoria = posInicialMemoria;
 
 	list_add(registrosDeCache, nuevoRegistro);
 }
@@ -576,6 +576,7 @@ bool elSuscriptorNoEstaEnLaLista(t_list * lista, uint32_t idSuscriptor) {
 
 t_list * getListaDeRegistrosFiltrados(suscriptor * nuevoSuscriptor,
 		cola codSuscripcion) {
+
 	bool estaEnLaColaYNoSeConfirmoAun(void * registro) {
 		registroCache * reg = (registroCache *) registro;
 		return reg->colaMensaje == codSuscripcion
@@ -583,12 +584,13 @@ t_list * getListaDeRegistrosFiltrados(suscriptor * nuevoSuscriptor,
 						reg->procesosQueConfirmaronRecepcion,
 						nuevoSuscriptor->clientID);
 	}
-	return list_filter(getListaSuscriptoresByNum(codSuscripcion),
-			&estaEnLaColaYNoSeConfirmoAun);
+	return list_filter(registrosDeCache,(void *)estaEnLaColaYNoSeConfirmoAun);
 }
 
 void enviarMensajes(t_list * mensajesAEnviar, suscriptor * suscriptor) {
 	void enviarMensajeAlSuscriptor(void * registro) {
+
+
 		registroCache * reg = (registroCache *) registro;
 		estructuraMensaje mensajeAEnviar;
 		int socketSuscriptor, statusEnvio, ack = 0;
@@ -599,7 +601,16 @@ void enviarMensajes(t_list * mensajesAEnviar, suscriptor * suscriptor) {
 		mensajeAEnviar.sizeMensaje = reg->sizeMensaje;
 
 		mensajeAEnviar.mensaje = malloc(mensajeAEnviar.sizeMensaje);
-		memcpy(mensajeAEnviar.mensaje, reg->posicionEnMemoria,
+
+		bool coincideIDMsg(void * regParticion){
+				registroParticion * regP = (registroParticion *) regParticion;
+				return regP->idMensaje==reg->idMensaje;
+		}
+		registroParticion * regPart = (registroParticion *)list_find(registrosDeParticiones,(void*)coincideIDMsg);
+		void * posicionEnMemoria = regPart->posInicialFisica;
+
+
+		memcpy(mensajeAEnviar.mensaje, posicionEnMemoria,
 				mensajeAEnviar.sizeMensaje);
 
 		socketSuscriptor = getSocketActualDelSuscriptor(suscriptor->clientID,
@@ -633,8 +644,8 @@ void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion) 
 	 *  - Segun resultado del recv, agregar o no a la lista de confirmados.
 	 *
 	 */
-	t_list * mensajesAEnviar = getListaDeRegistrosFiltrados(nuevoSuscriptor,
-			codSuscripcion);
+	t_list * mensajesAEnviar = getListaDeRegistrosFiltrados(nuevoSuscriptor,codSuscripcion);
+
 	enviarMensajes(mensajesAEnviar, nuevoSuscriptor);
 }
 //--------------------------------------------------------------------------
@@ -642,10 +653,10 @@ void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion) 
 //Impresión de dump de cache
 //--------------------------------------------------------------------------
 
-void * posicionInicial(registroCache* regCache) {
+/*void * posicionInicial(registroCache* regCache) {
 
 	return regCache->posicionEnMemoria;
-}
+}*/
 
 void * posicionFinal(registroCache* regCache) {
 	/* TODO
@@ -677,6 +688,23 @@ char* timeToString(time_t time) {
 	return ctime(&time);
 }
 
+cola obtenerCola(registroParticion * registroParticion){
+	bool coincideIDMsg(void * registro ){
+		registroCache * regCache = (registroCache *) registro;
+		return regCache->idMensaje==registroParticion->idMensaje;
+	}
+	registroCache * registroQueCoincide = (registroCache *) list_find(registrosDeCache,(void *) coincideIDMsg);
+	return registroQueCoincide->colaMensaje;
+}
+
+char getEstadoParticion(estadoParticion estado){
+	char a='X';
+	if(estado==LIBRE)
+		a='L';
+
+	return a;
+}
+
 void dumpCache() {
 
 	log_info(logger, "Ejecutando dump de la cache...");
@@ -695,24 +723,28 @@ void dumpCache() {
 	fprintf(cacheDumpFile, "Dump: %s \n\n", timeToString(getTime()));
 
 	void escribirRegistro(void* registro) {
-		registroCache * regCache = (registroCache*) registro;
+		registroParticion * regParticion = (registroParticion*) registro;
 		//fprintf(cacheDumpFile, "%-15s %-15s %-15s %-15s \n", "A", "B", "C", "D");
 		i++;
-		fprintf(cacheDumpFile, "Particion #%d : %-15s - %-15s ", i,
-				(char *) posicionInicial(regCache->posicionEnMemoria),
-				(char *) posicionFinal(regCache));
-		fprintf(cacheDumpFile, "[%s]     ", "X");
-		fprintf(cacheDumpFile, "Size: %-15d b",
-				obtenerTamanioParticion(regCache));
-		fprintf(cacheDumpFile, "LRU: %-15s", obtenerLRU(regCache));
-		fprintf(cacheDumpFile, "Cola: %-15s",
-				getCodeStringByNum(regCache->colaMensaje));
-		fprintf(cacheDumpFile, "ID: %-15d", regCache->idMensaje);
+		fprintf(cacheDumpFile, "Particion #%d : %-12p %s %-12p ", i,
+				regParticion->posInicialFisica, "-",
+				regParticion->posInicialFisica+regParticion->tamanioParticion-1);
+		fprintf(cacheDumpFile, "[%c]     ", getEstadoParticion(regParticion->estado));
+		fprintf(cacheDumpFile, "Size: %d b    ",regParticion->tamanioParticion);
+
+		if(regParticion->estado==OCUPADO){
+			fprintf(cacheDumpFile, "LRU: %s  ", timeToString(regParticion->tiempoUltimoUso));
+			fprintf(cacheDumpFile, "Cola: %-16s",getCodeStringByNum(obtenerCola(regParticion)));
+			fprintf(cacheDumpFile, "ID: %-15d", regParticion->idMensaje);
+		}
 
 		fprintf(cacheDumpFile, "\n");
 	}
 
-	list_iterate(registrosDeCache, escribirRegistro);
+	list_iterate(registrosDeParticiones, (void*) escribirRegistro);
+
+	fprintf(cacheDumpFile,
+				"------------------------------------------------------------------------------------------------------------------\n\n");
 
 	fclose(cacheDumpFile);
 }
