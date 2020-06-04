@@ -88,28 +88,48 @@ void moverEntrenador(t_entrenador *entrenador){
 			entrenador->pos[1]--;
 		}
 
+	log_debug(logger,"El entrenador id: %d esta en la posicion [%d,%d]",entrenador->id,entrenador->pos[0],entrenador->pos[1]);
+
+}
+
+bool estaEnLosObjetivos(char *pokemon){
+
+	bool esUnObjetivo(void *elemento) {
+		bool verifica = false;
+
+		if (string_equals_ignore_case(pokemon, (char *)elemento)) {
+			verifica = true;
+		}
+		return verifica;
+	}
+
+	return list_find(team->objetivo,esUnObjetivo);
 }
 
 /*MANEJA EL FUNCIONAMIENTO INTERNO DE CADA ENTRENADOR(trabajo en un hilo separado)*/
 void gestionarEntrenador(t_entrenador *entrenador) {
-	//me quedo esperando a estar en EJEC
-	sem_wait(&semEntrenadores[entrenador->id]);
+	while(entrenador->estado != FIN){
+		//me quedo esperando a estar en EJEC
+		sem_wait(&semEntrenadores[entrenador->id]);
 
-	while(entrenador->pos[0] != entrenador->posAMover[0] && entrenador->pos[1] != entrenador->posAMover[1]){
-		sem_wait(&mutexEntrenadores);
-		moverEntrenador(entrenador);
-		sem_post(&mutexEntrenadores);
-		usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 100000);
+		while(entrenador->pos[0] != entrenador->posAMover[0] && entrenador->pos[1] != entrenador->posAMover[1]){
+			sem_wait(&mutexEntrenadores);
+			moverEntrenador(entrenador);
+			sem_post(&mutexEntrenadores);
+			usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 100000);
+		}
+		//TODO comentamos pokemonRecibido porke funciona con otra logica.
+//			-acomodar appeared y caught.
+
+//		enviarCatchDePokemon(ipServidor, puertoServidor, pokemonRecibido, entrenador->posAMover[0], entrenador->posAMover[1]);
+//		entrenador->estado = BLOQUEADO;
+
+		//sem_signal(&semPlanif);
+		//sem_wait(&semEntrenadores[entrenador->id]);
+		//recibir caught
+		//me bloqueo
+		sem_post(&semPlanif);
 	}
-	//TODO ver si el pokemonRecibido es el string correcto, o de dónde sacarlo
-	enviarCatchDePokemon(ipServidor, puertoServidor, pokemonRecibido, entrenador->posAMover[0], entrenador->posAMover[1]);
-	entrenador->estado = BLOQUEADO;
-
-	//sem_signal(&semPlanif);
-	//sem_wait(&semEntrenadores[entrenador->id]);
-	//recibir caught
-	//me bloqueo
-
 }
 
 

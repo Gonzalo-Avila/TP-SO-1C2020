@@ -138,8 +138,7 @@ void activarHiloDe(int id){
 }
 
 void planificarFifo(){
-
-
+		log_debug(logger,"Se activa el planificador");
 		while(noSeCumplieronLosObjetivos()){
 			t_entrenador *entrenador;
 

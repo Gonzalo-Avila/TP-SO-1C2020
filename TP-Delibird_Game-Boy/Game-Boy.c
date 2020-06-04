@@ -49,6 +49,7 @@ int conectarseADestino(proceso destino) {
 	free(proceso);
 	return socketDestino;
 }
+
 cola definirTipoMensaje(char * argumento) {
 	if (strcmp("NEW_POKEMON", argumento) == 0) {
 		return NEW;
@@ -384,39 +385,50 @@ int main(int argc, char** argv) {
 			break;
 		}
 		case LOCALIZED: {
+
+			log_debug(logger,"El mensaje es LOCALIZED");
+
 			mensajeLocalized mensaje;
 			//./broker BROKER LOCALIZED_POKEMON [POKEMON] [CANTIDAD] [POSX] [POSY] (UN PAR DE COORDENADAS X CANTIDAD)
 			mensaje.longPokemon = strlen(argv[3]) + 1;
 			mensaje.pokemon = malloc(mensaje.longPokemon);
 			strcpy(mensaje.pokemon, argv[3]);
 			mensaje.listSize = atoi(argv[4]);
+			mensaje.posicionYCant = list_create();
 
 			posicYCant *parDeCoordenadas = malloc(sizeof(posicYCant));
 
+			log_info(logger, "Creo parDeCoordenadas");
 			//Funcion interna para poder usar commons con mas parametros
-			bool coordenadaEstaEnLista(void* coordenada){
-				posicYCant* coordenadaEnLista = coordenada;
-					return (coordenadaEnLista->posicionX == parDeCoordenadas->posicionX &&
-							coordenadaEnLista->posicionY == parDeCoordenadas->posicionY);
-			}
+//			bool coordenadaEstaEnLista(void* coordenada){
+//				posicYCant* coordenadaEnLista = coordenada;
+//					return (coordenadaEnLista->posicionX == parDeCoordenadas->posicionX &&
+//							coordenadaEnLista->posicionY == parDeCoordenadas->posicionY);
+//			}
+
+			int cont=0;
 
 			for(int i=0;i<mensaje.listSize;i++){
-				int cont=0;
 				parDeCoordenadas->posicionX = atoi(argv[5+cont]);
 				parDeCoordenadas->posicionY = atoi(argv[6+cont]);
+//				//Chequeo si hay mas de un pokemon en la misma posicion
+//				if(list_any_satisfy(mensaje.posicionYCant,coordenadaEstaEnLista)){
+//					posicYCant* posicionAModificarCantidad =list_find(mensaje.posicionYCant,coordenadaEstaEnLista);
+//					posicionAModificarCantidad->cantidad++;
+//				}
+//				else{
+				parDeCoordenadas->cantidad = 1;
+				list_add(mensaje.posicionYCant,parDeCoordenadas);
 
-				//Chequeo si hay mas de un pokemon en la misma posicion
-				if(list_any_satisfy(mensaje.posicionYCant,coordenadaEstaEnLista)){
-					posicYCant* posicionAModificarCantidad =list_find(mensaje.posicionYCant,coordenadaEstaEnLista);
-					posicionAModificarCantidad->cantidad++;
-				}
-				else{
-					parDeCoordenadas->cantidad = 1;
-					list_add(mensaje.posicionYCant,parDeCoordenadas);
-				}
+//				}
 				cont=cont+2;
 			}
-			size = sizeof(uint32_t) * 8 + mensaje.longPokemon;
+
+			log_debug(logger,"Se completo el guardado de coordenadas");
+
+			size = sizeof(uint32_t) + sizeof(uint32_t) + sizeof(uint32_t) * mensaje.listSize * 3 + mensaje.longPokemon;
+			//longitudDeLalogitudPoke    cantidadDeTernas   		Ternas x y cant				   longitudRealPokemon
+
 			enviarMensajeABroker(socketDestino, tipoMensaje, -1, size,
 					&mensaje);
 			log_info(logger,

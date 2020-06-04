@@ -74,7 +74,6 @@ t_list *listaHilos;
 t_list *listaDeReady;
 t_list *listaDeBloqued;
 
-char* pokemonRecibido;
 char* ipServidor;
 char* puertoServidor;
 
@@ -120,7 +119,6 @@ void enviarCatchDePokemon(char *ip, char *puerto, char *pokemon, uint32_t posX, 
 float calcularDistancia(int posX1, int posY1,int posX2,int posY2);
 t_dist *setearDistanciaEntrenadores(int id,int posX,int posY);
 bool estaEnEspera(t_entrenador *entrenador);
-bool esUnObjetivo(void *objetivo);
 bool distanciaMasCorta(void *entrenador1,void *entrenador2);
 t_entrenador* entrenadorMasCercanoEnEspera(int posX,int posY);
 void planificarFifo();
@@ -128,5 +126,6 @@ void planificador();
 void ponerEnReadyAlMasCercano(int x, int y);
 void moverEntrenador(t_entrenador *entrenador);
 void inicializarSemEntrenadores();
+bool estaEnLosObjetivos(char *pokemon);
 
 #endif /* TEAM_H_ */

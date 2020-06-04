@@ -74,14 +74,6 @@ bool elementoEstaEnLista(t_list *lista, char *elemento) {
 	return verifica;
 }
 
-bool esUnObjetivo(void* objetivo) {
-	bool verifica = false;
-	if (string_equals_ignore_case(pokemonRecibido, objetivo)) {
-		verifica = true;
-	}
-	return verifica;
-}
-
 void inicializarSemEntrenadores() {
 	semEntrenadores = malloc(list_size(team->entrenadores) * sizeof(sem_t));
 	for (int j = 0; j < list_size(team->entrenadores); j++) {

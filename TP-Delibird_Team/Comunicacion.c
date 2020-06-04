@@ -60,26 +60,25 @@ void enviarCatchDePokemon(char *ip, char *puerto, char *pokemon, uint32_t posX, 
 
 /* Atender al Broker y Gameboy */
 void atenderServidor(int *socketServidor) {
-	//mensajeRecibido *miMensajeRecibido = malloc(sizeof(mensajeRecibido));
-
 	log_debug(logger, "Se atiende al servidor");
 	uint32_t ack=1;
 	while (1) {
-		mensajeRecibido * miMensajeRecibido = recibirMensajeDeBroker(*socketServidor);
+		mensajeRecibido *miMensajeRecibido = recibirMensajeDeBroker(*socketServidor);
 
 		if (miMensajeRecibido->codeOP == FINALIZAR) {
 			break;
 		}
 
-		//TODO - Corregir recepciones, separar el void
 		switch(miMensajeRecibido->colaEmisora){
+
+		//TODO - Corregir recepciones, separar el void y acomodarPokemonRecibido.
 			case APPEARED:{
 				send(*socketServidor, &ack, sizeof(uint32_t), 0);
-				pokemonRecibido = malloc((miMensajeRecibido->sizeMensaje)+1);
+				char *pokemonRecibido = malloc((miMensajeRecibido->sizeMensaje)+1);
 				int offset = (miMensajeRecibido->sizePayload) - (miMensajeRecibido->sizeMensaje);
 				memcpy(pokemonRecibido, miMensajeRecibido + offset,sizeof(miMensajeRecibido->sizeMensaje));
 
-				if (list_any_satisfy(team->objetivo, esUnObjetivo)) {
+				if (estaEnLosObjetivos(pokemonRecibido)){
 					log_debug(logger, "APPEARED recibido");
 					log_info(logger, "Pokemon: %s", *(char*)pokemonRecibido);
 					enviarGetDePokemon(ipServidor, puertoServidor, pokemonRecibido);
@@ -89,10 +88,16 @@ void atenderServidor(int *socketServidor) {
 				break;
 			}
 			case LOCALIZED:{
+				log_debug(logger,"Llego al Team un Localized");
 				send(*socketServidor, &ack, sizeof(uint32_t), 0);
+
 				int cantPokes,longPokemon;
 				int offset = 0;
+
 				t_posicionEnMapa *pos = malloc(sizeof(t_posicionEnMapa));
+				pos->x = list_create();
+				pos->y = list_create();
+				pos->cantidades = list_create();
 
 				memcpy(&longPokemon,miMensajeRecibido->mensaje,sizeof(uint32_t));
 				offset = sizeof(uint32_t);
@@ -108,6 +113,12 @@ void atenderServidor(int *socketServidor) {
 				offset += sizeof(uint32_t);
 				int x[cantPokes],y[cantPokes],cant[cantPokes];
 
+				log_debug(logger,"Se guarda el pokemon en struct Pos");
+
+				memcpy(pos->pokemon,pokemon,longPokemon);
+
+				log_debug(logger,"Pokemon: %s",pos->pokemon);
+
 				for(int i = 0;i < cantPokes;i++){
 					memcpy(&x[i],miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
 					offset += sizeof(uint32_t);
@@ -121,13 +132,18 @@ void atenderServidor(int *socketServidor) {
 					list_add(pos->y,&y[i]);
 					list_add(pos->cantidades,&cant[i]);
 				}
-				strcpy(pos->pokemon,pokemon);
+				log_debug(logger,"Pasa el for de asignacion de posiciones");
 
-				if(esUnObjetivo(pokemon)){
+				if(estaEnLosObjetivos(pokemon)){
+
+					log_debug(logger,"El pokemon %s es un objetivo",pokemon);
+
 					list_add(listaPosicionesInternas,pos);
 					ponerEnReadyAlMasCercano(x[0],y[0]);
 					sem_post(&procesoEnReady);
 				}
+				log_debug(logger,"Se proceso el Localized");
+
 				break;
 			}
 			case CAUGHT:{
