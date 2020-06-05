@@ -221,3 +221,25 @@ Tamaño del mensaje: 1668284462
 
 [INFO] 22:04:15:684 GameBoy/(6086:6086): Se ha iniciado el cliente gameboy
 
+[INFO] 14:57:44:851 GameBoy/(10242:10242): Se ha iniciado el cliente gameboy
+
+[INFO] 14:57:46:912 GameBoy/(10242:10242): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:4
+[DEBUG] 14:57:52:12 GameBoy/(10242:10242): El broker ha asignado el siguiente ID de proceso: 2
+[INFO] 14:57:52:515 GameBoy/(10242:10242): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 14:57:53:73 GameBoy/(10242:10242): Se ha suscrito a la cola NEW_POKEMON
+[DEBUG] 14:57:53:579 GameBoy/(10242:10242): Se realizó suscripción a la cola NEW_POKEMON
+[INFO] 14:57:59:957 GameBoy/(10242:10242): Esperando mensajes...
+[INFO] 14:58:16:664 GameBoy/(10242:10242): Se recibió un nuevo mensaje del broker
+Cola: NEW_POKEMON
+ID del mensaje: 22
+ID correlativo: -1
+Tamaño del mensaje: 24
+

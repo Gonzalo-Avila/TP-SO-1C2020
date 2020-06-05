@@ -73,7 +73,6 @@ typedef struct {
 	char * pokemon;         //Nombre del pokemon a agregar.
 	uint32_t posicionX;
 	uint32_t posicionY;
-	;
 	//Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
 	uint32_t cantPokemon;   //Cantidad pokemons a agregar en la posición.
 } mensajeNew;

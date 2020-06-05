@@ -92,6 +92,127 @@ proceso definirDestino(char * argumento) {
 
 }
 
+void imprimirMensaje(mensajeRecibido * mensaje){
+	log_info(logger,"Se recibió un nuevo mensaje del broker\n"
+	            		"Cola: %s\n"
+	            		"ID del mensaje: %d\n"
+	            		"ID correlativo: %d\n"
+	            		"Tamaño del mensaje: %d\n",
+						getCodeStringByNum(mensaje->colaEmisora),mensaje->idMensaje, mensaje->idCorrelativo,mensaje->sizeMensaje);
+	int offset=0;
+	switch(mensaje->colaEmisora){
+	case NEW:{
+		mensajeNew msg;
+
+		memcpy(&(msg.longPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
+		offset+=sizeof(uint32_t);
+
+		msg.pokemon=malloc(msg.longPokemon);
+		memcpy(msg.pokemon,mensaje->mensaje+offset,msg.longPokemon);
+		offset+=msg.longPokemon;
+
+		memcpy(&(msg.posicionX),mensaje->mensaje+offset,sizeof(uint32_t));
+		offset+=sizeof(uint32_t);
+
+		memcpy(&(msg.posicionY),mensaje->mensaje+offset,sizeof(uint32_t));
+		offset+=sizeof(uint32_t);
+
+		memcpy(&(msg.cantPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
+		offset+=sizeof(uint32_t);
+
+		log_info(logger, "Longitud pokemon: %d\nPokemon: %s\nPosicion X: %d\nPosicion Y: %d\n Cantidad del pokemon:%d\n",msg.longPokemon,msg.pokemon,msg.posicionX,msg.posicionY,msg.cantPokemon);
+
+		free(msg.pokemon);
+		break;
+	}
+	case APPEARED:{
+		mensajeAppeared msg;
+
+		memcpy(&(msg.longPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
+		offset+=sizeof(uint32_t);
+
+		msg.pokemon=malloc(msg.longPokemon);
+		memcpy(msg.pokemon,mensaje->mensaje+offset,msg.longPokemon);
+		offset+=msg.longPokemon;
+
+		memcpy(&(msg.posicionX),mensaje->mensaje+offset,sizeof(uint32_t));
+		offset+=sizeof(uint32_t);
+
+		memcpy(&(msg.posicionY),mensaje->mensaje+offset,sizeof(uint32_t));
+		offset+=sizeof(uint32_t);
+
+		log_info(logger, "Longitud pokemon: %d\nPokemon: %s\nPosicion X: %d\nPosicion Y: %d\n",msg.longPokemon,msg.pokemon,msg.posicionX,msg.posicionY);
+
+		free(msg.pokemon);
+		break;
+	}
+	case CATCH:{
+		mensajeCatch msg;
+
+		memcpy(&(msg.longPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
+		offset+=sizeof(uint32_t);
+
+		msg.pokemon=malloc(msg.longPokemon);
+		memcpy(msg.pokemon,mensaje->mensaje+offset,msg.longPokemon);
+		offset+=msg.longPokemon;
+
+		memcpy(&(msg.posicionX),mensaje->mensaje+offset,sizeof(uint32_t));
+		offset+=sizeof(uint32_t);
+
+		memcpy(&(msg.posicionY),mensaje->mensaje+offset,sizeof(uint32_t));
+		offset+=sizeof(uint32_t);
+
+		log_info(logger, "Longitud pokemon: %d\nPokemon: %s\nPosicion X: %d\nPosicion Y: %d\n",msg.longPokemon,msg.pokemon,msg.posicionX,msg.posicionY);
+
+		free(msg.pokemon);
+		break;
+	}
+	case CAUGHT:{
+		mensajeCaught msg;
+
+		memcpy(&(msg.resultado),mensaje->mensaje+offset,sizeof(uint32_t));
+		log_info(logger, "Resultado: %d\n",msg.resultado);
+
+		break;
+	}
+	case GET:{
+		mensajeGet msg;
+
+		memcpy(&(msg.longPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
+		offset+=sizeof(uint32_t);
+
+		msg.pokemon=malloc(msg.longPokemon);
+		memcpy(msg.pokemon,mensaje->mensaje+offset,msg.longPokemon);
+
+
+		log_info(logger, "Longitud pokemon: %d\nPokemon: %s\n",msg.longPokemon,msg.pokemon);
+		free(msg.pokemon);
+		break;
+	}
+	case LOCALIZED:{
+		mensajeLocalized msg;
+
+		memcpy(&(msg.longPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
+		offset+=sizeof(uint32_t);
+
+		msg.pokemon=malloc(msg.longPokemon);
+		memcpy(msg.pokemon,mensaje->mensaje+offset,msg.longPokemon);
+		offset+=msg.longPokemon;
+
+		memcpy(&(msg.listSize),mensaje->mensaje+offset,sizeof(uint32_t));
+		offset+=sizeof(uint32_t);
+
+		log_info(logger, "Longitud pokemon: %d\nPokemon: %s\nCantidad de pares de coordenadas: %d\n",msg.longPokemon,msg.pokemon,msg.listSize);
+
+		free(msg.pokemon);
+		break;
+	}
+	default:{
+		break;
+	}
+	}
+
+}
 int main(int argc, char** argv) {
 
 
@@ -145,12 +266,9 @@ int main(int argc, char** argv) {
 			log_info(logger,"Esperando mensajes...");
 			mensajeRecibido * mensaje = recibirMensajeDeBroker(socketSuscripcion);
 			send(socketSuscripcion, &ack, sizeof(uint32_t), 0);
-            log_info(logger,"Se recibió un nuevo mensaje del broker\n"
-            		"Cola: %s\n"
-            		"ID del mensaje: %d\n"
-            		"ID correlativo: %d\n"
-            		"Tamaño del mensaje: %d\n",
-					getCodeStringByNum(mensaje->colaEmisora),mensaje->idMensaje, mensaje->idCorrelativo,mensaje->sizeMensaje);
+			imprimirMensaje(mensaje);
+			free(mensaje);
+
 		}
 
 	} else {

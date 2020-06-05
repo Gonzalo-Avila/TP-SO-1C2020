@@ -18,6 +18,17 @@ void inicializarVariablesGlobales() {
 void destruirVariablesGlobales() {
 	log_destroy(logger);
 	config_destroy(config);
+
+	list_clean(suscriptoresNEW);
+	list_clean(suscriptoresAPP);
+	list_clean(suscriptoresGET);
+	list_clean(suscriptoresLOC);
+	list_clean(suscriptoresCAT);
+	list_clean(suscriptoresCAU);
+
+	//Cerrar el socket (¿Variable global?) y ¿eliminar colas? (se hace cada vez que se manda un mensaje)
+
+    free(cacheBroker);
 }
 
 void liberarSocket(int* socket) {
@@ -144,6 +155,7 @@ uint32_t getIDProceso() {
 
 int main() {
 	signal(SIGUSR1,dumpCache);
+	//signal(SIGINT,destruirVariablesGlobales);
 
 
 	inicializarVariablesGlobales();

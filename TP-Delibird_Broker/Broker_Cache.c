@@ -121,13 +121,28 @@ registroParticion * obtenerBuddy(registroParticion * particionLiberada) {
 		return posibleBuddy1;
 	}
 
-	return posibleBuddy2;
+	if (particionLiberada->nroParticion != (list_size(registrosDeParticiones)-1)
+			&& posibleBuddy2->tamanioParticion
+					== particionLiberada->tamanioParticion
+			&& posibleBuddy2->posInicialLogica
+					== XOR(particionLiberada->posInicialLogica,
+							posibleBuddy2->tamanioParticion)
+			&& particionLiberada->posInicialLogica
+					== XOR(posibleBuddy2->posInicialLogica,
+							particionLiberada->tamanioParticion)) {
+		return posibleBuddy2;
+	}
+
+	registroParticion * noBuddy = malloc(sizeof(registroParticion));
+	noBuddy->nroParticion=-1;
+	return noBuddy;
 }
+
 void consolidar(registroParticion * particionLiberada, t_list * registros) {
 
 	registroParticion * buddy = obtenerBuddy(particionLiberada);
 
-	while (buddy->estado == LIBRE) {
+	while (buddy->estado == LIBRE && buddy->nroParticion!=-1) {
 		if (particionLiberada->posInicialLogica < buddy->posInicialLogica) {
 			bool coincideID(void * registro) {
 				registroParticion * reg = (registroParticion *) registro;
@@ -153,8 +168,9 @@ void consolidar(registroParticion * particionLiberada, t_list * registros) {
 			particionLiberada = buddy;
 			buddy = obtenerBuddy(particionLiberada);
 		}
-
 	}
+	if(buddy->nroParticion==-1)
+		free(buddy);
 
 }
 
@@ -209,6 +225,7 @@ void * cachearConBuddySystem(estructuraMensaje mensaje) {
 	memcpy(registro->posInicialFisica, mensaje.mensaje, mensaje.sizeMensaje);
 	registro->estado = OCUPADO;
 	registro->idMensaje = mensaje.id;
+	registro->tamanioMensaje=mensaje.sizeMensaje;
 	registro->tiempoArribo = time(NULL);
 	registro->tiempoUltimoUso = time(NULL);
 
@@ -430,14 +447,12 @@ void compactarCacheSegunBuddySystem() {
 
 	while (!estaCompactada) {
 		for (int i = 0; i < list_size(registrosDeParticiones); i++) {
-			registroParticion* regParcial = list_get(registrosDeParticiones, i);
+			registroParticion* regParcial = (registroParticion*)list_get(registrosDeParticiones, i);
 			if (regParcial->estado == OCUPADO) {
 				for (int j = 0; j < i; j++) {
-					registroParticion* regAEvaluar = list_get(
-							registrosDeParticiones, j);
+					registroParticion* regAEvaluar = (registroParticion*)list_get(registrosDeParticiones, j);
 					if (regAEvaluar->estado == LIBRE
-							&& regAEvaluar->tamanioParticion
-									>= regParcial->tamanioParticion) {
+							&& regAEvaluar->tamanioParticion>= regParcial->tamanioParticion) {
 
 						while (regAEvaluar->tamanioParticion
 								>= 2 * regParcial->tamanioMensaje
@@ -449,7 +464,7 @@ void compactarCacheSegunBuddySystem() {
 
 						memcpy(regAEvaluar->posInicialFisica,
 								regParcial->posInicialFisica,
-								regParcial->tamanioParticion);
+								regParcial->tamanioMensaje);
 
 						regAEvaluar->estado = OCUPADO;
 						regAEvaluar->idMensaje = regParcial->idMensaje;
@@ -465,7 +480,7 @@ void compactarCacheSegunBuddySystem() {
 						seMovioParticion = true;
 						break;
 					}
-				} //for
+				}
 				if (seMovioParticion) {
 					seMovioParticion = false;
 					estaCompactada = false;
@@ -474,7 +489,6 @@ void compactarCacheSegunBuddySystem() {
 				estaCompactada = true;
 			}
 		}
-
 	}
 }
 

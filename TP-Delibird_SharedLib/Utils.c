@@ -89,7 +89,7 @@ void armarPaqueteNew(int offset, void* mensaje, tBuffer* buffer) {
 	mensajeNew* msg = mensaje;
 	memcpy(buffer->stream + offset, &(msg->longPokemon), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
-	memcpy(buffer->stream + offset, msg->pokemon, sizeof(msg->longPokemon));
+	memcpy(buffer->stream + offset, msg->pokemon, msg->longPokemon);
 	offset += msg->longPokemon;
 	memcpy(buffer->stream + offset, &(msg->posicionX), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
@@ -218,7 +218,6 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,
 	sizeTotal = buffer->size + sizeof(uint32_t) + sizeof(opCode);
 	mensajeSerializado = serializarPaquete(paquete, sizeTotal);
 	send(socketBroker, mensajeSerializado, sizeTotal, 0);
-	//free(mensaje); Valgrind tira que esto es invalido porque esta variable esta en el stack del thread 1
 	free(mensajeSerializado);
 	free(paquete);
 	free(buffer->stream);
