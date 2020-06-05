@@ -38,7 +38,9 @@ SUSCRIPTOR [COLA_DE_MENSAJES] [TIEMPO]
 
 ${selected_text:SUSCRIPTOR} ${selected_text:APPEARED_POKEMON} ${selected_text:60}
 
+SUSCRIPTOR_CID [CLIENT_ID] [COLA_DE_MENSAJES] [TIEMPO]
 
+${selected_text:SUSCRIPTOR_CID} ${selected_text:15} ${selected_text:APPEARED_POKEMON} ${selected_text:60}
 
 
 argv[0]       argv[1]     argv[2]

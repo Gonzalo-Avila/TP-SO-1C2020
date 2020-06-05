@@ -621,6 +621,7 @@ void enviarMensajes(t_list * mensajesAEnviar, suscriptor * suscriptor) {
 				return regP->idMensaje==reg->idMensaje;
 		}
 		registroParticion * regPart = (registroParticion *)list_find(registrosDeParticiones,(void*)coincideIDMsg);
+		regPart->tiempoUltimoUso = getTime();
 		void * posicionEnMemoria = regPart->posInicialFisica;
 
 
@@ -666,32 +667,6 @@ void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion) 
 
 //Impresión de dump de cache
 //--------------------------------------------------------------------------
-
-/*void * posicionInicial(registroCache* regCache) {
-
-	return regCache->posicionEnMemoria;
-}*/
-
-void * posicionFinal(registroCache* regCache) {
-	/* TODO
-	 * - Calcular posicion final (inicial + tamanio)
-	 */
-	return 0;
-}
-
-int obtenerTamanioParticion(registroCache* regCache) {
-	/* TODO
-	 * - Calcular tamanio y devolver int
-	 */
-	return 0;
-}
-
-char* obtenerLRU(registroCache* regCache) {
-	/* TODO
-	 * - Sacar LRU
-	 */
-	return "X";
-}
 
 time_t getTime() {
 	time_t currentTime = time(NULL);
