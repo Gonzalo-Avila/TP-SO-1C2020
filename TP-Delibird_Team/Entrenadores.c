@@ -75,16 +75,16 @@ void crearHiloEntrenador(t_entrenador* entrenador) {
 
 void moverEntrenador(t_entrenador *entrenador){
 
-	if(entrenador->pos[0] < entrenador->posAMover[0]){
+	if(entrenador->pos[0] < entrenador->pokemonAAtrapar.pos[0]){
 			entrenador->pos[0]++;
 		}
-		else if(entrenador->pos[0] > entrenador->posAMover[0]){
+		else if(entrenador->pos[0] > entrenador->pokemonAAtrapar.pos[0]){
 			entrenador->pos[0]--;
 		}
-		if(entrenador->pos[1] < entrenador->posAMover[1]){
+		if(entrenador->pos[1] < entrenador->pokemonAAtrapar.pos[1]){
 			entrenador->pos[1]++;
 		}
-		else if(entrenador->pos[1] > entrenador->posAMover[1]){
+		else if(entrenador->pos[1] > entrenador->pokemonAAtrapar.pos[1]){
 			entrenador->pos[1]--;
 		}
 
@@ -103,7 +103,7 @@ bool estaEnLosObjetivos(char *pokemon){
 		return verifica;
 	}
 
-	return list_find(team->objetivo,esUnObjetivo);
+	return list_any_satisfy(team->objetivo,esUnObjetivo);
 }
 
 /*MANEJA EL FUNCIONAMIENTO INTERNO DE CADA ENTRENADOR(trabajo en un hilo separado)*/
@@ -113,7 +113,7 @@ void gestionarEntrenador(t_entrenador *entrenador) {
 		sem_wait(&semEntrenadores[entrenador->id]);
 
 
-		while(entrenador->pos[0] != entrenador->posAMover[0] && entrenador->pos[1] != entrenador->posAMover[1]){
+		while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] && entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
 			sem_wait(&mutexEntrenadores);
 			moverEntrenador(entrenador);
 			sem_post(&mutexEntrenadores);
@@ -123,8 +123,8 @@ void gestionarEntrenador(t_entrenador *entrenador) {
 //		Comentamos pokemonRecibido porke funciona con otra logica.
 //			-acomodar appeared y caught.
 
-//		enviarCatchDePokemon(ipServidor, puertoServidor, pokemonRecibido, entrenador->posAMover[0], entrenador->posAMover[1]);
-//		entrenador->estado = BLOQUEADO;
+		enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+		entrenador->estado = BLOQUEADO;
 
 		//recibir caught
 		//agrego el pokemon a la lista de pokemones del entrenador

@@ -28,31 +28,90 @@ void enviarGetDePokemon(char *ip, char *puerto, char *pokemon) {
 	recv(*socketBroker,&idRespuesta,sizeof(uint32_t),MSG_WAITALL);
 	log_debug(logger,"Mensaje enviado GET :smilieface:");
 	log_info(logger, "Respuesta del Broker: %d", idRespuesta);
+
 	free(msg);
 	close(*socketBroker);
 	free(socketBroker);
 }
 
+bool validarIDCorrelativoCatch(uint32_t id){
+
+	bool esUnIDCatch(void* elemento) {
+		t_catchEnEspera* unCatch = elemento;
+
+		if (unCatch->idCorrelativo == id) {
+			return true;
+		}
+		return false;
+	}
+
+	return list_any_satisfy(idsDeCatch, esUnIDCatch);
+}
+
+
+t_catchEnEspera* buscarCatch(uint32_t idCorrelativo){
+
+	bool encontrarCatch(void* elemento){
+		t_catchEnEspera* unCatch = elemento;
+
+		if(unCatch->idCorrelativo == idCorrelativo){
+			return true;
+		}
+
+		return false;
+	}
+
+	return list_find(idsDeCatch, encontrarCatch);
+}
+
+//TODO Ver si resultado va a ser un bool, en ese caso habria que cambiar la utils tb.
+//Por ahora esta hecho tomando resultado como booleano
+void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultado){
+	if(resultado){
+		//t_list* objetivosDelEntrenador = catchProcesado->entrenadorConCatch->objetivos;
+		//char* pokemonAtrapado = catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon;
+
+		//list_remove_and_destroy();//objetivosDelEntrenador, &pokemon);
+		//TODO Sacar al pokemon capturado de los objetivos del entrenador y del team.
+
+		log_info(logger, "El entrenador %d capturo un %s!", catchProcesado->entrenadorConCatch->id,
+				catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon);
+	}
+	else{
+		log_info(logger, "El entrenador %d no pudo capturar un %s :(.", catchProcesado->entrenadorConCatch->id,
+				catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon);
+	}
+}
+
 //TODO Ver si tiene que devolver el ID de rta
-void enviarCatchDePokemon(char *ip, char *puerto, char *pokemon, uint32_t posX, uint32_t posY) {
+void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 	int *socketBroker = malloc(sizeof(int));
 	*socketBroker = crearConexionCliente(ip, puerto);
 	uint32_t idRespuesta;
 
 	mensajeCatch *msg = malloc(sizeof(mensajeCatch));
 
-	msg->longPokemon = strlen(pokemon) + 1;
+	msg->longPokemon = strlen(entrenador->pokemonAAtrapar.pokemon) + 1;
 	msg->pokemon = malloc(msg->longPokemon);
-	strcpy(msg->pokemon, pokemon);
-	msg->posicionX = posX;
-	msg->posicionY = posY;
+	strcpy(msg->pokemon, entrenador->pokemonAAtrapar.pokemon);
+	msg->posicionX = entrenador->pokemonAAtrapar.pos[0];
+	msg->posicionY = entrenador->pokemonAAtrapar.pos[1];
 
 	log_debug(logger,"Enviando mensaje CATCH...");
-	//TODO Ver si se necesita enviar idCorrelativo. Iría en el -1 del enviarMensajeABroker
 	enviarMensajeABroker(*socketBroker, CATCH, -1, sizeof(uint32_t)*3 + msg->longPokemon, msg);
-	recv(*socketBroker,&idRespuesta,sizeof(uint32_t),MSG_WAITALL);
+	recv(*socketBroker,&idRespuesta,sizeof(uint32_t),MSG_WAITALL);                              //Recibo el ID que envia automaticamente el Broker
 	log_debug(logger,"Mensaje enviado CATCH :smilieface:");
-	log_info(logger, "Respuesta del Broker: %d", idRespuesta);
+
+	//Me guardo el ID del CATCH. Es necesario para procesar el CAUGHT
+	t_catchEnEspera* elIdCorrelativo = malloc(sizeof(t_catchEnEspera));
+	elIdCorrelativo->idCorrelativo = idRespuesta;
+	elIdCorrelativo->entrenadorConCatch = entrenador;
+
+	log_info(logger, "ID del CATCH recibido y guardado: %d", idRespuesta);
+
+
+	list_add(idsDeCatch, elIdCorrelativo);
+
 	free(msg);
 	close(*socketBroker);
 	free(socketBroker);
@@ -89,7 +148,7 @@ void atenderServidor(int *socketServidor) {
 				break;
 			}
 			case LOCALIZED:{
-				log_debug(logger,"Se recibio un Localized");
+				log_debug(logger,"Se recibio un LOCALIZED");
 
 				int cantPokes,longPokemon;
 				int offset = 0;
@@ -136,19 +195,29 @@ void atenderServidor(int *socketServidor) {
 					log_debug(logger,"El pokemon %s es un objetivo",pokemon);
 
 					list_add(listaPosicionesInternas,pos);
-					ponerEnReadyAlMasCercano(x[0],y[0]);
+					ponerEnReadyAlMasCercano(x[0],y[0], pokemon);
 
 					sem_post(&procesoEnReady);
 					//le aviso al planificador que pase un entrenador a ready.
 				}
 
-				log_debug(logger,"Se proceso el Localized");
+				log_debug(logger,"Se proceso el LOCALIZED");
 
 				break;
 			}
 			case CAUGHT:{
 				//TODO CAUGHT
-				log_info(logger, "Recibi un CAUGHT. ¿Que es eso?¿Se come?");
+				estructuraMensaje* miMensajeCaught = miMensajeRecibido->mensaje;
+
+				//Si no envie yo el CATCH, no me interesa el CAUGHT
+				if(validarIDCorrelativoCatch(miMensajeCaught->idCorrelativo)) {
+					log_debug(logger, "Se recibio un CAUGHT");
+
+					mensajeCaught* miCaught = miMensajeCaught->mensaje;
+
+					procesarObjetivoCumplido(buscarCatch(miMensajeCaught->idCorrelativo), miCaught->resultado);
+				}
+
 				break;
 			}
 			default:{

@@ -129,14 +129,15 @@ bool noSeCumplieronLosObjetivos(){
 }
 
 
-void ponerEnReadyAlMasCercano(int x, int y){
+void ponerEnReadyAlMasCercano(int x, int y, char* pokemon){
 	t_entrenador* entrenadorMasCercano = malloc(sizeof(t_entrenador));
 
 	entrenadorMasCercano = entrenadorMasCercanoEnEspera(x,y);
 	sem_wait(&mutexEntrenadores);
 	entrenadorMasCercano->estado = LISTO;//me aseguro de que tengo uno en READY antes de llamar para planificar
-	entrenadorMasCercano->posAMover[0] = x;
-	entrenadorMasCercano->posAMover[1] = y;
+	entrenadorMasCercano->pokemonAAtrapar.pokemon = pokemon;
+	entrenadorMasCercano->pokemonAAtrapar.pos[0] = x;
+	entrenadorMasCercano->pokemonAAtrapar.pos[1] = y;
 	list_add(listaDeReady,entrenadorMasCercano);
 	sem_post(&mutexEntrenadores);
 }

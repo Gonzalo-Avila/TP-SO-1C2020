@@ -36,12 +36,17 @@ typedef struct {
 }t_team;
 
 typedef struct{
+	char* pokemon;
+	t_posicion pos;
+}t_objetivoActual;
+
+typedef struct{
 	int id;
 	t_posicion pos;
 	t_list *objetivos;
 	t_list *pokemones;
 	e_estado estado;
-	t_posicion posAMover;
+	t_objetivoActual pokemonAAtrapar;
 }t_entrenador;
 
 typedef struct{
@@ -69,10 +74,16 @@ typedef struct{
 	t_list *cantidades;
 }t_posicionEnMapa;
 
+typedef struct{
+	uint32_t idCorrelativo;
+	t_entrenador* entrenadorConCatch;
+}t_catchEnEspera;
+
 t_team *team;
 t_list *listaHilos;
 t_list *listaDeReady;
 t_list *listaDeBloqued;
+t_list *idsDeCatch;
 
 char* ipServidor;
 char* puertoServidor;
@@ -115,7 +126,7 @@ bool elementoEstaEnLista(t_list *lista, char *elemento);
 void setearObjetivosDeTeam();
 void enviarGetSegunObjetivo(char *ip, char *puerto);
 void enviarGetDePokemon(char *ip, char *puerto, char *pokemon);
-void enviarCatchDePokemon(char *ip, char *puerto, char *pokemon, uint32_t posX, uint32_t posY);
+void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador);
 float calcularDistancia(int posX1, int posY1,int posX2,int posY2);
 t_dist *setearDistanciaEntrenadores(int id,int posX,int posY);
 bool estaEnEspera(t_entrenador *entrenador);
@@ -123,9 +134,12 @@ bool distanciaMasCorta(void *entrenador1,void *entrenador2);
 t_entrenador* entrenadorMasCercanoEnEspera(int posX,int posY);
 void planificarFifo();
 void planificador();
-void ponerEnReadyAlMasCercano(int x, int y);
+void ponerEnReadyAlMasCercano(int x, int y, char* pokemon);
 void moverEntrenador(t_entrenador *entrenador);
 void inicializarSemEntrenadores();
 bool estaEnLosObjetivos(char *pokemon);
+void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultado);
+bool validarIDCorrelativoCatch(uint32_t id);
+t_catchEnEspera* buscarCatch(uint32_t idCorrelativo);
 
 #endif /* TEAM_H_ */

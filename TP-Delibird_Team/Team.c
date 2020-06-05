@@ -17,6 +17,7 @@ void inicializarVariablesGlobales() {
 	team->algoritmoPlanificacion = obtenerAlgoritmoPlanificador();
 	listaCondsEntrenadores = list_create();
 	listaPosicionesInternas = list_create();
+	idsDeCatch = list_create();
 
 	//inicializo el mutex para los mensajes que llegan del broker
 	sem_init(&mutexMensajes, 0, 1);
