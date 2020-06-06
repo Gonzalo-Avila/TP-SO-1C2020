@@ -23,7 +23,7 @@ e_algoritmo obtenerAlgoritmoPlanificador() {
 //Esta funcion se podria codear para que sea una funcion generica, pero por el momento solo me sirve saber si está o no en ready.
 bool estaEnEspera(t_entrenador *trainer) { // @suppress("Type cannot be resolved")
 	bool verifica = false;
-	if (trainer->estado == NUEVO || trainer->estado == BLOQUEADO)
+	if (trainer->estado == NUEVO || (trainer->estado == BLOQUEADO && !trainer->suspendido))
 		verifica = true;
 
 	return verifica;

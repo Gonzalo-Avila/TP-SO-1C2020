@@ -22,6 +22,7 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,
 	nuevoEntrenador->objetivos = objetivoEntrenador;
 	nuevoEntrenador->pokemones = pokemonEntrenador;
 	nuevoEntrenador->estado = NUEVO; // Debugeando de mi cuenta que sin esta linea de codigo solo el ultimo elemento lo pasa a new
+	nuevoEntrenador->suspendido = false;
 
 	list_destroy(posicionEntrenador);
 
@@ -125,6 +126,7 @@ void gestionarEntrenador(t_entrenador *entrenador) {
 
 		enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
 		entrenador->estado = BLOQUEADO;
+		entrenador->suspendido = true;
 
 		//recibir caught
 		//agrego el pokemon a la lista de pokemones del entrenador
