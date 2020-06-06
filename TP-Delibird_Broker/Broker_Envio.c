@@ -11,7 +11,7 @@ void agregarAListaDeEnviados(uint32_t idMsg, uint32_t idProceso){
         registroCache * reg = (registroCache *) registro;
         return reg->idMensaje==idMsg;
     }
-	registroCache * registroAActualizar = list_find(registrosDeCache,&esElRegistroQueBusco);
+	registroCache * registroAActualizar = list_find(registrosDeCache,(void*)esElRegistroQueBusco);
 	if(registroAActualizar!=NULL)
       list_add(registroAActualizar->procesosALosQueSeEnvio,&idProceso);
 }
@@ -21,7 +21,7 @@ void agregarAListaDeConfirmados(uint32_t idMsg, uint32_t idProceso){
         registroCache * reg = (registroCache *) registro;
         return reg->idMensaje==idMsg;
     }
-	registroCache * registroAActualizar = list_find(registrosDeCache,&esElRegistroQueBusco);
+	registroCache * registroAActualizar = list_find(registrosDeCache,(void*)esElRegistroQueBusco);
 	if(registroAActualizar!=NULL)
       list_add(registroAActualizar->procesosQueConfirmaronRecepcion,&idProceso);
 }

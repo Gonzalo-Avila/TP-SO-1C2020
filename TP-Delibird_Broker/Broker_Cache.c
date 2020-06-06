@@ -585,7 +585,7 @@ bool elSuscriptorNoEstaEnLaLista(t_list * lista, uint32_t idSuscriptor) {
 		uint32_t * sus = (uint32_t *) suscriptor;
 		return *sus != idSuscriptor;
 	}
-	return list_all_satisfy(lista, &esDistinto);
+	return list_all_satisfy(lista, (void*)esDistinto);
 }
 
 t_list * getListaDeRegistrosFiltrados(suscriptor * nuevoSuscriptor,

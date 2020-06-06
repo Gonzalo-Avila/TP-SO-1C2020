@@ -148,8 +148,8 @@ void atenderSuscripcion(int *socketSuscriptor){
 
 bool seRecibioElIDCorrelativo(uint32_t idCConsultado){
 	bool yaExisteIDCorrelativo(void* elementoIDC){
-		int idCYaRecibido = (int) elementoIDC;
-		return idCYaRecibido==idCConsultado;
+		int * idCYaRecibido = (int *) elementoIDC;
+		return *idCYaRecibido==idCConsultado;
 	}
 	return list_any_satisfy(idCorrelativosRecibidos, (void *)yaExisteIDCorrelativo);
 }
