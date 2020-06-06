@@ -51,6 +51,8 @@ void inicializarColasYListas() {
 	suscriptoresCAT = list_create();
 	suscriptoresCAU = list_create();
 
+	idCorrelativosRecibidos = list_create();
+
 	registrosDeCache = list_create();
 	registrosDeParticiones = list_create();
 

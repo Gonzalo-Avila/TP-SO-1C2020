@@ -26,6 +26,8 @@ t_list * suscriptoresCAU;
 t_list * suscriptoresGET;
 t_list * suscriptoresLOC;
 
+t_list * idCorrelativosRecibidos;
+
 //Variables de Cache
 //--------------------------------
 t_list * registrosDeCache;

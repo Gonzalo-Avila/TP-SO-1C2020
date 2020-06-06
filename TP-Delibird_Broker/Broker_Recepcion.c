@@ -146,6 +146,18 @@ void atenderSuscripcion(int *socketSuscriptor){
 
 }
 
+bool seRecibioElIDCorrelativo(uint32_t idCConsultado){
+	bool yaExisteIDCorrelativo(void* elementoIDC){
+		int idCYaRecibido = (int) elementoIDC;
+		return idCYaRecibido==idCConsultado;
+	}
+	return list_any_satisfy(idCorrelativosRecibidos, (void *)yaExisteIDCorrelativo);
+}
+
+void recibirIDCorrelativo(uint32_t* idC){
+	list_add(idCorrelativosRecibidos, idC);
+}
+
 void atenderMensaje(int socketEmisor, cola tipoCola) {
 	int idMensaje;
 	uint32_t idCorrelativo;
@@ -155,14 +167,21 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 	// |- Ver si el ID correlativo ya fue recibido, y si es asi, ignorar el mensaje.
 	// |- Podemos usar una lista de IDs correlativos ya recibidos.
 
-	if (tipoCola >= 0 && tipoCola <= 5) {
-		idMensaje = agregarMensajeACola(socketEmisor, tipoCola, idCorrelativo);
-		send(socketEmisor, &idMensaje, sizeof(uint32_t), 0);
-	} else {
-		log_error(logger, "[ERROR]");
-		log_error(logger,
-				"No pudo obtenerse el tipo de cola en el mensaje recibido");
+	if(!seRecibioElIDCorrelativo(idCorrelativo)){
+		recibirIDCorrelativo(&idCorrelativo);
+		if (tipoCola >= 0 && tipoCola <= 5) {
+			idMensaje = agregarMensajeACola(socketEmisor, tipoCola, idCorrelativo);
+			send(socketEmisor, &idMensaje, sizeof(uint32_t), 0);
+		} else {
+			log_error(logger, "[ERROR]");
+			log_error(logger, "No pudo obtenerse el tipo de cola en el mensaje recibido");
+		}
+
+	}else{
+		log_info(logger, "Se ignoro mensaje de proceso con socket %d. ID Correlativo %d ya recibido.", socketEmisor, idCorrelativo);
 	}
+
+
 }
 
 void imprimirEstructuraDeDatos(estructuraMensaje mensaje) {
