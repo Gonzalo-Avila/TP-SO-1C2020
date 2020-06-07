@@ -119,11 +119,14 @@ void desuscribir(uint32_t clientID, cola colaSuscripcion) {
 	// - Buscar el clientID en la lista de suscriptores de la cola pasada
 	// - Hacer close(socket)
 	// - Borrar nodo suscriptor
-
+	log_info(logger, "[DESUSCRIPCION]");
+	log_info(logger, "Se procedera a desuscribir de la cola %s al suscriptor con clientID: %d", getCodeStringByNum(colaSuscripcion),clientID);
 	int socketCliente = getSocketActualDelSuscriptor(clientID, colaSuscripcion);
 	close(socketCliente);
 	eliminarSuscriptor(getListaSuscriptoresByNum(colaSuscripcion), clientID);
+	log_info(logger, "[DESUSCRIPCION-END]");
 }
+
 
 int getSocketActualDelSuscriptor(uint32_t clientID, cola colaSuscripcion) {
 	//TODO_OLD

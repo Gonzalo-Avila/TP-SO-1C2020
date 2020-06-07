@@ -580,25 +580,23 @@ void crearRegistroCache(estructuraMensaje mensaje) {
 
 //Envío de mensajes cacheados a nuevos suscriptores
 //--------------------------------------------------------------------------
-bool elSuscriptorNoEstaEnLaLista(t_list * lista, uint32_t idSuscriptor) {
-	bool esDistinto(void * suscriptor) {
+bool elSuscriptorEstaEnLaLista(t_list * lista, uint32_t idSuscriptor) {
+	bool esElSuscriptor(void * suscriptor) {
 		uint32_t * sus = (uint32_t *) suscriptor;
-		return *sus != idSuscriptor;
+		return *sus == idSuscriptor;
 	}
-	return list_all_satisfy(lista, (void*)esDistinto);
+	return list_any_satisfy(lista, (void*)esElSuscriptor);
 }
 
-t_list * getListaDeRegistrosFiltrados(suscriptor * nuevoSuscriptor,
-		cola codSuscripcion) {
-
-	bool estaEnLaColaYNoSeConfirmoAun(void * registro) {
+t_list * getListaDeRegistrosFiltrados(suscriptor * nuevoSuscriptor, cola codSuscripcion) {
+	/* FIXME
+	 * No esta devolviendo la lista filtrada, sino completa
+	 */
+	bool estaEnLaColaYNoConfirmoRecepcion(void * registro) {
 		registroCache * reg = (registroCache *) registro;
-		return reg->colaMensaje == codSuscripcion
-				&& elSuscriptorNoEstaEnLaLista(
-						reg->procesosQueConfirmaronRecepcion,
-						nuevoSuscriptor->clientID);
+		return (reg->colaMensaje == codSuscripcion) && (!elSuscriptorEstaEnLaLista(reg->procesosQueConfirmaronRecepcion,nuevoSuscriptor->clientID));
 	}
-	return list_filter(registrosDeCache,(void *)estaEnLaColaYNoSeConfirmoAun);
+	return list_filter(registrosDeCache,(void *)estaEnLaColaYNoConfirmoRecepcion);
 }
 
 void enviarMensajes(t_list * mensajesAEnviar, suscriptor * suscriptor) {
@@ -631,16 +629,22 @@ void enviarMensajes(t_list * mensajesAEnviar, suscriptor * suscriptor) {
 		socketSuscriptor = getSocketActualDelSuscriptor(suscriptor->clientID,
 				reg->colaMensaje);
 
-		statusEnvio = enviarMensajeASuscriptor(mensajeAEnviar,
-				socketSuscriptor);
+		log_info(logger, "Enviando a cliendID %d el mensaje con ID: %d", suscriptor->clientID, mensajeAEnviar.id);
 
-		if (statusEnvio >= 0)
+		statusEnvio = enviarMensajeASuscriptor(mensajeAEnviar, socketSuscriptor);
+
+		if (statusEnvio >= 0){
 			agregarAListaDeEnviados(mensajeAEnviar.id, suscriptor->clientID);
+			recv(socketSuscriptor, &ack, sizeof(uint32_t), MSG_WAITALL);
+			if (ack == 1){
+				agregarAListaDeConfirmados(mensajeAEnviar.id, suscriptor->clientID);
+			}else{
+				desuscribir(suscriptor->clientID, mensajeAEnviar.colaMensajeria);
+			}
+		}else{
+			desuscribir(suscriptor->clientID, mensajeAEnviar.colaMensajeria);
+		}
 
-		recv(socketSuscriptor, &ack, sizeof(uint32_t), MSG_WAITALL);
-
-		if (ack == 1)
-			agregarAListaDeConfirmados(mensajeAEnviar.id, suscriptor->clientID);
 
 		free(mensajeAEnviar.mensaje);
 	}
@@ -660,7 +664,7 @@ void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion) 
 	 *
 	 */
 	t_list * mensajesAEnviar = getListaDeRegistrosFiltrados(nuevoSuscriptor,codSuscripcion);
-
+	log_info(logger, "Hay %d mensajes pendientes para clientID %d", list_size(mensajesAEnviar), nuevoSuscriptor->clientID);
 	enviarMensajes(mensajesAEnviar, nuevoSuscriptor);
 }
 //--------------------------------------------------------------------------

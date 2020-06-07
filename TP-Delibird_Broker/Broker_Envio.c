@@ -7,23 +7,55 @@
 }*/
 
 void agregarAListaDeEnviados(uint32_t idMsg, uint32_t idProceso){
+	log_debug(logger, "agregarAListaDeEnviados para clientID %d y idMsg %d ", idProceso, idMsg);
     bool esElRegistroQueBusco(void * registro){
         registroCache * reg = (registroCache *) registro;
         return reg->idMensaje==idMsg;
     }
 	registroCache * registroAActualizar = list_find(registrosDeCache,(void*)esElRegistroQueBusco);
-	if(registroAActualizar!=NULL)
+	if(registroAActualizar!=NULL){
       list_add(registroAActualizar->procesosALosQueSeEnvio,&idProceso);
+      log_debug(logger, "Se agrego a clientID %d lista de enviados de mensaje con id %d ", idProceso, idMsg);
+	}else{
+		log_debug(logger, "No se encontro registro para agregarAListaDeEnviados");
+	}
 }
 
 void agregarAListaDeConfirmados(uint32_t idMsg, uint32_t idProceso){
+	log_debug(logger, "agregarAListaDeConfirmados para clientID %d y idMsg %d ", idProceso, idMsg);
     bool esElRegistroQueBusco(void * registro){
         registroCache * reg = (registroCache *) registro;
         return reg->idMensaje==idMsg;
     }
 	registroCache * registroAActualizar = list_find(registrosDeCache,(void*)esElRegistroQueBusco);
-	if(registroAActualizar!=NULL)
+	if(registroAActualizar!=NULL){
       list_add(registroAActualizar->procesosQueConfirmaronRecepcion,&idProceso);
+      log_debug(logger, "Se agrego a clientID %d lista de confirmados de mensaje con id %d ", idProceso, idMsg);
+	}else{
+		log_debug(logger, "No se encontro registro para agregarAListaDeConfirmados");
+	}
+}
+
+void imprimirListasIDs(uint32_t idMsg){
+
+	bool esElRegistroQueBusco(void * registro){
+	        registroCache * reg = (registroCache *) registro;
+	        return reg->idMensaje==idMsg;
+	}
+	registroCache * registroAActualizar = list_find(registrosDeCache,(void*)esElRegistroQueBusco);
+
+	int i = 1;
+	void imprimirElemento(void * elemento){
+		uint32_t* elem = (uint32_t*)elemento;
+		log_debug(logger, "Elemento #%d: %d", i, *elem);
+		i++;
+	}
+
+	log_debug(logger, "procesosQueConfirmaronRecepcion");
+	list_iterate(registroAActualizar->procesosALosQueSeEnvio, imprimirElemento);
+	i = 1;
+	log_debug(logger, "procesosQueConfirmaronRecepcion");
+	list_iterate(registroAActualizar->procesosQueConfirmaronRecepcion, imprimirElemento);
 }
 
 void enviarEstructuraMensajeASuscriptor(void* estMensaje) {
@@ -52,13 +84,19 @@ void enviarEstructuraMensajeASuscriptor(void* estMensaje) {
 	{
 		agregarAListaDeEnviados(estMsj->id,estMsj->clientID);
 		estMsj->estado=ESTADO_ENVIADO;
+		recv(socketDelSuscriptor,&ack, sizeof(uint32_t),MSG_WAITALL);
+		if(ack==1){
+			agregarAListaDeConfirmados(estMsj->id,estMsj->clientID);
+			estMsj->estado=ESTADO_CONFIRMADO;
+		}else{
+			desuscribir(estMsj->clientID, estMsj->colaMensajeria);
+		}
+	}else{
+		desuscribir(estMsj->clientID, estMsj->colaMensajeria);
 	}
 
-	recv(socketDelSuscriptor,&ack, sizeof(uint32_t),MSG_WAITALL);
-	if(ack==1){
-		agregarAListaDeConfirmados(estMsj->id,estMsj->clientID);
-		estMsj->estado=ESTADO_CONFIRMADO;
-	}
+	imprimirListasIDs(estMsj->id);
+
 }
 
 bool esMensajeNuevo(void* mensaje) {

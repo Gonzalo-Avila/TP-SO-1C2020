@@ -45,9 +45,12 @@ void esperarMensajes(int *socketCliente) {
 	switch (codOperacion) {
 
 	case NUEVA_CONEXION:{
+		log_info(logger, "[NUEVA_CONEXION]");
         uint32_t idProceso = getIDProceso();
         send(*socketCliente, &idProceso,sizeof(uint32_t),0);
+        log_info(logger, "ClientID asignado al nuevo suscriptor: %d", idProceso);
         close(*socketCliente);
+        log_info(logger, "[NUEVA_CONEXION-END]");
 		break;
 	}
 
@@ -63,8 +66,8 @@ void esperarMensajes(int *socketCliente) {
 		recv(*socketCliente, &sizeDelMensaje, sizeof(uint32_t), MSG_WAITALL);
 		recv(*socketCliente, &tipoCola, sizeof(cola), MSG_WAITALL);
 		atenderMensaje(*socketCliente, tipoCola);
-
 		close(*socketCliente);
+		log_info(logger, "[NUEVO_MENSAJE-END]");
 		break;
 	}
 	case FINALIZAR: {
@@ -81,6 +84,7 @@ void esperarMensajes(int *socketCliente) {
 		log_info(logger, "El cliente con ID %d se ha desconectado",
 				clientID);
 		close(*socketCliente);
+		log_info(logger, "[FINALIZAR-END]");
 		break;
 	}
 	case DUMPCACHE: {
@@ -89,6 +93,7 @@ void esperarMensajes(int *socketCliente) {
 		break;
 	}
 	default: {
+		log_error(logger, "[ERROR]");
 		log_error(logger, "El mensaje recibido está dañado");
 		close(*socketCliente);
 		break;
@@ -140,6 +145,7 @@ void atenderSuscripcion(int *socketSuscriptor){
 				"Hay un nuevo suscriptor en la cola %s. Número de socket suscriptor: %d",
 				getCodeStringByNum(codSuscripcion), *socketSuscriptor);
 
+
 		enviarMensajesCacheados(nuevoSuscriptor, codSuscripcion);
 	}
 	sem_post(&mutexColas);
@@ -168,7 +174,10 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 	// |- Podemos usar una lista de IDs correlativos ya recibidos.
 
 	if(!seRecibioElIDCorrelativo(idCorrelativo)){
-		recibirIDCorrelativo(&idCorrelativo);
+		if(idCorrelativo != -1){
+			recibirIDCorrelativo(&idCorrelativo);
+		}
+
 		if (tipoCola >= 0 && tipoCola <= 5) {
 			idMensaje = agregarMensajeACola(socketEmisor, tipoCola, idCorrelativo);
 			send(socketEmisor, &idMensaje, sizeof(uint32_t), 0);

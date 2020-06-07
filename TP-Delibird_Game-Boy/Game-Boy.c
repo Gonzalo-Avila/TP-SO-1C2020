@@ -241,6 +241,8 @@ int main(int argc, char** argv) {
 		*/
 
 		//int socketSuscripcion = conectarseADestino(destino);
+
+		log_debug(logger,"El broker volvio a conectar al proceso con clientID: %d",idProceso);
 		suscribirseACola(socketDestino, tipoMensaje,idProceso);
 		log_debug(logger,"Se realizó suscripción a la cola %s", getCodeStringByNum(tipoMensaje));
 

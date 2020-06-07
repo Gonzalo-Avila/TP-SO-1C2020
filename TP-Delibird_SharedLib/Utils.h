@@ -124,7 +124,7 @@ typedef struct {
 	uint32_t idCorrelativo;			// Si no se usa idCorrelativo = -1
 	uint32_t sizeMensaje;
 	void* mensaje;
-	int clientID;
+	uint32_t clientID;
 	statusMensaje estado;
 	cola colaMensajeria;
 } estructuraMensaje;

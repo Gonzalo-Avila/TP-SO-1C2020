@@ -187,7 +187,7 @@ void asegurarEspacioLibrePara(int sizeMensaje);
 void * cachearConParticionesDinamicas(estructuraMensaje mensaje);
 void *asignarParticion(estructuraMensaje mensaje);
 void cachearMensaje(estructuraMensaje mensaje);
-bool elSuscriptorNoEstaEnLaLista(t_list * lista, uint32_t idSuscriptor) ;
+bool elSuscriptorEstaEnLaLista(t_list * lista, uint32_t idSuscriptor) ;
 t_list * getListaDeRegistrosFiltrados(suscriptor * nuevoSuscriptor, cola codSuscripcion);
 void enviarMensajes(t_list * mensajesAEnviar, suscriptor * suscriptor);
 void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion);
