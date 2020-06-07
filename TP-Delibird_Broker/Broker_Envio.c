@@ -14,8 +14,19 @@ void agregarAListaDeEnviados(uint32_t idMsg, uint32_t idProceso){
     }
 	registroCache * registroAActualizar = list_find(registrosDeCache,(void*)esElRegistroQueBusco);
 	if(registroAActualizar!=NULL){
-      list_add(registroAActualizar->procesosALosQueSeEnvio,&idProceso);
-      log_debug(logger, "Se agrego a clientID %d lista de enviados de mensaje con id %d ", idProceso, idMsg);
+		uint32_t* idProcesoAAgregar = malloc(sizeof(uint32_t));
+		*idProcesoAAgregar=idProceso;
+
+		bool tieneElMismoID(void* idP){
+			uint32_t* idProc = (uint32_t*) idP;
+			return *idProc == *idProcesoAAgregar;
+		}
+		if(!list_any_satisfy(registroAActualizar->procesosALosQueSeEnvio,(void*) tieneElMismoID)){
+			list_add(registroAActualizar->procesosALosQueSeEnvio,idProcesoAAgregar);
+			log_debug(logger, "Se agrego a clientID %d lista de enviados de mensaje con id %d ", *idProcesoAAgregar, idMsg);
+		}else{
+			free(idProcesoAAgregar);
+		}
 	}else{
 		log_debug(logger, "No se encontro registro para agregarAListaDeEnviados");
 	}
@@ -29,8 +40,10 @@ void agregarAListaDeConfirmados(uint32_t idMsg, uint32_t idProceso){
     }
 	registroCache * registroAActualizar = list_find(registrosDeCache,(void*)esElRegistroQueBusco);
 	if(registroAActualizar!=NULL){
-      list_add(registroAActualizar->procesosQueConfirmaronRecepcion,&idProceso);
-      log_debug(logger, "Se agrego a clientID %d lista de confirmados de mensaje con id %d ", idProceso, idMsg);
+		uint32_t* idProcesoAAgregar = malloc(sizeof(uint32_t));
+		*idProcesoAAgregar=idProceso;
+		list_add(registroAActualizar->procesosQueConfirmaronRecepcion,idProcesoAAgregar);
+		log_debug(logger, "Se agrego a clientID %d lista de confirmados de mensaje con id %d ", *idProcesoAAgregar, idMsg);
 	}else{
 		log_debug(logger, "No se encontro registro para agregarAListaDeConfirmados");
 	}
@@ -46,12 +59,12 @@ void imprimirListasIDs(uint32_t idMsg){
 
 	int i = 1;
 	void imprimirElemento(void * elemento){
-		uint32_t* elem = (uint32_t*)elemento;
-		log_debug(logger, "Elemento #%d: %d", i, *elem);
+		uint32_t* cid = (uint32_t*)elemento;
+		log_debug(logger, "Elemento #%d: %d", i, *cid);
 		i++;
 	}
 
-	log_debug(logger, "procesosQueConfirmaronRecepcion");
+	log_debug(logger, "procesosALosQueSeEnvio");
 	list_iterate(registroAActualizar->procesosALosQueSeEnvio, imprimirElemento);
 	i = 1;
 	log_debug(logger, "procesosQueConfirmaronRecepcion");

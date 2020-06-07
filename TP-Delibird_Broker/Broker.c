@@ -10,6 +10,8 @@ void inicializarVariablesGlobales() {
 
 	sem_init(&mutexColas, 0, 1);
 	sem_init(&habilitarEnvio, 0, 0);
+	sem_init(&mutex_regParticiones, 0, 1);
+	sem_init(&mutex_suscriptores, 0, 1); //TODO -> Ponerlo en donde se ncesite
 
 	globalIDProceso = 1;
 	globalIDMensaje = 1;

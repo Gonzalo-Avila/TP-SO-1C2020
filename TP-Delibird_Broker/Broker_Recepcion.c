@@ -127,7 +127,7 @@ void atenderSuscripcion(int *socketSuscriptor){
 	log_debug(logger, "%d", codSuscripcion);
 
 	sem_wait(&mutexColas);
-	if(yaExisteSuscriptor(nuevoSuscriptor->clientID,codSuscripcion)==true){
+	if(yaExisteSuscriptor(nuevoSuscriptor->clientID,codSuscripcion)==true){ //
 		suscriptor * suscriptorYaAlmacenado = buscarSuscriptor(nuevoSuscriptor->clientID,codSuscripcion);
         suscriptorYaAlmacenado->socketCliente=nuevoSuscriptor->socketCliente;
 
@@ -160,26 +160,22 @@ bool seRecibioElIDCorrelativo(uint32_t idCConsultado){
 	return list_any_satisfy(idCorrelativosRecibidos, (void *)yaExisteIDCorrelativo);
 }
 
-void recibirIDCorrelativo(uint32_t* idC){
-	list_add(idCorrelativosRecibidos, idC);
-}
-
 void atenderMensaje(int socketEmisor, cola tipoCola) {
 	int idMensaje;
-	uint32_t idCorrelativo;
-	recv(socketEmisor, &idCorrelativo, sizeof(uint32_t), MSG_WAITALL);
+	uint32_t* idCorrelativo = malloc(sizeof(uint32_t));
+	recv(socketEmisor, idCorrelativo, sizeof(uint32_t), MSG_WAITALL);
 
 	//TODO
 	// |- Ver si el ID correlativo ya fue recibido, y si es asi, ignorar el mensaje.
 	// |- Podemos usar una lista de IDs correlativos ya recibidos.
 
-	if(!seRecibioElIDCorrelativo(idCorrelativo)){
-		if(idCorrelativo != -1){
-			recibirIDCorrelativo(&idCorrelativo);
+	if(!seRecibioElIDCorrelativo(*idCorrelativo)){
+		if(*idCorrelativo != -1){
+			list_add(idCorrelativosRecibidos, idCorrelativo);
 		}
 
 		if (tipoCola >= 0 && tipoCola <= 5) {
-			idMensaje = agregarMensajeACola(socketEmisor, tipoCola, idCorrelativo);
+			idMensaje = agregarMensajeACola(socketEmisor, tipoCola, *idCorrelativo);
 			send(socketEmisor, &idMensaje, sizeof(uint32_t), 0);
 		} else {
 			log_error(logger, "[ERROR]");
@@ -187,7 +183,7 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 		}
 
 	}else{
-		log_info(logger, "Se ignoro mensaje de proceso con socket %d. ID Correlativo %d ya recibido.", socketEmisor, idCorrelativo);
+		log_info(logger, "Se ignoro mensaje de proceso con socket %d. ID Correlativo %d ya recibido.", socketEmisor, *idCorrelativo);
 	}
 
 
@@ -242,7 +238,10 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 		list_add(getColaByNum(tipoCola), generarNodo(mensajeNuevo));
 	}
 
+	sem_wait(&mutex_regParticiones);
 	cachearMensaje(mensajeNuevo);
+	sem_post(&mutex_regParticiones);
+
 	sem_post(&mutexColas);
 	sem_post(&habilitarEnvio);
 

@@ -60,8 +60,8 @@ typedef struct {
   uint32_t sizeMensaje;
   t_list * procesosALosQueSeEnvio;
   t_list * procesosQueConfirmaronRecepcion;
-  //void * posicionEnMemoria; //TODO Borrar y FIXME
 } registroCache;
+
 
 typedef enum {
 PARTICIONES_DINAMICAS = 0,
@@ -87,7 +87,8 @@ uint32_t globalIDProceso;
 
 sem_t mutexColas;
 sem_t habilitarEnvio;
-
+sem_t mutex_regParticiones;
+sem_t mutex_suscriptores;
 
 
 typedef struct {
@@ -197,5 +198,6 @@ int obtenerTamanioParticion(registroCache* regCache);
 char* obtenerLRU(registroCache* regCache);
 time_t getTime() ;
 char* timeToString(time_t time);
+void imprimirListasIDs(uint32_t idMsg);
 
 #endif /* BROKER_H_ */

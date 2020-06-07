@@ -65,6 +65,7 @@ void inicializarCache() {
 	minimoTamanioParticion = config_get_int_value(config,
 			"TAMANO_MINIMO_PARTICION");
 	cacheBroker = malloc(CACHESIZE);
+
 	crearRegistroInicial(registrosDeParticiones);
 
 }
@@ -583,15 +584,13 @@ void crearRegistroCache(estructuraMensaje mensaje) {
 bool elSuscriptorEstaEnLaLista(t_list * lista, uint32_t idSuscriptor) {
 	bool esElSuscriptor(void * suscriptor) {
 		uint32_t * sus = (uint32_t *) suscriptor;
-		return *sus == idSuscriptor;
+		return (*sus) == idSuscriptor;
 	}
 	return list_any_satisfy(lista, (void*)esElSuscriptor);
 }
 
 t_list * getListaDeRegistrosFiltrados(suscriptor * nuevoSuscriptor, cola codSuscripcion) {
-	/* FIXME
-	 * No esta devolviendo la lista filtrada, sino completa
-	 */
+
 	bool estaEnLaColaYNoConfirmoRecepcion(void * registro) {
 		registroCache * reg = (registroCache *) registro;
 		return (reg->colaMensaje == codSuscripcion) && (!elSuscriptorEstaEnLaLista(reg->procesosQueConfirmaronRecepcion,nuevoSuscriptor->clientID));
@@ -645,11 +644,13 @@ void enviarMensajes(t_list * mensajesAEnviar, suscriptor * suscriptor) {
 			desuscribir(suscriptor->clientID, mensajeAEnviar.colaMensajeria);
 		}
 
-
+		imprimirListasIDs(mensajeAEnviar.id);
 		free(mensajeAEnviar.mensaje);
 	}
 
 	list_iterate(mensajesAEnviar, &enviarMensajeAlSuscriptor);
+
+
 }
 
 void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion) {
@@ -734,7 +735,10 @@ void dumpCache() {
 		fprintf(cacheDumpFile, "\n");
 	}
 
+	sem_wait(&mutex_regParticiones);
+	//sem_signal(&mutex_regParticiones);
 	list_iterate(registrosDeParticiones, (void*) escribirRegistro);
+	sem_post(&mutex_regParticiones);
 
 	fprintf(cacheDumpFile,
 				"------------------------------------------------------------------------------------------------------------------\n\n");
