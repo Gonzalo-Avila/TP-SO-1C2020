@@ -198,5 +198,6 @@ char* obtenerLRU(registroCache* regCache);
 time_t getTime() ;
 char* timeToString(time_t time);
 void imprimirListasIDs(uint32_t idMsg);
+char * removerSaltoDeLinea(char * cadenaOriginal);
 
 #endif /* BROKER_H_ */

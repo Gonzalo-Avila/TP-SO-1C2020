@@ -744,25 +744,23 @@ void dumpCache() {
 
 	void escribirRegistro(void* registro) {
 		registroParticion * regParticion = (registroParticion*) registro;
-		//fprintf(cacheDumpFile, "%-15s %-15s %-15s %-15s \n", "A", "B", "C", "D");
 		i++;
-		fprintf(cacheDumpFile, "Particion #%d : %-12p %s %-12p ", i,
+		fprintf(cacheDumpFile, "Particion #%d : %-10p%s %-12p ", i,
 				regParticion->posInicialFisica, "-",
 				regParticion->posInicialFisica+regParticion->tamanioParticion-1);
-		fprintf(cacheDumpFile, "[%c]     ", getEstadoParticion(regParticion->estado));
-		fprintf(cacheDumpFile, "Size: %d b    ",regParticion->tamanioParticion);
+		fprintf(cacheDumpFile, "[%c]    ", getEstadoParticion(regParticion->estado));
+		fprintf(cacheDumpFile, "Size: %-4d b    ",regParticion->tamanioParticion);
 
 		if(regParticion->estado==OCUPADO){
-			fprintf(cacheDumpFile, "LRU: %s  ", timeToString(regParticion->tiempoUltimoUso));
-			fprintf(cacheDumpFile, "Cola: %-16s",getCodeStringByNum(obtenerCola(regParticion)));
-			fprintf(cacheDumpFile, "ID: %-15d", regParticion->idMensaje);
+			fprintf(cacheDumpFile, "LRU: %-26s  ", removerSaltoDeLinea(timeToString(regParticion->tiempoUltimoUso)));
+			fprintf(cacheDumpFile, "Cola: %-19s",getCodeStringByNum(obtenerCola(regParticion)));
+			fprintf(cacheDumpFile, "ID: %d", regParticion->idMensaje);
 		}
 
 		fprintf(cacheDumpFile, "\n");
 	}
 
 	sem_wait(&mutex_regParticiones);
-	//sem_signal(&mutex_regParticiones);
 	list_iterate(registrosDeParticiones, (void*) escribirRegistro);
 	sem_post(&mutex_regParticiones);
 
@@ -773,3 +771,7 @@ void dumpCache() {
 }
 //--------------------------------------------------------------------------
 
+char * removerSaltoDeLinea(char * cadenaOriginal){
+	cadenaOriginal[strlen(cadenaOriginal)-1]='\0';
+	return cadenaOriginal;
+}

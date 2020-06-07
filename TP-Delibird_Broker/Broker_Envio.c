@@ -126,8 +126,12 @@ void atenderColas() {
 			if (list_size(getColaByNum(numCola)) > 0) {
 
 				list_iterate(getColaByNum(numCola), &enviarEstructuraMensajeASuscriptor);
-				list_clean(getColaByNum(numCola));
-				//list_clean_and_destroy_elements(getColaByNum(numCola), &destructorNodos); TODO - Ver como implementar el destructor para que haga free del void * mensaje (rompía cuando lo intente).
+
+				//Cambie esto:
+				//list_clean(getColaByNum(numCola));
+				//Por esto:
+				list_clean_and_destroy_elements(getColaByNum(numCola), (void*)destructorNodos);
+				//Si rompe algo, tenerlo en cuenta
 			}
 		}
 		sem_post(&mutexColas);
