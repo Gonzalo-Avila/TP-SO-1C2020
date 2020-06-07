@@ -11,6 +11,8 @@
 #include <Utils.h>
 
 uint32_t idProceso;
+char * ipServidor;
+char * puertoServidor;
 
 void inicializarVariablesGlobales();
 void esperarMensajesDeBrokerEnCola(int * socketSuscripcion);
