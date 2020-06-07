@@ -4,6 +4,7 @@
 void inicializarVariablesGlobales() {
 	config = config_create("broker.config");
 	logger = log_create("broker_logs", "Broker", 1, LOG_LEVEL_TRACE);
+	loggerOficial = log_create("broker_logs_oficial","Delibird - Broker", 0, LOG_LEVEL_TRACE);
 
 	inicializarColasYListas();
 	inicializarCache();
@@ -11,7 +12,6 @@ void inicializarVariablesGlobales() {
 	sem_init(&mutexColas, 0, 1);
 	sem_init(&habilitarEnvio, 0, 0);
 	sem_init(&mutex_regParticiones, 0, 1);
-	sem_init(&mutex_suscriptores, 0, 1); //TODO -> Ponerlo en donde se ncesite
 
 	globalIDProceso = 1;
 	globalIDMensaje = 1;
@@ -19,6 +19,7 @@ void inicializarVariablesGlobales() {
 
 void destruirVariablesGlobales() {
 	log_destroy(logger);
+	log_destroy(loggerOficial);
 	config_destroy(config);
 
 	list_clean(suscriptoresNEW);

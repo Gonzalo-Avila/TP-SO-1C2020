@@ -88,7 +88,6 @@ uint32_t globalIDProceso;
 sem_t mutexColas;
 sem_t habilitarEnvio;
 sem_t mutex_regParticiones;
-sem_t mutex_suscriptores;
 
 
 typedef struct {

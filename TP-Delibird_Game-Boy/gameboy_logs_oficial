@@ -1,0 +1,26 @@
+[INFO] 17:32:53:300 Delibird - GameBoy/(8705:8705): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 17:32:57:112 Delibird - GameBoy/(8705:8705): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:6
+[INFO] 17:32:58:170 Delibird - GameBoy/(8705:8705): Se realizó suscripción a la cola NEW_POKEMON
+[INFO] 17:32:59:721 Delibird - GameBoy/(8705:8705): Se recibió un nuevo mensaje del broker en la cola: NEW_POKEMON
+
+[INFO] 17:33:01:34 Delibird - GameBoy/(8705:8705): Se recibió un nuevo mensaje del broker en la cola: NEW_POKEMON
+
+[INFO] 17:33:02:82 Delibird - GameBoy/(8705:8705): Se recibió un nuevo mensaje del broker en la cola: NEW_POKEMON
+
+[INFO] 17:33:03:277 Delibird - GameBoy/(8705:8705): Se recibió un nuevo mensaje del broker en la cola: NEW_POKEMON
+
+[INFO] 17:33:04:461 Delibird - GameBoy/(8705:8705): Se recibió un nuevo mensaje del broker en la cola: NEW_POKEMON
+
+[INFO] 17:34:01:690 Delibird - GameBoy/(8824:8824): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5

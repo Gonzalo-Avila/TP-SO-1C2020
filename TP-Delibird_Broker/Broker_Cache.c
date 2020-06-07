@@ -153,6 +153,10 @@ void consolidar(registroParticion * particionLiberada, t_list * registros) {
 					* particionLiberada->tamanioParticion;
 			particionLiberada->idMensaje = -1;
 			particionLiberada->tamanioMensaje = 0;
+
+			log_info(loggerOficial,"Se consolidaron las particiones %d (posición inicial: %p) y %d (posición inicial: %p)",
+					particionLiberada->nroParticion,particionLiberada->posInicialFisica,buddy->nroParticion,buddy->posInicialFisica);
+
 			list_remove_by_condition(registros, (void *) coincideID);
 			reasignarNumerosDeParticion(registros);
 			buddy = obtenerBuddy(particionLiberada);
@@ -164,6 +168,10 @@ void consolidar(registroParticion * particionLiberada, t_list * registros) {
 			buddy->tamanioParticion = 2 * buddy->tamanioParticion;
 			buddy->idMensaje = -1;
 			buddy->tamanioMensaje = 0;
+
+			log_info(loggerOficial,"Se consolidaron las particiones %d (posición inicial: %p) y %d (posición inicial: %p)",
+					buddy->nroParticion,buddy->posInicialFisica,particionLiberada->nroParticion,particionLiberada->posInicialFisica);
+
 			list_remove_by_condition(registros, (void *) coincideID);
 			reasignarNumerosDeParticion(registros);
 			particionLiberada = buddy;
@@ -182,6 +190,7 @@ void asegurarQueHayaEspacio(int sizeMensaje) {
 		int i = 0;
 		while (!hayEspacioLibrePara(sizeMensaje)) {
 			registroParticion * particionLiberada = vaciarParticion();
+			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %p", particionLiberada->posInicialFisica);
 			if (list_size(registrosDeParticiones) > 1)
 				consolidar(particionLiberada, registrosDeParticiones);
 			if (hayEspacioLibrePara(sizeMensaje)) {
@@ -196,6 +205,7 @@ void asegurarQueHayaEspacio(int sizeMensaje) {
 	} else {
 		while (!hayEspacioLibrePara(sizeMensaje)) {
 			registroParticion * particionLiberada = vaciarParticion();
+			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %p", particionLiberada->posInicialFisica);
 			if (list_size(registrosDeParticiones) > 1)
 				consolidar(particionLiberada, registrosDeParticiones);
 		}
@@ -388,6 +398,7 @@ registroParticion * liberarSegunLRU() {
 }
 registroParticion * vaciarParticion() {
 	//Libera y retorna el registro liberado (nos sirve para buddy system)
+
 	if (algoritmoReemplazo == FIFO)
 		return liberarSegunFIFO();
 	else
@@ -434,6 +445,8 @@ void compactarCacheSegunPD() {
 
 	list_clean(registrosDeParticiones);
 	registrosDeParticiones = listaAuxiliar;
+
+	log_info(loggerOficial,"Se realizó compactación de memoria (algoritmo: Particiones Dinámicas)");
 
 }
 
@@ -491,6 +504,8 @@ void compactarCacheSegunBuddySystem() {
 			}
 		}
 	}
+
+	log_info(loggerOficial,"Se realizó compactación de memoria (algoritmo: Buddy System)");
 }
 
 bool estaOcupado(void* regParticion) {
@@ -507,7 +522,8 @@ void asegurarEspacioLibrePara(int sizeMensaje) {
 	if (cantBusquedas != -1) {
 		int i = 0;
 		while (!hayEspacioLibrePara(sizeMensaje)) {
-			vaciarParticion();
+			registroParticion * particionLiberada = vaciarParticion();
+			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %p", particionLiberada->posInicialFisica);
 			if (hayEspacioLibrePara(sizeMensaje)) {
 				break;
 			}
@@ -519,7 +535,8 @@ void asegurarEspacioLibrePara(int sizeMensaje) {
 		}
 	} else {
 		while (!hayEspacioLibrePara(sizeMensaje)) {
-			vaciarParticion();
+			registroParticion * particionLiberada = vaciarParticion();
+			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %p", particionLiberada->posInicialFisica);
 			if (hayEspacioLibrePara(sizeMensaje)) {
 				break;
 			}
@@ -554,8 +571,15 @@ void *asignarParticion(estructuraMensaje mensaje) {
 void cachearMensaje(estructuraMensaje mensaje) {
 
 	if (mensaje.sizeMensaje <= CACHESIZE) {
-		asignarParticion(mensaje);
+
+		sem_wait(&mutex_regParticiones);
+		void * posicionEnMemoria = asignarParticion(mensaje);
+		sem_post(&mutex_regParticiones);
+
 		crearRegistroCache(mensaje);
+
+		log_info(loggerOficial, "Se guardó en memoría cache el mensaje %d en la posición %p", mensaje.id,posicionEnMemoria);
+
 	} else {
 		log_info(logger,
 				"No se pudo cachear el mensaje con ID %d por ser mas grande que la cache",
@@ -702,6 +726,8 @@ char getEstadoParticion(estadoParticion estado){
 void dumpCache() {
 
 	log_info(logger, "Ejecutando dump de la cache...");
+
+	log_info(loggerOficial, "Se solicitó dump de cache");
 
 	FILE* cacheDumpFile = fopen("dumpCacheBroker.txt", "a"); //mode = a (Append en el final. Si no existe lo crea)
 	int i = 0;

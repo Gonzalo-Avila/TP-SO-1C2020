@@ -1,10 +1,5 @@
 #include "Broker.h"
 
-/*void eliminarMensaje(estructuraMensaje* estMsj){
-	t_list* colaMensaje = getColaByNum(estMsj->colaMensajeria);
-	//TODO_OLD -> no se uso al final, se quitan todos de una en vez de elemento por element
-	// - Usar get, take o alguna funcion de las commons de listas para eliminar ese nodo
-}*/
 
 void agregarAListaDeEnviados(uint32_t idMsg, uint32_t idProceso){
 	log_debug(logger, "agregarAListaDeEnviados para clientID %d y idMsg %d ", idProceso, idMsg);
@@ -72,15 +67,6 @@ void imprimirListasIDs(uint32_t idMsg){
 }
 
 void enviarEstructuraMensajeASuscriptor(void* estMensaje) {
-	//TODO_OLD
-	// - Hacer send() del mensaje al suscriptor
-	// - Evaluar retorno del send()
-	// - Cambiar estado "enviado" en cache
-	// - Evaluar retorno del recv()
-	// - Cambiar estado "confirmado" en cache
-	// - Quitar mensaje de cola
-	//
-	// Nota: no quita un elemento a la vez, sino que envía todos y despues limpia la lista
 
 	estructuraMensaje* estMsj = (estructuraMensaje*) estMensaje;
 	int estadoDeEnvio, socketDelSuscriptor;
@@ -93,6 +79,9 @@ void enviarEstructuraMensajeASuscriptor(void* estMensaje) {
     socketDelSuscriptor = getSocketActualDelSuscriptor(estMsj->clientID, estMsj->colaMensajeria);
 
 	estadoDeEnvio=enviarMensajeASuscriptor(*estMsj,socketDelSuscriptor);
+
+	log_info(loggerOficial, "Se envió el mensaje %d al suscriptor %d", estMsj->id,estMsj->clientID);
+
 	if(estadoDeEnvio>=0)
 	{
 		agregarAListaDeEnviados(estMsj->id,estMsj->clientID);
@@ -101,6 +90,9 @@ void enviarEstructuraMensajeASuscriptor(void* estMensaje) {
 		if(ack==1){
 			agregarAListaDeConfirmados(estMsj->id,estMsj->clientID);
 			estMsj->estado=ESTADO_CONFIRMADO;
+
+			log_info(loggerOficial, "El suscriptor %d confirmó recepción del mensaje %d", estMsj->clientID, estMsj->id);
+
 		}else{
 			desuscribir(estMsj->clientID, estMsj->colaMensajeria);
 		}
@@ -127,7 +119,6 @@ void destructorNodos(void * nodo){
 	free(estMsj->mensaje);
 }
 void atenderColas() {
-	// Se filtran los mensajes que tienen estado nuevo y se envian, segun tipo
 	while (1) {
 		sem_wait(&habilitarEnvio);
 		sem_wait(&mutexColas);
@@ -136,7 +127,7 @@ void atenderColas() {
 
 				list_iterate(getColaByNum(numCola), &enviarEstructuraMensajeASuscriptor);
 				list_clean(getColaByNum(numCola));
-				//list_clean_and_destroy_elements(getColaByNum(numCola), &destructorNodos);
+				//list_clean_and_destroy_elements(getColaByNum(numCola), &destructorNodos); TODO - Ver como implementar el destructor para que haga free del void * mensaje (rompía cuando lo intente).
 			}
 		}
 		sem_post(&mutexColas);

@@ -2732,3 +2732,21 @@ Particion #5 : 0x8b86340    - 0x8b86357    [X]     Size: 24 b    LRU: Sun Jun  7
 Particion #6 : 0x8b86358    - 0x8b86366    [L]     Size: 15 b    
 ------------------------------------------------------------------------------------------------------------------
 
+------------------------------------------------------------------------------------------------------------------
+
+Dump: Sun Jun  7 18:28:47 2020
+ 
+
+Particion #1 : 0x8b9d440    - 0x8b9d457    [X]     Size: 24 b    LRU: Sun Jun  7 18:28:25 2020
+  Cola: NEW_POKEMON     ID: 14             
+Particion #2 : 0x8b9d458    - 0x8b9d46f    [X]     Size: 24 b    LRU: Sun Jun  7 18:28:25 2020
+  Cola: NEW_POKEMON     ID: 15             
+Particion #3 : 0x8b9d470    - 0x8b9d487    [X]     Size: 24 b    LRU: Sun Jun  7 18:28:25 2020
+  Cola: NEW_POKEMON     ID: 16             
+Particion #4 : 0x8b9d488    - 0x8b9d49f    [X]     Size: 24 b    LRU: Sun Jun  7 18:28:25 2020
+  Cola: NEW_POKEMON     ID: 13             
+Particion #5 : 0x8b9d4a0    - 0x8b9d4b7    [X]     Size: 24 b    LRU: Sun Jun  7 18:28:25 2020
+  Cola: NEW_POKEMON     ID: 18             
+Particion #6 : 0x8b9d4b8    - 0x8b9d4c6    [L]     Size: 15 b    
+------------------------------------------------------------------------------------------------------------------
+

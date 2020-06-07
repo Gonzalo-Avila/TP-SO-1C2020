@@ -4,6 +4,7 @@
 void inicializarVariablesGlobales() {
 	config = config_create("gameboy.config");
 	logger = log_create("gameboy_logs", "GameBoy", 1, LOG_LEVEL_TRACE);
+	loggerOficial = log_create("gameboy_logs_oficial", "Delibird - GameBoy",0,LOG_LEVEL_TRACE);
 }
 
 int conectarseADestino(proceso destino) {
@@ -44,6 +45,10 @@ int conectarseADestino(proceso destino) {
 		log_info(logger,
 				"Se ha conectado el GameBoy a un proceso.\nTipo de proceso: %s\nIP: %s\nPUERTO: %s\nSocket:%d",
 				proceso, ipDestino, puertoDestino, socketDestino);
+
+		log_info(loggerOficial,
+					"Se ha conectado el GameBoy a un proceso.\nTipo de proceso: %s\nIP: %s\nPUERTO: %s\nSocket:%d",
+					proceso, ipDestino, puertoDestino, socketDestino);
 	}
 	free(ipDestino);
 	free(puertoDestino);
@@ -103,6 +108,9 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 	            		"ID correlativo: %d\n"
 	            		"Tamaño del mensaje: %d\n",
 						getCodeStringByNum(mensaje->colaEmisora),mensaje->idMensaje, mensaje->idCorrelativo,mensaje->sizeMensaje);
+
+	log_info(loggerOficial,"Se recibió un nuevo mensaje del broker en la cola: %s\n",getCodeStringByNum(mensaje->colaEmisora));
+
 	int offset=0;
 	switch(mensaje->colaEmisora){
 	case NEW:{
@@ -219,7 +227,6 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 }
 int main(int argc, char** argv) {
 
-	//Se setean todos los datos
 	inicializarVariablesGlobales();
 	log_info(logger, "Se ha iniciado el cliente gameboy\n");
 	pthread_t hiloCountdown;
@@ -232,20 +239,12 @@ int main(int argc, char** argv) {
 	if(destino == SUSCRIPTOR_CID){
 		uint32_t ack = 1;
 		uint32_t idProceso = atoi(argv[4]);
-		//opCode operacion = NUEVA_CONEXION;
-
-		/*
-		send(socketDestino,&operacion,sizeof(opCode),0);
-		recv(socketDestino,&idProceso,sizeof(uint32_t),MSG_WAITALL);
-		log_debug(logger,"El broker ha asignado el siguiente ID de proceso: %d",idProceso);
-		*/
-
-		//int socketSuscripcion = conectarseADestino(destino);
 
 		log_debug(logger,"El broker volvio a conectar al proceso con clientID: %d",idProceso);
 		suscribirseACola(socketDestino, tipoMensaje,idProceso);
 		log_debug(logger,"Se realizó suscripción a la cola %s", getCodeStringByNum(tipoMensaje));
 
+		log_info(loggerOficial,"Se realizó suscripción a la cola %s", getCodeStringByNum(tipoMensaje));
 
 		void tiempoLimiteDeSuscripcion(char * tiempo){
 			opCode operacion2 = FINALIZAR;
@@ -255,9 +254,9 @@ int main(int argc, char** argv) {
 			send(socketFinalizacion,&tipoMensaje,sizeof(cola),0);
 			send(socketFinalizacion,&idProceso,sizeof(uint32_t),0);
 			log_info(logger,"El gameboy se ha desconectado del broker");
-					//close(socketDestino);
-					//close(socketFinalizacion);
-					//close(socketSuscripcion);
+			//close(socketDestino);
+			//close(socketFinalizacion);
+			//close(socketSuscripcion);
 			log_destroy(logger);
 			config_destroy(config);
 			log_info(logger, "El proceso GameBoy finalizó su ejecución");
@@ -291,6 +290,8 @@ int main(int argc, char** argv) {
 			int socketSuscripcion = conectarseADestino(destino);
 			suscribirseACola(socketSuscripcion, tipoMensaje,idProceso);
 			log_debug(logger,"Se realizó suscripción a la cola %s", getCodeStringByNum(tipoMensaje));
+
+			log_info(loggerOficial,"Se realizó suscripción a la cola %s", getCodeStringByNum(tipoMensaje));
 
 			void tiempoLimiteDeSuscripcion(char * tiempo){
 				opCode operacion2 = FINALIZAR;
@@ -605,11 +606,13 @@ int main(int argc, char** argv) {
 		}
 	}
 
+	log_info(logger, "El proceso GameBoy finalizó su ejecución");
 
 	close(socketDestino);
 	log_destroy(logger);
+	log_destroy(loggerOficial);
 	config_destroy(config);
-	log_info(logger, "El proceso GameBoy finalizó su ejecución");
+
 	return 0;
 
 }

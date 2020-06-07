@@ -27,6 +27,7 @@
 #include <math.h>
 
 t_log * logger;
+t_log * loggerOficial;
 t_config * config;
 
 /*	<opCode><Type><Msj>

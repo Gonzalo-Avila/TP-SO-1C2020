@@ -243,3 +243,92 @@ ID del mensaje: 22
 ID correlativo: -1
 Tamaño del mensaje: 24
 
+[INFO] 17:32:52:595 GameBoy/(8705:8705): Se ha iniciado el cliente gameboy
+
+[INFO] 17:32:53:299 GameBoy/(8705:8705): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[DEBUG] 17:32:56:819 GameBoy/(8705:8705): El broker ha asignado el siguiente ID de proceso: 1
+[INFO] 17:32:57:111 GameBoy/(8705:8705): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:6
+[INFO] 17:32:57:454 GameBoy/(8705:8705): Se ha suscrito a la cola NEW_POKEMON
+[DEBUG] 17:32:57:797 GameBoy/(8705:8705): Se realizó suscripción a la cola NEW_POKEMON
+[INFO] 17:32:59:184 GameBoy/(8705:8705): Esperando mensajes...
+[INFO] 17:32:59:721 GameBoy/(8705:8705): Se recibió un nuevo mensaje del broker
+Cola: NEW_POKEMON
+ID del mensaje: 2
+ID correlativo: -1
+Tamaño del mensaje: 24
+
+[INFO] 17:32:59:721 GameBoy/(8705:8705): Longitud pokemon: 8
+Pokemon: pikachu
+Posicion X: 50
+Posicion Y: 1
+ Cantidad del pokemon:25
+
+[INFO] 17:33:00:277 GameBoy/(8705:8705): Esperando mensajes...
+[INFO] 17:33:01:34 GameBoy/(8705:8705): Se recibió un nuevo mensaje del broker
+Cola: NEW_POKEMON
+ID del mensaje: 3
+ID correlativo: -1
+Tamaño del mensaje: 24
+
+[INFO] 17:33:01:34 GameBoy/(8705:8705): Longitud pokemon: 8
+Pokemon: pikachu
+Posicion X: 50
+Posicion Y: 1
+ Cantidad del pokemon:25
+
+[INFO] 17:33:01:572 GameBoy/(8705:8705): Esperando mensajes...
+[INFO] 17:33:02:82 GameBoy/(8705:8705): Se recibió un nuevo mensaje del broker
+Cola: NEW_POKEMON
+ID del mensaje: 4
+ID correlativo: -1
+Tamaño del mensaje: 24
+
+[INFO] 17:33:02:82 GameBoy/(8705:8705): Longitud pokemon: 8
+Pokemon: pikachu
+Posicion X: 50
+Posicion Y: 1
+ Cantidad del pokemon:25
+
+[INFO] 17:33:02:694 GameBoy/(8705:8705): Esperando mensajes...
+[INFO] 17:33:03:276 GameBoy/(8705:8705): Se recibió un nuevo mensaje del broker
+Cola: NEW_POKEMON
+ID del mensaje: 5
+ID correlativo: -1
+Tamaño del mensaje: 24
+
+[INFO] 17:33:03:277 GameBoy/(8705:8705): Longitud pokemon: 8
+Pokemon: pikachu
+Posicion X: 50
+Posicion Y: 1
+ Cantidad del pokemon:25
+
+[INFO] 17:33:03:854 GameBoy/(8705:8705): Esperando mensajes...
+[INFO] 17:33:04:461 GameBoy/(8705:8705): Se recibió un nuevo mensaje del broker
+Cola: NEW_POKEMON
+ID del mensaje: 6
+ID correlativo: -1
+Tamaño del mensaje: 24
+
+[INFO] 17:33:04:461 GameBoy/(8705:8705): Longitud pokemon: 8
+Pokemon: pikachu
+Posicion X: 50
+Posicion Y: 1
+ Cantidad del pokemon:25
+
+[INFO] 17:33:05:23 GameBoy/(8705:8705): Esperando mensajes...
+[INFO] 17:34:00:577 GameBoy/(8824:8824): Se ha iniciado el cliente gameboy
+
+[INFO] 17:34:01:689 GameBoy/(8824:8824): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 17:34:10:826 GameBoy/(8824:8824): Se envió un mensaje a la cola NEW_POKEMON del proceso BROKER
