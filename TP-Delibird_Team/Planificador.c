@@ -146,6 +146,11 @@ void activarHiloDe(int id){
 	sem_post(&semEntrenadores[id]);
 }
 
+void activarHiloDeRR(int id, int quantum){
+	for(int i = 0; i<quantum; i++)
+		sem_post(&semEntrenadoresRR[id]);
+}
+
 void planificarFifo(){
 		log_debug(logger,"Se activa el planificador");
 		while(noSeCumplieronLosObjetivos()){
@@ -173,10 +178,44 @@ void planificarFifo(){
 		}
 }
 
+void planificarRR(){
+	int quantum = atoi(config_get_string_value(config, "QUANTUM"));
+	log_debug(logger,"Se activa el planificador");
+
+			while(noSeCumplieronLosObjetivos()){
+				t_entrenador *entrenador;
+
+				sem_wait(&procesoEnReady);
+				log_debug(logger,"Hurra, tengo algo en ready");
+
+				if(!list_is_empty(listaDeReady)){
+					//es necesario este if? si tengo el semaforo...
+
+					sem_wait(&mutexEntrenadores);
+					entrenador = list_get(listaDeReady,0);
+					entrenador->estado = EJEC;
+					sem_post(&mutexEntrenadores);
+
+					list_remove(listaDeReady,0);
+					//No esta mas en ready el entrenador, esta en EXEC.
+					//El entrenador debe poder cambiar su estado para que no sea mas EXEC luego de ejecutar.
+
+					activarHiloDe(entrenador->id);
+					activarHiloDeRR(entrenador->id, quantum);
+				}
+				sem_wait(&semPlanif);
+			}
+}
+
+
 void planificador(){
 	switch(team->algoritmoPlanificacion){
 			case FIFO:{
 				planificarFifo();
+				break;
+			}
+			case RR:{
+				planificarRR();
 				break;
 			}
 			//en caso que tengamos otro algoritmo usamos la funcion de ese algoritmo

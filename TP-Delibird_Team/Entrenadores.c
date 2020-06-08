@@ -74,7 +74,7 @@ void crearHiloEntrenador(t_entrenador* entrenador) {
 	pthread_detach(nuevoHilo);
 }
 
-void moverEntrenador(t_entrenador *entrenador){
+void moverXDelEntrenador(t_entrenador *entrenador){
 
 	if(entrenador->pos[0] < entrenador->pokemonAAtrapar.pos[0]){
 			entrenador->pos[0]++;
@@ -82,6 +82,16 @@ void moverEntrenador(t_entrenador *entrenador){
 		else if(entrenador->pos[0] > entrenador->pokemonAAtrapar.pos[0]){
 			entrenador->pos[0]--;
 		}
+	log_debug(logger,"El entrenador id: %d esta en la posicion [%d,%d]",entrenador->id,entrenador->pos[0],entrenador->pos[1]);
+
+}
+
+//	Nico | Se podría dejar los dos movimientos en una sola función y que reciba 0 o 1 para mover X o Y.
+//		   No lo hice pq me parece más declarativo con las 2 funciones, pero se puede ver. Tambien se
+//  	   Ahorraria el if de gestionarEntrenador.
+
+void moverYDelEntrenador(t_entrenador *entrenador){
+
 		if(entrenador->pos[1] < entrenador->pokemonAAtrapar.pos[1]){
 			entrenador->pos[1]++;
 		}
@@ -107,33 +117,106 @@ bool estaEnLosObjetivos(char *pokemon){
 	return list_any_satisfy(team->objetivo,esUnObjetivo);
 }
 
+void gestionarEntrendorFIFO(t_entrenador *entrenador){
+	 while(entrenador->estado != FIN){
+			//me quedo esperando a estar en EJEC
+			sem_wait(&semEntrenadores[entrenador->id]);
+			bool alternadorXY = true;
+
+			while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] && entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
+				sem_wait(&mutexEntrenadores);
+
+	//			Nico | Separado en X e Y para cumplir con el requerimiento que prohibe los movimientos diagonales.
+				if(alternadorXY){
+					moverXDelEntrenador(entrenador);
+				}
+				else{
+					moverYDelEntrenador(entrenador);
+				}
+				sem_post(&mutexEntrenadores);
+
+				alternadorXY = !alternadorXY;
+				usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 100000);
+			}
+			//TODO
+	//		Comentamos pokemonRecibido porke funciona con otra logica.
+	//			-acomodar appeared y caught.
+
+			enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+			entrenador->estado = BLOQUEADO;
+			entrenador->suspendido = true;
+
+			//recibir caught
+			//agrego el pokemon a la lista de pokemones del entrenador
+			//remuevo al pokempn del obetivo global????
+			//me bloqueo
+
+			sem_post(&semPlanif);
+	 }
+}
+
+void gestionarEntrenadorRR(t_entrenador* entrenador){
+	 while(entrenador->estado != FIN){
+				//me quedo esperando a estar en EJEC
+				sem_wait(&semEntrenadores[entrenador->id]);
+				bool alternadorXY = true;
+				int contadorQuantum = atoi(config_get_string_value(config, "QUANTUM"));
+
+				while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] && entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
+					if(!contadorQuantum){
+						entrenador->estado = BLOQUEADO;
+						sem_post(&semPlanif);
+					}
+
+					sem_wait(&semEntrenadoresRR[entrenador->id]);
+					sem_wait(&mutexEntrenadores);
+
+		//			Nico | Separado en X e Y para cumplir con el requerimiento que prohibe los movimientos diagonales.
+					if(alternadorXY){
+						moverXDelEntrenador(entrenador);
+					}
+					else{
+						moverYDelEntrenador(entrenador);
+					}
+					sem_post(&mutexEntrenadores);
+
+					alternadorXY = !alternadorXY;
+					usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 100000);
+					contadorQuantum--;
+				}
+				//TODO
+		//		Comentamos pokemonRecibido porke funciona con otra logica.
+		//			-acomodar appeared y caught.
+
+				enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+				entrenador->estado = BLOQUEADO;
+				entrenador->suspendido = true;
+
+				//recibir caught
+				//agrego el pokemon a la lista de pokemones del entrenador
+				//remuevo al pokempn del obetivo global????
+				//me bloqueo
+
+				sem_post(&semPlanif);
+
+	}
+}
+
 /*MANEJA EL FUNCIONAMIENTO INTERNO DE CADA ENTRENADOR(trabajo en un hilo separado)*/
 void gestionarEntrenador(t_entrenador *entrenador) {
-	while(entrenador->estado != FIN){
-		//me quedo esperando a estar en EJEC
-		sem_wait(&semEntrenadores[entrenador->id]);
-
-
-		while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] && entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
-			sem_wait(&mutexEntrenadores);
-			moverEntrenador(entrenador);
-			sem_post(&mutexEntrenadores);
-			usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 100000);
+	switch(team->algoritmoPlanificacion){
+		case FIFO:{
+			gestionarEntrendorFIFO(entrenador);
+			break;
 		}
-		//TODO
-//		Comentamos pokemonRecibido porke funciona con otra logica.
-//			-acomodar appeared y caught.
-
-		enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-		entrenador->estado = BLOQUEADO;
-		entrenador->suspendido = true;
-
-		//recibir caught
-		//agrego el pokemon a la lista de pokemones del entrenador
-		//remuevo al pokempn del obetivo global????
-		//me bloqueo
-
-		sem_post(&semPlanif);
+		case RR:{
+			gestionarEntrenadorRR(entrenador);
+			break;
+		}
+		default:{
+			gestionarEntrendorFIFO(entrenador);
+			break;
+		}
 	}
 }
 

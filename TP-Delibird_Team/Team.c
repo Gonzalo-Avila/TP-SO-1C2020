@@ -77,9 +77,11 @@ bool elementoEstaEnLista(t_list *lista, char *elemento) {
 
 void inicializarSemEntrenadores() {
 	semEntrenadores = malloc(list_size(team->entrenadores) * sizeof(sem_t));
+	semEntrenadoresRR = malloc(list_size(team->entrenadores) * sizeof(sem_t));
 	for (int j = 0; j < list_size(team->entrenadores); j++) {
 		sem_init(&(semEntrenadores[j]), 0, 0);
-		log_info(logger, "Iniciado semáforo para entrenador %d",
+		sem_init(&(semEntrenadoresRR[j]), 0, 0);
+		log_info(logger, "Iniciado semáforos para entrenador %d",
 				semEntrenadores[j]);
 	}
 }
@@ -126,7 +128,6 @@ int main() {
 	inicializarSemEntrenadores();
 
 	enviarGetSegunObjetivo(ipServidor,puertoServidor);
-
 	crearHilosDeEntrenadores();
 
 	planificador();

@@ -96,6 +96,7 @@ sem_t mutexMensajes;
 sem_t mutexEntrenadores;
 sem_t semPlanif;
 sem_t *semEntrenadores;
+sem_t *semEntrenadoresRR;
 sem_t procesoEnReady;
 
 /* Funciones */
@@ -120,6 +121,8 @@ void array_iterate_element(char** strings, void (*closure)(char*,t_list*),t_list
 void enlistar(char *elemento,t_list *lista);
 void obtenerDeConfig(char *clave,t_list *lista);
 void gestionarEntrenador(t_entrenador *entrenador);
+void gestionarEntrendorFIFO(t_entrenador *entrenador);
+void gestionarEntrenadorRR(t_entrenador* entrenador);
 void crearHiloEntrenador(t_entrenador* entrenador);
 void crearHilosDeEntrenadores();
 void generarEntrenadores();
@@ -138,10 +141,13 @@ void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador);
 void planificarFifo();
 void planificador();
 void ponerEnReadyAlMasCercano(int x, int y, char* pokemon);
-void moverEntrenador(t_entrenador *entrenador);
+void moverXDelEntrenador(t_entrenador *entrenador);
+void moverYDelEntrenador(t_entrenador *entrenador);
 void inicializarSemEntrenadores();
 void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultado);
 void borrarPokemonDeObjetivos(char* pokemonAtrapado, t_list* objetivos);
+void activarHiloDe(int id);
+void activarHiloDeRR(int id, int quantum);
 //uint32_t obtenerIdDelProceso(char* ip, char* puerto);
 
 #endif /* TEAM_H_ */
