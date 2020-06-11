@@ -745,9 +745,17 @@ void dumpCache() {
 	void escribirRegistro(void* registro) {
 		registroParticion * regParticion = (registroParticion*) registro;
 		i++;
-		fprintf(cacheDumpFile, "Particion #%d : %-10p%s %-12p ", i,
+		fprintf(cacheDumpFile, "Particion #%-3d : %-10p%s %-12p ", i,
 				regParticion->posInicialFisica, "-",
 				regParticion->posInicialFisica+regParticion->tamanioParticion-1);
+
+		//Agregado para las pruebas del 11/06. No figura en el dump oficial.
+		//--------------------------------------------------------------------------------
+		fprintf(cacheDumpFile, "%-4d%s %-6d",
+						regParticion->posInicialLogica, "-",
+						regParticion->posInicialLogica+regParticion->tamanioParticion-1);
+		//--------------------------------------------------------------------------------
+
 		fprintf(cacheDumpFile, "[%c]    ", getEstadoParticion(regParticion->estado));
 		fprintf(cacheDumpFile, "Size: %-4d b    ",regParticion->tamanioParticion);
 

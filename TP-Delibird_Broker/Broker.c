@@ -4,7 +4,7 @@
 void inicializarVariablesGlobales() {
 	config = config_create("broker.config");
 	logger = log_create("broker_logs", "Broker", 1, LOG_LEVEL_TRACE);
-	loggerOficial = log_create("broker_logs_oficial","Delibird - Broker", 0, LOG_LEVEL_TRACE);
+	loggerOficial = log_create(config_get_string_value(config,"LOG_FILE"),"Delibird - Broker", 0, LOG_LEVEL_TRACE);
 
 	inicializarColasYListas();
 	inicializarCache();

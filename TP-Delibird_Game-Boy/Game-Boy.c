@@ -78,7 +78,14 @@ cola definirTipoMensaje(char * argumento) {
 	log_error(logger, "No se pudo determinar el tipo de cola o suscripción");
 	return -1;
 }
+resultado obtenerResultadoDesdeCadena(char * cadena){
+	if(strcmp("OK",cadena)==0)
+	   return OK;
+	if(strcmp("FAIL",cadena)==0)
+	   return FAIL;
 
+	return -1;
+}
 proceso definirDestino(char * argumento) {
 	if (strcmp("TEAM", argumento) == 0) {
 		return TEAM;
@@ -497,7 +504,7 @@ int main(int argc, char** argv) {
 				mensajeCaught mensaje;
 				if (destino == BROKER) {
 					//./gameboy BROKER CAUGHT_POKEMON [ID_MENSAJE_CORRELATIVO] [OK/FAIL]
-					mensaje.resultado = atoi(argv[4]);
+					mensaje.resultado = obtenerResultadoDesdeCadena(argv[4]);
 					size = sizeof(uint32_t);
 					enviarMensajeABroker(socketDestino, tipoMensaje, atoi(argv[3]),
 							size, &mensaje);
