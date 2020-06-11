@@ -52,7 +52,36 @@ void esperarMensajesDeBrokerEnCola(int* socketSuscripcion) {
 	}
 }
 
-uint32_t crearConexionBroker() {
+
+void atenderNEWBroker(){
+	/*	TODO
+	 * - Recibir mensaje
+	 * - llamar a procesarNEW()
+	 * - Si recibir = -1  		==> Resuscribir todas las colas
+	 */
+}
+
+void atenderCATCHBroker(){
+	/*	TODO
+	 * - Recibir mensaje
+	 * - llamar a procesarCATCH()
+	 * - Si recibir = -1  		==> Resuscribir todas las colas
+	 */
+}
+
+void atenderGETBroker(){
+	/*	TODO
+	 * - Recibir mensaje
+	 * - llamar a procesarGET()
+	 * - Si recibir = -1  		==> Resuscribir todas las colas
+	 */
+
+}
+
+void crearConexionBroker() {
+	// TODO
+	// - Intentar reconexion
+
 	ipServidor = malloc(
 			strlen(config_get_string_value(config, "IP_BROKER")) + 1);
 	puertoServidor = malloc(
@@ -61,13 +90,28 @@ uint32_t crearConexionBroker() {
 	ipServidor = config_get_string_value(config, "IP_BROKER");
 	puertoServidor = config_get_string_value(config, "PUERTO_BROKER");
 
-	return obtenerIdDelProceso(ipServidor, puertoServidor);
+	uint32_t recStatus = obtenerIdDelProceso(ipServidor, puertoServidor);
+	/*
+	 * TODO
+	 * - Si recStatus == -1 ===> Reconexion X tiempo (config)
+	 * - Crear suscripcion NEW
+	 * - Not OK				===> Reconexion X tiempo (config)
+	 * - Crear suscripcion CATCH
+	 * - Not OK				===> Reconexion X tiempo (config)
+	 * - Crear suscripcion GET
+	 * - Not OK				===> Reconexion X tiempo (config)	 *
+	 *
+	 * MAYBE
+	 * - Ver de hacer while final para matar a los 3 hilos si algun recieve fallo
+	 */
+
 }
 
 int suscribirA(cola colaMensaje) {
 	int socketConexion = -1;
 	int tiempoReintento = config_get_int_value(config, "TIEMPO_DE_REINTENTO_CONEXION");
 	bool seLogroConexion = false;
+
 	while (!seLogroConexion) {
 		socketConexion = crearConexionCliente(ipServidor, puertoServidor);
 		if(socketConexion == -1){
@@ -113,11 +157,59 @@ void crearSuscripcionesBroker() {
 	log_info(logger, "Esperando mensajes...");
 }
 
-int main() {
+void procesarNew(){
+	/*
+	 * TODO -> EnunciadP
+	 */
+}
+
+void procesarCatch(){
+	/*
+	 * TODO -> EnunciadO
+	 */
+}
+
+void procesarGet(){
+	/*
+	 * TODO -> EnunciadO
+	 */
+}
+
+void atenderMensajesGameBoy(){
+	/*
+	 * TODO
+	 * - Identificar mensaje
+	 * - Procesar en nuevo hilo con funcion acorde al mensaje (procesarNew, procesarCatch, procesarGet)
+	 */
+
+	//switch(){
+		//procesarNew();
+		//procesarCatch();
+		//procesarGet();
+	//}
+
+
+}
+
+
+void crearConexionGameBoy(){
+	/*TODO
+	 *	- Levantar server (crearConexionServidor - utils)
+	 *	- Escribir en log el socket
+	 *	- crearHilo Atencion de mensajes:
+	 */
+
+
+	// atenderMensajesGameBoy()
+}
+
+int main(){
 	//Se setean todos los datos
 	inicializarVariablesGlobales();
 
 	log_info(logger, "Se ha iniciado el cliente GameCard\n");
+
+	crearConexionGameBoy();
 
 	idProceso = crearConexionBroker();
 
