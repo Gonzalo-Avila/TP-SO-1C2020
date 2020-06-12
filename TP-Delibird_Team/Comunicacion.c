@@ -65,7 +65,8 @@ t_catchEnEspera* buscarCatch(uint32_t idCorrelativo){
 }
 
 //Nico | Ver si tb tenemos que borrar el objetivo de los objetivos del Team
-void borrarPokemonDeObjetivos(char* pokemonAtrapado, t_list* objetivos){
+
+/*void borrarPokemonDeObjetivos(char* pokemonAtrapado, t_list* objetivos){
 
 	bool encontrarPokemonEnObjetivos(void* pokemon){
 		if(strcmp((char*)pokemon, pokemonAtrapado) == 0){
@@ -77,16 +78,19 @@ void borrarPokemonDeObjetivos(char* pokemonAtrapado, t_list* objetivos){
 	void* pokemonABorrar = list_remove_by_condition(objetivos, encontrarPokemonEnObjetivos);
 
 	free(pokemonABorrar);
-}
+
+}*/ //Nico | Queda sin uso. Lo dejo por si sirve para mas adelante
 
 //TODO Ver si resultado va a ser un bool, en ese caso habria que cambiar la utils tb.
 //Por ahora esta hecho tomando resultado como booleano
 void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultado){
 	if(resultado){
-		t_list* objetivosDelEntrenador = catchProcesado->entrenadorConCatch->objetivos;
+		t_list* pokemonesDelEntrenador = catchProcesado->entrenadorConCatch->pokemones;
 		char* pokemonAtrapado = catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon;
 
-		borrarPokemonDeObjetivos(pokemonAtrapado, objetivosDelEntrenador);
+		enlistar(pokemonAtrapado, pokemonesDelEntrenador);
+		//borrarPokemonDeObjetivos(pokemonAtrapado, objetivosDelEntrenador);
+		//TODO falta remover el porkemon atrapado del mapa interno.
 
 		log_info(logger, "El entrenador %d capturo un %s!", catchProcesado->entrenadorConCatch->id,
 				catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon);
