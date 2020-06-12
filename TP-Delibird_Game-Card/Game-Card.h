@@ -11,13 +11,23 @@
 #include <Utils.h>
 
 uint32_t idProceso;
+
 char * ipServidor;
 char * puertoServidor;
 
+pthread_t hiloEsperaNEW, hiloEsperaGET, hiloEsperaCATCH, hiloEsperaGameboy, hiloReconexiones;
+
+typedef enum{
+	NO_CONECTADO=0,
+	CONECTADO=1,
+	ERROR_CONEXION=-1
+}estadoConexion;
+estadoConexion statusConexionBroker;
+
+int socketSuscripcionNEW, socketSuscripcionGET, socketSuscripcionCATCH, socketEscuchaGameboy;
+
 void inicializarVariablesGlobales();
 void esperarMensajesDeBrokerEnCola(int * socketSuscripcion);
-void conectarYSuscribir(int * socketSuscripcionNEW, int * socketSuscripcionGET, int * socketSuscripcionCATCH,char * ipServidor,char * puertoServidor);
-
-
+int conectarYSuscribir();
 
 #endif /* GAME_CARD_H_ */

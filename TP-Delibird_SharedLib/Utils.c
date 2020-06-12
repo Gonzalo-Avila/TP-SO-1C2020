@@ -355,8 +355,11 @@ uint32_t obtenerIdDelProceso(char* ip, char* puerto) {
 
 	opCode codigoOP = NUEVA_CONEXION;
 	send(socketBroker, &codigoOP, sizeof(opCode), 0);
-	recv(socketBroker, &idProceso, sizeof(uint32_t), MSG_WAITALL);
+	uint32_t statusRecv=recv(socketBroker, &idProceso, sizeof(uint32_t), MSG_WAITALL);
 	close(socketBroker);
+
+	if(statusRecv<0)
+		return -1;
 
 	return idProceso;
 }

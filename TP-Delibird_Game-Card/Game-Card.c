@@ -3,29 +3,33 @@
 void inicializarVariablesGlobales() {
 	config = config_create("gamecard.config");
 	logger = log_create("gamecard_logs", "GameCard", 1, LOG_LEVEL_TRACE);
+
+	ipServidor=malloc(strlen(config_get_string_value(config,"IP_BROKER"))+1);
+	strcpy(ipServidor,config_get_string_value(config,"IP_BROKER"));
+	puertoServidor=malloc(strlen(config_get_string_value(config,"PUERTO_BROKER"))+1);
+	strcpy(puertoServidor,config_get_string_value(config,"PUERTO_BROKER"));
+
+	idProceso=-1;
+	statusConexionBroker=0;
 }
 
-void cerrarConexion() {
-	free(ipServidor);
-	free(puertoServidor);
-	log_info(logger, "Finalizó la conexión con el servidor\n");
-}
 
 void destruirVariablesGlobales() {
+	free(ipServidor);
+	free(puertoServidor);
 	log_destroy(logger);
 	config_destroy(config);
 }
 
 void esperarMensajesDeBrokerEnCola(int* socketSuscripcion) {
 
-	int* socketSus = malloc(sizeof(int));
+	int socketSus = *socketSuscripcion;
 	uint32_t ack = 1;
 	mensajeRecibido * mensaje;
 
 	while (1) {
-		*socketSus = *socketSuscripcion;
-		mensaje = recibirMensajeDeBroker(*socketSus);
-		send(*socketSus, &ack, sizeof(uint32_t), 0);
+		mensaje = recibirMensajeDeBroker(socketSus);
+		send(socketSus, &ack, sizeof(uint32_t), 0);
 
 		switch (mensaje->colaEmisora) {
 		case NEW: {
@@ -49,6 +53,7 @@ void esperarMensajesDeBrokerEnCola(int* socketSuscripcion) {
 			break;
 		}
 		}
+		free(mensaje);
 	}
 }
 
@@ -78,8 +83,8 @@ void atenderGETBroker(){
 
 }
 
-void crearConexionBroker() {
-	// TODO
+/*void crearConexionBroker() {
+	// TODO - Ver cambios
 	// - Intentar reconexion
 
 	ipServidor = malloc(
@@ -91,7 +96,6 @@ void crearConexionBroker() {
 	puertoServidor = config_get_string_value(config, "PUERTO_BROKER");
 
 	uint32_t recStatus = obtenerIdDelProceso(ipServidor, puertoServidor);
-	/*
 	 * TODO
 	 * - Si recStatus == -1 ===> Reconexion X tiempo (config)
 	 * - Crear suscripcion NEW
@@ -103,10 +107,11 @@ void crearConexionBroker() {
 	 *
 	 * MAYBE
 	 * - Ver de hacer while final para matar a los 3 hilos si algun recieve fallo
+ }
 	 */
 
-}
 
+/*
 int suscribirA(cola colaMensaje) {
 	int socketConexion = -1;
 	int tiempoReintento = config_get_int_value(config, "TIEMPO_DE_REINTENTO_CONEXION");
@@ -130,14 +135,8 @@ int suscribirA(cola colaMensaje) {
 	return socketConexion;
 }
 
-void realizarFunciones() {
-	log_debug(logger, "STOP");
-	sleep(50000);
-}
 
 void crearSuscripcionesBroker() {
-
-	pthread_t hiloEsperaNEW, hiloEsperaGET, hiloEsperaCATCH;
 
 	int socketSuscripcionNEW = suscribirA(NEW);
 	int socketSuscripcionGET = suscribirA(GET);
@@ -155,7 +154,62 @@ void crearSuscripcionesBroker() {
 	pthread_detach(hiloEsperaCATCH);
 
 	log_info(logger, "Esperando mensajes...");
+}*/
+
+void realizarFunciones() {
+	log_debug(logger, "STOP");
+	sleep(50000);
 }
+
+
+int crearSuscripcionesBroker(){
+	socketSuscripcionNEW = crearConexionCliente(ipServidor, puertoServidor);
+	if(socketSuscripcionNEW<0)
+		return ERROR_CONEXION;
+	suscribirseACola(socketSuscripcionNEW, NEW, idProceso);
+
+	socketSuscripcionCATCH = crearConexionCliente(ipServidor, puertoServidor);
+	if(socketSuscripcionCATCH<0)
+		return ERROR_CONEXION;
+	suscribirseACola(socketSuscripcionCATCH, CATCH, idProceso);
+
+	socketSuscripcionGET = crearConexionCliente(ipServidor, puertoServidor);
+	if(socketSuscripcionGET<0)
+		return ERROR_CONEXION;
+	suscribirseACola(socketSuscripcionGET, GET, idProceso);
+
+	pthread_create(&hiloEsperaNEW, NULL, (void*) esperarMensajesDeBrokerEnCola, &socketSuscripcionNEW);
+	pthread_create(&hiloEsperaGET, NULL, (void*) esperarMensajesDeBrokerEnCola, &socketSuscripcionGET);
+	pthread_create(&hiloEsperaCATCH, NULL, (void*) esperarMensajesDeBrokerEnCola, &socketSuscripcionCATCH);
+
+	pthread_detach(hiloEsperaNEW);
+	pthread_detach(hiloEsperaGET);
+	pthread_detach(hiloEsperaCATCH);
+
+	return CONECTADO;
+}
+
+estadoConexion conectarYSuscribir(){
+	if(idProceso==-1){
+		idProceso=obtenerIdDelProceso(ipServidor,puertoServidor);
+		if(idProceso==-1)
+			return ERROR_CONEXION;
+	}
+	estadoConexion statusConexion = crearSuscripcionesBroker();
+
+	return statusConexion;
+}
+
+void mantenerConexion(){
+	int tiempoReintento = config_get_int_value(config, "TIEMPO_DE_REINTENTO_CONEXION");
+	while(1){
+		if(statusConexionBroker!=CONECTADO){
+			statusConexionBroker = conectarYSuscribir();
+		}
+		sleep(tiempoReintento);
+	}
+}
+
 
 void procesarNew(){
 	/*
@@ -191,17 +245,19 @@ void atenderMensajesGameBoy(){
 
 }
 
-
-void crearConexionGameBoy(){
-	/*TODO
+int crearConexionGameBoy(){
+	/*TODO - DONE
 	 *	- Levantar server (crearConexionServidor - utils)
 	 *	- Escribir en log el socket
 	 *	- crearHilo Atencion de mensajes:
 	 */
+	socketEscuchaGameboy = crearConexionServer(config_get_string_value(config,"IP_GAMECARD"), config_get_string_value(config,"PUERTO_GAMECARD"));
+	pthread_create(&hiloEsperaGameboy, NULL, (void*) esperarMensajesDeBrokerEnCola, &socketEscuchaGameboy);
+	pthread_detach(hiloEsperaGameboy);
+	return socketEscuchaGameboy;
 
-
-	// atenderMensajesGameBoy()
 }
+
 
 int main(){
 	//Se setean todos los datos
@@ -209,26 +265,26 @@ int main(){
 
 	log_info(logger, "Se ha iniciado el cliente GameCard\n");
 
-	crearConexionGameBoy();
+    crearConexionGameBoy();
 
-	idProceso = crearConexionBroker();
 
-	if(idProceso!=-1) {
-		crearSuscripcionesBroker();
-	}
+	statusConexionBroker = conectarYSuscribir();
+	pthread_create(&hiloReconexiones, NULL, (void*) mantenerConexion, NULL);
+	pthread_detach(hiloReconexiones);
 
 	realizarFunciones();
 
-	cerrarConexion();
 
-	destruirVariablesGlobales();
 
-	//Procedimiento auxiliar para que no rompa el server en las pruebas
-	/*int codigoOP = FINALIZAR;
-	 send(socketBroker,(void*)&codigoOP,sizeof(opCode),0);
-	 close(socketBroker);*/
 
 	log_info(logger, "El proceso gamecard finalizó su ejecución\n");
+
+	destruirVariablesGlobales();
+	close(socketEscuchaGameboy);
+	close(socketSuscripcionNEW);
+	close(socketSuscripcionCATCH);
+	close(socketSuscripcionCATCH);
+
 
 	return 0;
 }
