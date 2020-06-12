@@ -145,7 +145,7 @@ void moverXDelEntrenador(t_entrenador *entrenador);
 void moverYDelEntrenador(t_entrenador *entrenador);
 void inicializarSemEntrenadores();
 void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultado);
-void borrarPokemonDeObjetivos(char* pokemonAtrapado, t_list* objetivos);
+//void borrarPokemonDeObjetivos(char* pokemonAtrapado, t_list* objetivos);
 void activarHiloDe(int id);
 void activarHiloDeRR(int id, int quantum);
 //uint32_t obtenerIdDelProceso(char* ip, char* puerto);
