@@ -207,6 +207,54 @@ void planificarRR(){
 			}
 }
 
+bool puedeExistirDeadlock(){
+	t_entrenador *entrenador;
+	bool verifica = false;
+
+	for(int i = 0; list_size(team->entrenadores);i++){
+		entrenador = list_get(team->entrenadores,i);
+
+		if(entrenador->estado == BLOQUEADO || entrenador->estado == FIN){
+			verifica = true;
+		}
+	}
+	return verifica;
+}
+
+void scaneoDeDeadlock(){
+
+	if(puedeExistirDeadlock()){
+		t_entrenador *entrenador;
+		for(int i = 0;list_size(team->entrenadores);i++){
+			entrenador = list_get(team->entrenadores,i);
+
+			if(list_size(entrenador->objetivos) == list_size(entrenador->pokemones && entrenador->estado != FIN))
+				resolverDeadlock(entrenador);
+		}
+	}
+}
+
+bool encontrarPokemonesEnDeadlock(t_entrenador *entrenadorPotencial, t_entrenador *entrenadorEnDeadlock){
+	//ya se que el entrenadorEnDeadlock tiene un pokemon que no es de el
+	//entonces tengo que fijarme cuales entrenadorEnDeadlock->pokemones no
+	//son del objetivo de entrenadorEnDeadlock y fijarme si esos pertenecen
+	//al entrenadorPotencial.
+}
+
+void resolverDeadlock(t_entrenador *entrenador){
+	t_entrenador *ePotencialEnDeadlock;
+
+	for(int i = 0;list_size(team->entrenadores);i++){
+		ePotencialEnDeadlock = list_get(team->entrenadores,i);
+
+		if(estaEnDeadlock(ePotencialEnDeadlock,entrenador))
+			//hago las acciones para pasar a ready
+			//y ademas seteo a donde se tiene que mover
+			//y que pokemon tiene que intercambiar
+		;
+
+	}
+}
 
 void planificador(){
 	switch(team->algoritmoPlanificacion){
