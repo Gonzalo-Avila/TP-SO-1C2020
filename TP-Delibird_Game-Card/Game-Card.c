@@ -23,13 +23,12 @@ void destruirVariablesGlobales() {
 
 void esperarMensajesDeBrokerEnCola(int* socketSuscripcion) {
 
-	int socketSus = *socketSuscripcion;
 	uint32_t ack = 1;
 	mensajeRecibido * mensaje;
 
 	while (1) {
-		mensaje = recibirMensajeDeBroker(socketSus);
-		send(socketSus, &ack, sizeof(uint32_t), 0);
+		mensaje = recibirMensajeDeBroker(*socketSuscripcion);
+		send(*socketSuscripcion, &ack, sizeof(uint32_t), 0);
 
 		switch (mensaje->colaEmisora) {
 		case NEW: {
@@ -38,12 +37,12 @@ void esperarMensajesDeBrokerEnCola(int* socketSuscripcion) {
 			break;
 		}
 		case GET: {
-			//Procesar mensaje NEW
+			//Procesar mensaje GET
 			log_debug(logger, "Llegó un mensaje de la cola GET");
 			break;
 		}
 		case CATCH: {
-			//Procesar mensaje NEW
+			//Procesar mensaje CATCH
 			log_debug(logger, "Llegó un mensaje de la cola CATCH");
 			break;
 		}
@@ -52,8 +51,11 @@ void esperarMensajesDeBrokerEnCola(int* socketSuscripcion) {
 					"Mensaje recibido de una cola no correspondiente");
 			break;
 		}
-		}
+
 		free(mensaje);
+
+		}
+
 	}
 }
 
@@ -269,8 +271,8 @@ int main(){
 
 
 	statusConexionBroker = conectarYSuscribir();
-	pthread_create(&hiloReconexiones, NULL, (void*) mantenerConexion, NULL);
-	pthread_detach(hiloReconexiones);
+	/*pthread_create(&hiloReconexiones, NULL, (void*) mantenerConexion, NULL);
+	pthread_detach(hiloReconexiones);*/
 
 	realizarFunciones();
 

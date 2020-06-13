@@ -483,3 +483,71 @@
 [INFO] 18:40:30:264 GameCard/(12845:12845): Se ha suscrito a la cola CATCH_POKEMON
 [INFO] 18:40:30:264 GameCard/(12845:12845): Se ha suscrito a la cola GET_POKEMON
 [DEBUG] 18:41:17:326 GameCard/(12845:12845): STOP
+[INFO] 08:50:28:958 GameCard/(5767:5767): Se ha iniciado el cliente GameCard
+
+[INFO] 08:50:39:122 GameCard/(5767:5767): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 08:50:39:122 GameCard/(5767:5767): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 08:50:39:122 GameCard/(5767:5767): Se ha suscrito a la cola GET_POKEMON
+[DEBUG] 08:50:41:545 GameCard/(5767:5789): Llegó un mensaje de la cola NEW
+[DEBUG] 08:50:42:343 GameCard/(5767:5767): STOP
+[ERROR] 08:50:44:836 GameCard/(5767:5789): Mensaje recibido de una cola no correspondiente
+[INFO] 08:51:31:651 GameCard/(5839:5839): Se ha iniciado el cliente GameCard
+
+[INFO] 08:51:35:432 GameCard/(5839:5839): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 08:51:35:433 GameCard/(5839:5839): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 08:51:35:433 GameCard/(5839:5839): Se ha suscrito a la cola GET_POKEMON
+[DEBUG] 08:51:42:616 GameCard/(5839:5863): Llegó un mensaje de la cola NEW
+[DEBUG] 08:51:43:837 GameCard/(5839:5839): STOP
+[ERROR] 08:51:47:443 GameCard/(5839:5863): Mensaje recibido de una cola no correspondiente
+[INFO] 08:52:57:306 GameCard/(5970:5970): Se ha iniciado el cliente GameCard
+
+[INFO] 08:52:57:312 GameCard/(5970:5970): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 08:52:57:312 GameCard/(5970:5970): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 08:52:57:313 GameCard/(5970:5970): Se ha suscrito a la cola GET_POKEMON
+[DEBUG] 08:53:07:155 GameCard/(5970:5970): STOP
+[INFO] 08:53:37:491 GameCard/(6053:6053): Se ha iniciado el cliente GameCard
+
+[INFO] 08:53:40:321 GameCard/(6053:6053): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 08:53:40:321 GameCard/(6053:6053): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 08:53:40:322 GameCard/(6053:6053): Se ha suscrito a la cola GET_POKEMON
+[DEBUG] 08:53:57:938 GameCard/(6053:6053): STOP
+[INFO] 09:10:37:808 GameCard/(6894:6894): Se ha iniciado el cliente GameCard
+
+[INFO] 09:11:40:882 GameCard/(6894:6894): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 09:11:40:882 GameCard/(6894:6894): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 09:11:40:883 GameCard/(6894:6894): Se ha suscrito a la cola GET_POKEMON
+[DEBUG] 09:12:06:911 GameCard/(6894:6894): STOP
+[DEBUG] 09:12:15:540 GameCard/(6894:6912): Llegó un mensaje de la cola NEW
+[ERROR] 09:12:28:458 GameCard/(6894:6912): Mensaje recibido de una cola no correspondiente
+[ERROR] 09:12:37:269 GameCard/(6894:6912): Mensaje recibido de una cola no correspondiente
+[ERROR] 09:12:41:920 GameCard/(6894:6912): Mensaje recibido de una cola no correspondiente
+[ERROR] 09:12:48:252 GameCard/(6894:6912): Mensaje recibido de una cola no correspondiente
+[INFO] 09:49:06:564 GameCard/(8145:8145): Se ha iniciado el cliente GameCard
+
+[INFO] 09:49:14:696 GameCard/(8145:8145): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 09:49:14:696 GameCard/(8145:8145): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 09:49:14:697 GameCard/(8145:8145): Se ha suscrito a la cola GET_POKEMON
+[DEBUG] 09:49:33:275 GameCard/(8145:8145): STOP
+[DEBUG] 09:49:51:794 GameCard/(8145:8156): Llegó un mensaje de la cola NEW
+[INFO] 10:52:51:725 GameCard/(10102:10102): Se ha iniciado el cliente GameCard
+
+[INFO] 10:53:16:921 GameCard/(10102:10102): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 10:53:16:926 GameCard/(10102:10102): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 10:53:16:926 GameCard/(10102:10102): Se ha suscrito a la cola GET_POKEMON
+[DEBUG] 10:53:25:612 GameCard/(10102:10188): Llegó un mensaje de la cola NEW
+[DEBUG] 10:53:26:593 GameCard/(10102:10102): STOP
+[ERROR] 10:53:27:599 GameCard/(10102:10188): Mensaje recibido de una cola no correspondiente
+[ERROR] 10:53:33:605 GameCard/(10102:10188): Mensaje recibido de una cola no correspondiente
+[ERROR] 10:53:35:299 GameCard/(10102:10188): Mensaje recibido de una cola no correspondiente
+[ERROR] 10:53:36:846 GameCard/(10102:10188): Mensaje recibido de una cola no correspondiente
+[ERROR] 10:53:38:384 GameCard/(10102:10188): Mensaje recibido de una cola no correspondiente
+[ERROR] 10:53:40:19 GameCard/(10102:10188): Mensaje recibido de una cola no correspondiente
+[ERROR] 10:53:41:588 GameCard/(10102:10188): Mensaje recibido de una cola no correspondiente
+[INFO] 10:56:29:634 GameCard/(10484:10484): Se ha iniciado el cliente GameCard
+
+[INFO] 10:56:42:559 GameCard/(10484:10484): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 10:56:42:559 GameCard/(10484:10484): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 10:56:42:559 GameCard/(10484:10484): Se ha suscrito a la cola GET_POKEMON
+[DEBUG] 10:56:48:511 GameCard/(10484:10494): Llegó un mensaje de la cola NEW
+[DEBUG] 10:56:51:75 GameCard/(10484:10484): STOP
+[ERROR] 10:56:58:948 GameCard/(10484:10494): Mensaje recibido de una cola no correspondiente
