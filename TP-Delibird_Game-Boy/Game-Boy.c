@@ -47,7 +47,7 @@ int conectarseADestino(proceso destino) {
 				proceso, ipDestino, puertoDestino, socketDestino);
 
 		log_info(loggerOficial,
-					"Se ha conectado el GameBoy a un proceso.\nTipo de proceso: %s\nIP: %s\nPUERTO: %s\nSocket:%d",
+					"Se ha conectado el GameBoy a un proceso.Tipo de proceso: %s | IP: %s | PUERTO: %s | Socket:%d",
 					proceso, ipDestino, puertoDestino, socketDestino);
 	}
 	free(ipDestino);
@@ -340,7 +340,7 @@ int main(int argc, char** argv) {
 				mensajeNew mensaje;
 				if (destino == BROKER) {
 					//./gameboy BROKER NEW_POKEMON [POKEMON] [POSX] [POSY] [CANTIDAD]
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
 					strcpy(mensaje.pokemon, argv[3]);
 					mensaje.posicionX = atoi(argv[4]);
@@ -355,7 +355,7 @@ int main(int argc, char** argv) {
 					free(mensaje.pokemon);
 				} else {
 					//./gameboy GAMECARD NEW_POKEMON [POKEMON] [POSX] [POSY] [CANTIDAD] [ID_MENSAJE]
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
 					strcpy(mensaje.pokemon, argv[3]);
 					mensaje.posicionX = atoi(argv[4]);

@@ -128,9 +128,9 @@ void atenderColas() {
 				list_iterate(getColaByNum(numCola), &enviarEstructuraMensajeASuscriptor);
 
 				//Cambie esto:
-				//list_clean(getColaByNum(numCola));
+				list_clean(getColaByNum(numCola));
 				//Por esto:
-				list_clean_and_destroy_elements(getColaByNum(numCola), (void*)destructorNodos);
+				//list_clean_and_destroy_elements(getColaByNum(numCola), (void*)destructorNodos);
 				//Si rompe algo, tenerlo en cuenta
 			}
 		}

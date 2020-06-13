@@ -115,6 +115,7 @@ void dumpCache();
 bool estaOcupado(void* regParticion);
 registroParticion * vaciarParticion();
 bool hayEspacioLibrePara(int sizeMensaje);
+int maximoEntre(int valor1, int valor2);
 
 
 

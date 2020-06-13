@@ -251,7 +251,7 @@ void * usarBestFit(estructuraMensaje mensaje) {
 	bool estaVaciaYAlcanza(void * particion) {
 		registroParticion * reg = (registroParticion *) particion;
 		return reg->estado == LIBRE
-				&& reg->tamanioParticion >= mensaje.sizeMensaje;
+				&& reg->tamanioParticion >= maximoEntre(mensaje.sizeMensaje,minimoTamanioParticion);
 	}
 
 	t_list * particionesValidas = list_filter(registrosDeParticiones,
@@ -261,16 +261,16 @@ void * usarBestFit(estructuraMensaje mensaje) {
 	registroParticion * registro = (registroParticion *) list_get(
 			particionesOrdenadasPorTamanio, 0);
 
-	if (registro->tamanioParticion > mensaje.sizeMensaje) {
-		aniadirNuevoRegistroALista(registrosDeParticiones, registro,
-				mensaje.sizeMensaje);
+	if (registro->tamanioParticion > maximoEntre(mensaje.sizeMensaje,minimoTamanioParticion)) {
+		aniadirNuevoRegistroALista(registrosDeParticiones, registro,maximoEntre(mensaje.sizeMensaje,minimoTamanioParticion));
 		reasignarNumerosDeParticion(registrosDeParticiones);
 	}
 
 	memcpy(registro->posInicialFisica, mensaje.mensaje, mensaje.sizeMensaje);
 	registro->estado = OCUPADO;
 	registro->idMensaje = mensaje.id;
-	registro->tamanioParticion = mensaje.sizeMensaje;
+	registro->tamanioParticion = maximoEntre(mensaje.sizeMensaje,minimoTamanioParticion);
+	registro->tamanioMensaje=mensaje.sizeMensaje;
 	registro->tiempoArribo = time(NULL);
 	registro->tiempoUltimoUso = time(NULL);
 
@@ -307,20 +307,20 @@ void * usarFirstFit(estructuraMensaje mensaje) {
 	bool estaVaciaYAlcanza(void * particion) {
 		registroParticion * registro = (registroParticion *) particion;
 		return registro->estado == LIBRE
-				&& registro->tamanioParticion >= mensaje.sizeMensaje;
+				&& registro->tamanioParticion >= maximoEntre(mensaje.sizeMensaje,minimoTamanioParticion);
 	}
 	registroParticion * registro = (registroParticion *) list_find(
 			registrosDeParticiones, (void *) estaVaciaYAlcanza);
-	if (registro->tamanioParticion > mensaje.sizeMensaje) {
-		aniadirNuevoRegistroALista(registrosDeParticiones, registro,
-				mensaje.sizeMensaje);
+	if (registro->tamanioParticion > maximoEntre(mensaje.sizeMensaje,minimoTamanioParticion)) {
+		aniadirNuevoRegistroALista(registrosDeParticiones, registro,maximoEntre(mensaje.sizeMensaje,minimoTamanioParticion));
 		reasignarNumerosDeParticion(registrosDeParticiones);
 	}
 
 	memcpy(registro->posInicialFisica, mensaje.mensaje, mensaje.sizeMensaje);
 	registro->estado = OCUPADO;
 	registro->idMensaje = mensaje.id;
-	registro->tamanioParticion = mensaje.sizeMensaje;
+	registro->tamanioParticion = maximoEntre(mensaje.sizeMensaje,minimoTamanioParticion);
+	registro->tamanioMensaje=mensaje.sizeMensaje;
 	registro->tiempoArribo = time(NULL);
 	registro->tiempoUltimoUso = time(NULL);
 
@@ -428,10 +428,11 @@ void compactarCacheSegunPD() {
 		}
 
 		memcpy(registro->posInicialFisica, registroAMover->posInicialFisica,
-				registroAMover->tamanioParticion);
+				registroAMover->tamanioMensaje);
 		registro->estado = OCUPADO;
 		registro->idMensaje = registroAMover->idMensaje;
 		registro->tamanioParticion = registroAMover->tamanioParticion;
+		registro->tamanioMensaje=registroAMover->tamanioMensaje;
 		registro->tiempoArribo = registroAMover->tiempoArribo;
 		registro->tiempoUltimoUso = registroAMover->tiempoUltimoUso;
 
@@ -516,6 +517,13 @@ bool hayMensajes() {
 	return list_any_satisfy(registrosDeParticiones, (void *) estaOcupado);
 }
 
+int maximoEntre(int valor1, int valor2){
+	if(valor1>valor2)
+		return valor1;
+	else
+		return valor2;
+}
+
 void asegurarEspacioLibrePara(int sizeMensaje) {
 
 	int cantBusquedas = config_get_int_value(config, "FRECUENCIA_COMPACTACION");
@@ -534,7 +542,7 @@ void asegurarEspacioLibrePara(int sizeMensaje) {
 			}
 		}
 	} else {
-		while (!hayEspacioLibrePara(sizeMensaje)) {
+		while (!hayEspacioLibrePara(sizeMensaje)){
 			registroParticion * particionLiberada = vaciarParticion();
 			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %p", particionLiberada->posInicialFisica);
 			if (hayEspacioLibrePara(sizeMensaje)) {
@@ -549,7 +557,7 @@ void asegurarEspacioLibrePara(int sizeMensaje) {
 
 void * cachearConParticionesDinamicas(estructuraMensaje mensaje) {
 
-	asegurarEspacioLibrePara(mensaje.sizeMensaje);
+	asegurarEspacioLibrePara(maximoEntre(mensaje.sizeMensaje,minimoTamanioParticion));
 
 	if (algoritmoParticionLibre == FIRST_FIT)
 		return usarFirstFit(mensaje);
