@@ -22,6 +22,7 @@ typedef enum{
 	CONECTADO=1,
 	ERROR_CONEXION=-1
 }estadoConexion;
+
 estadoConexion statusConexionBroker;
 
 int socketSuscripcionNEW, socketSuscripcionGET, socketSuscripcionCATCH, socketEscuchaGameboy;

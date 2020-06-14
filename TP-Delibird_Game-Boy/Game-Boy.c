@@ -285,7 +285,7 @@ int main(int argc, char** argv) {
 			opCode operacion = NUEVA_CONEXION;
 
 			send(socketDestino,&operacion,sizeof(opCode),0);
-			recv(socketDestino,&idProceso,sizeof(uint32_t),MSG_WAITALL);
+			recv(socketDestino,&idProceso,sizeof(uint32_t), MSG_WAITALL);
 			log_debug(logger,"El broker ha asignado el siguiente ID de proceso: %d",idProceso);
 
 			int socketSuscripcion = conectarseADestino(destino);
