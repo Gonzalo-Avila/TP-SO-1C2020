@@ -622,7 +622,6 @@ bool elSuscriptorEstaEnLaLista(t_list * lista, uint32_t idSuscriptor) {
 }
 
 t_list * getListaDeRegistrosFiltrados(suscriptor * nuevoSuscriptor, cola codSuscripcion) {
-
 	bool estaEnLaColaYNoConfirmoRecepcion(void * registro) {
 		registroCache * reg = (registroCache *) registro;
 		return (reg->colaMensaje == codSuscripcion) && (!elSuscriptorEstaEnLaLista(reg->procesosQueConfirmaronRecepcion,nuevoSuscriptor->clientID));
@@ -632,7 +631,6 @@ t_list * getListaDeRegistrosFiltrados(suscriptor * nuevoSuscriptor, cola codSusc
 
 void enviarMensajes(t_list * mensajesAEnviar, suscriptor * suscriptor) {
 	void enviarMensajeAlSuscriptor(void * registro) {
-
 
 		registroCache * reg = (registroCache *) registro;
 		estructuraMensaje mensajeAEnviar;

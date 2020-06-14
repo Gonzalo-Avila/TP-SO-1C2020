@@ -241,8 +241,7 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 		list_add(getColaByNum(tipoCola), generarNodo(mensajeNuevo));
 	}
 
-
-	log_info(loggerOficial, "Llegó un nuevo mensaje a la cola %s. Se le asignó el ID: %d",getCodeStringByNum(tipoCola), id);
+	log_info(loggerOficial, "Llegó un nuevo mensaje a la cola %s. Se le asignó el ID: %d", getCodeStringByNum(tipoCola), id);
 
 	cachearMensaje(mensajeNuevo);
 
