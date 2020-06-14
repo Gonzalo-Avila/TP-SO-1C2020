@@ -165,10 +165,6 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 	uint32_t* idCorrelativo = malloc(sizeof(uint32_t));
 	recv(socketEmisor, idCorrelativo, sizeof(uint32_t), MSG_WAITALL);
 
-	//TODO
-	// |- Ver si el ID correlativo ya fue recibido, y si es asi, ignorar el mensaje.
-	// |- Podemos usar una lista de IDs correlativos ya recibidos.
-
 	if(!seRecibioElIDCorrelativo(*idCorrelativo)){
 		if(*idCorrelativo != -1){
 			list_add(idCorrelativosRecibidos, idCorrelativo);
