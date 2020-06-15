@@ -52,21 +52,21 @@ void esperarMensajesGameboy(int* socketSuscripcion) {
 	switch (mensaje->colaEmisora) {
 	case NEW: {
 		//Procesar mensaje NEW
-		procesarNEW();
 		log_debug(logger, "[GAMEBOY] Llegó un mensaje de la cola NEW");
+		procesarNEW(mensaje);
 		break;
 	}
 	case GET: {
 		//Procesar mensaje GET
-		procesarGET();
-
 		log_debug(logger, "[GAMEBOY] Llegó un mensaje de la cola GET");
+		procesarGET(mensaje);
+
 		break;
 	}
 	case CATCH: {
 		//Procesar mensaje CATCH
-		procesarCATCH();
 		log_debug(logger, "[GAMEBOY] Llegó un mensaje de la cola CATCH");
+		procesarCATCH(mensaje);
 		break;
 	}
 	default: {

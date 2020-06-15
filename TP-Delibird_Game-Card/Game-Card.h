@@ -27,12 +27,14 @@ estadoConexion statusConexionBroker;
 
 int socketSuscripcionNEW, socketSuscripcionGET, socketSuscripcionCATCH, socketEscuchaGameboy;
 
+
 //Game-Card.c
 void inicializarVariablesGlobales();
 void destruirVariablesGlobales();
-void procesarNEW();
-void procesarCATCH();
-void procesarGET();
+void procesarNEW(mensajeRecibido * mensaje);
+void procesarCATCH(mensajeRecibido * mensaje);
+void procesarGET(mensajeRecibido * mensaje);
+void enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo, uint32_t sizeMensaje, void * mensaje);
 void inicializarFileSystem();
 
 //Game-Card_Conexiones.c

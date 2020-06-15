@@ -27,6 +27,7 @@
 #include <math.h>
 
 t_log * logger;
+t_log * loggerOficial;
 t_config * config;
 
 /*	<opCode><Type><Msj>
@@ -39,6 +40,10 @@ t_config * config;
  * MENSAJE 		LOCALIZED	<MsjLenght> <NombrePokemon> = 1 6 <MsjLenght> <NombrePokemon>
  * */
 
+
+typedef enum {
+	FAIL=0, OK=1
+}resultado;
 typedef enum {
 	NUEVO_MENSAJE = 1,
 	FINALIZAR = 2,

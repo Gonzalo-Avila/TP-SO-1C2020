@@ -4,6 +4,7 @@
 void inicializarVariablesGlobales() {
 	config = config_create("gameboy.config");
 	logger = log_create("gameboy_logs", "GameBoy", 1, LOG_LEVEL_TRACE);
+	loggerOficial = log_create("gameboy_logs_oficial", "Delibird - GameBoy",0,LOG_LEVEL_TRACE);
 }
 
 int conectarseADestino(proceso destino) {
@@ -44,6 +45,10 @@ int conectarseADestino(proceso destino) {
 		log_info(logger,
 				"Se ha conectado el GameBoy a un proceso.\nTipo de proceso: %s\nIP: %s\nPUERTO: %s\nSocket:%d",
 				proceso, ipDestino, puertoDestino, socketDestino);
+
+		log_info(loggerOficial,
+					"Se ha conectado el GameBoy a un proceso.Tipo de proceso: %s | IP: %s | PUERTO: %s | Socket:%d",
+					proceso, ipDestino, puertoDestino, socketDestino);
 	}
 	free(ipDestino);
 	free(puertoDestino);
@@ -73,7 +78,14 @@ cola definirTipoMensaje(char * argumento) {
 	log_error(logger, "No se pudo determinar el tipo de cola o suscripción");
 	return -1;
 }
+resultado obtenerResultadoDesdeCadena(char * cadena){
+	if(strcmp("OK",cadena)==0)
+	   return OK;
+	if(strcmp("FAIL",cadena)==0)
+	   return FAIL;
 
+	return -1;
+}
 proceso definirDestino(char * argumento) {
 	if (strcmp("TEAM", argumento) == 0) {
 		return TEAM;
@@ -103,7 +115,11 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 	            		"ID correlativo: %d\n"
 	            		"Tamaño del mensaje: %d\n",
 						getCodeStringByNum(mensaje->colaEmisora),mensaje->idMensaje, mensaje->idCorrelativo,mensaje->sizeMensaje);
+
+	log_info(loggerOficial,"Se recibió un nuevo mensaje del broker en la cola: %s\n",getCodeStringByNum(mensaje->colaEmisora));
+
 	int offset=0;
+	char finDeCadena = '\0';
 	switch(mensaje->colaEmisora){
 	case NEW:{
 		mensajeNew msg;
@@ -111,9 +127,11 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 		memcpy(&(msg.longPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
 
-		msg.pokemon=malloc(msg.longPokemon);
+		msg.pokemon=malloc(msg.longPokemon+1);
 		memcpy(msg.pokemon,mensaje->mensaje+offset,msg.longPokemon);
 		offset+=msg.longPokemon;
+
+		memcpy(msg.pokemon+msg.longPokemon,&finDeCadena,1);
 
 		memcpy(&(msg.posicionX),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
@@ -124,7 +142,7 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 		memcpy(&(msg.cantPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
 
-		log_info(logger, "Longitud pokemon: %d\nPokemon: %s\nPosicion X: %d\nPosicion Y: %d\n Cantidad del pokemon:%d\n",msg.longPokemon,msg.pokemon,msg.posicionX,msg.posicionY,msg.cantPokemon);
+		log_info(logger, "Longitud pokemon: %d\nPokemon: %s\nPosicion X: %d\nPosicion Y: %d\nCantidad del pokemon:%d\n",msg.longPokemon,msg.pokemon,msg.posicionX,msg.posicionY,msg.cantPokemon);
 
 		free(msg.pokemon);
 		break;
@@ -135,9 +153,11 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 		memcpy(&(msg.longPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
 
-		msg.pokemon=malloc(msg.longPokemon);
+		msg.pokemon=malloc(msg.longPokemon+1);
 		memcpy(msg.pokemon,mensaje->mensaje+offset,msg.longPokemon);
 		offset+=msg.longPokemon;
+
+		memcpy(msg.pokemon+msg.longPokemon,&finDeCadena,1);
 
 		memcpy(&(msg.posicionX),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
@@ -156,9 +176,11 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 		memcpy(&(msg.longPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
 
-		msg.pokemon=malloc(msg.longPokemon);
+		msg.pokemon=malloc(msg.longPokemon+1);
 		memcpy(msg.pokemon,mensaje->mensaje+offset,msg.longPokemon);
 		offset+=msg.longPokemon;
+
+		memcpy(msg.pokemon+msg.longPokemon,&finDeCadena,1);
 
 		memcpy(&(msg.posicionX),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
@@ -185,8 +207,11 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 		memcpy(&(msg.longPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
 
-		msg.pokemon=malloc(msg.longPokemon);
+		msg.pokemon=malloc(msg.longPokemon+1);
 		memcpy(msg.pokemon,mensaje->mensaje+offset,msg.longPokemon);
+		offset+=msg.longPokemon;
+
+		memcpy(msg.pokemon+msg.longPokemon,&finDeCadena,1);
 
 
 		log_info(logger, "Longitud pokemon: %d\nPokemon: %s\n",msg.longPokemon,msg.pokemon);
@@ -199,9 +224,11 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 		memcpy(&(msg.longPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
 
-		msg.pokemon=malloc(msg.longPokemon);
+		msg.pokemon=malloc(msg.longPokemon+1);
 		memcpy(msg.pokemon,mensaje->mensaje+offset,msg.longPokemon);
 		offset+=msg.longPokemon;
+
+		memcpy(msg.pokemon+msg.longPokemon,&finDeCadena,1);
 
 		memcpy(&(msg.listSize),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
@@ -219,7 +246,6 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 }
 int main(int argc, char** argv) {
 
-	//Se setean todos los datos
 	inicializarVariablesGlobales();
 	log_info(logger, "Se ha iniciado el cliente gameboy\n");
 	pthread_t hiloCountdown;
@@ -232,20 +258,12 @@ int main(int argc, char** argv) {
 	if(destino == SUSCRIPTOR_CID){
 		uint32_t ack = 1;
 		uint32_t idProceso = atoi(argv[4]);
-		//opCode operacion = NUEVA_CONEXION;
-
-		/*
-		send(socketDestino,&operacion,sizeof(opCode),0);
-		recv(socketDestino,&idProceso,sizeof(uint32_t),MSG_WAITALL);
-		log_debug(logger,"El broker ha asignado el siguiente ID de proceso: %d",idProceso);
-		*/
-
-		//int socketSuscripcion = conectarseADestino(destino);
 
 		log_debug(logger,"El broker volvio a conectar al proceso con clientID: %d",idProceso);
 		suscribirseACola(socketDestino, tipoMensaje,idProceso);
 		log_debug(logger,"Se realizó suscripción a la cola %s", getCodeStringByNum(tipoMensaje));
 
+		log_info(loggerOficial,"Se realizó suscripción a la cola %s", getCodeStringByNum(tipoMensaje));
 
 		void tiempoLimiteDeSuscripcion(char * tiempo){
 			opCode operacion2 = FINALIZAR;
@@ -255,9 +273,9 @@ int main(int argc, char** argv) {
 			send(socketFinalizacion,&tipoMensaje,sizeof(cola),0);
 			send(socketFinalizacion,&idProceso,sizeof(uint32_t),0);
 			log_info(logger,"El gameboy se ha desconectado del broker");
-					//close(socketDestino);
-					//close(socketFinalizacion);
-					//close(socketSuscripcion);
+			//close(socketDestino);
+			//close(socketFinalizacion);
+			//close(socketSuscripcion);
 			log_destroy(logger);
 			config_destroy(config);
 			log_info(logger, "El proceso GameBoy finalizó su ejecución");
@@ -285,12 +303,14 @@ int main(int argc, char** argv) {
 			opCode operacion = NUEVA_CONEXION;
 
 			send(socketDestino,&operacion,sizeof(opCode),0);
-			recv(socketDestino,&idProceso,sizeof(uint32_t), MSG_WAITALL);
+			recv(socketDestino,&idProceso,sizeof(uint32_t),MSG_WAITALL);
 			log_debug(logger,"El broker ha asignado el siguiente ID de proceso: %d",idProceso);
 
 			int socketSuscripcion = conectarseADestino(destino);
 			suscribirseACola(socketSuscripcion, tipoMensaje,idProceso);
 			log_debug(logger,"Se realizó suscripción a la cola %s", getCodeStringByNum(tipoMensaje));
+
+			log_info(loggerOficial,"Se realizó suscripción a la cola %s", getCodeStringByNum(tipoMensaje));
 
 			void tiempoLimiteDeSuscripcion(char * tiempo){
 				opCode operacion2 = FINALIZAR;
@@ -332,9 +352,9 @@ int main(int argc, char** argv) {
 				mensajeNew mensaje;
 				if (destino == BROKER) {
 					//./gameboy BROKER NEW_POKEMON [POKEMON] [POSX] [POSY] [CANTIDAD]
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 					mensaje.posicionX = atoi(argv[4]);
 					mensaje.posicionY = atoi(argv[5]);
 					mensaje.cantPokemon = atoi(argv[6]);
@@ -347,9 +367,9 @@ int main(int argc, char** argv) {
 					free(mensaje.pokemon);
 				} else {
 					//./gameboy GAMECARD NEW_POKEMON [POKEMON] [POSX] [POSY] [CANTIDAD] [ID_MENSAJE]
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 					mensaje.posicionX = atoi(argv[4]);
 					mensaje.posicionY = atoi(argv[5]);
 					mensaje.cantPokemon = atoi(argv[6]);
@@ -390,9 +410,9 @@ int main(int argc, char** argv) {
 				mensajeAppeared mensaje;
 				if (destino == BROKER) {
 					//./gameboy BROKER APPEARED_POKEMON [POKEMON] [POSX] [POSY] [ID_MENSAJE_CORRELATIVO]
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 					mensaje.posicionX = atoi(argv[4]);
 					mensaje.posicionY = atoi(argv[5]);
 					size = sizeof(uint32_t) * 3 + mensaje.longPokemon;
@@ -405,9 +425,9 @@ int main(int argc, char** argv) {
 					free(mensaje.pokemon);
 				} else {
 					//./gameboy TEAM APPEARED_POKEMON [POKEMON] [POSX] [POSY]
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 					mensaje.posicionX = atoi(argv[4]);
 					mensaje.posicionY = atoi(argv[5]);
 
@@ -443,9 +463,9 @@ int main(int argc, char** argv) {
 				mensajeCatch mensaje;
 				if (destino == BROKER) {
 					//./gameboy BROKER CATCH_POKEMON [POKEMON] [POSX] [POSY]
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 					mensaje.posicionX = atoi(argv[4]);
 					mensaje.posicionY = atoi(argv[5]);
 					size = sizeof(uint32_t) * 3 + mensaje.longPokemon;
@@ -459,9 +479,9 @@ int main(int argc, char** argv) {
 					free(mensaje.pokemon);
 				} else {
 					//./gameboy GAMECARD CATCH_POKEMON [POKEMON] [POSX] [POSY] [ID_MENSAJE]
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 					mensaje.posicionX = atoi(argv[4]);
 					mensaje.posicionY = atoi(argv[5]);
 					datosMensaje.id = atoi(argv[6]);
@@ -496,7 +516,7 @@ int main(int argc, char** argv) {
 				mensajeCaught mensaje;
 				if (destino == BROKER) {
 					//./gameboy BROKER CAUGHT_POKEMON [ID_MENSAJE_CORRELATIVO] [OK/FAIL]
-					mensaje.resultado = atoi(argv[4]);
+					mensaje.resultado = obtenerResultadoDesdeCadena(argv[4]);
 					size = sizeof(uint32_t);
 					enviarMensajeABroker(socketDestino, tipoMensaje, atoi(argv[3]),
 							size, &mensaje);
@@ -512,9 +532,9 @@ int main(int argc, char** argv) {
 				mensajeGet mensaje;
 				if (destino == BROKER) {
 					//./gameboy BROKER GET_POKEMON [POKEMON]
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 					size = sizeof(uint32_t) + mensaje.longPokemon;
 
 					enviarMensajeABroker(socketDestino, tipoMensaje, -1, size,
@@ -527,9 +547,9 @@ int main(int argc, char** argv) {
 				} else {
 					//./gameboy GAMECARD GET_POKEMON [POKEMON] [ID_MENSAJE]
 
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 
 					datosMensaje.id = atoi(argv[4]);
 					datosMensaje.idCorrelativo = -1;
@@ -545,7 +565,7 @@ int main(int argc, char** argv) {
 
 					datosMensaje.colaMensajeria = tipoMensaje;
 					//datosMensaje.socketSuscriptor = socketDestino;
-					enviarMensajceASuscriptor(datosMensaje, socketDestino);
+					enviarMensajeASuscriptor(datosMensaje, socketDestino);
 					log_info(logger, "Se envió un mensaje al proceso %s", argv[1]);
 
 					free(datosMensaje.mensaje);
@@ -556,9 +576,9 @@ int main(int argc, char** argv) {
 			case LOCALIZED: {
 				mensajeLocalized mensaje;
 				//./broker BROKER LOCALIZED_POKEMON [POKEMON] [CANTIDAD] [POSX] [POSY] (UN PAR DE COORDENADAS X CANTIDAD)
-				mensaje.longPokemon = strlen(argv[3]) + 1;
+				mensaje.longPokemon = strlen(argv[3]);
 				mensaje.pokemon = malloc(mensaje.longPokemon);
-				strcpy(mensaje.pokemon, argv[3]);
+				memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 				mensaje.listSize = atoi(argv[4]);
 
 				posicYCant *parDeCoordenadas = malloc(sizeof(posicYCant));
@@ -605,11 +625,13 @@ int main(int argc, char** argv) {
 		}
 	}
 
+	log_info(logger, "El proceso GameBoy finalizó su ejecución");
 
 	close(socketDestino);
 	log_destroy(logger);
+	log_destroy(loggerOficial);
 	config_destroy(config);
-	log_info(logger, "El proceso GameBoy finalizó su ejecución");
+
 	return 0;
 
 }

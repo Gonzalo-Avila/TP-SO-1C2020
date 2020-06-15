@@ -11,6 +11,7 @@ void crearConexionBroker() {
 	pthread_create(&hiloReconexiones, NULL, (void*) mantenerConexionBroker, NULL);
 	pthread_detach(hiloReconexiones);
 	log_info(logger, "Hilo de conexion Broker creado");
+
 }
 
 
@@ -96,20 +97,20 @@ void esperarMensajesBroker(int* socketSuscripcion) {
 		switch (mensaje->colaEmisora) {
 		case NEW: {
 			//Procesar mensaje NEW
-
 			log_debug(logger, "[BROKER] Llegó un mensaje de la cola NEW");
+			procesarNEW(mensaje);
 			break;
 		}
 		case GET: {
 			//Procesar mensaje GET
-
 			log_debug(logger, "[BROKER] Llegó un mensaje de la cola GET");
+			procesarGET(mensaje);
 			break;
 		}
 		case CATCH: {
 			//Procesar mensaje CATCH
-
 			log_debug(logger, "[BROKER] Llegó un mensaje de la cola CATCH");
+			procesarCATCH(mensaje);
 			break;
 		}
 		default: {
@@ -119,7 +120,6 @@ void esperarMensajesBroker(int* socketSuscripcion) {
 			statusConexionBroker = ERROR_CONEXION;
 			break;
 		}
-
 		}
 		free(mensaje);
 	}

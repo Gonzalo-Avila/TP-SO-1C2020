@@ -84,8 +84,8 @@ void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar) {
 
 	return aEnviar;
 }
-
 void armarPaqueteNew(int offset, void* mensaje, tBuffer* buffer) {
+
 	mensajeNew* msg = mensaje;
 	memcpy(buffer->stream + offset, &(msg->longPokemon), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
@@ -283,7 +283,8 @@ mensajeRecibido * recibirMensajeDeBroker(int socketBroker) {
 	recv(socketBroker, &(mensaje->sizePayload), sizeof(uint32_t), MSG_WAITALL);
 	recv(socketBroker, &(mensaje->colaEmisora), sizeof(cola), MSG_WAITALL);
 	recv(socketBroker, &(mensaje->idMensaje), sizeof(uint32_t), MSG_WAITALL);
-	recv(socketBroker, &(mensaje->idCorrelativo), sizeof(uint32_t),MSG_WAITALL);
+	recv(socketBroker, &(mensaje->idCorrelativo), sizeof(uint32_t),
+			MSG_WAITALL);
 	recv(socketBroker, &(mensaje->sizeMensaje), sizeof(uint32_t), MSG_WAITALL);
 	mensaje->mensaje = malloc(mensaje->sizeMensaje);
 	recv(socketBroker, mensaje->mensaje, mensaje->sizeMensaje, MSG_WAITALL);
@@ -377,4 +378,3 @@ char* getCodeStringByNum(int nro) {
 
 
 //---------------------------------------------------
-

@@ -22,22 +22,46 @@ void destruirVariablesGlobales() {
 }
 
 
-void procesarNEW(){
+void procesarNEW(mensajeRecibido * mensajeRecibido){
+
+	log_debug(logger, "[NEW] Procesando");
 	/*
 	 * TODO -> EnunciadP
 	 */
+
+	log_debug(logger, "[NEW] Enviando APPEARED");
+	enviarMensajeBroker(APPEARED, mensajeRecibido->idCorrelativo, 3, (void*) "asd");
+	log_debug(logger, "[NEW] APPEARED enviado");
 }
 
-void procesarCATCH(){
+void procesarCATCH(mensajeRecibido * mensajeRecibido){
+
+	log_debug(logger, "[CATCH] Procesando");
 	/*
 	 * TODO -> EnunciadO
 	 */
+
+	log_debug(logger, "[CATCH] Enviando CAUGHT");
+	enviarMensajeBroker(CAUGHT, mensajeRecibido->idCorrelativo, 3, (void*) "asd");
+	log_debug(logger, "[CATCH] CAUGHT enviado");
 }
 
-void procesarGET(){
+void procesarGET(mensajeRecibido * mensajeRecibido){
+
+	log_debug(logger, "[GET] Procesando");
 	/*
 	 * TODO -> EnunciadO
 	 */
+
+	log_debug(logger, "[GET] Enviando LOCALIZED");
+	enviarMensajeBroker(LOCALIZED, mensajeRecibido->idCorrelativo, 3, (void*) "asd");
+	log_debug(logger, "[GET] LOCALIZED enviado");
+}
+
+void enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo, uint32_t sizeMensaje, void * mensaje){
+	int socketBroker = crearConexionCliente(ipServidor, puertoServidor);
+	enviarMensajeABroker(socketBroker, colaDestino, idCorrelativo, sizeMensaje, mensaje);
+	close(socketBroker);
 }
 
 void inicializarFileSystem(){
