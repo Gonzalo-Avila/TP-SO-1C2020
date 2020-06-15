@@ -119,6 +119,7 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 	log_info(loggerOficial,"Se recibió un nuevo mensaje del broker en la cola: %s\n",getCodeStringByNum(mensaje->colaEmisora));
 
 	int offset=0;
+	char finDeCadena = '\0';
 	switch(mensaje->colaEmisora){
 	case NEW:{
 		mensajeNew msg;
@@ -126,9 +127,11 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 		memcpy(&(msg.longPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
 
-		msg.pokemon=malloc(msg.longPokemon);
+		msg.pokemon=malloc(msg.longPokemon+1);
 		memcpy(msg.pokemon,mensaje->mensaje+offset,msg.longPokemon);
 		offset+=msg.longPokemon;
+
+		memcpy(msg.pokemon+msg.longPokemon,&finDeCadena,1);
 
 		memcpy(&(msg.posicionX),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
@@ -139,7 +142,7 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 		memcpy(&(msg.cantPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
 
-		log_info(logger, "Longitud pokemon: %d\nPokemon: %s\nPosicion X: %d\nPosicion Y: %d\n Cantidad del pokemon:%d\n",msg.longPokemon,msg.pokemon,msg.posicionX,msg.posicionY,msg.cantPokemon);
+		log_info(logger, "Longitud pokemon: %d\nPokemon: %s\nPosicion X: %d\nPosicion Y: %d\nCantidad del pokemon:%d\n",msg.longPokemon,msg.pokemon,msg.posicionX,msg.posicionY,msg.cantPokemon);
 
 		free(msg.pokemon);
 		break;
@@ -150,9 +153,11 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 		memcpy(&(msg.longPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
 
-		msg.pokemon=malloc(msg.longPokemon);
+		msg.pokemon=malloc(msg.longPokemon+1);
 		memcpy(msg.pokemon,mensaje->mensaje+offset,msg.longPokemon);
 		offset+=msg.longPokemon;
+
+		memcpy(msg.pokemon+msg.longPokemon,&finDeCadena,1);
 
 		memcpy(&(msg.posicionX),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
@@ -171,9 +176,11 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 		memcpy(&(msg.longPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
 
-		msg.pokemon=malloc(msg.longPokemon);
+		msg.pokemon=malloc(msg.longPokemon+1);
 		memcpy(msg.pokemon,mensaje->mensaje+offset,msg.longPokemon);
 		offset+=msg.longPokemon;
+
+		memcpy(msg.pokemon+msg.longPokemon,&finDeCadena,1);
 
 		memcpy(&(msg.posicionX),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
@@ -200,8 +207,11 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 		memcpy(&(msg.longPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
 
-		msg.pokemon=malloc(msg.longPokemon);
+		msg.pokemon=malloc(msg.longPokemon+1);
 		memcpy(msg.pokemon,mensaje->mensaje+offset,msg.longPokemon);
+		offset+=msg.longPokemon;
+
+		memcpy(msg.pokemon+msg.longPokemon,&finDeCadena,1);
 
 
 		log_info(logger, "Longitud pokemon: %d\nPokemon: %s\n",msg.longPokemon,msg.pokemon);
@@ -214,9 +224,11 @@ void imprimirMensaje(mensajeRecibido * mensaje){
 		memcpy(&(msg.longPokemon),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
 
-		msg.pokemon=malloc(msg.longPokemon);
+		msg.pokemon=malloc(msg.longPokemon+1);
 		memcpy(msg.pokemon,mensaje->mensaje+offset,msg.longPokemon);
 		offset+=msg.longPokemon;
+
+		memcpy(msg.pokemon+msg.longPokemon,&finDeCadena,1);
 
 		memcpy(&(msg.listSize),mensaje->mensaje+offset,sizeof(uint32_t));
 		offset+=sizeof(uint32_t);
@@ -342,7 +354,7 @@ int main(int argc, char** argv) {
 					//./gameboy BROKER NEW_POKEMON [POKEMON] [POSX] [POSY] [CANTIDAD]
 					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 					mensaje.posicionX = atoi(argv[4]);
 					mensaje.posicionY = atoi(argv[5]);
 					mensaje.cantPokemon = atoi(argv[6]);
@@ -357,7 +369,7 @@ int main(int argc, char** argv) {
 					//./gameboy GAMECARD NEW_POKEMON [POKEMON] [POSX] [POSY] [CANTIDAD] [ID_MENSAJE]
 					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 					mensaje.posicionX = atoi(argv[4]);
 					mensaje.posicionY = atoi(argv[5]);
 					mensaje.cantPokemon = atoi(argv[6]);
@@ -398,9 +410,9 @@ int main(int argc, char** argv) {
 				mensajeAppeared mensaje;
 				if (destino == BROKER) {
 					//./gameboy BROKER APPEARED_POKEMON [POKEMON] [POSX] [POSY] [ID_MENSAJE_CORRELATIVO]
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 					mensaje.posicionX = atoi(argv[4]);
 					mensaje.posicionY = atoi(argv[5]);
 					size = sizeof(uint32_t) * 3 + mensaje.longPokemon;
@@ -413,9 +425,9 @@ int main(int argc, char** argv) {
 					free(mensaje.pokemon);
 				} else {
 					//./gameboy TEAM APPEARED_POKEMON [POKEMON] [POSX] [POSY]
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 					mensaje.posicionX = atoi(argv[4]);
 					mensaje.posicionY = atoi(argv[5]);
 
@@ -451,9 +463,9 @@ int main(int argc, char** argv) {
 				mensajeCatch mensaje;
 				if (destino == BROKER) {
 					//./gameboy BROKER CATCH_POKEMON [POKEMON] [POSX] [POSY]
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 					mensaje.posicionX = atoi(argv[4]);
 					mensaje.posicionY = atoi(argv[5]);
 					size = sizeof(uint32_t) * 3 + mensaje.longPokemon;
@@ -467,9 +479,9 @@ int main(int argc, char** argv) {
 					free(mensaje.pokemon);
 				} else {
 					//./gameboy GAMECARD CATCH_POKEMON [POKEMON] [POSX] [POSY] [ID_MENSAJE]
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 					mensaje.posicionX = atoi(argv[4]);
 					mensaje.posicionY = atoi(argv[5]);
 					datosMensaje.id = atoi(argv[6]);
@@ -520,9 +532,9 @@ int main(int argc, char** argv) {
 				mensajeGet mensaje;
 				if (destino == BROKER) {
 					//./gameboy BROKER GET_POKEMON [POKEMON]
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 					size = sizeof(uint32_t) + mensaje.longPokemon;
 
 					enviarMensajeABroker(socketDestino, tipoMensaje, -1, size,
@@ -535,9 +547,9 @@ int main(int argc, char** argv) {
 				} else {
 					//./gameboy GAMECARD GET_POKEMON [POKEMON] [ID_MENSAJE]
 
-					mensaje.longPokemon = strlen(argv[3]) + 1;
+					mensaje.longPokemon = strlen(argv[3]);
 					mensaje.pokemon = malloc(mensaje.longPokemon);
-					strcpy(mensaje.pokemon, argv[3]);
+					memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 
 					datosMensaje.id = atoi(argv[4]);
 					datosMensaje.idCorrelativo = -1;
@@ -564,9 +576,9 @@ int main(int argc, char** argv) {
 			case LOCALIZED: {
 				mensajeLocalized mensaje;
 				//./broker BROKER LOCALIZED_POKEMON [POKEMON] [CANTIDAD] [POSX] [POSY] (UN PAR DE COORDENADAS X CANTIDAD)
-				mensaje.longPokemon = strlen(argv[3]) + 1;
+				mensaje.longPokemon = strlen(argv[3]);
 				mensaje.pokemon = malloc(mensaje.longPokemon);
-				strcpy(mensaje.pokemon, argv[3]);
+				memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 				mensaje.listSize = atoi(argv[4]);
 
 				posicYCant *parDeCoordenadas = malloc(sizeof(posicYCant));
