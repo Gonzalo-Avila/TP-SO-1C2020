@@ -545,7 +545,7 @@ int main(int argc, char** argv) {
 
 					datosMensaje.colaMensajeria = tipoMensaje;
 					//datosMensaje.socketSuscriptor = socketDestino;
-					enviarMensajeASuscriptor(datosMensaje, socketDestino);
+					enviarMensajceASuscriptor(datosMensaje, socketDestino);
 					log_info(logger, "Se envió un mensaje al proceso %s", argv[1]);
 
 					free(datosMensaje.mensaje);
