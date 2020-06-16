@@ -11,7 +11,6 @@ void crearConexionBroker() {
 	pthread_create(&hiloReconexiones, NULL, (void*) mantenerConexionBroker, NULL);
 	pthread_detach(hiloReconexiones);
 	log_info(logger, "Hilo de conexion Broker creado");
-
 }
 
 

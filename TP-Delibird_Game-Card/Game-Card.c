@@ -66,7 +66,7 @@ void enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo, uint32_t size
 
 void inicializarFileSystem(){
 	/*
-	 * Leer metadata, inicializar bloques y marcar como vacios
+	 * Leer metadata:  y marcar todos los bloques como vacios
 	 */
 }
 
