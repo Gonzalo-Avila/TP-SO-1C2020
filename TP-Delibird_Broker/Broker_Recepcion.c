@@ -21,6 +21,8 @@ void atenderConexiones(int *socketEscucha) {
 				"Se ha conectado un cliente. Número de socket cliente: %d",
 				*socketCliente);
 
+		log_info(loggerOficial,"Se ha conectado un proceso al broker.");
+
         esperarMensajes(socketCliente);
         free(socketCliente);
 	}
@@ -127,7 +129,7 @@ void atenderSuscripcion(int *socketSuscriptor){
 	log_debug(logger, "%d", codSuscripcion);
 
 	sem_wait(&mutexColas);
-	if(yaExisteSuscriptor(nuevoSuscriptor->clientID,codSuscripcion)==true){ //
+	if(yaExisteSuscriptor(nuevoSuscriptor->clientID,codSuscripcion)==true){
 		suscriptor * suscriptorYaAlmacenado = buscarSuscriptor(nuevoSuscriptor->clientID,codSuscripcion);
         suscriptorYaAlmacenado->socketCliente=nuevoSuscriptor->socketCliente;
 
@@ -135,7 +137,6 @@ void atenderSuscripcion(int *socketSuscriptor){
         				"El cliente %d ha actualizado el socket: %d",
 						suscriptorYaAlmacenado->clientID, suscriptorYaAlmacenado->socketCliente);
 
-        //COMENTAR ESTA LINEA Y REALIZAR TESTING - NO BORRAR COMMENT
 		enviarMensajesCacheados(suscriptorYaAlmacenado, codSuscripcion);
 	}
 	else
@@ -144,6 +145,8 @@ void atenderSuscripcion(int *socketSuscriptor){
 		log_info(logger,
 				"Hay un nuevo suscriptor en la cola %s. Número de socket suscriptor: %d",
 				getCodeStringByNum(codSuscripcion), *socketSuscriptor);
+
+		log_info(loggerOficial, "El proceso %d se ha suscripto a la cola %s",nuevoSuscriptor->clientID,getCodeStringByNum(codSuscripcion));
 
 
 		enviarMensajesCacheados(nuevoSuscriptor, codSuscripcion);
@@ -164,6 +167,10 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 	int idMensaje;
 	uint32_t* idCorrelativo = malloc(sizeof(uint32_t));
 	recv(socketEmisor, idCorrelativo, sizeof(uint32_t), MSG_WAITALL);
+
+	//TODO
+	// |- Ver si el ID correlativo ya fue recibido, y si es asi, ignorar el mensaje.
+	// |- Podemos usar una lista de IDs correlativos ya recibidos.
 
 	if(!seRecibioElIDCorrelativo(*idCorrelativo)){
 		if(*idCorrelativo != -1){
@@ -234,9 +241,9 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 		list_add(getColaByNum(tipoCola), generarNodo(mensajeNuevo));
 	}
 
-	sem_wait(&mutex_regParticiones);
+	log_info(loggerOficial, "Llegó un nuevo mensaje a la cola %s. Se le asignó el ID: %d", getCodeStringByNum(tipoCola), id);
+
 	cachearMensaje(mensajeNuevo);
-	sem_post(&mutex_regParticiones);
 
 	sem_post(&mutexColas);
 	sem_post(&habilitarEnvio);

@@ -88,7 +88,6 @@ uint32_t globalIDProceso;
 sem_t mutexColas;
 sem_t habilitarEnvio;
 sem_t mutex_regParticiones;
-sem_t mutex_suscriptores;
 
 
 typedef struct {
@@ -116,6 +115,7 @@ void dumpCache();
 bool estaOcupado(void* regParticion);
 registroParticion * vaciarParticion();
 bool hayEspacioLibrePara(int sizeMensaje);
+int maximoEntre(int valor1, int valor2);
 
 
 
@@ -199,5 +199,6 @@ char* obtenerLRU(registroCache* regCache);
 time_t getTime() ;
 char* timeToString(time_t time);
 void imprimirListasIDs(uint32_t idMsg);
+char * removerSaltoDeLinea(char * cadenaOriginal);
 
 #endif /* BROKER_H_ */
