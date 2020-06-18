@@ -557,6 +557,14 @@ int maximoEntre(int valor1, int valor2){
 		return valor2;
 }
 
+void consolidarPD(registroParticion * particionLiberada){
+	//TODO
+
+	registroParticion * particionAnterior;
+	registroParticion * particionPosterior;
+
+	//if()
+}
 void asegurarEspacioLibrePara(int sizeMensaje) {
 
 	int cantBusquedas = config_get_int_value(config, "FRECUENCIA_COMPACTACION");

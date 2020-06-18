@@ -10,6 +10,7 @@
 
 #include <Utils.h>
 #include <sys/stat.h>
+#include <sys/mman.h>
 #include <fcntl.h>
 
 uint32_t idProceso;

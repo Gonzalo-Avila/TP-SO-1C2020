@@ -60,8 +60,8 @@ estadoConexion conectarYSuscribir(){
 }
 
 void mantenerConexionBroker(){
-	int tiempoReintento = 10;
-	//int tiempoReintento = config_get_int_value(config, "TIEMPO_DE_REINTENTO_CONEXION");
+	//int tiempoReintento = 10;
+	int tiempoReintento = config_get_int_value(config, "TIEMPO_DE_REINTENTO_CONEXION");
 	statusConexionBroker = conectarYSuscribir();
 	log_info(logger, "Creando conexion estable de broker");
 	while(1){
