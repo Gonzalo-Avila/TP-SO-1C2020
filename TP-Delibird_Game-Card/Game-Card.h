@@ -9,11 +9,14 @@
 #define GAME_CARD_H_
 
 #include <Utils.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 uint32_t idProceso;
 
 char * ipServidor;
 char * puertoServidor;
+char * puntoDeMontaje;
 
 pthread_t hiloEsperaNEW, hiloEsperaGET, hiloEsperaCATCH, hiloEsperaGameboy, hiloReconexiones;
 
@@ -36,6 +39,7 @@ void procesarCATCH(mensajeRecibido * mensaje);
 void procesarGET(mensajeRecibido * mensaje);
 void enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo, uint32_t sizeMensaje, void * mensaje);
 void inicializarFileSystem();
+char * cadenasConcatenadas(char * cadena1, char * cadena2);
 
 //Game-Card_Conexiones.c
 void esperarMensajesGameboy(int* socketSuscripcion);

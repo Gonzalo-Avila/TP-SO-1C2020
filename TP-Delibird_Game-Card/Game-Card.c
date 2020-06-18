@@ -10,6 +10,9 @@ void inicializarVariablesGlobales() {
 	puertoServidor=malloc(strlen(config_get_string_value(config,"PUERTO_BROKER"))+1);
 	strcpy(puertoServidor,config_get_string_value(config,"PUERTO_BROKER"));
 
+	puntoDeMontaje=malloc(strlen(config_get_string_value(config,"PUNTO_MONTAJE_TALLGRASS"))+1);
+	strcpy(puntoDeMontaje,config_get_string_value(config,"PUNTO_MONTAJE_TALLGRASS"));
+
 	idProceso=-1;
 	statusConexionBroker=0;
 }
@@ -65,9 +68,38 @@ void enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo, uint32_t size
 }
 
 void inicializarFileSystem(){
-	/*
-	 * Leer metadata:  y marcar todos los bloques como vacios
+
+	char * rutaMetadata = cadenasConcatenadas(puntoDeMontaje,"/Metadata/Metadata.bin");
+	int fd = open(rutaMetadata,O_RDONLY);
+	//El archivo Metadata.bin siempre existe, si no se puede leer, el programa no puede ejecutarse.
+	if(fd<0){
+		log_error(logger,"No se pudo leer el archivo metadata.bin en el punto de montaje");
+		exit(0);
+	}
+	struct stat sb;
+	fstat(fd,&sb);
+	log_info(logger,"File descriptor archivo: %d", fd);
+	log_info(logger, "Tamaño del archivo leido: %d", sb.st_size);
+	free(rutaMetadata);
+
+	/* TODO
+	 * 1) Cargar los datos del Metadata.bin en variables globales para su uso, ya que no van a cambiar durante la ejecución.
+	 * 2) Chequear si existe el archivo Bitmap.bin en la ruta correspondiente.
+	 *      |- Si existe, se continua la ejecución de las funciones del GameCard (esperar mensajes).
+	 *      |- Si no existe, se crea la cantidad de bloques que indica el archivo Metadata.bin, y el archivo Bitmap.bin
+	 *         usando bitarray de las commons.
+	 *
+	 *    Bitmap.bin es un archivo binario, y hay que leerlo/escribirlo como tal.
 	 */
+
+
+}
+
+char * cadenasConcatenadas(char * cadena1, char * cadena2){
+	char * cadenaFinal = malloc(strlen(cadena1)+strlen(cadena2)+1);
+	strcpy(cadenaFinal,cadena1);
+	strcat(cadenaFinal,cadena2);
+	return cadenaFinal;
 }
 
 int main(){

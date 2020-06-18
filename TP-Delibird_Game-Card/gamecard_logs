@@ -598,3 +598,5 @@
 [ERROR] 11:35:19:94 GameCard/(10484:10505): Mensaje recibido de una cola no correspondiente
 [ERROR] 11:35:19:264 GameCard/(10484:10503): Mensaje recibido de una cola no correspondiente
 [ERROR] 11:35:19:558 GameCard/(10484:10504): Mensaje recibido de una cola no correspondiente
+[INFO] 22:46:05:109 GameCard/(8264:8264): Se ha iniciado el cliente GameCard
+
