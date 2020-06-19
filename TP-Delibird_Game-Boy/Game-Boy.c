@@ -98,6 +98,7 @@ int main(int argc, char** argv) {
 
 	//Se setean todos los datos
 	inicializarVariablesGlobales();
+	printf("%s", argv[1]);
 	log_info(logger, "Se ha iniciado el cliente gameboy\n");
 	pthread_t hiloCountdown;
 

@@ -160,11 +160,17 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 				//me quedo esperando a estar en EJEC
 				sem_wait(&semEntrenadores[entrenador->id]);
 				bool alternadorXY = true;
-				int contadorQuantum = atoi(config_get_string_value(config, "QUANTUM"));
+				int quantum = atoi(config_get_string_value(config, "QUANTUM"));
+				int contadorQuantum = quantum;
 
 				while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] && entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
+					printf("%d", contadorQuantum);
 					if(!contadorQuantum){
-						entrenador->estado = BLOQUEADO;
+						contadorQuantum = quantum;
+						log_debug(logger, "El entrenador %d se quedó sin Quantum. Vuelve a la cola de ready.", entrenador->id);
+						entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
+						list_add(listaDeReady,entrenador);
+						sem_post(&procesoEnReady);
 						sem_post(&semPlanif);
 					}
 

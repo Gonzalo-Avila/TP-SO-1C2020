@@ -247,11 +247,11 @@ void resolverDeadlock(t_entrenador *entrenador){
 	for(int i = 0;list_size(team->entrenadores);i++){
 		ePotencialEnDeadlock = list_get(team->entrenadores,i);
 
-		if(estaEnDeadlock(ePotencialEnDeadlock,entrenador))
+		//if(estaEnDeadlock(ePotencialEnDeadlock,entrenador))
 			//hago las acciones para pasar a ready
 			//y ademas seteo a donde se tiene que mover
 			//y que pokemon tiene que intercambiar
-		;
+		//;
 
 	}
 }
