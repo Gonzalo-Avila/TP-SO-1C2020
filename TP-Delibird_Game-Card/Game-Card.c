@@ -85,6 +85,12 @@ char * agregarFinDeCadena (char * cadena){
    return cad;
 }
 
+char * posicionComoChar(uint32_t posx, uint32_t posy){
+	char * cad = NULL;
+	asprintf(cad,"%d-%d",posx,posy);
+	return cad;
+}
+
 void procesarNEW(mensajeRecibido * mensajeRecibido){
 
 	log_debug(logger, "[NEW] Procesando");
@@ -93,38 +99,81 @@ void procesarNEW(mensajeRecibido * mensajeRecibido){
 	 */
 	mensajeNew * mensaje = desarmarMensajeNEW(mensajeRecibido);
 
-	char * rutaFiles = cadenasConcatenadas(puntoDeMontaje,"Files/");
+
 	char * pokemonConFinDeCadena = agregarFinDeCadena(mensaje->pokemon);
-	char * rutaPokemon = cadenasConcatenadas(rutaFiles,pokemonConFinDeCadena);
-	char * rutaMetadataPokemon = cadenasConcatenadas(rutaPokemon, "/Metadata.bin");
+	char * posicionComoCadena = posicionComoChar(mensaje->posicionX,mensaje->posicionY);
+	char * rutaPokemon = NULL;
+	asprintf(rutaPokemon,"%s%s%s%s",puntoDeMontaje,"Files/",pokemonConFinDeCadena);
+	char * rutaMetadataPokemon = NULL;
+	asprintf(rutaMetadataPokemon,"%s%s%s%s",puntoDeMontaje,"Files/",pokemonConFinDeCadena,"/Metadata.bin");
 
 	int pokemonFD = open(rutaMetadataPokemon,O_RDWR);
 
 	if(pokemonFD<0){
 		mkdir(rutaPokemon, 0777);
-		pokemonFD = open(rutaMetadataPokemon,O_RDWR | O_CREAT,0777);
+		pokemonFD = open(rutaMetadataPokemon, O_RDWR | O_CREAT,0777);
+		//Inicializar archivo nuevo
+	}
+	else{
+
+		t_config * archivo;
+		archivo=config_create(rutaMetadataPokemon);
+		config_set_value(archivo,"OPEN","Y");
+		char ** bloques = config_get_array_value(config,"BLOCKS");
+
+		int i=0;
+		bool lasPosicionesYaExistian = false;
+		while(bloques[i]!=NULL){
+		    t_config * bloque;
+
+		    char * rutaBloque = NULL;
+		    asprintf(rutaBloque,"%s%s%s%s",puntoDeMontaje,"Blocks/",bloque[i],".bin");
+			bloque=config_create(rutaBloque);
+			if(config_has_property(bloque,posicionComoCadena))
+			{
+				int cantidadActual = config_get_int_value(bloque,posicionComoCadena);
+				cantidadActual+=mensaje->cantPokemon;
+				char * cantidadComoString;
+				asprintf(cantidadComoString,"%d",cantidadActual);
+				config_set_value(bloque,posicionComoCadena,cantidadComoString);
+				lasPosicionesYaExistian = true;
+				free(cantidadComoString);
+				break;
+			}
+			i++;
+		}
+		if(!lasPosicionesYaExistian){
+			/* TODO
+			 *  - Ver si hay algun bloque con suficiente espacio libre.
+			 *  - Sino, asignar un nuevo bloque
+			 */
+		}
+
+
 	}
 
-	struct stat sb;
-	fstat(pokemonFD,&sb);
 
+	/*
+    struct stat sb;
+    fstat(pokemonFD,&sb);
 	char * mappedFile = mmap(NULL,sb.st_size, PROT_READ | PROT_WRITE, MAP_SHARED,pokemonFD,0);
-
 	log_info(logger,"%s",mappedFile);
+	*/
 
 	log_debug(logger, "[NEW] Enviando APPEARED");
 	enviarMensajeBroker(APPEARED, mensajeRecibido->idCorrelativo, 3, (void*) "asd");
 	log_debug(logger, "[NEW] APPEARED enviado");
 
-	free(rutaFiles);
 	free(pokemonConFinDeCadena);
 	free(rutaPokemon);
 	free(rutaMetadataPokemon);
+	free(posicionComoCadena);
 	free(mensajeRecibido->mensaje);
 	free(mensajeRecibido);
 	free(mensaje->pokemon);
 	free(mensaje);
 }
+
 
 void procesarCATCH(mensajeRecibido * mensajeRecibido){
 
