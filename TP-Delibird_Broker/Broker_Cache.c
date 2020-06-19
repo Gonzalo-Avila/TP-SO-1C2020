@@ -557,13 +557,55 @@ int maximoEntre(int valor1, int valor2){
 		return valor2;
 }
 
+bool existeYEstaLibre(registroParticion * particion){
+	return particion!=NULL && particion->estado==LIBRE;
+}
 void consolidarPD(registroParticion * particionLiberada){
-	//TODO
 
-	registroParticion * particionAnterior;
-	registroParticion * particionPosterior;
+	bool esParticionAnterior(void * registro){
+		registroParticion * reg = (registroParticion *) registro;
+		return reg->nroParticion==particionLiberada->nroParticion-1;
 
-	//if()
+	}
+	bool esParticionPosterior(void * registro){
+		registroParticion * reg = (registroParticion *) registro;
+		return reg->nroParticion==particionLiberada->nroParticion+1;
+	}
+
+	registroParticion * particionAnterior = list_find(registrosDeParticiones, (void *)esParticionAnterior);
+	registroParticion * particionPosterior = list_find(registrosDeParticiones, (void *)esParticionPosterior);
+
+
+	bool esLaDelMedio(void * registro){
+			registroParticion * reg = (registroParticion *) registro;
+			return reg->nroParticion==particionLiberada->nroParticion;
+	}
+	bool esLaPosterior(void * registro){
+			registroParticion * reg = (registroParticion *) registro;
+			return reg->nroParticion==particionPosterior->nroParticion;
+	}
+
+	if(existeYEstaLibre(particionAnterior) && existeYEstaLibre(particionPosterior)){
+		particionAnterior->tamanioParticion+=particionLiberada->tamanioParticion+particionPosterior->tamanioParticion;
+		list_remove_by_condition(registrosDeParticiones, (void *)esLaDelMedio);
+		list_remove_by_condition(registrosDeParticiones, (void *)esLaPosterior);
+	}
+	else{
+		if(!existeYEstaLibre(particionAnterior) && existeYEstaLibre(particionPosterior)){
+			    particionLiberada->tamanioParticion+=particionPosterior->tamanioParticion;
+				list_remove_by_condition(registrosDeParticiones, (void *)esLaPosterior);
+		}
+		else{
+		    if(existeYEstaLibre(particionAnterior) && !existeYEstaLibre(particionPosterior)){
+		        particionAnterior->tamanioParticion+=particionLiberada->tamanioParticion;
+		        list_remove_by_condition(registrosDeParticiones, (void *)esLaDelMedio);
+		    }
+
+		}
+	}
+	reasignarNumerosDeParticion(registrosDeParticiones);
+
+
 }
 void asegurarEspacioLibrePara(int sizeMensaje) {
 
@@ -572,6 +614,7 @@ void asegurarEspacioLibrePara(int sizeMensaje) {
 		int i = 0;
 		while (!hayEspacioLibrePara(sizeMensaje)) {
 			registroParticion * particionLiberada = vaciarParticion();
+			consolidarPD(particionLiberada);
 			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %p", particionLiberada->posInicialFisica);
 			if (hayEspacioLibrePara(sizeMensaje)) {
 				break;
@@ -585,6 +628,7 @@ void asegurarEspacioLibrePara(int sizeMensaje) {
 	} else {
 		while (!hayEspacioLibrePara(sizeMensaje)){
 			registroParticion * particionLiberada = vaciarParticion();
+			consolidarPD(particionLiberada);
 			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %p", particionLiberada->posInicialFisica);
 			if (hayEspacioLibrePara(sizeMensaje)) {
 				break;
