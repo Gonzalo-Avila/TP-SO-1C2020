@@ -123,7 +123,7 @@ void gestionarEntrendorFIFO(t_entrenador *entrenador){
 			sem_wait(&semEntrenadores[entrenador->id]);
 			bool alternadorXY = true;
 
-			while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] && entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
+			while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
 				sem_wait(&mutexEntrenadores);
 
 	//			Nico | Separado en X e Y para cumplir con el requerimiento que prohibe los movimientos diagonales.
@@ -163,7 +163,7 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 				int quantum = atoi(config_get_string_value(config, "QUANTUM"));
 				int contadorQuantum = quantum;
 
-				while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] && entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
+				while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
 					printf("%d", contadorQuantum);
 					if(!contadorQuantum){
 						contadorQuantum = quantum;
