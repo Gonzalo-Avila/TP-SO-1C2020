@@ -308,3 +308,86 @@ Socket:4
 [DEBUG] 22:59:43:789 GameBoy/(6939:6939): El mensaje es LOCALIZED
 [INFO] 22:59:45:176 GameBoy/(6939:6939): Creo parDeCoordenadas
 [DEBUG] 22:59:48:265 GameBoy/(6939:6939): Se completo el guardado de coordenadas
+[INFO] 02:54:23:861 GameBoy/(7281:7281): Se ha iniciado el cliente gameboy
+
+[INFO] 02:55:09:866 GameBoy/(7386:7386): Se ha iniciado el cliente gameboy
+
+[INFO] 02:55:10:874 GameBoy/(7386:7386): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:4
+[DEBUG] 02:55:11:888 GameBoy/(7386:7386): El mensaje es LOCALIZED
+[INFO] 02:55:14:23 GameBoy/(7386:7386): Creo parDeCoordenadas
+[DEBUG] 02:55:16:102 GameBoy/(7386:7386): Se completo el guardado de coordenadas
+[INFO] 02:55:17:660 GameBoy/(7386:7386): Se envió un mensaje a la cola LOCALIZED_POKEMON del proceso BROKER
+[INFO] 02:59:13:591 GameBoy/(7632:7632): Se ha iniciado el cliente gameboy
+
+[INFO] 02:59:15:109 GameBoy/(7632:7632): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:4
+[DEBUG] 02:59:16:590 GameBoy/(7632:7632): El mensaje es LOCALIZED
+[INFO] 02:59:19:101 GameBoy/(7632:7632): Creo parDeCoordenadas
+[DEBUG] 02:59:22:810 GameBoy/(7632:7632): Se completo el guardado de coordenadas
+[INFO] 03:13:10:180 GameBoy/(3778:3778): Se ha iniciado el cliente gameboy
+
+[INFO] 03:13:10:997 GameBoy/(3778:3778): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:4
+[DEBUG] 03:13:11:964 GameBoy/(3778:3778): El mensaje es LOCALIZED
+[INFO] 03:13:13:552 GameBoy/(3778:3778): Creo parDeCoordenadas
+[DEBUG] 03:13:16:516 GameBoy/(3778:3778): Se completo el guardado de coordenadas
+[INFO] 03:19:08:57 GameBoy/(4108:4108): Se ha iniciado el cliente gameboy
+
+[INFO] 03:19:08:586 GameBoy/(4108:4108): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:4
+[DEBUG] 03:19:09:336 GameBoy/(4108:4108): El mensaje es LOCALIZED
+[INFO] 03:19:10:465 GameBoy/(4108:4108): Creo parDeCoordenadas
+[DEBUG] 03:19:11:888 GameBoy/(4108:4108): Se completo el guardado de coordenadas
+[INFO] 03:22:43:81 GameBoy/(4318:4318): Se ha iniciado el cliente gameboy
+
+[INFO] 03:22:43:682 GameBoy/(4318:4318): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:4
+[DEBUG] 03:22:44:507 GameBoy/(4318:4318): El mensaje es LOCALIZED
+[INFO] 03:22:45:901 GameBoy/(4318:4318): Creo parDeCoordenadas
+[DEBUG] 03:22:47:750 GameBoy/(4318:4318): Se completo el guardado de coordenadas
+[INFO] 03:25:22:699 GameBoy/(4512:4512): Se ha iniciado el cliente gameboy
+
+[INFO] 03:25:23:94 GameBoy/(4512:4512): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:4
+[DEBUG] 03:25:23:844 GameBoy/(4512:4512): El mensaje es LOCALIZED
+[INFO] 03:25:25:401 GameBoy/(4512:4512): Creo parDeCoordenadas
+[DEBUG] 03:25:28:9 GameBoy/(4512:4512): Se completo el guardado de coordenadas
+[INFO] 03:27:37:212 GameBoy/(4688:4688): Se ha iniciado el cliente gameboy
+
+[INFO] 03:27:38:426 GameBoy/(4688:4688): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:4
+[DEBUG] 03:27:39:330 GameBoy/(4688:4688): El mensaje es LOCALIZED
+[INFO] 03:27:41:418 GameBoy/(4688:4688): Creo parDeCoordenadas
+[DEBUG] 03:27:46:12 GameBoy/(4688:4688): Se completo el guardado de coordenadas
+[INFO] 03:29:53:578 GameBoy/(4995:4995): Se ha iniciado el cliente gameboy
+
+[INFO] 03:29:53:993 GameBoy/(4995:4995): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:4
+[DEBUG] 03:29:54:959 GameBoy/(4995:4995): El mensaje es LOCALIZED
+[INFO] 03:29:56:78 GameBoy/(4995:4995): Creo parDeCoordenadas
+[DEBUG] 03:29:58:540 GameBoy/(4995:4995): Se completo el guardado de coordenadas

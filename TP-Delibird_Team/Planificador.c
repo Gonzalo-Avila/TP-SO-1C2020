@@ -142,6 +142,48 @@ void ponerEnReadyAlMasCercano(int x, int y, char* pokemon){
 	sem_post(&mutexEntrenadores);
 }
 
+float calcularEstimacion(t_entrenador* entrenador){
+	float rafagaAnterior = entrenador->datosSjf.duracionRafagaAnt;
+	float estimadoAnterior = entrenador->datosSjf.estimadoRafagaAnt;
+	float alfa =(float) atof(config_get_string_value(config, "ALFA"));//Puede romper el atof, puede estar redondeando la coma
+
+	//Chequeo si el entrenador fue desalojado
+	if(!entrenador->datosSjf.fueDesalojado){
+		float estimadoProximaRafaga = alfa*rafagaAnterior+(1-alfa)*estimadoAnterior;
+		// Modifico valor del estimado actual
+		entrenador->datosSjf.estimadoRafagaAct = estimadoProximaRafaga;
+		//modifico valor del proximo estimado anterior
+		entrenador->datosSjf.estimadoRafagaAnt = entrenador->datosSjf.estimadoRafagaAct;
+	}
+ 	return entrenador->datosSjf.estimadoRafagaAct;
+}
+
+bool menorEstimacion(void* entrenador1, void* entrenador2) {
+	bool verifica = false;
+	float estimadoEntrenador1 = calcularEstimacion((t_entrenador*) entrenador1);
+	float estimadoEntrenador2 = calcularEstimacion((t_entrenador*) entrenador2);
+
+	if (estimadoEntrenador1 < estimadoEntrenador2)
+		verifica = true;
+
+	return verifica;
+}
+
+t_entrenador* entrenadorConMenorRafaga(){
+		list_sort(listaDeReady,menorEstimacion);
+		t_entrenador* entrenador = list_get(listaDeReady,0);
+		return entrenador;
+}
+
+bool hayNuevoEntrenadorConMenorRafaga(t_entrenador* entrenador){
+	bool verifica = false;
+	list_sort(listaDeReady,menorEstimacion);
+	t_entrenador* entrenador2 = list_get(listaDeReady,0);
+	if(entrenador->id != entrenador2->id)
+		verifica =true;
+	return verifica;
+}
+
 void activarHiloDe(int id){
 	sem_post(&semEntrenadores[id]);
 }
@@ -207,6 +249,60 @@ void planificarRR(){
 			}
 }
 
+void planificarSJFsinDesalojo(){
+	log_debug(logger,"Se activa el planificador");
+
+			while(noSeCumplieronLosObjetivos()){
+				t_entrenador *entrenador;
+
+				sem_wait(&procesoEnReady);
+				log_debug(logger,"Hurra, tengo algo en ready");
+
+				if(!list_is_empty(listaDeReady)){
+					//es necesario este if? si tengo el semaforo...
+
+					sem_wait(&mutexEntrenadores);
+					entrenador = entrenadorConMenorRafaga();
+					entrenador->estado = EJEC;
+					sem_post(&mutexEntrenadores);
+					//Remuevo de la listaDeReady el primer entrenador ya que la ordene por antes menor rafaga
+					list_remove(listaDeReady,0);
+					//No esta mas en ready el entrenador, esta en EXEC.
+					//El entrenador debe poder cambiar su estado para que no sea mas EXEC luego de ejecutar.
+
+					activarHiloDe(entrenador->id);
+				}
+				sem_wait(&semPlanif);
+			}
+}
+
+void planificarSJFconDesalojo(){
+	log_debug(logger,"Se activa el planificador");
+
+			while(noSeCumplieronLosObjetivos()){
+				t_entrenador *entrenador;
+
+				sem_wait(&procesoEnReady);
+				log_debug(logger,"Hurra, tengo algo en ready");
+
+				if(!list_is_empty(listaDeReady)){
+					//es necesario este if? si tengo el semaforo...
+
+					sem_wait(&mutexEntrenadores);
+					entrenador = entrenadorConMenorRafaga();
+					entrenador->estado = EJEC;
+					sem_post(&mutexEntrenadores);
+					//Remuevo de la listaDeReady el primer entrenador ya que la ordene por antes menor rafaga
+					list_remove(listaDeReady,0);
+					//No esta mas en ready el entrenador, esta en EXEC.
+					//El entrenador debe poder cambiar su estado para que no sea mas EXEC luego de ejecutar.
+
+					activarHiloDe(entrenador->id);
+				}
+				sem_wait(&semPlanif);
+			}
+}
+
 bool puedeExistirDeadlock(){
 	t_entrenador *entrenador;
 	bool verifica = false;
@@ -264,6 +360,14 @@ void planificador(){
 			}
 			case RR:{
 				planificarRR();
+				break;
+			}
+			case SJFSD:{
+				planificarSJFsinDesalojo();
+				break;
+			}
+			case SJFCD:{
+				planificarSJFconDesalojo();
 				break;
 			}
 			//en caso que tengamos otro algoritmo usamos la funcion de ese algoritmo

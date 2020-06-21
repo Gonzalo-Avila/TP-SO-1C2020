@@ -41,6 +41,14 @@ typedef struct{
 }t_objetivoActual;
 
 typedef struct{
+	float duracionRafagaAnt;
+	float duracionRafagaAct;
+	float estimadoRafagaAnt;
+	float estimadoRafagaAct;
+	bool fueDesalojado;
+}t_datosSjf;
+
+typedef struct{
 	int id;
 	t_posicion pos;
 	t_list *objetivos;
@@ -48,6 +56,7 @@ typedef struct{
 	e_estado estado;
 	bool suspendido;
 	t_objetivoActual pokemonAAtrapar;
+	t_datosSjf datosSjf;
 }t_entrenador;
 
 typedef struct{
@@ -107,13 +116,18 @@ bool estaEnEspera(t_entrenador *entrenador);
 bool distanciaMasCorta(void *entrenador1,void *entrenador2);
 bool estaEnLosObjetivos(char *pokemon);
 bool validarIDCorrelativoCatch(uint32_t id);
+bool menorEstimacion(void* entrenador1, void* entrenador2);
+bool hayNuevoEntrenadorConMenorRafaga(t_entrenador* entrenador);
 float calcularDistancia(int posX1, int posY1,int posX2,int posY2);
+float calcularEstimacion(t_entrenador* entrenador);
 int crearConexionEscuchaGameboy();
 e_algoritmo obtenerAlgoritmoPlanificador();
 t_catchEnEspera* buscarCatch(uint32_t idCorrelativo);
 t_dist *setearDistanciaEntrenadores(int id,int posX,int posY);
-t_entrenador* armarEntrenador(int id,char *posicionesEntrenador,char *objetivosEntrenador,char *pokemonesEntrenador);
+t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivosEntrenador,
+		char *pokemonesEntrenador, float estInicialEntrenador);
 t_entrenador* entrenadorMasCercanoEnEspera(int posX,int posY);
+t_entrenador* entrenadorConMenorRafaga();
 t_list *obtenerEntrenadoresReady();
 t_mensaje* deserializar(void* paquete);
 void inicializarVariablesGlobales();
@@ -121,7 +135,7 @@ void array_iterate_element(char** strings, void (*closure)(char*,t_list*),t_list
 void enlistar(char *elemento,t_list *lista);
 void obtenerDeConfig(char *clave,t_list *lista);
 void gestionarEntrenador(t_entrenador *entrenador);
-void gestionarEntrendorFIFO(t_entrenador *entrenador);
+void gestionarEntrenadorFIFO(t_entrenador *entrenador);
 void gestionarEntrenadorRR(t_entrenador* entrenador);
 void crearHiloEntrenador(t_entrenador* entrenador);
 void crearHilosDeEntrenadores();
@@ -148,6 +162,12 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 //void borrarPokemonDeObjetivos(char* pokemonAtrapado, t_list* objetivos);
 void activarHiloDe(int id);
 void activarHiloDeRR(int id, int quantum);
+void planificarSJFsinDesalojo();
+void planificarSJFconDesalojo();
+void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador);
+void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador);
+
+
 //uint32_t obtenerIdDelProceso(char* ip, char* puerto);
 
 #endif /* TEAM_H_ */

@@ -1,8 +1,8 @@
 #include "Team.h"
 
 /*Arma el Entrenador*/
-t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,
-		char *objetivosEntrenador, char *pokemonesEntrenador) {
+t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivosEntrenador,
+		char *pokemonesEntrenador, float estInicialEntrenador) {
 	t_entrenador* nuevoEntrenador = malloc(sizeof(t_entrenador));
 	t_list *posicionEntrenador = list_create();
 	t_list *objetivoEntrenador = list_create();
@@ -23,6 +23,9 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,
 	nuevoEntrenador->pokemones = pokemonEntrenador;
 	nuevoEntrenador->estado = NUEVO; // Debugeando de mi cuenta que sin esta linea de codigo solo el ultimo elemento lo pasa a new
 	nuevoEntrenador->suspendido = false;
+	nuevoEntrenador->datosSjf.duracionRafagaAnt = 0;
+	nuevoEntrenador->datosSjf.estimadoRafagaAnt = 0;
+	nuevoEntrenador->datosSjf.estimadoRafagaAct = estInicialEntrenador;
 
 	list_destroy(posicionEntrenador);
 
@@ -32,16 +35,18 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,
 /* Genera los Entrenadores con los datos del Config */
 void generarEntrenadores() {
 	t_entrenador* unEntrenador = malloc(sizeof(t_entrenador));
-	t_list* posiciones = list_create();
-	t_list* objetivos = list_create();
-	t_list* pokemones = list_create();
+		t_list* posiciones = list_create();
+		t_list* objetivos = list_create();
+		t_list* pokemones = list_create();
 
-	obtenerDeConfig("POSICIONES_ENTRENADORES", posiciones);
-	obtenerDeConfig("OBJETIVO_ENTRENADORES", objetivos);
-	obtenerDeConfig("POKEMON_ENTRENADORES", pokemones);
-	for (int contador = 0; contador < list_size(posiciones); contador++) {
+		obtenerDeConfig("POSICIONES_ENTRENADORES", posiciones);
+		obtenerDeConfig("OBJETIVO_ENTRENADORES", objetivos);
+		obtenerDeConfig("POKEMON_ENTRENADORES", pokemones);
+		float estimacion =(float)atof(config_get_string_value(config, "ESTIMACION_INICIAL"));//Puede romper el atof, puede estar redondeando la coma
+
+	for (int contador = 0; contador < list_size(posiciones); contador++){
 		unEntrenador = armarEntrenador(contador, list_get(posiciones, contador),
-				list_get(objetivos, contador), list_get(pokemones, contador));
+				list_get(objetivos, contador), list_get(pokemones, contador), estimacion);
 		list_add(team->entrenadores, unEntrenador);
 	}
 	list_destroy(posiciones);
@@ -117,7 +122,7 @@ bool estaEnLosObjetivos(char *pokemon){
 	return list_any_satisfy(team->objetivo,esUnObjetivo);
 }
 
-void gestionarEntrendorFIFO(t_entrenador *entrenador){
+void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 	 while(entrenador->estado != FIN){
 			//me quedo esperando a estar en EJEC
 			sem_wait(&semEntrenadores[entrenador->id]);
@@ -136,7 +141,7 @@ void gestionarEntrendorFIFO(t_entrenador *entrenador){
 				sem_post(&mutexEntrenadores);
 
 				alternadorXY = !alternadorXY;
-				usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 100000);
+				usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
 			}
 			//TODO
 	//		Comentamos pokemonRecibido porke funciona con otra logica.
@@ -187,8 +192,108 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 					sem_post(&mutexEntrenadores);
 
 					alternadorXY = !alternadorXY;
-					usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 100000);
+					usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
 					contadorQuantum--;
+				}
+				//TODO
+		//		Comentamos pokemonRecibido porke funciona con otra logica.
+		//			-acomodar appeared y caught.
+
+				enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+				entrenador->estado = BLOQUEADO;
+				entrenador->suspendido = true;
+
+				//recibir caught
+				//agrego el pokemon a la lista de pokemones del entrenador
+				//remuevo al pokempn del obetivo global????
+				//me bloqueo
+
+				sem_post(&semPlanif);
+
+	}
+}
+
+void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador){
+	 while(entrenador->estado != FIN){
+				//me quedo esperando a estar en EJEC
+				sem_wait(&semEntrenadores[entrenador->id]);
+				bool alternadorXY = true;
+				int rafagaActual;
+				while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
+					sem_wait(&mutexEntrenadores);
+
+		//			Separado en X e Y para cumplir con el requerimiento que prohibe los movimientos diagonales.
+					if(alternadorXY){
+						moverXDelEntrenador(entrenador);
+					}
+					else{
+						moverYDelEntrenador(entrenador);
+					}
+					sem_post(&mutexEntrenadores);
+
+					alternadorXY = !alternadorXY;
+					usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
+					rafagaActual++;
+				}
+				entrenador->datosSjf.duracionRafagaAnt = rafagaActual;
+				//TODO
+		//		Comentamos pokemonRecibido porke funciona con otra logica.
+		//			-acomodar appeared y caught.
+
+				enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+				entrenador->estado = BLOQUEADO;
+				entrenador->suspendido = true;
+
+				//recibir caught
+				//agrego el pokemon a la lista de pokemones del entrenador
+				//remuevo al pokempn del obetivo global????
+				//me bloqueo
+
+				sem_post(&semPlanif);
+
+	}
+}
+
+void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
+	 while(entrenador->estado != FIN){
+				//me quedo esperando a estar en EJEC
+				sem_wait(&semEntrenadores[entrenador->id]);
+				bool alternadorXY = true;
+				int rafagaActual=0;
+				while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
+					sem_wait(&mutexEntrenadores);
+		//			Separado en X e Y para cumplir con el requerimiento que prohibe los movimientos diagonales.
+					if(alternadorXY){
+						moverXDelEntrenador(entrenador);
+					}
+					else{
+						moverYDelEntrenador(entrenador);
+					}
+					sem_post(&mutexEntrenadores);
+
+					alternadorXY = !alternadorXY;
+					usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
+					rafagaActual++;
+					//Actualizo estimacion
+					entrenador->datosSjf.estimadoRafagaAct--;
+					// Actualizo duracion real de rafaga
+					if(!entrenador->datosSjf.fueDesalojado)
+						entrenador->datosSjf.duracionRafagaAnt = rafagaActual;
+					else entrenador->datosSjf.duracionRafagaAnt = entrenador->datosSjf.duracionRafagaAnt + rafagaActual;
+
+					//Chequeo si hay nuevo entrenador en ready con menor rafaga que el actual
+					// TODO
+					// Tira segmentation fault, es en hayNuevoEntrenadorConMenorRafaga
+					if(hayNuevoEntrenadorConMenorRafaga(entrenador)){
+						rafagaActual=0;
+						t_entrenador* entrenadorDesalojante = list_get(listaDeReady,0);
+						log_debug(logger, "El entrenador %d fue desalojado por el entranador %d. Vuelve a la cola de ready.", entrenador->id, entrenadorDesalojante->id);
+						entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
+						list_add(listaDeReady,entrenador);
+						entrenador->datosSjf.fueDesalojado = true;
+						sem_post(&procesoEnReady);
+						sem_post(&semPlanif);
+					}
 				}
 				//TODO
 		//		Comentamos pokemonRecibido porke funciona con otra logica.
@@ -212,15 +317,23 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 void gestionarEntrenador(t_entrenador *entrenador) {
 	switch(team->algoritmoPlanificacion){
 		case FIFO:{
-			gestionarEntrendorFIFO(entrenador);
+			gestionarEntrenadorFIFO(entrenador);
 			break;
 		}
 		case RR:{
 			gestionarEntrenadorRR(entrenador);
 			break;
 		}
+		case SJFSD:{
+			gestionarEntrenadorSJFsinDesalojo(entrenador);
+			break;
+		}
+		case SJFCD:{
+			gestionarEntrenadorSJFconDesalojo(entrenador);
+			break;
+		}
 		default:{
-			gestionarEntrendorFIFO(entrenador);
+			gestionarEntrenadorFIFO(entrenador);
 			break;
 		}
 	}
