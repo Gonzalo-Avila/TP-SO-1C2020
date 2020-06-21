@@ -79,67 +79,104 @@ mensajeGet * desarmarMensajeGET(mensajeRecibido * mensajeRecibido){
 }
 
 char * agregarFinDeCadena (char * cadena){
-   char * cad = malloc(strlen(cadena)+1);
-   memcpy(cad,cadena,strlen(cadena));
-   memcpy(cad+strlen(cadena),"\0",1);
+   char * cad = string_new();
+   string_append(&cad,cadena);
+   string_append(&cad,"\0");
    return cad;
 }
 
 char * posicionComoChar(uint32_t posx, uint32_t posy){
-	char * cad = NULL;
-	asprintf(cad,"%d-%d",posx,posy);
+	char * cad;
+	asprintf(&cad,"%d-%d",posx,posy);
 	return cad;
 }
 
+void inicializarArchivoMetadata(char * rutaArchivo){
+	t_config * metadata;
+	metadata = config_create(rutaArchivo);
+	config_set_value(metadata,"OPEN","N");
+	config_set_value(metadata,"BLOCKS","[]");
+	config_set_value(metadata,"SIZE","0");
+	config_set_value(metadata,"DIRECTORY","N");
+	config_save(metadata);
+	config_destroy(metadata);
+}
+
+void asignarBloqueAArchivo(char * rutaMetadataArchivo){
+	t_config * metadataArchivo;
+	metadataArchivo = config_create(rutaMetadataArchivo);
+	int indexBloqueLibre = buscarBloqueLibre();
+	//TODO
+}
+
+int buscarBloqueLibre(){
+	for(int i=0; i<cantidadDeBloques; i++){
+	  int estadoBloqueActual = bitarray_test_bit(bitarrayBloques, i);
+		 if(estadoBloqueActual==0){
+			 return i;
+		 }
+	}
+	return -1;
+}
+
+void crearNuevoPokemon(char * rutaMetadataPokemon, mensajeNew * datosDelPokemon){
+	int pokemonFD = open(rutaMetadataPokemon, O_RDWR | O_CREAT, 0777);
+	close(pokemonFD);
+	inicializarArchivoMetadata(rutaMetadataPokemon);
+	asignarBloqueAArchivo(rutaMetadataPokemon);
+
+	/*TODO
+	 * ...
+	 */
+}
 void procesarNEW(mensajeRecibido * mensajeRecibido){
 
 	log_debug(logger, "[NEW] Procesando");
-	/*
-	 * TODO -> EnunciadP
-	 */
+
 	mensajeNew * mensaje = desarmarMensajeNEW(mensajeRecibido);
 
 
 	char * pokemonConFinDeCadena = agregarFinDeCadena(mensaje->pokemon);
 	char * posicionComoCadena = posicionComoChar(mensaje->posicionX,mensaje->posicionY);
-	char * rutaPokemon = NULL;
-	asprintf(rutaPokemon,"%s%s%s%s",puntoDeMontaje,"Files/",pokemonConFinDeCadena);
-	char * rutaMetadataPokemon = NULL;
-	asprintf(rutaMetadataPokemon,"%s%s%s%s",puntoDeMontaje,"Files/",pokemonConFinDeCadena,"/Metadata.bin");
+	char * rutaPokemon;
+	asprintf(&rutaPokemon,"%s%s%s",puntoDeMontaje,"/Files/",pokemonConFinDeCadena); //Armo la ruta del pokemon
+	char * rutaMetadataPokemon;
+	asprintf(&rutaMetadataPokemon,"%s%s",rutaPokemon,"/metadata.bin");			   //Armo la ruta del metadata del pokemon
 
-	int pokemonFD = open(rutaMetadataPokemon,O_RDWR);
 
-	if(pokemonFD<0){
+	if(!existeElArchivo(rutaMetadataPokemon)){									    //Si el archivo no existe, el pokemon no existe y tengo que crearlo
 		mkdir(rutaPokemon, 0777);
-		pokemonFD = open(rutaMetadataPokemon, O_RDWR | O_CREAT,0777);
-		//Inicializar archivo nuevo
+		crearNuevoPokemon(rutaMetadataPokemon, mensaje);
 	}
-	else{
-
+	else{																		   //Si el archivo existe, leo sus bloques
 		t_config * archivo;
 		archivo=config_create(rutaMetadataPokemon);
 		config_set_value(archivo,"OPEN","Y");
-		char ** bloques = config_get_array_value(config,"BLOCKS");
+		config_save(archivo);
+		char ** bloques = config_get_array_value(archivo,"BLOCKS");                 //Obtengo sus bloques
 
 		int i=0;
 		bool lasPosicionesYaExistian = false;
-		while(bloques[i]!=NULL){
+		while(bloques[i]!=NULL){												   //Leo cada bloque
 		    t_config * bloque;
 
-		    char * rutaBloque = NULL;
-		    asprintf(rutaBloque,"%s%s%s%s",puntoDeMontaje,"Blocks/",bloque[i],".bin");
+		    char * rutaBloque;
+		    asprintf(&rutaBloque,"%s%s%s%s",puntoDeMontaje,"/Blocks/",bloques[i],".bin");
 			bloque=config_create(rutaBloque);
 			if(config_has_property(bloque,posicionComoCadena))
 			{
 				int cantidadActual = config_get_int_value(bloque,posicionComoCadena);
 				cantidadActual+=mensaje->cantPokemon;
 				char * cantidadComoString;
-				asprintf(cantidadComoString,"%d",cantidadActual);
+				asprintf(&cantidadComoString,"%d",cantidadActual);
 				config_set_value(bloque,posicionComoCadena,cantidadComoString);
+				config_save(archivo);
 				lasPosicionesYaExistian = true;
 				free(cantidadComoString);
+				config_destroy(bloque);
 				break;
 			}
+			config_destroy(bloque);
 			i++;
 		}
 		if(!lasPosicionesYaExistian){
@@ -148,15 +185,14 @@ void procesarNEW(mensajeRecibido * mensajeRecibido){
 			 *  - Sino, asignar un nuevo bloque
 			 */
 		}
-
-
 	}
-
 
 	/*
     struct stat sb;
     fstat(pokemonFD,&sb);
 	char * mappedFile = mmap(NULL,sb.st_size, PROT_READ | PROT_WRITE, MAP_SHARED,pokemonFD,0);
+	msync(mappedFile);
+	munmap(mappedFile); //Deja de estar mapeado el archivo a memoria
 	log_info(logger,"%s",mappedFile);
 	*/
 
@@ -205,38 +241,81 @@ void enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo, uint32_t size
 	close(socketBroker);
 }
 
-void inicializarFileSystem(){
+bool existeElArchivo(char * rutaArchivo){
+	int fd = open(rutaArchivo,O_RDONLY);
 
-	char * rutaMetadata = cadenasConcatenadas(puntoDeMontaje,"Metadata/metadata.bin");
-	int fd = open(rutaMetadata,O_RDONLY);
-	//El archivo Metadata.bin siempre existe, si no se puede leer, el programa no puede ejecutarse.
 	if(fd<0){
-		log_error(logger,"No se pudo leer el archivo metadata.bin en el punto de montaje");
-		exit(0);
+		close(fd);
+		return false;
 	}
+
+	return true;
+}
+
+void obtenerParametrosDelFS(char * rutaMetadata){
+	t_config * metadata;
+	metadata = config_create(rutaMetadata);
+	tamanioBloque = config_get_int_value(metadata,"BLOCK_SIZE");
+	cantidadDeBloques = config_get_int_value(metadata,"BLOCKS");
+	config_destroy(metadata);
+}
+
+char * mapearArchivo(char * rutaArchivo){
+	int fd = open(rutaArchivo,O_RDWR);
 	struct stat sb;
 	fstat(fd,&sb);
-	log_info(logger,"File descriptor archivo: %d", fd);
-	log_info(logger, "Tamaño del archivo leido: %d", sb.st_size);
+	char * mappedFile = mmap(NULL,sb.st_size, PROT_READ | PROT_WRITE, MAP_SHARED,fd,0);
+	return mappedFile;
+}
+
+void inicializarFileSystem(){
+
+	char * rutaMetadata = cadenasConcatenadas(puntoDeMontaje,"/Metadata/metadata.bin");
+	char * rutaBitmap = cadenasConcatenadas(puntoDeMontaje,"/Metadata/bitmap.bin");
+	char * rutaBlocks = cadenasConcatenadas(puntoDeMontaje,"/Blocks/");
+
+	if(!existeElArchivo(rutaMetadata)){
+		log_error(logger,"No se encontró el archivo metadata en el punto de montaje. El proceso GameCard no puede continuar");
+		exit(0);
+	}
+
+	obtenerParametrosDelFS(rutaMetadata);
+
+	if(existeElArchivo(rutaBitmap)){
+		int fd = open(rutaBitmap,O_RDWR);
+		struct stat sb;
+		fstat(fd,&sb);
+		bitmap = mmap(NULL,sb.st_size, PROT_READ | PROT_WRITE, MAP_SHARED,fd,0);
+		bitarrayBloques = bitarray_create_with_mode(bitmap, sb.st_size, MSB_FIRST);
+	}
+	else{
+		int fd = open(rutaBitmap, O_RDWR | O_CREAT, 0777);
+		ftruncate(fd,cantidadDeBloques/8);
+		struct stat sb;
+		fstat(fd,&sb);
+		bitmap = mmap(NULL,sb.st_size, PROT_READ | PROT_WRITE, MAP_SHARED,fd,0);
+		bitarrayBloques = bitarray_create_with_mode(bitmap, sb.st_size, MSB_FIRST);
+		sync();
+		for(int i=0; i<cantidadDeBloques ; i++){
+			bitarray_set_bit(bitarrayBloques, i);
+
+			char * rutaBloque;
+			asprintf(&rutaBloque,"%s%d%s",rutaBlocks,i,".bin");
+			int nuevoBloque = open(rutaBloque,O_RDWR | O_CREAT, 0777);
+			//¿Tiene sentido hacer un truncate con el tamaño de bloque?
+			close(nuevoBloque);
+			free(rutaBloque);
+		}
+	}
+	free(rutaBitmap);
 	free(rutaMetadata);
-
-	/* TODO
-	 * 1) Cargar los datos del Metadata.bin en variables globales para su uso, ya que no van a cambiar durante la ejecución.
-	 * 2) Chequear si existe el archivo Bitmap.bin en la ruta correspondiente.
-	 *      |- Si existe, se continua la ejecución de las funciones del GameCard (esperar mensajes).
-	 *      |- Si no existe, se crea la cantidad de bloques que indica el archivo Metadata.bin, y el archivo Bitmap.bin
-	 *         usando bitarray de las commons.
-	 *
-	 *    Bitmap.bin es un archivo binario, y hay que leerlo/escribirlo como tal.
-	 */
-
-
+	free(rutaBlocks);
 }
 
 char * cadenasConcatenadas(char * cadena1, char * cadena2){
-	char * cadenaFinal = malloc(strlen(cadena1)+strlen(cadena2)+1);
-	strcpy(cadenaFinal,cadena1);
-	strcat(cadenaFinal,cadena2);
+	char * cadenaFinal = string_new();
+	string_append(&cadenaFinal,cadena1);
+	string_append(&cadenaFinal,cadena2);
 	return cadenaFinal;
 }
 

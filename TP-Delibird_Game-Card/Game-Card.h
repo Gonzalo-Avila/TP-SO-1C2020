@@ -12,24 +12,36 @@
 #include <sys/stat.h>
 #include <sys/mman.h>
 #include <fcntl.h>
+#include <commons/bitarray.h>
 
-uint32_t idProceso;
-
-char * ipServidor;
-char * puertoServidor;
-char * puntoDeMontaje;
-
-pthread_t hiloEsperaNEW, hiloEsperaGET, hiloEsperaCATCH, hiloEsperaGameboy, hiloReconexiones;
-
+//Interaccion con broker
+//---------------------------------------------------------------------------------------------
 typedef enum{
 	NO_CONECTADO=0,
 	CONECTADO=1,
 	ERROR_CONEXION=-1
 }estadoConexion;
 
+char * ipServidor;
+char * puertoServidor;
 estadoConexion statusConexionBroker;
-
 int socketSuscripcionNEW, socketSuscripcionGET, socketSuscripcionCATCH, socketEscuchaGameboy;
+pthread_t hiloEsperaNEW, hiloEsperaGET, hiloEsperaCATCH, hiloEsperaGameboy, hiloReconexiones;
+uint32_t idProceso;
+
+
+//---------------------------------------------------------------------------------------------
+
+
+
+//Gestion del FS
+//---------------------------------------------------------------------------------------------
+char * puntoDeMontaje;
+uint32_t tamanioBloque, cantidadDeBloques;
+t_bitarray * bitarrayBloques;
+char * bitmap;
+//---------------------------------------------------------------------------------------------
+
 
 
 //Game-Card.c
@@ -41,6 +53,8 @@ void procesarGET(mensajeRecibido * mensaje);
 void enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo, uint32_t sizeMensaje, void * mensaje);
 void inicializarFileSystem();
 char * cadenasConcatenadas(char * cadena1, char * cadena2);
+bool existeElArchivo(char * rutaArchivo);
+int buscarBloqueLibre();
 
 //Game-Card_Conexiones.c
 void esperarMensajesGameboy(int* socketSuscripcion);
