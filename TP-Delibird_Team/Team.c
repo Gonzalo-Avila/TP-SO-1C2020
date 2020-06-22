@@ -18,6 +18,7 @@ void inicializarVariablesGlobales() {
 	listaCondsEntrenadores = list_create();
 	listaPosicionesInternas = list_create();
 	idsDeCatch = list_create();
+	alfa =(float)atof(config_get_string_value(config, "ALFA"));
 
 	//inicializo el mutex para los mensajes que llegan del broker
 	sem_init(&mutexMensajes, 0, 1);

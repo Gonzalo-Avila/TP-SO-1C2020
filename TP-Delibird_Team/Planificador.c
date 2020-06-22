@@ -145,8 +145,6 @@ void ponerEnReadyAlMasCercano(int x, int y, char* pokemon){
 float calcularEstimacion(t_entrenador* entrenador){
 	float rafagaAnterior = entrenador->datosSjf.duracionRafagaAnt;
 	float estimadoAnterior = entrenador->datosSjf.estimadoRafagaAnt;
-	float alfa =(float) atof(config_get_string_value(config, "ALFA"));//Puede romper el atof, puede estar redondeando la coma
-
 	//Chequeo si el entrenador fue desalojado
 	if(!entrenador->datosSjf.fueDesalojado){
 		float estimadoProximaRafaga = alfa*rafagaAnterior+(1-alfa)*estimadoAnterior;
@@ -159,14 +157,9 @@ float calcularEstimacion(t_entrenador* entrenador){
 }
 
 bool menorEstimacion(void* entrenador1, void* entrenador2) {
-	bool verifica = false;
 	float estimadoEntrenador1 = calcularEstimacion((t_entrenador*) entrenador1);
 	float estimadoEntrenador2 = calcularEstimacion((t_entrenador*) entrenador2);
-
-	if (estimadoEntrenador1 < estimadoEntrenador2)
-		verifica = true;
-
-	return verifica;
+	return estimadoEntrenador1 < estimadoEntrenador2;
 }
 
 t_entrenador* entrenadorConMenorRafaga(){
@@ -176,12 +169,9 @@ t_entrenador* entrenadorConMenorRafaga(){
 }
 
 bool hayNuevoEntrenadorConMenorRafaga(t_entrenador* entrenador){
-	bool verifica = false;
 	list_sort(listaDeReady,menorEstimacion);
 	t_entrenador* entrenador2 = list_get(listaDeReady,0);
-	if(entrenador->id != entrenador2->id)
-		verifica =true;
-	return verifica;
+	return entrenador->datosSjf.estimadoRafagaAct < entrenador2->datosSjf.estimadoRafagaAct;
 }
 
 void activarHiloDe(int id){

@@ -94,6 +94,7 @@ t_list *listaHilos;
 t_list *listaDeReady;
 t_list *listaDeBloqued;
 t_list *idsDeCatch;
+float alfa;
 
 char* ipServidor;
 char* puertoServidor;
