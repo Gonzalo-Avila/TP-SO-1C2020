@@ -102,11 +102,33 @@ void inicializarArchivoMetadata(char * rutaArchivo){
 	config_destroy(metadata);
 }
 
-void asignarBloqueAArchivo(char * rutaMetadataArchivo){
+char * aniadirBloqueAVectorString(int numeroBloque, char ** bloquesActuales){
+
+	char * cadenaAGuardar = string_new();
+	int i=0;
+	string_append(&cadenaAGuardar,"[");
+	while(bloquesActuales[i]!=NULL){
+		string_append(&cadenaAGuardar,bloquesActuales[i]);
+		string_append(&cadenaAGuardar,",");
+	}
+	string_append(&cadenaAGuardar,string_itoa(numeroBloque));
+	string_append(&cadenaAGuardar,"]");
+	return cadenaAGuardar;
+}
+
+int asignarBloqueAArchivo(char * rutaMetadataArchivo){
 	t_config * metadataArchivo;
 	metadataArchivo = config_create(rutaMetadataArchivo);
 	int indexBloqueLibre = buscarBloqueLibre();
-	//TODO
+	char ** bloquesActuales = config_get_array_value(metadataArchivo,"BLOCKS");
+	char * cadenaAGuardar = aniadirBloqueAVectorString(indexBloqueLibre,bloquesActuales);
+	bitarray_set_bit(bitarrayBloques,indexBloqueLibre);
+	sync();
+	config_set_value(metadataArchivo,"BLOCKS",cadenaAGuardar);
+	config_save(metadataArchivo);
+	config_destroy(metadataArchivo);
+	free(cadenaAGuardar);
+	return indexBloqueLibre;
 }
 
 int buscarBloqueLibre(){
@@ -125,10 +147,50 @@ void crearNuevoPokemon(char * rutaMetadataPokemon, mensajeNew * datosDelPokemon)
 	inicializarArchivoMetadata(rutaMetadataPokemon);
 	asignarBloqueAArchivo(rutaMetadataPokemon);
 
-	/*TODO
-	 * ...
-	 */
 }
+
+void agregarPokemonsAPosicion(char* rutaMetadataPokemon, char* posicionComoCadena, mensajeNew* mensaje){
+
+	t_config* archivo;
+	archivo = config_create(rutaMetadataPokemon);
+	config_set_value(archivo, "OPEN", "Y");
+	config_save(archivo);
+	char** bloques = config_get_array_value(archivo, "BLOCKS");
+	int i = 0;
+	bool lasPosicionesYaExistian = false;
+	while (bloques[i] != NULL) {
+		t_config* bloque;
+		char* rutaBloque;
+		asprintf(&rutaBloque, "%s%s%s%s", puntoDeMontaje, "/Blocks/",
+				bloques[i], ".bin");
+		bloque = config_create(rutaBloque);
+		if (config_has_property(bloque, posicionComoCadena)) {
+			int cantidadActual = config_get_int_value(bloque,
+					posicionComoCadena);
+			cantidadActual += mensaje->cantPokemon;
+			char* cantidadComoString;
+			asprintf(&cantidadComoString, "%d", cantidadActual);
+			config_set_value(bloque, posicionComoCadena, cantidadComoString);
+			config_save(archivo);
+			lasPosicionesYaExistian = true;
+			free(cantidadComoString);
+			config_destroy(bloque);
+			break;
+		}
+		config_destroy(bloque);
+		i++;
+	}
+	if (!lasPosicionesYaExistian) {
+		char * posicionesConCantidad;
+		asprintf(&posicionesConCantidad,"%s%s%d",posicionComoCadena,"=",mensaje->cantPokemon);
+		int sizeCadena = strlen(posicionesConCantidad);
+		/* TODO
+		 *  - Ver si hay algun bloque con suficiente espacio libre.
+		 *  - Sino, asignar un nuevo bloque
+		 */
+	}
+}
+
 void procesarNEW(mensajeRecibido * mensajeRecibido){
 
 	log_debug(logger, "[NEW] Procesando");
@@ -145,56 +207,17 @@ void procesarNEW(mensajeRecibido * mensajeRecibido){
 
 
 	if(!existeElArchivo(rutaMetadataPokemon)){									    //Si el archivo no existe, el pokemon no existe y tengo que crearlo
+		if(buscarBloqueLibre()==-1)
+		{
+			log_info(logger,"No se puede crear el nuevo pokemon: todos los bloques estan ocupados");
+			return;
+		}
 		mkdir(rutaPokemon, 0777);
 		crearNuevoPokemon(rutaMetadataPokemon, mensaje);
 	}
-	else{																		   //Si el archivo existe, leo sus bloques
-		t_config * archivo;
-		archivo=config_create(rutaMetadataPokemon);
-		config_set_value(archivo,"OPEN","Y");
-		config_save(archivo);
-		char ** bloques = config_get_array_value(archivo,"BLOCKS");                 //Obtengo sus bloques
 
-		int i=0;
-		bool lasPosicionesYaExistian = false;
-		while(bloques[i]!=NULL){												   //Leo cada bloque
-		    t_config * bloque;
+	agregarPokemonsAPosicion(rutaMetadataPokemon, posicionComoCadena, mensaje);
 
-		    char * rutaBloque;
-		    asprintf(&rutaBloque,"%s%s%s%s",puntoDeMontaje,"/Blocks/",bloques[i],".bin");
-			bloque=config_create(rutaBloque);
-			if(config_has_property(bloque,posicionComoCadena))
-			{
-				int cantidadActual = config_get_int_value(bloque,posicionComoCadena);
-				cantidadActual+=mensaje->cantPokemon;
-				char * cantidadComoString;
-				asprintf(&cantidadComoString,"%d",cantidadActual);
-				config_set_value(bloque,posicionComoCadena,cantidadComoString);
-				config_save(archivo);
-				lasPosicionesYaExistian = true;
-				free(cantidadComoString);
-				config_destroy(bloque);
-				break;
-			}
-			config_destroy(bloque);
-			i++;
-		}
-		if(!lasPosicionesYaExistian){
-			/* TODO
-			 *  - Ver si hay algun bloque con suficiente espacio libre.
-			 *  - Sino, asignar un nuevo bloque
-			 */
-		}
-	}
-
-	/*
-    struct stat sb;
-    fstat(pokemonFD,&sb);
-	char * mappedFile = mmap(NULL,sb.st_size, PROT_READ | PROT_WRITE, MAP_SHARED,pokemonFD,0);
-	msync(mappedFile);
-	munmap(mappedFile); //Deja de estar mapeado el archivo a memoria
-	log_info(logger,"%s",mappedFile);
-	*/
 
 	log_debug(logger, "[NEW] Enviando APPEARED");
 	enviarMensajeBroker(APPEARED, mensajeRecibido->idCorrelativo, 3, (void*) "asd");
@@ -297,7 +320,7 @@ void inicializarFileSystem(){
 		bitarrayBloques = bitarray_create_with_mode(bitmap, sb.st_size, MSB_FIRST);
 		sync();
 		for(int i=0; i<cantidadDeBloques ; i++){
-			bitarray_set_bit(bitarrayBloques, i);
+			bitarray_clean_bit(bitarrayBloques, i);
 
 			char * rutaBloque;
 			asprintf(&rutaBloque,"%s%d%s",rutaBlocks,i,".bin");
