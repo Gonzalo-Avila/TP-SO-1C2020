@@ -26,7 +26,7 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivos
 	nuevoEntrenador->datosSjf.duracionRafagaAnt = 0;
 	nuevoEntrenador->datosSjf.estimadoRafagaAnt = 0;
 	nuevoEntrenador->datosSjf.estimadoRafagaAct = estInicialEntrenador;
-	//Pongo variable fue desalojado en true, asi en la primer vuelta el algoritmo toma las estimaciones inciales.
+	//Pongo variable fue desalojado en true, asi en la primer vuelta el algoritmo toma las estimaciones iniciales.
 	nuevoEntrenador->datosSjf.fueDesalojado = true;
 
 	list_destroy(posicionEntrenador);
@@ -284,15 +284,16 @@ void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 						entrenador->datosSjf.duracionRafagaAnt = rafagaActual;
 					else entrenador->datosSjf.duracionRafagaAnt = entrenador->datosSjf.duracionRafagaAnt + rafagaActual;
 					//Chequeo si hay nuevo entrenador en ready con menor rafaga que el actual
+					//ACLARACION: TIRA SEGMFAULT XQ NO LO TESTEAMOS CON MAS DE UN ENTRENADOR EN READY
 					if(hayNuevoEntrenadorConMenorRafaga(entrenador)){
-//						rafagaActual=0;
-//						t_entrenador* entrenadorDesalojante = list_get(listaDeReady,0);
-//						log_debug(logger, "El entrenador %d fue desalojado por el entranador %d. Vuelve a la cola de ready.", entrenador->id, entrenadorDesalojante->id);
-//						entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
-//						list_add(listaDeReady,entrenador);
-//						entrenador->datosSjf.fueDesalojado = true;
-//						sem_post(&procesoEnReady);
-//						sem_post(&semPlanif);
+						rafagaActual=0;
+						t_entrenador* entrenadorDesalojante = list_get(listaDeReady,0);
+						log_debug(logger, "El entrenador %d fue desalojado por el entrenador %d. Vuelve a la cola de ready.", entrenador->id, entrenadorDesalojante->id);
+						entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
+						list_add(listaDeReady,entrenador);
+						entrenador->datosSjf.fueDesalojado = true;
+						sem_post(&procesoEnReady);
+						sem_post(&semPlanif);
 					}
 				}
 
