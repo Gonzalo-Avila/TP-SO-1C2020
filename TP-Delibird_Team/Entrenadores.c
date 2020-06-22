@@ -284,7 +284,8 @@ void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 						entrenador->datosSjf.duracionRafagaAnt = rafagaActual;
 					else entrenador->datosSjf.duracionRafagaAnt = entrenador->datosSjf.duracionRafagaAnt + rafagaActual;
 					//Chequeo si hay nuevo entrenador en ready con menor rafaga que el actual
-					//ACLARACION: TIRA SEGMFAULT XQ NO LO TESTEAMOS CON MAS DE UN ENTRENADOR EN READY
+					//TODO
+					//Chequear funcionamiento del desalojo. Necesitamos tener mas de un entrenador en ready.
 					if(hayNuevoEntrenadorConMenorRafaga(entrenador)){
 						rafagaActual=0;
 						t_entrenador* entrenadorDesalojante = list_get(listaDeReady,0);

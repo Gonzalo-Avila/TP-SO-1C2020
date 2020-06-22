@@ -169,9 +169,12 @@ t_entrenador* entrenadorConMenorRafaga(){
 }
 
 bool hayNuevoEntrenadorConMenorRafaga(t_entrenador* entrenador){
-	list_sort(listaDeReady,menorEstimacion);
-	t_entrenador* entrenador2 = list_get(listaDeReady,0);
-	return entrenador->datosSjf.estimadoRafagaAct < entrenador2->datosSjf.estimadoRafagaAct;
+	if(!list_is_empty(listaDeReady)){
+		list_sort(listaDeReady,menorEstimacion);
+		t_entrenador* entrenador2 = list_get(listaDeReady,0);
+		return entrenador->datosSjf.estimadoRafagaAct < entrenador2->datosSjf.estimadoRafagaAct;
+	}
+	else return false;
 }
 
 void activarHiloDe(int id){
