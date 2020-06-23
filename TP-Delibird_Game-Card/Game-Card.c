@@ -94,7 +94,7 @@ char * posicionComoChar(uint32_t posx, uint32_t posy){
 void inicializarArchivoMetadata(char * rutaArchivo){
 	t_config * metadata;
 	metadata = config_create(rutaArchivo);
-	config_set_value(metadata,"OPEN","N");
+	config_set_value(metadata,"OPEN","Y");
 	config_set_value(metadata,"BLOCKS","[]");
 	config_set_value(metadata,"SIZE","0");
 	config_set_value(metadata,"DIRECTORY","N");
@@ -145,10 +145,10 @@ void crearNuevoPokemon(char * rutaMetadataPokemon, mensajeNew * datosDelPokemon)
 	int pokemonFD = open(rutaMetadataPokemon, O_RDWR | O_CREAT, 0777);
 	close(pokemonFD);
 	inicializarArchivoMetadata(rutaMetadataPokemon);
-	asignarBloqueAArchivo(rutaMetadataPokemon);
-
 }
 
+
+/*
 void agregarPokemonsAPosicion(char* rutaMetadataPokemon, char* posicionComoCadena, mensajeNew* mensaje){
 
 	t_config* archivo;
@@ -184,13 +184,23 @@ void agregarPokemonsAPosicion(char* rutaMetadataPokemon, char* posicionComoCaden
 		char * posicionesConCantidad;
 		asprintf(&posicionesConCantidad,"%s%s%d",posicionComoCadena,"=",mensaje->cantPokemon);
 		int sizeCadena = strlen(posicionesConCantidad);
-		/* TODO
-		 *  - Ver si hay algun bloque con suficiente espacio libre.
-		 *  - Sino, asignar un nuevo bloque
-		 */
 	}
+}*/
+
+int obtenerCantidadDeBloquesLibres() {
+	int cantidadDeBloquesLibres=0;
+	for (int i = 0; i < cantidadDeBloques; i++) {
+		if (!bitarray_test_bit(bitarrayBloques, i)) {
+			cantidadDeBloquesLibres++;
+		}
+	}
+	return cantidadDeBloquesLibres;
 }
 
+bool hayBloquesLibresPara(int size){
+	int cantidadDeBloquesLibres = obtenerCantidadDeBloquesLibres(cantidadDeBloquesLibres);
+	return cantidadDeBloquesLibres * tamanioBloque >= size;
+}
 void procesarNEW(mensajeRecibido * mensajeRecibido){
 
 	log_debug(logger, "[NEW] Procesando");
@@ -200,23 +210,33 @@ void procesarNEW(mensajeRecibido * mensajeRecibido){
 
 	char * pokemonConFinDeCadena = agregarFinDeCadena(mensaje->pokemon);
 	char * posicionComoCadena = posicionComoChar(mensaje->posicionX,mensaje->posicionY);
+	char * entradaCompletaComoCadena;
+	asprintf(&entradaCompletaComoCadena,"%s%s%d",posicionComoCadena,"=", mensaje->cantPokemon);
 	char * rutaPokemon;
-	asprintf(&rutaPokemon,"%s%s%s",puntoDeMontaje,"/Files/",pokemonConFinDeCadena); //Armo la ruta del pokemon
+	asprintf(&rutaPokemon,"%s%s%s",puntoDeMontaje,"/Files/",pokemonConFinDeCadena);
 	char * rutaMetadataPokemon;
-	asprintf(&rutaMetadataPokemon,"%s%s",rutaPokemon,"/metadata.bin");			   //Armo la ruta del metadata del pokemon
+	asprintf(&rutaMetadataPokemon,"%s%s",rutaPokemon,"/metadata.bin");
 
 
-	if(!existeElArchivo(rutaMetadataPokemon)){									    //Si el archivo no existe, el pokemon no existe y tengo que crearlo
-		if(buscarBloqueLibre()==-1)
-		{
-			log_info(logger,"No se puede crear el nuevo pokemon: todos los bloques estan ocupados");
+	if(existeElArchivo(rutaMetadataPokemon)){
+
+		//TODO - Lado derecho del if
+		//agregarPokemonsAPosicion(rutaMetadataPokemon, posicionComoCadena, mensaje); DEPRECATED
+	}
+	else{
+
+		if(hayBloquesLibresPara(strlen(entradaCompletaComoCadena))){
+			mkdir(rutaPokemon, 0777);
+			crearNuevoPokemon(rutaMetadataPokemon, mensaje);
+			//asignarBloquesAArchivo(rutaMetadataPokemon,)
+
+		}
+		else{
+			log_info(logger,"No se puede crear el nuevo pokemon, no hay espacio suficiente");
 			return;
 		}
-		mkdir(rutaPokemon, 0777);
-		crearNuevoPokemon(rutaMetadataPokemon, mensaje);
-	}
 
-	agregarPokemonsAPosicion(rutaMetadataPokemon, posicionComoCadena, mensaje);
+	}
 
 
 	log_debug(logger, "[NEW] Enviando APPEARED");
@@ -227,6 +247,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido){
 	free(rutaPokemon);
 	free(rutaMetadataPokemon);
 	free(posicionComoCadena);
+	free(entradaCompletaComoCadena);
 	free(mensajeRecibido->mensaje);
 	free(mensajeRecibido);
 	free(mensaje->pokemon);
@@ -268,10 +289,10 @@ bool existeElArchivo(char * rutaArchivo){
 	int fd = open(rutaArchivo,O_RDONLY);
 
 	if(fd<0){
-		close(fd);
 		return false;
 	}
 
+	close(fd);
 	return true;
 }
 
@@ -318,7 +339,7 @@ void inicializarFileSystem(){
 		fstat(fd,&sb);
 		bitmap = mmap(NULL,sb.st_size, PROT_READ | PROT_WRITE, MAP_SHARED,fd,0);
 		bitarrayBloques = bitarray_create_with_mode(bitmap, sb.st_size, MSB_FIRST);
-		sync();
+		//msync(); ver como es la firma de esto
 		for(int i=0; i<cantidadDeBloques ; i++){
 			bitarray_clean_bit(bitarrayBloques, i);
 
