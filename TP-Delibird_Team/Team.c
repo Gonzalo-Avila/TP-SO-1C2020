@@ -94,6 +94,12 @@ void crearHilosDeEntrenadores() {
 	}
 }
 
+void crearConexionesCliente(int* socketBrokerLoc, int* socketBrokerApp, int* socketBrokerCau) {
+	*socketBrokerLoc = crearConexionCliente(ipServidor, puertoServidor);
+	*socketBrokerApp = crearConexionCliente(ipServidor, puertoServidor);
+	*socketBrokerCau = crearConexionCliente(ipServidor, puertoServidor);
+}
+
 int main() {
 	uint32_t idDelProceso;
 
@@ -104,11 +110,9 @@ int main() {
 
 	//Creo 3 conexiones con el Broker, una por cada cola
 	int *socketBrokerApp = malloc(sizeof(int));
-	*socketBrokerApp = crearConexionCliente(ipServidor, puertoServidor);
 	int *socketBrokerLoc = malloc(sizeof(int));
-	*socketBrokerLoc = crearConexionCliente(ipServidor, puertoServidor);
 	int *socketBrokerCau = malloc(sizeof(int));
-	*socketBrokerCau = crearConexionCliente(ipServidor, puertoServidor);
+	crearConexionesCliente(socketBrokerLoc, socketBrokerApp, socketBrokerCau);
 
 	//Creo conexión con Gameboy
 	int *socketGameboy = malloc(sizeof(int));
