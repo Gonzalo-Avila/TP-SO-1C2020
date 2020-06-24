@@ -52,7 +52,12 @@ int crearConexionCliente(char * ip, char * puerto) {
 	socketServidor = socket(serverInfo->ai_family, serverInfo->ai_socktype,
 			serverInfo->ai_protocol);
 
-	connect(socketServidor, serverInfo->ai_addr, serverInfo->ai_addrlen);
+	log_debug(logger, "Conectandose al servidor...");
+	while(1){
+		int status = connect(socketServidor, serverInfo->ai_addr, serverInfo->ai_addrlen);
+		if(status != -1)
+			break;
+	}
 	freeaddrinfo(serverInfo);
 	return socketServidor;
 }
