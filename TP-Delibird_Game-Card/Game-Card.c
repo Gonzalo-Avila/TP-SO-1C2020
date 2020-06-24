@@ -419,8 +419,8 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 			while (entradaActual != NULL) {
 				char** posicionCantidad = string_split(entradaActual, "=");	//["5-5", "3", NULL]
-				char* posicion = entradaActual[0];
-				char* cantidad = entradaActual[1];
+				char* posicion = posicionCantidad[0];
+				char* cantidad = posicionCantidad[1];
 				if (strcmp(posicion, posicionComoCadena) == 0) { 			// "5-5" vs posicionNew
 					int cantidadNum = atoi(cantidad);
 					cantidadNum = cantidadNum + msgNew->cantPokemon;
