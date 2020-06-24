@@ -222,7 +222,8 @@ int obtenerCantidadDeBloquesLibres() {
 }
 
 bool haySuficientesBloquesLibresParaSize(int size){
-	int cantidadDeBloquesLibres = obtenerCantidadDeBloquesLibres(cantidadDeBloquesLibres);
+	int cantidadDeBloquesLibres = 0;
+	cantidadDeBloquesLibres=obtenerCantidadDeBloquesLibres(cantidadDeBloquesLibres);
 	return cantidadDeBloquesLibres * tamanioBloque >= size;
 }
 
@@ -249,7 +250,7 @@ void escribirCadenaEnArchivo(char * rutaMetadataArchivo,char * cadena){
 	FILE * bloqueActual =  fopen(rutaBloqueActual,"w");
 
 	while(caracterActual!='\0'){
-		fputs(caracterActual,bloqueActual);
+		fputs(&caracterActual,bloqueActual);
 		caracteresEscritosEnBloqueActual++;
 		if(caracteresEscritosEnBloqueActual==tamanioBloque){
 			fclose(bloqueActual);
@@ -266,10 +267,12 @@ void escribirCadenaEnArchivo(char * rutaMetadataArchivo,char * cadena){
 	fclose(bloqueActual);
 	config_destroy(metadata);
 	free(rutaBloqueActual);
-
-
 }
-
+void escribirCadenaEnBloque(char * rutaBloque, char * cadena){
+	FILE * bloque  = fopen(rutaBloque, "a");
+	fputs(cadena,bloque);
+	fclose(bloque);
+}
 mensajeAppeared * armarMensajeAppeared (mensajeNew * msgNew){
 	mensajeAppeared * msgAppeared = malloc(sizeof(mensajeAppeared));
 	msgAppeared->longPokemon=msgNew->longPokemon;
@@ -280,6 +283,70 @@ mensajeAppeared * armarMensajeAppeared (mensajeNew * msgNew){
 	return msgAppeared;
 }
 
+
+char * mapearArchivo(char * rutaMetadata){
+	t_config * metadata;
+	FILE * bloqueActual;
+	int sizeArchivo, numeroBloqueActual=0, caracteresLeidosEnBloqueActual=0;
+	char ** bloquesArchivo;
+	char * archivoMapeado;
+	char * rutaBloqueActual;
+
+	metadata = config_create(rutaMetadata);
+	sizeArchivo = config_get_int_value(metadata,"SIZE");
+	bloquesArchivo = config_get_array_value(metadata,"BLOCKS");
+	archivoMapeado = malloc(sizeArchivo);
+	asprintf(&rutaBloqueActual,"%s%s%s%s",puntoDeMontaje,"/BLOCKS/",bloquesArchivo[numeroBloqueActual],".bin");
+	bloqueActual=fopen(rutaBloqueActual,"r");
+
+	for(int i=0; i<sizeArchivo; i++){
+		if(caracteresLeidosEnBloqueActual==tamanioBloque){
+			fclose(bloqueActual);
+			free(rutaBloqueActual);
+			numeroBloqueActual++;
+			asprintf(&rutaBloqueActual,"%s%s%s%s",puntoDeMontaje,"/Blocks/",bloquesArchivo[numeroBloqueActual],".bin");
+			bloqueActual =  fopen(rutaBloqueActual,"r");
+			caracteresLeidosEnBloqueActual=0;
+		}
+		archivoMapeado[i]=fgetc(bloqueActual);
+		caracteresLeidosEnBloqueActual++;
+	}
+
+	fclose(bloqueActual);
+	free(rutaBloqueActual);
+	config_destroy(metadata);
+
+	return archivoMapeado;
+}
+char * obtenerRutaUltimoBloque (char * metadataArchivo){
+	t_config * metadata = config_create(metadataArchivo);
+	char ** bloques = config_get_array_value(metadata,"BLOCKS");
+	char * rutaUltimoBloque;
+
+	int index=0;
+	while(bloques[index]!=NULL){
+		index++;
+	}
+	if(index==0)
+		return NULL;
+
+	asprintf(&rutaUltimoBloque,"%s%s%s%s",puntoDeMontaje,"/Blocks/",bloques[index-1],".bin");
+	return rutaUltimoBloque;
+}
+
+int obtenerSizeOcupadoDeBloque (char * rutaBloque){
+	struct stat stat_file;
+    stat(rutaBloque, &stat_file);
+    return stat_file.st_size;
+}
+
+int obtenerEspacioLibreDeBloque(char * rutaBloque){
+	return tamanioBloque - obtenerSizeOcupadoDeBloque (rutaBloque);
+}
+
+int espacioLibreEnElFS(){
+	return obtenerCantidadDeBloquesLibres()*tamanioBloque;
+}
 void procesarNEW(mensajeRecibido * mensajeRecibido){
 
 	log_debug(logger, "[NEW] Procesando");
@@ -290,7 +357,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido){
 	char * pokemonConFinDeCadena = agregarFinDeCadena(msgNew->pokemon);
 	char * posicionComoCadena = posicionComoChar(msgNew->posicionX,msgNew->posicionY);
 	char * entradaCompletaComoCadena;
-	asprintf(&entradaCompletaComoCadena,"%s%s%d",posicionComoCadena,"=", msgNew->cantPokemon);
+	asprintf(&entradaCompletaComoCadena,"%s%s%d%s",posicionComoCadena,"=", msgNew->cantPokemon,"\n");
 	char * rutaPokemon;
 	asprintf(&rutaPokemon,"%s%s%s",puntoDeMontaje,"/Files/",pokemonConFinDeCadena);
 	char * rutaMetadataPokemon;
@@ -299,10 +366,69 @@ void procesarNEW(mensajeRecibido * mensajeRecibido){
 	int tamanioEntradaCompleta = strlen(entradaCompletaComoCadena);
 
 
+
 	if(existeElArchivo(rutaMetadataPokemon)){
 
 		//TODO - Lado derecho del if
-		//agregarPokemonsAPosicion(rutaMetadataPokemon, posicionComoCadena, mensaje); DEPRECATED
+		char * archivoMappeado = mapearArchivo(rutaMetadataPokemon);
+
+		if(string_contains(archivoMappeado,posicionComoCadena)){
+
+		}
+		else{
+			char * rutaUltimoBloque = obtenerRutaUltimoBloque(rutaMetadataPokemon);
+			int espacioLibreUltimoBloque = obtenerEspacioLibreDeBloque(rutaUltimoBloque);
+			if(espacioLibreUltimoBloque>=tamanioEntradaCompleta){
+				escribirCadenaEnBloque(rutaUltimoBloque,entradaCompletaComoCadena);
+			    //TODO - Implementar semaforo para impedir que dos procesos accedan al metadata al mismo tiempo
+				t_config * metadataPokemon;
+				metadataPokemon = config_create(rutaMetadataPokemon);
+				char * sizeFinal = string_itoa(tamanioEntradaCompleta+config_get_int_value(metadataPokemon,"SIZE"));
+				config_set_value(metadataPokemon,"SIZE",sizeFinal);
+				config_set_value(metadataPokemon,"OPEN","N");
+				config_save(metadataPokemon);
+				//--------------------------------------------------------
+				mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
+				uint32_t sizeMensaje = msgAppeared->longPokemon + sizeof(uint32_t)*3;
+				enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje, sizeMensaje, msgAppeared);
+
+				free(sizeFinal);
+			}
+			else{
+
+				if(espacioLibreUltimoBloque+espacioLibreEnElFS()>=tamanioEntradaCompleta){
+
+					int bloquesNecesarios = cantidadDeBloquesNecesariosParaSize(tamanioEntradaCompleta-espacioLibreUltimoBloque);
+					asignarBloquesAArchivo(rutaMetadataPokemon,bloquesNecesarios);
+					char * contenidoAAlmacenar;
+					asprintf(&contenidoAAlmacenar,"%s%s",archivoMappeado,entradaCompletaComoCadena);
+					escribirCadenaEnArchivo(rutaMetadataPokemon,contenidoAAlmacenar);
+
+				    //TODO - Implementar semaforo para impedir que dos procesos accedan al metadata al mismo tiempo
+					t_config * metadataPokemon;
+					metadataPokemon = config_create(rutaMetadataPokemon);
+					char * sizeFinal = string_itoa(tamanioEntradaCompleta+config_get_int_value(metadataPokemon,"SIZE"));
+					config_set_value(metadataPokemon,"SIZE",sizeFinal);
+					config_set_value(metadataPokemon,"OPEN","N");
+					config_save(metadataPokemon);
+					//--------------------------------------------------------
+					mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
+					uint32_t sizeMensaje = msgAppeared->longPokemon + sizeof(uint32_t)*3;
+					enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje, sizeMensaje, msgAppeared);
+
+					free(sizeFinal);
+					free(contenidoAAlmacenar);
+
+				}
+				else{
+					log_info(logger,"No se pueden crear las nuevas posiciones, no hay espacio suficiente");
+					return;
+				}
+
+			}
+			free(rutaUltimoBloque);
+		}
+		free(archivoMappeado);
 	}
 	else{
 
@@ -316,13 +442,16 @@ void procesarNEW(mensajeRecibido * mensajeRecibido){
 		    //TODO - Implementar semaforo para impedir que dos procesos accedan al metadata al mismo tiempo
 			t_config * metadataPokemon;
 			metadataPokemon = config_create(rutaMetadataPokemon);
+			char * sizeFinal = string_itoa(tamanioEntradaCompleta);
+			config_set_value(metadataPokemon,"SIZE",sizeFinal);
 			config_set_value(metadataPokemon,"OPEN","N");
 			config_save(metadataPokemon);
 			//--------------------------------------------------------
 			mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 			uint32_t sizeMensaje = msgAppeared->longPokemon + sizeof(uint32_t)*3;
 			enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje, sizeMensaje, msgAppeared);
-			//TODO - Chequear si recibio el mensaje o marco error
+
+			free(sizeFinal);
 		}
 		else{
 			log_info(logger,"No se puede crear el nuevo pokemon, no hay espacio suficiente");
@@ -340,6 +469,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido){
 	free(rutaMetadataPokemon);
 	free(posicionComoCadena);
 	free(entradaCompletaComoCadena);
+
 	free(mensajeRecibido->mensaje);
 	free(mensajeRecibido);
 	free(msgNew->pokemon);
@@ -371,12 +501,18 @@ void procesarGET(mensajeRecibido * mensajeRecibido){
 	log_debug(logger, "[GET] LOCALIZED enviado");
 }
 
-void enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo, uint32_t sizeMensaje, void * mensaje){
+int enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo, uint32_t sizeMensaje, void * mensaje){
 	int socketBroker = crearConexionCliente(ipServidor, puertoServidor);
+	if(socketBroker<0){
+		log_error(logger,"No se pudo establecer la conexión con el broker");
+		//TODO - Implementar rutina de desconexión de todos los hilos, intento de reconexión, etc
+		return socketBroker;
+	}
 	enviarMensajeABroker(socketBroker, colaDestino, idCorrelativo, sizeMensaje, mensaje);
 	uint32_t respuestaBroker;
 	recv(socketBroker, &respuestaBroker, sizeof(uint32_t), MSG_WAITALL);
 	close(socketBroker);
+	return respuestaBroker;
 }
 
 bool existeElArchivo(char * rutaArchivo){
@@ -398,13 +534,13 @@ void obtenerParametrosDelFS(char * rutaMetadata){
 	config_destroy(metadata);
 }
 
-char * mapearArchivo(char * rutaArchivo){
+/*char * mapearArchivo(char * rutaArchivo){
 	int fd = open(rutaArchivo,O_RDWR);
 	struct stat sb;
 	fstat(fd,&sb);
 	char * mappedFile = mmap(NULL,sb.st_size, PROT_READ | PROT_WRITE, MAP_SHARED,fd,0);
 	return mappedFile;
-}
+}*/
 
 void inicializarFileSystem(){
 

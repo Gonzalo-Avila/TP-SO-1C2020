@@ -50,7 +50,7 @@ void destruirVariablesGlobales();
 void procesarNEW(mensajeRecibido * mensaje);
 void procesarCATCH(mensajeRecibido * mensaje);
 void procesarGET(mensajeRecibido * mensaje);
-void enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo, uint32_t sizeMensaje, void * mensaje);
+int enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo, uint32_t sizeMensaje, void * mensaje);
 void inicializarFileSystem();
 char * cadenasConcatenadas(char * cadena1, char * cadena2);
 bool existeElArchivo(char * rutaArchivo);
