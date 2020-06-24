@@ -148,103 +148,111 @@ void atenderServidor(int *socketServidor) {
 			break;
 		}
 		send(*socketServidor, &ack, sizeof(uint32_t), 0);
-		switch(miMensajeRecibido->colaEmisora){
-		//TODO - Corregir recepciones, separar el void y acomodarPokemonRecibido.
-			case APPEARED:{
-				log_debug(logger, "Se recibio un APPEARED");
+		if(miMensajeRecibido->codeOP > 0 && miMensajeRecibido->codeOP <= 6) {
+				switch(miMensajeRecibido->colaEmisora){
+				//TODO - Corregir recepciones, separar el void y acomodarPokemonRecibido.
+					case APPEARED:{
+						log_debug(logger, "Se recibio un APPEARED");
 
-				char *pokemonRecibido = malloc((miMensajeRecibido->sizeMensaje)+1);
-				int offset = (miMensajeRecibido->sizePayload) - (miMensajeRecibido->sizeMensaje);
+						char *pokemonRecibido = malloc((miMensajeRecibido->sizeMensaje)+1);
+						int offset = (miMensajeRecibido->sizePayload) - (miMensajeRecibido->sizeMensaje);
 
-				memcpy(pokemonRecibido, miMensajeRecibido + offset,sizeof(miMensajeRecibido->sizeMensaje));
+						memcpy(pokemonRecibido, miMensajeRecibido + offset,sizeof(miMensajeRecibido->sizeMensaje));
 
-				if (estaEnLosObjetivos(pokemonRecibido)){
-					log_debug(logger,"El pokemon esta en nuestro objetivo");
-					log_info(logger, "Pokemon: %s", (char*)pokemonRecibido);
-					enviarGetDePokemon(ipServidor, puertoServidor, pokemonRecibido);
+						if (estaEnLosObjetivos(pokemonRecibido)){
+							log_debug(logger,"El pokemon esta en nuestro objetivo");
+							log_info(logger, "Pokemon: %s", (char*)pokemonRecibido);
+							enviarGetDePokemon(ipServidor, puertoServidor, pokemonRecibido);
+						}
+
+						free(pokemonRecibido);
+						break;
+					}
+					case LOCALIZED:{
+						log_debug(logger,"Se recibio un LOCALIZED");
+
+						int cantPokes,longPokemon;
+						int offset = 0;
+
+						t_posicionEnMapa *pos = malloc(sizeof(t_posicionEnMapa));
+						pos->x = list_create();
+						pos->y = list_create();
+						pos->cantidades = list_create();
+
+						memcpy(&longPokemon,miMensajeRecibido->mensaje,sizeof(uint32_t));
+						offset = sizeof(uint32_t);
+
+						char *pokemon = malloc(longPokemon);
+						memcpy(pokemon,miMensajeRecibido->mensaje + offset,longPokemon);
+
+						offset += longPokemon;
+						memcpy(&cantPokes,miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
+
+						pos->pokemon = malloc(longPokemon);
+
+						offset += sizeof(uint32_t);
+						int x[cantPokes],y[cantPokes],cant[cantPokes];
+
+						memcpy(pos->pokemon,pokemon,longPokemon);
+
+						log_debug(logger,"Pokemon: %s",pos->pokemon);
+
+						for(int i = 0;i < cantPokes;i++){
+							memcpy(&x[i],miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
+							offset += sizeof(uint32_t);
+							memcpy(&y[i],miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
+							offset += sizeof(uint32_t);
+							memcpy(&cant[i],miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
+							offset += sizeof(uint32_t);
+
+							//los agrego al mapa interno
+							list_add(pos->x,&x[i]);
+							list_add(pos->y,&y[i]);
+							list_add(pos->cantidades,&cant[i]);
+						}
+
+						if(estaEnLosObjetivos(pokemon)){
+
+							log_debug(logger,"El pokemon %s es un objetivo",pokemon);
+
+							list_add(listaPosicionesInternas,pos);
+							ponerEnReadyAlMasCercano(x[0],y[0], pokemon);
+
+							sem_post(&procesoEnReady);
+							//le aviso al planificador que pase un entrenador a ready.
+						}
+
+						log_debug(logger,"Se proceso el LOCALIZED");
+
+						break;
+					}
+					case CAUGHT:{
+						//TODO CAUGHT
+						estructuraMensaje* miMensajeCaught = miMensajeRecibido->mensaje;
+
+						//Si no envie yo el CATCH, no me interesa el CAUGHT
+						if(validarIDCorrelativoCatch(miMensajeCaught->idCorrelativo)) {
+							log_debug(logger, "Se recibio un CAUGHT");
+
+							mensajeCaught* miCaught = miMensajeCaught->mensaje;
+
+							procesarObjetivoCumplido(buscarCatch(miMensajeCaught->idCorrelativo), miCaught->resultado);
+						}
+
+						break;
+					}
+					default:{
+						log_error(logger, "Cola de Mensaje Erronea.");
+						break;
+					}
 				}
-
-				free(pokemonRecibido);
-				break;
 			}
-			case LOCALIZED:{
-				log_debug(logger,"Se recibio un LOCALIZED");
-
-				int cantPokes,longPokemon;
-				int offset = 0;
-
-				t_posicionEnMapa *pos = malloc(sizeof(t_posicionEnMapa));
-				pos->x = list_create();
-				pos->y = list_create();
-				pos->cantidades = list_create();
-
-				memcpy(&longPokemon,miMensajeRecibido->mensaje,sizeof(uint32_t));
-				offset = sizeof(uint32_t);
-
-				char *pokemon = malloc(longPokemon);
-				memcpy(pokemon,miMensajeRecibido->mensaje + offset,longPokemon);
-
-				offset += longPokemon;
-				memcpy(&cantPokes,miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
-
-				pos->pokemon = malloc(longPokemon);
-
-				offset += sizeof(uint32_t);
-				int x[cantPokes],y[cantPokes],cant[cantPokes];
-
-				memcpy(pos->pokemon,pokemon,longPokemon);
-
-				log_debug(logger,"Pokemon: %s",pos->pokemon);
-
-				for(int i = 0;i < cantPokes;i++){
-					memcpy(&x[i],miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
-					offset += sizeof(uint32_t);
-					memcpy(&y[i],miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
-					offset += sizeof(uint32_t);
-					memcpy(&cant[i],miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
-					offset += sizeof(uint32_t);
-
-					//los agrego al mapa interno
-					list_add(pos->x,&x[i]);
-					list_add(pos->y,&y[i]);
-					list_add(pos->cantidades,&cant[i]);
+			else {
+				log_error(logger, "Se perdio la conexión con el Broker.");
+				close(*socketServidor);
+				log_debug(logger, "Reintentando conexion...");
+				*socketServidor = crearConexionCliente(ipServidor, puertoServidor);
 				}
-
-				if(estaEnLosObjetivos(pokemon)){
-
-					log_debug(logger,"El pokemon %s es un objetivo",pokemon);
-
-					list_add(listaPosicionesInternas,pos);
-					ponerEnReadyAlMasCercano(x[0],y[0], pokemon);
-
-					sem_post(&procesoEnReady);
-					//le aviso al planificador que pase un entrenador a ready.
-				}
-
-				log_debug(logger,"Se proceso el LOCALIZED");
-
-				break;
-			}
-			case CAUGHT:{
-				//TODO CAUGHT
-				estructuraMensaje* miMensajeCaught = miMensajeRecibido->mensaje;
-
-				//Si no envie yo el CATCH, no me interesa el CAUGHT
-				if(validarIDCorrelativoCatch(miMensajeCaught->idCorrelativo)) {
-					log_debug(logger, "Se recibio un CAUGHT");
-
-					mensajeCaught* miCaught = miMensajeCaught->mensaje;
-
-					procesarObjetivoCumplido(buscarCatch(miMensajeCaught->idCorrelativo), miCaught->resultado);
-				}
-
-				break;
-			}
-			default:{
-				log_error(logger, "Cola de Mensaje Erronea.");
-				break;
-			}
-		}
 		if(miMensajeRecibido->mensaje != NULL){
 			log_info(logger, "Mensaje recibido: %s\n", miMensajeRecibido->mensaje);
 		}
