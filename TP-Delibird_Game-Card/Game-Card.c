@@ -35,15 +35,17 @@ void destruirVariablesGlobales() {
 mensajeNew * desarmarMensajeNEW(mensajeRecibido * mensajeRecibido) {
 	mensajeNew * mensaje = malloc(sizeof(mensajeNew));
 	int offset = 0;
-	memcpy(&mensaje->longPokemon, mensajeRecibido->mensaje + offset,
-			sizeof(uint32_t));
+	char finDeCadena='\0';
+	memcpy(&mensaje->longPokemon, mensajeRecibido->mensaje + offset, sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 
-	mensaje->pokemon = malloc(mensaje->longPokemon);
+	mensaje->pokemon = malloc(mensaje->longPokemon+1);
 
 	memcpy(mensaje->pokemon, mensajeRecibido->mensaje + offset,
 			mensaje->longPokemon);
 	offset += mensaje->longPokemon;
+
+	memcpy(mensaje->pokemon+mensaje->longPokemon,&finDeCadena,1);
 
 	memcpy(&mensaje->posicionX, mensajeRecibido->mensaje + offset,
 			sizeof(uint32_t));
@@ -129,27 +131,13 @@ char * aniadirBloqueAVectorString(int numeroBloque, char ** bloquesActuales) {
 	while (bloquesActuales[i] != NULL) {
 		string_append(&cadenaAGuardar, bloquesActuales[i]);
 		string_append(&cadenaAGuardar, ",");
+		i++;
 	}
 	string_append(&cadenaAGuardar, string_itoa(numeroBloque));
 	string_append(&cadenaAGuardar, "]");
 	return cadenaAGuardar;
 }
 
-/*
- int asignarBloqueAArchivo(char * rutaMetadataArchivo){
- t_config * metadataArchivo;
- metadataArchivo = config_create(rutaMetadataArchivo);
- int indexBloqueLibre = buscarBloqueLibre();
- char ** bloquesActuales = config_get_array_value(metadataArchivo,"BLOCKS");
- char * cadenaAGuardar = aniadirBloqueAVectorString(indexBloqueLibre,bloquesActuales);
- bitarray_set_bit(bitarrayBloques,indexBloqueLibre);
- //msync();
- config_set_value(metadataArchivo,"BLOCKS",cadenaAGuardar);
- config_save(metadataArchivo);
- config_destroy(metadataArchivo);
- free(cadenaAGuardar);
- return indexBloqueLibre;
- }*/
 
 void asignarBloquesAArchivo(char * rutaMetadataArchivo, int cantidadDeBloques) {
 	t_config * metadataArchivo;
@@ -163,7 +151,7 @@ void asignarBloquesAArchivo(char * rutaMetadataArchivo, int cantidadDeBloques) {
 		char * cadenaAGuardar = aniadirBloqueAVectorString(indexBloqueLibre,
 				bloquesActuales);
 		bitarray_set_bit(bitarrayBloques, indexBloqueLibre);
-		//msync();
+		msync(bitmap,sizeBitmap,MS_SYNC);
 		config_set_value(metadataArchivo, "BLOCKS", cadenaAGuardar);
 		config_save(metadataArchivo);
 
@@ -187,45 +175,6 @@ void crearNuevoPokemon(char * rutaMetadataPokemon, mensajeNew * datosDelPokemon)
 	close(pokemonFD);
 	inicializarArchivoMetadata(rutaMetadataPokemon);
 }
-
-/*
- void agregarPokemonsAPosicion(char* rutaMetadataPokemon, char* posicionComoCadena, mensajeNew* mensaje){
-
- t_config* archivo;
- archivo = config_create(rutaMetadataPokemon);
- config_set_value(archivo, "OPEN", "Y");
- config_save(archivo);
- char** bloques = config_get_array_value(archivo, "BLOCKS");
- int i = 0;
- bool lasPosicionesYaExistian = false;
- while (bloques[i] != NULL) {
- t_config* bloque;
- char* rutaBloque;
- asprintf(&rutaBloque, "%s%s%s%s", puntoDeMontaje, "/Blocks/",
- bloques[i], ".bin");
- bloque = config_create(rutaBloque);
- if (config_has_property(bloque, posicionComoCadena)) {
- int cantidadActual = config_get_int_value(bloque,
- posicionComoCadena);
- cantidadActual += mensaje->cantPokemon;
- char* cantidadComoString;
- asprintf(&cantidadComoString, "%d", cantidadActual);
- config_set_value(bloque, posicionComoCadena, cantidadComoString);
- config_save(archivo);
- lasPosicionesYaExistian = true;
- free(cantidadComoString);
- config_destroy(bloque);
- break;
- }
- config_destroy(bloque);
- i++;
- }
- if (!lasPosicionesYaExistian) {
- char * posicionesConCantidad;
- asprintf(&posicionesConCantidad,"%s%s%d",posicionComoCadena,"=",mensaje->cantPokemon);
- int sizeCadena = strlen(posicionesConCantidad);
- }
- }*/
 
 int obtenerCantidadDeBloquesAsignados(char* rutaMetadata) {
 	t_config * metadata;
@@ -322,12 +271,13 @@ char * mapearArchivo(char * rutaMetadata) {
 	char ** bloquesArchivo;
 	char * archivoMapeado;
 	char * rutaBloqueActual;
+	int caracterLeido;
 
 	metadata = config_create(rutaMetadata);
 	sizeArchivo = config_get_int_value(metadata, "SIZE");
 	bloquesArchivo = config_get_array_value(metadata, "BLOCKS");
 	archivoMapeado = malloc(sizeArchivo);
-	asprintf(&rutaBloqueActual, "%s%s%s%s", puntoDeMontaje, "/BLOCKS/",
+	asprintf(&rutaBloqueActual, "%s%s%s%s", puntoDeMontaje, "/Blocks/",
 			bloquesArchivo[numeroBloqueActual], ".bin");
 	bloqueActual = fopen(rutaBloqueActual, "r");
 
@@ -341,7 +291,8 @@ char * mapearArchivo(char * rutaMetadata) {
 			bloqueActual = fopen(rutaBloqueActual, "r");
 			caracteresLeidosEnBloqueActual = 0;
 		}
-		archivoMapeado[i] = fgetc(bloqueActual);
+		caracterLeido = fgetc(bloqueActual);
+		archivoMapeado[i]=caracterLeido;
 		caracteresLeidosEnBloqueActual++;
 	}
 
@@ -388,7 +339,8 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 	mensajeNew * msgNew = desarmarMensajeNEW(mensajeRecibido);
 
-	char * pokemonConFinDeCadena = agregarFinDeCadena(msgNew->pokemon);
+	//char * pokemonConFinDeCadena = agregarFinDeCadena(msgNew->pokemon);
+	char * pokemonConFinDeCadena = msgNew->pokemon;
 	char * posicionComoCadena = posicionComoChar(msgNew->posicionX,
 			msgNew->posicionY);
 	char * entradaCompletaComoCadena;
@@ -404,13 +356,27 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 	if (existeElArchivo(rutaMetadataPokemon)) {
 
-		//TODO - Lado derecho del if
+		t_config * metadataPokemon;
+		metadataPokemon = config_create(rutaMetadataPokemon);
+		//TODO - Poner semaforo para leer metadata
+		while(1)
+		{
+			//wait semaforoPokemon
+
+			if(strcmp(config_get_string_value(metadataPokemon,"OPEN"),"N")==0){
+				config_set_value(metadataPokemon,"OPEN","Y");
+				config_save(metadataPokemon);
+
+				break;
+			}
+			//signal semaforoPokemon
+			sleep(tiempoDeReintentoDeAcceso);
+		}
+		config_destroy(metadataPokemon);
+
 		char * archivoMappeado = mapearArchivo(rutaMetadataPokemon);
 
 		if (string_contains(archivoMappeado, posicionComoCadena)) {
-			/*	TODO
-			 *	Implementar "ya esta la posicion"
-			 */
 
 			char* aEscribirEnBloques = string_new();
 			int indexEntrada = 0;
@@ -425,12 +391,14 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 					int cantidadNum = atoi(cantidad);
 					cantidadNum = cantidadNum + msgNew->cantPokemon;
 					cantidad = string_itoa(cantidadNum);
+
 				}
 				string_append(&aEscribirEnBloques, posicion);
 				string_append(&aEscribirEnBloques, "=");
 				string_append(&aEscribirEnBloques, cantidad);
 				string_append(&aEscribirEnBloques, "\n");
 				indexEntrada++;
+				entradaActual=arrayDeEntradas[indexEntrada];
 			}
 
 			int sizeAEscribir = strlen(aEscribirEnBloques);
@@ -478,7 +446,6 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 					enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje, sizeMensaje, msgAppeared);
 
 					free(sizeFinal);
-					free(aEscribirEnBloques);
 				}else{
 					log_info(logger, "No se pudo actualizar la cantidad en las posiciones dadas, no hay espacio suficiente");
 					return;
@@ -607,9 +574,6 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 	free(rutaMetadataPokemon);
 	free(posicionComoCadena);
 	free(entradaCompletaComoCadena);
-
-	free(mensajeRecibido->mensaje);
-	free(mensajeRecibido);
 	free(msgNew->pokemon);
 	free(msgNew);
 }
@@ -703,7 +667,8 @@ void inicializarFileSystem() {
 		int fd = open(rutaBitmap, O_RDWR);
 		struct stat sb;
 		fstat(fd, &sb);
-		bitmap = mmap(NULL, sb.st_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd,
+		sizeBitmap = sb.st_size;
+		bitmap = mmap(NULL, sizeBitmap, PROT_READ | PROT_WRITE, MAP_SHARED, fd,
 				0);
 		bitarrayBloques = bitarray_create_with_mode(bitmap, sb.st_size,
 				MSB_FIRST);
@@ -712,11 +677,11 @@ void inicializarFileSystem() {
 		ftruncate(fd, cantidadDeBloques / 8);
 		struct stat sb;
 		fstat(fd, &sb);
-		bitmap = mmap(NULL, sb.st_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd,
+		sizeBitmap = sb.st_size;
+		bitmap = mmap(NULL, sizeBitmap, PROT_READ | PROT_WRITE, MAP_SHARED, fd,
 				0);
 		bitarrayBloques = bitarray_create_with_mode(bitmap, sb.st_size,
 				MSB_FIRST);
-		//msync(); ver como es la firma de esto
 		for (int i = 0; i < cantidadDeBloques; i++) {
 			bitarray_clean_bit(bitarrayBloques, i);
 
@@ -728,6 +693,7 @@ void inicializarFileSystem() {
 			close(nuevoBloque);
 			free(rutaBloque);
 		}
+		  msync(bitmap,sb.st_size,MS_SYNC);
 	}
 	free(rutaBitmap);
 	free(rutaMetadata);

@@ -37,7 +37,7 @@ uint32_t idProceso;
 //Gestion del FS
 //---------------------------------------------------------------------------------------------
 char * puntoDeMontaje;
-uint32_t tamanioBloque, cantidadDeBloques, tiempoDeRetardo, tiempoDeReintentoDeAcceso;
+uint32_t tamanioBloque, cantidadDeBloques, tiempoDeRetardo, tiempoDeReintentoDeAcceso, sizeBitmap;
 t_bitarray * bitarrayBloques;
 char * bitmap;
 //---------------------------------------------------------------------------------------------
