@@ -89,6 +89,7 @@ typedef struct{
 	t_entrenador* entrenadorConCatch;
 }t_catchEnEspera;
 
+int tiempoDeEspera;
 t_team *team;
 t_list *listaHilos;
 t_list *listaDeReady;

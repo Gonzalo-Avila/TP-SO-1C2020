@@ -14,7 +14,7 @@
 
 void enviarGetDePokemon(char *ip, char *puerto, char *pokemon) {
 	int *socketBroker = malloc(sizeof(int));
-	*socketBroker = crearConexionCliente(ip, puerto);
+	*socketBroker = crearConexionCliente(ip, puerto, tiempoDeEspera);
 	uint32_t idRespuesta;
 
 	mensajeGet *msg = malloc(sizeof(mensajeGet));
@@ -106,7 +106,7 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 //TODO Ver si tiene que devolver el ID de rta
 void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 	int *socketBroker = malloc(sizeof(int));
-	*socketBroker = crearConexionCliente(ip, puerto);
+	*socketBroker = crearConexionCliente(ip, puerto, tiempoDeEspera);
 	uint32_t idRespuesta;
 
 	mensajeCatch *msg = malloc(sizeof(mensajeCatch));
@@ -251,8 +251,8 @@ void atenderServidor(int *socketServidor) {
 				log_error(logger, "Se perdio la conexión con el Broker.");
 				close(*socketServidor);
 				log_debug(logger, "Reintentando conexion...");
-				*socketServidor = crearConexionCliente(ipServidor, puertoServidor);
-				}
+				*socketServidor = crearConexionCliente(ipServidor, puertoServidor, tiempoDeEspera);
+			}
 		if(miMensajeRecibido->mensaje != NULL){
 			log_info(logger, "Mensaje recibido: %s\n", miMensajeRecibido->mensaje);
 		}

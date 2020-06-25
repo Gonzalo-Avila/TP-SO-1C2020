@@ -14,6 +14,7 @@ void inicializarVariablesGlobales() {
 	ipServidor = config_get_string_value(config, "IP");
 	puertoServidor = malloc(strlen(config_get_string_value(config, "PUERTO")) + 1);
 	puertoServidor = config_get_string_value(config, "PUERTO");
+	tiempoDeEspera = atoi(config_get_string_value(config, "TIEMPO_DE_ESPERA"));
 	team->algoritmoPlanificacion = obtenerAlgoritmoPlanificador();
 	listaCondsEntrenadores = list_create();
 	listaPosicionesInternas = list_create();
@@ -25,6 +26,8 @@ void inicializarVariablesGlobales() {
 	sem_init(&mutexEntrenadores,0,1);
 	sem_init(&semPlanif, 0, 0);
 	sem_init(&procesoEnReady,0,0);
+
+	log_debug(logger, "Se ha iniciado un Team.");
 }
 
 void array_iterate_element(char** strings, void (*closure)(char*, t_list*),
@@ -94,10 +97,28 @@ void crearHilosDeEntrenadores() {
 	}
 }
 
+void crearConexion(int* socket){
+	*socket = crearConexionCliente(ipServidor, puertoServidor, tiempoDeEspera);
+}
+
 void crearConexionesCliente(int* socketBrokerLoc, int* socketBrokerApp, int* socketBrokerCau) {
-	*socketBrokerLoc = crearConexionCliente(ipServidor, puertoServidor);
-	*socketBrokerApp = crearConexionCliente(ipServidor, puertoServidor);
-	*socketBrokerCau = crearConexionCliente(ipServidor, puertoServidor);
+//	pthread_t hiloSocketLoc;
+//	pthread_t hiloSocketApp;
+//	pthread_t hiloSocketCau;
+
+//	pthread_create(&hiloSocketLoc, NULL, (void*) crearConexion, socketBrokerLoc);
+//	pthread_detach(hiloSocketLoc);
+
+//	pthread_create(&hiloSocketApp, NULL, (void*) crearConexion, socketBrokerApp);
+//	pthread_detach(hiloSocketApp);
+
+//	pthread_create(&hiloSocketCau, NULL, (void*) crearConexion, socketBrokerCau);
+//	pthread_detach(hiloSocketCau);
+
+
+	*socketBrokerLoc = crearConexionCliente(ipServidor, puertoServidor, tiempoDeEspera);
+	*socketBrokerApp = crearConexionCliente(ipServidor, puertoServidor, tiempoDeEspera);
+	*socketBrokerCau = crearConexionCliente(ipServidor, puertoServidor, tiempoDeEspera);
 }
 
 int main() {
@@ -106,7 +127,7 @@ int main() {
 	inicializarVariablesGlobales();
 
 	//Obtengo el ID del proceso
-	idDelProceso = obtenerIdDelProceso(ipServidor, puertoServidor);
+	idDelProceso = obtenerIdDelProceso(ipServidor, puertoServidor, tiempoDeEspera);
 
 	//Creo 3 conexiones con el Broker, una por cada cola
 	int *socketBrokerApp = malloc(sizeof(int));
@@ -132,10 +153,12 @@ int main() {
 
 	inicializarSemEntrenadores();
 
-	enviarGetSegunObjetivo(ipServidor,puertoServidor);
 	crearHilosDeEntrenadores();
 
 	planificador();
+
+
+	enviarGetSegunObjetivo(ipServidor,puertoServidor);
 
 	log_info(logger, "Finalizó la conexión con el servidor\n");
 	log_info(logger, "El proceso Team finalizó su ejecución\n");
