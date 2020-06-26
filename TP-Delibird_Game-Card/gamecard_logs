@@ -1354,3 +1354,40 @@
 [INFO] 21:38:00:805 GameCard/(13508:13524): [BROKER] Mensaje recibido
 [DEBUG] 21:38:02:282 GameCard/(13508:13524): [BROKER] Llegó un mensaje de la cola NEW
 [DEBUG] 21:38:04:632 GameCard/(13508:13524): [NEW] Procesando
+[INFO] 16:28:31:282 GameCard/(9737:9737): Se ha iniciado el cliente GameCard
+
+[ERROR] 16:28:31:285 GameCard/(9737:9737): No se encontró el archivo metadata en el punto de montaje. El proceso GameCard no puede continuar
+[INFO] 16:29:22:580 GameCard/(9766:9766): Se ha iniciado el cliente GameCard
+
+[INFO] 16:29:22:581 GameCard/(9766:9766): Creando hilo de conexion Broker
+[INFO] 16:29:22:581 GameCard/(9766:9766): Hilo de conexion Broker creado
+[INFO] 16:29:22:581 GameCard/(9766:9766): Creando hilo de conexion GameBoy
+[INFO] 16:29:22:587 GameCard/(9766:9772): Creando nueva conexion con Broker
+[INFO] 16:32:09:166 GameCard/(10040:10040): Se ha iniciado el cliente GameCard
+
+[INFO] 16:32:09:178 GameCard/(10040:10040): Creando hilo de conexion Broker
+[INFO] 16:32:09:194 GameCard/(10040:10040): Hilo de conexion Broker creado
+[INFO] 16:32:09:195 GameCard/(10040:10040): Creando hilo de conexion GameBoy
+[INFO] 16:32:09:203 GameCard/(10040:10050): Creando nueva conexion con Broker
+[INFO] 16:35:06:994 GameCard/(10131:10131): Se ha iniciado el cliente GameCard
+
+[INFO] 16:35:09:549 GameCard/(10131:10131): Creando hilo de conexion Broker
+[INFO] 16:35:09:560 GameCard/(10131:10131): Hilo de conexion Broker creado
+[INFO] 16:35:10:414 GameCard/(10131:10192): Creando nueva conexion con Broker
+[INFO] 16:36:56:377 GameCard/(10471:10471): Se ha iniciado el cliente GameCard
+
+[INFO] 16:37:02:425 GameCard/(10471:10471): Creando hilo de conexion Broker
+[INFO] 16:37:02:440 GameCard/(10471:10471): Hilo de conexion Broker creado
+[INFO] 16:37:05:576 GameCard/(10471:10488): Creando nueva conexion con Broker
+[INFO] 16:37:22:620 GameCard/(10518:10518): Se ha iniciado el cliente GameCard
+
+[INFO] 16:37:22:621 GameCard/(10518:10518): Creando hilo de conexion Broker
+[INFO] 16:37:22:631 GameCard/(10518:10518): Hilo de conexion Broker creado
+[INFO] 16:37:22:632 GameCard/(10518:10518): Creando hilo de conexion GameBoy
+[INFO] 16:37:22:637 GameCard/(10518:10530): Creando nueva conexion con Broker
+[INFO] 16:37:58:227 GameCard/(10557:10557): Se ha iniciado el cliente GameCard
+
+[INFO] 16:37:58:228 GameCard/(10557:10557): Creando hilo de conexion Broker
+[INFO] 16:37:58:236 GameCard/(10557:10557): Hilo de conexion Broker creado
+[INFO] 16:37:58:237 GameCard/(10557:10557): Creando hilo de conexion GameBoy
+[INFO] 16:37:58:242 GameCard/(10557:10570): Creando nueva conexion con Broker

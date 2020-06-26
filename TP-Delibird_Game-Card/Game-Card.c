@@ -103,12 +103,13 @@ mensajeGet * desarmarMensajeGET(mensajeRecibido * mensajeRecibido) {
 	return mensaje;
 }
 
-char * agregarFinDeCadena(char * cadena) {
-	char * cad = string_new();
-	string_append(&cad, cadena);
-	string_append(&cad, "\0");
-	return cad;
-}
+//char * agregarFinDeCadena(char * cadena) {
+//	char * cad = string_new();
+//	string_append(&cad, cadena);
+//	string_append(&cad, "\0");
+//	char * f;
+//	return cad;
+//}
 
 char * posicionComoChar(uint32_t posx, uint32_t posy) {
 	char * cad;
@@ -373,8 +374,8 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 				sem_post(mutexMetadata);
 				break;
 			}
-			sem_post(mutexMetadata);
 			config_destroy(metadataPokemon);
+			sem_post(mutexMetadata);
 			sleep(tiempoDeReintentoDeAcceso);
 		}
 
@@ -465,6 +466,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 					free(sizeFinal);
 				}else{
+					config_destroy(metadataPokemon);
 					log_info(logger, "No se pudo actualizar la cantidad en las posiciones dadas, no hay espacio suficiente");
 					return;
 				}
@@ -534,6 +536,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 					free(contenidoAAlmacenar);
 
 				} else {
+					config_destroy(metadataPokemon);
 					log_info(logger,"No se pueden crear las nuevas posiciones, no hay espacio suficiente");
 					return;
 				}
@@ -704,7 +707,7 @@ void inicializarFileSystem() {
 
 	obtenerParametrosDelFS(rutaMetadata);
 
-	if (existeElArchivo(rutaBitmap)) {
+	if (existeElArchivo(rutaBitmap)){
 		int fd = open(rutaBitmap, O_RDWR);
 		struct stat sb;
 		fstat(fd, &sb);

@@ -7,12 +7,14 @@
 
 #ifndef GAME_CARD_H_
 #define GAME_CARD_H_
+#define _GNU_SOURCE
 
 #include <Utils.h>
 #include <sys/stat.h>
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <commons/bitarray.h>
+
 
 //Interaccion con broker
 //---------------------------------------------------------------------------------------------
