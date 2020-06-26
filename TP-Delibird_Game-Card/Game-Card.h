@@ -40,6 +40,14 @@ char * puntoDeMontaje;
 uint32_t tamanioBloque, cantidadDeBloques, tiempoDeRetardo, tiempoDeReintentoDeAcceso, sizeBitmap;
 t_bitarray * bitarrayBloques;
 char * bitmap;
+t_list * semaforosPokemon;
+
+sem_t semExistenciaPokemon;
+
+typedef struct{
+sem_t mutex;
+char * ruta;
+}mutexPokemon;
 //---------------------------------------------------------------------------------------------
 
 
@@ -55,6 +63,8 @@ void inicializarFileSystem();
 char * cadenasConcatenadas(char * cadena1, char * cadena2);
 bool existeElArchivo(char * rutaArchivo);
 int buscarBloqueLibre();
+mutexPokemon * crearNuevoSemaforo(char * rutaMetadataPokemon);
+sem_t * obtenerMutexPokemon (char * rutaMetadataPokemon);
 
 //Game-Card_Conexiones.c
 void esperarMensajesGameboy(int* socketSuscripcion);
