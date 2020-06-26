@@ -1391,3 +1391,299 @@
 [INFO] 16:37:58:236 GameCard/(10557:10557): Hilo de conexion Broker creado
 [INFO] 16:37:58:237 GameCard/(10557:10557): Creando hilo de conexion GameBoy
 [INFO] 16:37:58:242 GameCard/(10557:10570): Creando nueva conexion con Broker
+[INFO] 17:03:29:592 GameCard/(4241:4241): Se ha iniciado el cliente GameCard
+
+[INFO] 17:03:30:742 GameCard/(4241:4241): Creando hilo de conexion Broker
+[INFO] 17:03:30:759 GameCard/(4241:4241): Hilo de conexion Broker creado
+[INFO] 17:03:34:606 GameCard/(4241:4241): Creando hilo de conexion GameBoy
+[INFO] 17:03:35:300 GameCard/(4241:4267): Creando nueva conexion con Broker
+[DEBUG] 17:03:35:301 GameCard/(4241:4241): Esperando cliente...
+[INFO] 17:03:35:306 GameCard/(4241:4267): IDProceso asignado: 1
+[INFO] 17:03:35:307 GameCard/(4241:4267): Creando suscripciones de Broker
+[INFO] 17:03:35:307 GameCard/(4241:4267): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 17:03:35:307 GameCard/(4241:4267): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 17:03:35:308 GameCard/(4241:4267): Se ha suscrito a la cola GET_POKEMON
+[INFO] 17:03:35:331 GameCard/(4241:4267): Suscripciones de Broker creadas
+[INFO] 17:03:35:331 GameCard/(4241:4267): Creando conexion estable de broker
+[INFO] 17:03:52:115 GameCard/(4241:4280): [BROKER] Mensaje recibido
+[DEBUG] 17:03:52:115 GameCard/(4241:4280): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 17:03:52:115 GameCard/(4241:4280): [NEW] Procesando
+[DEBUG] 17:03:52:118 GameCard/(4241:4280): [NEW] Enviando APPEARED
+[DEBUG] 17:03:52:119 GameCard/(4241:4280): [NEW] APPEARED enviado
+[INFO] 17:06:26:916 GameCard/(4430:4430): Se ha iniciado el cliente GameCard
+
+[INFO] 17:06:26:925 GameCard/(4430:4430): Creando hilo de conexion Broker
+[INFO] 17:06:26:938 GameCard/(4430:4430): Hilo de conexion Broker creado
+[INFO] 17:06:26:939 GameCard/(4430:4430): Creando hilo de conexion GameBoy
+[DEBUG] 17:06:31:687 GameCard/(4430:4430): Esperando cliente...
+[INFO] 17:06:31:688 GameCard/(4430:4440): Creando nueva conexion con Broker
+[INFO] 17:06:31:689 GameCard/(4430:4440): IDProceso asignado: 1
+[INFO] 17:06:31:689 GameCard/(4430:4440): Creando suscripciones de Broker
+[INFO] 17:06:31:689 GameCard/(4430:4440): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 17:06:31:689 GameCard/(4430:4440): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 17:06:31:690 GameCard/(4430:4440): Se ha suscrito a la cola GET_POKEMON
+[INFO] 17:06:31:710 GameCard/(4430:4440): Suscripciones de Broker creadas
+[INFO] 17:06:31:710 GameCard/(4430:4440): Creando conexion estable de broker
+[INFO] 17:06:34:516 GameCard/(4430:4450): [BROKER] Mensaje recibido
+[DEBUG] 17:06:34:516 GameCard/(4430:4450): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 17:06:39:476 GameCard/(4430:4450): [NEW] Procesando
+[DEBUG] 17:10:02:434 GameCard/(4430:4450): [NEW] Enviando APPEARED
+[DEBUG] 17:10:04:2 GameCard/(4430:4450): [NEW] APPEARED enviado
+[INFO] 17:10:29:566 GameCard/(4430:4450): [BROKER] Mensaje recibido
+[DEBUG] 17:10:30:590 GameCard/(4430:4450): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 17:10:32:234 GameCard/(4430:4450): [NEW] Procesando
+[INFO] 17:15:07:414 GameCard/(4933:4933): Se ha iniciado el cliente GameCard
+
+[INFO] 17:15:08:330 GameCard/(4933:4933): Creando hilo de conexion Broker
+[INFO] 17:15:08:336 GameCard/(4933:4933): Hilo de conexion Broker creado
+[INFO] 17:15:12:703 GameCard/(4933:4933): Creando hilo de conexion GameBoy
+[INFO] 17:15:13:962 GameCard/(4933:4949): Creando nueva conexion con Broker
+[INFO] 17:15:13:963 GameCard/(4933:4949): IDProceso asignado: 2
+[INFO] 17:15:13:963 GameCard/(4933:4949): Creando suscripciones de Broker
+[INFO] 17:15:13:964 GameCard/(4933:4949): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 17:15:13:964 GameCard/(4933:4949): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 17:15:13:964 GameCard/(4933:4949): Se ha suscrito a la cola GET_POKEMON
+[INFO] 17:15:13:971 GameCard/(4933:4957): [BROKER] Mensaje recibido
+[DEBUG] 17:15:13:976 GameCard/(4933:4957): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 17:15:15:621 GameCard/(4933:4933): Esperando cliente...
+[INFO] 17:15:15:625 GameCard/(4933:4949): Suscripciones de Broker creadas
+[INFO] 17:15:15:625 GameCard/(4933:4949): Creando conexion estable de broker
+[DEBUG] 17:15:15:626 GameCard/(4933:4957): [NEW] Procesando
+[INFO] 17:27:56:868 GameCard/(5797:5797): Se ha iniciado el cliente GameCard
+
+[INFO] 17:27:56:869 GameCard/(5797:5797): Creando hilo de conexion Broker
+[INFO] 17:27:56:872 GameCard/(5797:5797): Hilo de conexion Broker creado
+[INFO] 17:27:56:875 GameCard/(5797:5797): Creando hilo de conexion GameBoy
+[DEBUG] 17:27:59:331 GameCard/(5797:5797): Esperando cliente...
+[INFO] 17:28:00:858 GameCard/(5797:5810): Creando nueva conexion con Broker
+[INFO] 17:28:00:859 GameCard/(5797:5810): IDProceso asignado: 3
+[INFO] 17:28:00:859 GameCard/(5797:5810): Creando suscripciones de Broker
+[INFO] 17:28:00:860 GameCard/(5797:5810): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 17:28:00:860 GameCard/(5797:5810): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 17:28:00:860 GameCard/(5797:5810): Se ha suscrito a la cola GET_POKEMON
+[INFO] 17:28:00:866 GameCard/(5797:5818): [BROKER] Mensaje recibido
+[DEBUG] 17:28:00:866 GameCard/(5797:5818): [BROKER] Llegó un mensaje de la cola NEW
+[INFO] 17:28:03:655 GameCard/(5797:5810): Suscripciones de Broker creadas
+[INFO] 17:28:03:655 GameCard/(5797:5810): Creando conexion estable de broker
+[DEBUG] 17:28:03:656 GameCard/(5797:5818): [NEW] Procesando
+[INFO] 17:32:29:956 GameCard/(6132:6132): Se ha iniciado el cliente GameCard
+
+[INFO] 17:32:32:234 GameCard/(6132:6132): Creando hilo de conexion Broker
+[INFO] 17:32:32:241 GameCard/(6132:6132): Hilo de conexion Broker creado
+[INFO] 17:32:32:242 GameCard/(6132:6132): Creando hilo de conexion GameBoy
+[DEBUG] 17:32:34:767 GameCard/(6132:6132): Esperando cliente...
+[INFO] 17:32:34:767 GameCard/(6132:6148): Creando nueva conexion con Broker
+[INFO] 17:32:34:768 GameCard/(6132:6148): IDProceso asignado: 4
+[INFO] 17:32:34:768 GameCard/(6132:6148): Creando suscripciones de Broker
+[INFO] 17:32:34:768 GameCard/(6132:6148): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 17:32:34:768 GameCard/(6132:6148): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 17:32:34:769 GameCard/(6132:6148): Se ha suscrito a la cola GET_POKEMON
+[INFO] 17:32:34:775 GameCard/(6132:6160): [BROKER] Mensaje recibido
+[DEBUG] 17:32:34:776 GameCard/(6132:6160): [BROKER] Llegó un mensaje de la cola NEW
+[INFO] 17:32:36:283 GameCard/(6132:6148): Suscripciones de Broker creadas
+[INFO] 17:32:36:283 GameCard/(6132:6148): Creando conexion estable de broker
+[DEBUG] 17:32:36:284 GameCard/(6132:6160): [NEW] Procesando
+[DEBUG] 17:36:47:872 GameCard/(6132:6160): [NEW] Enviando APPEARED
+[DEBUG] 17:36:53:566 GameCard/(6132:6160): [NEW] APPEARED enviado
+[INFO] 17:37:19:606 GameCard/(6132:6160): [BROKER] Mensaje recibido
+[DEBUG] 17:37:20:547 GameCard/(6132:6160): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 17:37:21:941 GameCard/(6132:6160): [NEW] Procesando
+[INFO] 17:45:01:390 GameCard/(6909:6909): Se ha iniciado el cliente GameCard
+
+[INFO] 17:45:05:40 GameCard/(6909:6909): Creando hilo de conexion Broker
+[INFO] 17:45:05:44 GameCard/(6909:6909): Hilo de conexion Broker creado
+[INFO] 17:45:09:450 GameCard/(6909:6909): Creando hilo de conexion GameBoy
+[INFO] 17:45:09:771 GameCard/(6909:6920): Creando nueva conexion con Broker
+[INFO] 17:45:09:772 GameCard/(6909:6920): IDProceso asignado: 6
+[INFO] 17:45:09:773 GameCard/(6909:6920): Creando suscripciones de Broker
+[INFO] 17:45:09:773 GameCard/(6909:6920): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 17:45:09:773 GameCard/(6909:6920): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 17:45:09:773 GameCard/(6909:6920): Se ha suscrito a la cola GET_POKEMON
+[INFO] 17:45:09:784 GameCard/(6909:6927): [BROKER] Mensaje recibido
+[DEBUG] 17:45:09:784 GameCard/(6909:6927): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 17:45:11:457 GameCard/(6909:6909): Esperando cliente...
+[INFO] 17:45:11:461 GameCard/(6909:6920): Suscripciones de Broker creadas
+[INFO] 17:45:11:461 GameCard/(6909:6920): Creando conexion estable de broker
+[DEBUG] 17:45:11:462 GameCard/(6909:6927): [NEW] Procesando
+[INFO] 17:47:52:679 GameCard/(7150:7150): Se ha iniciado el cliente GameCard
+
+[INFO] 17:47:52:686 GameCard/(7150:7150): Creando hilo de conexion Broker
+[INFO] 17:47:52:699 GameCard/(7150:7150): Hilo de conexion Broker creado
+[INFO] 17:47:52:700 GameCard/(7150:7150): Creando hilo de conexion GameBoy
+[DEBUG] 17:47:58:723 GameCard/(7150:7150): Esperando cliente...
+[INFO] 17:47:58:724 GameCard/(7150:7160): Creando nueva conexion con Broker
+[INFO] 17:47:58:724 GameCard/(7150:7160): IDProceso asignado: 7
+[INFO] 17:47:58:724 GameCard/(7150:7160): Creando suscripciones de Broker
+[INFO] 17:47:58:725 GameCard/(7150:7160): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 17:47:58:725 GameCard/(7150:7160): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 17:47:58:725 GameCard/(7150:7160): Se ha suscrito a la cola GET_POKEMON
+[INFO] 17:47:58:732 GameCard/(7150:7174): [BROKER] Mensaje recibido
+[DEBUG] 17:47:58:732 GameCard/(7150:7174): [BROKER] Llegó un mensaje de la cola NEW
+[INFO] 17:48:01:81 GameCard/(7150:7160): Suscripciones de Broker creadas
+[INFO] 17:48:01:82 GameCard/(7150:7160): Creando conexion estable de broker
+[DEBUG] 17:48:01:83 GameCard/(7150:7174): [NEW] Procesando
+[DEBUG] 17:49:30:965 GameCard/(7150:7174): [NEW] Enviando APPEARED
+[DEBUG] 17:49:33:181 GameCard/(7150:7174): [NEW] APPEARED enviado
+[INFO] 17:49:53:82 GameCard/(7150:7174): [BROKER] Mensaje recibido
+[DEBUG] 17:49:54:929 GameCard/(7150:7174): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 17:49:56:431 GameCard/(7150:7174): [NEW] Procesando
+[INFO] 17:51:37:767 GameCard/(7418:7418): Se ha iniciado el cliente GameCard
+
+[INFO] 17:51:37:767 GameCard/(7418:7418): Creando hilo de conexion Broker
+[INFO] 17:51:37:778 GameCard/(7418:7418): Hilo de conexion Broker creado
+[INFO] 17:51:37:779 GameCard/(7418:7418): Creando hilo de conexion GameBoy
+[DEBUG] 17:51:39:986 GameCard/(7418:7418): Esperando cliente...
+[INFO] 17:51:39:986 GameCard/(7418:7428): Creando nueva conexion con Broker
+[INFO] 17:51:39:987 GameCard/(7418:7428): IDProceso asignado: 8
+[INFO] 17:51:39:987 GameCard/(7418:7428): Creando suscripciones de Broker
+[INFO] 17:51:39:987 GameCard/(7418:7428): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 17:51:39:988 GameCard/(7418:7428): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 17:51:39:988 GameCard/(7418:7428): Se ha suscrito a la cola GET_POKEMON
+[INFO] 17:51:39:994 GameCard/(7418:7436): [BROKER] Mensaje recibido
+[DEBUG] 17:51:39:994 GameCard/(7418:7436): [BROKER] Llegó un mensaje de la cola NEW
+[INFO] 17:51:42:63 GameCard/(7418:7428): Suscripciones de Broker creadas
+[INFO] 17:51:42:63 GameCard/(7418:7428): Creando conexion estable de broker
+[DEBUG] 17:51:42:64 GameCard/(7418:7436): [NEW] Procesando
+[INFO] 17:55:19:874 GameCard/(7729:7729): Se ha iniciado el cliente GameCard
+
+[INFO] 17:55:19:882 GameCard/(7729:7729): Creando hilo de conexion Broker
+[INFO] 17:55:19:890 GameCard/(7729:7729): Hilo de conexion Broker creado
+[INFO] 17:55:19:891 GameCard/(7729:7729): Creando hilo de conexion GameBoy
+[DEBUG] 17:55:24:340 GameCard/(7729:7729): Esperando cliente...
+[INFO] 17:55:24:341 GameCard/(7729:7739): Creando nueva conexion con Broker
+[INFO] 17:55:24:342 GameCard/(7729:7739): IDProceso asignado: 9
+[INFO] 17:55:24:342 GameCard/(7729:7739): Creando suscripciones de Broker
+[INFO] 17:55:24:342 GameCard/(7729:7739): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 17:55:24:343 GameCard/(7729:7739): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 17:55:24:343 GameCard/(7729:7739): Se ha suscrito a la cola GET_POKEMON
+[INFO] 17:55:24:353 GameCard/(7729:7751): [BROKER] Mensaje recibido
+[DEBUG] 17:55:24:356 GameCard/(7729:7751): [BROKER] Llegó un mensaje de la cola NEW
+[INFO] 17:55:26:669 GameCard/(7729:7739): Suscripciones de Broker creadas
+[DEBUG] 17:55:26:669 GameCard/(7729:7751): [NEW] Procesando
+[INFO] 17:55:26:669 GameCard/(7729:7739): Creando conexion estable de broker
+[DEBUG] 17:55:26:677 GameCard/(7729:7751): [NEW] Enviando APPEARED
+[DEBUG] 17:55:26:678 GameCard/(7729:7751): [NEW] APPEARED enviado
+[INFO] 17:55:44:640 GameCard/(7729:7751): [BROKER] Mensaje recibido
+[DEBUG] 17:55:44:640 GameCard/(7729:7751): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 17:55:46:185 GameCard/(7729:7751): [NEW] Procesando
+[INFO] 17:57:39:211 GameCard/(7913:7913): Se ha iniciado el cliente GameCard
+
+[INFO] 17:57:39:219 GameCard/(7913:7913): Creando hilo de conexion Broker
+[INFO] 17:57:39:225 GameCard/(7913:7913): Hilo de conexion Broker creado
+[INFO] 17:57:39:227 GameCard/(7913:7913): Creando hilo de conexion GameBoy
+[DEBUG] 17:57:40:948 GameCard/(7913:7913): Esperando cliente...
+[INFO] 17:57:40:949 GameCard/(7913:7927): Creando nueva conexion con Broker
+[INFO] 17:57:40:950 GameCard/(7913:7927): IDProceso asignado: 10
+[INFO] 17:57:40:950 GameCard/(7913:7927): Creando suscripciones de Broker
+[INFO] 17:57:40:950 GameCard/(7913:7927): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 17:57:40:950 GameCard/(7913:7927): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 17:57:40:951 GameCard/(7913:7927): Se ha suscrito a la cola GET_POKEMON
+[INFO] 17:57:40:958 GameCard/(7913:7934): [BROKER] Mensaje recibido
+[DEBUG] 17:57:40:963 GameCard/(7913:7934): [BROKER] Llegó un mensaje de la cola NEW
+[INFO] 17:57:41:809 GameCard/(7913:7927): Suscripciones de Broker creadas
+[DEBUG] 17:57:41:809 GameCard/(7913:7934): [NEW] Procesando
+[INFO] 17:57:41:809 GameCard/(7913:7927): Creando conexion estable de broker
+[DEBUG] 17:57:41:818 GameCard/(7913:7934): [NEW] Enviando APPEARED
+[DEBUG] 17:57:41:820 GameCard/(7913:7934): [NEW] APPEARED enviado
+[INFO] 17:57:54:354 GameCard/(7913:7934): [BROKER] Mensaje recibido
+[DEBUG] 17:57:54:355 GameCard/(7913:7934): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 17:57:56:716 GameCard/(7913:7934): [NEW] Procesando
+[INFO] 18:04:32:152 GameCard/(8362:8362): Se ha iniciado el cliente GameCard
+
+[INFO] 18:04:32:160 GameCard/(8362:8362): Creando hilo de conexion Broker
+[INFO] 18:04:32:165 GameCard/(8362:8362): Hilo de conexion Broker creado
+[INFO] 18:04:32:166 GameCard/(8362:8362): Creando hilo de conexion GameBoy
+[DEBUG] 18:04:34:519 GameCard/(8362:8362): Esperando cliente...
+[INFO] 18:04:34:520 GameCard/(8362:8371): Creando nueva conexion con Broker
+[INFO] 18:04:34:521 GameCard/(8362:8371): IDProceso asignado: 11
+[INFO] 18:04:34:521 GameCard/(8362:8371): Creando suscripciones de Broker
+[INFO] 18:04:34:521 GameCard/(8362:8371): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 18:04:34:522 GameCard/(8362:8371): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 18:04:34:522 GameCard/(8362:8371): Se ha suscrito a la cola GET_POKEMON
+[INFO] 18:04:34:528 GameCard/(8362:8384): [BROKER] Mensaje recibido
+[DEBUG] 18:04:34:528 GameCard/(8362:8384): [BROKER] Llegó un mensaje de la cola NEW
+[INFO] 18:04:36:535 GameCard/(8362:8371): Suscripciones de Broker creadas
+[INFO] 18:04:36:535 GameCard/(8362:8371): Creando conexion estable de broker
+[DEBUG] 18:04:36:536 GameCard/(8362:8384): [NEW] Procesando
+[DEBUG] 18:06:01:409 GameCard/(8362:8384): [NEW] Enviando APPEARED
+[DEBUG] 18:06:03:247 GameCard/(8362:8384): [NEW] APPEARED enviado
+[INFO] 18:06:43:364 GameCard/(8362:8384): [BROKER] Mensaje recibido
+[DEBUG] 18:07:53:152 GameCard/(8362:8384): [BROKER] Llegó un mensaje de la cola NEW
+[INFO] 18:10:56:66 GameCard/(8911:8911): Se ha iniciado el cliente GameCard
+
+[INFO] 18:10:56:76 GameCard/(8911:8911): Creando hilo de conexion Broker
+[INFO] 18:10:56:83 GameCard/(8911:8911): Hilo de conexion Broker creado
+[INFO] 18:10:56:84 GameCard/(8911:8911): Creando hilo de conexion GameBoy
+[DEBUG] 18:10:56:84 GameCard/(8911:8911): Esperando cliente...
+[INFO] 18:10:56:84 GameCard/(8911:8936): Creando nueva conexion con Broker
+[INFO] 18:10:56:86 GameCard/(8911:8936): IDProceso asignado: 1
+[INFO] 18:10:56:86 GameCard/(8911:8936): Creando suscripciones de Broker
+[INFO] 18:10:56:87 GameCard/(8911:8936): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 18:10:56:88 GameCard/(8911:8936): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 18:10:56:89 GameCard/(8911:8936): Se ha suscrito a la cola GET_POKEMON
+[INFO] 18:10:56:114 GameCard/(8911:8936): Suscripciones de Broker creadas
+[INFO] 18:10:56:115 GameCard/(8911:8936): Creando conexion estable de broker
+[INFO] 18:11:00:782 GameCard/(8911:8938): [BROKER] Mensaje recibido
+[DEBUG] 18:11:00:783 GameCard/(8911:8938): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 18:11:04:254 GameCard/(8911:8938): [NEW] Procesando
+[DEBUG] 18:11:04:264 GameCard/(8911:8938): [NEW] Enviando APPEARED
+[DEBUG] 18:11:04:267 GameCard/(8911:8938): [NEW] APPEARED enviado
+[INFO] 18:11:22:956 GameCard/(8911:8938): [BROKER] Mensaje recibido
+[DEBUG] 18:11:22:956 GameCard/(8911:8938): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 18:11:40:451 GameCard/(8911:8938): [NEW] Procesando
+[INFO] 18:15:09:448 GameCard/(9208:9208): Se ha iniciado el cliente GameCard
+
+[INFO] 18:15:09:456 GameCard/(9208:9208): Creando hilo de conexion Broker
+[INFO] 18:15:09:463 GameCard/(9208:9208): Hilo de conexion Broker creado
+[INFO] 18:15:09:464 GameCard/(9208:9208): Creando hilo de conexion GameBoy
+[DEBUG] 18:15:09:464 GameCard/(9208:9208): Esperando cliente...
+[INFO] 18:15:09:464 GameCard/(9208:9221): Creando nueva conexion con Broker
+[INFO] 18:15:09:466 GameCard/(9208:9221): IDProceso asignado: 2
+[INFO] 18:15:09:466 GameCard/(9208:9221): Creando suscripciones de Broker
+[INFO] 18:15:09:468 GameCard/(9208:9221): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 18:15:09:468 GameCard/(9208:9221): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 18:15:09:468 GameCard/(9208:9221): Se ha suscrito a la cola GET_POKEMON
+[INFO] 18:15:09:478 GameCard/(9208:9223): [BROKER] Mensaje recibido
+[DEBUG] 18:15:09:478 GameCard/(9208:9223): [BROKER] Llegó un mensaje de la cola NEW
+[INFO] 18:15:18:280 GameCard/(9208:9221): Suscripciones de Broker creadas
+[INFO] 18:15:18:281 GameCard/(9208:9221): Creando conexion estable de broker
+[DEBUG] 18:15:18:283 GameCard/(9208:9223): [NEW] Procesando
+[DEBUG] 18:15:30:782 GameCard/(9208:9223): [NEW] Enviando APPEARED
+[DEBUG] 18:15:30:784 GameCard/(9208:9223): [NEW] APPEARED enviado
+[INFO] 18:15:49:849 GameCard/(9208:9223): [BROKER] Mensaje recibido
+[DEBUG] 18:15:49:849 GameCard/(9208:9223): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 18:15:52:740 GameCard/(9208:9223): [NEW] Procesando
+[DEBUG] 18:20:22:31 GameCard/(9208:9223): [NEW] Enviando APPEARED
+[DEBUG] 18:20:26:896 GameCard/(9208:9223): [NEW] APPEARED enviado
+[INFO] 18:20:50:842 GameCard/(9208:9223): [BROKER] Mensaje recibido
+[DEBUG] 18:20:52:453 GameCard/(9208:9223): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 18:20:54:765 GameCard/(9208:9223): [NEW] Procesando
+[INFO] 18:25:03:287 GameCard/(9851:9851): Se ha iniciado el cliente GameCard
+
+[INFO] 18:25:03:291 GameCard/(9851:9851): Creando hilo de conexion Broker
+[INFO] 18:25:03:297 GameCard/(9851:9851): Hilo de conexion Broker creado
+[INFO] 18:25:03:300 GameCard/(9851:9851): Creando hilo de conexion GameBoy
+[DEBUG] 18:25:03:300 GameCard/(9851:9851): Esperando cliente...
+[INFO] 18:25:03:305 GameCard/(9851:9870): Creando nueva conexion con Broker
+[INFO] 18:25:35:762 GameCard/(9915:9915): Se ha iniciado el cliente GameCard
+
+[INFO] 18:25:35:762 GameCard/(9915:9915): Creando hilo de conexion Broker
+[INFO] 18:25:35:768 GameCard/(9915:9915): Hilo de conexion Broker creado
+[INFO] 18:25:35:768 GameCard/(9915:9915): Creando hilo de conexion GameBoy
+[DEBUG] 18:25:35:769 GameCard/(9915:9915): Esperando cliente...
+[INFO] 18:25:35:769 GameCard/(9915:9923): Creando nueva conexion con Broker
+[INFO] 18:25:35:771 GameCard/(9915:9923): IDProceso asignado: 1
+[INFO] 18:25:35:771 GameCard/(9915:9923): Creando suscripciones de Broker
+[INFO] 18:25:35:772 GameCard/(9915:9923): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 18:25:35:773 GameCard/(9915:9923): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 18:25:35:774 GameCard/(9915:9923): Se ha suscrito a la cola GET_POKEMON
+[INFO] 18:25:35:785 GameCard/(9915:9923): Suscripciones de Broker creadas
+[INFO] 18:25:35:786 GameCard/(9915:9923): Creando conexion estable de broker
+[INFO] 18:25:45:773 GameCard/(9915:9925): [BROKER] Mensaje recibido
+[DEBUG] 18:25:45:773 GameCard/(9915:9925): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 18:25:49:4 GameCard/(9915:9925): [NEW] Procesando
+[DEBUG] 18:25:49:12 GameCard/(9915:9925): [NEW] Enviando APPEARED
+[DEBUG] 18:25:49:14 GameCard/(9915:9925): [NEW] APPEARED enviado
+[INFO] 18:26:09:663 GameCard/(9915:9925): [BROKER] Mensaje recibido
+[DEBUG] 18:26:09:663 GameCard/(9915:9925): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 18:26:12:61 GameCard/(9915:9925): [NEW] Procesando
