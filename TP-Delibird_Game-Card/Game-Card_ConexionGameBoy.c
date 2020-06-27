@@ -9,7 +9,6 @@
 void crearConexionGameBoy() {
 	log_info(logger, "Creando hilo de conexion GameBoy");
 	socketEscuchaGameboy = crearConexionServer(config_get_string_value(config,"IP_GAMECARD"), config_get_string_value(config,"PUERTO_GAMECARD"));
-	//socketEscuchaGameboy = crearConexionServer("127.0.0.3", "6987");
 	atenderConexiones(&socketEscuchaGameboy);
 	log_info(logger, "Hilo de conexion GameBoy creado");
 }

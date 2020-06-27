@@ -13,8 +13,8 @@ void inicializarVariablesGlobales() {
 	sem_init(&habilitarEnvio, 0, 0);
 	sem_init(&mutex_regParticiones, 0, 1);
 
-	globalIDProceso = 1;
-	globalIDMensaje = 1;
+	globalIDProceso = config_get_int_value(config,"PROCESOS_REGISTRADOS")+1;
+	globalIDMensaje = config_get_int_value(config,"MENSAJES_REGISTRADOS")+1;
 }
 
 void destruirVariablesGlobales() {
@@ -63,13 +63,13 @@ void inicializarColasYListas() {
 
 int getSocketEscuchaBroker() {
 
-	char * ipEscucha = malloc(
-			strlen(config_get_string_value(config, "IP_BROKER")) + 1);
-	ipEscucha = config_get_string_value(config, "IP_BROKER");
+	/*char * ipEscucha = malloc(
+			strlen(config_get_string_value(config, "IP_BROKER")) + 1);*/
+	char * ipEscucha = config_get_string_value(config, "IP_BROKER");
 
-	char * puertoEscucha = malloc(
-			strlen(config_get_string_value(config, "PUERTO_BROKER")) + 1);
-	puertoEscucha = config_get_string_value(config, "PUERTO_BROKER");
+	/*char * puertoEscucha = malloc(
+			strlen(config_get_string_value(config, "PUERTO_BROKER")) + 1);*/
+	char * puertoEscucha = config_get_string_value(config, "PUERTO_BROKER");
 
 	int socketEscucha = crearConexionServer(ipEscucha, puertoEscucha);
 
@@ -79,8 +79,8 @@ int getSocketEscuchaBroker() {
 			socketEscucha);
 
 
-	free(ipEscucha);
-	free(puertoEscucha);
+	/*free(ipEscucha);
+	free(puertoEscucha);*/
 
 	return socketEscucha;
 
@@ -118,10 +118,7 @@ void eliminarSuscriptor(t_list* listaSuscriptores, uint32_t clientID){
 }
 
 void desuscribir(uint32_t clientID, cola colaSuscripcion) {
-	//TODO_OLD
-	// - Buscar el clientID en la lista de suscriptores de la cola pasada
-	// - Hacer close(socket)
-	// - Borrar nodo suscriptor
+
 	log_info(logger, "[DESUSCRIPCION]");
 	log_info(logger, "Se procedera a desuscribir de la cola %s al suscriptor con clientID: %d", getCodeStringByNum(colaSuscripcion),clientID);
 	int socketCliente = getSocketActualDelSuscriptor(clientID, colaSuscripcion);
@@ -132,9 +129,6 @@ void desuscribir(uint32_t clientID, cola colaSuscripcion) {
 
 
 int getSocketActualDelSuscriptor(uint32_t clientID, cola colaSuscripcion) {
-	//TODO_OLD
-	// - Encontrar el nodo suscriptor en la cola (parametro) con el clientID (parametro) requerido
-	// - Retornar socket actual de ese suscriptor
 
 	suscriptor* sus;
 	sus = buscarSuscriptor(clientID, colaSuscripcion);
@@ -154,17 +148,20 @@ suscriptor * buscarSuscriptor(uint32_t clientID, cola codSuscripcion){
 
 
 uint32_t getIDMensaje() {
+	config_set_value(config,"MENSAJES_REGISTRADOS",string_itoa(globalIDMensaje));
+	config_save(config);
 	return globalIDMensaje++;
 }
 
 uint32_t getIDProceso() {
+	config_set_value(config,"PROCESOS_REGISTRADOS",string_itoa(globalIDProceso));
+	config_save(config);
 	return globalIDProceso++;
 }
 
 int main() {
 	signal(SIGUSR1,dumpCache);
 	//signal(SIGINT,destruirVariablesGlobales);
-
 
 	inicializarVariablesGlobales();
 	log_info(logger, "PID BROKER: %d", getpid());

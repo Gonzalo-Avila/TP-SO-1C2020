@@ -57,6 +57,35 @@ int crearConexionCliente(char * ip, char * puerto) {
 	return socketServidor;
 }
 
+/* Crea una conexión con el servidor en la IP y puerto indicados, devolviendo el socket del servidor.
+ * Reintenta la conexion hasta que es exitosa.
+ */
+int crearConexionClienteConReintento(char * ip, char * puerto, int tiempoDeEspera) {
+    struct addrinfo hints;
+    struct addrinfo *serverInfo;
+    memset(&hints, 0, sizeof(hints));
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM;
+
+    getaddrinfo(ip, puerto, &hints, &serverInfo);
+
+    int socketServidor;
+    socketServidor = socket(serverInfo->ai_family, serverInfo->ai_socktype,
+            serverInfo->ai_protocol);
+
+    log_debug(logger, "Conectandose al servidor...");
+    while(1){
+        int status = connect(socketServidor, serverInfo->ai_addr, serverInfo->ai_addrlen);
+        if(status != -1)
+            break;
+        else {
+            usleep(tiempoDeEspera * 1000000);
+        }
+    }
+    freeaddrinfo(serverInfo);
+    return socketServidor;
+}
+
 /* Espera un cliente y cuando recibe una conexion, devuelve el socket correspondiente al cliente conectado.
  * RECORDAR HACER EL FREE AL PUNTERO SOCKETCLIENTE EN LA FUNCIÓN CORRESPONDIENTE Y EL CLOSE AL SOCKET
  */
@@ -138,7 +167,7 @@ void armarPaqueteGet(int offset, void* mensaje, tBuffer* buffer) {
 
 void armarPaqueteLocalized(int offset, void* mensaje, tBuffer* buffer) {
 	mensajeLocalized* msg = mensaje;
-	posicYCant variableAuxiliar;
+	posiciones variableAuxiliar;
 	memcpy(buffer->stream + offset, &(msg->longPokemon), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 	memcpy(buffer->stream + offset, msg->pokemon, msg->longPokemon);
@@ -146,14 +175,11 @@ void armarPaqueteLocalized(int offset, void* mensaje, tBuffer* buffer) {
 	memcpy(buffer->stream + offset, &(msg->listSize), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 	for (int i = 0; i < msg->listSize; i++) {
-		variableAuxiliar = *(posicYCant*) (list_get(msg->posicionYCant, i));
+		variableAuxiliar = *(posiciones*) (list_get(msg->posicionYCant, i));
 		memcpy(buffer->stream + offset, &(variableAuxiliar.posicionX),
 				sizeof(uint32_t));
 		offset += sizeof(uint32_t);
 		memcpy(buffer->stream + offset, &(variableAuxiliar.posicionY),
-				sizeof(uint32_t));
-		offset += sizeof(uint32_t);
-		memcpy(buffer->stream + offset, &(variableAuxiliar.cantidad),
 				sizeof(uint32_t));
 		offset += sizeof(uint32_t);
 	}

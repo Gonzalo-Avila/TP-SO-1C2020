@@ -573,7 +573,7 @@ int main(int argc, char** argv) {
 				}
 				break;
 			}
-			case LOCALIZED: {
+			/*case LOCALIZED: {
 				mensajeLocalized mensaje;
 				//./broker BROKER LOCALIZED_POKEMON [POKEMON] [CANTIDAD] [POSX] [POSY] (UN PAR DE COORDENADAS X CANTIDAD)
 				mensaje.longPokemon = strlen(argv[3]);
@@ -581,11 +581,11 @@ int main(int argc, char** argv) {
 				memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
 				mensaje.listSize = atoi(argv[4]);
 
-				posicYCant *parDeCoordenadas = malloc(sizeof(posicYCant));
+				posiciones *parDeCoordenadas = malloc(sizeof(posiciones));
 
 				//Funcion interna para poder usar commons con mas parametros
 				bool coordenadaEstaEnLista(void* coordenada){
-					posicYCant* coordenadaEnLista = coordenada;
+					posiciones* coordenadaEnLista = coordenada;
 						return (coordenadaEnLista->posicionX == parDeCoordenadas->posicionX &&
 								coordenadaEnLista->posicionY == parDeCoordenadas->posicionY);
 				}
@@ -597,7 +597,7 @@ int main(int argc, char** argv) {
 
 					//Chequeo si hay mas de un pokemon en la misma posicion
 					if(list_any_satisfy(mensaje.posicionYCant,coordenadaEstaEnLista)){
-						posicYCant* posicionAModificarCantidad =list_find(mensaje.posicionYCant,coordenadaEstaEnLista);
+						posiciones* posicionAModificarCantidad =list_find(mensaje.posicionYCant,coordenadaEstaEnLista);
 						posicionAModificarCantidad->cantidad++;
 					}
 					else{
@@ -615,7 +615,7 @@ int main(int argc, char** argv) {
 				free(mensaje.pokemon);
 				free(parDeCoordenadas);
 				break;
-			}
+			}*/
 			default: {
 				log_error(logger, "[ERROR]");
 				log_error(logger, "No se pudo determinar el tipo de mensaje");

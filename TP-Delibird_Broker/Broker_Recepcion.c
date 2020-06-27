@@ -33,7 +33,6 @@ void atenderConexiones(int *socketEscucha) {
 void esperarMensajes(int *socketCliente) {
 	/* Espera mensajes de una conexión ya establecida. Según el
 	 * código de operación recibido, delega tareas a distintos modulos.
-	 *
 	 */
 
 	opCode codOperacion;

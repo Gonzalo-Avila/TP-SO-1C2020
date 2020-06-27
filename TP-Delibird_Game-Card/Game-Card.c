@@ -45,22 +45,18 @@ mensajeNew * desarmarMensajeNEW(mensajeRecibido * mensajeRecibido) {
 
 	mensaje->pokemon = malloc(mensaje->longPokemon+1);
 
-	memcpy(mensaje->pokemon, mensajeRecibido->mensaje + offset,
-			mensaje->longPokemon);
+	memcpy(mensaje->pokemon, mensajeRecibido->mensaje + offset,mensaje->longPokemon);
 	offset += mensaje->longPokemon;
 
 	memcpy(mensaje->pokemon+mensaje->longPokemon,&finDeCadena,1);
 
-	memcpy(&mensaje->posicionX, mensajeRecibido->mensaje + offset,
-			sizeof(uint32_t));
+	memcpy(&mensaje->posicionX, mensajeRecibido->mensaje + offset,sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 
-	memcpy(&mensaje->posicionY, mensajeRecibido->mensaje + offset,
-			sizeof(uint32_t));
+	memcpy(&mensaje->posicionY, mensajeRecibido->mensaje + offset,sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 
-	memcpy(&mensaje->cantPokemon, mensajeRecibido->mensaje + offset,
-			sizeof(uint32_t));
+	memcpy(&mensaje->cantPokemon, mensajeRecibido->mensaje + offset,sizeof(uint32_t));
 
 	return mensaje;
 }
@@ -68,22 +64,22 @@ mensajeNew * desarmarMensajeNEW(mensajeRecibido * mensajeRecibido) {
 mensajeCatch * desarmarMensajeCATCH(mensajeRecibido * mensajeRecibido) {
 	mensajeCatch * mensaje = malloc(sizeof(mensajeCatch));
 	int offset = 0;
-	memcpy(&mensaje->longPokemon, mensajeRecibido->mensaje + offset,
-			sizeof(uint32_t));
+	char finDeCadena='\0';
+	memcpy(&mensaje->longPokemon, mensajeRecibido->mensaje + offset, sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 
-	mensaje->pokemon = malloc(mensaje->longPokemon);
+	mensaje->pokemon = malloc(mensaje->longPokemon+1);
 
-	memcpy(mensaje->pokemon, mensajeRecibido->mensaje + offset,
-			mensaje->longPokemon);
+	memcpy(mensaje->pokemon, mensajeRecibido->mensaje + offset,mensaje->longPokemon);
 	offset += mensaje->longPokemon;
 
-	memcpy(&mensaje->posicionX, mensajeRecibido->mensaje + offset,
-			sizeof(uint32_t));
+	memcpy(mensaje->pokemon+mensaje->longPokemon,&finDeCadena,1);
+
+
+	memcpy(&mensaje->posicionX, mensajeRecibido->mensaje + offset,sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 
-	memcpy(&mensaje->posicionY, mensajeRecibido->mensaje + offset,
-			sizeof(uint32_t));
+	memcpy(&mensaje->posicionY, mensajeRecibido->mensaje + offset,sizeof(uint32_t));
 
 	return mensaje;
 }
@@ -91,25 +87,22 @@ mensajeCatch * desarmarMensajeCATCH(mensajeRecibido * mensajeRecibido) {
 mensajeGet * desarmarMensajeGET(mensajeRecibido * mensajeRecibido) {
 	mensajeGet * mensaje = malloc(sizeof(mensajeGet));
 	int offset = 0;
-	memcpy(&mensaje->longPokemon, mensajeRecibido->mensaje + offset,
-			sizeof(uint32_t));
+	char finDeCadena='\0';
+
+	memcpy(&mensaje->longPokemon, mensajeRecibido->mensaje + offset, sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 
-	mensaje->pokemon = malloc(mensaje->longPokemon);
+	mensaje->pokemon = malloc(mensaje->longPokemon+1);
 
-	memcpy(mensaje->pokemon, mensajeRecibido->mensaje + offset,
-			mensaje->longPokemon);
+	memcpy(mensaje->pokemon, mensajeRecibido->mensaje + offset, mensaje->longPokemon);
+	offset += mensaje->longPokemon;
+
+	memcpy(mensaje->pokemon+mensaje->longPokemon,&finDeCadena,1);
+
+	memcpy(mensaje->pokemon, mensajeRecibido->mensaje + offset,mensaje->longPokemon);
 
 	return mensaje;
 }
-
-//char * agregarFinDeCadena(char * cadena) {
-//	char * cad = string_new();
-//	string_append(&cad, cadena);
-//	string_append(&cad, "\0");
-//	char * f;
-//	return cad;
-//}
 
 char * posicionComoChar(uint32_t posx, uint32_t posy) {
 	char * cad;
@@ -347,17 +340,23 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 	mensajeNew * msgNew = desarmarMensajeNEW(mensajeRecibido);
 
-	char * pokemonConFinDeCadena = msgNew->pokemon;
-	char * posicionComoCadena = posicionComoChar(msgNew->posicionX,msgNew->posicionY);
+	char * posicionComoCadena = posicionComoChar(msgNew->posicionX,msgNew->posicionY); //"2-3"
+
 	char * entradaCompletaComoCadena;
-	asprintf(&entradaCompletaComoCadena, "%s%s%d%s", posicionComoCadena, "=",msgNew->cantPokemon, "\n");
+	asprintf(&entradaCompletaComoCadena, "%s%s%d%s", posicionComoCadena, "=",msgNew->cantPokemon, "\n"); //"2-3 = 5"
+
 	char * rutaPokemon;
-	asprintf(&rutaPokemon, "%s%s%s", puntoDeMontaje, "/Files/",pokemonConFinDeCadena);
+	asprintf(&rutaPokemon, "%s%s%s", puntoDeMontaje, "/Files/",msgNew->pokemon); //puntoDeMontaje/Files/pikachu
+
 	char * rutaMetadataPokemon;
-	asprintf(&rutaMetadataPokemon, "%s%s", rutaPokemon, "/metadata.bin");
+	asprintf(&rutaMetadataPokemon, "%s%s", rutaPokemon, "/metadata.bin"); //puntodeMontaje/Files/pikachu/metadata.bin
 
 	int tamanioEntradaCompleta = strlen(entradaCompletaComoCadena);
 
+	/* TODO
+	 * Tener en cuenta que al preguntar por la existencia de un pokemon, puede que haya un catch que lo este eliminando, o un new que
+	 * lo este creando. Podriamos usar un semaforo global genérico, como el semExistenciaPokemon.
+	 */
 	sem_wait(&semExistenciaPokemon);
 	if (existeElArchivo(rutaMetadataPokemon)) {
 
@@ -402,7 +401,6 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 					int cantidadNum = atoi(cantidad);
 					cantidadNum = cantidadNum + msgNew->cantPokemon;
 					cantidad = string_itoa(cantidadNum);
-
 				}
 				string_append(&aEscribirEnBloques, posicion);
 				string_append(&aEscribirEnBloques, "=");
@@ -419,10 +417,6 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 				escribirCadenaEnArchivo(rutaMetadataPokemon,aEscribirEnBloques);
 				sleep(tiempoDeRetardo);
 
-				/*
-				t_config * metadataPokemon;
-				metadataPokemon = config_create(rutaMetadataPokemon);
-				*/
 				char * sizeFinal = string_itoa(sizeAEscribir);
 				config_set_value(metadataPokemon, "SIZE", sizeFinal);
 				config_set_value(metadataPokemon, "OPEN", "N");
@@ -432,7 +426,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 				sem_post(mutexMetadata);
 
 				config_destroy(metadataPokemon);
-				//--------------------------------------------------------
+
 				mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 				uint32_t sizeMensaje = msgAppeared->longPokemon + sizeof(uint32_t) * 3;
 				log_debug(logger, "[NEW] Enviando APPEARED");
@@ -450,10 +444,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 					escribirCadenaEnArchivo(rutaMetadataPokemon, aEscribirEnBloques);
 					sleep(tiempoDeRetardo);
-					/*
-					t_config * metadataPokemon;
-					metadataPokemon = config_create(rutaMetadataPokemon);
-					*/
+
 					char * sizeFinal = string_itoa(sizeAEscribir);
 					config_set_value(metadataPokemon, "SIZE", sizeFinal);
 					config_set_value(metadataPokemon, "OPEN", "N");
@@ -463,7 +454,6 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 					sem_post(mutexMetadata);
 
 					config_destroy(metadataPokemon);
-					//--------------------------------------------------------
 
 					mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 					uint32_t sizeMensaje = msgAppeared->longPokemon + sizeof(uint32_t) * 3;
@@ -487,9 +477,6 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 				escribirCadenaEnBloque(rutaUltimoBloque,entradaCompletaComoCadena);
 				sleep(tiempoDeRetardo);
 
-				/*t_config * metadataPokemon;
-				metadataPokemon = config_create(rutaMetadataPokemon);
-				*/
 				char * sizeFinal = string_itoa(tamanioEntradaCompleta + config_get_int_value(metadataPokemon,"SIZE"));
 				config_set_value(metadataPokemon, "SIZE", sizeFinal);
 				config_set_value(metadataPokemon, "OPEN", "N");
@@ -499,7 +486,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 				sem_post(mutexMetadata);
 
 				config_destroy(metadataPokemon);
-				//--------------------------------------------------------
+
 				mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 				uint32_t sizeMensaje = msgAppeared->longPokemon + sizeof(uint32_t) * 3;
 				log_debug(logger, "[NEW] Enviando APPEARED");
@@ -530,7 +517,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 					sem_post(mutexMetadata);
 
 					config_destroy(metadataPokemon);
-					//--------------------------------------------------------
+
 					mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 					uint32_t sizeMensaje = msgAppeared->longPokemon+ sizeof(uint32_t) * 3;
 					log_debug(logger, "[NEW] Enviando APPEARED");
@@ -570,7 +557,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 			metadataPokemon = config_create(rutaMetadataPokemon);
 
-			sem_wait(mutexMetadata); //Probablemente innecesario
+			sem_wait(mutexMetadata);
 			asignarBloquesAArchivo(rutaMetadataPokemon, cantidadDeBloquesAAsignar, metadataPokemon);
 			sem_post(mutexMetadata);
 
@@ -589,7 +576,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 			sem_post(mutexMetadata);
 
 			config_destroy(metadataPokemon);
-			//--------------------------------------------------------
+
 			mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 			uint32_t sizeMensaje = msgAppeared->longPokemon+ sizeof(uint32_t) * 3;
 			log_debug(logger, "[NEW] Enviando APPEARED");
@@ -653,16 +640,14 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 	log_debug(logger, "[GET] LOCALIZED enviado");
 }
 
-int enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo,
-		uint32_t sizeMensaje, void * mensaje) {
+int enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo,uint32_t sizeMensaje, void * mensaje) {
 	int socketBroker = crearConexionCliente(ipServidor, puertoServidor);
 	if (socketBroker < 0) {
 		log_error(logger, "No se pudo establecer la conexión con el broker");
 		//TODO - Implementar rutina de desconexión de todos los hilos, intento de reconexión, etc
 		return socketBroker;
 	}
-	enviarMensajeABroker(socketBroker, colaDestino, idCorrelativo, sizeMensaje,
-			mensaje);
+	enviarMensajeABroker(socketBroker, colaDestino, idCorrelativo, sizeMensaje,mensaje);
 	uint32_t respuestaBroker;
 	recv(socketBroker, &respuestaBroker, sizeof(uint32_t), MSG_WAITALL);
 	close(socketBroker);
@@ -688,25 +673,16 @@ void obtenerParametrosDelFS(char * rutaMetadata) {
 	config_destroy(metadata);
 }
 
-/*char * mapearArchivo(char * rutaArchivo){
- int fd = open(rutaArchivo,O_RDWR);
- struct stat sb;
- fstat(fd,&sb);
- char * mappedFile = mmap(NULL,sb.st_size, PROT_READ | PROT_WRITE, MAP_SHARED,fd,0);
- return mappedFile;
- }*/
+
 
 void inicializarFileSystem() {
 
-	char * rutaMetadata = cadenasConcatenadas(puntoDeMontaje,
-			"/Metadata/metadata.bin");
-	char * rutaBitmap = cadenasConcatenadas(puntoDeMontaje,
-			"/Metadata/bitmap.bin");
+	char * rutaMetadata = cadenasConcatenadas(puntoDeMontaje,"/Metadata/metadata.bin");
+	char * rutaBitmap = cadenasConcatenadas(puntoDeMontaje,"/Metadata/bitmap.bin");
 	char * rutaBlocks = cadenasConcatenadas(puntoDeMontaje, "/Blocks/");
 
 	if (!existeElArchivo(rutaMetadata)) {
-		log_error(logger,
-				"No se encontró el archivo metadata en el punto de montaje. El proceso GameCard no puede continuar");
+		log_error(logger,"No se encontró el archivo metadata en el punto de montaje. El proceso GameCard no puede continuar");
 		exit(0);
 	}
 
@@ -717,10 +693,8 @@ void inicializarFileSystem() {
 		struct stat sb;
 		fstat(fd, &sb);
 		sizeBitmap = sb.st_size;
-		bitmap = mmap(NULL, sizeBitmap, PROT_READ | PROT_WRITE, MAP_SHARED, fd,
-				0);
-		bitarrayBloques = bitarray_create_with_mode(bitmap, sb.st_size,
-				MSB_FIRST);
+		bitmap = mmap(NULL, sizeBitmap, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+		bitarrayBloques = bitarray_create_with_mode(bitmap, sb.st_size,MSB_FIRST);
 	} else {
 		int fd = open(rutaBitmap, O_RDWR | O_CREAT, 0777);
 		ftruncate(fd, cantidadDeBloques / 8);
@@ -737,8 +711,6 @@ void inicializarFileSystem() {
 			char * rutaBloque;
 			asprintf(&rutaBloque, "%s%d%s", rutaBlocks, i, ".bin");
 			int nuevoBloque = open(rutaBloque, O_RDWR | O_CREAT, 0777);
-			//TODO
-			//¿Tiene sentido hacer un truncate con el tamaño de bloque?
 			close(nuevoBloque);
 			free(rutaBloque);
 		}
