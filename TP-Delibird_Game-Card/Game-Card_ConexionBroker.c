@@ -13,6 +13,20 @@ void crearConexionBroker() {
 	log_info(logger, "Hilo de conexion Broker creado");
 }
 
+int enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo,uint32_t sizeMensaje, void * mensaje) {
+	int socketBroker = crearConexionCliente(ipServidor, puertoServidor);
+	if (socketBroker < 0) {
+		log_error(logger, "No se pudo establecer la conexión con el broker");
+		//TODO - Implementar rutina de desconexión de todos los hilos, intento de reconexión, etc
+		return socketBroker;
+	}
+	enviarMensajeABroker(socketBroker, colaDestino, idCorrelativo, sizeMensaje, mensaje);
+	uint32_t respuestaBroker;
+	recv(socketBroker, &respuestaBroker, sizeof(uint32_t), MSG_WAITALL);
+	close(socketBroker);
+	return respuestaBroker;
+}
+
 
 int crearSuscripcionesBroker(){
 
@@ -84,7 +98,6 @@ void cerrarConexiones(){
 	close(socketSuscripcionCATCH);
 	close(socketSuscripcionCATCH);
 }
-
 
 void esperarMensajesBroker(int* socketSuscripcion) {
 	uint32_t ack = 1;
