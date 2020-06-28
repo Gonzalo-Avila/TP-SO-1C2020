@@ -1,25 +1,20 @@
 #include "Game-Card.h"
 
 void inicializarVariablesGlobales() {
+
 	config = config_create("gamecard.config");
 	logger = log_create("gamecard_logs", "GameCard", 1, LOG_LEVEL_TRACE);
 
-	ipServidor = malloc(
-			strlen(config_get_string_value(config, "IP_BROKER")) + 1);
+	ipServidor = malloc(strlen(config_get_string_value(config, "IP_BROKER")) + 1);
 	strcpy(ipServidor, config_get_string_value(config, "IP_BROKER"));
-	puertoServidor = malloc(
-			strlen(config_get_string_value(config, "PUERTO_BROKER")) + 1);
+	puertoServidor = malloc(strlen(config_get_string_value(config, "PUERTO_BROKER")) + 1);
 	strcpy(puertoServidor, config_get_string_value(config, "PUERTO_BROKER"));
 
-	puntoDeMontaje = malloc(
-			strlen(config_get_string_value(config, "PUNTO_MONTAJE_TALLGRASS"))
-					+ 1);
-	strcpy(puntoDeMontaje,
-			config_get_string_value(config, "PUNTO_MONTAJE_TALLGRASS"));
+	puntoDeMontaje = malloc(strlen(config_get_string_value(config, "PUNTO_MONTAJE_TALLGRASS"))+ 1);
+	strcpy(puntoDeMontaje,config_get_string_value(config, "PUNTO_MONTAJE_TALLGRASS"));
 
 	tiempoDeRetardo = config_get_int_value(config, "TIEMPO_RETARDO_OPERACION");
-	tiempoDeReintentoDeAcceso = config_get_int_value(config,
-			"TIEMPO_DE_REINTENTO_OPERACION");
+	tiempoDeReintentoDeAcceso = config_get_int_value(config,"TIEMPO_DE_REINTENTO_OPERACION");
 
 	semaforosPokemon = list_create();
 
@@ -90,7 +85,7 @@ void desasignarBloquesAArchivo(t_config * metadataArchivo, int cantidadDeBloques
 	int index = cantidadDeBloquesAsignadaInicialmente-1;
 	int numeroDeBloqueActual;
 	int cantidadDeBloquesFinal = cantidadDeBloquesAsignadaInicialmente - cantidadDeBloquesAQuitar;
-	char ** bloquesActuales = config_get_array_value(metadataArchivo,"BLOCKS");	  //["1","2","3"]
+	char ** bloquesActuales = config_get_array_value(metadataArchivo,"BLOCKS");	  //["1","2","3","7","9","8"]
 
 	for (int i = 0; i < cantidadDeBloquesAQuitar; i++) {
 
@@ -98,6 +93,7 @@ void desasignarBloquesAArchivo(t_config * metadataArchivo, int cantidadDeBloques
 		bitarray_clean_bit(bitarrayBloques, numeroDeBloqueActual);
 		msync(bitmap,sizeBitmap,MS_SYNC);
 		index--;
+
 	}
 
 	char * bloquesAGuardar = string_new();
@@ -349,6 +345,7 @@ void liberarStringSplitteado(char ** stringSplitteado){
 	int index=0;
 	while(stringSplitteado[index]!=NULL){  //["asd","qwe","qweqw",NULL]
 		free(stringSplitteado[index]);
+		index++;
 	}
 	free(stringSplitteado);
 }

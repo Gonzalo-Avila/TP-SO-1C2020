@@ -2157,3 +2157,33 @@
 [DEBUG] 17:51:05:155 GameCard/(5844:5857): [BROKER] Llegó un mensaje de la cola NEW
 [ERROR] 17:51:05:155 GameCard/(5844:5859): [BROKER] Mensaje recibido de una cola no correspondiente
 [INFO] 17:56:24:808 GameCard/(5844:5855): Reintentando conexion al Broker
+[INFO] 18:14:08:606 GameCard/(7121:7121): Se ha iniciado el cliente GameCard
+
+[INFO] 18:14:08:606 GameCard/(7121:7121): Creando hilo de conexion Broker
+[INFO] 18:14:08:612 GameCard/(7121:7121): Hilo de conexion Broker creado
+[INFO] 18:14:08:613 GameCard/(7121:7121): Creando hilo de conexion GameBoy
+[DEBUG] 18:14:08:613 GameCard/(7121:7121): Esperando cliente...
+[INFO] 18:14:08:613 GameCard/(7121:7130): Creando nueva conexion con Broker
+[INFO] 18:14:08:615 GameCard/(7121:7130): IDProceso asignado: 3
+[INFO] 18:14:08:615 GameCard/(7121:7130): Creando suscripciones de Broker
+[INFO] 18:14:08:616 GameCard/(7121:7130): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 18:14:08:617 GameCard/(7121:7130): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 18:14:08:619 GameCard/(7121:7130): Se ha suscrito a la cola GET_POKEMON
+[INFO] 18:14:08:632 GameCard/(7121:7130): Suscripciones de Broker creadas
+[INFO] 18:14:08:632 GameCard/(7121:7130): Creando conexion estable de broker
+[INFO] 18:14:23:345 GameCard/(7121:7132): [BROKER] Mensaje recibido
+[DEBUG] 18:14:23:346 GameCard/(7121:7132): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 18:14:25:402 GameCard/(7121:7132): [NEW] Procesando
+[DEBUG] 18:14:25:410 GameCard/(7121:7132): [NEW] Enviando APPEARED
+[DEBUG] 18:14:25:412 GameCard/(7121:7132): [NEW] APPEARED enviado
+[INFO] 18:15:05:908 GameCard/(7121:7135): [BROKER] Mensaje recibido
+[DEBUG] 18:15:05:908 GameCard/(7121:7135): [BROKER] Llegó un mensaje de la cola CATCH
+[DEBUG] 18:15:09:414 GameCard/(7121:7135): [CATCH] Procesando
+[DEBUG] 18:17:00:56 GameCard/(7121:7135): [CATCH] CAUGHT enviado
+[INFO] 18:17:39:178 GameCard/(7121:7132): [BROKER] Mensaje recibido
+[DEBUG] 18:17:39:178 GameCard/(7121:7132): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 18:17:44:101 GameCard/(7121:7132): [NEW] Procesando
+[DEBUG] 18:17:44:111 GameCard/(7121:7132): [NEW] Enviando APPEARED
+[DEBUG] 18:17:44:113 GameCard/(7121:7132): [NEW] APPEARED enviado
+[INFO] 18:22:18:205 GameCard/(7121:7135): [BROKER] Mensaje recibido
+[DEBUG] 18:22:18:206 GameCard/(7121:7135): [BROKER] Llegó un mensaje de la cola CATCH
