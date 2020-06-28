@@ -85,6 +85,37 @@ void asignarBloquesAArchivo(char * rutaMetadataArchivo, int cantidadDeBloques, t
 	config_save(metadataArchivo);
 }
 
+void desasignarBloquesAArchivo(t_config * metadataArchivo, int cantidadDeBloquesAQuitar, int cantidadDeBloquesAsignadaInicialmente){
+
+	int index = cantidadDeBloquesAsignadaInicialmente-1;
+	int numeroDeBloqueActual;
+	int cantidadDeBloquesFinal = cantidadDeBloquesAsignadaInicialmente - cantidadDeBloquesAQuitar;
+	char ** bloquesActuales = config_get_array_value(metadataArchivo,"BLOCKS");	  //["1","2","3"]
+
+	for (int i = 0; i < cantidadDeBloquesAQuitar; i++) {
+
+		numeroDeBloqueActual=atoi(bloquesActuales[index]);
+		bitarray_clean_bit(bitarrayBloques, numeroDeBloqueActual);
+		msync(bitmap,sizeBitmap,MS_SYNC);
+		index--;
+	}
+
+	char * bloquesAGuardar = string_new();
+	string_append(&bloquesAGuardar,"[");
+
+	for(int i = 0; i < cantidadDeBloquesFinal;i++){
+		string_append(&bloquesAGuardar,bloquesActuales[i]);
+		if(i!=cantidadDeBloquesFinal-1)
+		   string_append(&bloquesAGuardar,",");
+	}
+	string_append(&bloquesAGuardar,"]");
+
+	config_set_value(metadataArchivo,"BLOCKS",bloquesAGuardar);
+	config_save(metadataArchivo);
+
+	free(bloquesAGuardar);
+}
+
 int buscarBloqueLibre() {
 	for (int i = 0; i < cantidadDeBloques; i++) {
 		int estadoBloqueActual = bitarray_test_bit(bitarrayBloques, i);
@@ -182,10 +213,10 @@ char * mapearArchivo(char * rutaMetadata, t_config * metadata) {
 	char * rutaBloqueActual;
 	int caracterLeido;
 
-	metadata = config_create(rutaMetadata);
+	//metadata = config_create(rutaMetadata);
 	sizeArchivo = config_get_int_value(metadata, "SIZE");
 	bloquesArchivo = config_get_array_value(metadata, "BLOCKS");
-	archivoMapeado = malloc(sizeArchivo);
+	archivoMapeado = malloc(sizeArchivo+1);
 	asprintf(&rutaBloqueActual, "%s%s%s%s", puntoDeMontaje, "/Blocks/",
 			bloquesArchivo[numeroBloqueActual], ".bin");
 	bloqueActual = fopen(rutaBloqueActual, "r");
@@ -204,6 +235,7 @@ char * mapearArchivo(char * rutaMetadata, t_config * metadata) {
 		archivoMapeado[i]=caracterLeido;
 		caracteresLeidosEnBloqueActual++;
 	}
+	archivoMapeado[sizeArchivo]='\0';
 
 	fclose(bloqueActual);
 	free(rutaBloqueActual);
@@ -313,6 +345,60 @@ t_config* intentarAbrirMetadataPokemon(sem_t* mutexMetadata, char* rutaMetadataP
 	return metadataPokemon;
 }
 
+void liberarStringSplitteado(char ** stringSplitteado){
+	int index=0;
+	while(stringSplitteado[index]!=NULL){  //["asd","qwe","qweqw",NULL]
+		free(stringSplitteado[index]);
+	}
+	free(stringSplitteado);
+}
+int obtenerCantidadEnCoordenada(char * archivoMappeado, char * coordenadas){
+
+	char ** entradas = string_split(archivoMappeado,"\n");   //["2-2=5", "3-4=6", NULL]
+	int index=0, cantidad=0;
+
+	while(entradas[index]!=NULL){
+
+		char ** coordenadasConCantidad = string_split(entradas[index],"=");   //["2-2", "5", NULL]
+		if(strcmp(coordenadasConCantidad[0],coordenadas)==0){
+			cantidad=atoi(coordenadasConCantidad[0]);
+			//liberarStringSplitteado(coordenadasConCantidad);
+			break;
+		}
+		index++;
+
+	//	liberarStringSplitteado(coordenadasConCantidad);
+	}
+
+	//liberarStringSplitteado(entradas);
+
+	return cantidad;
+}
+
+bool existenLasCoordenadas(char * archivoMappeado, char * coordenadas){
+
+	char ** entradas = string_split(archivoMappeado,"\n");   //["2-2=5", "3-4=6", NULL]
+	int index=0;
+	bool existen = false;
+
+	while(entradas[index]!=NULL){
+
+		char ** coordenadasConCantidad = string_split(entradas[index],"=");   //["2-2", "5", NULL]
+		if(strcmp(coordenadasConCantidad[0],coordenadas)==0){
+			existen=true;
+		//	liberarStringSplitteado(coordenadasConCantidad);
+			break;
+		}
+		index++;
+
+		//liberarStringSplitteado(coordenadasConCantidad);
+	}
+
+	//liberarStringSplitteado(entradas);
+
+	return existen;
+
+}
 void inicializarFileSystem() {
 
 	char * rutaMetadata = cadenasConcatenadas(puntoDeMontaje,"/Metadata/metadata.bin");

@@ -39,7 +39,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 		char * archivoMappeado = mapearArchivo(rutaMetadataPokemon,metadataPokemon);
 
-		if (string_contains(archivoMappeado, posicionComoCadena)) {
+		if (existenLasCoordenadas(archivoMappeado, posicionComoCadena)) {
 
 			char* aEscribirEnBloques = string_new();
 			int indexEntrada = 0;

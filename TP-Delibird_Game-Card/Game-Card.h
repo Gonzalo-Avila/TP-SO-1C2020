@@ -86,6 +86,10 @@ void obtenerParametrosDelFS(char * rutaMetadata);
 //t_config* intentarAbrirMetadataPokemon(sem_t* mutexMetadata, t_config* metadataPokemon, char* rutaMetadataPokemon);
 //void intentarAbrirMetadataPokemon(sem_t* mutexMetadata, t_config* metadataPokemon, char* rutaMetadataPokemon);
 t_config* intentarAbrirMetadataPokemon(sem_t* mutexMetadata, char* rutaMetadataPokemon);
+bool existenLasCoordenadas(char * archivoMappeado, char * coordenadas);
+void desasignarBloquesAArchivo(t_config * metadataArchivo, int cantidadDeBloquesAQuitar, int cantidadDeBloquesAsignadaInicialmente);
+int obtenerCantidadEnCoordenada(char * archivoMappeado, char * coordenadas);
+
 
 //Game-Card_Conexiones.c
 void esperarMensajesGameboy(int* socketSuscripcion);

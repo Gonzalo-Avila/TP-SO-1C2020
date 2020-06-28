@@ -153,8 +153,8 @@ void armarPaqueteCatch(int offset, void* mensaje, tBuffer* buffer) {
 
 void armarPaqueteCaught(int offset, void* mensaje, tBuffer* buffer) {
 	mensajeCaught* msg = mensaje;
-	memcpy(buffer->stream + offset, &(msg->resultado), sizeof(uint32_t));
-	offset += sizeof(uint32_t);
+	memcpy(buffer->stream + offset, &(msg->resultado), sizeof(resultado));
+	offset += sizeof(resultado);
 }
 
 void armarPaqueteGet(int offset, void* mensaje, tBuffer* buffer) {
@@ -175,7 +175,7 @@ void armarPaqueteLocalized(int offset, void* mensaje, tBuffer* buffer) {
 	memcpy(buffer->stream + offset, &(msg->listSize), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 	for (int i = 0; i < msg->listSize; i++) {
-		variableAuxiliar = *(posiciones*) (list_get(msg->posicionYCant, i));
+		variableAuxiliar = *(posiciones*) (list_get(msg->paresDeCoordenada, i));
 		memcpy(buffer->stream + offset, &(variableAuxiliar.posicionX),
 				sizeof(uint32_t));
 		offset += sizeof(uint32_t);

@@ -14,7 +14,7 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 	char * rutaMetadataPokemon;
 	asprintf(&rutaMetadataPokemon, "%s%s", rutaPokemon, "/metadata.bin"); //puntodeMontaje/Files/pikachu/metadata.bin
 
-	int sizeMensaje = sizeof(uint32_t);
+	int sizeMensaje = sizeof(resultado);
 
 	sem_wait(&semExistenciaPokemon);
 	if (existeElArchivo(rutaMetadataPokemon)) {
@@ -30,14 +30,76 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 
 		char * archivoMappeado = mapearArchivo(rutaMetadataPokemon,metadataPokemon);
 
-		if (string_contains(archivoMappeado, posicionComoCadena)) {
+		if (existenLasCoordenadas(archivoMappeado, posicionComoCadena)) {
 
-			// TODO
-			// Implementar lucidchart
+            //Armar la cadena habiendo aplicado el catch y obtener su size
+	     	char* aEscribirEnBloques = string_new();
+			int indexEntrada = 0;
+			char** arrayDeEntradas = string_split(archivoMappeado, "\n");	//["5-5=3", "5-6=16" ,"3-1=201", NULL];
+			char* entradaActual = arrayDeEntradas[indexEntrada];			// "5-5=3
+			int cantidadNum=0;
 
+			while (entradaActual != NULL) {
+				char** posicionCantidad = string_split(entradaActual, "=");	//["5-5", "3", NULL]
+				char* posicion = posicionCantidad[0];
+				char* cantidad = posicionCantidad[1];
+				cantidadNum=atoi(cantidad);
+				if (strcmp(posicion, posicionComoCadena) == 0) { 			// "5-5" vs posicionCatch
+					cantidadNum = atoi(cantidad);
+					cantidadNum = cantidadNum - 1;
+					cantidad = string_itoa(cantidadNum);
+				}
+				if(cantidadNum>0){
+				string_append(&aEscribirEnBloques, posicion);
+				string_append(&aEscribirEnBloques, "=");
+				string_append(&aEscribirEnBloques, cantidad);
+				string_append(&aEscribirEnBloques, "\n");
+				}
+				indexEntrada++;
+				entradaActual=arrayDeEntradas[indexEntrada];
+			}
+
+			int sizeAEscribir = strlen(aEscribirEnBloques);
+			//---------------------------------------------------------
+
+			int cantidadDeBloquesAsignadosActualmente = obtenerCantidadDeBloquesAsignados(rutaMetadataPokemon);
+
+			int cantidadDeBloquesSobrantes = cantidadDeBloquesAsignadosActualmente - cantidadDeBloquesNecesariosParaSize(sizeAEscribir);
+			desasignarBloquesAArchivo(metadataPokemon,cantidadDeBloquesSobrantes,cantidadDeBloquesAsignadosActualmente);
+
+			cantidadDeBloquesAsignadosActualmente=obtenerCantidadDeBloquesAsignados(rutaMetadataPokemon);
+			if(cantidadDeBloquesAsignadosActualmente==0){
+				//TODO - tener en cuenta semaforo por si otro proceso pregunta por la existencia del pokemon
+				remove(rutaMetadataPokemon);
+				rmdir(rutaPokemon);
+			}
+			else{
+				escribirCadenaEnArchivo(rutaMetadataPokemon,aEscribirEnBloques);
+				config_set_value(metadataPokemon,"SIZE",string_itoa(sizeAEscribir));
+			}
+
+
+
+
+			config_set_value(metadataPokemon, "OPEN", "N");
+			sleep(tiempoDeRetardo);
+
+			sem_wait(mutexMetadata);
+			config_save(metadataPokemon);
+			sem_post(mutexMetadata);
+
+			mensajeCaught * msgCaught = armarMensajeCaught(OK);
+			enviarMensajeBroker(CAUGHT, mensajeRecibido->idMensaje,sizeMensaje, msgCaught);
 
 
 		}else{
+			config_set_value(metadataPokemon, "OPEN", "N");
+			sleep(tiempoDeRetardo);
+
+			sem_wait(mutexMetadata);
+			config_save(metadataPokemon);
+			sem_post(mutexMetadata);
+
 			log_info(logger, "No existe %s en esa posicion", msgCatch->pokemon);
 			mensajeCaught * msgCaught = armarMensajeCaught(FAIL);
 			log_debug(logger, "[NEW] Enviando APPEARED");
@@ -45,26 +107,23 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 
 		}
 
-		config_set_value(metadataPokemon, "OPEN", "N");
-
-		sem_wait(mutexMetadata);
-		config_save(metadataPokemon);
-		sem_post(mutexMetadata);
-
+		sem_post(&semExistenciaPokemon);
 		config_destroy(metadataPokemon);
 
-		return;
 	}else{
 		sem_post(&semExistenciaPokemon);
 		log_info(logger, "No existe el pokemon %s", msgCatch->pokemon);
 		mensajeCaught * msgCaught = armarMensajeCaught(FAIL);
 		log_debug(logger, "[NEW] Enviando APPEARED");
 		enviarMensajeBroker(CAUGHT, mensajeRecibido->idMensaje,sizeMensaje, msgCaught);
-		return;
 	}
 
-//	log_debug(logger, "[CATCH] Enviando CAUGHT");
-//	enviarMensajeBroker(CAUGHT, mensajeRecibido->idCorrelativo, 3, (void*) "asd");
+	free(msgCatch->pokemon);
+	free(msgCatch);
+	free(posicionComoCadena);
+	free(rutaPokemon);
+	free(rutaMetadataPokemon);
+
 	log_debug(logger, "[CATCH] CAUGHT enviado");
 }
 

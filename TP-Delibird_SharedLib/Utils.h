@@ -114,7 +114,7 @@ typedef struct {
 	uint32_t longPokemon;   //Longitud del nombre del pokemon.
 	char * pokemon;    //Nombre del pokemon cuyas posiciones se esta informando.
 	uint32_t listSize;
-	t_list * posicionYCant; //Lista de todas las posiciones donde esta el pokemon y cantidad en cada una, seria un struct.
+	t_list * paresDeCoordenada; //Lista de todas las posiciones donde esta el pokemon y cantidad en cada una, seria un struct.
 } mensajeLocalized;
 
 //Estructura para las componentes de la lista de posiciones y cantidades

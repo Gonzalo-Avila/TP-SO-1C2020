@@ -59,6 +59,7 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 		}
 
 		config_set_value(metadataPokemon, "OPEN", "N");
+		sleep(tiempoDeRetardo);
 
 		sem_wait(mutexMetadata);
 		config_save(metadataPokemon);
@@ -67,12 +68,17 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 		config_destroy(metadataPokemon);
 
 		//		size = <longNombrePokemon> + <nombrePokemon> + <cantCoordenadas> + [<Posx> + <PosY>]*
-		int sizeMensaje = sizeof(uint32_t) + msgGet->longPokemon + sizeof(uint32_t) + list_size(posicionesList) * 2;
 		mensajeLocalized * msgLoc = armarMensajeLocalized(msgGet, posicionesList);
+		int sizeMensaje = sizeof(uint32_t) + msgGet->longPokemon + sizeof(uint32_t) + list_size(posicionesList) * 2 * sizeof(uint32_t);
+
 		log_debug(logger, "[GET] Enviando LOCALIZED");
 		enviarMensajeBroker(LOCALIZED, mensajeRecibido->idMensaje, sizeMensaje, msgLoc);
 
 		free(archivoMappeado);
+		list_destroy(posicionesList);
+		//list_destroy(msgLoc->paresDeCoordenada); msgLoc->paresDeCoordenada es lo mismo que posicionesList
+		free(msgLoc->pokemon);
+		free(msgLoc);
 
 	}else{
 
@@ -101,8 +107,8 @@ mensajeLocalized * armarMensajeLocalized(mensajeGet * msgGet, t_list* posiciones
 	memcpy(msgLoc->pokemon, msgGet->pokemon, msgGet->longPokemon);
 	if(list_size(posicionesList)>0){
 		msgLoc->listSize = list_size(posicionesList);
-		msgLoc->posicionYCant = list_create();
-		list_add_all(msgLoc->posicionYCant, posicionesList);
+		msgLoc->paresDeCoordenada = list_create();
+		list_add_all(msgLoc->paresDeCoordenada, posicionesList);
 		//Para debugging. Anda ok.
 		/*void imprimir(void* elem){
 			posiciones * posis = (posiciones *) elem;
