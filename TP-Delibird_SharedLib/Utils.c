@@ -52,14 +52,40 @@ int crearConexionCliente(char * ip, char * puerto) {
 	socketServidor = socket(serverInfo->ai_family, serverInfo->ai_socktype,
 			serverInfo->ai_protocol);
 
-	log_debug(logger, "Conectandose al servidor...");
-	while(1){
-		int status = connect(socketServidor, serverInfo->ai_addr, serverInfo->ai_addrlen);
-		if(status != -1)
-			break;
-	}
+	connect(socketServidor, serverInfo->ai_addr, serverInfo->ai_addrlen);
 	freeaddrinfo(serverInfo);
 	return socketServidor;
+}
+
+/* Crea una conexión con el servidor en la IP y puerto indicados, devolviendo el socket del servidor.
+ * Reintenta la conexion hasta que es exitosa.
+ */
+int crearConexionClienteConReintento(char * ip, char * puerto, int tiempoDeEspera) {
+    struct addrinfo hints;
+    struct addrinfo *serverInfo;
+    memset(&hints, 0, sizeof(hints));
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM;
+
+    getaddrinfo(ip, puerto, &hints, &serverInfo);
+
+    int socketServidor;
+    socketServidor = socket(serverInfo->ai_family, serverInfo->ai_socktype,
+            serverInfo->ai_protocol);
+
+    log_debug(logger, "Conectandose al servidor...");
+    while(1){
+        int status = connect(socketServidor, serverInfo->ai_addr, serverInfo->ai_addrlen);
+        if(status != -1){
+        	log_debug(logger, "Socket conectado al servidor.");
+            break;
+        }
+        else {
+            usleep(tiempoDeEspera * 1000000);
+        }
+    }
+    freeaddrinfo(serverInfo);
+    return socketServidor;
 }
 
 /* Espera un cliente y cuando recibe una conexion, devuelve el socket correspondiente al cliente conectado.
@@ -89,12 +115,12 @@ void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar) {
 
 	return aEnviar;
 }
-
 void armarPaqueteNew(int offset, void* mensaje, tBuffer* buffer) {
+
 	mensajeNew* msg = mensaje;
 	memcpy(buffer->stream + offset, &(msg->longPokemon), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
-	memcpy(buffer->stream + offset, msg->pokemon, sizeof(msg->longPokemon));
+	memcpy(buffer->stream + offset, msg->pokemon, msg->longPokemon);
 	offset += msg->longPokemon;
 	memcpy(buffer->stream + offset, &(msg->posicionX), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
@@ -141,24 +167,22 @@ void armarPaqueteGet(int offset, void* mensaje, tBuffer* buffer) {
 	offset += sizeof(msg->longPokemon);
 }
 
+
 void armarPaqueteLocalized(int offset, void* mensaje, tBuffer* buffer) {
 	mensajeLocalized* msg = mensaje;
-	posicYCant variableAuxiliar;
+	posiciones variableAuxiliar;
 	memcpy(buffer->stream + offset, &(msg->longPokemon), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 	memcpy(buffer->stream + offset, msg->pokemon, msg->longPokemon);
 	offset += msg->longPokemon;
-	memcpy(buffer->stream + offset, &(msg->listSize), sizeof(uint32_t));
+	//memcpy(buffer->stream + offset, &(list_size(msg->posiciones)), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
-	for (int i = 0; i < msg->listSize; i++) {
-		variableAuxiliar = *(posicYCant*) (list_get(msg->posicionYCant, i));
+	for (int i = 0; i < list_size(msg->posiciones); i++) {
+		variableAuxiliar = *(posiciones*) (list_get(msg->posiciones, i));
 		memcpy(buffer->stream + offset, &(variableAuxiliar.posicionX),
 				sizeof(uint32_t));
 		offset += sizeof(uint32_t);
 		memcpy(buffer->stream + offset, &(variableAuxiliar.posicionY),
-				sizeof(uint32_t));
-		offset += sizeof(uint32_t);
-		memcpy(buffer->stream + offset, &(variableAuxiliar.cantidad),
 				sizeof(uint32_t));
 		offset += sizeof(uint32_t);
 	}
@@ -223,7 +247,6 @@ void enviarMensajeABroker(int socketBroker, cola colaDestino,
 	sizeTotal = buffer->size + sizeof(uint32_t) + sizeof(opCode);
 	mensajeSerializado = serializarPaquete(paquete, sizeTotal);
 	send(socketBroker, mensajeSerializado, sizeTotal, 0);
-	//free(mensaje); Valgrind tira que esto es invalido porque esta variable esta en el stack del thread 1
 	free(mensajeSerializado);
 	free(paquete);
 	free(buffer->stream);
@@ -362,8 +385,26 @@ uint32_t obtenerIdDelProceso(char* ip, char* puerto) {
 
 	opCode codigoOP = NUEVA_CONEXION;
 	send(socketBroker, &codigoOP, sizeof(opCode), 0);
-	recv(socketBroker, &idProceso, sizeof(uint32_t), MSG_WAITALL);
+	uint32_t statusRecv=recv(socketBroker, &idProceso, sizeof(uint32_t), MSG_WAITALL);
 	close(socketBroker);
+
+	if(statusRecv<0)
+		return -1;
+
+	return idProceso;
+}
+
+uint32_t obtenerIdDelProcesoConReintento(char* ip, char* puerto, int tiempoDeEspera) {
+	int socketBroker = crearConexionClienteConReintento(ip, puerto, tiempoDeEspera);
+	uint32_t idProceso;
+
+	opCode codigoOP = NUEVA_CONEXION;
+	send(socketBroker, &codigoOP, sizeof(opCode), 0);
+	uint32_t statusRecv=recv(socketBroker, &idProceso, sizeof(uint32_t), MSG_WAITALL);
+	close(socketBroker);
+
+	if(statusRecv<0)
+		return -1;
 
 	return idProceso;
 }
@@ -381,4 +422,3 @@ char* getCodeStringByNum(int nro) {
 
 
 //---------------------------------------------------
-

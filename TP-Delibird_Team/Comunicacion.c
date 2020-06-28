@@ -1,7 +1,7 @@
 #include "Team.h"
 
 /*uint32_t obtenerIdDelProceso(char* ip, char* puerto) {
-	int socketBroker = crearConexionCliente(ip, puerto);
+	int socketBroker = crearConexionClienteConReintento(ip, puerto);
 	uint32_t idProceso;
 
 	opCode codigoOP = NUEVA_CONEXION;
@@ -14,7 +14,7 @@
 
 void enviarGetDePokemon(char *ip, char *puerto, char *pokemon) {
 	int *socketBroker = malloc(sizeof(int));
-	*socketBroker = crearConexionCliente(ip, puerto, tiempoDeEspera);
+	*socketBroker = crearConexionClienteConReintento(ip, puerto, tiempoDeEspera);
 	uint32_t idRespuesta;
 
 	mensajeGet *msg = malloc(sizeof(mensajeGet));
@@ -106,7 +106,7 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 //TODO Ver si tiene que devolver el ID de rta
 void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 	int *socketBroker = malloc(sizeof(int));
-	*socketBroker = crearConexionCliente(ip, puerto, tiempoDeEspera);
+	*socketBroker = crearConexionClienteConReintento(ip, puerto, tiempoDeEspera);
 	uint32_t idRespuesta;
 
 	mensajeCatch *msg = malloc(sizeof(mensajeCatch));
@@ -174,54 +174,40 @@ void atenderServidor(int *socketServidor) {
 						int cantPokes,longPokemon;
 						int offset = 0;
 
-						t_posicionEnMapa *pos = malloc(sizeof(t_posicionEnMapa));
-						pos->x = list_create();
-						pos->y = list_create();
-						pos->cantidades = list_create();
-
 						memcpy(&longPokemon,miMensajeRecibido->mensaje,sizeof(uint32_t));
 						offset = sizeof(uint32_t);
 
 						char *pokemon = malloc(longPokemon);
 						memcpy(pokemon,miMensajeRecibido->mensaje + offset,longPokemon);
 
-						offset += longPokemon;
+						offset += longPokemon+1;
 						memcpy(&cantPokes,miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
-
-						pos->pokemon = malloc(longPokemon);
-
 						offset += sizeof(uint32_t);
-						int x[cantPokes],y[cantPokes],cant[cantPokes];
 
-						memcpy(pos->pokemon,pokemon,longPokemon);
-
-						log_debug(logger,"Pokemon: %s",pos->pokemon);
-
-						for(int i = 0;i < cantPokes;i++){
-							memcpy(&x[i],miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
-							offset += sizeof(uint32_t);
-							memcpy(&y[i],miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
-							offset += sizeof(uint32_t);
-							memcpy(&cant[i],miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
-							offset += sizeof(uint32_t);
-
-							//los agrego al mapa interno
-							list_add(pos->x,&x[i]);
-							list_add(pos->y,&y[i]);
-							list_add(pos->cantidades,&cant[i]);
-						}
-
+						log_debug(logger,"Pokemon: %s",pokemon);
 						if(estaEnLosObjetivos(pokemon)){
 
 							log_debug(logger,"El pokemon %s es un objetivo",pokemon);
 
-							list_add(listaPosicionesInternas,pos);
-							ponerEnReadyAlMasCercano(x[0],y[0], pokemon);
+							//TODO - No esta leyendo bien cantPokes, lo que hace que el for ejecute miles de veces y tire seg fault.
+							log_debug(logger, "%d", cantPokes);
+							for(int i = 0;i < cantPokes;i++){
+								t_posicionEnMapa *posicion = malloc(sizeof(t_posicionEnMapa));
+								posicion->pokemon = malloc(longPokemon);
+								posicion->pokemon = pokemon;
+								memcpy(&(posicion->pos[0]),miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
+								offset += sizeof(uint32_t);
+								memcpy(&(posicion->pos[1]),miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
+								offset += sizeof(uint32_t);
 
+								log_debug(logger, "que onda");
+
+								list_add(listaPosicionesInternas,posicion);
+								ponerEnReadyAlMasCercano(posicion->pos[0],posicion->pos[1], pokemon);
+									//le aviso al planificador que pase un entrenador a ready.
+								}
 							sem_post(&procesoEnReady);
-							//le aviso al planificador que pase un entrenador a ready.
 						}
-
 						log_debug(logger,"Se proceso el LOCALIZED");
 
 						break;
@@ -251,7 +237,7 @@ void atenderServidor(int *socketServidor) {
 				log_error(logger, "Se perdio la conexión con el Broker.");
 				close(*socketServidor);
 				log_debug(logger, "Reintentando conexion...");
-				*socketServidor = crearConexionCliente(ipServidor, puertoServidor, tiempoDeEspera);
+				*socketServidor = crearConexionClienteConReintento(ipServidor, puertoServidor, tiempoDeEspera);
 			}
 		if(miMensajeRecibido->mensaje != NULL){
 			log_info(logger, "Mensaje recibido: %s\n", miMensajeRecibido->mensaje);
@@ -268,17 +254,39 @@ void crearHiloParaAtenderServidor(int *socketServidor) {
 	pthread_detach(hiloAtenderServidor);
 }
 
-void crearHilosParaAtenderBroker(int *socketBrokerApp, int *socketBrokerLoc, int *socketBrokerCau) {
+void crearHilosParaAtenderBroker() {
 	crearHiloParaAtenderServidor(socketBrokerApp);
 	crearHiloParaAtenderServidor(socketBrokerLoc);
 	crearHiloParaAtenderServidor(socketBrokerCau);
 }
 
+void crearConexion(int* socket){
+	*socket = crearConexionClienteConReintento(ipServidor, puertoServidor, tiempoDeEspera);
+}
+
 /* Se suscribe a las colas del Broker */
-void suscribirseALasColas(int socketA,int socketL,int socketC, uint32_t idProceso) {
-	suscribirseACola(socketA,APPEARED, idProceso);
-	suscribirseACola(socketL,LOCALIZED, idProceso);
-	suscribirseACola(socketC,CAUGHT, idProceso);
+void crearConexionesYSuscribirseALasColas(uint32_t idProceso) {
+	pthread_t hiloSocketLoc;
+	pthread_t hiloSocketApp;
+	pthread_t hiloSocketCau;
+
+	pthread_create(&hiloSocketLoc, NULL, (void*) crearConexion, socketBrokerLoc);
+	pthread_create(&hiloSocketApp, NULL, (void*) crearConexion, socketBrokerApp);
+	pthread_create(&hiloSocketCau, NULL, (void*) crearConexion, socketBrokerCau);
+
+	//Espero a que el socket este conectado antes de utilizarlo
+	pthread_join(hiloSocketLoc, NULL);
+	suscribirseACola(*socketBrokerLoc,LOCALIZED, idProceso);
+	crearHiloParaAtenderServidor(socketBrokerLoc);
+
+	pthread_join(hiloSocketApp, NULL);
+	suscribirseACola(*socketBrokerApp,APPEARED, idProceso);
+	crearHiloParaAtenderServidor(socketBrokerApp);
+
+	pthread_join(hiloSocketCau, NULL);
+	suscribirseACola(*socketBrokerCau,CAUGHT, idProceso);
+	crearHiloParaAtenderServidor(socketBrokerCau);
+
 }
 
 int crearConexionEscuchaGameboy() {

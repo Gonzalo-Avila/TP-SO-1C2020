@@ -20,6 +20,9 @@ void inicializarVariablesGlobales() {
 	listaPosicionesInternas = list_create();
 	idsDeCatch = list_create();
 	alfa =(float)atof(config_get_string_value(config, "ALFA"));
+	socketBrokerApp = malloc(sizeof(int));
+	socketBrokerLoc = malloc(sizeof(int));
+	socketBrokerCau = malloc(sizeof(int));
 
 	//inicializo el mutex para los mensajes que llegan del broker
 	sem_init(&mutexMensajes, 0, 1);
@@ -97,29 +100,25 @@ void crearHilosDeEntrenadores() {
 	}
 }
 
-void crearConexion(int* socket){
-	*socket = crearConexionCliente(ipServidor, puertoServidor, tiempoDeEspera);
-}
+/*void crearConexionesCliente(int* socketBrokerLoc, int* socketBrokerApp, int* socketBrokerCau) {
+	pthread_t hiloSocketLoc;
+	pthread_t hiloSocketApp;
+	pthread_t hiloSocketCau;
 
-void crearConexionesCliente(int* socketBrokerLoc, int* socketBrokerApp, int* socketBrokerCau) {
-//	pthread_t hiloSocketLoc;
-//	pthread_t hiloSocketApp;
-//	pthread_t hiloSocketCau;
+	pthread_create(&hiloSocketLoc, NULL, (void*) suscribirseACola, APPEARED);
+	pthread_detach(hiloSocketLoc);
 
-//	pthread_create(&hiloSocketLoc, NULL, (void*) crearConexion, socketBrokerLoc);
-//	pthread_detach(hiloSocketLoc);
+	pthread_create(&hiloSocketApp, NULL, (void*) suscribirseACola, socketBrokerApp);
+	pthread_detach(hiloSocketApp);
 
-//	pthread_create(&hiloSocketApp, NULL, (void*) crearConexion, socketBrokerApp);
-//	pthread_detach(hiloSocketApp);
-
-//	pthread_create(&hiloSocketCau, NULL, (void*) crearConexion, socketBrokerCau);
-//	pthread_detach(hiloSocketCau);
+	pthread_create(&hiloSocketCau, NULL, (void*) crearConexion, socketBrokerCau);
+	pthread_detach(hiloSocketCau);
 
 
-	*socketBrokerLoc = crearConexionCliente(ipServidor, puertoServidor, tiempoDeEspera);
-	*socketBrokerApp = crearConexionCliente(ipServidor, puertoServidor, tiempoDeEspera);
-	*socketBrokerCau = crearConexionCliente(ipServidor, puertoServidor, tiempoDeEspera);
-}
+//	*socketBrokerLoc = crearConexionClienteConReintento(ipServidor, puertoServidor, tiempoDeEspera);
+//	*socketBrokerApp = crearConexionClienteConReintento(ipServidor, puertoServidor, tiempoDeEspera);
+//	*socketBrokerCau = crearConexionClienteConReintento(ipServidor, puertoServidor, tiempoDeEspera);
+}*/
 
 int main() {
 	uint32_t idDelProceso;
@@ -127,13 +126,10 @@ int main() {
 	inicializarVariablesGlobales();
 
 	//Obtengo el ID del proceso
-	idDelProceso = obtenerIdDelProceso(ipServidor, puertoServidor, tiempoDeEspera);
+	idDelProceso = obtenerIdDelProcesoConReintento(ipServidor, puertoServidor, tiempoDeEspera);
 
-	//Creo 3 conexiones con el Broker, una por cada cola
-	int *socketBrokerApp = malloc(sizeof(int));
-	int *socketBrokerLoc = malloc(sizeof(int));
-	int *socketBrokerCau = malloc(sizeof(int));
-	crearConexionesCliente(socketBrokerLoc, socketBrokerApp, socketBrokerCau);
+	crearConexionesYSuscribirseALasColas(idDelProceso);
+//	crearConexionesCliente();
 
 	//Creo conexión con Gameboy
 	int *socketGameboy = malloc(sizeof(int));
@@ -143,9 +139,8 @@ int main() {
 	//atenderGameboy(socketGameboy);
 
 	//Se suscribe el Team a las colas
-	suscribirseALasColas(*socketBrokerApp,*socketBrokerLoc,*socketBrokerCau, idDelProceso);
 
-	crearHilosParaAtenderBroker(socketBrokerApp, socketBrokerLoc, socketBrokerCau);
+//	crearHilosParaAtenderBroker(socketBrokerApp, socketBrokerLoc, socketBrokerCau);
 
 	generarEntrenadores();
 

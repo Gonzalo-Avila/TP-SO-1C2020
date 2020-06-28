@@ -27,6 +27,7 @@
 #include <math.h>
 
 t_log * logger;
+t_log * loggerOficial;
 t_config * config;
 
 /*	<opCode><Type><Msj>
@@ -39,6 +40,10 @@ t_config * config;
  * MENSAJE 		LOCALIZED	<MsjLenght> <NombrePokemon> = 1 6 <MsjLenght> <NombrePokemon>
  * */
 
+
+typedef enum {
+	FAIL=0, OK=1
+}resultado;
 typedef enum {
 	NUEVO_MENSAJE = 1,
 	FINALIZAR = 2,
@@ -73,7 +78,6 @@ typedef struct {
 	char * pokemon;         //Nombre del pokemon a agregar.
 	uint32_t posicionX;
 	uint32_t posicionY;
-	;
 	//Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
 	uint32_t cantPokemon;   //Cantidad pokemons a agregar en la posición.
 } mensajeNew;
@@ -109,23 +113,22 @@ typedef struct {
 typedef struct {
 	uint32_t longPokemon;   //Longitud del nombre del pokemon.
 	char * pokemon;    //Nombre del pokemon cuyas posiciones se esta informando.
-	uint32_t listSize;
-	t_list * posicionYCant; //Lista de todas las posiciones donde esta el pokemon y cantidad en cada una, seria un struct.
+	uint32_t cantidad;
+	t_list * posiciones; //Lista de todas las posiciones donde esta el pokemon y cantidad en cada una, seria un struct.
 } mensajeLocalized;
 
 //Estructura para las componentes de la lista de posiciones y cantidades
 typedef struct {
 	uint32_t posicionX;
 	uint32_t posicionY; //Posicion del pokemon en el mapa. Primer componente fila, segundo componente columna.
-	uint32_t cantidad;      //Cantidad de pokemons que hay en la posición.
-} posicYCant;
+} posiciones;
 
 typedef struct {
 	uint32_t id;
 	uint32_t idCorrelativo;			// Si no se usa idCorrelativo = -1
 	uint32_t sizeMensaje;
 	void* mensaje;
-	int clientID;
+	uint32_t clientID;
 	statusMensaje estado;
 	cola colaMensajeria;
 } estructuraMensaje;
@@ -144,14 +147,15 @@ typedef struct {
 void atenderConexionEn(int socket, int backlog);
 int crearConexionServer(char * ip, char * puerto);
 int crearConexionCliente(char * ip, char * puerto);
+int crearConexionClienteConReintento(char * ip, char * puerto, int tiempoDeEspera);
+uint32_t obtenerIdDelProcesoConReintento(char* ip, char* puerto, int tiempoDeEspera);
 int *esperarCliente(int socketEscucha);
 void inicializarColas();
 void * serializarPaquete(tPaquete* paquete, int tamanioAEnviar);
 void * serializarPaqueteCola(tPaquete* paquete, int tamanioAEnviar);
 void enviarString(int socketDestino, char * mensaje);
 int enviarMensajeASuscriptor(estructuraMensaje datosMensaje, int socketSuscriptor);
-void enviarMensajeABroker(int socketBroker, cola colaDestino,
-		uint32_t idCorrelativo, uint32_t sizeMensaje, void * mensaje);
+void enviarMensajeABroker(int socketBroker, cola colaDestino, uint32_t idCorrelativo, uint32_t sizeMensaje, void * mensaje);
 mensajeRecibido * recibirMensajeDeBroker(int socketBroker);
 tPaquete *recibirMensaje(int socketFuente);
 void loggearMensaje(t_log *logger, char * mensaje);
@@ -159,7 +163,7 @@ int test();
 void suscribirseACola(int socketBroker, cola tipoCola, uint32_t idSuscriptor);
 void enviarACola(int socketBroker, cola tipoCola, char* msj, int msjSize);
 char* getCodeStringByNum(int nro);
-uint32_t obtenerIdDelProceso(char* ip, char* puerto);
+
 
 
 #endif /* UTILS_H_ */

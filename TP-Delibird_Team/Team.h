@@ -12,7 +12,7 @@
 
 #define MAXSIZE 1024
 
-typedef int t_posicion[2];
+typedef uint32_t t_posicion[2];
 
 typedef enum{
 	FIFO,	//First In First Out
@@ -79,9 +79,7 @@ typedef struct{
 
 typedef struct{
 	char *pokemon;
-	t_list *x;
-	t_list *y;
-	t_list *cantidades;
+	t_posicion pos;
 }t_posicionEnMapa;
 
 typedef struct{
@@ -96,6 +94,10 @@ t_list *listaDeReady;
 t_list *listaDeBloqued;
 t_list *idsDeCatch;
 float alfa;
+
+int *socketBrokerApp;
+int *socketBrokerLoc;
+int *socketBrokerCau;
 
 char* ipServidor;
 char* puertoServidor;
@@ -144,7 +146,8 @@ void crearHilosDeEntrenadores();
 void generarEntrenadores();
 void atenderServidor(int *socketServidor);
 void crearHiloParaAtenderServidor(int *socketServidor);
-void crearHilosParaAtenderBroker(int *socketBrokerApp, int *socketBrokerLoc, int *socketBrokerCau);
+//void crearHilosParaAtenderBroker(int *socketBrokerApp, int *socketBrokerLoc, int *socketBrokerCau);
+void crearConexionesYSuscribirseALasColas(uint32_t idProceso);
 void suscribirseALasColas(int socketA,int socketL,int socketC, uint32_t idProceso);
 void atenderGameboy(int *socketEscucha);
 void esperarMensajes(int *socketCliente);
