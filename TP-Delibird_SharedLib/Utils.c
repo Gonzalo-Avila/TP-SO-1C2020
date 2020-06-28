@@ -39,7 +39,7 @@ int crearConexionServer(char * ip, char * puerto) {
 /* Crea una conexión con el servidor en la IP y puerto indicados, devolviendo el socket del servidor
  *
  */
-int crearConexionCliente(char * ip, char * puerto) {
+int crearConexionCliente(char * ip, char * puerto, int tiempoDeEspera) {
 	struct addrinfo hints;
 	struct addrinfo *serverInfo;
 	memset(&hints, 0, sizeof(hints));
@@ -52,7 +52,15 @@ int crearConexionCliente(char * ip, char * puerto) {
 	socketServidor = socket(serverInfo->ai_family, serverInfo->ai_socktype,
 			serverInfo->ai_protocol);
 
-	connect(socketServidor, serverInfo->ai_addr, serverInfo->ai_addrlen);
+	log_debug(logger, "Conectandose al servidor...");
+	while(1){
+		int status = connect(socketServidor, serverInfo->ai_addr, serverInfo->ai_addrlen);
+		if(status != -1)
+			break;
+		else {
+			usleep(tiempoDeEspera * 1000000);
+		}
+	}
 	freeaddrinfo(serverInfo);
 	return socketServidor;
 }
