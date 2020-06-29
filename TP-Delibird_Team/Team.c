@@ -134,11 +134,12 @@ int main() {
 
 	crearHilosDeEntrenadores();
 
-	//Se suscribe el Team a las colas
-	crearConexionesYSuscribirseALasColas();
 
 	//Creo conexion con Gameboy
 	conectarGameboy();
+
+	//Se suscribe el Team a las colas
+	crearConexionesYSuscribirseALasColas();
 
 	enviarGetSegunObjetivo(ipServidor,puertoServidor);
 

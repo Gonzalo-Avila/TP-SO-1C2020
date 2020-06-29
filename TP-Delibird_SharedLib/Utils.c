@@ -80,7 +80,6 @@ int crearConexionClienteConReintento(char * ip, char * puerto, int tiempoDeEsper
     while(1){
         int status = connect(socketServidor, serverInfo->ai_addr, serverInfo->ai_addrlen);
         if(status != -1){
-        	log_debug(logger, "Socket conectado al servidor.");
             break;
         }
         else {
@@ -401,10 +400,13 @@ uint32_t obtenerIdDelProcesoConReintento(char* ip, char* puerto, int tiempoDeEsp
 	int socketBroker = crearConexionClienteConReintento(ip, puerto, tiempoDeEspera);
 	uint32_t idProceso;
 
+
 	opCode codigoOP = NUEVA_CONEXION;
 	send(socketBroker, &codigoOP, sizeof(opCode), 0);
 	uint32_t statusRecv=recv(socketBroker, &idProceso, sizeof(uint32_t), MSG_WAITALL);
 	close(socketBroker);
+
+	log_debug(logger, "ID obtenido = %d", idProceso);
 
 	if(statusRecv<0)
 		return -1;

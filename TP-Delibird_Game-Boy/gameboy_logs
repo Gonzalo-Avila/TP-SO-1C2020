@@ -958,3 +958,45 @@ Socket:5
 [INFO] 21:21:53:822 GameBoy/(6809:6809): Pokemon a enviar: pikachu. Cantidad = 1
 [INFO] 21:21:53:823 GameBoy/(6809:6809): Se envió un mensaje a la cola LOCALIZED_POKEMON del proceso TEAM
 [INFO] 21:21:53:823 GameBoy/(6809:6809): El proceso GameBoy finalizó su ejecución
+[INFO] 23:29:17:217 GameBoy/(4691:4691): Se ha iniciado el cliente gameboy
+
+[DEBUG] 23:29:17:229 GameBoy/(4691:4691): Conectandose al servidor...
+[INFO] 23:29:17:231 GameBoy/(4691:4691): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: TEAM
+IP: 127.0.0.2
+PUERTO: 9897
+Socket:5
+[INFO] 23:29:17:235 GameBoy/(4691:4691): Pokemon a enviar: pikachu. Cantidad = 1
+[INFO] 23:53:33:945 GameBoy/(6138:6138): Se ha iniciado el cliente gameboy
+
+[DEBUG] 23:53:33:947 GameBoy/(6138:6138): Conectandose al servidor...
+[INFO] 23:53:33:948 GameBoy/(6138:6138): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: TEAM
+IP: 127.0.0.2
+PUERTO: 9897
+Socket:5
+[INFO] 23:53:33:951 GameBoy/(6138:6138): Pokemon a enviar: pikachu. Cantidad = 1
+[INFO] 23:53:33:952 GameBoy/(6138:6138): Se envió un mensaje a la cola LOCALIZED_POKEMON del proceso TEAM
+[INFO] 23:53:33:952 GameBoy/(6138:6138): El proceso GameBoy finalizó su ejecución
+[INFO] 23:54:41:806 GameBoy/(6190:6190): Se ha iniciado el cliente gameboy
+
+[DEBUG] 23:54:41:819 GameBoy/(6190:6190): Conectandose al servidor...
+[INFO] 23:54:41:819 GameBoy/(6190:6190): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 23:54:41:820 GameBoy/(6190:6190): Pokemon a enviar: pikachu. Cantidad = 1
+[INFO] 23:54:41:820 GameBoy/(6190:6190): Se envió un mensaje a la cola LOCALIZED_POKEMON del proceso BROKER
+[INFO] 23:54:41:820 GameBoy/(6190:6190): El proceso GameBoy finalizó su ejecución
+[INFO] 23:55:13:584 GameBoy/(6238:6238): Se ha iniciado el cliente gameboy
+
+[DEBUG] 23:55:13:585 GameBoy/(6238:6238): Conectandose al servidor...
+[INFO] 23:55:13:585 GameBoy/(6238:6238): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 23:55:13:585 GameBoy/(6238:6238): Pokemon a enviar: pikachu. Cantidad = 1
+[INFO] 23:55:13:600 GameBoy/(6238:6238): Se envió un mensaje a la cola LOCALIZED_POKEMON del proceso BROKER
+[INFO] 23:55:13:600 GameBoy/(6238:6238): El proceso GameBoy finalizó su ejecución

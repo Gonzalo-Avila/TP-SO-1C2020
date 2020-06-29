@@ -176,6 +176,7 @@ void planificarSJFsinDesalojo();
 void planificarSJFconDesalojo();
 void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador);
 void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador);
+void esperarMensajesGameboy(int* socketSuscripcion);
 
 
 //uint32_t obtenerIdDelProceso(char* ip, char* puerto);
