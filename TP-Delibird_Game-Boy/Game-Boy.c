@@ -597,7 +597,7 @@ int main(int argc, char** argv) {
 								cont=cont+2;
 							}
 							size = mensaje.longPokemon + sizeof(uint32_t) + sizeof(uint32_t) * (mensaje.cantidad*2);
-							log_info(logger, "Pokemon a enviar: %s. Cantidad = %d", mensaje.pokemon, mensaje.cantidad);
+
 							if(destino == BROKER){
 								enviarMensajeABroker(socketDestino, tipoMensaje, -1, size, &mensaje);
 
@@ -623,11 +623,11 @@ int main(int argc, char** argv) {
 								log_debug(logger,"Cantidad a serializar = %d", mensaje.cantidad);
 								for (int i = 0; i < mensaje.cantidad; i++) {
 									variableAuxiliar = *(posiciones*) (list_get(mensaje.posiciones, i));
-									memcpy(datosMensaje.mensaje + offset, &(variableAuxiliar.posicionX),
-											sizeof(uint32_t));
+
+									memcpy(datosMensaje.mensaje + offset, &(variableAuxiliar.posicionX),sizeof(uint32_t));
 									offset += sizeof(uint32_t);
-									memcpy(datosMensaje.mensaje + offset, &(variableAuxiliar.posicionY),
-											sizeof(uint32_t));
+
+									memcpy(datosMensaje.mensaje + offset, &(variableAuxiliar.posicionY),sizeof(uint32_t));
 									offset += sizeof(uint32_t);
 								}
 

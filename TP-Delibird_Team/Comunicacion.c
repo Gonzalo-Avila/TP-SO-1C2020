@@ -155,8 +155,6 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 	memcpy(&longPokemon, miMensajeRecibido->mensaje, sizeof(uint32_t));
 	offset = sizeof(uint32_t);
 
-	log_debug(logger, "longPokemon = %d", longPokemon);
-
 	char* pokemon = malloc(longPokemon);
 	memcpy(pokemon, miMensajeRecibido->mensaje + offset, longPokemon);
 	offset += longPokemon;
@@ -169,23 +167,22 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 
 	if (estaEnLosObjetivos(pokemon)) {
 		log_debug(logger, "El pokemon %s es un objetivo", pokemon);
-		//TODO - No esta leyendo bien cantPokes, lo que hace que el for ejecute miles de veces y tire seg fault.
-		log_debug(logger, "Cantidad de %s recibidos = %d", pokemon, cantPokes);
 
 		for (int i = 0; i < cantPokes; i++) {
 			t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
 			posicion->pokemon = malloc(longPokemon);
 			posicion->pokemon = pokemon;
-			memcpy(&(posicion->pos[0]), miMensajeRecibido->mensaje + offset,
-					sizeof(uint32_t));
+
+			memcpy(&(posicion->pos[0]), miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
 			offset += sizeof(uint32_t);
-			memcpy(&(posicion->pos[1]), miMensajeRecibido->mensaje + offset,
-					sizeof(uint32_t));
+
+			//TODO - Esta leyendo mal la posicion Y. Por algun motivo siempre lee 21, 17, o 64.
+			memcpy(&(posicion->pos[1]), miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
 			offset += sizeof(uint32_t);
-			log_debug(logger, "que onda");
+
 			list_add(listaPosicionesInternas, posicion);
-			ponerEnReadyAlMasCercano(posicion->pos[0], posicion->pos[1],
-					pokemon);
+
+			ponerEnReadyAlMasCercano(posicion->pos[0], posicion->pos[1],pokemon);
 			//le aviso al planificador que pase un entrenador a ready.
 		}
 		sem_post(&procesoEnReady);
