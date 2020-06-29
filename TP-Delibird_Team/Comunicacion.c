@@ -180,7 +180,7 @@ void atenderServidor(int *socketServidor) {
 						char *pokemon = malloc(longPokemon);
 						memcpy(pokemon,miMensajeRecibido->mensaje + offset,longPokemon);
 
-						offset += longPokemon+1;
+						offset += longPokemon;
 						memcpy(&cantPokes,miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
 						offset += sizeof(uint32_t);
 
@@ -264,32 +264,49 @@ void crearConexion(int* socket){
 	*socket = crearConexionClienteConReintento(ipServidor, puertoServidor, tiempoDeEspera);
 }
 
+//Obtengo el ID del proceso
+
+void obtenerID(uint32_t idDelProceso){
+	idDelProceso = obtenerIdDelProcesoConReintento(ipServidor, puertoServidor, tiempoDeEspera);
+}
+
 /* Se suscribe a las colas del Broker */
-void crearConexionesYSuscribirseALasColas(uint32_t idProceso) {
+void crearConexionesYSuscribirseALasColas(int idDelProceso) {
+	pthread_t hiloObtenerID;
 	pthread_t hiloSocketLoc;
 	pthread_t hiloSocketApp;
 	pthread_t hiloSocketCau;
 
+	pthread_create(&hiloObtenerID, NULL, (void*) obtenerID, &idDelProceso);
 	pthread_create(&hiloSocketLoc, NULL, (void*) crearConexion, socketBrokerLoc);
 	pthread_create(&hiloSocketApp, NULL, (void*) crearConexion, socketBrokerApp);
 	pthread_create(&hiloSocketCau, NULL, (void*) crearConexion, socketBrokerCau);
 
+	pthread_join(hiloObtenerID, NULL);
 	//Espero a que el socket este conectado antes de utilizarlo
 	pthread_join(hiloSocketLoc, NULL);
-	suscribirseACola(*socketBrokerLoc,LOCALIZED, idProceso);
+	suscribirseACola(*socketBrokerLoc,LOCALIZED, idDelProceso);
 	crearHiloParaAtenderServidor(socketBrokerLoc);
 
+	log_debug(logger, "Suscripto a la cola LOCALIZED.");
+
 	pthread_join(hiloSocketApp, NULL);
-	suscribirseACola(*socketBrokerApp,APPEARED, idProceso);
+	suscribirseACola(*socketBrokerApp,APPEARED, idDelProceso);
 	crearHiloParaAtenderServidor(socketBrokerApp);
 
+	log_debug(logger, "Suscripto a la cola APPEARED.");
+
 	pthread_join(hiloSocketCau, NULL);
-	suscribirseACola(*socketBrokerCau,CAUGHT, idProceso);
+	suscribirseACola(*socketBrokerCau,CAUGHT, idDelProceso);
 	crearHiloParaAtenderServidor(socketBrokerCau);
+
+	log_debug(logger, "Suscripto a la cola CAUGHT.");
+
+	sem_post(&conexionCreada);
 
 }
 
-int crearConexionEscuchaGameboy() {
+void crearConexionEscuchaGameboy(int* socket) {
 
 	char * ipEscucha = malloc(
 			strlen(config_get_string_value(config, "IP_TEAM")) + 1);
@@ -308,8 +325,16 @@ int crearConexionEscuchaGameboy() {
 	free(ipEscucha);
 	free(puertoEscucha);
 
-	return socketEscucha;
+	*socket = socketEscucha;
 
+	atenderGameboy(socket);
+
+}
+
+void conectarGameboy(){
+	pthread_t hiloConectarGameboy;
+
+	pthread_create(&hiloConectarGameboy, NULL,(void*) crearConexionEscuchaGameboy, socketGameboy);
 }
 
 void atenderGameboy(int *socketEscucha) {
@@ -322,7 +347,7 @@ void atenderGameboy(int *socketEscucha) {
 		int *socketGameboy = esperarCliente(*socketEscucha);
 		log_info(logger,"Se ha conectado el Gameboy.");
 
-		crearHiloParaAtenderServidor(socketGameboy);
+		atenderServidor(socketGameboy);
 	}
 }
 
@@ -346,6 +371,8 @@ t_mensaje* deserializar(void* paquete) {
 }
 
 void enviarGetSegunObjetivo(char *ip, char *puerto) {
+	sem_wait(&conexionCreada);
+
 	char *pokemon = malloc(MAXSIZE);
 
 	for (int i = 0; i < list_size(team->objetivo); i++) {

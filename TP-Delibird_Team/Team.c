@@ -23,12 +23,14 @@ void inicializarVariablesGlobales() {
 	socketBrokerApp = malloc(sizeof(int));
 	socketBrokerLoc = malloc(sizeof(int));
 	socketBrokerCau = malloc(sizeof(int));
+	socketGameboy = malloc(sizeof(int));
 
 	//inicializo el mutex para los mensajes que llegan del broker
 	sem_init(&mutexMensajes, 0, 1);
 	sem_init(&mutexEntrenadores,0,1);
 	sem_init(&semPlanif, 0, 0);
 	sem_init(&procesoEnReady,0,0);
+	sem_init(&conexionCreada, 0, 0);
 
 	log_debug(logger, "Se ha iniciado un Team.");
 }
@@ -121,26 +123,8 @@ void crearHilosDeEntrenadores() {
 }*/
 
 int main() {
-	uint32_t idDelProceso;
 
 	inicializarVariablesGlobales();
-
-	//Obtengo el ID del proceso
-	idDelProceso = obtenerIdDelProcesoConReintento(ipServidor, puertoServidor, tiempoDeEspera);
-
-	crearConexionesYSuscribirseALasColas(idDelProceso);
-//	crearConexionesCliente();
-
-	//Creo conexión con Gameboy
-	int *socketGameboy = malloc(sizeof(int));
-	*socketGameboy = crearConexionEscuchaGameboy();
-
-	//Crea hilo para atender al Gameboy
-	//atenderGameboy(socketGameboy);
-
-	//Se suscribe el Team a las colas
-
-//	crearHilosParaAtenderBroker(socketBrokerApp, socketBrokerLoc, socketBrokerCau);
 
 	generarEntrenadores();
 
@@ -150,10 +134,16 @@ int main() {
 
 	crearHilosDeEntrenadores();
 
-	planificador();
+	//Se suscribe el Team a las colas
+	crearConexionesYSuscribirseALasColas();
 
+	//Creo conexion con Gameboy
+	conectarGameboy();
 
 	enviarGetSegunObjetivo(ipServidor,puertoServidor);
+
+	planificador();
+
 
 	log_info(logger, "Finalizó la conexión con el servidor\n");
 	log_info(logger, "El proceso Team finalizó su ejecución\n");

@@ -25,3 +25,5 @@
 [INFO] 03:17:13:728 Delibird - GameBoy/(12184:12184): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
 [INFO] 03:18:58:215 Delibird - GameBoy/(12255:12255): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
 [INFO] 03:20:05:26 Delibird - GameBoy/(12368:12368): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:08:48:926 Delibird - GameBoy/(6333:6333): Se ha conectado el GameBoy a un proceso.Tipo de proceso: TEAM | IP: 127.0.0.2 | PUERTO: 9897 | Socket:5
+[INFO] 21:21:53:822 Delibird - GameBoy/(6809:6809): Se ha conectado el GameBoy a un proceso.Tipo de proceso: TEAM | IP: 127.0.0.2 | PUERTO: 9897 | Socket:5

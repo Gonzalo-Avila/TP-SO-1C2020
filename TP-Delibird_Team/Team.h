@@ -88,16 +88,18 @@ typedef struct{
 }t_catchEnEspera;
 
 int tiempoDeEspera;
+uint32_t idDelProceso;
+float alfa;
 t_team *team;
 t_list *listaHilos;
 t_list *listaDeReady;
 t_list *listaDeBloqued;
 t_list *idsDeCatch;
-float alfa;
 
 int *socketBrokerApp;
 int *socketBrokerLoc;
 int *socketBrokerCau;
+int *socketGameboy;
 
 char* ipServidor;
 char* puertoServidor;
@@ -111,6 +113,7 @@ sem_t semPlanif;
 sem_t *semEntrenadores;
 sem_t *semEntrenadoresRR;
 sem_t procesoEnReady;
+sem_t conexionCreada;
 
 /* Funciones */
 bool menorDist(void *dist1,void *dist2);
@@ -124,7 +127,7 @@ bool menorEstimacion(void* entrenador1, void* entrenador2);
 bool hayNuevoEntrenadorConMenorRafaga(t_entrenador* entrenador);
 float calcularDistancia(int posX1, int posY1,int posX2,int posY2);
 float calcularEstimacion(t_entrenador* entrenador);
-int crearConexionEscuchaGameboy();
+void crearConexionEscuchaGameboy(int* socket);
 e_algoritmo obtenerAlgoritmoPlanificador();
 t_catchEnEspera* buscarCatch(uint32_t idCorrelativo);
 t_dist *setearDistanciaEntrenadores(int id,int posX,int posY);
@@ -147,7 +150,8 @@ void generarEntrenadores();
 void atenderServidor(int *socketServidor);
 void crearHiloParaAtenderServidor(int *socketServidor);
 //void crearHilosParaAtenderBroker(int *socketBrokerApp, int *socketBrokerLoc, int *socketBrokerCau);
-void crearConexionesYSuscribirseALasColas(uint32_t idProceso);
+void crearConexionesYSuscribirseALasColas();
+void conectarGameboy();
 void suscribirseALasColas(int socketA,int socketL,int socketC, uint32_t idProceso);
 void atenderGameboy(int *socketEscucha);
 void esperarMensajes(int *socketCliente);
