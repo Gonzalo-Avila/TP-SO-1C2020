@@ -149,20 +149,29 @@ void procesarCAUGHT(mensajeRecibido* miMensajeRecibido) {
 
 void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 	log_debug(logger, "Se recibio un LOCALIZED");
-	int cantPokes, longPokemon;
+	uint32_t cantPokes, longPokemon;
 	int offset = 0;
+
 	memcpy(&longPokemon, miMensajeRecibido->mensaje, sizeof(uint32_t));
 	offset = sizeof(uint32_t);
+
+	log_debug(logger, "longPokemon = %d", longPokemon);
+
 	char* pokemon = malloc(longPokemon);
 	memcpy(pokemon, miMensajeRecibido->mensaje + offset, longPokemon);
 	offset += longPokemon;
+
+	log_debug(logger, "Pokemon: %s", pokemon);
+
 	memcpy(&cantPokes, miMensajeRecibido->mensaje + offset, sizeof(uint32_t));
 	offset += sizeof(uint32_t);
-	log_debug(logger, "Pokemon: %s", pokemon);
+
+
 	if (estaEnLosObjetivos(pokemon)) {
 		log_debug(logger, "El pokemon %s es un objetivo", pokemon);
 		//TODO - No esta leyendo bien cantPokes, lo que hace que el for ejecute miles de veces y tire seg fault.
-		log_debug(logger, "%d", cantPokes);
+		log_debug(logger, "Cantidad de %s recibidos = %d", pokemon, cantPokes);
+
 		for (int i = 0; i < cantPokes; i++) {
 			t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
 			posicion->pokemon = malloc(longPokemon);
@@ -277,17 +286,18 @@ void obtenerID(uint32_t idDelProceso){
 
 /* Se suscribe a las colas del Broker */
 void crearConexionesYSuscribirseALasColas(int idDelProceso) {
-	pthread_t hiloObtenerID;
+	//pthread_t hiloObtenerID;
 	pthread_t hiloSocketLoc;
 	pthread_t hiloSocketApp;
 	pthread_t hiloSocketCau;
 
-	pthread_create(&hiloObtenerID, NULL, (void*) obtenerID, &idDelProceso);
+	//pthread_create(&hiloObtenerID, NULL, (void*) obtenerID, &idDelProceso); //No funciona pq le paso la direccion y la funcion recibe un entero. TODO - Revisar
+	obtenerID(idDelProceso);
 	pthread_create(&hiloSocketLoc, NULL, (void*) crearConexion, socketBrokerLoc);
 	pthread_create(&hiloSocketApp, NULL, (void*) crearConexion, socketBrokerApp);
 	pthread_create(&hiloSocketCau, NULL, (void*) crearConexion, socketBrokerCau);
 
-	pthread_join(hiloObtenerID, NULL);
+	//pthread_join(hiloObtenerID, NULL);
 
 	//Espero a que el socket este conectado antes de utilizarlo
 	pthread_join(hiloSocketLoc, NULL);
@@ -360,20 +370,20 @@ void esperarMensajesGameboy(int* socketSuscripcion) {
 	switch (mensaje->colaEmisora) {
 	case APPEARED: {
 		//Procesar mensaje NEW
-		log_debug(logger, "[GAMEBOY] Llegó un mensaje de la cola NEW");
+		log_debug(logger, "[GAMEBOY] Llegó un mensaje de la cola APPEARED");
 		procesarAPPEARED(mensaje);
 		break;
 	}
 	case LOCALIZED: {
 		//Procesar mensaje GET
-		log_debug(logger, "[GAMEBOY] Llegó un mensaje de la cola GET");
+		log_debug(logger, "[GAMEBOY] Llegó un mensaje de la cola LOCALIZED");
 		procesarLOCALIZED(mensaje);
 
 		break;
 	}
 	case CAUGHT: {
 		//Procesar mensaje CATCH
-		log_debug(logger, "[GAMEBOY] Llegó un mensaje de la cola CATCH");
+		log_debug(logger, "[GAMEBOY] Llegó un mensaje de la cola CAUGHT");
 		procesarCAUGHT(mensaje);
 		break;
 	}

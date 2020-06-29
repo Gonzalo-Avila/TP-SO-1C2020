@@ -21,6 +21,8 @@ void atenderConexiones(int *socketEscucha) {
 				"Se ha conectado un cliente. Número de socket cliente: %d",
 				*socketCliente);
 
+		log_info(loggerOficial,"Se ha conectado un proceso al broker.");
+
         esperarMensajes(socketCliente);
         free(socketCliente);
 	}
@@ -31,7 +33,6 @@ void atenderConexiones(int *socketEscucha) {
 void esperarMensajes(int *socketCliente) {
 	/* Espera mensajes de una conexión ya establecida. Según el
 	 * código de operación recibido, delega tareas a distintos modulos.
-	 *
 	 */
 
 	opCode codOperacion;
@@ -45,9 +46,12 @@ void esperarMensajes(int *socketCliente) {
 	switch (codOperacion) {
 
 	case NUEVA_CONEXION:{
+		log_info(logger, "[NUEVA_CONEXION]");
         uint32_t idProceso = getIDProceso();
         send(*socketCliente, &idProceso,sizeof(uint32_t),0);
+        log_info(logger, "ClientID asignado al nuevo suscriptor: %d", idProceso);
         close(*socketCliente);
+        log_info(logger, "[NUEVA_CONEXION-END]");
 		break;
 	}
 
@@ -63,8 +67,8 @@ void esperarMensajes(int *socketCliente) {
 		recv(*socketCliente, &sizeDelMensaje, sizeof(uint32_t), MSG_WAITALL);
 		recv(*socketCliente, &tipoCola, sizeof(cola), MSG_WAITALL);
 		atenderMensaje(*socketCliente, tipoCola);
-
 		close(*socketCliente);
+		log_info(logger, "[NUEVO_MENSAJE-END]");
 		break;
 	}
 	case FINALIZAR: {
@@ -81,6 +85,7 @@ void esperarMensajes(int *socketCliente) {
 		log_info(logger, "El cliente con ID %d se ha desconectado",
 				clientID);
 		close(*socketCliente);
+		log_info(logger, "[FINALIZAR-END]");
 		break;
 	}
 	case DUMPCACHE: {
@@ -89,6 +94,7 @@ void esperarMensajes(int *socketCliente) {
 		break;
 	}
 	default: {
+		log_error(logger, "[ERROR]");
 		log_error(logger, "El mensaje recibido está dañado");
 		close(*socketCliente);
 		break;
@@ -130,8 +136,7 @@ void atenderSuscripcion(int *socketSuscriptor){
         				"El cliente %d ha actualizado el socket: %d",
 						suscriptorYaAlmacenado->clientID, suscriptorYaAlmacenado->socketCliente);
 
-        //COMENTAR ESTA LINEA Y REALIZAR TESTING - NO BORRAR COMMENT
-		//enviarMensajesCacheados(suscriptorYaAlmacenado, codSuscripcion);
+		enviarMensajesCacheados(suscriptorYaAlmacenado, codSuscripcion);
 	}
 	else
 	{
@@ -140,29 +145,50 @@ void atenderSuscripcion(int *socketSuscriptor){
 				"Hay un nuevo suscriptor en la cola %s. Número de socket suscriptor: %d",
 				getCodeStringByNum(codSuscripcion), *socketSuscriptor);
 
-		//enviarMensajesCacheados(nuevoSuscriptor, codSuscripcion); - NO BORRAR COMMENT
+		log_info(loggerOficial, "El proceso %d se ha suscripto a la cola %s",nuevoSuscriptor->clientID,getCodeStringByNum(codSuscripcion));
+
+
+		enviarMensajesCacheados(nuevoSuscriptor, codSuscripcion);
 	}
 	sem_post(&mutexColas);
 
 }
 
+bool seRecibioElIDCorrelativo(uint32_t idCConsultado){
+	bool yaExisteIDCorrelativo(void* elementoIDC){
+		int * idCYaRecibido = (int *) elementoIDC;
+		return *idCYaRecibido==idCConsultado;
+	}
+	return list_any_satisfy(idCorrelativosRecibidos, (void *)yaExisteIDCorrelativo);
+}
+
 void atenderMensaje(int socketEmisor, cola tipoCola) {
 	int idMensaje;
-	uint32_t idCorrelativo;
-	recv(socketEmisor, &idCorrelativo, sizeof(uint32_t), MSG_WAITALL);
+	uint32_t* idCorrelativo = malloc(sizeof(uint32_t));
+	recv(socketEmisor, idCorrelativo, sizeof(uint32_t), MSG_WAITALL);
 
 	//TODO
 	// |- Ver si el ID correlativo ya fue recibido, y si es asi, ignorar el mensaje.
 	// |- Podemos usar una lista de IDs correlativos ya recibidos.
 
-	if (tipoCola >= 0 && tipoCola <= 5) {
-		idMensaje = agregarMensajeACola(socketEmisor, tipoCola, idCorrelativo);
-		send(socketEmisor, &idMensaje, sizeof(uint32_t), 0);
-	} else {
-		log_error(logger, "[ERROR]");
-		log_error(logger,
-				"No pudo obtenerse el tipo de cola en el mensaje recibido");
+	if(!seRecibioElIDCorrelativo(*idCorrelativo)){
+		if(*idCorrelativo != -1){
+			list_add(idCorrelativosRecibidos, idCorrelativo);
+		}
+
+		if (tipoCola >= 0 && tipoCola <= 5) {
+			idMensaje = agregarMensajeACola(socketEmisor, tipoCola, *idCorrelativo);
+			send(socketEmisor, &idMensaje, sizeof(uint32_t), 0);
+		} else {
+			log_error(logger, "[ERROR]");
+			log_error(logger, "No pudo obtenerse el tipo de cola en el mensaje recibido");
+		}
+
+	}else{
+		log_info(logger, "Se ignoro mensaje de proceso con socket %d. ID Correlativo %d ya recibido.", socketEmisor, *idCorrelativo);
 	}
+
+
 }
 
 void imprimirEstructuraDeDatos(estructuraMensaje mensaje) {
@@ -214,7 +240,10 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 		list_add(getColaByNum(tipoCola), generarNodo(mensajeNuevo));
 	}
 
-	//cachearMensaje(mensajeNuevo);
+	log_info(loggerOficial, "Llegó un nuevo mensaje a la cola %s. Se le asignó el ID: %d", getCodeStringByNum(tipoCola), id);
+
+	cachearMensaje(mensajeNuevo);
+
 	sem_post(&mutexColas);
 	sem_post(&habilitarEnvio);
 

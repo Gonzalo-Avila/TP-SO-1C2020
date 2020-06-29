@@ -574,37 +574,73 @@ int main(int argc, char** argv) {
 				break;
 			}
 			case LOCALIZED: {
-				mensajeLocalized mensaje;
-				mensaje.posiciones = list_create();
-				//./broker BROKER LOCALIZED_POKEMON [POKEMON] [CANTIDAD] [POSX] [POSY] (UN PAR DE COORDENADAS X CANTIDAD)
-				mensaje.longPokemon = strlen(argv[3])+1;
-				mensaje.pokemon = malloc(mensaje.longPokemon);
-				memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
-				mensaje.cantidad = atoi(argv[4]);
-				posiciones *parDeCoordenadas = malloc(sizeof(posiciones));
-				//Funcion interna para poder usar commons con mas parametros
-				bool coordenadaEstaEnLista(void* coordenada){
-					posiciones* coordenadaEnLista = coordenada;
-						return (coordenadaEnLista->posicionX == parDeCoordenadas->posicionX &&
-								coordenadaEnLista->posicionY == parDeCoordenadas->posicionY);
-				}
-				for(int i=0;i<mensaje.cantidad;i++){
-					int cont=0;
-					parDeCoordenadas->posicionX = atoi(argv[5+cont]);
-					parDeCoordenadas->posicionY = atoi(argv[6+cont]);
-					list_add(mensaje.posiciones,parDeCoordenadas);
+							mensajeLocalized mensaje;
+							mensaje.posiciones = list_create();
+							//./broker BROKER LOCALIZED_POKEMON [POKEMON] [CANTIDAD] [POSX] [POSY] (UN PAR DE COORDENADAS X CANTIDAD)
+							mensaje.longPokemon = strlen(argv[3])+1;
+							mensaje.pokemon = malloc(mensaje.longPokemon);
+							memcpy(mensaje.pokemon,argv[3],mensaje.longPokemon);
+							mensaje.cantidad = atoi(argv[4]);
+							posiciones *parDeCoordenadas = malloc(sizeof(posiciones));
+							//Funcion interna para poder usar commons con mas parametros
+							bool coordenadaEstaEnLista(void* coordenada){
+								posiciones* coordenadaEnLista = coordenada;
+									return (coordenadaEnLista->posicionX == parDeCoordenadas->posicionX &&
+											coordenadaEnLista->posicionY == parDeCoordenadas->posicionY);
+							}
+							for(int i=0;i<mensaje.cantidad;i++){
+								int cont=0;
+								parDeCoordenadas->posicionX = atoi(argv[5+cont]);
+								parDeCoordenadas->posicionY = atoi(argv[6+cont]);
+								list_add(mensaje.posiciones,parDeCoordenadas);
 
-					cont=cont+2;
-				}
-				size = sizeof(uint32_t) * 8 + mensaje.longPokemon;
-				log_info(logger, "Pokemon a enviar: %s. Cantidad = %d", mensaje.pokemon, mensaje.cantidad);
-				enviarMensajeABroker(socketDestino, tipoMensaje, -1, size,
-						&mensaje);
-				log_info(logger,"Se envió un mensaje a la cola %s del proceso %s", argv[2], argv[1]);
-				free(mensaje.pokemon);
-				free(parDeCoordenadas);
-				break;
-			}
+								cont=cont+2;
+							}
+							size = mensaje.longPokemon + sizeof(uint32_t) + sizeof(uint32_t) * (mensaje.cantidad*2);
+							log_info(logger, "Pokemon a enviar: %s. Cantidad = %d", mensaje.pokemon, mensaje.cantidad);
+							if(destino == BROKER){
+								enviarMensajeABroker(socketDestino, tipoMensaje, -1, size, &mensaje);
+
+								free(mensaje.pokemon);
+								free(parDeCoordenadas);
+							}
+							else {
+								datosMensaje.id = 0;
+								datosMensaje.idCorrelativo = -1;
+								datosMensaje.sizeMensaje = size;
+								datosMensaje.mensaje = malloc(datosMensaje.sizeMensaje);
+
+
+								datosMensaje.colaMensajeria = tipoMensaje;
+								//datosMensaje.socketSuscriptor = socketDestino;
+								posiciones variableAuxiliar;
+								memcpy(datosMensaje.mensaje + offset, &(mensaje.longPokemon), sizeof(uint32_t));
+								offset += sizeof(uint32_t);
+								memcpy(datosMensaje.mensaje + offset, mensaje.pokemon, mensaje.longPokemon);
+								offset += mensaje.longPokemon;
+								memcpy(datosMensaje.mensaje + offset, &(mensaje.cantidad), sizeof(uint32_t));
+								offset += sizeof(uint32_t);
+								log_debug(logger,"Cantidad a serializar = %d", mensaje.cantidad);
+								for (int i = 0; i < mensaje.cantidad; i++) {
+									variableAuxiliar = *(posiciones*) (list_get(mensaje.posiciones, i));
+									memcpy(datosMensaje.mensaje + offset, &(variableAuxiliar.posicionX),
+											sizeof(uint32_t));
+									offset += sizeof(uint32_t);
+									memcpy(datosMensaje.mensaje + offset, &(variableAuxiliar.posicionY),
+											sizeof(uint32_t));
+									offset += sizeof(uint32_t);
+								}
+
+								datosMensaje.colaMensajeria = tipoMensaje;
+
+								enviarMensajeASuscriptor(datosMensaje, socketDestino);
+								free(datosMensaje.mensaje);
+								free(mensaje.pokemon);
+
+							}
+							log_info(logger, "Se envió un mensaje al proceso %s", argv[1]);
+							break;
+						}
 			default: {
 				log_error(logger, "[ERROR]");
 				log_error(logger, "No se pudo determinar el tipo de mensaje");

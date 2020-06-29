@@ -177,9 +177,10 @@ void armarPaqueteLocalized(int offset, void* mensaje, tBuffer* buffer) {
 	offset += sizeof(uint32_t);
 	memcpy(buffer->stream + offset, msg->pokemon, msg->longPokemon);
 	offset += msg->longPokemon;
-	//memcpy(buffer->stream + offset, &(list_size(msg->posiciones)), sizeof(uint32_t));
+	memcpy(buffer->stream + offset, &(msg->cantidad), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
-	for (int i = 0; i < list_size(msg->posiciones); i++) {
+	log_debug(logger,"Cantidad a serializar = %d", msg->cantidad);
+	for (int i = 0; i < msg->cantidad; i++) {
 		variableAuxiliar = *(posiciones*) (list_get(msg->posiciones, i));
 		memcpy(buffer->stream + offset, &(variableAuxiliar.posicionX),
 				sizeof(uint32_t));
