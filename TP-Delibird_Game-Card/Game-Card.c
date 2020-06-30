@@ -23,8 +23,13 @@ void inicializarVariablesGlobales() {
 	idProceso = -1;
 	statusConexionBroker = 0;
 }
-
+void destructorNodos(void * nodo){
+	mutexPokemon * elem = (mutexPokemon *) nodo;
+	free(elem->ruta);
+}
 void destruirVariablesGlobales() {
+	list_destroy_and_destroy_elements(semaforosPokemon,(void *)destructorNodos);
+	free(puntoDeMontaje);
 	free(ipServidor);
 	free(puertoServidor);
 	log_destroy(logger);
@@ -209,7 +214,6 @@ char * mapearArchivo(char * rutaMetadata, t_config * metadata) {
 	char * rutaBloqueActual;
 	int caracterLeido;
 
-	//metadata = config_create(rutaMetadata);
 	sizeArchivo = config_get_int_value(metadata, "SIZE");
 	bloquesArchivo = config_get_array_value(metadata, "BLOCKS");
 	archivoMapeado = malloc(sizeArchivo+1);
@@ -359,15 +363,15 @@ int obtenerCantidadEnCoordenada(char * archivoMappeado, char * coordenadas){
 		char ** coordenadasConCantidad = string_split(entradas[index],"=");   //["2-2", "5", NULL]
 		if(strcmp(coordenadasConCantidad[0],coordenadas)==0){
 			cantidad=atoi(coordenadasConCantidad[0]);
-			//liberarStringSplitteado(coordenadasConCantidad);
+			liberarStringSplitteado(coordenadasConCantidad);
 			break;
 		}
 		index++;
 
-	//	liberarStringSplitteado(coordenadasConCantidad);
+		liberarStringSplitteado(coordenadasConCantidad);
 	}
 
-	//liberarStringSplitteado(entradas);
+	liberarStringSplitteado(entradas);
 
 	return cantidad;
 }
@@ -383,15 +387,15 @@ bool existenLasCoordenadas(char * archivoMappeado, char * coordenadas){
 		char ** coordenadasConCantidad = string_split(entradas[index],"=");   //["2-2", "5", NULL]
 		if(strcmp(coordenadasConCantidad[0],coordenadas)==0){
 			existen=true;
-		//	liberarStringSplitteado(coordenadasConCantidad);
+			liberarStringSplitteado(coordenadasConCantidad);
 			break;
 		}
 		index++;
 
-		//liberarStringSplitteado(coordenadasConCantidad);
+		liberarStringSplitteado(coordenadasConCantidad);
 	}
 
-	//liberarStringSplitteado(entradas);
+	liberarStringSplitteado(entradas);
 
 	return existen;
 
@@ -445,9 +449,9 @@ void inicializarFileSystem() {
 int main() {
 	//Se setean todos los datos
 	inicializarVariablesGlobales();
-	log_info(logger, "Se ha iniciado el cliente GameCard\n");
-
 	inicializarFileSystem();
+
+	log_info(logger, "Se ha iniciado el cliente GameCard\n");
 
 	crearConexionBroker();
 	crearConexionGameBoy();

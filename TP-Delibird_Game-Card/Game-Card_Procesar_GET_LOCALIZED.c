@@ -63,7 +63,10 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 
 					indexEntrada++;
 					entradaActual = arrayDeEntradas[indexEntrada];
+					liberarStringSplitteado(posicionCantidad);
 				}
+
+				liberarStringSplitteado(arrayDeEntradas);
 
 				config_set_value(metadataPokemon, "OPEN", "N");
 				sleep(tiempoDeRetardo);

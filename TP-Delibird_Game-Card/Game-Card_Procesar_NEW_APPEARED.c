@@ -71,7 +71,9 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 							string_append(&aEscribirEnBloques, "\n");
 							indexEntrada++;
 							entradaActual=arrayDeEntradas[indexEntrada];
+							liberarStringSplitteado(posicionCantidad);
 						}
+						liberarStringSplitteado(arrayDeEntradas);
 
 						int sizeAEscribir = strlen(aEscribirEnBloques);
 						int cantidadDeBloquesAsignadosAArchivo = obtenerCantidadDeBloquesAsignados(rutaMetadataPokemon);

@@ -16,8 +16,7 @@ void crearConexionBroker() {
 int enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo,uint32_t sizeMensaje, void * mensaje) {
 	int socketBroker = crearConexionCliente(ipServidor, puertoServidor);
 	if (socketBroker < 0) {
-		log_error(logger, "No se pudo establecer la conexión con el broker");
-		//TODO - Implementar rutina de desconexión de todos los hilos, intento de reconexión, etc
+		log_error(logger, "No se pudo enviar el mensaje al broker: conexion fallida.");
 		return socketBroker;
 	}
 	enviarMensajeABroker(socketBroker, colaDestino, idCorrelativo, sizeMensaje, mensaje);
@@ -30,21 +29,24 @@ int enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo,uint32_t sizeMe
 
 int crearSuscripcionesBroker(){
 
-	log_info(logger, "Creando suscripciones de Broker");
+	log_info(logger, "Intentando crear suscripciones a broker");
 	socketSuscripcionNEW = crearConexionCliente(ipServidor, puertoServidor);
-	if(socketSuscripcionNEW<0)
+	if(socketSuscripcionNEW==-1)
 		return ERROR_CONEXION;
 	suscribirseACola(socketSuscripcionNEW, NEW, idProceso);
+	log_info(logger, "Suscripcion a NEW_POKEMON realizada");
 
 	socketSuscripcionCATCH = crearConexionCliente(ipServidor, puertoServidor);
-	if(socketSuscripcionCATCH<0)
+	if(socketSuscripcionCATCH==-1)
 		return ERROR_CONEXION;
 	suscribirseACola(socketSuscripcionCATCH, CATCH, idProceso);
+	log_info(logger, "Suscripcion a CATCH_POKEMON realizada");
 
 	socketSuscripcionGET = crearConexionCliente(ipServidor, puertoServidor);
-	if(socketSuscripcionGET<0)
+	if(socketSuscripcionGET==-1)
 		return ERROR_CONEXION;
 	suscribirseACola(socketSuscripcionGET, GET, idProceso);
+	log_info(logger, "Suscripcion a GET_POKEMON realizada");
 
 	pthread_create(&hiloEsperaNEW, NULL, (void*) esperarMensajesBroker, &socketSuscripcionNEW);
 	pthread_create(&hiloEsperaGET, NULL, (void*) esperarMensajesBroker, &socketSuscripcionGET);
@@ -54,7 +56,7 @@ int crearSuscripcionesBroker(){
 	pthread_detach(hiloEsperaGET);
 	pthread_detach(hiloEsperaCATCH);
 
-	log_info(logger, "Suscripciones de Broker creadas");
+	log_info(logger, "Suscripciones a colas realizadas exitosamente");
 
 	return CONECTADO;
 
@@ -62,28 +64,27 @@ int crearSuscripcionesBroker(){
 
 estadoConexion conectarYSuscribir(){
 	if(idProceso==-1){
-		log_info(logger, "Creando nueva conexion con Broker");
+		log_info(logger, "Intentando establecer conexion inicial con broker...");
 		idProceso=obtenerIdDelProceso(ipServidor,puertoServidor);
-		log_info(logger, "IDProceso asignado: %d", idProceso);
-		if(idProceso==-1)
+
+		if(idProceso==-1){
+			log_info(logger, "No se pudo establecer la conexion inicial con el broker");
 			return ERROR_CONEXION;
+		}
+		log_info(logger, "IDProceso asignado: %d", idProceso);
 	}
 	estadoConexion statusConexion = crearSuscripcionesBroker();
-
+	if(statusConexion==ERROR_CONEXION)
+		log_info(logger,"No se pudieron realizar las suscripciones. Error de conexion");
 	return statusConexion;
 }
 
 void mantenerConexionBroker(){
-	//int tiempoReintento = 10;
 	int tiempoReintento = config_get_int_value(config, "TIEMPO_DE_REINTENTO_CONEXION");
 	statusConexionBroker = conectarYSuscribir();
-	log_info(logger, "Creando conexion estable de broker");
 	while(1){
 		if(statusConexionBroker!=CONECTADO){
-			log_info(logger, "Reintentando conexion al Broker");
-			pthread_cancel(hiloEsperaNEW);
-			pthread_cancel(hiloEsperaGET);
-			pthread_cancel(hiloEsperaCATCH);
+			log_info(logger, "Reintentando conectar con el broker...");
 			statusConexionBroker = conectarYSuscribir();
 		}
 		sleep(tiempoReintento);
@@ -91,8 +92,8 @@ void mantenerConexionBroker(){
 }
 
 void cerrarConexiones(){
-	pthread_cancel(hiloEsperaGameboy);
-	pthread_cancel(hiloReconexiones);
+	/*pthread_cancel(hiloEsperaGameboy);
+	pthread_cancel(hiloReconexiones);*/
 	close(socketEscuchaGameboy);
 	close(socketSuscripcionNEW);
 	close(socketSuscripcionCATCH);
@@ -103,6 +104,12 @@ void esperarMensajesBroker(int* socketSuscripcion) {
 	uint32_t ack = 1;
 	while (1) {
 		mensajeRecibido * mensaje = recibirMensajeDeBroker(*socketSuscripcion);
+		if(mensaje->codeOP==FINALIZAR){
+			free(mensaje);
+			statusConexionBroker=ERROR_CONEXION;
+			close(*socketSuscripcion);
+			break;
+		}
 		send(*socketSuscripcion, &ack, sizeof(uint32_t), 0);
 		log_info(logger,"[BROKER] Mensaje recibido");
 
@@ -127,12 +134,12 @@ void esperarMensajesBroker(int* socketSuscripcion) {
 		}
 		default: {
 
-			log_error(logger,
-					"[BROKER] Mensaje recibido de una cola no correspondiente");
+			log_error(logger, "[BROKER] Mensaje recibido de una cola no correspondiente");
 			statusConexionBroker = ERROR_CONEXION;
 			break;
 		}
 		}
+		free(mensaje->mensaje);
 		free(mensaje);
 	}
 }

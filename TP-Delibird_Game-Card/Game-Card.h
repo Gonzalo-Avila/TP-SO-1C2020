@@ -89,6 +89,7 @@ t_config* intentarAbrirMetadataPokemon(sem_t* mutexMetadata, char* rutaMetadataP
 bool existenLasCoordenadas(char * archivoMappeado, char * coordenadas);
 void desasignarBloquesAArchivo(t_config * metadataArchivo, int cantidadDeBloquesAQuitar, int cantidadDeBloquesAsignadaInicialmente);
 int obtenerCantidadEnCoordenada(char * archivoMappeado, char * coordenadas);
+void liberarStringSplitteado(char ** stringSplitteado);
 
 
 //Game-Card_Conexiones.c

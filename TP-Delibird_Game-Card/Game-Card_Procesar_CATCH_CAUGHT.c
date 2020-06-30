@@ -68,8 +68,10 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 						}
 						indexEntrada++;
 						entradaActual=arrayDeEntradas[indexEntrada];
-					}
+						liberarStringSplitteado(posicionCantidad);
 
+					}
+					liberarStringSplitteado(arrayDeEntradas);
 					int sizeAEscribir = strlen(aEscribirEnBloques);
 					//---------------------------------------------------------
 

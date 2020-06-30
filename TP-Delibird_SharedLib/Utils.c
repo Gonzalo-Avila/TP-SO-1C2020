@@ -49,11 +49,13 @@ int crearConexionCliente(char * ip, char * puerto) {
 	getaddrinfo(ip, puerto, &hints, &serverInfo);
 
 	int socketServidor;
-	socketServidor = socket(serverInfo->ai_family, serverInfo->ai_socktype,
-			serverInfo->ai_protocol);
+	socketServidor = socket(serverInfo->ai_family, serverInfo->ai_socktype,serverInfo->ai_protocol);
 
-	connect(socketServidor, serverInfo->ai_addr, serverInfo->ai_addrlen);
+	int status = connect(socketServidor, serverInfo->ai_addr, serverInfo->ai_addrlen);
 	freeaddrinfo(serverInfo);
+	if(status==-1){
+		return status;
+	}
 	return socketServidor;
 }
 
@@ -303,17 +305,22 @@ int enviarMensajeASuscriptor(estructuraMensaje datosMensaje, int socketSuscripto
  *
  */
 mensajeRecibido * recibirMensajeDeBroker(int socketBroker) {
+	int status;
 	mensajeRecibido * mensaje = malloc(sizeof(mensajeRecibido));
 
-	recv(socketBroker, &(mensaje->codeOP), sizeof(opCode), MSG_WAITALL);
+	status=recv(socketBroker, &(mensaje->codeOP), sizeof(opCode), MSG_WAITALL);
+	if(status<=0){
+		mensaje->codeOP=FINALIZAR;
+		return mensaje;
+	}
 	recv(socketBroker, &(mensaje->sizePayload), sizeof(uint32_t), MSG_WAITALL);
 	recv(socketBroker, &(mensaje->colaEmisora), sizeof(cola), MSG_WAITALL);
 	recv(socketBroker, &(mensaje->idMensaje), sizeof(uint32_t), MSG_WAITALL);
-	recv(socketBroker, &(mensaje->idCorrelativo), sizeof(uint32_t),
-			MSG_WAITALL);
+	recv(socketBroker, &(mensaje->idCorrelativo), sizeof(uint32_t),MSG_WAITALL);
 	recv(socketBroker, &(mensaje->sizeMensaje), sizeof(uint32_t), MSG_WAITALL);
 	mensaje->mensaje = malloc(mensaje->sizeMensaje);
 	recv(socketBroker, mensaje->mensaje, mensaje->sizeMensaje, MSG_WAITALL);
+
 	return mensaje;
 }
 
@@ -378,6 +385,9 @@ void enviarString(int socketDestino, char * mensaje) {
 
 uint32_t obtenerIdDelProceso(char* ip, char* puerto) {
 	int socketBroker = crearConexionCliente(ip, puerto);
+	if(socketBroker==-1){
+		return -1;
+	}
 	uint32_t idProceso;
 
 	opCode codigoOP = NUEVA_CONEXION;
@@ -385,8 +395,6 @@ uint32_t obtenerIdDelProceso(char* ip, char* puerto) {
 	uint32_t statusRecv=recv(socketBroker, &idProceso, sizeof(uint32_t), MSG_WAITALL);
 	close(socketBroker);
 
-	if(statusRecv<0)
-		return -1;
 
 	return idProceso;
 }
