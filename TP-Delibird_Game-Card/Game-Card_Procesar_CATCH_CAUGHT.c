@@ -16,108 +16,118 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 
 	int sizeMensaje = sizeof(resultado);
 
-	sem_wait(&semExistenciaPokemon);
-	if (existeElArchivo(rutaMetadataPokemon)) {
+	sem_wait(&mutexListaDeSemaforos);
+	if(!existeSemaforo(rutaMetadataPokemon)){
+				mutexPokemon * nuevoSemaforo =  crearNuevoSemaforo(rutaMetadataPokemon);
+				list_add(semaforosPokemon,nuevoSemaforo);
+	}
+	sem_t * mutexMetadata = obtenerMutexPokemon(rutaMetadataPokemon);
+	sem_post(&mutexListaDeSemaforos);
 
-		if(!existeSemaforo(rutaMetadataPokemon)){
-			mutexPokemon * nuevoSemaforo =  crearNuevoSemaforo(rutaMetadataPokemon);
-			list_add(semaforosPokemon,nuevoSemaforo);
-		}
-		sem_post(&semExistenciaPokemon);
+	t_config * metadataPokemon;
 
-		sem_t * mutexMetadata = obtenerMutexPokemon(rutaMetadataPokemon);
-		t_config * metadataPokemon = intentarAbrirMetadataPokemon(mutexMetadata, rutaMetadataPokemon);
+	bool operacionFinalizada = false;
+	while(!operacionFinalizada){
 
-		char * archivoMappeado = mapearArchivo(rutaMetadataPokemon,metadataPokemon);
+		metadataPokemon=config_create(rutaMetadataPokemon);
 
-		if (existenLasCoordenadas(archivoMappeado, posicionComoCadena)) {
+		if (existeElArchivo(rutaMetadataPokemon)) {
 
-            //Armar la cadena habiendo aplicado el catch y obtener su size
-	     	char* aEscribirEnBloques = string_new();
-			int indexEntrada = 0;
-			char** arrayDeEntradas = string_split(archivoMappeado, "\n");	//["5-5=3", "5-6=16" ,"3-1=201", NULL];
-			char* entradaActual = arrayDeEntradas[indexEntrada];			// "5-5=3
-			int cantidadNum=0;
+			if (strcmp(config_get_string_value(metadataPokemon, "OPEN"), "N") == 0) {
 
-			while (entradaActual != NULL) {
-				char** posicionCantidad = string_split(entradaActual, "=");	//["5-5", "3", NULL]
-				char* posicion = posicionCantidad[0];
-				char* cantidad = posicionCantidad[1];
-				cantidadNum=atoi(cantidad);
-				if (strcmp(posicion, posicionComoCadena) == 0) { 			// "5-5" vs posicionCatch
-					cantidadNum = atoi(cantidad);
-					cantidadNum = cantidadNum - 1;
-					cantidad = string_itoa(cantidadNum);
+				config_set_value(metadataPokemon, "OPEN", "Y");
+				config_save(metadataPokemon);
+				sem_post(mutexMetadata);
+
+				char * archivoMappeado = mapearArchivo(rutaMetadataPokemon,metadataPokemon);
+
+				if (existenLasCoordenadas(archivoMappeado, posicionComoCadena)) {
+
+					//Armar la cadena habiendo aplicado el catch y obtener su size
+					char* aEscribirEnBloques = string_new();
+					int indexEntrada = 0;
+					char** arrayDeEntradas = string_split(archivoMappeado, "\n");	//["5-5=3", "5-6=16" ,"3-1=201", NULL];
+					char* entradaActual = arrayDeEntradas[indexEntrada];			// "5-5=3
+					int cantidadNum=0;
+
+					while (entradaActual != NULL) {
+						char** posicionCantidad = string_split(entradaActual, "=");	//["5-5", "3", NULL]
+						char* posicion = posicionCantidad[0];
+						char* cantidad = posicionCantidad[1];
+						cantidadNum=atoi(cantidad);
+						if (strcmp(posicion, posicionComoCadena) == 0) { 			// "5-5" vs posicionCatch
+							cantidadNum = atoi(cantidad);
+							cantidadNum = cantidadNum - 1;
+							cantidad = string_itoa(cantidadNum);
+						}
+						if(cantidadNum>0){
+						string_append(&aEscribirEnBloques, posicion);
+						string_append(&aEscribirEnBloques, "=");
+						string_append(&aEscribirEnBloques, cantidad);
+						string_append(&aEscribirEnBloques, "\n");
+						}
+						indexEntrada++;
+						entradaActual=arrayDeEntradas[indexEntrada];
+					}
+
+					int sizeAEscribir = strlen(aEscribirEnBloques);
+					//---------------------------------------------------------
+
+					int cantidadDeBloquesAsignadosActualmente = obtenerCantidadDeBloquesAsignados(rutaMetadataPokemon);
+
+					int cantidadDeBloquesSobrantes = cantidadDeBloquesAsignadosActualmente - cantidadDeBloquesNecesariosParaSize(sizeAEscribir);
+					desasignarBloquesAArchivo(metadataPokemon,cantidadDeBloquesSobrantes,cantidadDeBloquesAsignadosActualmente);
+
+					cantidadDeBloquesAsignadosActualmente=obtenerCantidadDeBloquesAsignados(rutaMetadataPokemon);
+					if(cantidadDeBloquesAsignadosActualmente==0){
+						remove(rutaMetadataPokemon);
+						rmdir(rutaPokemon);
+					}
+					else{
+						escribirCadenaEnArchivo(rutaMetadataPokemon,aEscribirEnBloques);
+						config_set_value(metadataPokemon,"SIZE",string_itoa(sizeAEscribir));
+					}
+
+					config_set_value(metadataPokemon, "OPEN", "N");
+					sleep(tiempoDeRetardo);
+
+					sem_wait(mutexMetadata);
+					config_save(metadataPokemon);
+					sem_post(mutexMetadata);
+
+					mensajeCaught * msgCaught = armarMensajeCaught(OK);
+					enviarMensajeBroker(CAUGHT, mensajeRecibido->idMensaje,sizeMensaje, msgCaught);
 				}
-				if(cantidadNum>0){
-				string_append(&aEscribirEnBloques, posicion);
-				string_append(&aEscribirEnBloques, "=");
-				string_append(&aEscribirEnBloques, cantidad);
-				string_append(&aEscribirEnBloques, "\n");
+				else{
+					config_set_value(metadataPokemon, "OPEN", "N");
+					sleep(tiempoDeRetardo);
+
+					sem_wait(mutexMetadata);
+					config_save(metadataPokemon);
+					sem_post(mutexMetadata);
+
+					log_info(logger, "No existe %s en esa posicion", msgCatch->pokemon);
+					mensajeCaught * msgCaught = armarMensajeCaught(FAIL);
+					log_debug(logger, "[NEW] Enviando APPEARED");
+					enviarMensajeBroker(CAUGHT, mensajeRecibido->idMensaje,sizeMensaje, msgCaught);
 				}
-				indexEntrada++;
-				entradaActual=arrayDeEntradas[indexEntrada];
-			}
-
-			int sizeAEscribir = strlen(aEscribirEnBloques);
-			//---------------------------------------------------------
-
-			int cantidadDeBloquesAsignadosActualmente = obtenerCantidadDeBloquesAsignados(rutaMetadataPokemon);
-
-			int cantidadDeBloquesSobrantes = cantidadDeBloquesAsignadosActualmente - cantidadDeBloquesNecesariosParaSize(sizeAEscribir);
-			desasignarBloquesAArchivo(metadataPokemon,cantidadDeBloquesSobrantes,cantidadDeBloquesAsignadosActualmente);
-
-			cantidadDeBloquesAsignadosActualmente=obtenerCantidadDeBloquesAsignados(rutaMetadataPokemon);
-			if(cantidadDeBloquesAsignadosActualmente==0){
-				//TODO - tener en cuenta semaforo por si otro proceso pregunta por la existencia del pokemon
-				remove(rutaMetadataPokemon);
-				rmdir(rutaPokemon);
+				operacionFinalizada=true;
 			}
 			else{
-				escribirCadenaEnArchivo(rutaMetadataPokemon,aEscribirEnBloques);
-				config_set_value(metadataPokemon,"SIZE",string_itoa(sizeAEscribir));
+				sem_post(mutexMetadata);
+				sleep(tiempoDeReintentoDeAcceso);
 			}
-
-
-
-
-			config_set_value(metadataPokemon, "OPEN", "N");
-			sleep(tiempoDeRetardo);
-
-			sem_wait(mutexMetadata);
-			config_save(metadataPokemon);
+			config_destroy(metadataPokemon);
+		}
+		else{
 			sem_post(mutexMetadata);
-
-			mensajeCaught * msgCaught = armarMensajeCaught(OK);
-			enviarMensajeBroker(CAUGHT, mensajeRecibido->idMensaje,sizeMensaje, msgCaught);
-
-
-		}else{
-			config_set_value(metadataPokemon, "OPEN", "N");
-			sleep(tiempoDeRetardo);
-
-			sem_wait(mutexMetadata);
-			config_save(metadataPokemon);
-			sem_post(mutexMetadata);
-
-			log_info(logger, "No existe %s en esa posicion", msgCatch->pokemon);
+			log_info(logger, "No existe el pokemon %s", msgCatch->pokemon);
 			mensajeCaught * msgCaught = armarMensajeCaught(FAIL);
 			log_debug(logger, "[NEW] Enviando APPEARED");
 			enviarMensajeBroker(CAUGHT, mensajeRecibido->idMensaje,sizeMensaje, msgCaught);
-
+			operacionFinalizada=true;
 		}
-
-		sem_post(&semExistenciaPokemon);
-		config_destroy(metadataPokemon);
-
-	}else{
-		sem_post(&semExistenciaPokemon);
-		log_info(logger, "No existe el pokemon %s", msgCatch->pokemon);
-		mensajeCaught * msgCaught = armarMensajeCaught(FAIL);
-		log_debug(logger, "[NEW] Enviando APPEARED");
-		enviarMensajeBroker(CAUGHT, mensajeRecibido->idMensaje,sizeMensaje, msgCaught);
 	}
-
 	free(msgCatch->pokemon);
 	free(msgCatch);
 	free(posicionComoCadena);

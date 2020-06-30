@@ -44,7 +44,7 @@ t_bitarray * bitarrayBloques;
 char * bitmap;
 t_list * semaforosPokemon;
 
-sem_t semExistenciaPokemon;
+sem_t mutexListaDeSemaforos;
 
 typedef struct{
 sem_t mutex;

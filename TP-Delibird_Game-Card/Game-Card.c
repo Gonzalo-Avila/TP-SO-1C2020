@@ -18,7 +18,7 @@ void inicializarVariablesGlobales() {
 
 	semaforosPokemon = list_create();
 
-	sem_init(&semExistenciaPokemon,0,1);
+	sem_init(&mutexListaDeSemaforos,0,1);
 
 	idProceso = -1;
 	statusConexionBroker = 0;

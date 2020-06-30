@@ -2187,3 +2187,29 @@
 [DEBUG] 18:17:44:113 GameCard/(7121:7132): [NEW] APPEARED enviado
 [INFO] 18:22:18:205 GameCard/(7121:7135): [BROKER] Mensaje recibido
 [DEBUG] 18:22:18:206 GameCard/(7121:7135): [BROKER] Llegó un mensaje de la cola CATCH
+[INFO] 22:08:46:334 GameCard/(9675:9675): Se ha iniciado el cliente GameCard
+
+[INFO] 22:08:46:343 GameCard/(9675:9675): Creando hilo de conexion Broker
+[INFO] 22:08:46:353 GameCard/(9675:9675): Hilo de conexion Broker creado
+[INFO] 22:08:46:353 GameCard/(9675:9675): Creando hilo de conexion GameBoy
+[DEBUG] 22:08:46:354 GameCard/(9675:9675): Esperando cliente...
+[INFO] 22:08:46:355 GameCard/(9675:9689): Creando nueva conexion con Broker
+[INFO] 22:08:46:357 GameCard/(9675:9689): IDProceso asignado: 13
+[INFO] 22:08:46:357 GameCard/(9675:9689): Creando suscripciones de Broker
+[INFO] 22:08:46:362 GameCard/(9675:9689): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 22:08:46:363 GameCard/(9675:9689): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 22:08:46:364 GameCard/(9675:9689): Se ha suscrito a la cola GET_POKEMON
+[INFO] 22:08:46:374 GameCard/(9675:9689): Suscripciones de Broker creadas
+[INFO] 22:08:46:374 GameCard/(9675:9689): Creando conexion estable de broker
+[INFO] 22:08:48:396 GameCard/(9675:9691): [BROKER] Mensaje recibido
+[DEBUG] 22:08:48:396 GameCard/(9675:9691): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 22:08:51:72 GameCard/(9675:9691): [NEW] Procesando
+[DEBUG] 22:09:27:767 GameCard/(9675:9691): [NEW] Enviando APPEARED
+[INFO] 22:09:55:945 GameCard/(9675:9691): [BROKER] Mensaje recibido
+[DEBUG] 22:09:56:814 GameCard/(9675:9691): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 22:09:58:480 GameCard/(9675:9691): [NEW] Procesando
+[DEBUG] 22:10:16:651 GameCard/(9675:9691): [NEW] Enviando APPEARED
+[INFO] 22:10:56:852 GameCard/(9675:9691): [BROKER] Mensaje recibido
+[DEBUG] 22:10:57:200 GameCard/(9675:9691): [BROKER] Llegó un mensaje de la cola NEW
+[DEBUG] 22:10:57:799 GameCard/(9675:9691): [NEW] Procesando
+[DEBUG] 22:11:35:52 GameCard/(9675:9691): [NEW] Enviando APPEARED
