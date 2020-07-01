@@ -95,6 +95,8 @@ typedef struct {
 	uint32_t clientID;
 } suscriptor;
 
+int copiaSocketGlobal;
+
 
 
 //#include "Broker_Cache.h"

@@ -92,8 +92,6 @@ void mantenerConexionBroker(){
 }
 
 void cerrarConexiones(){
-	/*pthread_cancel(hiloEsperaGameboy);
-	pthread_cancel(hiloReconexiones);*/
 	close(socketEscuchaGameboy);
 	close(socketSuscripcionNEW);
 	close(socketSuscripcionCATCH);

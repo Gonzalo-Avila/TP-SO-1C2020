@@ -159,20 +159,24 @@ uint32_t getIDProceso() {
 	return globalIDProceso++;
 }
 
+void finalizarEjecucion(){
+	destruirVariablesGlobales();
+	close(copiaSocketGlobal);
+	exit(0);
+}
+
 int main() {
 	signal(SIGUSR1,dumpCache);
-	//signal(SIGINT,destruirVariablesGlobales);
+	signal(SIGINT,finalizarEjecucion);
 
 	inicializarVariablesGlobales();
 	log_info(logger, "PID BROKER: %d", getpid());
 
 	int socketEscucha = getSocketEscuchaBroker();
+	copiaSocketGlobal=socketEscucha;
 
 	empezarAAtenderCliente(socketEscucha);
 	atenderColas();
-
-	destruirVariablesGlobales();
-	liberarSocket(&socketEscucha);
 
 	return 0;
 

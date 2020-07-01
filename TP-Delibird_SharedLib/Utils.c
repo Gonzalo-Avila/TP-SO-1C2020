@@ -27,8 +27,10 @@ int crearConexionServer(char * ip, char * puerto) {
 	getaddrinfo(ip, puerto, &hints, &serverInfo);
 
 	int socketEscucha;
-	socketEscucha = socket(serverInfo->ai_family, serverInfo->ai_socktype,
-			serverInfo->ai_protocol);
+	socketEscucha = socket(serverInfo->ai_family, serverInfo->ai_socktype, serverInfo->ai_protocol);
+
+	int yes = 1;
+	setsockopt(socketEscucha, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int));
 
 	bind(socketEscucha, serverInfo->ai_addr, serverInfo->ai_addrlen);
 	freeaddrinfo(serverInfo);
