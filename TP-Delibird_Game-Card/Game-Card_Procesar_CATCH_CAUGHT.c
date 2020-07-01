@@ -69,6 +69,7 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 						indexEntrada++;
 						entradaActual=arrayDeEntradas[indexEntrada];
 						liberarStringSplitteado(posicionCantidad);
+						free(cantidad);
 
 					}
 					liberarStringSplitteado(arrayDeEntradas);
@@ -87,7 +88,9 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 					}
 					else{
 						escribirCadenaEnArchivo(rutaMetadataPokemon,aEscribirEnBloques);
-						config_set_value(metadataPokemon,"SIZE",string_itoa(sizeAEscribir));
+						char * tamanio = string_itoa(sizeAEscribir);
+						config_set_value(metadataPokemon,"SIZE",tamanio);
+						free(tamanio);
 					}
 
 					config_set_value(metadataPokemon, "OPEN", "N");
@@ -99,6 +102,8 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 
 					mensajeCaught * msgCaught = armarMensajeCaught(OK);
 					enviarMensajeBroker(CAUGHT, mensajeRecibido->idMensaje,sizeMensaje, msgCaught);
+					free(msgCaught);
+					free(aEscribirEnBloques);
 				}
 				else{
 					config_set_value(metadataPokemon, "OPEN", "N");
@@ -112,7 +117,9 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 					mensajeCaught * msgCaught = armarMensajeCaught(FAIL);
 					log_debug(logger, "[NEW] Enviando APPEARED");
 					enviarMensajeBroker(CAUGHT, mensajeRecibido->idMensaje,sizeMensaje, msgCaught);
+					free(msgCaught);
 				}
+				free(archivoMappeado);
 				operacionFinalizada=true;
 			}
 			else{
@@ -127,6 +134,7 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 			mensajeCaught * msgCaught = armarMensajeCaught(FAIL);
 			log_debug(logger, "[NEW] Enviando APPEARED");
 			enviarMensajeBroker(CAUGHT, mensajeRecibido->idMensaje,sizeMensaje, msgCaught);
+			free(msgCaught);
 			operacionFinalizada=true;
 		}
 	}

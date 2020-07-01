@@ -348,7 +348,7 @@ void suscribirseACola(int socketBroker, cola tipoCola, uint32_t idSuscriptor) {
 	free(paquete);
 	free(paqueteSerializado);
 	log_info(logger, "Se ha suscrito a la cola %s",
-			getCodeStringByNum(tipoCola));
+	getCodeStringByNum(tipoCola));
 }
 
 //------------------

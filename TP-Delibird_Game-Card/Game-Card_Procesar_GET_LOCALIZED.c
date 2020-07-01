@@ -63,7 +63,9 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 
 					indexEntrada++;
 					entradaActual = arrayDeEntradas[indexEntrada];
+
 					liberarStringSplitteado(posicionCantidad);
+					liberarStringSplitteado(posSplitteada);
 				}
 
 				liberarStringSplitteado(arrayDeEntradas);
@@ -84,8 +86,10 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 				operacionFinalizada=true;
 
 				free(archivoMappeado);
-				list_destroy(posicionesList);
+
+
 				free(msgLoc->pokemon);
+				list_destroy(msgLoc->paresDeCoordenada);
 				free(msgLoc);
 			}
 			else{
@@ -99,36 +103,36 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 			log_info(logger, "No existe el pokemon %s solicitado", msgGet->pokemon);
 			mensajeLocalized * msgLoc = armarMensajeLocalized(msgGet, posicionesList);
 			enviarMensajeBroker(LOCALIZED, mensajeRecibido->idMensaje, sizeMensaje, msgLoc);
+
+			free(msgLoc->pokemon);
+			list_destroy(msgLoc->paresDeCoordenada);
+			free(msgLoc);
 			operacionFinalizada=true;
 		}
 	}
 
 	log_debug(logger, "[GET] LOCALIZED enviado");
-
+	list_destroy_and_destroy_elements(posicionesList,(void *) destroyer);
 	free(rutaPokemon);
 	free(rutaMetadataPokemon);
 	free(msgGet->pokemon);
 	free(msgGet);
 
 }
-
+void destroyer(void * nodo){
+	posiciones * elem = (posiciones *) nodo;
+	free(elem);
+}
 mensajeLocalized * armarMensajeLocalized(mensajeGet * msgGet, t_list* posicionesList){
 
 	mensajeLocalized * msgLoc = malloc(sizeof(mensajeLocalized));
 	msgLoc->longPokemon = msgGet->longPokemon;
 	msgLoc->pokemon = malloc(msgGet->longPokemon);
 	memcpy(msgLoc->pokemon, msgGet->pokemon, msgGet->longPokemon);
+	msgLoc->paresDeCoordenada = list_create();
 	if(list_size(posicionesList)>0){
 		msgLoc->listSize = list_size(posicionesList);
-		msgLoc->paresDeCoordenada = list_create();
 		list_add_all(msgLoc->paresDeCoordenada, posicionesList);
-		//Para debugging. Anda ok.
-		/*void imprimir(void* elem){
-			posiciones * posis = (posiciones *) elem;
-			log_info(logger, "posX: %d, posY: %d", posis->posicionX, posis->posicionY);
-		}
-		list_iterate(posicionesList, imprimir);
-		list_iterate(msgLoc->posicionYCant, imprimir);*/
 	}else{
 		msgLoc->listSize = 0;
 	}

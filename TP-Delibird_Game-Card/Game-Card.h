@@ -14,6 +14,8 @@
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <commons/bitarray.h>
+#include <signal.h>
+
 
 
 //Interaccion con broker
@@ -90,7 +92,7 @@ bool existenLasCoordenadas(char * archivoMappeado, char * coordenadas);
 void desasignarBloquesAArchivo(t_config * metadataArchivo, int cantidadDeBloquesAQuitar, int cantidadDeBloquesAsignadaInicialmente);
 int obtenerCantidadEnCoordenada(char * archivoMappeado, char * coordenadas);
 void liberarStringSplitteado(char ** stringSplitteado);
-
+void destroyer(void * nodo);
 
 //Game-Card_Conexiones.c
 void esperarMensajesGameboy(int* socketSuscripcion);

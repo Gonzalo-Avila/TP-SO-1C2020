@@ -72,6 +72,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 							indexEntrada++;
 							entradaActual=arrayDeEntradas[indexEntrada];
 							liberarStringSplitteado(posicionCantidad);
+							free(cantidad);
 						}
 						liberarStringSplitteado(arrayDeEntradas);
 
@@ -95,6 +96,8 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 							enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje, sizeMensaje, msgAppeared);
 
 							free(sizeFinal);
+							free(msgAppeared->pokemon);
+							free(msgAppeared);
 						}
 						else{
 							int cantidadDisponible = cantidadDeBloquesAsignadosAArchivo * tamanioBloque + espacioLibreEnElFS();
@@ -121,6 +124,8 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 							log_debug(logger, "[NEW] Enviando APPEARED");
 							enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje, sizeMensaje, msgAppeared);
 							free(sizeFinal);
+							free(msgAppeared->pokemon);
+							free(msgAppeared);
 							}
 							else{
 								log_info(logger, "No se pudo actualizar la cantidad en las posiciones dadas, no hay espacio suficiente");
@@ -151,6 +156,8 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 									enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje, sizeMensaje, msgAppeared);
 
 									free(sizeFinal);
+									free(msgAppeared->pokemon);
+									free(msgAppeared);
 								} else {
 
 									if (espacioLibreUltimoBloque + espacioLibreEnElFS()>= tamanioEntradaCompleta) {
@@ -181,6 +188,8 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 										free(sizeFinal);
 										free(contenidoAAlmacenar);
+										free(msgAppeared->pokemon);
+										free(msgAppeared);
 
 									}
 									else{
@@ -231,6 +240,8 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 				enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje,sizeMensaje, msgAppeared);
 
 				free(sizeFinal);
+				free(msgAppeared->pokemon);
+				free(msgAppeared);
 			}
 			else {
 				sem_post(mutexMetadata);
