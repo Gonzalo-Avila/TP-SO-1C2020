@@ -268,17 +268,16 @@ int main(int argc, char** argv) {
 		void tiempoLimiteDeSuscripcion(char * tiempo){
 			opCode operacion2 = FINALIZAR;
 			sleep(atoi(tiempo));
+			close(socketDestino);
 			int socketFinalizacion = conectarseADestino(destino);
 			send(socketFinalizacion,&operacion2,sizeof(opCode),0);
 			send(socketFinalizacion,&tipoMensaje,sizeof(cola),0);
 			send(socketFinalizacion,&idProceso,sizeof(uint32_t),0);
 			log_info(logger,"El gameboy se ha desconectado del broker");
-			//close(socketDestino);
-			//close(socketFinalizacion);
-			//close(socketSuscripcion);
+			close(socketFinalizacion);
+			log_info(logger, "El proceso GameBoy finalizó su ejecución");
 			log_destroy(logger);
 			config_destroy(config);
-			log_info(logger, "El proceso GameBoy finalizó su ejecución");
 			exit(0);
 		}
 
@@ -289,8 +288,14 @@ int main(int argc, char** argv) {
 			while (1) {
 				log_info(logger,"Esperando mensajes...");
 				mensajeRecibido * mensaje = recibirMensajeDeBroker(socketDestino);
+				if(mensaje->codeOP==FINALIZAR){
+					free(mensaje);
+					sleep(10000);
+					exit(0);
+				}
 				send(socketDestino, &ack, sizeof(uint32_t), 0);
 				imprimirMensaje(mensaje);
+				free(mensaje->mensaje);
 				free(mensaje);
 			}
 
@@ -315,17 +320,19 @@ int main(int argc, char** argv) {
 			void tiempoLimiteDeSuscripcion(char * tiempo){
 				opCode operacion2 = FINALIZAR;
 				sleep(atoi(tiempo));
+				close(socketDestino);
+				close(socketSuscripcion);
 				int socketFinalizacion = conectarseADestino(destino);
 				send(socketFinalizacion,&operacion2,sizeof(opCode),0);
 				send(socketFinalizacion,&tipoMensaje,sizeof(cola),0);
 				send(socketFinalizacion,&idProceso,sizeof(uint32_t),0);
 				log_info(logger,"El gameboy se ha desconectado del broker");
-				//close(socketDestino);
-				//close(socketFinalizacion);
-				//close(socketSuscripcion);
+
+				close(socketFinalizacion);
+
+				log_info(logger, "El proceso GameBoy finalizó su ejecución");
 				log_destroy(logger);
 				config_destroy(config);
-				log_info(logger, "El proceso GameBoy finalizó su ejecución");
 				exit(0);
 			}
 
@@ -337,10 +344,15 @@ int main(int argc, char** argv) {
 			while (1) {
 				log_info(logger,"Esperando mensajes...");
 				mensajeRecibido * mensaje = recibirMensajeDeBroker(socketSuscripcion);
+				if(mensaje->codeOP==FINALIZAR){
+					free(mensaje);
+					sleep(10000);
+					exit(0);
+				}
 				send(socketSuscripcion, &ack, sizeof(uint32_t), 0);
 				imprimirMensaje(mensaje);
+				free(mensaje->mensaje);
 				free(mensaje);
-
 			}
 
 		} else {

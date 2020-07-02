@@ -243,3 +243,96 @@ ID del mensaje: 22
 ID correlativo: -1
 Tamaño del mensaje: 24
 
+[INFO] 16:16:14:378 GameBoy/(11892:11892): Se ha iniciado el cliente gameboy
+
+[INFO] 16:16:19:153 GameBoy/(11892:11892): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[DEBUG] 16:16:24:652 GameBoy/(11892:11892): El broker ha asignado el siguiente ID de proceso: 8
+[INFO] 16:16:25:274 GameBoy/(11892:11892): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:6
+[INFO] 16:16:26:44 GameBoy/(11892:11892): Se ha suscrito a la cola NEW_POKEMON
+[DEBUG] 16:16:26:617 GameBoy/(11892:11892): Se realizó suscripción a la cola NEW_POKEMON
+[INFO] 16:16:31:196 GameBoy/(11892:11892): Esperando mensajes...
+[INFO] 16:16:40:221 GameBoy/(11892:11944): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:7
+[INFO] 16:16:40:223 GameBoy/(11892:11944): El gameboy se ha desconectado del broker
+[INFO] 16:16:40:223 GameBoy/(11892:11944): El proceso GameBoy finalizó su ejecución
+[INFO] 16:17:29:968 GameBoy/(12018:12018): Se ha iniciado el cliente gameboy
+
+[ERROR] 16:17:29:968 GameBoy/(12018:12018): [ERROR]
+[ERROR] 16:17:29:968 GameBoy/(12018:12018): No se pudo determinar el proceso destino
+[ERROR] 16:17:29:968 GameBoy/(12018:12018): [ERROR]
+[ERROR] 16:17:29:968 GameBoy/(12018:12018): No se pudo determinar el tipo de cola o suscripción
+[ERROR] 16:17:29:968 GameBoy/(12018:12018): Error obteniendo el destino del mensaje
+[ERROR] 16:17:29:968 GameBoy/(12018:12018): [ERROR]
+[ERROR] 16:17:29:968 GameBoy/(12018:12018): No se pudo determinar el tipo de mensaje
+[INFO] 16:17:29:968 GameBoy/(12018:12018): El proceso GameBoy finalizó su ejecución
+[INFO] 16:17:57:358 GameBoy/(12061:12061): Se ha iniciado el cliente gameboy
+
+[INFO] 16:18:07:27 GameBoy/(12061:12061): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[DEBUG] 16:18:18:95 GameBoy/(12061:12061): El broker ha asignado el siguiente ID de proceso: 9
+[INFO] 16:18:18:974 GameBoy/(12061:12061): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:6
+[INFO] 16:18:19:675 GameBoy/(12061:12061): Se ha suscrito a la cola NEW_POKEMON
+[DEBUG] 16:18:20:797 GameBoy/(12061:12061): Se realizó suscripción a la cola NEW_POKEMON
+[INFO] 16:18:24:628 GameBoy/(12061:12061): Esperando mensajes...
+[INFO] 16:18:39:122 GameBoy/(12061:12112): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:7
+[INFO] 16:21:56:926 GameBoy/(12374:12374): Se ha iniciado el cliente gameboy
+
+[INFO] 16:21:58:451 GameBoy/(12374:12374): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[DEBUG] 16:22:01:384 GameBoy/(12374:12374): El broker ha asignado el siguiente ID de proceso: 10
+[INFO] 16:22:01:560 GameBoy/(12374:12374): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:6
+[INFO] 16:22:01:732 GameBoy/(12374:12374): Se ha suscrito a la cola NEW_POKEMON
+[DEBUG] 16:22:02:126 GameBoy/(12374:12374): Se realizó suscripción a la cola NEW_POKEMON
+[INFO] 16:22:04:557 GameBoy/(12374:12374): Esperando mensajes...
+[INFO] 16:26:58:475 GameBoy/(12702:12702): Se ha iniciado el cliente gameboy
+
+[INFO] 16:26:58:477 GameBoy/(12702:12702): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[DEBUG] 16:26:58:538 GameBoy/(12702:12702): El broker ha asignado el siguiente ID de proceso: 11
+[INFO] 16:26:58:538 GameBoy/(12702:12702): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:6
+[INFO] 16:26:58:539 GameBoy/(12702:12702): Se ha suscrito a la cola NEW_POKEMON
+[DEBUG] 16:26:58:539 GameBoy/(12702:12702): Se realizó suscripción a la cola NEW_POKEMON
+[INFO] 16:26:58:543 GameBoy/(12702:12702): Esperando mensajes...
+[INFO] 16:27:15:518 GameBoy/(12702:12717): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 16:27:18:906 GameBoy/(12702:12717): El gameboy se ha desconectado del broker
+[INFO] 16:27:21:360 GameBoy/(12702:12717): El proceso GameBoy finalizó su ejecución
