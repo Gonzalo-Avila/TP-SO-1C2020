@@ -88,8 +88,7 @@ void crearNuevoBuddy(t_list * listaDeParticiones, registroParticion * registro,
 			+ registro->tamanioParticion;
 	registroNuevo->estado = LIBRE;
 	registroNuevo->tamanioParticion = registro->tamanioParticion;
-	list_add_in_index(listaDeParticiones, registro->nroParticion + 1,
-			registroNuevo);
+	list_add_in_index(listaDeParticiones, registro->nroParticion + 1,registroNuevo);
 	reasignarNumerosDeParticion(listaDeParticiones);
 }
 
@@ -157,7 +156,7 @@ void consolidar(registroParticion * particionLiberada, t_list * registros) {
 			log_info(loggerOficial,"Se consolidaron las particiones %d (posición inicial: %p) y %d (posición inicial: %p)",
 					particionLiberada->nroParticion,particionLiberada->posInicialFisica,buddy->nroParticion,buddy->posInicialFisica);
 
-			list_remove_by_condition(registros, (void *) coincideID);
+			list_remove_and_destroy_by_condition(registros, (void *) coincideID,(void *) destructorGeneral);
 			reasignarNumerosDeParticion(registros);
 			buddy = obtenerBuddy(particionLiberada);
 		} else {
@@ -172,7 +171,7 @@ void consolidar(registroParticion * particionLiberada, t_list * registros) {
 			log_info(loggerOficial,"Se consolidaron las particiones %d (posición inicial: %p) y %d (posición inicial: %p)",
 					buddy->nroParticion,buddy->posInicialFisica,particionLiberada->nroParticion,particionLiberada->posInicialFisica);
 
-			list_remove_by_condition(registros, (void *) coincideID);
+			list_remove_and_destroy_by_condition(registros, (void *) coincideID,(void *) destructorGeneral);
 			reasignarNumerosDeParticion(registros);
 			particionLiberada = buddy;
 			buddy = obtenerBuddy(particionLiberada);
@@ -218,10 +217,8 @@ void * usarBDFirstFit(estructuraMensaje mensaje){
 					&& reg->tamanioParticion >= mensaje.sizeMensaje;
 		}
 
-		t_list * particionesValidas = list_filter(registrosDeParticiones,
-				(void *) estaVaciaYAlcanza);
-		registroParticion * registro = (registroParticion *) list_get(
-				particionesValidas, 0);
+		t_list * particionesValidas = list_filter(registrosDeParticiones,(void *) estaVaciaYAlcanza);
+		registroParticion * registro = (registroParticion *) list_get(particionesValidas, 0);
 
 		while (registro->tamanioParticion >= 2 * mensaje.sizeMensaje
 				&& registro->tamanioParticion > minimoTamanioParticion) {
@@ -236,6 +233,7 @@ void * usarBDFirstFit(estructuraMensaje mensaje){
 		registro->tiempoUltimoUso = time(NULL);
 
 		//reasignarNumerosDeParticion(registrosDeParticiones);
+		list_destroy(particionesValidas);
 		return registro->posInicialFisica;
 
 }
@@ -246,12 +244,9 @@ void * usarBDBestFit(estructuraMensaje mensaje){
 					&& reg->tamanioParticion >= mensaje.sizeMensaje;
 		}
 
-		t_list * particionesValidas = list_filter(registrosDeParticiones,
-				(void *) estaVaciaYAlcanza);
-		t_list * particionesOrdenadasPorTamanio = list_sorted(particionesValidas,
-				(void *) compararPorMenorTamanio);
-		registroParticion * registro = (registroParticion *) list_get(
-				particionesOrdenadasPorTamanio, 0);
+		t_list * particionesValidas = list_filter(registrosDeParticiones,(void *) estaVaciaYAlcanza);
+		t_list * particionesOrdenadasPorTamanio = list_sorted(particionesValidas,(void *) compararPorMenorTamanio);
+		registroParticion * registro = (registroParticion *) list_get(particionesOrdenadasPorTamanio, 0);
 
 		while (registro->tamanioParticion >= 2 * mensaje.sizeMensaje
 				&& registro->tamanioParticion > minimoTamanioParticion) {
@@ -266,6 +261,9 @@ void * usarBDBestFit(estructuraMensaje mensaje){
 		registro->tiempoUltimoUso = time(NULL);
 
 		//reasignarNumerosDeParticion(registrosDeParticiones);
+		list_destroy(particionesValidas);
+		list_destroy(particionesOrdenadasPorTamanio);
+
 		return registro->posInicialFisica;
 }
 void * cachearConBuddySystem(estructuraMensaje mensaje) {
@@ -287,10 +285,8 @@ void * usarBestFit(estructuraMensaje mensaje) {
 				&& reg->tamanioParticion >= maximoEntre(mensaje.sizeMensaje,minimoTamanioParticion);
 	}
 
-	t_list * particionesValidas = list_filter(registrosDeParticiones,
-			(void *) estaVaciaYAlcanza);
-	t_list * particionesOrdenadasPorTamanio = list_sorted(particionesValidas,
-			(void *) compararPorMenorTamanio);
+	t_list * particionesValidas = list_filter(registrosDeParticiones,(void *) estaVaciaYAlcanza);
+	t_list * particionesOrdenadasPorTamanio = list_sorted(particionesValidas,(void *) compararPorMenorTamanio);
 	registroParticion * registro = (registroParticion *) list_get(
 			particionesOrdenadasPorTamanio, 0);
 
@@ -307,6 +303,9 @@ void * usarBestFit(estructuraMensaje mensaje) {
 	registro->tiempoArribo = time(NULL);
 	registro->tiempoUltimoUso = time(NULL);
 
+	list_destroy(particionesValidas);
+	list_destroy(particionesOrdenadasPorTamanio);
+
 	return registro->posInicialFisica;
 }
 
@@ -320,8 +319,8 @@ void reasignarNumerosDeParticion(t_list * listaAReasignar) {
 	list_iterate(listaAReasignar, (void *) asignarNumero);
 }
 
-void aniadirNuevoRegistroALista(t_list * listaDeRegistros,
-		registroParticion * registroAnterior, int sizeMensajeRecibido) {
+void aniadirNuevoRegistroALista(t_list * listaDeRegistros,registroParticion * registroAnterior, int sizeMensajeRecibido) {
+
 	registroParticion * registroNuevo = malloc(sizeof(registroParticion));
 	registroNuevo->nroParticion = registroAnterior->nroParticion + 1; //Igualmente se va a reasignar despues
 	registroNuevo->idMensaje = -1;
@@ -332,8 +331,7 @@ void aniadirNuevoRegistroALista(t_list * listaDeRegistros,
 	registroNuevo->estado = LIBRE;
 	registroNuevo->tamanioParticion = registroAnterior->tamanioParticion
 			- sizeMensajeRecibido;
-	list_add_in_index(listaDeRegistros, registroAnterior->nroParticion + 1,
-			registroNuevo);
+	list_add_in_index(listaDeRegistros, registroAnterior->nroParticion + 1,registroNuevo);
 }
 void * usarFirstFit(estructuraMensaje mensaje) {
 
@@ -342,8 +340,8 @@ void * usarFirstFit(estructuraMensaje mensaje) {
 		return registro->estado == LIBRE
 				&& registro->tamanioParticion >= maximoEntre(mensaje.sizeMensaje,minimoTamanioParticion);
 	}
-	registroParticion * registro = (registroParticion *) list_find(
-			registrosDeParticiones, (void *) estaVaciaYAlcanza);
+	registroParticion * registro = (registroParticion *) list_find(registrosDeParticiones, (void *) estaVaciaYAlcanza);
+
 	if (registro->tamanioParticion > maximoEntre(mensaje.sizeMensaje,minimoTamanioParticion)) {
 		aniadirNuevoRegistroALista(registrosDeParticiones, registro,maximoEntre(mensaje.sizeMensaje,minimoTamanioParticion));
 		reasignarNumerosDeParticion(registrosDeParticiones);
@@ -402,7 +400,7 @@ void eliminarRegistroDeCache(int IDMensaje) {
 		registroCache * reg = (registroCache *) registro;
 		return reg->idMensaje == IDMensaje;
 	}
-	list_remove_by_condition(registrosDeCache, (void *) coincideID);
+	list_remove_and_destroy_by_condition(registrosDeCache, (void *) coincideID, (void *) destructorRegistrosCache);
 
 }
 
@@ -414,19 +412,24 @@ registroParticion * liberarSegunFIFO() {
 	eliminarRegistroDeCache(particionALiberar->idMensaje);
 	particionALiberar->idMensaje = -1;
 	particionALiberar->tamanioMensaje=0;
+
+	list_destroy(particionesOcupadas);
+	list_destroy(particionesOrdenadasPorFIFO);
+
 	return particionALiberar;
 }
 registroParticion * liberarSegunLRU() {
-	t_list * particionesOcupadas = list_filter(registrosDeParticiones,
-			(void *) estaOcupado);
-	t_list * particionesOrdenadasPorLRU = list_sorted(particionesOcupadas,
-			(void *) compararPorLRU);
-	registroParticion * particionALiberar = (registroParticion *) list_get(
-			particionesOrdenadasPorLRU, 0);
+	t_list * particionesOcupadas = list_filter(registrosDeParticiones,(void *) estaOcupado);
+	t_list * particionesOrdenadasPorLRU = list_sorted(particionesOcupadas,(void *) compararPorLRU);
+	registroParticion * particionALiberar = (registroParticion *) list_get(particionesOrdenadasPorLRU, 0);
 	particionALiberar->estado = LIBRE;
 	eliminarRegistroDeCache(particionALiberar->idMensaje);
 	particionALiberar->idMensaje = -1;
 	particionALiberar->tamanioMensaje=0;
+
+	list_destroy(particionesOcupadas);
+	list_destroy(particionesOrdenadasPorLRU);
+
 	return particionALiberar;
 }
 registroParticion * vaciarParticion() {
@@ -471,21 +474,22 @@ void compactarCacheSegunPD() {
 
 	}
 
-	t_list * registrosOcupados = list_filter(registrosDeParticiones,
-			(void *) estaOcupado);
+	t_list * registrosOcupados = list_filter(registrosDeParticiones,(void *) estaOcupado);
 	list_iterate(registrosOcupados, (void *) guardarEnListaAuxiliar);
 
 	reasignarNumerosDeParticion(registrosOcupados);
 
-	list_clean(registrosDeParticiones);
+	list_destroy_and_destroy_elements(registrosDeParticiones,(void*)destructorGeneral);
 	registrosDeParticiones = listaAuxiliar;
+
+	list_destroy(registrosOcupados);
 
 	log_info(loggerOficial,"Se realizó compactación de memoria (algoritmo: Particiones Dinámicas)");
 
 }
 
 void limpiarCache() {
-	list_clean(registrosDeParticiones);
+	list_clean_and_destroy_elements(registrosDeParticiones,(void*)destructorGeneral);
 	crearRegistroInicial(registrosDeParticiones);
 }
 
@@ -575,7 +579,6 @@ void consolidarPD(registroParticion * particionLiberada){
 	registroParticion * particionAnterior = list_find(registrosDeParticiones, (void *)esParticionAnterior);
 	registroParticion * particionPosterior = list_find(registrosDeParticiones, (void *)esParticionPosterior);
 
-
 	bool esLaDelMedio(void * registro){
 			registroParticion * reg = (registroParticion *) registro;
 			return reg->nroParticion==particionLiberada->nroParticion;
@@ -587,25 +590,23 @@ void consolidarPD(registroParticion * particionLiberada){
 
 	if(existeYEstaLibre(particionAnterior) && existeYEstaLibre(particionPosterior)){
 		particionAnterior->tamanioParticion+=particionLiberada->tamanioParticion+particionPosterior->tamanioParticion;
-		list_remove_by_condition(registrosDeParticiones, (void *)esLaDelMedio);
-		list_remove_by_condition(registrosDeParticiones, (void *)esLaPosterior);
+		list_remove_and_destroy_by_condition(registrosDeParticiones, (void *)esLaDelMedio,(void*)destructorGeneral);
+		list_remove_and_destroy_by_condition(registrosDeParticiones, (void *)esLaPosterior, (void*)destructorGeneral);
 	}
 	else{
 		if(!existeYEstaLibre(particionAnterior) && existeYEstaLibre(particionPosterior)){
 			    particionLiberada->tamanioParticion+=particionPosterior->tamanioParticion;
-				list_remove_by_condition(registrosDeParticiones, (void *)esLaPosterior);
+			    list_remove_and_destroy_by_condition(registrosDeParticiones, (void *)esLaPosterior, (void*)destructorGeneral);
 		}
 		else{
 		    if(existeYEstaLibre(particionAnterior) && !existeYEstaLibre(particionPosterior)){
 		        particionAnterior->tamanioParticion+=particionLiberada->tamanioParticion;
-		        list_remove_by_condition(registrosDeParticiones, (void *)esLaDelMedio);
+		        list_remove_and_destroy_by_condition(registrosDeParticiones, (void *)esLaDelMedio,(void*)destructorGeneral);
 		    }
 
 		}
 	}
 	reasignarNumerosDeParticion(registrosDeParticiones);
-
-
 }
 void asegurarEspacioLibrePara(int sizeMensaje) {
 
@@ -614,8 +615,8 @@ void asegurarEspacioLibrePara(int sizeMensaje) {
 		int i = 0;
 		while (!hayEspacioLibrePara(sizeMensaje)) {
 			registroParticion * particionLiberada = vaciarParticion();
-			consolidarPD(particionLiberada);
 			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %p", particionLiberada->posInicialFisica);
+			consolidarPD(particionLiberada);
 			if (hayEspacioLibrePara(sizeMensaje)) {
 				break;
 			}
@@ -628,8 +629,8 @@ void asegurarEspacioLibrePara(int sizeMensaje) {
 	} else {
 		while (!hayEspacioLibrePara(sizeMensaje)){
 			registroParticion * particionLiberada = vaciarParticion();
-			consolidarPD(particionLiberada);
 			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %p", particionLiberada->posInicialFisica);
+			consolidarPD(particionLiberada);
 			if (hayEspacioLibrePara(sizeMensaje)) {
 				break;
 			}
@@ -765,7 +766,6 @@ void enviarMensajes(t_list * mensajesAEnviar, suscriptor * suscriptor) {
 
 	list_iterate(mensajesAEnviar, &enviarMensajeAlSuscriptor);
 
-
 }
 
 void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion) {
@@ -782,6 +782,8 @@ void enviarMensajesCacheados(suscriptor * nuevoSuscriptor, cola codSuscripcion) 
 	t_list * mensajesAEnviar = getListaDeRegistrosFiltrados(nuevoSuscriptor,codSuscripcion);
 	log_info(logger, "Hay %d mensajes pendientes para clientID %d", list_size(mensajesAEnviar), nuevoSuscriptor->clientID);
 	enviarMensajes(mensajesAEnviar, nuevoSuscriptor);
+
+	list_destroy(mensajesAEnviar);
 }
 //--------------------------------------------------------------------------
 

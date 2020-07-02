@@ -118,7 +118,8 @@ bool estaOcupado(void* regParticion);
 registroParticion * vaciarParticion();
 bool hayEspacioLibrePara(int sizeMensaje);
 int maximoEntre(int valor1, int valor2);
-
+void destructorRegistrosCache(void * elemento);
+void destructorGeneral(void * elemento);
 
 
 

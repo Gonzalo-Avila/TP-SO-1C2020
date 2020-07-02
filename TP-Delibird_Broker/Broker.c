@@ -17,19 +17,38 @@ void inicializarVariablesGlobales() {
 	globalIDMensaje = config_get_int_value(config,"MENSAJES_REGISTRADOS")+1;
 }
 
+
+void destructorGeneral(void * elemento){
+	free(elemento);
+}
+
+void destructorRegistrosCache(void * elemento){
+	registroCache * reg = (registroCache *) elemento;
+    list_destroy_and_destroy_elements(reg->procesosALosQueSeEnvio,(void *)destructorGeneral);
+    list_destroy_and_destroy_elements(reg->procesosQueConfirmaronRecepcion,(void *)destructorGeneral);
+    free(reg);
+}
 void destruirVariablesGlobales() {
-	log_destroy(logger);
 	log_destroy(loggerOficial);
 	config_destroy(config);
 
-	list_clean(suscriptoresNEW);
-	list_clean(suscriptoresAPP);
-	list_clean(suscriptoresGET);
-	list_clean(suscriptoresLOC);
-	list_clean(suscriptoresCAT);
-	list_clean(suscriptoresCAU);
+	list_destroy_and_destroy_elements(suscriptoresNEW,(void *)destructorGeneral);
+	list_destroy_and_destroy_elements(suscriptoresAPP,(void *)destructorGeneral);
+	list_destroy_and_destroy_elements(suscriptoresGET,(void *)destructorGeneral);
+	list_destroy_and_destroy_elements(suscriptoresLOC,(void *)destructorGeneral);
+	list_destroy_and_destroy_elements(suscriptoresCAT,(void *)destructorGeneral);
+	list_destroy_and_destroy_elements(suscriptoresCAU,(void *)destructorGeneral);
 
-	//Cerrar el socket (¿Variable global?) y ¿eliminar colas? (se hace cada vez que se manda un mensaje)
+	list_destroy_and_destroy_elements(NEW_POKEMON, (void *) destructorNodos);
+	list_destroy_and_destroy_elements(APPEARED_POKEMON, (void *) destructorNodos);
+	list_destroy_and_destroy_elements(CATCH_POKEMON, (void *) destructorNodos);
+	list_destroy_and_destroy_elements(CAUGHT_POKEMON, (void *) destructorNodos);
+	list_destroy_and_destroy_elements(GET_POKEMON, (void *) destructorNodos);
+	list_destroy_and_destroy_elements(LOCALIZED_POKEMON, (void *) destructorNodos);
+
+	list_destroy_and_destroy_elements(idCorrelativosRecibidos,(void *) destructorGeneral);
+
+	list_destroy_and_destroy_elements(registrosDeCache,(void*)destructorRegistrosCache);
 
     free(cacheBroker);
 }
@@ -114,7 +133,7 @@ void eliminarSuscriptor(t_list* listaSuscriptores, uint32_t clientID){
 		   suscriptor* sus = (suscriptor *) _suscriptor;
 		   return sus->clientID==clientID;
 	   }
-	list_remove_by_condition(listaSuscriptores, existeClientID);
+	list_remove_and_destroy_by_condition(listaSuscriptores, (void*)existeClientID,(void*)destructorGeneral);
 }
 
 void desuscribir(uint32_t clientID, cola colaSuscripcion) {
@@ -148,20 +167,26 @@ suscriptor * buscarSuscriptor(uint32_t clientID, cola codSuscripcion){
 
 
 uint32_t getIDMensaje() {
-	config_set_value(config,"MENSAJES_REGISTRADOS",string_itoa(globalIDMensaje));
+	char * stringIDMsg = string_itoa(globalIDMensaje);
+	config_set_value(config,"MENSAJES_REGISTRADOS",stringIDMsg);
 	config_save(config);
+	free(stringIDMsg);
 	return globalIDMensaje++;
 }
 
 uint32_t getIDProceso() {
-	config_set_value(config,"PROCESOS_REGISTRADOS",string_itoa(globalIDProceso));
+	char * stringIDProceso = string_itoa(globalIDProceso);
+	config_set_value(config,"PROCESOS_REGISTRADOS", stringIDProceso);
 	config_save(config);
+	free(stringIDProceso);
 	return globalIDProceso++;
 }
 
 void finalizarEjecucion(){
 	destruirVariablesGlobales();
 	close(copiaSocketGlobal);
+	log_info(logger,"El broker ha finalizado su ejecucion");
+	log_destroy(logger);
 	exit(0);
 }
 

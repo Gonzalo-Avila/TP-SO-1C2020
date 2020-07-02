@@ -114,9 +114,9 @@ bool esMensajeNuevo(void* mensaje) {
 }
 
 void destructorNodos(void * nodo){
-
 	estructuraMensaje * estMsj = (estructuraMensaje *) nodo;
 	free(estMsj->mensaje);
+	free(estMsj);
 }
 void atenderColas() {
 	while (1) {
@@ -126,12 +126,8 @@ void atenderColas() {
 			if (list_size(getColaByNum(numCola)) > 0) {
 
 				list_iterate(getColaByNum(numCola), &enviarEstructuraMensajeASuscriptor);
+				list_clean_and_destroy_elements(getColaByNum(numCola),(void *) destructorNodos);
 
-				//Cambie esto:
-				list_clean(getColaByNum(numCola));
-				//Por esto:
-				//list_clean_and_destroy_elements(getColaByNum(numCola), (void*)destructorNodos);
-				//Si rompe algo, tenerlo en cuenta
 			}
 		}
 		sem_post(&mutexColas);

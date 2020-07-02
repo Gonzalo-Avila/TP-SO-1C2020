@@ -167,25 +167,26 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 	uint32_t* idCorrelativo = malloc(sizeof(uint32_t));
 	recv(socketEmisor, idCorrelativo, sizeof(uint32_t), MSG_WAITALL);
 
-	//TODO
-	// |- Ver si el ID correlativo ya fue recibido, y si es asi, ignorar el mensaje.
-	// |- Podemos usar una lista de IDs correlativos ya recibidos.
-
 	if(!seRecibioElIDCorrelativo(*idCorrelativo)){
-		if(*idCorrelativo != -1){
-			list_add(idCorrelativosRecibidos, idCorrelativo);
-		}
 
 		if (tipoCola >= 0 && tipoCola <= 5) {
 			idMensaje = agregarMensajeACola(socketEmisor, tipoCola, *idCorrelativo);
 			send(socketEmisor, &idMensaje, sizeof(uint32_t), 0);
+
+			if(*idCorrelativo != -1)
+				list_add(idCorrelativosRecibidos, idCorrelativo);
+			else
+				free(idCorrelativo);
+
 		} else {
 			log_error(logger, "[ERROR]");
 			log_error(logger, "No pudo obtenerse el tipo de cola en el mensaje recibido");
+			free(idCorrelativo);
 		}
 
 	}else{
 		log_info(logger, "Se ignoro mensaje de proceso con socket %d. ID Correlativo %d ya recibido.", socketEmisor, *idCorrelativo);
+		free(idCorrelativo);
 	}
 
 
@@ -208,7 +209,7 @@ estructuraMensaje * generarNodo(estructuraMensaje mensaje) {
 	nodo->idCorrelativo = mensaje.idCorrelativo;
 	nodo->estado = mensaje.estado;
 	nodo->sizeMensaje = mensaje.sizeMensaje;
-	nodo->mensaje = mensaje.mensaje;
+	memcpy(nodo->mensaje, mensaje.mensaje, mensaje.sizeMensaje);
 	nodo->colaMensajeria = mensaje.colaMensajeria;
 	nodo->clientID = mensaje.clientID;
 	return nodo;
@@ -233,7 +234,6 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 
 	sem_wait(&mutexColas);
 	for (int i = 0; i < list_size(getListaSuscriptoresByNum(tipoCola)); i++) {
-
 		suscriptor* sus;
 		sus = (suscriptor *) (list_get(getListaSuscriptoresByNum(tipoCola), i));
 		mensajeNuevo.clientID = sus->clientID;
@@ -246,6 +246,8 @@ int agregarMensajeACola(int socketEmisor, cola tipoCola, int idCorrelativo) {
 
 	sem_post(&mutexColas);
 	sem_post(&habilitarEnvio);
+
+	free(mensajeNuevo.mensaje);
 
 	return id;
 }
