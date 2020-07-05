@@ -14,15 +14,25 @@ void inicializarVariablesGlobales() {
 	ipServidor = config_get_string_value(config, "IP");
 	puertoServidor = malloc(strlen(config_get_string_value(config, "PUERTO")) + 1);
 	puertoServidor = config_get_string_value(config, "PUERTO");
+	tiempoDeEspera = atoi(config_get_string_value(config, "TIEMPO_DE_ESPERA"));
 	team->algoritmoPlanificacion = obtenerAlgoritmoPlanificador();
 	listaCondsEntrenadores = list_create();
 	listaPosicionesInternas = list_create();
+	idsDeCatch = list_create();
+	alfa =(float)atof(config_get_string_value(config, "ALFA"));
+	socketBrokerApp = malloc(sizeof(int));
+	socketBrokerLoc = malloc(sizeof(int));
+	socketBrokerCau = malloc(sizeof(int));
+	socketGameboy = malloc(sizeof(int));
 
 	//inicializo el mutex para los mensajes que llegan del broker
 	sem_init(&mutexMensajes, 0, 1);
 	sem_init(&mutexEntrenadores,0,1);
 	sem_init(&semPlanif, 0, 0);
 	sem_init(&procesoEnReady,0,0);
+	sem_init(&conexionCreada, 0, 0);
+
+	log_debug(logger, "Se ha iniciado un Team.");
 }
 
 void array_iterate_element(char** strings, void (*closure)(char*, t_list*),
@@ -74,19 +84,13 @@ bool elementoEstaEnLista(t_list *lista, char *elemento) {
 	return verifica;
 }
 
-bool esUnObjetivo(void* objetivo) {
-	bool verifica = false;
-	if (string_equals_ignore_case(pokemonRecibido, objetivo)) {
-		verifica = true;
-	}
-	return verifica;
-}
-
 void inicializarSemEntrenadores() {
 	semEntrenadores = malloc(list_size(team->entrenadores) * sizeof(sem_t));
+	semEntrenadoresRR = malloc(list_size(team->entrenadores) * sizeof(sem_t));
 	for (int j = 0; j < list_size(team->entrenadores); j++) {
 		sem_init(&(semEntrenadores[j]), 0, 0);
-		log_info(logger, "Iniciado semáforo para entrenador %d",
+		sem_init(&(semEntrenadoresRR[j]), 0, 0);
+		log_info(logger, "Iniciado semáforos para entrenador %d",
 				semEntrenadores[j]);
 	}
 }
@@ -98,33 +102,29 @@ void crearHilosDeEntrenadores() {
 	}
 }
 
+/*void crearConexionesCliente(int* socketBrokerLoc, int* socketBrokerApp, int* socketBrokerCau) {
+	pthread_t hiloSocketLoc;
+	pthread_t hiloSocketApp;
+	pthread_t hiloSocketCau;
+
+	pthread_create(&hiloSocketLoc, NULL, (void*) suscribirseACola, APPEARED);
+	pthread_detach(hiloSocketLoc);
+
+	pthread_create(&hiloSocketApp, NULL, (void*) suscribirseACola, socketBrokerApp);
+	pthread_detach(hiloSocketApp);
+
+	pthread_create(&hiloSocketCau, NULL, (void*) crearConexion, socketBrokerCau);
+	pthread_detach(hiloSocketCau);
+
+
+//	*socketBrokerLoc = crearConexionClienteConReintento(ipServidor, puertoServidor, tiempoDeEspera);
+//	*socketBrokerApp = crearConexionClienteConReintento(ipServidor, puertoServidor, tiempoDeEspera);
+//	*socketBrokerCau = crearConexionClienteConReintento(ipServidor, puertoServidor, tiempoDeEspera);
+}*/
+
 int main() {
-	uint32_t idDelProceso;
 
 	inicializarVariablesGlobales();
-
-	//Obtengo el ID del proceso
-	idDelProceso = obtenerIdDelProceso(ipServidor, puertoServidor);
-
-	//Creo 3 conexiones con el Broker, una por cada cola
-	int *socketBrokerApp = malloc(sizeof(int));
-	*socketBrokerApp = crearConexionCliente(ipServidor, puertoServidor);
-	int *socketBrokerLoc = malloc(sizeof(int));
-	*socketBrokerLoc = crearConexionCliente(ipServidor, puertoServidor);
-	int *socketBrokerCau = malloc(sizeof(int));
-	*socketBrokerCau = crearConexionCliente(ipServidor, puertoServidor);
-
-	//Creo conexión con Gameboy
-	int *socketGameboy = malloc(sizeof(int));
-	*socketGameboy = crearConexionEscuchaGameboy();
-
-	//Crea hilo para atender al Gameboy
-	//atenderGameboy(socketGameboy);
-
-	//Se suscribe el Team a las colas
-	suscribirseALasColas(*socketBrokerApp,*socketBrokerLoc,*socketBrokerCau, idDelProceso);
-
-	crearHilosParaAtenderBroker(socketBrokerApp, socketBrokerLoc, socketBrokerCau);
 
 	generarEntrenadores();
 
@@ -132,11 +132,19 @@ int main() {
 
 	inicializarSemEntrenadores();
 
-	enviarGetSegunObjetivo(ipServidor,puertoServidor);
-
 	crearHilosDeEntrenadores();
 
+
+	//Creo conexion con Gameboy
+	conectarGameboy();
+
+	//Se suscribe el Team a las colas
+	crearConexionesYSuscribirseALasColas();
+
+	enviarGetSegunObjetivo(ipServidor,puertoServidor);
+
 	planificador();
+
 
 	log_info(logger, "Finalizó la conexión con el servidor\n");
 	log_info(logger, "El proceso Team finalizó su ejecución\n");
@@ -150,7 +158,7 @@ int main() {
 	free(socketBrokerLoc);
 	free(socketBrokerCau);
 //	liberarMemoria();
-
+	//Todo revisar porque pincha en LiberarMemoria().
 	return 0;
 }
 

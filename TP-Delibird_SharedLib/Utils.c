@@ -401,6 +401,24 @@ uint32_t obtenerIdDelProceso(char* ip, char* puerto) {
 	return idProceso;
 }
 
+uint32_t obtenerIdDelProcesoConReintento(char* ip, char* puerto, int tiempoDeEspera) {
+	int socketBroker = crearConexionClienteConReintento(ip, puerto, tiempoDeEspera);
+	uint32_t idProceso;
+
+
+	opCode codigoOP = NUEVA_CONEXION;
+	send(socketBroker, &codigoOP, sizeof(opCode), 0);
+	uint32_t statusRecv=recv(socketBroker, &idProceso, sizeof(uint32_t), MSG_WAITALL);
+	close(socketBroker);
+
+	log_debug(logger, "ID obtenido = %d", idProceso);
+
+	if(statusRecv<0)
+		return -1;
+
+	return idProceso;
+}
+
 //Funciones auxiliares para logs
 //---------------------------------------------------
 
