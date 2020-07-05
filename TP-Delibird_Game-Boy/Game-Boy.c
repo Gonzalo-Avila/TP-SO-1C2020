@@ -281,8 +281,7 @@ int main(int argc, char** argv) {
 			exit(0);
 		}
 
-			pthread_create(&hiloCountdown, NULL, (void*) tiempoLimiteDeSuscripcion,
-										argv[3]);
+			pthread_create(&hiloCountdown, NULL, (void*) tiempoLimiteDeSuscripcion,argv[3]);
 			pthread_detach(hiloCountdown);
 
 			while (1) {
