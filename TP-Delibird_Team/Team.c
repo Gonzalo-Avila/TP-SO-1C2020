@@ -122,6 +122,11 @@ void crearHilosDeEntrenadores() {
 //	*socketBrokerCau = crearConexionClienteConReintento(ipServidor, puertoServidor, tiempoDeEspera);
 }*/
 
+
+void crearHiloPlanificador(){
+	pthread_create(&hiloPlanificador, NULL, (void*) planificador, NULL);
+	pthread_detach(hiloPlanificador);
+}
 int main() {
 
 	inicializarVariablesGlobales();
@@ -136,15 +141,15 @@ int main() {
 
 
 	//Creo conexion con Gameboy
-	conectarGameboy();
+	//conectarGameboy();
 
 	//Se suscribe el Team a las colas
 	crearConexionesYSuscribirseALasColas();
 
+	crearHiloPlanificador();
 	enviarGetSegunObjetivo(ipServidor,puertoServidor);
 
-	planificador();
-
+	crearConexionEscuchaGameboy(socketGameboy);
 
 	log_info(logger, "Finalizó la conexión con el servidor\n");
 	log_info(logger, "El proceso Team finalizó su ejecución\n");

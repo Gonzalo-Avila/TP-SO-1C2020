@@ -117,6 +117,8 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 	free(rutaMetadataPokemon);
 	free(msgGet->pokemon);
 	free(msgGet);
+	free(mensajeRecibido->mensaje);
+	free(mensajeRecibido);
 
 }
 void destroyer(void * nodo){
@@ -136,6 +138,7 @@ mensajeLocalized * armarMensajeLocalized(mensajeGet * msgGet, t_list* posiciones
 	}else{
 		msgLoc->listSize = 0;
 	}
+
 	return msgLoc;
 
 }
@@ -156,8 +159,6 @@ mensajeGet * desarmarMensajeGET(mensajeRecibido * mensajeRecibido) {
 
 	memcpy(mensaje->pokemon+mensaje->longPokemon,&finDeCadena,1);
 	log_info(logger, "%s", mensaje->pokemon );
-
-	//memcpy(mensaje->pokemon, mensajeRecibido->mensaje + offset,mensaje->longPokemon);
 
 	return mensaje;
 

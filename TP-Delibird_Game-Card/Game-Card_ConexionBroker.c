@@ -102,6 +102,8 @@ void esperarMensajesBroker(int* socketSuscripcion) {
 	uint32_t ack = 1;
 	while (1) {
 		mensajeRecibido * mensaje = recibirMensajeDeBroker(*socketSuscripcion);
+		pthread_t atencionDeMensaje;
+
 		if(mensaje->codeOP==FINALIZAR){
 			free(mensaje);
 			statusConexionBroker=ERROR_CONEXION;
@@ -115,19 +117,25 @@ void esperarMensajesBroker(int* socketSuscripcion) {
 		case NEW: {
 			//Procesar mensaje NEW
 			log_debug(logger, "[BROKER] Llegó un mensaje de la cola NEW");
-			procesarNEW(mensaje);
+			pthread_create(&atencionDeMensaje, NULL, (void *)procesarNEW,mensaje);
+			pthread_detach(atencionDeMensaje);
+			//procesarNEW(mensaje);
 			break;
 		}
 		case GET: {
 			//Procesar mensaje GET
 			log_debug(logger, "[BROKER] Llegó un mensaje de la cola GET");
-			procesarGET(mensaje);
+			pthread_create(&atencionDeMensaje, NULL, (void *)procesarGET,mensaje);
+			pthread_detach(atencionDeMensaje);
+			//procesarGET(mensaje);
 			break;
 		}
 		case CATCH: {
 			//Procesar mensaje CATCH
 			log_debug(logger, "[BROKER] Llegó un mensaje de la cola CATCH");
-			procesarCATCH(mensaje);
+			pthread_create(&atencionDeMensaje, NULL, (void *)procesarCATCH,mensaje);
+			pthread_detach(atencionDeMensaje);
+			//procesarCATCH(mensaje);
 			break;
 		}
 		default: {
@@ -137,7 +145,6 @@ void esperarMensajesBroker(int* socketSuscripcion) {
 			break;
 		}
 		}
-		free(mensaje->mensaje);
-		free(mensaje);
+
 	}
 }

@@ -2610,3 +2610,138 @@
 [INFO] 18:24:11:781 GameCard/(9664:9676): Reintentando conectar con el broker...
 [INFO] 18:24:11:783 GameCard/(9664:9676): Intentando establecer conexion inicial con broker...
 [INFO] 18:24:11:783 GameCard/(9664:9676): No se pudo establecer la conexion inicial con el broker
+[INFO] 19:29:45:310 GameCard/(9740:9740): Se ha iniciado el cliente GameCard
+
+[INFO] 19:29:45:310 GameCard/(9740:9740): Creando hilo de conexion Broker
+[INFO] 19:29:45:318 GameCard/(9740:9740): Hilo de conexion Broker creado
+[INFO] 19:29:47:430 GameCard/(9740:9760): Intentando establecer conexion inicial con broker...
+[INFO] 19:29:47:434 GameCard/(9740:9760): IDProceso asignado: 13
+[INFO] 19:29:47:434 GameCard/(9740:9760): Intentando crear suscripciones a broker
+[INFO] 19:29:47:434 GameCard/(9740:9760): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 19:29:47:434 GameCard/(9740:9760): Suscripcion a NEW_POKEMON realizada
+[INFO] 19:29:47:435 GameCard/(9740:9740): Creando hilo de conexion GameBoy
+[DEBUG] 19:29:47:435 GameCard/(9740:9740): Esperando cliente...
+[INFO] 19:29:47:435 GameCard/(9740:9760): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 19:29:47:435 GameCard/(9740:9760): Suscripcion a CATCH_POKEMON realizada
+[INFO] 19:29:47:435 GameCard/(9740:9760): Se ha suscrito a la cola GET_POKEMON
+[INFO] 19:29:47:436 GameCard/(9740:9760): Suscripcion a GET_POKEMON realizada
+[INFO] 19:29:50:335 GameCard/(9740:9760): Suscripciones a colas realizadas exitosamente
+[INFO] 19:30:14:620 GameCard/(9740:9768): [BROKER] Mensaje recibido
+[DEBUG] 19:30:14:620 GameCard/(9740:9768): [BROKER] Llegó un mensaje de la cola GET
+[DEBUG] 19:30:17:704 GameCard/(9740:9768): [GET] Procesando
+[INFO] 19:30:17:704 GameCard/(9740:9768): Pikachu
+[INFO] 19:30:17:704 GameCard/(9740:9768): No existe el pokemon Pikachu solicitado
+[INFO] 19:31:27:889 GameCard/(9868:9868): Se ha iniciado el cliente GameCard
+
+[INFO] 19:31:27:890 GameCard/(9868:9868): Creando hilo de conexion Broker
+[INFO] 19:31:27:900 GameCard/(9868:9868): Hilo de conexion Broker creado
+[INFO] 19:31:28:203 GameCard/(9868:9880): Intentando establecer conexion inicial con broker...
+[INFO] 19:31:28:204 GameCard/(9868:9880): IDProceso asignado: 15
+[INFO] 19:31:28:204 GameCard/(9868:9880): Intentando crear suscripciones a broker
+[INFO] 19:31:28:204 GameCard/(9868:9880): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 19:31:28:205 GameCard/(9868:9868): Creando hilo de conexion GameBoy
+[INFO] 19:31:28:205 GameCard/(9868:9880): Suscripcion a NEW_POKEMON realizada
+[DEBUG] 19:31:28:205 GameCard/(9868:9868): Esperando cliente...
+[INFO] 19:31:28:205 GameCard/(9868:9880): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 19:31:28:205 GameCard/(9868:9880): Suscripcion a CATCH_POKEMON realizada
+[INFO] 19:31:28:206 GameCard/(9868:9880): Se ha suscrito a la cola GET_POKEMON
+[INFO] 19:31:28:206 GameCard/(9868:9880): Suscripcion a GET_POKEMON realizada
+[INFO] 19:31:29:926 GameCard/(9868:9880): Suscripciones a colas realizadas exitosamente
+[INFO] 19:31:38:290 GameCard/(9868:9885): [BROKER] Mensaje recibido
+[DEBUG] 19:31:38:290 GameCard/(9868:9885): [BROKER] Llegó un mensaje de la cola GET
+[DEBUG] 19:31:41:332 GameCard/(9868:9885): [GET] Procesando
+[INFO] 19:31:43:240 GameCard/(9868:9885): Pikachu
+[INFO] 19:32:00:885 GameCard/(9868:9885): No existe el pokemon Pikachu solicitado
+[DEBUG] 19:33:00:434 GameCard/(9868:9885): [GET] LOCALIZED enviado
+[INFO] 19:33:02:688 GameCard/(9868:9880): Reintentando conectar con el broker...
+[INFO] 19:33:02:688 GameCard/(9868:9880): Intentando crear suscripciones a broker
+[INFO] 19:33:02:688 GameCard/(9868:9880): No se pudieron realizar las suscripciones. Error de conexion
+[INFO] 19:33:09:166 GameCard/(9868:9885): [BROKER] Mensaje recibido
+[DEBUG] 19:33:09:166 GameCard/(9868:9885): [BROKER] Llegó un mensaje de la cola GET
+[DEBUG] 19:33:09:337 GameCard/(9868:9885): [GET] Procesando
+[INFO] 19:33:09:338 GameCard/(9868:9885): Pikachu
+[INFO] 19:33:09:338 GameCard/(9868:9885): No existe el pokemon Pikachu solicitado
+[ERROR] 19:33:09:338 GameCard/(9868:9885): No se pudo enviar el mensaje al broker: conexion fallida.
+[DEBUG] 19:33:09:338 GameCard/(9868:9885): [GET] LOCALIZED enviado
+[INFO] 19:33:12:688 GameCard/(9868:9880): Reintentando conectar con el broker...
+[INFO] 19:33:12:688 GameCard/(9868:9880): Intentando crear suscripciones a broker
+[INFO] 19:33:12:688 GameCard/(9868:9880): No se pudieron realizar las suscripciones. Error de conexion
+[INFO] 19:35:08:877 GameCard/(10107:10107): Se ha iniciado el cliente GameCard
+
+[INFO] 19:35:08:877 GameCard/(10107:10107): Creando hilo de conexion Broker
+[INFO] 19:35:08:881 GameCard/(10107:10107): Hilo de conexion Broker creado
+[INFO] 19:35:09:52 GameCard/(10107:10125): Intentando establecer conexion inicial con broker...
+[INFO] 19:35:09:53 GameCard/(10107:10125): IDProceso asignado: 17
+[INFO] 19:35:09:54 GameCard/(10107:10107): Creando hilo de conexion GameBoy
+[INFO] 19:35:09:54 GameCard/(10107:10125): Intentando crear suscripciones a broker
+[DEBUG] 19:35:09:54 GameCard/(10107:10107): Esperando cliente...
+[INFO] 19:35:09:55 GameCard/(10107:10125): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 19:35:09:55 GameCard/(10107:10125): Suscripcion a NEW_POKEMON realizada
+[INFO] 19:35:09:55 GameCard/(10107:10125): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 19:35:09:55 GameCard/(10107:10125): Suscripcion a CATCH_POKEMON realizada
+[INFO] 19:35:09:55 GameCard/(10107:10125): Se ha suscrito a la cola GET_POKEMON
+[INFO] 19:35:09:55 GameCard/(10107:10125): Suscripcion a GET_POKEMON realizada
+[INFO] 19:35:09:870 GameCard/(10107:10125): Suscripciones a colas realizadas exitosamente
+[INFO] 19:35:34:476 GameCard/(10107:10130): [BROKER] Mensaje recibido
+[DEBUG] 19:35:34:476 GameCard/(10107:10130): [BROKER] Llegó un mensaje de la cola GET
+[DEBUG] 19:35:36:758 GameCard/(10107:10130): [GET] Procesando
+[INFO] 19:35:37:169 GameCard/(10107:10130): Pikachu
+[INFO] 19:35:43:458 GameCard/(10107:10130): No existe el pokemon Pikachu solicitado
+[DEBUG] 19:40:50:985 GameCard/(10107:10130): [GET] LOCALIZED enviado
+[INFO] 19:48:52:752 GameCard/(10774:10774): Se ha iniciado el cliente GameCard
+
+[INFO] 19:48:52:752 GameCard/(10774:10774): Creando hilo de conexion Broker
+[INFO] 19:48:52:756 GameCard/(10774:10774): Hilo de conexion Broker creado
+[INFO] 19:48:56:907 GameCard/(10774:10789): Intentando establecer conexion inicial con broker...
+[INFO] 19:48:56:908 GameCard/(10774:10789): IDProceso asignado: 1
+[INFO] 19:48:56:908 GameCard/(10774:10789): Intentando crear suscripciones a broker
+[INFO] 19:48:56:908 GameCard/(10774:10789): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 19:48:56:908 GameCard/(10774:10789): Suscripcion a NEW_POKEMON realizada
+[INFO] 19:48:56:908 GameCard/(10774:10789): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 19:48:56:909 GameCard/(10774:10774): Creando hilo de conexion GameBoy
+[INFO] 19:48:56:909 GameCard/(10774:10789): Suscripcion a CATCH_POKEMON realizada
+[DEBUG] 19:48:56:909 GameCard/(10774:10774): Esperando cliente...
+[INFO] 19:48:56:909 GameCard/(10774:10789): Se ha suscrito a la cola GET_POKEMON
+[INFO] 19:48:56:909 GameCard/(10774:10789): Suscripcion a GET_POKEMON realizada
+[INFO] 19:48:58:809 GameCard/(10774:10789): Suscripciones a colas realizadas exitosamente
+[INFO] 19:49:58:337 GameCard/(10774:10795): [BROKER] Mensaje recibido
+[DEBUG] 19:49:58:337 GameCard/(10774:10795): [BROKER] Llegó un mensaje de la cola GET
+[INFO] 19:51:42:718 GameCard/(10984:10984): Se ha iniciado el cliente GameCard
+
+[INFO] 19:51:42:719 GameCard/(10984:10984): Creando hilo de conexion Broker
+[INFO] 19:51:42:723 GameCard/(10984:10984): Hilo de conexion Broker creado
+[INFO] 19:51:47:818 GameCard/(10984:11033): Intentando establecer conexion inicial con broker...
+[INFO] 19:51:47:819 GameCard/(10984:11033): IDProceso asignado: 3
+[INFO] 19:51:47:819 GameCard/(10984:11033): Intentando crear suscripciones a broker
+[INFO] 19:51:47:819 GameCard/(10984:11033): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 19:51:47:819 GameCard/(10984:11033): Suscripcion a NEW_POKEMON realizada
+[INFO] 19:51:47:819 GameCard/(10984:11033): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 19:51:47:820 GameCard/(10984:11033): Suscripcion a CATCH_POKEMON realizada
+[INFO] 19:51:47:820 GameCard/(10984:10984): Creando hilo de conexion GameBoy
+[DEBUG] 19:51:47:820 GameCard/(10984:10984): Esperando cliente...
+[INFO] 19:51:47:820 GameCard/(10984:11033): Se ha suscrito a la cola GET_POKEMON
+[INFO] 19:51:47:820 GameCard/(10984:11033): Suscripcion a GET_POKEMON realizada
+[INFO] 19:51:49:779 GameCard/(10984:11033): Suscripciones a colas realizadas exitosamente
+[INFO] 19:52:09:52 GameCard/(10984:11045): [BROKER] Mensaje recibido
+[DEBUG] 19:52:09:52 GameCard/(10984:11045): [BROKER] Llegó un mensaje de la cola GET
+[INFO] 19:56:19:497 GameCard/(11383:11383): Se ha iniciado el cliente GameCard
+
+[INFO] 19:56:19:498 GameCard/(11383:11383): Creando hilo de conexion Broker
+[INFO] 19:56:19:504 GameCard/(11383:11383): Hilo de conexion Broker creado
+[INFO] 19:56:22:332 GameCard/(11383:11393): Intentando establecer conexion inicial con broker...
+[INFO] 19:56:22:333 GameCard/(11383:11393): IDProceso asignado: 5
+[INFO] 19:56:22:333 GameCard/(11383:11393): Intentando crear suscripciones a broker
+[INFO] 19:56:22:333 GameCard/(11383:11393): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 19:56:22:333 GameCard/(11383:11393): Suscripcion a NEW_POKEMON realizada
+[INFO] 19:56:22:333 GameCard/(11383:11383): Creando hilo de conexion GameBoy
+[DEBUG] 19:56:22:333 GameCard/(11383:11383): Esperando cliente...
+[INFO] 19:56:22:334 GameCard/(11383:11393): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 19:56:22:334 GameCard/(11383:11393): Suscripcion a CATCH_POKEMON realizada
+[INFO] 19:56:22:334 GameCard/(11383:11393): Se ha suscrito a la cola GET_POKEMON
+[INFO] 19:56:22:334 GameCard/(11383:11393): Suscripcion a GET_POKEMON realizada
+[INFO] 19:56:28:237 GameCard/(11383:11393): Suscripciones a colas realizadas exitosamente
+[INFO] 19:56:51:767 GameCard/(11383:11399): [BROKER] Mensaje recibido
+[DEBUG] 19:56:51:767 GameCard/(11383:11399): [BROKER] Llegó un mensaje de la cola GET
+[DEBUG] 19:58:10:179 GameCard/(11383:11399): [GET] Procesando
+[INFO] 19:58:10:179 GameCard/(11383:11399): Pikachu
+[INFO] 19:58:10:179 GameCard/(11383:11399): No existe el pokemon Pikachu solicitado

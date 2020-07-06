@@ -138,12 +138,16 @@ void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 }
 
 void procesarCAUGHT(mensajeRecibido* miMensajeRecibido) {
-	estructuraMensaje* miMensajeCaught = miMensajeRecibido->mensaje;
-	if (validarIDCorrelativoCatch(miMensajeCaught->idCorrelativo)) {
+
+	if (validarIDCorrelativoCatch(miMensajeRecibido->idCorrelativo)) {
 		log_debug(logger, "Se recibio un CAUGHT");
-		mensajeCaught* miCaught = miMensajeCaught->mensaje;
-		procesarObjetivoCumplido(buscarCatch(miMensajeCaught->idCorrelativo),
-				miCaught->resultado);
+		mensajeCaught* miCaught = malloc(sizeof(mensajeCaught));
+		memcpy(&miCaught->resultado,miMensajeRecibido->mensaje,sizeof(resultado));
+		procesarObjetivoCumplido(buscarCatch(miMensajeRecibido->idCorrelativo),miCaught->resultado);
+		free(miCaught);
+	}
+	else{
+		log_debug(logger, "Llego un CAUGHT pero no nos sirve");
 	}
 }
 
@@ -165,7 +169,7 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 	offset += sizeof(uint32_t);
 
 
-	if (estaEnLosObjetivos(pokemon)) {
+	if (estaEnLosObjetivos(pokemon) && cantPokes>0) {
 		log_debug(logger, "El pokemon %s es un objetivo", pokemon);
 
 		for (int i = 0; i < cantPokes; i++) {
@@ -187,19 +191,28 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 		}
 		sem_post(&procesoEnReady);
 	}
+	else{
+		log_debug(logger, "El pokemon no me interesa o llego vacio");
+	}
 	log_debug(logger, "Se proceso el LOCALIZED");
 }
 
 void procesarAPPEARED(mensajeRecibido* miMensajeRecibido) {
 	log_debug(logger, "Se recibio un APPEARED");
-	char* pokemonRecibido = malloc((miMensajeRecibido->sizeMensaje) + 1);
-	int offset = (miMensajeRecibido->sizePayload)
-			- (miMensajeRecibido->sizeMensaje);
-	memcpy(pokemonRecibido, miMensajeRecibido + offset,
-			sizeof(miMensajeRecibido->sizeMensaje));
+	char * pokemonRecibido;
+	int longPokemon, offset=0;
+	memcpy(&longPokemon, miMensajeRecibido->mensaje+offset,sizeof(uint32_t));
+	offset+=sizeof(uint32_t);
+	pokemonRecibido=malloc(longPokemon+1);
+	memcpy(pokemonRecibido,miMensajeRecibido->mensaje+offset,longPokemon);
+	pokemonRecibido[longPokemon]='\0';
+	/*char* pokemonRecibido = malloc((miMensajeRecibido->sizeMensaje) + 1);
+	int offset = (miMensajeRecibido->sizePayload) - (miMensajeRecibido->sizeMensaje);
+	memcpy(pokemonRecibido, miMensajeRecibido + offset,sizeof(miMensajeRecibido->sizeMensaje));*/
+
 	if (estaEnLosObjetivos(pokemonRecibido)) {
 		log_debug(logger, "El pokemon esta en nuestro objetivo");
-		log_info(logger, "Pokemon: %s", (char*) pokemonRecibido);
+		log_info(logger, "Pokemon: %s", pokemonRecibido);
 		enviarGetDePokemon(ipServidor, puertoServidor, pokemonRecibido);
 	}
 	free(pokemonRecibido);
@@ -277,19 +290,19 @@ void crearConexion(int* socket){
 
 //Obtengo el ID del proceso
 
-void obtenerID(uint32_t idDelProceso){
+void obtenerID(){
 	idDelProceso = obtenerIdDelProcesoConReintento(ipServidor, puertoServidor, tiempoDeEspera);
 }
 
 /* Se suscribe a las colas del Broker */
-void crearConexionesYSuscribirseALasColas(int idDelProceso) {
+void crearConexionesYSuscribirseALasColas() {
 	//pthread_t hiloObtenerID;
 	pthread_t hiloSocketLoc;
 	pthread_t hiloSocketApp;
 	pthread_t hiloSocketCau;
 
 	//pthread_create(&hiloObtenerID, NULL, (void*) obtenerID, &idDelProceso); //No funciona pq le paso la direccion y la funcion recibe un entero. TODO - Revisar
-	obtenerID(idDelProceso);
+	obtenerID();
 	pthread_create(&hiloSocketLoc, NULL, (void*) crearConexion, socketBrokerLoc);
 	pthread_create(&hiloSocketApp, NULL, (void*) crearConexion, socketBrokerApp);
 	pthread_create(&hiloSocketCau, NULL, (void*) crearConexion, socketBrokerCau);

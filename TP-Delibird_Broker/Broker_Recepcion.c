@@ -163,7 +163,7 @@ bool seRecibioElIDCorrelativo(uint32_t idCConsultado){
 }
 
 void atenderMensaje(int socketEmisor, cola tipoCola) {
-	int idMensaje;
+	uint32_t idMensaje=-1;
 	uint32_t* idCorrelativo = malloc(sizeof(uint32_t));
 	recv(socketEmisor, idCorrelativo, sizeof(uint32_t), MSG_WAITALL);
 
@@ -179,12 +179,14 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 				free(idCorrelativo);
 
 		} else {
+			send(socketEmisor, &idMensaje, sizeof(uint32_t), 0);
 			log_error(logger, "[ERROR]");
 			log_error(logger, "No pudo obtenerse el tipo de cola en el mensaje recibido");
 			free(idCorrelativo);
 		}
 
 	}else{
+		send(socketEmisor, &idMensaje, sizeof(uint32_t), 0);
 		log_info(logger, "Se ignoro mensaje de proceso con socket %d. ID Correlativo %d ya recibido.", socketEmisor, *idCorrelativo);
 		free(idCorrelativo);
 	}

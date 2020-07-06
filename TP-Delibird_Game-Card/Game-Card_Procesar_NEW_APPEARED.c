@@ -257,6 +257,8 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 	free(entradaCompletaComoCadena);
 	free(msgNew->pokemon);
 	free(msgNew);
+	free(mensajeRecibido->mensaje);
+	free(mensajeRecibido);
 }
 
 

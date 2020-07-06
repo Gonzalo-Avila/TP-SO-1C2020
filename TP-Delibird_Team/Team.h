@@ -115,6 +115,8 @@ sem_t *semEntrenadoresRR;
 sem_t procesoEnReady;
 sem_t conexionCreada;
 
+pthread_t hiloPlanificador;
+
 /* Funciones */
 bool menorDist(void *dist1,void *dist2);
 bool noSeCumplieronLosObjetivos();

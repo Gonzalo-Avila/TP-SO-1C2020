@@ -143,6 +143,8 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 	free(posicionComoCadena);
 	free(rutaPokemon);
 	free(rutaMetadataPokemon);
+	free(mensajeRecibido->mensaje);
+	free(mensajeRecibido);
 
 	log_debug(logger, "[CATCH] CAUGHT enviado");
 }
