@@ -100,8 +100,10 @@ void cerrarConexiones(){
 
 void esperarMensajesBroker(int* socketSuscripcion) {
 	uint32_t ack = 1;
+	mensajeRecibido * mensaje;
+
 	while (1) {
-		mensajeRecibido * mensaje = recibirMensajeDeBroker(*socketSuscripcion);
+		mensaje = recibirMensajeDeBroker(*socketSuscripcion);
 		pthread_t atencionDeMensaje;
 
 		if(mensaje->codeOP==FINALIZAR){

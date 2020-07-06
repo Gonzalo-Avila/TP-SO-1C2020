@@ -64,15 +64,22 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 								int cantidadNum = atoi(cantidad);
 								cantidadNum = cantidadNum + msgNew->cantPokemon;
 								cantidad = string_itoa(cantidadNum);
+								string_append(&aEscribirEnBloques, posicion);
+								string_append(&aEscribirEnBloques, "=");
+								string_append(&aEscribirEnBloques, cantidad);
+								string_append(&aEscribirEnBloques, "\n");
+								free(cantidad);
 							}
+							else{
 							string_append(&aEscribirEnBloques, posicion);
 							string_append(&aEscribirEnBloques, "=");
 							string_append(&aEscribirEnBloques, cantidad);
 							string_append(&aEscribirEnBloques, "\n");
+							}
 							indexEntrada++;
 							entradaActual=arrayDeEntradas[indexEntrada];
 							liberarStringSplitteado(posicionCantidad);
-							free(cantidad);
+
 						}
 						liberarStringSplitteado(arrayDeEntradas);
 

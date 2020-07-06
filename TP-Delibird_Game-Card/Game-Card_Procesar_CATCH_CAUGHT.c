@@ -54,22 +54,29 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 						char** posicionCantidad = string_split(entradaActual, "=");	//["5-5", "3", NULL]
 						char* posicion = posicionCantidad[0];
 						char* cantidad = posicionCantidad[1];
-						cantidadNum=atoi(cantidad);
+
 						if (strcmp(posicion, posicionComoCadena) == 0) { 			// "5-5" vs posicionCatch
 							cantidadNum = atoi(cantidad);
 							cantidadNum = cantidadNum - 1;
 							cantidad = string_itoa(cantidadNum);
+							if(cantidadNum>0){
+							string_append(&aEscribirEnBloques, posicion);
+							string_append(&aEscribirEnBloques, "=");
+							string_append(&aEscribirEnBloques, cantidad);
+							string_append(&aEscribirEnBloques, "\n");
+							}
+							free(cantidad);
 						}
-						if(cantidadNum>0){
-						string_append(&aEscribirEnBloques, posicion);
-						string_append(&aEscribirEnBloques, "=");
-						string_append(&aEscribirEnBloques, cantidad);
-						string_append(&aEscribirEnBloques, "\n");
+						else{
+							string_append(&aEscribirEnBloques, posicion);
+							string_append(&aEscribirEnBloques, "=");
+							string_append(&aEscribirEnBloques, cantidad);
+							string_append(&aEscribirEnBloques, "\n");
 						}
+
 						indexEntrada++;
 						entradaActual=arrayDeEntradas[indexEntrada];
 						liberarStringSplitteado(posicionCantidad);
-						free(cantidad);
 
 					}
 					liberarStringSplitteado(arrayDeEntradas);
