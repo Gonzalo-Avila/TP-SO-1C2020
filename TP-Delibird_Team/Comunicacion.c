@@ -138,6 +138,7 @@ void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 }
 
 void procesarCAUGHT(mensajeRecibido* miMensajeRecibido) {
+	sem_wait(&mutexCAUGHT);
 
 	if (validarIDCorrelativoCatch(miMensajeRecibido->idCorrelativo)) {
 		log_debug(logger, "Se recibio un CAUGHT");
@@ -149,9 +150,16 @@ void procesarCAUGHT(mensajeRecibido* miMensajeRecibido) {
 	else{
 		log_debug(logger, "Llego un CAUGHT pero no nos sirve");
 	}
+
+	free(miMensajeRecibido->mensaje);
+	free(miMensajeRecibido);
+
+	sem_post(&mutexCAUGHT);
 }
 
 void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
+	sem_wait(&mutexLOCALIZED);
+
 	log_debug(logger, "Se recibio un LOCALIZED");
 	uint32_t cantPokes, longPokemon;
 	int offset = 0;
@@ -162,6 +170,8 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 	char* pokemon = malloc(longPokemon);
 	memcpy(pokemon, miMensajeRecibido->mensaje + offset, longPokemon);
 	offset += longPokemon;
+
+	pokemon[longPokemon]='\0';
 
 	log_debug(logger, "Pokemon: %s", pokemon);
 
@@ -195,32 +205,78 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 		log_debug(logger, "El pokemon no me interesa o llego vacio");
 	}
 	log_debug(logger, "Se proceso el LOCALIZED");
+
+	free(miMensajeRecibido->mensaje);
+	free(miMensajeRecibido);
+
+	sem_post(&mutexLOCALIZED);
 }
 
 void procesarAPPEARED(mensajeRecibido* miMensajeRecibido) {
+	sem_wait(&mutexAPPEARED);
+
 	log_debug(logger, "Se recibio un APPEARED");
 	char * pokemonRecibido;
-	int longPokemon, offset=0;
+	uint32_t longPokemon;
+	int offset=0;
+
 	memcpy(&longPokemon, miMensajeRecibido->mensaje+offset,sizeof(uint32_t));
 	offset+=sizeof(uint32_t);
+
 	pokemonRecibido=malloc(longPokemon+1);
 	memcpy(pokemonRecibido,miMensajeRecibido->mensaje+offset,longPokemon);
 	pokemonRecibido[longPokemon]='\0';
-	/*char* pokemonRecibido = malloc((miMensajeRecibido->sizeMensaje) + 1);
-	int offset = (miMensajeRecibido->sizePayload) - (miMensajeRecibido->sizeMensaje);
-	memcpy(pokemonRecibido, miMensajeRecibido + offset,sizeof(miMensajeRecibido->sizeMensaje));*/
+	offset += longPokemon;
+
 
 	if (estaEnLosObjetivos(pokemonRecibido)) {
 		log_debug(logger, "El pokemon esta en nuestro objetivo");
 		log_info(logger, "Pokemon: %s", pokemonRecibido);
-		enviarGetDePokemon(ipServidor, puertoServidor, pokemonRecibido);
+
+		t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
+		posicion->pokemon = malloc(longPokemon);
+		posicion->pokemon = pokemonRecibido;
+
+		memcpy(&(posicion->pos[0]), miMensajeRecibido->mensaje+offset, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
+
+		memcpy(&(posicion->pos[1]), miMensajeRecibido->mensaje+offset, sizeof(uint32_t));
+
+		list_add(listaPosicionesInternas, posicion);
+
+		ponerEnReadyAlMasCercano(posicion->pos[0], posicion->pos[1],pokemonRecibido);
 	}
-	free(pokemonRecibido);
+
+	free(miMensajeRecibido->mensaje);
+	free(miMensajeRecibido);
+
+	sem_post(&mutexAPPEARED);
 }
 
 void enviarACK(int* socketServidor) {
 	uint32_t ack=1;
 	send(*socketServidor, &ack, sizeof(uint32_t), 0);
+}
+
+void levantarHiloDeRecepcionAPPEARED(mensajeRecibido* miMensajeRecibido){
+	pthread_t hiloAPPEARED;
+
+	pthread_create(&hiloAPPEARED, NULL, (void*) procesarAPPEARED, miMensajeRecibido);
+	pthread_detach(hiloAPPEARED);
+}
+
+void levantarHiloDeRecepcionLOCALIZED(mensajeRecibido* miMensajeRecibido){
+	pthread_t hiloLOCALIZED;
+
+	pthread_create(&hiloLOCALIZED, NULL, (void*) procesarLOCALIZED, miMensajeRecibido);
+	pthread_detach(hiloLOCALIZED);
+}
+
+void levantarHiloDeRecepcionCAUGHT(mensajeRecibido* miMensajeRecibido){
+	pthread_t hiloCAUGHT;
+
+	pthread_create(&hiloCAUGHT, NULL, (void*) procesarCAUGHT, miMensajeRecibido);
+	pthread_detach(hiloCAUGHT);
 }
 
 /* Atender al Broker y Gameboy */
@@ -238,15 +294,15 @@ void atenderServidor(int *socketServidor) {
 		if(miMensajeRecibido->codeOP > 0 && miMensajeRecibido->codeOP <= 6) {
 				switch(miMensajeRecibido->colaEmisora){
 					case APPEARED:{
-						procesarAPPEARED(miMensajeRecibido);
+						levantarHiloDeRecepcionAPPEARED(miMensajeRecibido);
 						break;
 					}
 					case LOCALIZED:{
-						procesarLOCALIZED(miMensajeRecibido);
+						levantarHiloDeRecepcionLOCALIZED(miMensajeRecibido);
 						break;
 					}
 					case CAUGHT:{
-						procesarCAUGHT(miMensajeRecibido);
+						levantarHiloDeRecepcionCAUGHT(miMensajeRecibido);
 						break;
 					}
 					default:{
@@ -261,12 +317,11 @@ void atenderServidor(int *socketServidor) {
 				log_debug(logger, "Reintentando conexion...");
 				*socketServidor = crearConexionClienteConReintento(ipServidor, puertoServidor, tiempoDeEspera);
 			}
+
 		if(miMensajeRecibido->mensaje != NULL){
 			log_info(logger, "Mensaje recibido: %s\n", miMensajeRecibido->mensaje);
 		}
 
-		free(miMensajeRecibido->mensaje);
-		free(miMensajeRecibido);
 	}
 }
 

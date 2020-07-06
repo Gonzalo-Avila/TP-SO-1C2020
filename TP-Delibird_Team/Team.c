@@ -28,6 +28,9 @@ void inicializarVariablesGlobales() {
 	//inicializo el mutex para los mensajes que llegan del broker
 	sem_init(&mutexMensajes, 0, 1);
 	sem_init(&mutexEntrenadores,0,1);
+	sem_init(&mutexAPPEARED, 0, 1);
+	sem_init(&mutexLOCALIZED, 0, 1);
+	sem_init(&mutexCAUGHT, 0, 1);
 	sem_init(&semPlanif, 0, 0);
 	sem_init(&procesoEnReady,0,0);
 	sem_init(&conexionCreada, 0, 0);
@@ -122,11 +125,6 @@ void crearHilosDeEntrenadores() {
 //	*socketBrokerCau = crearConexionClienteConReintento(ipServidor, puertoServidor, tiempoDeEspera);
 }*/
 
-
-void crearHiloPlanificador(){
-	pthread_create(&hiloPlanificador, NULL, (void*) planificador, NULL);
-	pthread_detach(hiloPlanificador);
-}
 int main() {
 
 	inicializarVariablesGlobales();
@@ -141,7 +139,7 @@ int main() {
 
 
 	//Creo conexion con Gameboy
-	//conectarGameboy();
+	conectarGameboy();
 
 	//Se suscribe el Team a las colas
 	crearConexionesYSuscribirseALasColas();
@@ -149,7 +147,8 @@ int main() {
 	crearHiloPlanificador();
 	enviarGetSegunObjetivo(ipServidor,puertoServidor);
 
-	crearConexionEscuchaGameboy(socketGameboy);
+	//El TEAM finaliza cuando termine de ejecutarse el planificador, que sera cuando se cumplan todos los objetivos.
+	pthread_join(hiloPlanificador, NULL);
 
 	log_info(logger, "Finalizó la conexión con el servidor\n");
 	log_info(logger, "El proceso Team finalizó su ejecución\n");

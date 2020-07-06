@@ -83,13 +83,19 @@ void crearHiloEntrenador(t_entrenador* entrenador) {
 
 void moverXDelEntrenador(t_entrenador *entrenador){
 
+
 	if(entrenador->pos[0] < entrenador->pokemonAAtrapar.pos[0]){
 			entrenador->pos[0]++;
-		}
-		else if(entrenador->pos[0] > entrenador->pokemonAAtrapar.pos[0]){
-			entrenador->pos[0]--;
-		}
 	log_debug(logger,"El entrenador id: %d esta en la posicion [%d,%d]",entrenador->id,entrenador->pos[0],entrenador->pos[1]);
+		}
+	else if(entrenador->pos[0] > entrenador->pokemonAAtrapar.pos[0]){
+			entrenador->pos[0]--;
+	log_debug(logger,"El entrenador id: %d esta en la posicion [%d,%d]",entrenador->id,entrenador->pos[0],entrenador->pos[1]);
+		}
+	else{
+		//Si el entrenador ya esta en el X del pokemon, que mueva la Y.
+		moverYDelEntrenador(entrenador);
+	}
 
 }
 
@@ -99,14 +105,19 @@ void moverXDelEntrenador(t_entrenador *entrenador){
 
 void moverYDelEntrenador(t_entrenador *entrenador){
 
-		if(entrenador->pos[1] < entrenador->pokemonAAtrapar.pos[1]){
-			entrenador->pos[1]++;
-		}
-		else if(entrenador->pos[1] > entrenador->pokemonAAtrapar.pos[1]){
-			entrenador->pos[1]--;
-		}
-
+	if(entrenador->pos[1] < entrenador->pokemonAAtrapar.pos[1]){
+		entrenador->pos[1]++;
 	log_debug(logger,"El entrenador id: %d esta en la posicion [%d,%d]",entrenador->id,entrenador->pos[0],entrenador->pos[1]);
+	}
+	else if(entrenador->pos[1] > entrenador->pokemonAAtrapar.pos[1]){
+		entrenador->pos[1]--;
+	log_debug(logger,"El entrenador id: %d esta en la posicion [%d,%d]",entrenador->id,entrenador->pos[0],entrenador->pos[1]);
+	}
+	else{
+		//Si el entrenador ya esta en el Y del pokemon, que mueva la X
+		moverXDelEntrenador(entrenador);
+	}
+
 
 }
 

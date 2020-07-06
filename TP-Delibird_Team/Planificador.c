@@ -1,5 +1,9 @@
 #include "Team.h"
 
+void crearHiloPlanificador(){
+	pthread_create(&hiloPlanificador, NULL, (void*) planificador, NULL);
+}
+
 e_algoritmo obtenerAlgoritmoPlanificador() {
 	char* algoritmo = malloc(
 			strlen(config_get_string_value(config, "ALGORITMO_PLANIFICACION"))

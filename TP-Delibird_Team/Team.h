@@ -109,6 +109,9 @@ t_list *listaPosicionesInternas;
 
 sem_t mutexMensajes;
 sem_t mutexEntrenadores;
+sem_t mutexAPPEARED;
+sem_t mutexLOCALIZED;
+sem_t mutexCAUGHT;
 sem_t semPlanif;
 sem_t *semEntrenadores;
 sem_t *semEntrenadoresRR;
@@ -179,6 +182,7 @@ void planificarSJFconDesalojo();
 void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador);
 void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador);
 void esperarMensajesGameboy(int* socketSuscripcion);
+void crearHiloPlanificador();
 int crearConexionClienteConReintento(char * ip, char * puerto, int tiempoDeEspera);
 
 //uint32_t obtenerIdDelProceso(char* ip, char* puerto);
