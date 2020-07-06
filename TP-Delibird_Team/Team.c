@@ -34,6 +34,7 @@ void inicializarVariablesGlobales() {
 	sem_init(&semPlanif, 0, 0);
 	sem_init(&procesoEnReady,0,0);
 	sem_init(&conexionCreada, 0, 0);
+	sem_init(&resolviendoDeadlock,0,1);
 
 	log_debug(logger, "Se ha iniciado un Team.");
 }
@@ -53,8 +54,7 @@ void enlistar(char *elemento, t_list *lista) {
 
 //implementacion generica para obtener de configs
 void obtenerDeConfig(char *clave, t_list *lista) {
-	char** listaDeConfig = malloc(
-			sizeof(config_get_array_value(config, clave)));
+	char** listaDeConfig;
 	listaDeConfig = config_get_array_value(config, clave);
 
 	array_iterate_element(listaDeConfig, enlistar, lista);
@@ -145,6 +145,7 @@ int main() {
 	crearConexionesYSuscribirseALasColas();
 
 	crearHiloPlanificador();
+
 	enviarGetSegunObjetivo(ipServidor,puertoServidor);
 
 	//El TEAM finaliza cuando termine de ejecutarse el planificador, que sera cuando se cumplan todos los objetivos.

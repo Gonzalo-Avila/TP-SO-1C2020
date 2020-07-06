@@ -48,15 +48,23 @@ typedef struct{
 	bool fueDesalojado;
 }t_datosSjf;
 
+typedef struct {
+	bool estaEnDeadlock;
+	char *pokemonAIntercambiar;
+	int idEntrenadorAIntercambiar;
+}t_datosDeadlock;
+
 typedef struct{
 	int id;
 	t_posicion pos;
 	t_list *objetivos;
 	t_list *pokemones;
+	int cantidadMaxDePokes;
 	e_estado estado;
 	bool suspendido;
 	t_objetivoActual pokemonAAtrapar;
 	t_datosSjf datosSjf;
+	t_datosDeadlock datosDeadlock;
 }t_entrenador;
 
 typedef struct{
@@ -117,6 +125,7 @@ sem_t *semEntrenadores;
 sem_t *semEntrenadoresRR;
 sem_t procesoEnReady;
 sem_t conexionCreada;
+sem_t resolviendoDeadlock;
 
 pthread_t hiloPlanificador;
 
@@ -138,7 +147,7 @@ t_catchEnEspera* buscarCatch(uint32_t idCorrelativo);
 t_dist *setearDistanciaEntrenadores(int id,int posX,int posY);
 t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivosEntrenador,
 		char *pokemonesEntrenador, float estInicialEntrenador);
-t_entrenador* entrenadorMasCercanoEnEspera(int posX,int posY);
+int entrenadorMasCercanoEnEspera(int posX,int posY);
 t_entrenador* entrenadorConMenorRafaga();
 t_list *obtenerEntrenadoresReady();
 t_mensaje* deserializar(void* paquete);
@@ -183,6 +192,7 @@ void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador);
 void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador);
 void esperarMensajesGameboy(int* socketSuscripcion);
 void crearHiloPlanificador();
+void escaneoDeDeadlock();
 int crearConexionClienteConReintento(char * ip, char * puerto, int tiempoDeEspera);
 
 //uint32_t obtenerIdDelProceso(char* ip, char* puerto);

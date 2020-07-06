@@ -70,11 +70,11 @@ bool menorDist(void *dist1, void *dist2) {
 bool puedaAtraparPokemones(t_entrenador *entrenador){
 	return list_size(entrenador->pokemones) < list_size(entrenador->objetivos);
 }
-
-t_entrenador *entrenadorMasCercanoEnEspera(int posX, int posY) {
+int entrenadorMasCercanoEnEspera(int posX, int posY) {
 	t_list* listaDistancias = list_create();
 	t_dist *distancia = malloc(sizeof(t_dist));
-	int idEntrenadorConDistMenor;
+	int idEntrenadorConDistMenor = -1;
+	int idEntrenadorAux;
 	int j = 0;
 
 	for (int i = 0; i < list_size(team->entrenadores); i++) {
@@ -84,18 +84,24 @@ t_entrenador *entrenadorMasCercanoEnEspera(int posX, int posY) {
 
 	list_sort(listaDistancias, menorDist);
 
-	while(listaDistancias){
-		idEntrenadorConDistMenor = ((t_dist*) list_get(listaDistancias, j))->id;
+	while(j < list_size(listaDistancias)){
+		log_error(logger,"Comienza la vuelta %d del while",j);
 
-		if(estaEnEspera(((t_entrenador*) list_get(team->entrenadores,idEntrenadorConDistMenor))) &&
-				puedaAtraparPokemones((t_entrenador*)list_get(team->entrenadores,idEntrenadorConDistMenor)))
+		idEntrenadorAux = ((t_dist*) list_get(listaDistancias, j))->id;
+
+		if(estaEnEspera(((t_entrenador*) list_get(team->entrenadores,idEntrenadorAux))) &&
+				puedaAtraparPokemones((t_entrenador*)list_get(team->entrenadores,idEntrenadorAux))){
+			idEntrenadorConDistMenor = idEntrenadorAux;
 			break;
+		}
+
+		log_error(logger,"Se completo la vuelta %d del while",j);
+
 		j++;
 	}//esta estructura se fija si el entrenador esta en espera.
 
-	//problema: si no tengo ningun entrenador en espera se queda en el while?
-	return ((t_entrenador*) list_get(team->entrenadores,
-			idEntrenadorConDistMenor));
+	return idEntrenadorConDistMenor;
+
 }
 
 t_list *obtenerEntrenadoresReady(){
@@ -134,16 +140,28 @@ bool noSeCumplieronLosObjetivos(){
 
 
 void ponerEnReadyAlMasCercano(int x, int y, char* pokemon){
-	t_entrenador* entrenadorMasCercano = malloc(sizeof(t_entrenador));
+	t_entrenador* entrenadorMasCercano;
+	int idEntrenadorMasCercano;
 
-	entrenadorMasCercano = entrenadorMasCercanoEnEspera(x,y);
-	sem_wait(&mutexEntrenadores);
-	entrenadorMasCercano->estado = LISTO;//me aseguro de que tengo uno en READY antes de llamar para planificar
-	entrenadorMasCercano->pokemonAAtrapar.pokemon = pokemon;
-	entrenadorMasCercano->pokemonAAtrapar.pos[0] = x;
-	entrenadorMasCercano->pokemonAAtrapar.pos[1] = y;
-	list_add(listaDeReady,entrenadorMasCercano);
-	sem_post(&mutexEntrenadores);
+	idEntrenadorMasCercano = entrenadorMasCercanoEnEspera(x,y);
+
+	if(idEntrenadorMasCercano != -1){
+
+		entrenadorMasCercano = (t_entrenador*) list_get(team->entrenadores,idEntrenadorMasCercano);
+
+
+		sem_wait(&mutexEntrenadores);
+		entrenadorMasCercano->estado = LISTO;//me aseguro de que tengo uno en READY antes de llamar para planificar
+		entrenadorMasCercano->pokemonAAtrapar.pokemon = pokemon;
+		entrenadorMasCercano->pokemonAAtrapar.pos[0] = x;
+		entrenadorMasCercano->pokemonAAtrapar.pos[1] = y;
+		list_add(listaDeReady,entrenadorMasCercano);
+		sem_post(&mutexEntrenadores);
+	}
+	else{
+		escaneoDeDeadlock();
+	}
+
 }
 
 float calcularEstimacion(t_entrenador* entrenador){
@@ -300,13 +318,11 @@ void planificarSJFconDesalojo(){
 			}
 }
 
-
-/*
 bool puedeExistirDeadlock(){
 	t_entrenador *entrenador;
 	bool verifica = false;
 
-	for(int i = 0; list_size(team->entrenadores);i++){
+	for(int i = 0; i < list_size(team->entrenadores);i++){
 		entrenador = list_get(team->entrenadores,i);
 
 		if(entrenador->estado == BLOQUEADO || entrenador->estado == FIN){
@@ -316,40 +332,105 @@ bool puedeExistirDeadlock(){
 	return verifica;
 }
 
-void scaneoDeDeadlock(){
+t_list *pokesNoObjetivoEnDeadlock(t_list *pokemonesPosibles,t_list *pokemonesObjetivoEntrenador){
+
+
+	bool pokesEnDeadlock(void *poke1){
+			bool verifica = false;
+			char* objetivo;
+
+			log_error(logger,"Ingresa al for para comparar objetivos con pokemones");
+
+			for(int i = 0; i < list_size(pokemonesObjetivoEntrenador);i++){
+				objetivo = list_get(pokemonesObjetivoEntrenador,i);
+
+				log_error(logger,"Pokemon: %s, Objetivo[%d]: %s",poke1,i,objetivo);
+
+				if(!string_equals_ignore_case((char*)poke1, objetivo))
+					verifica = true;
+
+			}
+
+			return verifica;
+		}
+
+	return list_filter(pokemonesPosibles,pokesEnDeadlock);
+}
+
+void resolverDeadlockPotencial(t_entrenador *entrenadorPotencial, t_entrenador *entrenadorEnDeadlock){
+	t_list *pokemonesNoObjetivoEnDeadlock = list_create();
+	t_list *pokemonesNoObjetivoPotenciales = list_create();
+
+	pokemonesNoObjetivoEnDeadlock = pokesNoObjetivoEnDeadlock(entrenadorEnDeadlock->pokemones,entrenadorEnDeadlock->objetivos);
+
+	log_error(logger,"aca1");
+
+	pokemonesNoObjetivoPotenciales = pokesNoObjetivoEnDeadlock(entrenadorPotencial->pokemones,entrenadorPotencial->objetivos);
+
+	log_error(logger,"aca2");
+
+	t_list *pokemonesAIntercambiarEntrenadorEnDeadlock = pokesNoObjetivoEnDeadlock(pokemonesNoObjetivoPotenciales,entrenadorEnDeadlock->objetivos);
+
+	t_list *pokemonesAIntercambiarpotenciales = pokesNoObjetivoEnDeadlock(pokemonesNoObjetivoEnDeadlock,entrenadorPotencial->objetivos);
+
+	if(list_size(pokemonesAIntercambiarEntrenadorEnDeadlock) != 0){
+		log_error(logger,"Llega al mutex");
+		sem_wait(&mutexEntrenadores);
+		entrenadorEnDeadlock->estado = LISTO;
+		entrenadorEnDeadlock->pokemonAAtrapar.pokemon = list_get(pokemonesAIntercambiarpotenciales,0);
+		entrenadorEnDeadlock->pokemonAAtrapar.pos[0] = entrenadorPotencial->pos[0];
+		entrenadorEnDeadlock->pokemonAAtrapar.pos[1] = entrenadorPotencial->pos[1];
+		entrenadorEnDeadlock->datosDeadlock.pokemonAIntercambiar = malloc(strlen(list_get(pokemonesAIntercambiarEntrenadorEnDeadlock,0)) + 1);
+		strcpy(entrenadorEnDeadlock->datosDeadlock.pokemonAIntercambiar,list_get(pokemonesAIntercambiarEntrenadorEnDeadlock,0));
+		entrenadorEnDeadlock->datosDeadlock.idEntrenadorAIntercambiar = entrenadorPotencial->id;
+		list_add(listaDeReady,entrenadorEnDeadlock);
+		sem_post(&mutexEntrenadores);
+		log_error(logger,"Pasa el mutex");
+		sem_post(&procesoEnReady);
+	}
+
+}
+
+void buscarEntrenadorParejaEnDeadlock(t_entrenador *entrenador){
+	t_entrenador *entrenadorPosible;
+
+	log_debug(logger,"Se Busca pareja en deadlock para entrenador %d",entrenador->id);
+
+	for(int i = 0;i < list_size(team->entrenadores);i++){
+		entrenadorPosible = list_get(team->entrenadores,i);
+
+		if(entrenadorPosible->datosDeadlock.estaEnDeadlock && entrenadorPosible->id != entrenador->id)
+			resolverDeadlockPotencial(entrenadorPosible,entrenador);
+	}
+
+}
+
+void escaneoDeDeadlock(){
+
+	log_debug(logger,"Se comienza el analisis de deadlock");
 
 	if(puedeExistirDeadlock()){
 		t_entrenador *entrenador;
-		for(int i = 0;list_size(team->entrenadores);i++){
+
+		for(int i = 0;i < list_size(team->entrenadores);i++){
 			entrenador = list_get(team->entrenadores,i);
 
-			if(list_size(entrenador->objetivos) == list_size(entrenador->pokemones && entrenador->estado != FIN))
-				resolverDeadlock(entrenador);
+			if(entrenador->cantidadMaxDePokes == list_size(entrenador->pokemones) && entrenador->estado != FIN){
+				entrenador->datosDeadlock.estaEnDeadlock = true;
+			}
+		}
+
+		for(int i = 0;i < list_size(team->entrenadores);i++){
+			entrenador = list_get(team->entrenadores,i);
+
+			if(entrenador->datosDeadlock.estaEnDeadlock){
+				sem_wait(&resolviendoDeadlock);
+				buscarEntrenadorParejaEnDeadlock(entrenador);
+			}
+
 		}
 	}
 }
-
-bool encontrarPokemonesEnDeadlock(t_entrenador *entrenadorPotencial, t_entrenador *entrenadorEnDeadlock){
-	//ya se que el entrenadorEnDeadlock tiene un pokemon que no es de el
-	//entonces tengo que fijarme cuales entrenadorEnDeadlock->pokemones no
-	//son del objetivo de entrenadorEnDeadlock y fijarme si esos pertenecen
-	//al entrenadorPotencial.
-}
-
-void resolverDeadlock(t_entrenador *entrenador){
-	t_entrenador *ePotencialEnDeadlock;
-
-	for(int i = 0;list_size(team->entrenadores);i++){
-		ePotencialEnDeadlock = list_get(team->entrenadores,i);
-
-		//if(estaEnDeadlock(ePotencialEnDeadlock,entrenador))
-			//hago las acciones para pasar a ready
-			//y ademas seteo a donde se tiene que mover
-			//y que pokemon tiene que intercambiar
-		//;
-
-	}
-}*/
 
 void planificador(){
 	switch(team->algoritmoPlanificacion){

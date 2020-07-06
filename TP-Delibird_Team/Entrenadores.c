@@ -12,8 +12,9 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivos
 			(void *) enlistar, posicionEntrenador);
 	array_iterate_element((char **) string_split(objetivosEntrenador, "|"),
 			(void *) enlistar, objetivoEntrenador);
-	array_iterate_element((char **) string_split(pokemonesEntrenador, "|"),
-			(void *) enlistar, pokemonEntrenador);
+
+	if(pokemonesEntrenador != NULL)
+		array_iterate_element((char **) string_split(pokemonesEntrenador, "|"),(void *) enlistar, pokemonEntrenador);
 
 	for (int i = 0; i < 2; i++) {
 		nuevoEntrenador->pos[i] = atoi(list_get(posicionEntrenador, i));
@@ -28,6 +29,8 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivos
 	nuevoEntrenador->datosSjf.estimadoRafagaAct = estInicialEntrenador;
 	//Pongo variable fue desalojado en true, asi en la primer vuelta el algoritmo toma las estimaciones iniciales.
 	nuevoEntrenador->datosSjf.fueDesalojado = true;
+	nuevoEntrenador->datosDeadlock.estaEnDeadlock = false;
+	nuevoEntrenador->cantidadMaxDePokes = list_size(nuevoEntrenador->objetivos);
 
 	list_destroy(posicionEntrenador);
 
@@ -135,6 +138,36 @@ bool estaEnLosObjetivos(char *pokemon){
 	return list_any_satisfy(team->objetivo,esUnObjetivo);
 }
 
+void removerPokemonDeListaSegunCondicion(t_list* lista,char *pokemon){
+
+	bool esElPokemonAAtrapar(void *poke){
+		bool verifica = false;
+
+		if(string_equals_ignore_case((char*)poke, pokemon))
+			verifica = true;
+
+		return verifica;
+	}
+
+	list_remove_by_condition(lista,esElPokemonAAtrapar);
+}
+
+void intercambiar(t_entrenador *entrenador){
+	t_entrenador *entrenadorParejaIntercambio = (t_entrenador*)list_get(team->entrenadores,entrenador->datosDeadlock.idEntrenadorAIntercambiar);
+
+	sem_wait(&mutexEntrenadores);
+	list_add(entrenador->pokemones,entrenador->datosDeadlock.pokemonAIntercambiar);
+	removerPokemonDeListaSegunCondicion(entrenadorParejaIntercambio->pokemones,entrenador->pokemonAAtrapar.pokemon);
+	list_add(entrenadorParejaIntercambio->pokemones,entrenador->datosDeadlock.pokemonAIntercambiar);
+	removerPokemonDeListaSegunCondicion(entrenador->pokemones,entrenador->datosDeadlock.pokemonAIntercambiar);
+	sem_post(&mutexEntrenadores);
+
+	removerPokemonDeListaSegunCondicion(entrenador->objetivos,entrenador->pokemonAAtrapar.pokemon);
+	removerPokemonDeListaSegunCondicion(entrenadorParejaIntercambio->objetivos,entrenador->datosDeadlock.pokemonAIntercambiar);
+
+	//TODO falta resolver el tema de si el deadlock se resolvio para el entrenador o no.
+}
+
 void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 	 while(entrenador->estado != FIN){
 			//me quedo esperando a estar en EJEC
@@ -156,19 +189,20 @@ void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 				alternadorXY = !alternadorXY;
 				usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
 			}
-			//TODO
-	//		Comentamos pokemonRecibido porke funciona con otra logica.
-	//			-acomodar appeared y caught.
+			if(!entrenador->datosDeadlock.estaEnDeadlock){
+				enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+				entrenador->estado = BLOQUEADO;
+				entrenador->suspendido = true;
+			}
+			else{
+				//aca va el intercambio entre pokemones.
+				intercambiar(entrenador);
 
-			enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-			entrenador->estado = BLOQUEADO;
-			entrenador->suspendido = true;
+				log_debug(logger,"Estoy intercambiando el pokemon %s por %s",entrenador->datosDeadlock.pokemonAIntercambiar,entrenador->pokemonAAtrapar.pokemon);
 
-			//recibir caught
-			//agrego el pokemon a la lista de pokemones del entrenador
-			//remuevo al pokempn del obetivo global????
-			//me bloqueo
 
+				sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
+			}
 			sem_post(&semPlanif);
 	 }
 }

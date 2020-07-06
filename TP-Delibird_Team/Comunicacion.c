@@ -64,36 +64,37 @@ t_catchEnEspera* buscarCatch(uint32_t idCorrelativo){
 	return list_find(idsDeCatch, encontrarCatch);
 }
 
-//Nico | Ver si tb tenemos que borrar el objetivo de los objetivos del Team
-
-/*void borrarPokemonDeObjetivos(char* pokemonAtrapado, t_list* objetivos){
-
-	bool encontrarPokemonEnObjetivos(void* pokemon){
-		if(strcmp((char*)pokemon, pokemonAtrapado) == 0){
-			return true;
-		}
-		return false;
-	}
-
-	void* pokemonABorrar = list_remove_by_condition(objetivos, encontrarPokemonEnObjetivos);
-
-	free(pokemonABorrar);
-
-}*/ //Nico | Queda sin uso. Lo dejo por si sirve para mas adelante
-
-//TODO Ver si resultado va a ser un bool, en ese caso habria que cambiar la utils tb.
-//Por ahora esta hecho tomando resultado como booleano
 void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultado){
 	if(resultado){
 		t_list* pokemonesDelEntrenador = catchProcesado->entrenadorConCatch->pokemones;
 		char* pokemonAtrapado = catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon;
 
 		enlistar(pokemonAtrapado, pokemonesDelEntrenador);
-		//borrarPokemonDeObjetivos(pokemonAtrapado, objetivosDelEntrenador);
+
+		bool esUnObjetivo(void *objetivo){
+			bool verifica = false;
+
+			if(string_equals_ignore_case((char *)objetivo, pokemonAtrapado))
+				verifica = false;
+
+			return verifica;
+		}
+
+		list_remove_by_condition(team->objetivo,esUnObjetivo);
+
+		list_remove_by_condition(catchProcesado->entrenadorConCatch->objetivos,esUnObjetivo);
+
 		//TODO falta remover el porkemon atrapado del mapa interno.
+			//--Probar este funcionamiento agregado y loggearlo.
+		//list_remove(listaPosicionesInternas,catchProcesado->entrenadorConCatch->pokemonAAtrapar);
 
 		log_info(logger, "El entrenador %d capturo un %s!", catchProcesado->entrenadorConCatch->id,
 				catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon);
+
+		log_info(logger, "El entrenador removio el pokemon %s de sus objetivos",pokemonAtrapado);
+
+		//TODO agregar escaneo de deadlock si se cumplieron los objetivos generales y
+		//	   los entrenadores no estan en fin.
 	}
 	else{
 		log_info(logger, "El entrenador %d no pudo capturar un %s :(.", catchProcesado->entrenadorConCatch->id,
@@ -103,7 +104,6 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 	catchProcesado->entrenadorConCatch->suspendido = false;
 }
 
-//TODO Ver si tiene que devolver el ID de rta
 void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 	int *socketBroker = malloc(sizeof(int));
 	*socketBroker = crearConexionClienteConReintento(ip, puerto, tiempoDeEspera);
@@ -234,7 +234,6 @@ void procesarAPPEARED(mensajeRecibido* miMensajeRecibido) {
 		log_info(logger, "Pokemon: %s", pokemonRecibido);
 
 		t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
-		posicion->pokemon = malloc(longPokemon);
 		posicion->pokemon = pokemonRecibido;
 
 		memcpy(&(posicion->pos[0]), miMensajeRecibido->mensaje+offset, sizeof(uint32_t));
@@ -245,6 +244,11 @@ void procesarAPPEARED(mensajeRecibido* miMensajeRecibido) {
 		list_add(listaPosicionesInternas, posicion);
 
 		ponerEnReadyAlMasCercano(posicion->pos[0], posicion->pos[1],pokemonRecibido);
+
+		sem_post(&procesoEnReady);
+	}
+	else{
+		log_error(logger,"No me interesa el pokemon %s",pokemonRecibido);
 	}
 
 	free(miMensajeRecibido->mensaje);
@@ -489,7 +493,7 @@ void enviarGetSegunObjetivo(char *ip, char *puerto) {
 	char *pokemon = malloc(MAXSIZE);
 
 	for (int i = 0; i < list_size(team->objetivo); i++) {
-		pokemon = list_get(team->objetivo, 0);
+		pokemon = list_get(team->objetivo, i);
 		enviarGetDePokemon(ip, puerto, pokemon);
 	}
 	free(pokemon);
