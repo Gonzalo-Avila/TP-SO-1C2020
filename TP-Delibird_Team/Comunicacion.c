@@ -84,10 +84,6 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 
 		list_remove_by_condition(catchProcesado->entrenadorConCatch->objetivos,esUnObjetivo);
 
-		//TODO falta remover el porkemon atrapado del mapa interno.
-			//--Probar este funcionamiento agregado y loggearlo.
-		//list_remove(listaPosicionesInternas,catchProcesado->entrenadorConCatch->pokemonAAtrapar);
-
 		log_info(logger, "El entrenador %d capturo un %s!", catchProcesado->entrenadorConCatch->id,
 				catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon);
 
@@ -490,12 +486,11 @@ t_mensaje* deserializar(void* paquete) {
 void enviarGetSegunObjetivo(char *ip, char *puerto) {
 	sem_wait(&conexionCreada);
 
-	char *pokemon = malloc(MAXSIZE);
+	char *pokemon;
 
 	for (int i = 0; i < list_size(team->objetivo); i++) {
 		pokemon = list_get(team->objetivo, i);
 		enviarGetDePokemon(ip, puerto, pokemon);
 	}
-	free(pokemon);
 
 }

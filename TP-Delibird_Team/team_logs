@@ -982,3 +982,493 @@
 [ERROR] 22:15:06:477 Team/(8101:8293): No coincide
 [ERROR] 22:15:06:477 Team/(8101:8293): Comparando con: Pikachu
 [ERROR] 22:15:06:477 Team/(8101:8293): No coincide
+[DEBUG] 16:48:08:717 Team/(27610:27610): Se ha iniciado un Team.
+[INFO] 16:48:09:622 Team/(27610:27610): Agregando objetivo Pikachu del entrenador 0 a los objetivos globales
+[INFO] 16:48:09:622 Team/(27610:27610): Agregando objetivo Charmander del entrenador 1 a los objetivos globales
+[INFO] 16:48:09:622 Team/(27610:27610): Agregando objetivo Squirtle del entrenador 2 a los objetivos globales
+[INFO] 16:48:10:346 Team/(27610:27610): Iniciado semáforos para entrenador 0
+[INFO] 16:48:10:347 Team/(27610:27610): Iniciado semáforos para entrenador 0
+[INFO] 16:48:10:347 Team/(27610:27610): Iniciado semáforos para entrenador 0
+[INFO] 16:48:16:60 Team/(27610:27640): Socket de escucha para Gameboy creado
+[DEBUG] 16:48:16:60 Team/(27610:27640): Esperando cliente...
+[DEBUG] 16:48:18:452 Team/(27610:27610): Conectandose al servidor...
+[DEBUG] 16:48:18:452 Team/(27610:27610): ID obtenido = 52
+[DEBUG] 16:48:18:458 Team/(27610:27643): Conectandose al servidor...
+[DEBUG] 16:48:18:458 Team/(27610:27643): Conexion creada. Socket = 6
+[DEBUG] 16:48:18:467 Team/(27610:27644): Conectandose al servidor...
+[DEBUG] 16:48:18:467 Team/(27610:27644): Conexion creada. Socket = 7
+[INFO] 16:48:18:468 Team/(27610:27610): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 16:48:18:471 Team/(27610:27646): Conectandose al servidor...
+[DEBUG] 16:48:18:471 Team/(27610:27646): Conexion creada. Socket = 8
+[DEBUG] 16:48:18:472 Team/(27610:27610): Suscripto a la cola LOCALIZED.
+[INFO] 16:48:18:472 Team/(27610:27610): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 16:48:18:482 Team/(27610:27647): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 16:48:18:487 Team/(27610:27610): Suscripto a la cola APPEARED.
+[INFO] 16:48:18:487 Team/(27610:27610): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 16:48:18:489 Team/(27610:27648): Se levanta hilo para atender al servidor en socket 7
+[DEBUG] 16:48:18:492 Team/(27610:27610): Suscripto a la cola CAUGHT.
+[DEBUG] 16:48:19:942 Team/(27610:27649): Se levanta hilo para atender al servidor en socket 8
+[DEBUG] 16:48:32:972 Team/(27610:27651): Se activa el planificador
+[DEBUG] 16:48:32:975 Team/(27610:27610): Conectandose al servidor...
+[DEBUG] 16:48:32:977 Team/(27610:27610): Enviando mensaje GET...
+[DEBUG] 16:48:32:980 Team/(27610:27610): Mensaje enviado GET :smilieface:
+[INFO] 16:48:32:980 Team/(27610:27610): Respuesta del Broker: 413
+[DEBUG] 16:48:32:980 Team/(27610:27610): Conectandose al servidor...
+[DEBUG] 16:48:32:980 Team/(27610:27610): Enviando mensaje GET...
+[DEBUG] 16:48:32:985 Team/(27610:27610): Mensaje enviado GET :smilieface:
+[INFO] 16:48:32:985 Team/(27610:27610): Respuesta del Broker: 414
+[DEBUG] 16:48:32:985 Team/(27610:27610): Conectandose al servidor...
+[DEBUG] 16:48:32:985 Team/(27610:27610): Enviando mensaje GET...
+[DEBUG] 16:48:32:989 Team/(27610:27610): Mensaje enviado GET :smilieface:
+[INFO] 16:48:32:989 Team/(27610:27610): Respuesta del Broker: 415
+[INFO] 16:48:36:656 Team/(27610:27647): Mensaje recibido: 
+
+[DEBUG] 16:48:36:668 Team/(27610:27663): Se recibio un LOCALIZED
+[DEBUG] 16:48:36:668 Team/(27610:27663): Pokemon: Pikachu
+[ERROR] 16:48:36:669 Team/(27610:27663): Comparando pokemon recibido...
+[ERROR] 16:48:36:669 Team/(27610:27663): Pokemon recibido: Pikachu
+[ERROR] 16:48:36:669 Team/(27610:27663): Comparando con: Pikachu
+[ERROR] 16:48:36:669 Team/(27610:27663): Coincide
+[ERROR] 16:48:36:669 Team/(27610:27663): Comparando con: Charmander
+[ERROR] 16:48:36:670 Team/(27610:27663): No coincide
+[ERROR] 16:48:36:670 Team/(27610:27663): Comparando con: Pikachu
+[ERROR] 16:48:36:670 Team/(27610:27663): Coincide
+[DEBUG] 16:48:36:670 Team/(27610:27663): El pokemon no me interesa o llego vacio
+[DEBUG] 16:48:36:670 Team/(27610:27663): Se proceso el LOCALIZED
+[INFO] 16:48:36:672 Team/(27610:27647): Mensaje recibido: 	
+
+[DEBUG] 16:48:36:673 Team/(27610:27664): Se recibio un LOCALIZED
+[DEBUG] 16:48:36:673 Team/(27610:27664): Pokemon: Squirtle
+[ERROR] 16:48:36:673 Team/(27610:27664): Comparando pokemon recibido...
+[ERROR] 16:48:36:674 Team/(27610:27664): Pokemon recibido: Squirtle
+[ERROR] 16:48:36:674 Team/(27610:27664): Comparando con: Pikachu
+[ERROR] 16:48:36:674 Team/(27610:27664): No coincide
+[ERROR] 16:48:36:674 Team/(27610:27664): Comparando con: Charmander
+[ERROR] 16:48:36:674 Team/(27610:27664): No coincide
+[ERROR] 16:48:36:674 Team/(27610:27664): Comparando con: Pikachu
+[ERROR] 16:48:36:674 Team/(27610:27664): No coincide
+[DEBUG] 16:48:36:674 Team/(27610:27664): El pokemon no me interesa o llego vacio
+[DEBUG] 16:48:36:675 Team/(27610:27664): Se proceso el LOCALIZED
+[INFO] 16:48:36:676 Team/(27610:27647): Mensaje recibido: 
+
+[DEBUG] 16:48:36:681 Team/(27610:27665): Se recibio un LOCALIZED
+[DEBUG] 16:48:36:681 Team/(27610:27665): Pokemon: Charmander
+[ERROR] 16:48:36:682 Team/(27610:27665): Comparando pokemon recibido...
+[ERROR] 16:48:36:682 Team/(27610:27665): Pokemon recibido: Charmander
+[ERROR] 16:48:36:682 Team/(27610:27665): Comparando con: Pikachu
+[ERROR] 16:48:36:682 Team/(27610:27665): No coincide
+[ERROR] 16:48:36:682 Team/(27610:27665): Comparando con: Charmander
+[ERROR] 16:48:36:682 Team/(27610:27665): Coincide
+[ERROR] 16:48:36:682 Team/(27610:27665): Comparando con: Pikachu
+[ERROR] 16:48:36:682 Team/(27610:27665): No coincide
+[DEBUG] 16:48:36:682 Team/(27610:27665): El pokemon no me interesa o llego vacio
+[DEBUG] 16:48:36:682 Team/(27610:27665): Se proceso el LOCALIZED
+[DEBUG] 16:57:29:554 Team/(28098:28098): Se ha iniciado un Team.
+[INFO] 16:57:34:191 Team/(28098:28098): Agregando objetivo Pikachu del entrenador 0 a los objetivos globales
+[INFO] 16:57:34:191 Team/(28098:28098): Agregando objetivo Charmander del entrenador 1 a los objetivos globales
+[INFO] 16:57:34:191 Team/(28098:28098): Agregando objetivo Squirtle del entrenador 2 a los objetivos globales
+[INFO] 16:57:34:191 Team/(28098:28098): En la posicion 0 esta el pokemon Squirtle
+[INFO] 16:57:34:191 Team/(28098:28098): En la posicion 1 esta el pokemon (null)
+[INFO] 16:57:34:191 Team/(28098:28098): En la posicion 2 esta el pokemon (null)
+[DEBUG] 16:59:21:494 Team/(28217:28217): Se ha iniciado un Team.
+[INFO] 16:59:23:437 Team/(28217:28217): Agregando objetivo Pikachu del entrenador 0 a los objetivos globales
+[INFO] 16:59:23:437 Team/(28217:28217): Agregando objetivo Charmander del entrenador 1 a los objetivos globales
+[INFO] 16:59:23:437 Team/(28217:28217): Agregando objetivo Squirtle del entrenador 2 a los objetivos globales
+[INFO] 16:59:23:437 Team/(28217:28217): En la posicion 0 esta el pokemon Pikachu
+[INFO] 16:59:23:437 Team/(28217:28217): En la posicion 1 esta el pokemon Charmander
+[INFO] 16:59:23:437 Team/(28217:28217): En la posicion 2 esta el pokemon Squirtle
+[INFO] 16:59:32:981 Team/(28217:28217): Iniciado semáforos para entrenador 0
+[INFO] 16:59:32:981 Team/(28217:28217): Iniciado semáforos para entrenador 0
+[INFO] 16:59:32:982 Team/(28217:28217): Iniciado semáforos para entrenador 0
+[INFO] 16:59:35:637 Team/(28217:28256): Socket de escucha para Gameboy creado
+[DEBUG] 16:59:35:637 Team/(28217:28256): Esperando cliente...
+[DEBUG] 16:59:35:637 Team/(28217:28217): Conectandose al servidor...
+[DEBUG] 16:59:35:638 Team/(28217:28217): ID obtenido = 55
+[DEBUG] 16:59:35:650 Team/(28217:28258): Conectandose al servidor...
+[DEBUG] 16:59:35:650 Team/(28217:28258): Conexion creada. Socket = 6
+[DEBUG] 16:59:35:656 Team/(28217:28259): Conectandose al servidor...
+[DEBUG] 16:59:35:656 Team/(28217:28259): Conexion creada. Socket = 7
+[INFO] 16:59:35:660 Team/(28217:28217): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 16:59:35:661 Team/(28217:28260): Conectandose al servidor...
+[DEBUG] 16:59:35:662 Team/(28217:28260): Conexion creada. Socket = 8
+[DEBUG] 16:59:35:667 Team/(28217:28217): Suscripto a la cola LOCALIZED.
+[INFO] 16:59:35:667 Team/(28217:28217): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 16:59:35:668 Team/(28217:28261): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 16:59:35:673 Team/(28217:28217): Suscripto a la cola APPEARED.
+[INFO] 16:59:35:673 Team/(28217:28217): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 16:59:35:674 Team/(28217:28262): Se levanta hilo para atender al servidor en socket 7
+[DEBUG] 16:59:35:678 Team/(28217:28217): Suscripto a la cola CAUGHT.
+[DEBUG] 16:59:38:333 Team/(28217:28263): Se levanta hilo para atender al servidor en socket 8
+[DEBUG] 16:59:38:394 Team/(28217:28267): Se activa el planificador
+[DEBUG] 16:59:40:175 Team/(28217:28217): Conectandose al servidor...
+[DEBUG] 16:59:40:176 Team/(28217:28217): Enviando mensaje GET...
+[DEBUG] 16:59:40:176 Team/(28217:28217): Mensaje enviado GET :smilieface:
+[INFO] 16:59:40:176 Team/(28217:28217): Respuesta del Broker: 419
+[DEBUG] 16:59:40:176 Team/(28217:28217): Conectandose al servidor...
+[DEBUG] 16:59:40:177 Team/(28217:28217): Enviando mensaje GET...
+[DEBUG] 16:59:40:178 Team/(28217:28217): Mensaje enviado GET :smilieface:
+[INFO] 16:59:40:178 Team/(28217:28217): Respuesta del Broker: 420
+[DEBUG] 16:59:40:178 Team/(28217:28217): Conectandose al servidor...
+[DEBUG] 16:59:40:178 Team/(28217:28217): Enviando mensaje GET...
+[DEBUG] 16:59:40:179 Team/(28217:28217): Mensaje enviado GET :smilieface:
+[INFO] 16:59:40:179 Team/(28217:28217): Respuesta del Broker: 421
+[INFO] 16:59:42:789 Team/(28217:28261): Mensaje recibido: 
+
+[DEBUG] 16:59:42:789 Team/(28217:28276): Se recibio un LOCALIZED
+[DEBUG] 16:59:42:790 Team/(28217:28276): Pokemon: Pikachu
+[ERROR] 16:59:42:790 Team/(28217:28276): Comparando pokemon recibido...
+[ERROR] 16:59:42:790 Team/(28217:28276): Pokemon recibido: Pikachu
+[ERROR] 16:59:42:790 Team/(28217:28276): Comparando con: Pikachu
+[ERROR] 16:59:42:790 Team/(28217:28276): Coincide
+[ERROR] 16:59:42:790 Team/(28217:28276): Comparando con: Charmander
+[ERROR] 16:59:42:790 Team/(28217:28276): No coincide
+[ERROR] 16:59:42:790 Team/(28217:28276): Comparando con: Pikachu
+[ERROR] 16:59:42:790 Team/(28217:28276): Coincide
+[DEBUG] 16:59:42:790 Team/(28217:28276): El pokemon no me interesa o llego vacio
+[DEBUG] 16:59:42:790 Team/(28217:28276): Se proceso el LOCALIZED
+[INFO] 16:59:42:790 Team/(28217:28261): Mensaje recibido: 	
+
+[DEBUG] 16:59:42:794 Team/(28217:28278): Se recibio un LOCALIZED
+[DEBUG] 16:59:42:794 Team/(28217:28278): Pokemon: Squirtle
+[ERROR] 16:59:42:794 Team/(28217:28278): Comparando pokemon recibido...
+[ERROR] 16:59:42:794 Team/(28217:28278): Pokemon recibido: Squirtle
+[ERROR] 16:59:42:794 Team/(28217:28278): Comparando con: Pikachu
+[ERROR] 16:59:42:794 Team/(28217:28278): No coincide
+[ERROR] 16:59:42:794 Team/(28217:28278): Comparando con: Charmander
+[ERROR] 16:59:42:794 Team/(28217:28278): No coincide
+[ERROR] 16:59:42:794 Team/(28217:28278): Comparando con: Pikachu
+[ERROR] 16:59:42:794 Team/(28217:28278): No coincide
+[DEBUG] 16:59:42:794 Team/(28217:28278): El pokemon no me interesa o llego vacio
+[DEBUG] 16:59:42:794 Team/(28217:28278): Se proceso el LOCALIZED
+[INFO] 16:59:42:800 Team/(28217:28261): Mensaje recibido: 
+
+[DEBUG] 16:59:42:803 Team/(28217:28279): Se recibio un LOCALIZED
+[DEBUG] 16:59:42:803 Team/(28217:28279): Pokemon: Charmander
+[ERROR] 16:59:42:803 Team/(28217:28279): Comparando pokemon recibido...
+[ERROR] 16:59:42:803 Team/(28217:28279): Pokemon recibido: Charmander
+[ERROR] 16:59:42:803 Team/(28217:28279): Comparando con: Pikachu
+[ERROR] 16:59:42:803 Team/(28217:28279): No coincide
+[ERROR] 16:59:42:804 Team/(28217:28279): Comparando con: Charmander
+[ERROR] 16:59:42:804 Team/(28217:28279): Coincide
+[ERROR] 16:59:42:804 Team/(28217:28279): Comparando con: Pikachu
+[ERROR] 16:59:42:804 Team/(28217:28279): No coincide
+[DEBUG] 16:59:42:804 Team/(28217:28279): El pokemon no me interesa o llego vacio
+[DEBUG] 16:59:42:804 Team/(28217:28279): Se proceso el LOCALIZED
+[DEBUG] 17:03:42:938 Team/(28411:28411): Se ha iniciado un Team.
+[INFO] 17:03:44:338 Team/(28411:28411): Agregando objetivo Pikachu del entrenador 0 a los objetivos globales
+[INFO] 17:03:44:338 Team/(28411:28411): Agregando objetivo Charmander del entrenador 1 a los objetivos globales
+[INFO] 17:03:44:338 Team/(28411:28411): Agregando objetivo Squirtle del entrenador 2 a los objetivos globales
+[INFO] 17:03:46:113 Team/(28411:28411): Iniciado semáforos para entrenador 0
+[INFO] 17:03:46:114 Team/(28411:28411): Iniciado semáforos para entrenador 0
+[INFO] 17:03:46:114 Team/(28411:28411): Iniciado semáforos para entrenador 0
+[INFO] 17:03:47:414 Team/(28411:28442): Socket de escucha para Gameboy creado
+[DEBUG] 17:03:47:414 Team/(28411:28442): Esperando cliente...
+[DEBUG] 17:03:48:98 Team/(28411:28411): Conectandose al servidor...
+[DEBUG] 17:03:48:99 Team/(28411:28411): ID obtenido = 57
+[DEBUG] 17:03:48:113 Team/(28411:28445): Conectandose al servidor...
+[DEBUG] 17:03:48:113 Team/(28411:28445): Conexion creada. Socket = 6
+[DEBUG] 17:03:48:116 Team/(28411:28446): Conectandose al servidor...
+[DEBUG] 17:03:48:116 Team/(28411:28446): Conexion creada. Socket = 7
+[INFO] 17:03:48:123 Team/(28411:28411): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 17:03:48:130 Team/(28411:28447): Conectandose al servidor...
+[DEBUG] 17:03:48:130 Team/(28411:28447): Conexion creada. Socket = 8
+[DEBUG] 17:03:48:133 Team/(28411:28411): Suscripto a la cola LOCALIZED.
+[INFO] 17:03:48:133 Team/(28411:28411): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 17:03:48:134 Team/(28411:28448): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 17:03:48:137 Team/(28411:28411): Suscripto a la cola APPEARED.
+[INFO] 17:03:48:137 Team/(28411:28411): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 17:03:48:138 Team/(28411:28449): Se levanta hilo para atender al servidor en socket 7
+[DEBUG] 17:03:48:140 Team/(28411:28411): Suscripto a la cola CAUGHT.
+[DEBUG] 17:03:48:609 Team/(28411:28450): Se levanta hilo para atender al servidor en socket 8
+[DEBUG] 17:03:48:655 Team/(28411:28452): Se activa el planificador
+[DEBUG] 17:03:50:349 Team/(28411:28411): Conectandose al servidor...
+[DEBUG] 17:03:50:350 Team/(28411:28411): Enviando mensaje GET...
+[DEBUG] 17:03:50:352 Team/(28411:28411): Mensaje enviado GET :smilieface:
+[INFO] 17:03:50:352 Team/(28411:28411): Respuesta del Broker: 425
+[DEBUG] 17:03:50:352 Team/(28411:28411): Conectandose al servidor...
+[DEBUG] 17:03:50:352 Team/(28411:28411): Enviando mensaje GET...
+[DEBUG] 17:03:50:355 Team/(28411:28411): Mensaje enviado GET :smilieface:
+[INFO] 17:03:50:356 Team/(28411:28411): Respuesta del Broker: 426
+[DEBUG] 17:03:50:356 Team/(28411:28411): Conectandose al servidor...
+[DEBUG] 17:03:50:356 Team/(28411:28411): Enviando mensaje GET...
+[DEBUG] 17:03:50:358 Team/(28411:28411): Mensaje enviado GET :smilieface:
+[INFO] 17:03:50:358 Team/(28411:28411): Respuesta del Broker: 427
+[INFO] 17:03:53:528 Team/(28411:28448): Mensaje recibido: 
+
+[DEBUG] 17:03:53:528 Team/(28411:28462): Se recibio un LOCALIZED
+[DEBUG] 17:03:53:529 Team/(28411:28462): Pokemon: Charmander
+[ERROR] 17:03:53:529 Team/(28411:28462): Comparando pokemon recibido...
+[ERROR] 17:03:53:529 Team/(28411:28462): Pokemon recibido: Charmander
+[INFO] 17:03:53:529 Team/(28411:28462): En la posicion 0 esta el pokemon Pikachu
+[INFO] 17:03:53:529 Team/(28411:28462): En la posicion 1 esta el pokemon Charmander
+[INFO] 17:03:53:529 Team/(28411:28462): En la posicion 2 esta el pokemon Charmander
+[ERROR] 17:03:53:529 Team/(28411:28462): Comparando con: Pikachu
+[ERROR] 17:03:53:529 Team/(28411:28462): No coincide
+[ERROR] 17:03:53:530 Team/(28411:28462): Comparando con: Charmander
+[ERROR] 17:03:53:530 Team/(28411:28462): Coincide
+[ERROR] 17:03:53:530 Team/(28411:28462): Comparando con: Charmander
+[ERROR] 17:03:53:530 Team/(28411:28462): Coincide
+[DEBUG] 17:03:53:530 Team/(28411:28462): El pokemon no me interesa o llego vacio
+[DEBUG] 17:03:53:530 Team/(28411:28462): Se proceso el LOCALIZED
+[INFO] 17:03:53:536 Team/(28411:28448): Mensaje recibido: 	
+
+[DEBUG] 17:03:53:537 Team/(28411:28465): Se recibio un LOCALIZED
+[DEBUG] 17:03:53:537 Team/(28411:28465): Pokemon: Squirtle
+[ERROR] 17:03:53:537 Team/(28411:28465): Comparando pokemon recibido...
+[ERROR] 17:03:53:537 Team/(28411:28465): Pokemon recibido: Squirtle
+[INFO] 17:03:53:537 Team/(28411:28465): En la posicion 0 esta el pokemon Pikachu
+[INFO] 17:03:53:537 Team/(28411:28465): En la posicion 1 esta el pokemon Charmander
+[INFO] 17:03:53:537 Team/(28411:28465): En la posicion 2 esta el pokemon Charmander
+[ERROR] 17:03:53:537 Team/(28411:28465): Comparando con: Pikachu
+[ERROR] 17:03:53:537 Team/(28411:28465): No coincide
+[ERROR] 17:03:53:537 Team/(28411:28465): Comparando con: Charmander
+[ERROR] 17:03:53:537 Team/(28411:28465): No coincide
+[ERROR] 17:03:53:538 Team/(28411:28465): Comparando con: Charmander
+[ERROR] 17:03:53:542 Team/(28411:28465): No coincide
+[DEBUG] 17:03:53:542 Team/(28411:28465): El pokemon no me interesa o llego vacio
+[DEBUG] 17:03:53:542 Team/(28411:28465): Se proceso el LOCALIZED
+[INFO] 17:03:53:543 Team/(28411:28448): Mensaje recibido: 
+
+[DEBUG] 17:03:53:544 Team/(28411:28466): Se recibio un LOCALIZED
+[DEBUG] 17:03:53:544 Team/(28411:28466): Pokemon: Pikachu
+[ERROR] 17:03:53:544 Team/(28411:28466): Comparando pokemon recibido...
+[ERROR] 17:03:53:544 Team/(28411:28466): Pokemon recibido: Pikachu
+[INFO] 17:03:53:544 Team/(28411:28466): En la posicion 0 esta el pokemon Pikachu
+[INFO] 17:03:53:544 Team/(28411:28466): En la posicion 1 esta el pokemon Charmander
+[INFO] 17:03:53:544 Team/(28411:28466): En la posicion 2 esta el pokemon Charmander
+[ERROR] 17:03:53:544 Team/(28411:28466): Comparando con: Pikachu
+[ERROR] 17:03:53:544 Team/(28411:28466): Coincide
+[ERROR] 17:03:53:544 Team/(28411:28466): Comparando con: Charmander
+[ERROR] 17:03:53:544 Team/(28411:28466): No coincide
+[ERROR] 17:03:53:544 Team/(28411:28466): Comparando con: Charmander
+[ERROR] 17:03:53:544 Team/(28411:28466): No coincide
+[DEBUG] 17:03:53:544 Team/(28411:28466): El pokemon no me interesa o llego vacio
+[DEBUG] 17:03:53:544 Team/(28411:28466): Se proceso el LOCALIZED
+[DEBUG] 17:07:44:380 Team/(28605:28605): Se ha iniciado un Team.
+[INFO] 17:07:45:357 Team/(28605:28605): Agregando objetivo Pikachu del entrenador 0 a los objetivos globales
+[INFO] 17:07:45:357 Team/(28605:28605): Agregando objetivo Charmander del entrenador 1 a los objetivos globales
+[INFO] 17:07:45:357 Team/(28605:28605): Agregando objetivo Squirtle del entrenador 2 a los objetivos globales
+[INFO] 17:07:45:741 Team/(28605:28605): Iniciado semáforos para entrenador 0
+[INFO] 17:07:45:741 Team/(28605:28605): Iniciado semáforos para entrenador 0
+[INFO] 17:07:45:741 Team/(28605:28605): Iniciado semáforos para entrenador 0
+[INFO] 17:07:48:349 Team/(28605:28634): Socket de escucha para Gameboy creado
+[DEBUG] 17:07:48:350 Team/(28605:28634): Esperando cliente...
+[DEBUG] 17:07:48:350 Team/(28605:28605): Conectandose al servidor...
+[DEBUG] 17:07:48:351 Team/(28605:28605): ID obtenido = 59
+[DEBUG] 17:07:48:356 Team/(28605:28637): Conectandose al servidor...
+[DEBUG] 17:07:48:357 Team/(28605:28637): Conexion creada. Socket = 6
+[DEBUG] 17:07:48:359 Team/(28605:28638): Conectandose al servidor...
+[DEBUG] 17:07:48:360 Team/(28605:28638): Conexion creada. Socket = 7
+[INFO] 17:07:48:367 Team/(28605:28605): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 17:07:48:368 Team/(28605:28639): Conectandose al servidor...
+[DEBUG] 17:07:48:368 Team/(28605:28639): Conexion creada. Socket = 8
+[DEBUG] 17:07:48:368 Team/(28605:28605): Suscripto a la cola LOCALIZED.
+[INFO] 17:07:48:368 Team/(28605:28605): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 17:07:48:368 Team/(28605:28640): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 17:07:48:382 Team/(28605:28605): Suscripto a la cola APPEARED.
+[INFO] 17:07:48:382 Team/(28605:28605): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 17:07:48:383 Team/(28605:28641): Se levanta hilo para atender al servidor en socket 7
+[DEBUG] 17:07:48:388 Team/(28605:28605): Suscripto a la cola CAUGHT.
+[DEBUG] 17:07:49:140 Team/(28605:28642): Se levanta hilo para atender al servidor en socket 8
+[DEBUG] 17:07:49:176 Team/(28605:28645): Se activa el planificador
+[DEBUG] 17:07:52:21 Team/(28605:28605): Conectandose al servidor...
+[DEBUG] 17:07:52:23 Team/(28605:28605): Enviando mensaje GET...
+[DEBUG] 17:07:52:23 Team/(28605:28605): Mensaje enviado GET :smilieface:
+[INFO] 17:07:52:23 Team/(28605:28605): Respuesta del Broker: 431
+[DEBUG] 17:07:52:23 Team/(28605:28605): Conectandose al servidor...
+[DEBUG] 17:07:52:23 Team/(28605:28605): Enviando mensaje GET...
+[DEBUG] 17:07:52:24 Team/(28605:28605): Mensaje enviado GET :smilieface:
+[INFO] 17:07:52:24 Team/(28605:28605): Respuesta del Broker: 432
+[DEBUG] 17:07:52:24 Team/(28605:28605): Conectandose al servidor...
+[DEBUG] 17:07:52:24 Team/(28605:28605): Enviando mensaje GET...
+[DEBUG] 17:07:52:27 Team/(28605:28605): Mensaje enviado GET :smilieface:
+[INFO] 17:07:52:27 Team/(28605:28605): Respuesta del Broker: 433
+[INFO] 17:07:52:205 Team/(28605:28640): Mensaje recibido: 
+
+[DEBUG] 17:07:52:206 Team/(28605:28653): Se recibio un LOCALIZED
+[DEBUG] 17:07:52:207 Team/(28605:28653): Pokemon: Pikachu
+[ERROR] 17:07:52:207 Team/(28605:28653): Comparando pokemon recibido...
+[ERROR] 17:07:52:207 Team/(28605:28653): Pokemon recibido: Pikachu
+[INFO] 17:07:52:207 Team/(28605:28653): En la posicion 0 esta el pokemon Pikachu
+[INFO] 17:07:52:207 Team/(28605:28653): En la posicion 1 esta el pokemon Charmander
+[INFO] 17:07:52:207 Team/(28605:28653): En la posicion 2 esta el pokemon Squirtle
+[ERROR] 17:07:52:207 Team/(28605:28653): Comparando con: Pikachu
+[ERROR] 17:07:52:207 Team/(28605:28653): Coincide
+[ERROR] 17:07:52:207 Team/(28605:28653): Comparando con: Charmander
+[ERROR] 17:07:52:207 Team/(28605:28653): No coincide
+[ERROR] 17:07:52:208 Team/(28605:28653): Comparando con: Squirtle
+[ERROR] 17:07:52:208 Team/(28605:28653): No coincide
+[DEBUG] 17:07:52:208 Team/(28605:28653): El pokemon no me interesa o llego vacio
+[DEBUG] 17:07:52:208 Team/(28605:28653): Se proceso el LOCALIZED
+[INFO] 17:07:52:215 Team/(28605:28640): Mensaje recibido: 	
+
+[DEBUG] 17:07:52:215 Team/(28605:28654): Se recibio un LOCALIZED
+[DEBUG] 17:07:52:215 Team/(28605:28654): Pokemon: Squirtle
+[ERROR] 17:07:52:215 Team/(28605:28654): Comparando pokemon recibido...
+[ERROR] 17:07:52:215 Team/(28605:28654): Pokemon recibido: Squirtle
+[INFO] 17:07:52:216 Team/(28605:28654): En la posicion 0 esta el pokemon Pikachu
+[INFO] 17:07:52:216 Team/(28605:28654): En la posicion 1 esta el pokemon Charmander
+[INFO] 17:07:52:216 Team/(28605:28654): En la posicion 2 esta el pokemon Squirtle
+[ERROR] 17:07:52:216 Team/(28605:28654): Comparando con: Pikachu
+[ERROR] 17:07:52:216 Team/(28605:28654): No coincide
+[ERROR] 17:07:52:216 Team/(28605:28654): Comparando con: Charmander
+[ERROR] 17:07:52:216 Team/(28605:28654): No coincide
+[ERROR] 17:07:52:216 Team/(28605:28654): Comparando con: Squirtle
+[ERROR] 17:07:52:217 Team/(28605:28654): Coincide
+[DEBUG] 17:07:52:217 Team/(28605:28654): El pokemon no me interesa o llego vacio
+[DEBUG] 17:07:52:217 Team/(28605:28654): Se proceso el LOCALIZED
+[INFO] 17:07:52:219 Team/(28605:28640): Mensaje recibido: 
+
+[DEBUG] 17:07:52:221 Team/(28605:28655): Se recibio un LOCALIZED
+[DEBUG] 17:07:52:221 Team/(28605:28655): Pokemon: Charmander
+[ERROR] 17:07:52:221 Team/(28605:28655): Comparando pokemon recibido...
+[ERROR] 17:07:52:221 Team/(28605:28655): Pokemon recibido: Charmander
+[INFO] 17:07:52:221 Team/(28605:28655): En la posicion 0 esta el pokemon Pikachu
+[INFO] 17:07:52:221 Team/(28605:28655): En la posicion 1 esta el pokemon Charmander
+[INFO] 17:07:52:221 Team/(28605:28655): En la posicion 2 esta el pokemon Squirtle
+[ERROR] 17:07:52:221 Team/(28605:28655): Comparando con: Pikachu
+[ERROR] 17:07:52:221 Team/(28605:28655): No coincide
+[ERROR] 17:07:52:221 Team/(28605:28655): Comparando con: Charmander
+[ERROR] 17:07:52:221 Team/(28605:28655): Coincide
+[ERROR] 17:07:52:221 Team/(28605:28655): Comparando con: Squirtle
+[ERROR] 17:07:52:221 Team/(28605:28655): No coincide
+[DEBUG] 17:07:52:221 Team/(28605:28655): El pokemon no me interesa o llego vacio
+[DEBUG] 17:07:52:221 Team/(28605:28655): Se proceso el LOCALIZED
+[INFO] 17:08:54:339 Team/(28605:28641): Mensaje recibido: 
+
+[DEBUG] 17:08:54:349 Team/(28605:28665): Se recibio un APPEARED
+[ERROR] 17:08:54:349 Team/(28605:28665): Comparando pokemon recibido...
+[ERROR] 17:08:54:349 Team/(28605:28665): Pokemon recibido: Pikachu
+[INFO] 17:08:54:349 Team/(28605:28665): En la posicion 0 esta el pokemon Pikachu
+[INFO] 17:08:54:350 Team/(28605:28665): En la posicion 1 esta el pokemon Charmander
+[INFO] 17:08:54:350 Team/(28605:28665): En la posicion 2 esta el pokemon Squirtle
+[ERROR] 17:08:54:350 Team/(28605:28665): Comparando con: Pikachu
+[ERROR] 17:08:54:350 Team/(28605:28665): Coincide
+[ERROR] 17:08:54:351 Team/(28605:28665): Comparando con: Charmander
+[ERROR] 17:08:54:351 Team/(28605:28665): No coincide
+[ERROR] 17:08:54:351 Team/(28605:28665): Comparando con: Squirtle
+[ERROR] 17:08:54:351 Team/(28605:28665): No coincide
+[DEBUG] 17:08:54:351 Team/(28605:28665): El pokemon esta en nuestro objetivo
+[INFO] 17:08:54:351 Team/(28605:28665): Pokemon: Pikachu
+[ERROR] 17:08:54:352 Team/(28605:28665): Comienza la vuelta 0 del while
+[DEBUG] 17:08:54:352 Team/(28605:28645): Hurra, tengo algo en ready
+[DEBUG] 17:08:54:352 Team/(28605:28631): El entrenador id: 1 esta en la posicion [4,3]
+[DEBUG] 17:08:57:352 Team/(28605:28631): Conectandose al servidor...
+[DEBUG] 17:08:57:355 Team/(28605:28631): Enviando mensaje CATCH...
+[DEBUG] 17:08:57:357 Team/(28605:28631): Mensaje enviado CATCH :smilieface:
+[INFO] 17:08:57:357 Team/(28605:28631): ID del CATCH recibido y guardado: 439
+[INFO] 17:08:57:396 Team/(28605:28642): Mensaje recibido: 
+
+[DEBUG] 17:08:57:397 Team/(28605:28668): Se recibio un CAUGHT
+[INFO] 17:08:57:397 Team/(28605:28668): El entrenador 1 capturo un Pikachu!
+[INFO] 17:08:57:397 Team/(28605:28668): El entrenador removio el pokemon Pikachu de sus objetivos
+[INFO] 17:09:49:390 Team/(28605:28641): Mensaje recibido: 
+
+[DEBUG] 17:09:49:403 Team/(28605:28684): Se recibio un APPEARED
+[ERROR] 17:09:49:403 Team/(28605:28684): Comparando pokemon recibido...
+[ERROR] 17:09:49:403 Team/(28605:28684): Pokemon recibido: Squirtle
+[INFO] 17:09:49:403 Team/(28605:28684): En la posicion 0 esta el pokemon Pikachu
+[INFO] 17:09:49:403 Team/(28605:28684): En la posicion 1 esta el pokemon Charmander
+[INFO] 17:09:49:403 Team/(28605:28684): En la posicion 2 esta el pokemon Squirtle
+[ERROR] 17:09:49:403 Team/(28605:28684): Comparando con: Pikachu
+[ERROR] 17:09:49:403 Team/(28605:28684): No coincide
+[ERROR] 17:09:49:403 Team/(28605:28684): Comparando con: Charmander
+[ERROR] 17:09:49:403 Team/(28605:28684): No coincide
+[ERROR] 17:09:49:403 Team/(28605:28684): Comparando con: Squirtle
+[ERROR] 17:09:49:403 Team/(28605:28684): Coincide
+[DEBUG] 17:09:49:403 Team/(28605:28684): El pokemon esta en nuestro objetivo
+[INFO] 17:09:49:403 Team/(28605:28684): Pokemon: Squirtle
+[ERROR] 17:09:49:404 Team/(28605:28684): Comienza la vuelta 0 del while
+[DEBUG] 17:09:49:404 Team/(28605:28645): Hurra, tengo algo en ready
+[DEBUG] 17:09:49:404 Team/(28605:28632): El entrenador id: 2 esta en la posicion [7,2]
+[DEBUG] 17:09:52:404 Team/(28605:28632): El entrenador id: 2 esta en la posicion [7,3]
+[DEBUG] 17:09:55:405 Team/(28605:28632): El entrenador id: 2 esta en la posicion [8,3]
+[DEBUG] 17:09:58:406 Team/(28605:28632): El entrenador id: 2 esta en la posicion [8,4]
+[DEBUG] 17:10:01:407 Team/(28605:28632): El entrenador id: 2 esta en la posicion [9,4]
+[DEBUG] 17:10:04:408 Team/(28605:28632): El entrenador id: 2 esta en la posicion [9,5]
+[DEBUG] 17:10:07:408 Team/(28605:28632): El entrenador id: 2 esta en la posicion [9,6]
+[DEBUG] 17:10:10:409 Team/(28605:28632): Conectandose al servidor...
+[DEBUG] 17:10:10:411 Team/(28605:28632): Enviando mensaje CATCH...
+[DEBUG] 17:10:10:412 Team/(28605:28632): Mensaje enviado CATCH :smilieface:
+[INFO] 17:10:10:412 Team/(28605:28632): ID del CATCH recibido y guardado: 443
+[INFO] 17:10:10:425 Team/(28605:28642): Mensaje recibido: 
+
+[DEBUG] 17:10:10:435 Team/(28605:28695): Se recibio un CAUGHT
+[INFO] 17:10:10:435 Team/(28605:28695): El entrenador 2 capturo un Squirtle!
+[INFO] 17:10:10:435 Team/(28605:28695): El entrenador removio el pokemon Squirtle de sus objetivos
+[INFO] 17:10:44:492 Team/(28605:28641): Mensaje recibido: 
+
+
+[DEBUG] 17:10:44:495 Team/(28605:28705): Se recibio un APPEARED
+[ERROR] 17:10:44:495 Team/(28605:28705): Comparando pokemon recibido...
+[ERROR] 17:10:44:495 Team/(28605:28705): Pokemon recibido: Charmander
+[INFO] 17:10:44:495 Team/(28605:28705): En la posicion 0 esta el pokemon Pikachu
+[INFO] 17:10:44:495 Team/(28605:28705): En la posicion 1 esta el pokemon Charmander
+[INFO] 17:10:44:495 Team/(28605:28705): En la posicion 2 esta el pokemon Squirtle
+[ERROR] 17:10:44:495 Team/(28605:28705): Comparando con: Pikachu
+[ERROR] 17:10:44:495 Team/(28605:28705): No coincide
+[ERROR] 17:10:44:495 Team/(28605:28705): Comparando con: Charmander
+[ERROR] 17:10:44:495 Team/(28605:28705): Coincide
+[ERROR] 17:10:44:495 Team/(28605:28705): Comparando con: Squirtle
+[ERROR] 17:10:44:495 Team/(28605:28705): No coincide
+[DEBUG] 17:10:44:495 Team/(28605:28705): El pokemon esta en nuestro objetivo
+[INFO] 17:10:44:496 Team/(28605:28705): Pokemon: Charmander
+[ERROR] 17:10:44:496 Team/(28605:28705): Comienza la vuelta 0 del while
+[ERROR] 17:10:44:496 Team/(28605:28705): Se completo la vuelta 0 del while
+[ERROR] 17:10:44:496 Team/(28605:28705): Comienza la vuelta 1 del while
+[ERROR] 17:10:44:496 Team/(28605:28705): Se completo la vuelta 1 del while
+[ERROR] 17:10:44:496 Team/(28605:28705): Comienza la vuelta 2 del while
+[DEBUG] 17:10:44:496 Team/(28605:28645): Hurra, tengo algo en ready
+[DEBUG] 17:10:44:496 Team/(28605:28630): El entrenador id: 0 esta en la posicion [2,2]
+[DEBUG] 17:10:47:496 Team/(28605:28630): El entrenador id: 0 esta en la posicion [2,3]
+[DEBUG] 17:10:50:497 Team/(28605:28630): El entrenador id: 0 esta en la posicion [3,3]
+[DEBUG] 17:10:53:498 Team/(28605:28630): El entrenador id: 0 esta en la posicion [3,4]
+[DEBUG] 17:10:56:499 Team/(28605:28630): El entrenador id: 0 esta en la posicion [4,4]
+[DEBUG] 17:10:59:500 Team/(28605:28630): El entrenador id: 0 esta en la posicion [4,5]
+[DEBUG] 17:11:02:501 Team/(28605:28630): El entrenador id: 0 esta en la posicion [5,5]
+[DEBUG] 17:11:05:502 Team/(28605:28630): El entrenador id: 0 esta en la posicion [5,6]
+[INFO] 17:11:06:582 Team/(28605:28641): Mensaje recibido: 
+
+[DEBUG] 17:11:06:585 Team/(28605:28719): Se recibio un APPEARED
+[ERROR] 17:11:06:585 Team/(28605:28719): Comparando pokemon recibido...
+[ERROR] 17:11:06:585 Team/(28605:28719): Pokemon recibido: Pikachu
+[INFO] 17:11:06:585 Team/(28605:28719): En la posicion 0 esta el pokemon Pikachu
+[INFO] 17:11:06:585 Team/(28605:28719): En la posicion 1 esta el pokemon Charmander
+[INFO] 17:11:06:586 Team/(28605:28719): En la posicion 2 esta el pokemon Squirtle
+[ERROR] 17:11:06:586 Team/(28605:28719): Comparando con: Pikachu
+[ERROR] 17:11:06:586 Team/(28605:28719): Coincide
+[ERROR] 17:11:06:586 Team/(28605:28719): Comparando con: Charmander
+[ERROR] 17:11:06:586 Team/(28605:28719): No coincide
+[ERROR] 17:11:06:586 Team/(28605:28719): Comparando con: Squirtle
+[ERROR] 17:11:06:586 Team/(28605:28719): No coincide
+[DEBUG] 17:11:06:586 Team/(28605:28719): El pokemon esta en nuestro objetivo
+[INFO] 17:11:06:586 Team/(28605:28719): Pokemon: Pikachu
+[ERROR] 17:11:06:586 Team/(28605:28719): Comienza la vuelta 0 del while
+[ERROR] 17:11:06:586 Team/(28605:28719): Se completo la vuelta 0 del while
+[ERROR] 17:11:06:586 Team/(28605:28719): Comienza la vuelta 1 del while
+[ERROR] 17:11:06:586 Team/(28605:28719): Se completo la vuelta 1 del while
+[ERROR] 17:11:06:586 Team/(28605:28719): Comienza la vuelta 2 del while
+[ERROR] 17:11:06:586 Team/(28605:28719): Se completo la vuelta 2 del while
+[DEBUG] 17:11:06:586 Team/(28605:28719): Se comienza el analisis de deadlock
+[DEBUG] 17:11:06:586 Team/(28605:28719): Se Busca pareja en deadlock para entrenador 1
+[ERROR] 17:11:06:586 Team/(28605:28719): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 17:11:06:586 Team/(28605:28719): Pokemon: Pikachu, Objetivo[0]: Charmander
+[ERROR] 17:11:06:586 Team/(28605:28719): aca1
+[ERROR] 17:11:06:587 Team/(28605:28719): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 17:11:06:587 Team/(28605:28719): Pokemon: Squirtle, Objetivo[0]: Squirtle
+[ERROR] 17:11:06:587 Team/(28605:28719): aca2
+[ERROR] 17:11:06:587 Team/(28605:28719): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 17:11:06:587 Team/(28605:28719): Pokemon: Pikachu, Objetivo[0]: Squirtle
+[DEBUG] 17:11:08:502 Team/(28605:28630): El entrenador id: 0 esta en la posicion [6,6]
+[DEBUG] 17:11:11:503 Team/(28605:28630): El entrenador id: 0 esta en la posicion [7,6]
+[DEBUG] 17:11:14:503 Team/(28605:28630): El entrenador id: 0 esta en la posicion [8,6]
+[DEBUG] 17:11:17:504 Team/(28605:28630): El entrenador id: 0 esta en la posicion [9,6]
+[DEBUG] 17:11:20:505 Team/(28605:28630): Conectandose al servidor...
+[DEBUG] 17:11:20:505 Team/(28605:28630): Enviando mensaje CATCH...
+[DEBUG] 17:11:20:506 Team/(28605:28630): Mensaje enviado CATCH :smilieface:
+[INFO] 17:11:20:506 Team/(28605:28630): ID del CATCH recibido y guardado: 449
+[INFO] 17:11:20:538 Team/(28605:28642): Mensaje recibido: 
+
+[DEBUG] 17:11:20:546 Team/(28605:28725): Se recibio un CAUGHT
+[INFO] 17:11:20:546 Team/(28605:28725): El entrenador 0 capturo un Charmander!
+[INFO] 17:11:20:546 Team/(28605:28725): El entrenador removio el pokemon Charmander de sus objetivos

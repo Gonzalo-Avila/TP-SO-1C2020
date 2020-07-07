@@ -137,7 +137,6 @@ int main() {
 
 	crearHilosDeEntrenadores();
 
-
 	//Creo conexion con Gameboy
 	conectarGameboy();
 

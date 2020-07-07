@@ -31,6 +31,8 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivos
 	nuevoEntrenador->datosSjf.fueDesalojado = true;
 	nuevoEntrenador->datosDeadlock.estaEnDeadlock = false;
 	nuevoEntrenador->cantidadMaxDePokes = list_size(nuevoEntrenador->objetivos);
+	nuevoEntrenador->pokemonAAtrapar.pokemon = malloc(MAXSIZE);
+	nuevoEntrenador->datosDeadlock.pokemonAIntercambiar = malloc(MAXSIZE);
 
 	list_destroy(posicionEntrenador);
 
@@ -64,11 +66,14 @@ void setearObjetivosDeTeam() {
 
 	for (int i = 0; i < list_size(team->entrenadores); i++) {
 		entrenador = list_get(team->entrenadores, i);
+
 		for (int j = 0; j < list_size(entrenador->objetivos); j++) {
 			log_info(logger,"Agregando objetivo %s del entrenador %d a los objetivos globales",(char*)list_get(entrenador->objetivos,j),i);
+
 			list_add(team->objetivo, list_get(entrenador->objetivos, j));
 		}
 	}
+
 }
 
 void crearHiloEntrenador(t_entrenador* entrenador) {
@@ -128,6 +133,11 @@ void moverYDelEntrenador(t_entrenador *entrenador){
 bool estaEnLosObjetivos(char *pokemon){
 	log_error(logger,"Comparando pokemon recibido...");
 	log_error(logger,"Pokemon recibido: %s",pokemon);
+
+	for (int j = 0; j < list_size(team->objetivo); j++) {
+		log_info(logger,"En la posicion %d esta el pokemon %s",j, (char *)list_get(team->objetivo, j));
+	}
+
 	bool esUnObjetivo(void *elemento) {
 		bool verifica = false;
 
@@ -142,7 +152,7 @@ bool estaEnLosObjetivos(char *pokemon){
 		return verifica;
 	}
 
-	return list_any_satisfy(team->objetivo,(void*)esUnObjetivo);
+	return list_any_satisfy(team->objetivo,esUnObjetivo);
 }
 
 void removerPokemonDeListaSegunCondicion(t_list* lista,char *pokemon){
@@ -163,7 +173,7 @@ void intercambiar(t_entrenador *entrenador){
 	t_entrenador *entrenadorParejaIntercambio = (t_entrenador*)list_get(team->entrenadores,entrenador->datosDeadlock.idEntrenadorAIntercambiar);
 
 	sem_wait(&mutexEntrenadores);
-	list_add(entrenador->pokemones,entrenador->datosDeadlock.pokemonAIntercambiar);
+	list_add(entrenador->pokemones,entrenador->pokemonAAtrapar.pokemon);
 	removerPokemonDeListaSegunCondicion(entrenadorParejaIntercambio->pokemones,entrenador->pokemonAAtrapar.pokemon);
 	list_add(entrenadorParejaIntercambio->pokemones,entrenador->datosDeadlock.pokemonAIntercambiar);
 	removerPokemonDeListaSegunCondicion(entrenador->pokemones,entrenador->datosDeadlock.pokemonAIntercambiar);
@@ -172,7 +182,6 @@ void intercambiar(t_entrenador *entrenador){
 	removerPokemonDeListaSegunCondicion(entrenador->objetivos,entrenador->pokemonAAtrapar.pokemon);
 	removerPokemonDeListaSegunCondicion(entrenadorParejaIntercambio->objetivos,entrenador->datosDeadlock.pokemonAIntercambiar);
 
-	//TODO falta resolver el tema de si el deadlock se resolvio para el entrenador o no.
 }
 
 void gestionarEntrenadorFIFO(t_entrenador *entrenador){
@@ -184,7 +193,6 @@ void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 			while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
 				sem_wait(&mutexEntrenadores);
 
-	//			Nico | Separado en X e Y para cumplir con el requerimiento que prohibe los movimientos diagonales.
 				if(alternadorXY){
 					moverXDelEntrenador(entrenador);
 				}
@@ -203,10 +211,12 @@ void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 			}
 			else{
 				//aca va el intercambio entre pokemones.
-				intercambiar(entrenador);
 
 				log_debug(logger,"Estoy intercambiando el pokemon %s por %s",entrenador->datosDeadlock.pokemonAIntercambiar,entrenador->pokemonAAtrapar.pokemon);
 
+				intercambiar(entrenador);
+
+				log_debug(logger,"Estoy intercambiando el pokemon %s por %s",entrenador->datosDeadlock.pokemonAIntercambiar,entrenador->pokemonAAtrapar.pokemon);
 
 				sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
 			}
