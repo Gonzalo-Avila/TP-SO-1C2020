@@ -60,11 +60,12 @@ void generarEntrenadores() {
 }
 
 void setearObjetivosDeTeam() {
-	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+	t_entrenador *entrenador;
 
 	for (int i = 0; i < list_size(team->entrenadores); i++) {
 		entrenador = list_get(team->entrenadores, i);
 		for (int j = 0; j < list_size(entrenador->objetivos); j++) {
+			log_info(logger,"Agregando objetivo %s del entrenador %d a los objetivos globales",(char*)list_get(entrenador->objetivos,j),i);
 			list_add(team->objetivo, list_get(entrenador->objetivos, j));
 		}
 	}
@@ -125,17 +126,23 @@ void moverYDelEntrenador(t_entrenador *entrenador){
 }
 
 bool estaEnLosObjetivos(char *pokemon){
-
+	log_error(logger,"Comparando pokemon recibido...");
+	log_error(logger,"Pokemon recibido: %s",pokemon);
 	bool esUnObjetivo(void *elemento) {
 		bool verifica = false;
 
+		log_error(logger,"Comparando con: %s", (char *)elemento);
 		if (string_equals_ignore_case(pokemon, (char *)elemento)) {
 			verifica = true;
+			log_error(logger,"Coincide");
+		}
+		else{
+			log_error(logger, "No coincide");
 		}
 		return verifica;
 	}
 
-	return list_any_satisfy(team->objetivo,esUnObjetivo);
+	return list_any_satisfy(team->objetivo,(void*)esUnObjetivo);
 }
 
 void removerPokemonDeListaSegunCondicion(t_list* lista,char *pokemon){

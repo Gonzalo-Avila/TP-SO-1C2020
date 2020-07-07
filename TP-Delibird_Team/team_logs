@@ -1,0 +1,984 @@
+[DEBUG] 21:05:55:522 Team/(4438:4438): Se ha iniciado un Team.
+[INFO] 21:05:58:76 Team/(4438:4438): Iniciado semáforos para entrenador 0
+[INFO] 21:05:58:76 Team/(4438:4438): Iniciado semáforos para entrenador 0
+[INFO] 21:05:58:76 Team/(4438:4438): Iniciado semáforos para entrenador 0
+[DEBUG] 21:05:58:96 Team/(4438:4438): Conectandose al servidor...
+[DEBUG] 21:05:58:101 Team/(4438:4438): ID obtenido = 28
+[INFO] 21:05:58:101 Team/(4438:4460): Socket de escucha para Gameboy creado
+[DEBUG] 21:05:58:102 Team/(4438:4460): Esperando cliente...
+[DEBUG] 21:05:58:107 Team/(4438:4462): Conectandose al servidor...
+[DEBUG] 21:05:58:108 Team/(4438:4462): Conexion creada. Socket = 6
+[DEBUG] 21:05:58:116 Team/(4438:4463): Conectandose al servidor...
+[DEBUG] 21:05:58:118 Team/(4438:4463): Conexion creada. Socket = 7
+[INFO] 21:05:58:120 Team/(4438:4438): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 21:05:58:127 Team/(4438:4465): Conectandose al servidor...
+[DEBUG] 21:05:58:127 Team/(4438:4465): Conexion creada. Socket = 8
+[DEBUG] 21:05:58:132 Team/(4438:4438): Suscripto a la cola LOCALIZED.
+[INFO] 21:05:58:132 Team/(4438:4438): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 21:05:58:132 Team/(4438:4466): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 21:05:59:946 Team/(4438:4438): Suscripto a la cola APPEARED.
+[DEBUG] 21:05:59:946 Team/(4438:4467): Se levanta hilo para atender al servidor en socket 7
+[INFO] 21:05:59:946 Team/(4438:4438): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 21:06:00:888 Team/(4438:4438): Suscripto a la cola CAUGHT.
+[DEBUG] 21:06:00:888 Team/(4438:4473): Se levanta hilo para atender al servidor en socket 8
+[DEBUG] 21:06:00:892 Team/(4438:4438): Conectandose al servidor...
+[DEBUG] 21:06:00:893 Team/(4438:4438): Enviando mensaje GET...
+[DEBUG] 21:06:01:2 Team/(4438:4438): Mensaje enviado GET :smilieface:
+[DEBUG] 21:06:01:2 Team/(4438:4476): Se activa el planificador
+[INFO] 21:06:01:3 Team/(4438:4438): Respuesta del Broker: 251
+[DEBUG] 21:06:01:3 Team/(4438:4438): Conectandose al servidor...
+[DEBUG] 21:06:01:4 Team/(4438:4438): Enviando mensaje GET...
+[INFO] 21:06:02:17 Team/(4438:4466): Mensaje recibido: 
+
+[DEBUG] 21:06:02:599 Team/(4438:4438): Mensaje enviado GET :smilieface:
+[DEBUG] 21:06:02:599 Team/(4438:4481): Se recibio un LOCALIZED
+[INFO] 21:06:02:599 Team/(4438:4438): Respuesta del Broker: 253
+[DEBUG] 21:06:02:599 Team/(4438:4438): Conectandose al servidor...
+[DEBUG] 21:06:02:600 Team/(4438:4481): Pokemon: Pikachu
+[DEBUG] 21:06:02:600 Team/(4438:4481): El pokemon no me interesa o llego vacio
+[DEBUG] 21:06:02:600 Team/(4438:4481): Se proceso el LOCALIZED
+[DEBUG] 21:06:02:600 Team/(4438:4438): Enviando mensaje GET...
+[INFO] 21:06:02:614 Team/(4438:4466): Mensaje recibido: 	
+
+[DEBUG] 21:06:03:124 Team/(4438:4438): Mensaje enviado GET :smilieface:
+[DEBUG] 21:06:03:124 Team/(4438:4485): Se recibio un LOCALIZED
+[INFO] 21:06:03:124 Team/(4438:4438): Respuesta del Broker: 255
+[DEBUG] 21:06:03:125 Team/(4438:4485): Pokemon: Squirtle
+[DEBUG] 21:06:03:125 Team/(4438:4485): El pokemon no me interesa o llego vacio
+[DEBUG] 21:06:03:125 Team/(4438:4485): Se proceso el LOCALIZED
+[INFO] 21:06:03:139 Team/(4438:4466): Mensaje recibido: 
+
+
+[DEBUG] 21:06:03:458 Team/(4438:4490): Se recibio un LOCALIZED
+[DEBUG] 21:06:03:458 Team/(4438:4490): Pokemon: Bulbasaur
+[DEBUG] 21:06:03:458 Team/(4438:4490): El pokemon no me interesa o llego vacio
+[DEBUG] 21:06:03:458 Team/(4438:4490): Se proceso el LOCALIZED
+[INFO] 21:06:42:395 Team/(4438:4467): Mensaje recibido: 
+
+[DEBUG] 21:06:45:21 Team/(4438:4565): Se recibio un APPEARED
+[DEBUG] 21:06:45:23 Team/(4438:4565): El pokemon esta en nuestro objetivo
+[INFO] 21:06:45:23 Team/(4438:4565): Pokemon: Pikachu
+[ERROR] 21:06:45:23 Team/(4438:4565): Comienza la vuelta 0 del while
+[DEBUG] 21:06:45:23 Team/(4438:4476): Hurra, tengo algo en ready
+[DEBUG] 21:06:45:23 Team/(4438:4459): El entrenador id: 2 esta en la posicion [6,3]
+[DEBUG] 21:06:48:24 Team/(4438:4459): El entrenador id: 2 esta en la posicion [6,4]
+[DEBUG] 21:06:51:26 Team/(4438:4459): El entrenador id: 2 esta en la posicion [6,5]
+[DEBUG] 21:06:54:27 Team/(4438:4459): El entrenador id: 2 esta en la posicion [6,6]
+[DEBUG] 21:06:57:27 Team/(4438:4459): El entrenador id: 2 esta en la posicion [6,7]
+[DEBUG] 21:07:00:28 Team/(4438:4459): Conectandose al servidor...
+[DEBUG] 21:07:00:29 Team/(4438:4459): Enviando mensaje CATCH...
+[DEBUG] 21:07:00:52 Team/(4438:4459): Mensaje enviado CATCH :smilieface:
+[INFO] 21:07:00:52 Team/(4438:4459): ID del CATCH recibido y guardado: 259
+[INFO] 21:07:00:172 Team/(4438:4473): Mensaje recibido: 
+
+[DEBUG] 21:07:35:223 Team/(4438:4578): Se recibio un CAUGHT
+[INFO] 21:07:37:791 Team/(4438:4467): Mensaje recibido: 	
+
+[DEBUG] 21:07:37:791 Team/(4438:4603): Se recibio un APPEARED
+[ERROR] 21:07:37:791 Team/(4438:4603): No me interesa el pokemon Bulbasaur
+[INFO] 21:07:37:792 Team/(4438:4578): El entrenador 2 capturo un Pikachu!
+[INFO] 21:07:37:792 Team/(4438:4578): El entrenador removio el pokemon Pikachu de sus objetivos
+[INFO] 21:08:06:541 Team/(4438:4467): Mensaje recibido: 
+
+[DEBUG] 21:08:08:390 Team/(4438:4621): Se recibio un APPEARED
+[DEBUG] 21:08:08:390 Team/(4438:4621): El pokemon esta en nuestro objetivo
+[INFO] 21:08:08:390 Team/(4438:4621): Pokemon: Squirtle
+[ERROR] 21:08:08:390 Team/(4438:4621): Comienza la vuelta 0 del while
+[DEBUG] 21:08:08:390 Team/(4438:4476): Hurra, tengo algo en ready
+[DEBUG] 21:08:08:390 Team/(4438:4457): El entrenador id: 0 esta en la posicion [2,2]
+[DEBUG] 21:08:11:390 Team/(4438:4457): Conectandose al servidor...
+[DEBUG] 21:08:11:391 Team/(4438:4457): Enviando mensaje CATCH...
+[DEBUG] 21:08:11:409 Team/(4438:4457): Mensaje enviado CATCH :smilieface:
+[INFO] 21:08:11:409 Team/(4438:4457): ID del CATCH recibido y guardado: 265
+[INFO] 21:08:11:466 Team/(4438:4473): Mensaje recibido: 
+
+[DEBUG] 21:08:13:324 Team/(4438:4625): Se recibio un CAUGHT
+[INFO] 21:08:14:920 Team/(4438:4625): El entrenador 0 capturo un Squirtle!
+[INFO] 21:08:14:920 Team/(4438:4625): El entrenador removio el pokemon Squirtle de sus objetivos
+[INFO] 21:08:34:194 Team/(4438:4467): Mensaje recibido: 	
+
+[DEBUG] 21:08:36:251 Team/(4438:4651): Se recibio un APPEARED
+[ERROR] 21:08:36:251 Team/(4438:4651): No me interesa el pokemon Bulbasaur
+[INFO] 21:08:55:984 Team/(4438:4467): Mensaje recibido: 	
+
+[DEBUG] 21:08:57:683 Team/(4438:4675): Se recibio un APPEARED
+[ERROR] 21:08:57:683 Team/(4438:4675): No me interesa el pokemon Bulbasaur
+[DEBUG] 21:10:03:293 Team/(4759:4759): Se ha iniciado un Team.
+[INFO] 21:10:04:243 Team/(4759:4759): Iniciado semáforos para entrenador 0
+[INFO] 21:10:04:243 Team/(4759:4759): Iniciado semáforos para entrenador 0
+[INFO] 21:10:04:243 Team/(4759:4759): Iniciado semáforos para entrenador 0
+[DEBUG] 21:10:04:267 Team/(4759:4759): Conectandose al servidor...
+[DEBUG] 21:10:04:271 Team/(4759:4759): ID obtenido = 30
+[INFO] 21:10:04:272 Team/(4759:4779): Socket de escucha para Gameboy creado
+[DEBUG] 21:10:04:281 Team/(4759:4779): Esperando cliente...
+[DEBUG] 21:10:04:284 Team/(4759:4781): Conectandose al servidor...
+[DEBUG] 21:10:04:284 Team/(4759:4781): Conexion creada. Socket = 6
+[DEBUG] 21:10:04:290 Team/(4759:4782): Conectandose al servidor...
+[DEBUG] 21:10:04:291 Team/(4759:4782): Conexion creada. Socket = 7
+[INFO] 21:10:04:293 Team/(4759:4759): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 21:10:04:293 Team/(4759:4784): Conectandose al servidor...
+[DEBUG] 21:10:04:294 Team/(4759:4784): Conexion creada. Socket = 8
+[DEBUG] 21:10:04:301 Team/(4759:4759): Suscripto a la cola LOCALIZED.
+[INFO] 21:10:04:302 Team/(4759:4759): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 21:10:04:302 Team/(4759:4785): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 21:10:05:251 Team/(4759:4759): Suscripto a la cola APPEARED.
+[DEBUG] 21:10:05:252 Team/(4759:4786): Se levanta hilo para atender al servidor en socket 7
+[INFO] 21:10:05:252 Team/(4759:4759): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 21:10:05:914 Team/(4759:4759): Suscripto a la cola CAUGHT.
+[DEBUG] 21:10:05:914 Team/(4759:4789): Se levanta hilo para atender al servidor en socket 8
+[DEBUG] 21:10:07:348 Team/(4759:4759): Conectandose al servidor...
+[DEBUG] 21:10:07:348 Team/(4759:4793): Se activa el planificador
+[DEBUG] 21:10:07:349 Team/(4759:4759): Enviando mensaje GET...
+[DEBUG] 21:10:07:486 Team/(4759:4759): Mensaje enviado GET :smilieface:
+[INFO] 21:10:07:486 Team/(4759:4759): Respuesta del Broker: 271
+[DEBUG] 21:10:07:486 Team/(4759:4759): Conectandose al servidor...
+[DEBUG] 21:10:07:486 Team/(4759:4759): Enviando mensaje GET...
+[DEBUG] 21:10:07:603 Team/(4759:4759): Mensaje enviado GET :smilieface:
+[INFO] 21:10:07:603 Team/(4759:4759): Respuesta del Broker: 272
+[DEBUG] 21:10:07:603 Team/(4759:4759): Conectandose al servidor...
+[DEBUG] 21:10:07:603 Team/(4759:4759): Enviando mensaje GET...
+[DEBUG] 21:10:07:662 Team/(4759:4759): Mensaje enviado GET :smilieface:
+[INFO] 21:10:07:662 Team/(4759:4759): Respuesta del Broker: 273
+[INFO] 21:10:07:931 Team/(4759:4785): Mensaje recibido: 
+
+[DEBUG] 21:10:08:317 Team/(4759:4800): Se recibio un LOCALIZED
+[DEBUG] 21:10:08:318 Team/(4759:4800): Pokemon: Pikachu
+[DEBUG] 21:10:08:318 Team/(4759:4800): El pokemon no me interesa o llego vacio
+[DEBUG] 21:10:08:318 Team/(4759:4800): Se proceso el LOCALIZED
+[INFO] 21:10:08:332 Team/(4759:4785): Mensaje recibido: 	
+
+[DEBUG] 21:10:09:366 Team/(4759:4802): Se recibio un LOCALIZED
+[DEBUG] 21:10:09:366 Team/(4759:4802): Pokemon: Squirtle
+[DEBUG] 21:10:09:366 Team/(4759:4802): El pokemon no me interesa o llego vacio
+[DEBUG] 21:10:09:367 Team/(4759:4802): Se proceso el LOCALIZED
+[INFO] 21:10:09:383 Team/(4759:4785): Mensaje recibido: 
+
+
+[DEBUG] 21:10:12:202 Team/(4759:4807): Se recibio un LOCALIZED
+[DEBUG] 21:10:12:203 Team/(4759:4807): Pokemon: Bulbasaur
+[DEBUG] 21:10:12:203 Team/(4759:4807): El pokemon no me interesa o llego vacio
+[DEBUG] 21:10:12:203 Team/(4759:4807): Se proceso el LOCALIZED
+[INFO] 21:10:22:654 Team/(4759:4786): Mensaje recibido: 	
+
+[DEBUG] 21:10:25:55 Team/(4759:4817): Se recibio un APPEARED
+[ERROR] 21:10:25:55 Team/(4759:4817): No me interesa el pokemon Bulbasaur
+[DEBUG] 21:12:10:369 Team/(4931:4931): Se ha iniciado un Team.
+[INFO] 21:12:13:110 Team/(4931:4931): Iniciado semáforos para entrenador 0
+[INFO] 21:12:13:111 Team/(4931:4931): Iniciado semáforos para entrenador 0
+[INFO] 21:12:13:111 Team/(4931:4931): Iniciado semáforos para entrenador 0
+[DEBUG] 21:12:13:141 Team/(4931:4931): Conectandose al servidor...
+[DEBUG] 21:12:13:144 Team/(4931:4931): ID obtenido = 32
+[INFO] 21:12:13:145 Team/(4931:4958): Socket de escucha para Gameboy creado
+[DEBUG] 21:12:13:145 Team/(4931:4958): Esperando cliente...
+[DEBUG] 21:12:13:150 Team/(4931:4959): Conectandose al servidor...
+[DEBUG] 21:12:13:152 Team/(4931:4959): Conexion creada. Socket = 6
+[DEBUG] 21:12:13:161 Team/(4931:4960): Conectandose al servidor...
+[DEBUG] 21:12:13:162 Team/(4931:4960): Conexion creada. Socket = 7
+[INFO] 21:12:13:165 Team/(4931:4931): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 21:12:13:167 Team/(4931:4961): Conectandose al servidor...
+[DEBUG] 21:12:13:167 Team/(4931:4961): Conexion creada. Socket = 8
+[DEBUG] 21:12:13:173 Team/(4931:4931): Suscripto a la cola LOCALIZED.
+[INFO] 21:12:13:173 Team/(4931:4931): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 21:12:13:173 Team/(4931:4962): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 21:12:15:98 Team/(4931:4931): Suscripto a la cola APPEARED.
+[DEBUG] 21:12:15:98 Team/(4931:4963): Se levanta hilo para atender al servidor en socket 7
+[INFO] 21:12:15:99 Team/(4931:4931): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 21:12:17:191 Team/(4931:4931): Suscripto a la cola CAUGHT.
+[DEBUG] 21:12:17:191 Team/(4931:4969): Se levanta hilo para atender al servidor en socket 8
+[DEBUG] 21:12:18:216 Team/(4931:4931): Conectandose al servidor...
+[DEBUG] 21:12:18:216 Team/(4931:4973): Se activa el planificador
+[DEBUG] 21:12:18:217 Team/(4931:4931): Enviando mensaje GET...
+[DEBUG] 21:12:18:354 Team/(4931:4931): Mensaje enviado GET :smilieface:
+[INFO] 21:12:18:354 Team/(4931:4931): Respuesta del Broker: 279
+[DEBUG] 21:12:18:354 Team/(4931:4931): Conectandose al servidor...
+[DEBUG] 21:12:18:354 Team/(4931:4931): Enviando mensaje GET...
+[DEBUG] 21:12:18:493 Team/(4931:4931): Mensaje enviado GET :smilieface:
+[INFO] 21:12:18:493 Team/(4931:4931): Respuesta del Broker: 280
+[DEBUG] 21:12:18:493 Team/(4931:4931): Conectandose al servidor...
+[DEBUG] 21:12:18:493 Team/(4931:4931): Enviando mensaje GET...
+[DEBUG] 21:12:18:561 Team/(4931:4931): Mensaje enviado GET :smilieface:
+[INFO] 21:12:18:561 Team/(4931:4931): Respuesta del Broker: 281
+[INFO] 21:12:18:807 Team/(4931:4962): Mensaje recibido: 
+
+[DEBUG] 21:12:19:317 Team/(4931:4981): Se recibio un LOCALIZED
+[DEBUG] 21:12:19:318 Team/(4931:4981): Pokemon: Pikachu
+[DEBUG] 21:12:19:318 Team/(4931:4981): El pokemon no me interesa o llego vacio
+[DEBUG] 21:12:19:318 Team/(4931:4981): Se proceso el LOCALIZED
+[INFO] 21:12:19:342 Team/(4931:4962): Mensaje recibido: 	
+
+[DEBUG] 21:12:20:192 Team/(4931:4983): Se recibio un LOCALIZED
+[DEBUG] 21:12:20:192 Team/(4931:4983): Pokemon: Squirtle
+[DEBUG] 21:12:20:193 Team/(4931:4983): El pokemon no me interesa o llego vacio
+[DEBUG] 21:12:20:193 Team/(4931:4983): Se proceso el LOCALIZED
+[INFO] 21:12:20:202 Team/(4931:4962): Mensaje recibido: 
+
+[DEBUG] 21:12:21:51 Team/(4931:4986): Se recibio un LOCALIZED
+[DEBUG] 21:12:21:52 Team/(4931:4986): Pokemon: Charmander
+[DEBUG] 21:12:21:52 Team/(4931:4986): El pokemon no me interesa o llego vacio
+[DEBUG] 21:12:21:52 Team/(4931:4986): Se proceso el LOCALIZED
+[INFO] 21:12:43:81 Team/(4931:4963): Mensaje recibido: 
+
+
+[DEBUG] 21:12:45:108 Team/(4931:5010): Se recibio un APPEARED
+[ERROR] 21:12:45:108 Team/(4931:5010): No me interesa el pokemon Charmander
+[DEBUG] 21:13:29:121 Team/(5058:5058): Se ha iniciado un Team.
+[INFO] 21:15:46:59 Team/(5058:5058): Iniciado semáforos para entrenador 0
+[INFO] 21:15:46:60 Team/(5058:5058): Iniciado semáforos para entrenador 0
+[INFO] 21:15:46:60 Team/(5058:5058): Iniciado semáforos para entrenador 0
+[INFO] 21:15:46:918 Team/(5058:5241): Socket de escucha para Gameboy creado
+[DEBUG] 21:15:46:918 Team/(5058:5241): Esperando cliente...
+[DEBUG] 21:15:46:919 Team/(5058:5058): Conectandose al servidor...
+[DEBUG] 21:15:46:922 Team/(5058:5058): ID obtenido = 33
+[DEBUG] 21:15:46:930 Team/(5058:5243): Conectandose al servidor...
+[DEBUG] 21:15:46:932 Team/(5058:5243): Conexion creada. Socket = 6
+[DEBUG] 21:15:46:937 Team/(5058:5244): Conectandose al servidor...
+[DEBUG] 21:15:46:937 Team/(5058:5244): Conexion creada. Socket = 7
+[INFO] 21:15:46:941 Team/(5058:5058): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 21:15:46:944 Team/(5058:5245): Conectandose al servidor...
+[DEBUG] 21:15:46:945 Team/(5058:5245): Conexion creada. Socket = 8
+[DEBUG] 21:15:46:946 Team/(5058:5058): Suscripto a la cola LOCALIZED.
+[INFO] 21:15:46:946 Team/(5058:5058): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 21:15:46:946 Team/(5058:5246): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 21:15:47:204 Team/(5058:5058): Suscripto a la cola APPEARED.
+[DEBUG] 21:15:47:204 Team/(5058:5247): Se levanta hilo para atender al servidor en socket 7
+[INFO] 21:15:47:204 Team/(5058:5058): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 21:15:47:389 Team/(5058:5058): Suscripto a la cola CAUGHT.
+[DEBUG] 21:15:47:389 Team/(5058:5249): Se levanta hilo para atender al servidor en socket 8
+[INFO] 21:15:48:88 Team/(5058:5247): Mensaje recibido: 
+
+
+[DEBUG] 21:15:48:88 Team/(5058:5058): Conectandose al servidor...
+[DEBUG] 21:15:48:89 Team/(5058:5058): Enviando mensaje GET...
+[DEBUG] 21:15:48:986 Team/(5058:5058): Mensaje enviado GET :smilieface:
+[DEBUG] 21:15:48:986 Team/(5058:5250): Se recibio un APPEARED
+[DEBUG] 21:15:48:986 Team/(5058:5251): Se activa el planificador
+[INFO] 21:15:48:987 Team/(5058:5058): Respuesta del Broker: 287
+[DEBUG] 21:15:48:987 Team/(5058:5058): Conectandose al servidor...
+[DEBUG] 21:15:48:988 Team/(5058:5250): El pokemon esta en nuestro objetivo
+[INFO] 21:15:48:988 Team/(5058:5250): Pokemon: Charmander
+[ERROR] 21:15:48:988 Team/(5058:5250): Comienza la vuelta 0 del while
+[DEBUG] 21:15:48:988 Team/(5058:5251): Hurra, tengo algo en ready
+[DEBUG] 21:15:48:988 Team/(5058:5237): El entrenador id: 0 esta en la posicion [1,1]
+[DEBUG] 21:15:48:988 Team/(5058:5058): Enviando mensaje GET...
+[INFO] 21:15:48:998 Team/(5058:5246): Mensaje recibido: 
+
+[DEBUG] 21:15:49:799 Team/(5058:5058): Mensaje enviado GET :smilieface:
+[DEBUG] 21:15:49:799 Team/(5058:5257): Se recibio un LOCALIZED
+[INFO] 21:15:49:800 Team/(5058:5058): Respuesta del Broker: 289
+[DEBUG] 21:15:49:800 Team/(5058:5058): Conectandose al servidor...
+[DEBUG] 21:15:49:801 Team/(5058:5257): Pokemon: Pikachu
+[DEBUG] 21:15:49:801 Team/(5058:5257): El pokemon no me interesa o llego vacio
+[DEBUG] 21:15:49:801 Team/(5058:5257): Se proceso el LOCALIZED
+[DEBUG] 21:15:49:801 Team/(5058:5058): Enviando mensaje GET...
+[INFO] 21:15:49:814 Team/(5058:5246): Mensaje recibido: 	
+
+[DEBUG] 21:15:50:178 Team/(5058:5058): Mensaje enviado GET :smilieface:
+[DEBUG] 21:15:50:178 Team/(5058:5267): Se recibio un LOCALIZED
+[INFO] 21:15:50:178 Team/(5058:5058): Respuesta del Broker: 291
+[DEBUG] 21:15:50:178 Team/(5058:5267): Pokemon: Squirtle
+[DEBUG] 21:15:50:178 Team/(5058:5267): El pokemon no me interesa o llego vacio
+[DEBUG] 21:15:50:178 Team/(5058:5267): Se proceso el LOCALIZED
+[INFO] 21:15:50:187 Team/(5058:5246): Mensaje recibido: 
+
+[DEBUG] 21:15:50:391 Team/(5058:5271): Se recibio un LOCALIZED
+[DEBUG] 21:15:50:391 Team/(5058:5271): Pokemon: Charmander
+[DEBUG] 21:15:50:391 Team/(5058:5271): El pokemon no me interesa o llego vacio
+[DEBUG] 21:15:50:391 Team/(5058:5271): Se proceso el LOCALIZED
+[DEBUG] 21:15:51:989 Team/(5058:5237): Conectandose al servidor...
+[DEBUG] 21:15:51:990 Team/(5058:5237): Enviando mensaje CATCH...
+[DEBUG] 21:15:52:9 Team/(5058:5237): Mensaje enviado CATCH :smilieface:
+[INFO] 21:15:52:9 Team/(5058:5237): ID del CATCH recibido y guardado: 293
+[INFO] 21:15:52:114 Team/(5058:5249): Mensaje recibido: 
+
+[DEBUG] 21:15:52:144 Team/(5058:5278): Se recibio un CAUGHT
+[INFO] 21:15:54:244 Team/(5058:5278): El entrenador 0 capturo un Charmander!
+[INFO] 21:15:54:244 Team/(5058:5278): El entrenador removio el pokemon Charmander de sus objetivos
+[INFO] 21:16:14:953 Team/(5058:5247): Mensaje recibido: 	
+
+[DEBUG] 21:16:17:254 Team/(5058:5295): Se recibio un APPEARED
+[ERROR] 21:16:17:255 Team/(5058:5295): No me interesa el pokemon Bulbasaur
+[INFO] 21:16:26:166 Team/(5058:5247): Mensaje recibido: 
+
+[DEBUG] 21:16:28:68 Team/(5058:5310): Se recibio un APPEARED
+[DEBUG] 21:16:28:68 Team/(5058:5310): El pokemon esta en nuestro objetivo
+[INFO] 21:16:28:68 Team/(5058:5310): Pokemon: Squirtle
+[ERROR] 21:16:28:68 Team/(5058:5310): Comienza la vuelta 0 del while
+[ERROR] 21:16:28:69 Team/(5058:5310): Se completo la vuelta 0 del while
+[ERROR] 21:16:28:69 Team/(5058:5310): Comienza la vuelta 1 del while
+[DEBUG] 21:16:28:69 Team/(5058:5251): Hurra, tengo algo en ready
+[DEBUG] 21:16:28:69 Team/(5058:5238): El entrenador id: 1 esta en la posicion [3,2]
+[DEBUG] 21:16:31:69 Team/(5058:5238): El entrenador id: 1 esta en la posicion [2,2]
+[DEBUG] 21:16:34:69 Team/(5058:5238): Conectandose al servidor...
+[DEBUG] 21:16:34:71 Team/(5058:5238): Enviando mensaje CATCH...
+[DEBUG] 21:16:34:111 Team/(5058:5238): Mensaje enviado CATCH :smilieface:
+[INFO] 21:16:34:111 Team/(5058:5238): ID del CATCH recibido y guardado: 299
+[INFO] 21:16:34:190 Team/(5058:5249): Mensaje recibido: 
+
+[DEBUG] 21:16:40:173 Team/(5058:5322): Se recibio un CAUGHT
+[INFO] 21:16:41:875 Team/(5058:5322): El entrenador 1 capturo un Squirtle!
+[INFO] 21:16:41:875 Team/(5058:5322): El entrenador removio el pokemon Squirtle de sus objetivos
+[INFO] 21:16:49:603 Team/(5058:5247): Mensaje recibido: 
+
+[DEBUG] 21:16:51:586 Team/(5058:5341): Se recibio un APPEARED
+[DEBUG] 21:16:51:586 Team/(5058:5341): El pokemon esta en nuestro objetivo
+[INFO] 21:16:51:586 Team/(5058:5341): Pokemon: Pikachu
+[ERROR] 21:16:51:586 Team/(5058:5341): Comienza la vuelta 0 del while
+[DEBUG] 21:16:51:586 Team/(5058:5251): Hurra, tengo algo en ready
+[DEBUG] 21:16:51:586 Team/(5058:5239): El entrenador id: 2 esta en la posicion [6,3]
+[DEBUG] 21:16:54:587 Team/(5058:5239): El entrenador id: 2 esta en la posicion [6,4]
+[DEBUG] 21:16:57:587 Team/(5058:5239): El entrenador id: 2 esta en la posicion [6,5]
+[DEBUG] 21:17:00:588 Team/(5058:5239): El entrenador id: 2 esta en la posicion [6,6]
+[DEBUG] 21:17:03:590 Team/(5058:5239): El entrenador id: 2 esta en la posicion [6,7]
+[DEBUG] 21:17:06:591 Team/(5058:5239): Conectandose al servidor...
+[DEBUG] 21:17:06:594 Team/(5058:5239): Enviando mensaje CATCH...
+[DEBUG] 21:17:06:628 Team/(5058:5239): Mensaje enviado CATCH :smilieface:
+[INFO] 21:17:06:629 Team/(5058:5239): ID del CATCH recibido y guardado: 303
+[INFO] 21:17:06:683 Team/(5058:5249): Mensaje recibido: 
+
+[DEBUG] 21:17:11:503 Team/(5058:5356): Se recibio un CAUGHT
+[INFO] 21:17:13:313 Team/(5058:5356): El entrenador 2 capturo un Pikachu!
+[INFO] 21:17:13:313 Team/(5058:5356): El entrenador removio el pokemon Pikachu de sus objetivos
+[INFO] 21:17:22:595 Team/(5058:5247): Mensaje recibido: 
+
+[DEBUG] 21:17:25:163 Team/(5058:5375): Se recibio un APPEARED
+[DEBUG] 21:17:25:164 Team/(5058:5375): El pokemon esta en nuestro objetivo
+[INFO] 21:17:25:165 Team/(5058:5375): Pokemon: Pikachu
+[ERROR] 21:17:25:165 Team/(5058:5375): Comienza la vuelta 0 del while
+[ERROR] 21:17:25:165 Team/(5058:5375): Se completo la vuelta 0 del while
+[ERROR] 21:17:25:165 Team/(5058:5375): Comienza la vuelta 1 del while
+[ERROR] 21:17:25:165 Team/(5058:5375): Se completo la vuelta 1 del while
+[ERROR] 21:17:25:165 Team/(5058:5375): Comienza la vuelta 2 del while
+[ERROR] 21:17:25:165 Team/(5058:5375): Se completo la vuelta 2 del while
+[DEBUG] 21:17:25:165 Team/(5058:5375): Se comienza el analisis de deadlock
+[DEBUG] 21:17:25:165 Team/(5058:5375): Se Busca pareja en deadlock para entrenador 0
+[ERROR] 21:17:25:165 Team/(5058:5375): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 21:17:25:165 Team/(5058:5375): Pokemon: Charmander, Objetivo[0]: Pikachu
+[ERROR] 21:17:25:165 Team/(5058:5375): aca1
+[ERROR] 21:17:25:165 Team/(5058:5375): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 21:17:25:165 Team/(5058:5375): Pokemon: Squirtle, Objetivo[0]: Squirtle
+[ERROR] 21:17:25:165 Team/(5058:5375): aca2
+[ERROR] 21:17:25:165 Team/(5058:5375): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 21:17:25:165 Team/(5058:5375): Pokemon: Charmander, Objetivo[0]: Squirtle
+[ERROR] 21:17:25:165 Team/(5058:5375): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 21:17:25:165 Team/(5058:5375): Pokemon: Charmander, Objetivo[0]: Pikachu
+[ERROR] 21:17:25:165 Team/(5058:5375): aca1
+[ERROR] 21:17:25:165 Team/(5058:5375): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 21:17:25:166 Team/(5058:5375): Pokemon: Pikachu, Objetivo[0]: Squirtle
+[ERROR] 21:17:25:166 Team/(5058:5375): aca2
+[ERROR] 21:17:25:166 Team/(5058:5375): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 21:17:25:166 Team/(5058:5375): Pokemon: Pikachu, Objetivo[0]: Pikachu
+[ERROR] 21:17:25:167 Team/(5058:5375): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 21:17:25:167 Team/(5058:5375): Pokemon: Charmander, Objetivo[0]: Squirtle
+[DEBUG] 21:25:24:187 Team/(5670:5670): Se ha iniciado un Team.
+[INFO] 21:25:25:800 Team/(5670:5670): Iniciado semáforos para entrenador 0
+[INFO] 21:25:25:800 Team/(5670:5670): Iniciado semáforos para entrenador 0
+[INFO] 21:25:25:800 Team/(5670:5670): Iniciado semáforos para entrenador 0
+[DEBUG] 21:25:25:814 Team/(5670:5670): Conectandose al servidor...
+[DEBUG] 21:25:25:817 Team/(5670:5670): ID obtenido = 35
+[INFO] 21:25:25:818 Team/(5670:5693): Socket de escucha para Gameboy creado
+[DEBUG] 21:25:25:819 Team/(5670:5693): Esperando cliente...
+[DEBUG] 21:25:25:824 Team/(5670:5694): Conectandose al servidor...
+[DEBUG] 21:25:25:826 Team/(5670:5694): Conexion creada. Socket = 6
+[DEBUG] 21:25:25:830 Team/(5670:5695): Conectandose al servidor...
+[DEBUG] 21:25:25:830 Team/(5670:5695): Conexion creada. Socket = 7
+[INFO] 21:25:25:833 Team/(5670:5670): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 21:25:25:836 Team/(5670:5696): Conectandose al servidor...
+[DEBUG] 21:25:25:836 Team/(5670:5696): Conexion creada. Socket = 8
+[DEBUG] 21:25:25:844 Team/(5670:5670): Suscripto a la cola LOCALIZED.
+[INFO] 21:25:25:845 Team/(5670:5670): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 21:25:25:845 Team/(5670:5697): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 21:25:25:848 Team/(5670:5670): Suscripto a la cola APPEARED.
+[INFO] 21:25:25:848 Team/(5670:5670): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 21:25:25:849 Team/(5670:5698): Se levanta hilo para atender al servidor en socket 7
+[DEBUG] 21:25:25:855 Team/(5670:5670): Suscripto a la cola CAUGHT.
+[DEBUG] 21:25:25:855 Team/(5670:5699): Se levanta hilo para atender al servidor en socket 8
+[DEBUG] 21:25:25:857 Team/(5670:5670): Conectandose al servidor...
+[DEBUG] 21:25:25:857 Team/(5670:5670): Enviando mensaje GET...
+[DEBUG] 21:25:25:857 Team/(5670:5701): Se activa el planificador
+[DEBUG] 21:25:26:22 Team/(5670:5670): Mensaje enviado GET :smilieface:
+[INFO] 21:25:26:23 Team/(5670:5670): Respuesta del Broker: 307
+[DEBUG] 21:25:26:23 Team/(5670:5670): Conectandose al servidor...
+[DEBUG] 21:25:26:23 Team/(5670:5670): Enviando mensaje GET...
+[DEBUG] 21:25:26:134 Team/(5670:5670): Mensaje enviado GET :smilieface:
+[INFO] 21:25:26:134 Team/(5670:5670): Respuesta del Broker: 308
+[DEBUG] 21:25:26:134 Team/(5670:5670): Conectandose al servidor...
+[DEBUG] 21:25:26:134 Team/(5670:5670): Enviando mensaje GET...
+[DEBUG] 21:25:26:183 Team/(5670:5670): Mensaje enviado GET :smilieface:
+[INFO] 21:25:26:183 Team/(5670:5670): Respuesta del Broker: 309
+[INFO] 21:25:26:352 Team/(5670:5697): Mensaje recibido: 
+
+[DEBUG] 21:25:26:359 Team/(5670:5706): Se recibio un LOCALIZED
+[DEBUG] 21:25:26:359 Team/(5670:5706): Pokemon: Pikachu
+[INFO] 21:25:27:522 Team/(5670:5697): Mensaje recibido: 	
+
+[INFO] 21:25:29:57 Team/(5670:5697): Mensaje recibido: 
+
+[DEBUG] 21:25:30:794 Team/(5670:5706): El pokemon no me interesa o llego vacio
+[DEBUG] 21:25:30:794 Team/(5670:5706): Se proceso el LOCALIZED
+[DEBUG] 21:25:30:794 Team/(5670:5709): Se recibio un LOCALIZED
+[DEBUG] 21:25:30:794 Team/(5670:5709): Pokemon: Squirtle
+[DEBUG] 21:25:35:838 Team/(5670:5709): El pokemon no me interesa o llego vacio
+[DEBUG] 21:25:35:838 Team/(5670:5709): Se proceso el LOCALIZED
+[DEBUG] 21:25:35:838 Team/(5670:5712): Se recibio un LOCALIZED
+[DEBUG] 21:25:35:839 Team/(5670:5712): Pokemon: Charmander
+[DEBUG] 21:25:41:513 Team/(5670:5712): El pokemon no me interesa o llego vacio
+[DEBUG] 21:25:41:515 Team/(5670:5712): Se proceso el LOCALIZED
+[INFO] 21:27:15:780 Team/(5670:5698): Mensaje recibido: 
+
+[DEBUG] 21:27:15:783 Team/(5670:5786): Se recibio un APPEARED
+[INFO] 21:27:59:992 Team/(5670:5698): Mensaje recibido: 
+
+[DEBUG] 21:28:02:660 Team/(5670:5786): El pokemon esta en nuestro objetivo
+[INFO] 21:28:02:661 Team/(5670:5786): Pokemon: Pikachu
+[ERROR] 21:28:02:661 Team/(5670:5786): Comienza la vuelta 0 del while
+[DEBUG] 21:28:02:661 Team/(5670:5701): Hurra, tengo algo en ready
+[DEBUG] 21:28:02:661 Team/(5670:5805): Se recibio un APPEARED
+[DEBUG] 21:28:02:661 Team/(5670:5692): El entrenador id: 2 esta en la posicion [6,3]
+[DEBUG] 21:28:08:529 Team/(5670:5692): El entrenador id: 2 esta en la posicion [6,4]
+[DEBUG] 21:28:12:672 Team/(5670:5692): El entrenador id: 2 esta en la posicion [6,5]
+[DEBUG] 21:28:13:846 Team/(5670:5805): El pokemon esta en nuestro objetivo
+[INFO] 21:28:13:846 Team/(5670:5805): Pokemon: Squirtle
+[ERROR] 21:28:13:846 Team/(5670:5805): Comienza la vuelta 0 del while
+[DEBUG] 21:28:15:673 Team/(5670:5692): El entrenador id: 2 esta en la posicion [6,6]
+[DEBUG] 21:28:18:674 Team/(5670:5692): El entrenador id: 2 esta en la posicion [6,7]
+[DEBUG] 21:28:21:674 Team/(5670:5692): Conectandose al servidor...
+[DEBUG] 21:28:21:675 Team/(5670:5692): Enviando mensaje CATCH...
+[DEBUG] 21:28:21:694 Team/(5670:5692): Mensaje enviado CATCH :smilieface:
+[INFO] 21:28:21:694 Team/(5670:5692): ID del CATCH recibido y guardado: 317
+[DEBUG] 21:28:21:694 Team/(5670:5701): Hurra, tengo algo en ready
+[DEBUG] 21:28:21:694 Team/(5670:5690): El entrenador id: 0 esta en la posicion [1,1]
+[INFO] 21:28:21:817 Team/(5670:5699): Mensaje recibido: 
+
+[DEBUG] 21:28:21:820 Team/(5670:5837): Se recibio un CAUGHT
+[INFO] 21:28:24:967 Team/(5670:5837): El entrenador 2 capturo un Pikachu!
+[DEBUG] 21:28:24:968 Team/(5670:5690): Conectandose al servidor...
+[INFO] 21:28:24:968 Team/(5670:5837): El entrenador removio el pokemon Pikachu de sus objetivos
+[DEBUG] 21:28:24:969 Team/(5670:5690): Enviando mensaje CATCH...
+[DEBUG] 21:28:25:12 Team/(5670:5690): Mensaje enviado CATCH :smilieface:
+[INFO] 21:28:25:12 Team/(5670:5690): ID del CATCH recibido y guardado: 319
+[INFO] 21:28:25:51 Team/(5670:5699): Mensaje recibido: 
+
+[DEBUG] 21:28:25:51 Team/(5670:5843): Se recibio un CAUGHT
+[INFO] 21:28:27:213 Team/(5670:5843): El entrenador 0 capturo un Squirtle!
+[INFO] 21:28:27:213 Team/(5670:5843): El entrenador removio el pokemon Squirtle de sus objetivos
+[INFO] 21:29:00:34 Team/(5670:5698): Mensaje recibido: 
+
+
+[DEBUG] 21:29:00:42 Team/(5670:5863): Se recibio un APPEARED
+[ERROR] 21:29:34:705 Team/(5670:5863): No me interesa el pokemon Charmander
+[INFO] 21:29:50:50 Team/(5670:5698): Mensaje recibido: 
+
+
+[DEBUG] 21:29:50:53 Team/(5670:5913): Se recibio un APPEARED
+[ERROR] 21:29:52:349 Team/(5670:5913): No me interesa el pokemon Charmander
+[INFO] 21:30:10:508 Team/(5670:5698): Mensaje recibido: 
+
+[DEBUG] 21:30:10:513 Team/(5670:5933): Se recibio un APPEARED
+[DEBUG] 21:30:15:71 Team/(5670:5933): El pokemon esta en nuestro objetivo
+[INFO] 21:30:15:73 Team/(5670:5933): Pokemon: Pikachu
+[ERROR] 21:30:15:73 Team/(5670:5933): Comienza la vuelta 0 del while
+[ERROR] 21:30:15:73 Team/(5670:5933): Se completo la vuelta 0 del while
+[ERROR] 21:30:15:73 Team/(5670:5933): Comienza la vuelta 1 del while
+[DEBUG] 21:30:15:73 Team/(5670:5701): Hurra, tengo algo en ready
+[DEBUG] 21:30:15:73 Team/(5670:5691): El entrenador id: 1 esta en la posicion [5,2]
+[DEBUG] 21:30:18:74 Team/(5670:5691): El entrenador id: 1 esta en la posicion [5,3]
+[DEBUG] 21:30:21:74 Team/(5670:5691): El entrenador id: 1 esta en la posicion [6,3]
+[DEBUG] 21:30:24:75 Team/(5670:5691): El entrenador id: 1 esta en la posicion [6,4]
+[DEBUG] 21:30:27:76 Team/(5670:5691): El entrenador id: 1 esta en la posicion [6,5]
+[DEBUG] 21:30:30:76 Team/(5670:5691): El entrenador id: 1 esta en la posicion [6,6]
+[DEBUG] 21:30:33:78 Team/(5670:5691): El entrenador id: 1 esta en la posicion [6,7]
+[DEBUG] 21:30:36:79 Team/(5670:5691): Conectandose al servidor...
+[DEBUG] 21:30:36:81 Team/(5670:5691): Enviando mensaje CATCH...
+[DEBUG] 21:30:36:106 Team/(5670:5691): Mensaje enviado CATCH :smilieface:
+[INFO] 21:30:36:106 Team/(5670:5691): ID del CATCH recibido y guardado: 327
+[INFO] 21:30:36:159 Team/(5670:5699): Mensaje recibido: 
+
+[DEBUG] 21:30:36:162 Team/(5670:5956): Se recibio un CAUGHT
+[INFO] 21:30:38:49 Team/(5670:5956): El entrenador 1 capturo un Pikachu!
+[INFO] 21:30:38:49 Team/(5670:5956): El entrenador removio el pokemon Pikachu de sus objetivos
+[INFO] 21:30:46:815 Team/(5670:5698): Mensaje recibido: 
+
+[DEBUG] 21:30:46:819 Team/(5670:5964): Se recibio un APPEARED
+[DEBUG] 21:30:54:68 Team/(5670:5964): El pokemon esta en nuestro objetivo
+[INFO] 21:30:54:68 Team/(5670:5964): Pokemon: Pikachu
+[ERROR] 21:30:54:68 Team/(5670:5964): Comienza la vuelta 0 del while
+[ERROR] 21:30:54:70 Team/(5670:5964): Se completo la vuelta 0 del while
+[ERROR] 21:30:54:70 Team/(5670:5964): Comienza la vuelta 1 del while
+[ERROR] 21:30:54:71 Team/(5670:5964): Se completo la vuelta 1 del while
+[ERROR] 21:30:54:71 Team/(5670:5964): Comienza la vuelta 2 del while
+[ERROR] 21:30:54:71 Team/(5670:5964): Se completo la vuelta 2 del while
+[DEBUG] 21:30:54:71 Team/(5670:5964): Se comienza el analisis de deadlock
+[DEBUG] 21:30:54:71 Team/(5670:5964): Se Busca pareja en deadlock para entrenador 0
+[ERROR] 21:30:54:71 Team/(5670:5964): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 21:30:54:71 Team/(5670:5964): Pokemon: Squirtle, Objetivo[0]: Pikachu
+[ERROR] 21:30:54:71 Team/(5670:5964): aca1
+[ERROR] 21:30:54:71 Team/(5670:5964): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 21:30:54:71 Team/(5670:5964): Pokemon: Pikachu, Objetivo[0]: Squirtle
+[ERROR] 21:30:54:75 Team/(5670:5964): aca2
+[ERROR] 21:30:54:75 Team/(5670:5964): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 21:30:54:75 Team/(5670:5964): Pokemon: Pikachu, Objetivo[0]: Pikachu
+[ERROR] 21:30:54:75 Team/(5670:5964): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 21:30:54:75 Team/(5670:5964): Pokemon: Squirtle, Objetivo[0]: Squirtle
+[ERROR] 21:30:54:76 Team/(5670:5964): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 21:30:54:76 Team/(5670:5964): Pokemon: Squirtle, Objetivo[0]: Pikachu
+[ERROR] 21:30:54:76 Team/(5670:5964): aca1
+[ERROR] 21:30:54:76 Team/(5670:5964): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 21:30:54:76 Team/(5670:5964): Pokemon: Pikachu, Objetivo[0]: Pikachu
+[ERROR] 21:30:54:76 Team/(5670:5964): aca2
+[ERROR] 21:30:54:76 Team/(5670:5964): Ingresa al for para comparar objetivos con pokemones
+[ERROR] 21:30:54:76 Team/(5670:5964): Pokemon: Squirtle, Objetivo[0]: Pikachu
+[DEBUG] 21:33:59:831 Team/(6106:6106): Se ha iniciado un Team.
+[INFO] 21:34:01:124 Team/(6106:6106): Iniciado semáforos para entrenador 0
+[INFO] 21:34:01:124 Team/(6106:6106): Iniciado semáforos para entrenador 0
+[INFO] 21:34:01:124 Team/(6106:6106): Iniciado semáforos para entrenador 0
+[DEBUG] 21:34:01:139 Team/(6106:6106): Conectandose al servidor...
+[DEBUG] 21:34:01:144 Team/(6106:6106): ID obtenido = 37
+[INFO] 21:34:01:144 Team/(6106:6123): Socket de escucha para Gameboy creado
+[DEBUG] 21:34:01:144 Team/(6106:6123): Esperando cliente...
+[DEBUG] 21:34:01:151 Team/(6106:6124): Conectandose al servidor...
+[DEBUG] 21:34:01:153 Team/(6106:6124): Conexion creada. Socket = 6
+[DEBUG] 21:34:01:156 Team/(6106:6125): Conectandose al servidor...
+[DEBUG] 21:34:01:156 Team/(6106:6125): Conexion creada. Socket = 7
+[INFO] 21:34:01:159 Team/(6106:6106): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 21:34:01:160 Team/(6106:6126): Conectandose al servidor...
+[DEBUG] 21:34:01:160 Team/(6106:6126): Conexion creada. Socket = 8
+[DEBUG] 21:34:01:164 Team/(6106:6106): Suscripto a la cola LOCALIZED.
+[INFO] 21:34:01:164 Team/(6106:6106): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 21:34:01:164 Team/(6106:6128): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 21:34:01:167 Team/(6106:6106): Suscripto a la cola APPEARED.
+[INFO] 21:34:01:167 Team/(6106:6106): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 21:34:01:167 Team/(6106:6129): Se levanta hilo para atender al servidor en socket 7
+[DEBUG] 21:34:01:174 Team/(6106:6106): Suscripto a la cola CAUGHT.
+[DEBUG] 21:34:01:174 Team/(6106:6130): Se levanta hilo para atender al servidor en socket 8
+[DEBUG] 21:34:01:178 Team/(6106:6106): Conectandose al servidor...
+[DEBUG] 21:34:01:179 Team/(6106:6106): Enviando mensaje GET...
+[DEBUG] 21:34:01:179 Team/(6106:6131): Se activa el planificador
+[DEBUG] 21:34:01:310 Team/(6106:6106): Mensaje enviado GET :smilieface:
+[INFO] 21:34:01:310 Team/(6106:6106): Respuesta del Broker: 331
+[DEBUG] 21:34:01:311 Team/(6106:6106): Conectandose al servidor...
+[DEBUG] 21:34:01:311 Team/(6106:6106): Enviando mensaje GET...
+[DEBUG] 21:34:01:410 Team/(6106:6106): Mensaje enviado GET :smilieface:
+[INFO] 21:34:01:411 Team/(6106:6106): Respuesta del Broker: 332
+[DEBUG] 21:34:01:411 Team/(6106:6106): Conectandose al servidor...
+[DEBUG] 21:34:01:411 Team/(6106:6106): Enviando mensaje GET...
+[DEBUG] 21:34:01:450 Team/(6106:6106): Mensaje enviado GET :smilieface:
+[INFO] 21:34:01:450 Team/(6106:6106): Respuesta del Broker: 333
+[INFO] 21:34:01:617 Team/(6106:6128): Mensaje recibido: 
+
+[DEBUG] 21:34:01:619 Team/(6106:6141): Se recibio un LOCALIZED
+[DEBUG] 21:34:01:619 Team/(6106:6141): Pokemon: Pikachu
+[INFO] 21:34:02:642 Team/(6106:6128): Mensaje recibido: 	
+
+[INFO] 21:34:04:319 Team/(6106:6128): Mensaje recibido: 
+
+[DEBUG] 21:34:04:495 Team/(6106:6141): El pokemon no me interesa o llego vacio
+[DEBUG] 21:34:04:495 Team/(6106:6141): Se proceso el LOCALIZED
+[DEBUG] 21:34:04:495 Team/(6106:6144): Se recibio un LOCALIZED
+[DEBUG] 21:34:04:495 Team/(6106:6144): Pokemon: Squirtle
+[DEBUG] 21:34:11:319 Team/(6106:6144): El pokemon no me interesa o llego vacio
+[DEBUG] 21:34:11:321 Team/(6106:6144): Se proceso el LOCALIZED
+[DEBUG] 21:34:11:321 Team/(6106:6147): Se recibio un LOCALIZED
+[DEBUG] 21:34:11:321 Team/(6106:6147): Pokemon: Charmander
+[DEBUG] 21:34:19:379 Team/(6106:6147): El pokemon no me interesa o llego vacio
+[DEBUG] 21:34:19:380 Team/(6106:6147): Se proceso el LOCALIZED
+[INFO] 21:34:53:371 Team/(6106:6129): Mensaje recibido: 
+
+[DEBUG] 21:34:53:374 Team/(6106:6185): Se recibio un APPEARED
+[DEBUG] 21:35:01:13 Team/(6106:6185): El pokemon esta en nuestro objetivo
+[INFO] 21:35:01:14 Team/(6106:6185): Pokemon: Pikachu
+[ERROR] 21:35:01:15 Team/(6106:6185): Comienza la vuelta 0 del while
+[DEBUG] 21:35:01:15 Team/(6106:6131): Hurra, tengo algo en ready
+[DEBUG] 21:35:01:15 Team/(6106:6122): El entrenador id: 2 esta en la posicion [6,3]
+[DEBUG] 21:35:04:15 Team/(6106:6122): El entrenador id: 2 esta en la posicion [6,4]
+[DEBUG] 21:35:07:15 Team/(6106:6122): El entrenador id: 2 esta en la posicion [6,5]
+[DEBUG] 21:35:10:16 Team/(6106:6122): El entrenador id: 2 esta en la posicion [6,6]
+[DEBUG] 21:35:13:16 Team/(6106:6122): Conectandose al servidor...
+[DEBUG] 21:35:13:17 Team/(6106:6122): Enviando mensaje CATCH...
+[DEBUG] 21:35:13:35 Team/(6106:6122): Mensaje enviado CATCH :smilieface:
+[INFO] 21:35:13:36 Team/(6106:6122): ID del CATCH recibido y guardado: 339
+[INFO] 21:35:13:125 Team/(6106:6130): Mensaje recibido: 
+
+[DEBUG] 21:35:13:128 Team/(6106:6202): Se recibio un CAUGHT
+[INFO] 21:35:15:275 Team/(6106:6202): El entrenador 2 capturo un Pikachu!
+[INFO] 21:35:15:276 Team/(6106:6202): El entrenador removio el pokemon Pikachu de sus objetivos
+[INFO] 21:35:41:383 Team/(6106:6129): Mensaje recibido: 
+
+
+[DEBUG] 21:35:41:386 Team/(6106:6222): Se recibio un APPEARED
+[ERROR] 21:35:46:779 Team/(6106:6222): No me interesa el pokemon Charmander
+[INFO] 21:36:26:109 Team/(6106:6129): Mensaje recibido: 
+
+[DEBUG] 21:36:26:116 Team/(6106:6252): Se recibio un APPEARED
+[DEBUG] 21:36:31:456 Team/(6106:6252): El pokemon esta en nuestro objetivo
+[INFO] 21:36:31:456 Team/(6106:6252): Pokemon: Squirtle
+[ERROR] 21:36:31:456 Team/(6106:6252): Comienza la vuelta 0 del while
+[DEBUG] 21:36:31:457 Team/(6106:6131): Hurra, tengo algo en ready
+[DEBUG] 21:36:31:457 Team/(6106:6120): El entrenador id: 0 esta en la posicion [1,1]
+[DEBUG] 21:36:34:457 Team/(6106:6120): Conectandose al servidor...
+[DEBUG] 21:36:34:458 Team/(6106:6120): Enviando mensaje CATCH...
+[DEBUG] 21:36:34:477 Team/(6106:6120): Mensaje enviado CATCH :smilieface:
+[INFO] 21:36:34:477 Team/(6106:6120): ID del CATCH recibido y guardado: 345
+[INFO] 21:36:34:541 Team/(6106:6130): Mensaje recibido: 
+
+[DEBUG] 21:36:34:542 Team/(6106:6266): Se recibio un CAUGHT
+[INFO] 21:36:36:545 Team/(6106:6266): El entrenador 0 capturo un Squirtle!
+[INFO] 21:36:36:545 Team/(6106:6266): El entrenador removio el pokemon Squirtle de sus objetivos
+[INFO] 21:37:13:818 Team/(6106:6129): Mensaje recibido: 
+
+
+[DEBUG] 21:37:13:825 Team/(6106:6290): Se recibio un APPEARED
+[ERROR] 21:37:19:283 Team/(6106:6290): No me interesa el pokemon Charmander
+[DEBUG] 21:38:47:613 Team/(6379:6379): Se ha iniciado un Team.
+[INFO] 21:38:48:182 Team/(6379:6379): Iniciado semáforos para entrenador 0
+[INFO] 21:38:48:182 Team/(6379:6379): Iniciado semáforos para entrenador 0
+[INFO] 21:38:48:182 Team/(6379:6379): Iniciado semáforos para entrenador 0
+[DEBUG] 21:38:48:195 Team/(6379:6379): Conectandose al servidor...
+[DEBUG] 21:38:48:198 Team/(6379:6379): ID obtenido = 39
+[INFO] 21:38:48:199 Team/(6379:6401): Socket de escucha para Gameboy creado
+[DEBUG] 21:38:48:199 Team/(6379:6401): Esperando cliente...
+[DEBUG] 21:38:48:204 Team/(6379:6402): Conectandose al servidor...
+[DEBUG] 21:38:48:205 Team/(6379:6402): Conexion creada. Socket = 6
+[DEBUG] 21:38:48:209 Team/(6379:6403): Conectandose al servidor...
+[DEBUG] 21:38:48:213 Team/(6379:6403): Conexion creada. Socket = 7
+[INFO] 21:38:48:214 Team/(6379:6379): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 21:38:48:219 Team/(6379:6404): Conectandose al servidor...
+[DEBUG] 21:38:48:219 Team/(6379:6404): Conexion creada. Socket = 8
+[DEBUG] 21:38:48:221 Team/(6379:6379): Suscripto a la cola LOCALIZED.
+[INFO] 21:38:48:222 Team/(6379:6379): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 21:38:48:222 Team/(6379:6406): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 21:38:48:234 Team/(6379:6379): Suscripto a la cola APPEARED.
+[INFO] 21:38:48:234 Team/(6379:6379): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 21:38:48:234 Team/(6379:6409): Se levanta hilo para atender al servidor en socket 7
+[DEBUG] 21:38:48:237 Team/(6379:6379): Suscripto a la cola CAUGHT.
+[DEBUG] 21:38:48:237 Team/(6379:6412): Se levanta hilo para atender al servidor en socket 8
+[DEBUG] 21:38:48:240 Team/(6379:6379): Conectandose al servidor...
+[DEBUG] 21:38:48:240 Team/(6379:6379): Enviando mensaje GET...
+[DEBUG] 21:38:48:240 Team/(6379:6413): Se activa el planificador
+[DEBUG] 21:38:48:359 Team/(6379:6379): Mensaje enviado GET :smilieface:
+[INFO] 21:38:48:359 Team/(6379:6379): Respuesta del Broker: 349
+[DEBUG] 21:38:48:359 Team/(6379:6379): Conectandose al servidor...
+[DEBUG] 21:38:48:360 Team/(6379:6379): Enviando mensaje GET...
+[DEBUG] 21:38:48:469 Team/(6379:6379): Mensaje enviado GET :smilieface:
+[INFO] 21:38:48:469 Team/(6379:6379): Respuesta del Broker: 350
+[DEBUG] 21:38:48:469 Team/(6379:6379): Conectandose al servidor...
+[DEBUG] 21:38:48:470 Team/(6379:6379): Enviando mensaje GET...
+[DEBUG] 21:38:48:526 Team/(6379:6379): Mensaje enviado GET :smilieface:
+[INFO] 21:38:48:526 Team/(6379:6379): Respuesta del Broker: 351
+[INFO] 21:38:48:826 Team/(6379:6406): Mensaje recibido: 	
+
+[DEBUG] 21:38:48:827 Team/(6379:6419): Se recibio un LOCALIZED
+[DEBUG] 21:38:48:830 Team/(6379:6419): Pokemon: Squirtle
+[INFO] 21:38:49:3 Team/(6379:6406): Mensaje recibido: 
+
+[INFO] 21:38:52:310 Team/(6379:6406): Mensaje recibido: 
+
+[DEBUG] 21:38:53:188 Team/(6379:6419): El pokemon no me interesa o llego vacio
+[DEBUG] 21:38:53:188 Team/(6379:6419): Se proceso el LOCALIZED
+[DEBUG] 21:38:53:188 Team/(6379:6421): Se recibio un LOCALIZED
+[DEBUG] 21:38:53:188 Team/(6379:6421): Pokemon: Pikachu
+[DEBUG] 21:39:02:55 Team/(6379:6421): El pokemon no me interesa o llego vacio
+[DEBUG] 21:39:02:56 Team/(6379:6421): Se proceso el LOCALIZED
+[DEBUG] 21:39:02:56 Team/(6379:6426): Se recibio un LOCALIZED
+[DEBUG] 21:39:02:56 Team/(6379:6426): Pokemon: Charmander
+[DEBUG] 21:39:37:457 Team/(6379:6426): El pokemon no me interesa o llego vacio
+[DEBUG] 21:39:37:458 Team/(6379:6426): Se proceso el LOCALIZED
+[INFO] 21:39:59:692 Team/(6379:6409): Mensaje recibido: 
+
+
+[DEBUG] 21:39:59:694 Team/(6379:6481): Se recibio un APPEARED
+[ERROR] 21:40:05:820 Team/(6379:6481): No me interesa el pokemon Charmander
+[DEBUG] 21:40:52:561 Team/(6557:6557): Se ha iniciado un Team.
+[INFO] 21:40:53:268 Team/(6557:6557): Iniciado semáforos para entrenador 0
+[INFO] 21:40:53:268 Team/(6557:6557): Iniciado semáforos para entrenador 0
+[INFO] 21:40:53:268 Team/(6557:6557): Iniciado semáforos para entrenador 0
+[DEBUG] 21:40:53:281 Team/(6557:6557): Conectandose al servidor...
+[DEBUG] 21:40:53:285 Team/(6557:6557): ID obtenido = 41
+[INFO] 21:40:53:285 Team/(6557:6579): Socket de escucha para Gameboy creado
+[DEBUG] 21:40:53:285 Team/(6557:6579): Esperando cliente...
+[DEBUG] 21:40:53:290 Team/(6557:6580): Conectandose al servidor...
+[DEBUG] 21:40:53:291 Team/(6557:6580): Conexion creada. Socket = 6
+[DEBUG] 21:40:53:299 Team/(6557:6581): Conectandose al servidor...
+[DEBUG] 21:40:53:303 Team/(6557:6581): Conexion creada. Socket = 7
+[INFO] 21:40:53:304 Team/(6557:6557): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 21:40:53:307 Team/(6557:6582): Conectandose al servidor...
+[DEBUG] 21:40:53:307 Team/(6557:6582): Conexion creada. Socket = 8
+[DEBUG] 21:40:53:314 Team/(6557:6557): Suscripto a la cola LOCALIZED.
+[INFO] 21:40:53:315 Team/(6557:6557): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 21:40:53:315 Team/(6557:6583): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 21:40:53:321 Team/(6557:6557): Suscripto a la cola APPEARED.
+[INFO] 21:40:53:321 Team/(6557:6557): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 21:40:53:321 Team/(6557:6584): Se levanta hilo para atender al servidor en socket 7
+[DEBUG] 21:40:53:323 Team/(6557:6557): Suscripto a la cola CAUGHT.
+[DEBUG] 21:40:53:324 Team/(6557:6585): Se levanta hilo para atender al servidor en socket 8
+[DEBUG] 21:40:53:329 Team/(6557:6557): Conectandose al servidor...
+[DEBUG] 21:40:53:329 Team/(6557:6557): Enviando mensaje GET...
+[DEBUG] 21:40:53:329 Team/(6557:6586): Se activa el planificador
+[DEBUG] 21:40:53:465 Team/(6557:6557): Mensaje enviado GET :smilieface:
+[INFO] 21:40:53:466 Team/(6557:6557): Respuesta del Broker: 357
+[DEBUG] 21:40:53:466 Team/(6557:6557): Conectandose al servidor...
+[DEBUG] 21:40:53:466 Team/(6557:6557): Enviando mensaje GET...
+[DEBUG] 21:40:53:573 Team/(6557:6557): Mensaje enviado GET :smilieface:
+[INFO] 21:40:53:573 Team/(6557:6557): Respuesta del Broker: 358
+[DEBUG] 21:40:53:573 Team/(6557:6557): Conectandose al servidor...
+[DEBUG] 21:40:53:573 Team/(6557:6557): Enviando mensaje GET...
+[DEBUG] 21:40:53:634 Team/(6557:6557): Mensaje enviado GET :smilieface:
+[INFO] 21:40:53:634 Team/(6557:6557): Respuesta del Broker: 359
+[INFO] 21:40:53:857 Team/(6557:6583): Mensaje recibido: 
+
+[DEBUG] 21:40:53:867 Team/(6557:6591): Se recibio un LOCALIZED
+[DEBUG] 21:40:53:868 Team/(6557:6591): Pokemon: Charmander
+[INFO] 21:40:55:571 Team/(6557:6583): Mensaje recibido: 
+
+[INFO] 21:40:57:277 Team/(6557:6583): Mensaje recibido: 	
+
+[DEBUG] 21:40:58:591 Team/(6557:6591): El pokemon no me interesa o llego vacio
+[DEBUG] 21:40:58:591 Team/(6557:6591): Se proceso el LOCALIZED
+[DEBUG] 21:40:58:591 Team/(6557:6594): Se recibio un LOCALIZED
+[DEBUG] 21:40:58:591 Team/(6557:6594): Pokemon: Pikachu
+[DEBUG] 21:41:03:340 Team/(6557:6594): El pokemon no me interesa o llego vacio
+[DEBUG] 21:41:03:340 Team/(6557:6594): Se proceso el LOCALIZED
+[DEBUG] 21:41:03:340 Team/(6557:6597): Se recibio un LOCALIZED
+[DEBUG] 21:41:03:340 Team/(6557:6597): Pokemon: Squirtle
+[DEBUG] 21:41:08:969 Team/(6557:6597): El pokemon no me interesa o llego vacio
+[DEBUG] 21:41:08:969 Team/(6557:6597): Se proceso el LOCALIZED
+[INFO] 21:41:21:941 Team/(6557:6584): Mensaje recibido: 
+
+[DEBUG] 21:41:21:944 Team/(6557:6639): Se recibio un APPEARED
+[ERROR] 21:41:28:244 Team/(6557:6639): No me interesa el pokemon Squirtle
+[DEBUG] 21:48:37:689 Team/(6966:6966): Se ha iniciado un Team.
+[INFO] 21:49:35:556 Team/(6966:6966): Iniciado semáforos para entrenador 0
+[INFO] 21:49:35:556 Team/(6966:6966): Iniciado semáforos para entrenador 0
+[INFO] 21:49:35:556 Team/(6966:6966): Iniciado semáforos para entrenador 0
+[INFO] 21:49:39:192 Team/(6966:7034): Socket de escucha para Gameboy creado
+[DEBUG] 21:49:39:192 Team/(6966:7034): Esperando cliente...
+[DEBUG] 21:49:39:193 Team/(6966:6966): Conectandose al servidor...
+[DEBUG] 21:49:39:196 Team/(6966:6966): ID obtenido = 43
+[DEBUG] 21:49:39:202 Team/(6966:7036): Conectandose al servidor...
+[DEBUG] 21:49:39:203 Team/(6966:7036): Conexion creada. Socket = 6
+[DEBUG] 21:49:39:209 Team/(6966:7037): Conectandose al servidor...
+[DEBUG] 21:49:39:209 Team/(6966:7037): Conexion creada. Socket = 7
+[INFO] 21:49:39:213 Team/(6966:6966): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 21:49:39:215 Team/(6966:7038): Conectandose al servidor...
+[DEBUG] 21:49:39:216 Team/(6966:7038): Conexion creada. Socket = 8
+[DEBUG] 21:49:39:219 Team/(6966:6966): Suscripto a la cola LOCALIZED.
+[INFO] 21:49:39:220 Team/(6966:6966): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 21:49:39:224 Team/(6966:7039): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 21:49:39:226 Team/(6966:6966): Suscripto a la cola APPEARED.
+[INFO] 21:49:39:227 Team/(6966:6966): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 21:49:39:227 Team/(6966:7040): Se levanta hilo para atender al servidor en socket 7
+[DEBUG] 21:49:39:232 Team/(6966:6966): Suscripto a la cola CAUGHT.
+[DEBUG] 21:49:40:158 Team/(6966:7041): Se levanta hilo para atender al servidor en socket 8
+[DEBUG] 21:49:40:692 Team/(6966:7044): Se activa el planificador
+[DEBUG] 21:49:40:694 Team/(6966:6966): Conectandose al servidor...
+[DEBUG] 21:49:40:695 Team/(6966:6966): Enviando mensaje GET...
+[DEBUG] 21:49:40:809 Team/(6966:6966): Mensaje enviado GET :smilieface:
+[INFO] 21:49:40:809 Team/(6966:6966): Respuesta del Broker: 365
+[DEBUG] 21:49:40:809 Team/(6966:6966): Conectandose al servidor...
+[DEBUG] 21:49:40:809 Team/(6966:6966): Enviando mensaje GET...
+[DEBUG] 21:49:40:917 Team/(6966:6966): Mensaje enviado GET :smilieface:
+[INFO] 21:49:40:917 Team/(6966:6966): Respuesta del Broker: 366
+[DEBUG] 21:49:40:918 Team/(6966:6966): Conectandose al servidor...
+[DEBUG] 21:49:40:918 Team/(6966:6966): Enviando mensaje GET...
+[DEBUG] 21:49:40:967 Team/(6966:6966): Mensaje enviado GET :smilieface:
+[INFO] 21:49:40:967 Team/(6966:6966): Respuesta del Broker: 367
+[INFO] 21:49:41:259 Team/(6966:7039): Mensaje recibido: 
+
+[DEBUG] 21:49:41:260 Team/(6966:7051): Se recibio un LOCALIZED
+[DEBUG] 21:49:41:260 Team/(6966:7051): Pokemon: Charmander
+[INFO] 21:49:41:987 Team/(6966:7039): Mensaje recibido: 
+
+[INFO] 21:49:41:996 Team/(6966:7039): Mensaje recibido: 	
+
+[DEBUG] 21:50:00:655 Team/(6966:7051): El pokemon no me interesa o llego vacio
+[DEBUG] 21:50:01:352 Team/(6966:7051): Se proceso el LOCALIZED
+[DEBUG] 21:50:02:207 Team/(6966:7053): Se recibio un LOCALIZED
+[DEBUG] 21:50:02:207 Team/(6966:7053): Pokemon: Pikachu
+[DEBUG] 21:50:23:956 Team/(6966:7053): El pokemon no me interesa o llego vacio
+[DEBUG] 21:50:24:383 Team/(6966:7053): Se proceso el LOCALIZED
+[DEBUG] 21:50:26:59 Team/(6966:7055): Se recibio un LOCALIZED
+[DEBUG] 21:50:26:60 Team/(6966:7055): Pokemon: Squirtle
+[DEBUG] 21:51:14:900 Team/(6966:7055): El pokemon no me interesa o llego vacio
+[DEBUG] 21:51:15:393 Team/(6966:7055): Se proceso el LOCALIZED
+[DEBUG] 22:04:00:588 Team/(7644:7644): Se ha iniciado un Team.
+[INFO] 22:04:04:370 Team/(7644:7644): Iniciado semáforos para entrenador 0
+[INFO] 22:04:04:370 Team/(7644:7644): Iniciado semáforos para entrenador 0
+[INFO] 22:04:04:370 Team/(7644:7644): Iniciado semáforos para entrenador 0
+[DEBUG] 22:04:04:391 Team/(7644:7644): Conectandose al servidor...
+[DEBUG] 22:04:04:395 Team/(7644:7644): ID obtenido = 45
+[INFO] 22:04:04:395 Team/(7644:7662): Socket de escucha para Gameboy creado
+[DEBUG] 22:04:04:396 Team/(7644:7662): Esperando cliente...
+[DEBUG] 22:04:04:400 Team/(7644:7664): Conectandose al servidor...
+[DEBUG] 22:04:04:401 Team/(7644:7664): Conexion creada. Socket = 6
+[DEBUG] 22:04:04:409 Team/(7644:7665): Conectandose al servidor...
+[DEBUG] 22:04:04:409 Team/(7644:7665): Conexion creada. Socket = 7
+[INFO] 22:04:04:413 Team/(7644:7644): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 22:04:04:414 Team/(7644:7667): Conectandose al servidor...
+[DEBUG] 22:04:04:414 Team/(7644:7667): Conexion creada. Socket = 8
+[DEBUG] 22:04:04:417 Team/(7644:7644): Suscripto a la cola LOCALIZED.
+[INFO] 22:04:04:420 Team/(7644:7644): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 22:04:04:424 Team/(7644:7668): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 22:04:04:430 Team/(7644:7644): Suscripto a la cola APPEARED.
+[INFO] 22:04:04:430 Team/(7644:7644): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 22:04:04:430 Team/(7644:7669): Se levanta hilo para atender al servidor en socket 7
+[DEBUG] 22:04:04:434 Team/(7644:7644): Suscripto a la cola CAUGHT.
+[DEBUG] 22:04:04:434 Team/(7644:7670): Se levanta hilo para atender al servidor en socket 8
+[DEBUG] 22:04:04:439 Team/(7644:7644): Conectandose al servidor...
+[DEBUG] 22:04:04:439 Team/(7644:7644): Enviando mensaje GET...
+[DEBUG] 22:04:04:440 Team/(7644:7671): Se activa el planificador
+[DEBUG] 22:04:04:617 Team/(7644:7644): Mensaje enviado GET :smilieface:
+[INFO] 22:04:04:617 Team/(7644:7644): Respuesta del Broker: 371
+[DEBUG] 22:04:04:617 Team/(7644:7644): Conectandose al servidor...
+[DEBUG] 22:04:04:617 Team/(7644:7644): Enviando mensaje GET...
+[DEBUG] 22:04:04:772 Team/(7644:7644): Mensaje enviado GET :smilieface:
+[INFO] 22:04:04:772 Team/(7644:7644): Respuesta del Broker: 372
+[DEBUG] 22:04:04:772 Team/(7644:7644): Conectandose al servidor...
+[DEBUG] 22:04:04:772 Team/(7644:7644): Enviando mensaje GET...
+[DEBUG] 22:04:04:825 Team/(7644:7644): Mensaje enviado GET :smilieface:
+[INFO] 22:04:04:825 Team/(7644:7644): Respuesta del Broker: 373
+[INFO] 22:04:05:72 Team/(7644:7668): Mensaje recibido: 
+
+[DEBUG] 22:04:05:73 Team/(7644:7677): Se recibio un LOCALIZED
+[DEBUG] 22:04:05:76 Team/(7644:7677): Pokemon: Pikachu
+[ERROR] 22:04:05:77 Team/(7644:7677): Comparando pokemon recibido...
+[INFO] 22:04:08:715 Team/(7644:7668): Mensaje recibido: 
+
+[ERROR] 22:04:08:715 Team/(7644:7677): Pokemon recibido: Pikachu
+[ERROR] 22:04:08:715 Team/(7644:7677): Comparando con: Pikachu
+[ERROR] 22:04:08:715 Team/(7644:7677): Coincide
+[ERROR] 22:04:08:715 Team/(7644:7677): Comparando con: Charmander
+[ERROR] 22:04:08:715 Team/(7644:7677): No coincide
+[ERROR] 22:04:08:715 Team/(7644:7677): Comparando con: Pikachu
+[ERROR] 22:04:08:715 Team/(7644:7677): Coincide
+[DEBUG] 22:04:08:715 Team/(7644:7677): El pokemon no me interesa o llego vacio
+[DEBUG] 22:04:08:715 Team/(7644:7677): Se proceso el LOCALIZED
+[DEBUG] 22:04:08:716 Team/(7644:7679): Se recibio un LOCALIZED
+[DEBUG] 22:04:08:716 Team/(7644:7679): Pokemon: Charmander
+[ERROR] 22:04:08:716 Team/(7644:7679): Comparando pokemon recibido...
+[INFO] 22:04:29:548 Team/(7644:7668): Mensaje recibido: 	
+
+[ERROR] 22:04:29:548 Team/(7644:7679): Pokemon recibido: Charmander
+[ERROR] 22:04:29:549 Team/(7644:7679): Comparando con: Pikachu
+[ERROR] 22:04:29:549 Team/(7644:7679): No coincide
+[ERROR] 22:04:29:549 Team/(7644:7679): Comparando con: Charmander
+[ERROR] 22:04:29:549 Team/(7644:7679): Coincide
+[ERROR] 22:04:29:549 Team/(7644:7679): Comparando con: Pikachu
+[ERROR] 22:04:29:549 Team/(7644:7679): No coincide
+[DEBUG] 22:04:29:549 Team/(7644:7679): El pokemon no me interesa o llego vacio
+[DEBUG] 22:04:29:549 Team/(7644:7679): Se proceso el LOCALIZED
+[DEBUG] 22:04:29:549 Team/(7644:7695): Se recibio un LOCALIZED
+[DEBUG] 22:04:29:549 Team/(7644:7695): Pokemon: Squirtle
+[ERROR] 22:04:29:549 Team/(7644:7695): Comparando pokemon recibido...
+[ERROR] 22:04:31:934 Team/(7644:7695): Pokemon recibido: Squirtle
+[ERROR] 22:04:31:935 Team/(7644:7695): Comparando con: Pikachu
+[ERROR] 22:04:31:935 Team/(7644:7695): No coincide
+[ERROR] 22:04:31:935 Team/(7644:7695): Comparando con: Charmander
+[ERROR] 22:04:31:935 Team/(7644:7695): No coincide
+[ERROR] 22:04:31:935 Team/(7644:7695): Comparando con: Pikachu
+[ERROR] 22:04:31:935 Team/(7644:7695): No coincide
+[DEBUG] 22:04:31:935 Team/(7644:7695): El pokemon no me interesa o llego vacio
+[DEBUG] 22:04:31:935 Team/(7644:7695): Se proceso el LOCALIZED
+[INFO] 22:04:57:833 Team/(7644:7669): Mensaje recibido: 
+
+[DEBUG] 22:04:57:834 Team/(7644:7729): Se recibio un APPEARED
+[ERROR] 22:04:57:834 Team/(7644:7729): Comparando pokemon recibido...
+[ERROR] 22:05:03:178 Team/(7644:7729): Pokemon recibido: Squirtle
+[ERROR] 22:05:07:749 Team/(7644:7729): Comparando con: Pikachu
+[ERROR] 22:05:07:751 Team/(7644:7729): No coincide
+[ERROR] 22:05:07:751 Team/(7644:7729): Comparando con: Charmander
+[ERROR] 22:05:07:751 Team/(7644:7729): No coincide
+[ERROR] 22:05:07:751 Team/(7644:7729): Comparando con: Pikachu
+[ERROR] 22:05:07:751 Team/(7644:7729): No coincide
+[ERROR] 22:05:34:415 Team/(7644:7729): No me interesa el pokemon Squirtle
+[DEBUG] 22:07:32:1 Team/(7859:7859): Se ha iniciado un Team.
+[DEBUG] 22:12:31:333 Team/(8101:8101): Se ha iniciado un Team.
+[INFO] 22:12:44:760 Team/(8101:8101): Agregando objetivo Pikachu del entrenador 0 a los objetivos globales
+[INFO] 22:12:53:10 Team/(8101:8101): Agregando objetivo Charmander del entrenador 1 a los objetivos globales
+[INFO] 22:12:57:854 Team/(8101:8101): Agregando objetivo Squirtle del entrenador 2 a los objetivos globales
+[INFO] 22:13:21:181 Team/(8101:8101): Iniciado semáforos para entrenador 0
+[INFO] 22:13:21:182 Team/(8101:8101): Iniciado semáforos para entrenador 0
+[INFO] 22:13:21:182 Team/(8101:8101): Iniciado semáforos para entrenador 0
+[INFO] 22:13:25:361 Team/(8101:8165): Socket de escucha para Gameboy creado
+[DEBUG] 22:13:25:362 Team/(8101:8165): Esperando cliente...
+[DEBUG] 22:13:25:362 Team/(8101:8101): Conectandose al servidor...
+[DEBUG] 22:13:25:366 Team/(8101:8101): ID obtenido = 48
+[DEBUG] 22:13:25:371 Team/(8101:8167): Conectandose al servidor...
+[DEBUG] 22:13:25:372 Team/(8101:8167): Conexion creada. Socket = 6
+[DEBUG] 22:13:25:376 Team/(8101:8168): Conectandose al servidor...
+[DEBUG] 22:13:25:377 Team/(8101:8168): Conexion creada. Socket = 7
+[INFO] 22:13:25:380 Team/(8101:8101): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 22:13:25:384 Team/(8101:8169): Conectandose al servidor...
+[DEBUG] 22:13:25:384 Team/(8101:8169): Conexion creada. Socket = 8
+[DEBUG] 22:13:25:386 Team/(8101:8101): Suscripto a la cola LOCALIZED.
+[INFO] 22:13:25:386 Team/(8101:8101): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 22:13:25:386 Team/(8101:8170): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 22:13:25:393 Team/(8101:8101): Suscripto a la cola APPEARED.
+[INFO] 22:13:25:393 Team/(8101:8101): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 22:13:25:393 Team/(8101:8171): Se levanta hilo para atender al servidor en socket 7
+[DEBUG] 22:13:25:396 Team/(8101:8101): Suscripto a la cola CAUGHT.
+[DEBUG] 22:13:26:906 Team/(8101:8172): Se levanta hilo para atender al servidor en socket 8
+[DEBUG] 22:13:28:181 Team/(8101:8176): Se activa el planificador
+[DEBUG] 22:13:28:183 Team/(8101:8101): Conectandose al servidor...
+[DEBUG] 22:13:28:184 Team/(8101:8101): Enviando mensaje GET...
+[DEBUG] 22:13:28:271 Team/(8101:8101): Mensaje enviado GET :smilieface:
+[INFO] 22:13:28:271 Team/(8101:8101): Respuesta del Broker: 379
+[DEBUG] 22:13:28:271 Team/(8101:8101): Conectandose al servidor...
+[DEBUG] 22:13:28:271 Team/(8101:8101): Enviando mensaje GET...
+[DEBUG] 22:13:28:366 Team/(8101:8101): Mensaje enviado GET :smilieface:
+[INFO] 22:13:28:366 Team/(8101:8101): Respuesta del Broker: 380
+[DEBUG] 22:13:28:367 Team/(8101:8101): Conectandose al servidor...
+[DEBUG] 22:13:28:367 Team/(8101:8101): Enviando mensaje GET...
+[DEBUG] 22:13:28:420 Team/(8101:8101): Mensaje enviado GET :smilieface:
+[INFO] 22:13:28:420 Team/(8101:8101): Respuesta del Broker: 381
+[INFO] 22:13:31:72 Team/(8101:8170): Mensaje recibido: 
+
+[DEBUG] 22:13:31:74 Team/(8101:8183): Se recibio un LOCALIZED
+[DEBUG] 22:13:31:74 Team/(8101:8183): Pokemon: Pikachu
+[ERROR] 22:13:31:79 Team/(8101:8183): Comparando pokemon recibido...
+[INFO] 22:13:34:520 Team/(8101:8170): Mensaje recibido: 
+
+[ERROR] 22:13:34:522 Team/(8101:8183): Pokemon recibido: Pikachu
+[INFO] 22:13:36:283 Team/(8101:8170): Mensaje recibido: 	
+
+[ERROR] 22:13:36:285 Team/(8101:8183): Comparando con: Pikachu
+[ERROR] 22:13:36:285 Team/(8101:8183): Coincide
+[ERROR] 22:13:36:285 Team/(8101:8183): Comparando con: Charmander
+[ERROR] 22:13:36:286 Team/(8101:8183): No coincide
+[ERROR] 22:13:36:286 Team/(8101:8183): Comparando con: Pikachu
+[ERROR] 22:13:36:286 Team/(8101:8183): Coincide
+[DEBUG] 22:13:57:590 Team/(8101:8183): El pokemon no me interesa o llego vacio
+[DEBUG] 22:13:59:428 Team/(8101:8183): Se proceso el LOCALIZED
+[DEBUG] 22:14:04:351 Team/(8101:8187): Se recibio un LOCALIZED
+[DEBUG] 22:14:04:352 Team/(8101:8187): Pokemon: Charmander
+[ERROR] 22:14:04:352 Team/(8101:8187): Comparando pokemon recibido...
+[ERROR] 22:14:06:957 Team/(8101:8187): Pokemon recibido: Charmander
+[ERROR] 22:14:08:355 Team/(8101:8187): Comparando con: Pikachu
+[ERROR] 22:14:08:355 Team/(8101:8187): No coincide
+[ERROR] 22:14:08:356 Team/(8101:8187): Comparando con: Charmander
+[ERROR] 22:14:08:356 Team/(8101:8187): Coincide
+[ERROR] 22:14:08:356 Team/(8101:8187): Comparando con: Pikachu
+[ERROR] 22:14:08:356 Team/(8101:8187): No coincide
+[DEBUG] 22:14:13:198 Team/(8101:8187): El pokemon no me interesa o llego vacio
+[DEBUG] 22:14:15:336 Team/(8101:8187): Se proceso el LOCALIZED
+[DEBUG] 22:14:18:87 Team/(8101:8191): Se recibio un LOCALIZED
+[DEBUG] 22:14:18:87 Team/(8101:8191): Pokemon: Squirtle
+[ERROR] 22:14:18:87 Team/(8101:8191): Comparando pokemon recibido...
+[ERROR] 22:14:20:995 Team/(8101:8191): Pokemon recibido: Squirtle
+[ERROR] 22:14:25:139 Team/(8101:8191): Comparando con: Pikachu
+[ERROR] 22:14:25:140 Team/(8101:8191): No coincide
+[ERROR] 22:14:25:140 Team/(8101:8191): Comparando con: Charmander
+[ERROR] 22:14:25:140 Team/(8101:8191): No coincide
+[ERROR] 22:14:25:140 Team/(8101:8191): Comparando con: Pikachu
+[ERROR] 22:14:25:140 Team/(8101:8191): No coincide
+[DEBUG] 22:14:32:612 Team/(8101:8191): El pokemon no me interesa o llego vacio
+[DEBUG] 22:14:33:467 Team/(8101:8191): Se proceso el LOCALIZED
+[INFO] 22:14:55:609 Team/(8101:8171): Mensaje recibido: 
+
+[DEBUG] 22:14:55:609 Team/(8101:8293): Se recibio un APPEARED
+[ERROR] 22:14:55:609 Team/(8101:8293): Comparando pokemon recibido...
+[ERROR] 22:14:59:363 Team/(8101:8293): Pokemon recibido: Squirtle
+[ERROR] 22:15:06:476 Team/(8101:8293): Comparando con: Pikachu
+[ERROR] 22:15:06:477 Team/(8101:8293): No coincide
+[ERROR] 22:15:06:477 Team/(8101:8293): Comparando con: Charmander
+[ERROR] 22:15:06:477 Team/(8101:8293): No coincide
+[ERROR] 22:15:06:477 Team/(8101:8293): Comparando con: Pikachu
+[ERROR] 22:15:06:477 Team/(8101:8293): No coincide
