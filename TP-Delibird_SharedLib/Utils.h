@@ -164,5 +164,6 @@ void enviarACola(int socketBroker, cola tipoCola, char* msj, int msjSize);
 char* getCodeStringByNum(int nro);
 uint32_t obtenerIdDelProceso(char* ip, char* puerto);
 uint32_t obtenerIdDelProcesoConReintento(char* ip, char* puerto, int tiempoDeEspera);
+void destructorGeneral(void * elemento);
 
 #endif /* UTILS_H_ */

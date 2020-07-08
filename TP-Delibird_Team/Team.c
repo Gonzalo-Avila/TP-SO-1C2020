@@ -60,22 +60,53 @@ void obtenerDeConfig(char *clave, t_list *lista) {
 	array_iterate_element(listaDeConfig, enlistar, lista);
 }
 
+void destruirEntrenadores() {
+	for (int i = 0; i < list_size(team->entrenadores); i++) {
+		t_entrenador* entrenadorABorrar = (t_entrenador*) (list_get(team->entrenadores, i));
+
+		list_destroy_and_destroy_elements(entrenadorABorrar->objetivos,	destructorGeneral);
+		//TODO - Rompe el cierre por doble free si se capturo algun pokemon. Revisar despues.
+		//list_destroy_and_destroy_elements(entrenadorABorrar->pokemones,	destructorGeneral);
+		free(entrenadorABorrar->pokemonAAtrapar.pokemon);
+		free(entrenadorABorrar->datosDeadlock.pokemonAIntercambiar);
+	}
+
+	list_destroy_and_destroy_elements(team->entrenadores, destructorGeneral);
+}
+
 /* Liberar memoria al finalizar el programa */
 void liberarMemoria() {
-	for (int i = 0; i < list_size(team->entrenadores); i++) {
-		list_destroy(
-				((t_entrenador*) (list_get(team->entrenadores, i)))->objetivos);
-		list_destroy(
-				((t_entrenador*) (list_get(team->entrenadores, i)))->pokemones);
-	}
+	destruirEntrenadores();
 	//asumo que el list_destroy hace los free correspondientes.
-	list_destroy(team->objetivo);
-	list_destroy(team->entrenadores);
-	list_destroy(listaHilos);
-	list_destroy(listaDeReady);
-	list_destroy(listaDeBloqued);
-	log_destroy(logger);
+	list_destroy_and_destroy_elements(team->objetivo, destructorGeneral);
+	list_destroy_and_destroy_elements(listaHilos, destructorGeneral);
+	list_destroy_and_destroy_elements(listaDeReady, destructorGeneral);
+	list_destroy_and_destroy_elements(listaDeBloqued, destructorGeneral);
+	list_destroy_and_destroy_elements(idsDeCatch, destructorGeneral);
+	list_destroy_and_destroy_elements(listaPosicionesInternas, destructorGeneral);
+	list_destroy_and_destroy_elements(listaCondsEntrenadores, destructorGeneral);
+	close(*socketBrokerApp);
+	close(*socketBrokerLoc);
+	close(*socketBrokerCau);
+	close(*socketGameboy);
+	free(socketBrokerApp);
+	free(socketBrokerLoc);
+	free(socketBrokerCau);
+	free(socketGameboy);
+	free(ipServidor);
+	free(puertoServidor);
+	free(semEntrenadores);
+	free(semEntrenadoresRR);
 	config_destroy(config);
+
+	log_info(logger, "El proceso Team ha finalizado.");
+	log_destroy(logger);
+
+	exit(0);
+}
+
+void imprimirResultadosDelTeam(){
+	//TODO - Logs con datos del team al concluir
 }
 
 bool elementoEstaEnLista(t_list *lista, char *elemento) {
@@ -105,6 +136,11 @@ void crearHilosDeEntrenadores() {
 	}
 }
 
+void finalizarProceso(){
+	imprimirResultadosDelTeam();
+	liberarMemoria();
+}
+
 /*void crearConexionesCliente(int* socketBrokerLoc, int* socketBrokerApp, int* socketBrokerCau) {
 	pthread_t hiloSocketLoc;
 	pthread_t hiloSocketApp;
@@ -126,6 +162,7 @@ void crearHilosDeEntrenadores() {
 }*/
 
 int main() {
+	signal(SIGINT,finalizarProceso);
 
 	inicializarVariablesGlobales();
 
@@ -153,14 +190,7 @@ int main() {
 	log_info(logger, "Finalizó la conexión con el servidor\n");
 	log_info(logger, "El proceso Team finalizó su ejecución\n");
 
-	free(ipServidor);
-	free(puertoServidor);
-	close(*socketBrokerApp);
-	close(*socketBrokerLoc);
-	close(*socketBrokerCau);
-	free(socketBrokerApp);
-	free(socketBrokerLoc);
-	free(socketBrokerCau);
+
 //	liberarMemoria();
 	//Todo revisar porque pincha en LiberarMemoria().
 	return 0;

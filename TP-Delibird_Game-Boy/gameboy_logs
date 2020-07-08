@@ -422,3 +422,12 @@ Tipo de proceso: BROKER
 IP: 127.0.0.1
 PUERTO: 9898
 Socket:5
+[INFO] 21:16:16:98 GameBoy/(5161:5161): Se ha iniciado el cliente gameboy
+
+[INFO] 21:16:16:108 GameBoy/(5161:5161): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 21:16:16:111 GameBoy/(5161:5161): Se envió un mensaje al proceso BROKER
+[INFO] 21:16:16:112 GameBoy/(5161:5161): El proceso GameBoy finalizó su ejecución

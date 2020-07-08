@@ -9,6 +9,7 @@
 #define TEAM_H_
 
 #include <Utils.h>
+#include <signal.h>
 
 #define MAXSIZE 1024
 

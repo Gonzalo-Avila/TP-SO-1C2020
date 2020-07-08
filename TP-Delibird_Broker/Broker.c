@@ -18,10 +18,6 @@ void inicializarVariablesGlobales() {
 }
 
 
-void destructorGeneral(void * elemento){
-	free(elemento);
-}
-
 void destructorRegistrosCache(void * elemento){
 	registroCache * reg = (registroCache *) elemento;
     list_destroy_and_destroy_elements(reg->procesosALosQueSeEnvio,(void *)destructorGeneral);

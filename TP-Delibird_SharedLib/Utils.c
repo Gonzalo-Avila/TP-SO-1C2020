@@ -419,6 +419,10 @@ uint32_t obtenerIdDelProcesoConReintento(char* ip, char* puerto, int tiempoDeEsp
 	return idProceso;
 }
 
+void destructorGeneral(void * elemento){
+	free(elemento);
+}
+
 //Funciones auxiliares para logs
 //---------------------------------------------------
 
