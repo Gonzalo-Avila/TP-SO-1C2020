@@ -8,10 +8,13 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivos
 	t_list *objetivoEntrenador = list_create();
 	t_list *pokemonEntrenador = list_create();
 
+	//TODO - Solucionar los leaks sin que rompa nada
+	//--------------------------------------------------------------------------
 	array_iterate_element((char **) string_split(posicionesEntrenador, "|"),
 			(void *) enlistar, posicionEntrenador);
 	array_iterate_element((char **) string_split(objetivosEntrenador, "|"),
 			(void *) enlistar, objetivoEntrenador);
+	//--------------------------------------------------------------------------
 
 	if(pokemonesEntrenador != NULL)
 		array_iterate_element((char **) string_split(pokemonesEntrenador, "|"),(void *) enlistar, pokemonEntrenador);
@@ -41,7 +44,8 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivos
 
 /* Genera los Entrenadores con los datos del Config */
 void generarEntrenadores() {
-	t_entrenador* unEntrenador = malloc(sizeof(t_entrenador));
+	//t_entrenador* unEntrenador = malloc(sizeof(t_entrenador));
+	t_entrenador * unEntrenador;
 		t_list* posiciones = list_create();
 		t_list* objetivos = list_create();
 		t_list* pokemones = list_create();

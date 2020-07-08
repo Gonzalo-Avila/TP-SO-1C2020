@@ -46,7 +46,8 @@ float calcularDistancia(int posX1, int posY1, int posX2, int posY2) {
 
 //setea la distancia de todos los entrenadores del team al pokemon localizado
 t_dist *setearDistanciaEntrenadores(int id, int posX, int posY) {
-	t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+	//t_entrenador *entrenador = malloc(sizeof(t_entrenador));
+	t_entrenador *entrenador;
 	t_dist *distancia = malloc(sizeof(t_dist));
 
 	entrenador = list_get(team->entrenadores, id);
@@ -72,7 +73,8 @@ bool puedaAtraparPokemones(t_entrenador *entrenador){
 }
 int entrenadorMasCercanoEnEspera(int posX, int posY) {
 	t_list* listaDistancias = list_create();
-	t_dist *distancia = malloc(sizeof(t_dist));
+	//t_dist *distancia = malloc(sizeof(t_dist));
+	t_dist * distancia;
 	int idEntrenadorConDistMenor = -1;
 	int idEntrenadorAux;
 	int j = 0;
@@ -96,6 +98,7 @@ int entrenadorMasCercanoEnEspera(int posX, int posY) {
 		j++;
 	}//esta estructura se fija si el entrenador esta en espera.
 
+	list_destroy_and_destroy_elements(listaDistancias,(void *)destructorGeneral);
 	return idEntrenadorConDistMenor;
 
 }
@@ -316,25 +319,32 @@ bool puedeExistirDeadlock(){
 	return verifica;
 }
 
+//Obtiene una lista con los elementos de la primera lista que no estan en la segunda lista
+//
+//[Pikachu, Charmander] - [Charmander - Squirtle - Bulbasaur]
+//
 t_list *pokesNoObjetivoEnDeadlock(t_list *pokemonesPosibles,t_list *pokemonesObjetivoEntrenador){
 
 
-	bool pokesEnDeadlock(void *poke1){
-			bool verifica = false;
+	bool noLoNecesita(void *pokemon){
+			bool verifica = true;
 			char* objetivo;
 
 			for(int i = 0; i < list_size(pokemonesObjetivoEntrenador);i++){
-				objetivo = list_get(pokemonesObjetivoEntrenador,i);
+				objetivo = (char*)list_get(pokemonesObjetivoEntrenador,i);
 
-				if(!string_equals_ignore_case((char*)poke1, objetivo))
-					verifica = true;
+				if(string_equals_ignore_case((char*)pokemon, objetivo))
+				{
+					verifica = false;
+					break;
+				}
 
 			}
 
 			return verifica;
 		}
 
-	return list_filter(pokemonesPosibles,pokesEnDeadlock);
+	return list_filter(pokemonesPosibles,noLoNecesita);
 }
 
 bool estaEnDeadlock(void *entrenador){
@@ -375,8 +385,11 @@ bool tieneAlgunoQueNecesita(t_list *lista1, t_list *lista2){
 
 void realizarIntercambio(t_entrenador *entrenador, t_entrenador *entrenadorAIntercambiar){
 		t_list *pokemonesNoRequeridos = pokesNoObjetivoEnDeadlock(entrenador->pokemones,entrenador->objetivos);
+		log_info(logger,"Pokemones que tiene el entrenador en movimiento, que no necesita:");
+		imprimirListaDeCadenas(pokemonesNoRequeridos);
 		t_list *pokemonesNoRequeridosAIntercambiar = pokesNoObjetivoEnDeadlock(entrenadorAIntercambiar->pokemones,entrenadorAIntercambiar->objetivos);
-
+		log_info(logger,"Pokemones que tiene el entrenador en espera, que no necesita:");
+		imprimirListaDeCadenas(pokemonesNoRequeridosAIntercambiar);
 		log_error(logger,"Pokemon no requerido %s",list_get(pokemonesNoRequeridos,0));
 
 
@@ -410,10 +423,17 @@ void realizarIntercambio(t_entrenador *entrenador, t_entrenador *entrenadorAInte
 		//Aca rompe.
 		log_debug(logger,"Estoy intercambiando el pokemon %s por %s",list_get(pokemonesNoRequeridos,0),pokeAIntercambiar);
 
+		list_destroy(pokemonesNoRequeridos);
+		list_destroy(pokemonesNoRequeridosAIntercambiar);
 		sem_post(&mutexEntrenadores);
 		sem_post(&procesoEnReady);
 }
 
+void imprimirListaDeCadenas(t_list * listaDeCadenas){
+	for(int i=0; i<list_size(listaDeCadenas);i++){
+		log_info(logger,"%s",(char*)list_get(listaDeCadenas,i));
+	}
+}
 void resolverDeadlock(t_list *entrenadoresEnDeadlock){
 	t_entrenador *entrenador = list_get(entrenadoresEnDeadlock,0);
 	t_entrenador *entrenadorAIntercambiar;
@@ -426,10 +446,12 @@ void resolverDeadlock(t_list *entrenadoresEnDeadlock){
 		t_entrenador *entrPotencial1 = (t_entrenador*)entrPotencial;
 
 		t_list *pokemonesNoRequeridosDeEntrPotencial = pokesNoObjetivoEnDeadlock(entrPotencial1->pokemones,entrPotencial1->objetivos);
-
+		log_info(logger,"Pokemones que tiene el potencial intercambiador, y que no necesita: ");
+		imprimirListaDeCadenas(pokemonesNoRequeridosDeEntrPotencial);
 		if(entrPotencial1->id != entrenador->id && tieneAlgunoQueNecesita(entrenador->objetivos,pokemonesNoRequeridosDeEntrPotencial))
 			verifica = true;
 
+		list_destroy(pokemonesNoRequeridosDeEntrPotencial);
 		return verifica;
 	}
 

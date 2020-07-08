@@ -29,6 +29,7 @@ void enviarGetDePokemon(char *ip, char *puerto, char *pokemon) {
 	log_debug(logger,"Mensaje enviado GET :smilieface:");
 	log_info(logger, "Respuesta del Broker: %d", idRespuesta);
 
+	free(msg->pokemon);
 	free(msg);
 	close(*socketBroker);
 	free(socketBroker);
@@ -128,6 +129,7 @@ void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 
 	list_add(idsDeCatch, elIdCorrelativo);
 
+	free(msg->pokemon);
 	free(msg);
 	close(*socketBroker);
 	free(socketBroker);
@@ -180,7 +182,7 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 
 		for (int i = 0; i < cantPokes; i++) {
 			t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
-			posicion->pokemon = malloc(longPokemon);
+			//posicion->pokemon = malloc(longPokemon);
 			posicion->pokemon = pokemon;
 
 			memcpy(&(posicion->pos[0]), miMensajeRecibido->mensaje + offset,sizeof(uint32_t));

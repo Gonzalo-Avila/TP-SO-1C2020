@@ -194,7 +194,11 @@ void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador);
 void esperarMensajesGameboy(int* socketSuscripcion);
 void crearHiloPlanificador();
 void escaneoDeDeadlock();
+void imprimirListaDeCadenas(t_list * listaDeCadenas);
 int crearConexionClienteConReintento(char * ip, char * puerto, int tiempoDeEspera);
+
+
+
 
 //uint32_t obtenerIdDelProceso(char* ip, char* puerto);
 
