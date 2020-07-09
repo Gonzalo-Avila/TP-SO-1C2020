@@ -50,6 +50,7 @@ t_catchEnEspera* buscarCatch(uint32_t idCorrelativo){
 }
 
 void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultado){
+
 	if(resultado){
 		t_list* pokemonesDelEntrenador = catchProcesado->entrenadorConCatch->pokemones;
 		char* pokemonAtrapado = catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon;
@@ -101,33 +102,39 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 }
 
 void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
-	int *socketBroker = malloc(sizeof(int));
-	*socketBroker = crearConexionClienteConReintento(ip, puerto, tiempoDeEspera);
-	uint32_t idRespuesta;
 
-	mensajeCatch *msg = malloc(sizeof(mensajeCatch));
+	if(estaEnLosObjetivos(entrenador->pokemonAAtrapar.pokemon)){
+		int *socketBroker = malloc(sizeof(int));
+		*socketBroker = crearConexionClienteConReintento(ip, puerto, tiempoDeEspera);
+		uint32_t idRespuesta;
 
-	msg->longPokemon = strlen(entrenador->pokemonAAtrapar.pokemon) + 1;
-	msg->pokemon = malloc(msg->longPokemon);
-	strcpy(msg->pokemon, entrenador->pokemonAAtrapar.pokemon);
-	msg->posicionX = entrenador->pokemonAAtrapar.pos[0];
-	msg->posicionY = entrenador->pokemonAAtrapar.pos[1];
+		mensajeCatch *msg = malloc(sizeof(mensajeCatch));
 
-	log_debug(logger,"Enviando mensaje CATCH...");
-	enviarMensajeABroker(*socketBroker, CATCH, -1, sizeof(uint32_t)*3 + msg->longPokemon, msg);
-	recv(*socketBroker,&idRespuesta,sizeof(uint32_t),MSG_WAITALL);                              //Recibo el ID que envia automaticamente el Broker
+		msg->longPokemon = strlen(entrenador->pokemonAAtrapar.pokemon) + 1;
+		msg->pokemon = malloc(msg->longPokemon);
+		strcpy(msg->pokemon, entrenador->pokemonAAtrapar.pokemon);
+		msg->posicionX = entrenador->pokemonAAtrapar.pos[0];
+		msg->posicionY = entrenador->pokemonAAtrapar.pos[1];
 
-	//Me guardo el ID del CATCH. Es necesario para procesar el CAUGHT
-	t_catchEnEspera* elIdCorrelativo = malloc(sizeof(t_catchEnEspera));
-	elIdCorrelativo->idCorrelativo = idRespuesta;
-	elIdCorrelativo->entrenadorConCatch = entrenador;
+		log_debug(logger,"Enviando mensaje CATCH...");
+		enviarMensajeABroker(*socketBroker, CATCH, -1, sizeof(uint32_t)*3 + msg->longPokemon, msg);
+		recv(*socketBroker,&idRespuesta,sizeof(uint32_t),MSG_WAITALL);                              //Recibo el ID que envia automaticamente el Broker
 
-	list_add(idsDeCatch, elIdCorrelativo);
+		//Me guardo el ID del CATCH. Es necesario para procesar el CAUGHT
+		t_catchEnEspera* elIdCorrelativo = malloc(sizeof(t_catchEnEspera));
+		elIdCorrelativo->idCorrelativo = idRespuesta;
+		elIdCorrelativo->entrenadorConCatch = entrenador;
 
-	free(msg->pokemon);
-	free(msg);
-	close(*socketBroker);
-	free(socketBroker);
+		list_add(idsDeCatch, elIdCorrelativo);
+
+		free(msg->pokemon);
+		free(msg);
+		close(*socketBroker);
+		free(socketBroker);
+	}
+	else{
+		entrenador->suspendido = false;
+	}
 }
 
 void procesarCAUGHT(mensajeRecibido* miMensajeRecibido) {

@@ -3446,3 +3446,441 @@ Pokemon a intercambiar del entrenador 2: Bulbasaur
 [INFO] 14:18:29:317 Team/(10670:10793): Charmander
 [INFO] 14:18:29:318 Team/(10670:10793): Charmander
 [INFO] 14:18:29:318 Team/(10670:10793): El entrenador 2 tiene el siguien estado: 4
+[DEBUG] 15:13:58:180 Team/(6260:6260): Se ha iniciado un Team.
+[INFO] 15:13:58:180 Team/(6260:6260): Iniciado semáforos para entrenador 0
+[INFO] 15:13:58:180 Team/(6260:6260): Iniciado semáforos para entrenador 0
+[INFO] 15:13:58:180 Team/(6260:6260): Iniciado semáforos para entrenador 0
+[DEBUG] 15:13:58:180 Team/(6260:6260): Conectandose al servidor...
+[DEBUG] 15:13:58:181 Team/(6260:6260): ID obtenido = 14
+[DEBUG] 15:13:58:181 Team/(6260:6267): Conectandose al servidor...
+[DEBUG] 15:13:58:181 Team/(6260:6268): Conectandose al servidor...
+[DEBUG] 15:13:58:181 Team/(6260:6267): Conexion creada. Socket = 4
+[DEBUG] 15:13:58:181 Team/(6260:6268): Conexion creada. Socket = 5
+[DEBUG] 15:13:58:181 Team/(6260:6266): Conectandose al servidor...
+[INFO] 15:13:58:181 Team/(6260:6265): Socket de escucha para Gameboy creado
+[DEBUG] 15:13:58:182 Team/(6260:6265): Esperando cliente...
+[DEBUG] 15:13:58:182 Team/(6260:6266): Conexion creada. Socket = 6
+[INFO] 15:13:58:182 Team/(6260:6260): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 15:13:58:182 Team/(6260:6260): Suscripto a la cola LOCALIZED.
+[INFO] 15:13:58:182 Team/(6260:6260): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 15:13:58:182 Team/(6260:6260): Suscripto a la cola APPEARED.
+[INFO] 15:13:58:183 Team/(6260:6260): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 15:13:58:183 Team/(6260:6260): Suscripto a la cola CAUGHT.
+[DEBUG] 15:13:58:183 Team/(6260:6260): Conectandose al servidor...
+[DEBUG] 15:13:58:183 Team/(6260:6260): Enviando mensaje GET...
+[DEBUG] 15:13:58:184 Team/(6260:6260): Mensaje enviado GET :smilieface:
+[INFO] 15:13:58:184 Team/(6260:6260): Respuesta del Broker: 132
+[DEBUG] 15:13:58:184 Team/(6260:6260): Conectandose al servidor...
+[DEBUG] 15:13:58:184 Team/(6260:6260): Enviando mensaje GET...
+[DEBUG] 15:13:58:185 Team/(6260:6260): Mensaje enviado GET :smilieface:
+[INFO] 15:13:58:185 Team/(6260:6260): Respuesta del Broker: 133
+[DEBUG] 15:13:58:185 Team/(6260:6260): Conectandose al servidor...
+[DEBUG] 15:13:58:185 Team/(6260:6260): Enviando mensaje GET...
+[DEBUG] 15:13:58:186 Team/(6260:6260): Mensaje enviado GET :smilieface:
+[INFO] 15:13:58:186 Team/(6260:6260): Respuesta del Broker: 134
+[DEBUG] 15:13:58:186 Team/(6260:6260): Conectandose al servidor...
+[DEBUG] 15:13:58:186 Team/(6260:6260): Enviando mensaje GET...
+[DEBUG] 15:13:58:187 Team/(6260:6260): Mensaje enviado GET :smilieface:
+[INFO] 15:13:58:187 Team/(6260:6260): Respuesta del Broker: 135
+[DEBUG] 15:13:58:187 Team/(6260:6260): Conectandose al servidor...
+[DEBUG] 15:13:58:188 Team/(6260:6260): Enviando mensaje GET...
+[DEBUG] 15:13:58:188 Team/(6260:6260): Mensaje enviado GET :smilieface:
+[INFO] 15:13:58:189 Team/(6260:6260): Respuesta del Broker: 136
+[DEBUG] 15:13:58:189 Team/(6260:6264): Se activa el planificador
+[DEBUG] 15:13:58:191 Team/(6260:6271): Se levanta hilo para atender al servidor en socket 5
+[DEBUG] 15:13:58:192 Team/(6260:6270): Se levanta hilo para atender al servidor en socket 4
+[DEBUG] 15:13:58:193 Team/(6260:6269): Se levanta hilo para atender al servidor en socket 6
+[INFO] 15:13:58:194 Team/(6260:6269): Mensaje recibido: 	
+
+[INFO] 15:13:58:194 Team/(6260:6269): Mensaje recibido: 
+
+[INFO] 15:13:58:195 Team/(6260:6269): Mensaje recibido: 
+
+[INFO] 15:13:58:195 Team/(6260:6269): Mensaje recibido: 
+
+[INFO] 15:13:58:195 Team/(6260:6269): Mensaje recibido: 	
+
+[DEBUG] 15:13:58:196 Team/(6260:6281): Se recibio un LOCALIZED
+[DEBUG] 15:13:58:196 Team/(6260:6281): Pokemon: Squirtle
+[DEBUG] 15:13:58:196 Team/(6260:6281): El pokemon no me interesa o llego vacio
+[DEBUG] 15:13:58:196 Team/(6260:6281): Se proceso el LOCALIZED
+[DEBUG] 15:13:58:196 Team/(6260:6280): Se recibio un LOCALIZED
+[DEBUG] 15:13:58:196 Team/(6260:6280): Pokemon: Gengar
+[DEBUG] 15:13:58:196 Team/(6260:6280): El pokemon no me interesa o llego vacio
+[DEBUG] 15:13:58:196 Team/(6260:6280): Se proceso el LOCALIZED
+[DEBUG] 15:13:58:196 Team/(6260:6279): Se recibio un LOCALIZED
+[DEBUG] 15:13:58:196 Team/(6260:6279): Pokemon: Onix
+[DEBUG] 15:13:58:196 Team/(6260:6279): El pokemon no me interesa o llego vacio
+[DEBUG] 15:13:58:196 Team/(6260:6279): Se proceso el LOCALIZED
+[DEBUG] 15:13:58:197 Team/(6260:6278): Se recibio un LOCALIZED
+[DEBUG] 15:13:58:197 Team/(6260:6278): Pokemon: Pikachu
+[DEBUG] 15:13:58:197 Team/(6260:6278): El pokemon no me interesa o llego vacio
+[DEBUG] 15:13:58:197 Team/(6260:6278): Se proceso el LOCALIZED
+[DEBUG] 15:13:58:197 Team/(6260:6277): Se recibio un LOCALIZED
+[DEBUG] 15:13:58:197 Team/(6260:6277): Pokemon: Squirtle
+[DEBUG] 15:13:58:197 Team/(6260:6277): El pokemon no me interesa o llego vacio
+[DEBUG] 15:13:58:197 Team/(6260:6277): Se proceso el LOCALIZED
+[INFO] 15:14:06:210 Team/(6260:6270): Mensaje recibido: 
+
+[DEBUG] 15:14:06:210 Team/(6260:6298): Se recibio un APPEARED
+[DEBUG] 15:14:06:210 Team/(6260:6298): El pokemon esta en nuestro objetivo
+[INFO] 15:14:06:210 Team/(6260:6298): Pokemon: Pikachu
+[DEBUG] 15:14:06:211 Team/(6260:6298): Se agrego al entrenador 0 a la lista de ready
+[DEBUG] 15:14:06:211 Team/(6260:6264): Hurra, tengo algo en ready
+[DEBUG] 15:14:06:211 Team/(6260:6261): Conectandose al servidor...
+[DEBUG] 15:14:06:211 Team/(6260:6261): Enviando mensaje CATCH...
+[INFO] 15:14:06:218 Team/(6260:6270): Mensaje recibido: 
+
+[DEBUG] 15:14:06:218 Team/(6260:6300): Se recibio un APPEARED
+[DEBUG] 15:14:06:218 Team/(6260:6300): El pokemon esta en nuestro objetivo
+[INFO] 15:14:06:218 Team/(6260:6300): Pokemon: Squirtle
+[DEBUG] 15:14:06:218 Team/(6260:6300): Se agrego al entrenador 2 a la lista de ready
+[DEBUG] 15:14:06:218 Team/(6260:6264): Hurra, tengo algo en ready
+[DEBUG] 15:14:06:218 Team/(6260:6263): El entrenador id: 2 esta en la posicion [9,8]
+[INFO] 15:14:06:221 Team/(6260:6270): Mensaje recibido: 
+
+[DEBUG] 15:14:06:221 Team/(6260:6301): Se recibio un APPEARED
+[DEBUG] 15:14:06:222 Team/(6260:6301): El pokemon esta en nuestro objetivo
+[INFO] 15:14:06:222 Team/(6260:6301): Pokemon: Onix
+[DEBUG] 15:14:06:222 Team/(6260:6301): Se agrego al entrenador 1 a la lista de ready
+[INFO] 15:14:06:223 Team/(6260:6271): Mensaje recibido: 
+
+[DEBUG] 15:14:06:224 Team/(6260:6302): Se recibio un CAUGHT
+[INFO] 15:14:06:224 Team/(6260:6302): El entrenador 0 capturo un Pikachu!
+[INFO] 15:14:06:224 Team/(6260:6302): El entrenador removio el pokemon Pikachu de sus objetivos si lo tuviese
+[INFO] 15:14:06:224 Team/(6260:6302): El entrenador 0 tiene los sig objetivos:
+[INFO] 15:14:06:224 Team/(6260:6302): Squirtle
+[INFO] 15:14:06:224 Team/(6260:6302): El entrenador 0 tiene los sig pokemones:
+[INFO] 15:14:06:224 Team/(6260:6302): Pikachu
+[INFO] 15:14:06:224 Team/(6260:6302): Pikachu
+[INFO] 15:14:06:224 Team/(6260:6302): El entrenador 0 tiene el siguien estado: 2
+[DEBUG] 15:14:11:218 Team/(6260:6263): El entrenador id: 2 esta en la posicion [9,7]
+[DEBUG] 15:14:16:219 Team/(6260:6263): Conectandose al servidor...
+[DEBUG] 15:14:16:223 Team/(6260:6263): Enviando mensaje CATCH...
+[DEBUG] 15:14:16:230 Team/(6260:6264): Hurra, tengo algo en ready
+[DEBUG] 15:14:16:230 Team/(6260:6262): El entrenador id: 1 esta en la posicion [4,5]
+[INFO] 15:14:16:253 Team/(6260:6271): Mensaje recibido: 
+
+[DEBUG] 15:14:16:259 Team/(6260:6308): Se recibio un CAUGHT
+[INFO] 15:14:16:260 Team/(6260:6308): El entrenador 2 capturo un Squirtle!
+[INFO] 15:14:16:260 Team/(6260:6308): El entrenador removio el pokemon Squirtle de sus objetivos si lo tuviese
+[INFO] 15:14:16:260 Team/(6260:6308): El entrenador 2 tiene los sig objetivos:
+[INFO] 15:14:16:260 Team/(6260:6308): Onix
+[INFO] 15:14:16:260 Team/(6260:6308): El entrenador 2 tiene los sig pokemones:
+[INFO] 15:14:16:260 Team/(6260:6308): Squirtle
+[INFO] 15:14:16:260 Team/(6260:6308): El entrenador 2 tiene el siguien estado: 2
+[DEBUG] 15:14:21:230 Team/(6260:6262): El entrenador id: 1 esta en la posicion [4,4]
+[DEBUG] 15:14:26:231 Team/(6260:6262): El entrenador id: 1 esta en la posicion [3,4]
+[DEBUG] 15:14:31:233 Team/(6260:6262): El entrenador id: 1 esta en la posicion [3,3]
+[DEBUG] 15:14:36:234 Team/(6260:6262): El entrenador id: 1 esta en la posicion [2,3]
+[DEBUG] 15:14:41:235 Team/(6260:6262): El entrenador id: 1 esta en la posicion [2,2]
+[DEBUG] 15:14:46:236 Team/(6260:6262): Conectandose al servidor...
+[DEBUG] 15:14:46:238 Team/(6260:6262): Enviando mensaje CATCH...
+[INFO] 15:14:46:263 Team/(6260:6271): Mensaje recibido: 
+
+[DEBUG] 15:14:46:276 Team/(6260:6321): Se recibio un CAUGHT
+[INFO] 15:14:46:276 Team/(6260:6321): El entrenador 1 capturo un Onix!
+[INFO] 15:14:46:276 Team/(6260:6321): El entrenador removio el pokemon Onix de sus objetivos si lo tuviese
+[INFO] 15:14:46:276 Team/(6260:6321): El entrenador 1 tiene los sig objetivos:
+[INFO] 15:14:46:276 Team/(6260:6321): Pikachu
+[INFO] 15:14:46:276 Team/(6260:6321): Gengar
+[INFO] 15:14:46:276 Team/(6260:6321): El entrenador 1 tiene los sig pokemones:
+[INFO] 15:14:46:276 Team/(6260:6321): Onix
+[INFO] 15:14:46:276 Team/(6260:6321): El entrenador 1 tiene el siguien estado: 2
+[INFO] 15:15:03:513 Team/(6260:6270): Mensaje recibido: 
+
+[DEBUG] 15:15:03:515 Team/(6260:6335): Se recibio un APPEARED
+[DEBUG] 15:15:03:515 Team/(6260:6335): El pokemon esta en nuestro objetivo
+[INFO] 15:15:03:515 Team/(6260:6335): Pokemon: Squirtle
+[DEBUG] 15:15:03:515 Team/(6260:6335): Se agrego al entrenador 1 a la lista de ready
+[DEBUG] 15:15:03:516 Team/(6260:6264): Hurra, tengo algo en ready
+[DEBUG] 15:15:03:516 Team/(6260:6262): El entrenador id: 1 esta en la posicion [3,2]
+[INFO] 15:15:03:521 Team/(6260:6270): Mensaje recibido: 
+
+[DEBUG] 15:15:03:521 Team/(6260:6336): Se recibio un APPEARED
+[DEBUG] 15:15:03:521 Team/(6260:6336): El pokemon esta en nuestro objetivo
+[INFO] 15:15:03:521 Team/(6260:6336): Pokemon: Gengar
+[DEBUG] 15:15:03:521 Team/(6260:6336): Se agrego al entrenador 2 a la lista de ready
+[DEBUG] 15:15:08:516 Team/(6260:6262): El entrenador id: 1 esta en la posicion [3,3]
+[DEBUG] 15:15:13:516 Team/(6260:6262): El entrenador id: 1 esta en la posicion [3,4]
+[DEBUG] 15:15:18:517 Team/(6260:6262): El entrenador id: 1 esta en la posicion [3,5]
+[DEBUG] 15:15:23:518 Team/(6260:6262): Conectandose al servidor...
+[DEBUG] 15:15:23:519 Team/(6260:6262): Enviando mensaje CATCH...
+[DEBUG] 15:15:23:524 Team/(6260:6264): Hurra, tengo algo en ready
+[DEBUG] 15:15:23:524 Team/(6260:6263): El entrenador id: 2 esta en la posicion [8,7]
+[INFO] 15:15:23:538 Team/(6260:6271): Mensaje recibido: 
+
+[DEBUG] 15:15:23:542 Team/(6260:6348): Se recibio un CAUGHT
+[INFO] 15:15:23:542 Team/(6260:6348): El entrenador 1 capturo un Squirtle!
+[INFO] 15:15:23:543 Team/(6260:6348): El entrenador removio el pokemon Squirtle de sus objetivos si lo tuviese
+[INFO] 15:15:23:543 Team/(6260:6348): El entrenador 1 tiene los sig objetivos:
+[INFO] 15:15:23:543 Team/(6260:6348): Pikachu
+[INFO] 15:15:23:543 Team/(6260:6348): Gengar
+[INFO] 15:15:23:543 Team/(6260:6348): El entrenador 1 tiene los sig pokemones:
+[INFO] 15:15:23:543 Team/(6260:6348): Squirtle
+[INFO] 15:15:23:543 Team/(6260:6348): Squirtle
+[INFO] 15:15:23:543 Team/(6260:6348): El entrenador 1 tiene el siguien estado: 2
+[DEBUG] 15:15:28:524 Team/(6260:6263): El entrenador id: 2 esta en la posicion [8,6]
+[DEBUG] 15:15:33:526 Team/(6260:6263): El entrenador id: 2 esta en la posicion [7,6]
+[DEBUG] 15:15:38:527 Team/(6260:6263): El entrenador id: 2 esta en la posicion [7,5]
+[DEBUG] 15:15:43:528 Team/(6260:6263): Conectandose al servidor...
+[DEBUG] 15:15:43:530 Team/(6260:6263): Enviando mensaje CATCH...
+[INFO] 15:15:43:558 Team/(6260:6271): Mensaje recibido: 
+
+[DEBUG] 15:15:43:564 Team/(6260:6359): Se recibio un CAUGHT
+[INFO] 15:15:43:564 Team/(6260:6359): El entrenador 2 capturo un Gengar!
+[INFO] 15:15:43:564 Team/(6260:6359): El entrenador removio el pokemon Gengar de sus objetivos si lo tuviese
+[DEBUG] 15:15:43:564 Team/(6260:6359): Se comienza el analisis de deadlock
+[ERROR] 15:15:43:564 Team/(6260:6359): Pokemon a intercambiar del entrenador 0: Pikachu
+Pokemon a intercambiar del entrenador 1: Squirtle
+[INFO] 15:15:43:564 Team/(6260:6359): Pikachu
+[INFO] 15:15:43:564 Team/(6260:6359): Squirtle
+[INFO] 15:15:43:564 Team/(6260:6359): Pikachu
+[INFO] 15:15:43:564 Team/(6260:6359): Squirtle
+[ERROR] 15:15:43:564 Team/(6260:6359): Pokemon a intercambiar despues de asignarse: Pikachu
+[ERROR] 15:15:43:564 Team/(6260:6359): Pokemon a dar: Pikachu
+[DEBUG] 15:15:43:565 Team/(6260:6359): Estoy intercambiando el pokemon Pikachu por Squirtle
+[DEBUG] 15:15:43:565 Team/(6260:6264): Hurra, tengo algo en ready
+[DEBUG] 15:15:43:565 Team/(6260:6261): El entrenador id: 0 esta en la posicion [2,1]
+[DEBUG] 15:15:48:565 Team/(6260:6261): El entrenador id: 0 esta en la posicion [2,2]
+[DEBUG] 15:15:53:566 Team/(6260:6261): El entrenador id: 0 esta en la posicion [3,2]
+[DEBUG] 15:15:58:566 Team/(6260:6261): El entrenador id: 0 esta en la posicion [3,3]
+[DEBUG] 15:16:03:567 Team/(6260:6261): El entrenador id: 0 esta en la posicion [3,4]
+[DEBUG] 15:16:08:568 Team/(6260:6261): El entrenador id: 0 esta en la posicion [3,5]
+[DEBUG] 15:16:13:569 Team/(6260:6261): Estoy intercambiando el pokemon Pikachu por Squirtle
+[DEBUG] 15:16:38:570 Team/(6260:6261): Estoy intercambiando el pokemon Pikachu por Squirtle
+[ERROR] 15:16:38:571 Team/(6260:6359): Pokemon a intercambiar del entrenador 1: Squirtle
+Pokemon a intercambiar del entrenador 2: Gengar
+[INFO] 15:16:38:571 Team/(6260:6359): Gengar
+[INFO] 15:16:38:571 Team/(6260:6359): Pikachu
+[INFO] 15:16:38:571 Team/(6260:6359): Gengar
+[INFO] 15:16:38:571 Team/(6260:6359): Pikachu
+[ERROR] 15:16:38:572 Team/(6260:6359): Pokemon a intercambiar despues de asignarse: Squirtle
+[ERROR] 15:16:38:572 Team/(6260:6359): Pokemon a dar: Squirtle
+[DEBUG] 15:16:38:572 Team/(6260:6359): Estoy intercambiando el pokemon Squirtle por Gengar
+[DEBUG] 15:16:38:572 Team/(6260:6264): Hurra, tengo algo en ready
+[DEBUG] 15:16:38:572 Team/(6260:6262): El entrenador id: 1 esta en la posicion [4,5]
+[DEBUG] 15:16:43:573 Team/(6260:6262): El entrenador id: 1 esta en la posicion [5,5]
+[DEBUG] 15:16:48:575 Team/(6260:6262): El entrenador id: 1 esta en la posicion [6,5]
+[DEBUG] 15:16:53:576 Team/(6260:6262): El entrenador id: 1 esta en la posicion [7,5]
+[DEBUG] 15:16:58:577 Team/(6260:6262): Estoy intercambiando el pokemon Squirtle por Gengar
+[DEBUG] 15:17:23:578 Team/(6260:6262): Estoy intercambiando el pokemon Squirtle por Gengar
+[DEBUG] 15:36:51:992 Team/(7204:7204): Se ha iniciado un Team.
+[INFO] 15:36:51:996 Team/(7204:7204): Iniciado semáforos para entrenador 0
+[INFO] 15:36:51:996 Team/(7204:7204): Iniciado semáforos para entrenador 0
+[INFO] 15:36:51:996 Team/(7204:7204): Iniciado semáforos para entrenador 0
+[DEBUG] 15:36:51:996 Team/(7204:7204): Conectandose al servidor...
+[DEBUG] 15:36:51:997 Team/(7204:7204): ID obtenido = 16
+[INFO] 15:36:51:999 Team/(7204:7210): Socket de escucha para Gameboy creado
+[DEBUG] 15:36:51:999 Team/(7204:7210): Esperando cliente...
+[DEBUG] 15:36:51:999 Team/(7204:7209): Se activa el planificador
+[DEBUG] 15:36:51:999 Team/(7204:7211): Conectandose al servidor...
+[DEBUG] 15:36:51:999 Team/(7204:7212): Conectandose al servidor...
+[DEBUG] 15:36:51:999 Team/(7204:7213): Conectandose al servidor...
+[DEBUG] 15:36:51:0 Team/(7204:7211): Conexion creada. Socket = 6
+[INFO] 15:36:51:0 Team/(7204:7204): Se ha suscrito a la cola LOCALIZED_POKEMON
+[DEBUG] 15:36:51:0 Team/(7204:7204): Suscripto a la cola LOCALIZED.
+[DEBUG] 15:36:51:0 Team/(7204:7213): Conexion creada. Socket = 8
+[DEBUG] 15:36:51:0 Team/(7204:7212): Conexion creada. Socket = 7
+[INFO] 15:36:51:0 Team/(7204:7204): Se ha suscrito a la cola APPEARED_POKEMON
+[DEBUG] 15:36:51:1 Team/(7204:7204): Suscripto a la cola APPEARED.
+[INFO] 15:36:51:1 Team/(7204:7204): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 15:36:51:1 Team/(7204:7204): Suscripto a la cola CAUGHT.
+[DEBUG] 15:36:51:1 Team/(7204:7204): Conectandose al servidor...
+[DEBUG] 15:36:51:1 Team/(7204:7204): Enviando mensaje GET...
+[DEBUG] 15:36:51:2 Team/(7204:7204): Mensaje enviado GET :smilieface:
+[INFO] 15:36:51:2 Team/(7204:7204): Respuesta del Broker: 162
+[DEBUG] 15:36:51:2 Team/(7204:7204): Conectandose al servidor...
+[DEBUG] 15:36:51:2 Team/(7204:7204): Enviando mensaje GET...
+[DEBUG] 15:36:51:3 Team/(7204:7204): Mensaje enviado GET :smilieface:
+[INFO] 15:36:51:3 Team/(7204:7204): Respuesta del Broker: 163
+[DEBUG] 15:36:51:3 Team/(7204:7204): Conectandose al servidor...
+[DEBUG] 15:36:51:4 Team/(7204:7204): Enviando mensaje GET...
+[DEBUG] 15:36:52:4 Team/(7204:7204): Mensaje enviado GET :smilieface:
+[INFO] 15:36:52:4 Team/(7204:7204): Respuesta del Broker: 164
+[DEBUG] 15:36:52:5 Team/(7204:7204): Conectandose al servidor...
+[DEBUG] 15:36:52:5 Team/(7204:7204): Enviando mensaje GET...
+[DEBUG] 15:36:52:5 Team/(7204:7204): Mensaje enviado GET :smilieface:
+[INFO] 15:36:52:5 Team/(7204:7204): Respuesta del Broker: 165
+[DEBUG] 15:36:52:6 Team/(7204:7204): Conectandose al servidor...
+[DEBUG] 15:36:52:6 Team/(7204:7204): Enviando mensaje GET...
+[DEBUG] 15:36:52:7 Team/(7204:7204): Mensaje enviado GET :smilieface:
+[INFO] 15:36:52:7 Team/(7204:7204): Respuesta del Broker: 166
+[DEBUG] 15:36:52:8 Team/(7204:7216): Se levanta hilo para atender al servidor en socket 8
+[DEBUG] 15:36:52:8 Team/(7204:7214): Se levanta hilo para atender al servidor en socket 6
+[DEBUG] 15:36:52:8 Team/(7204:7215): Se levanta hilo para atender al servidor en socket 7
+[INFO] 15:36:52:16 Team/(7204:7214): Mensaje recibido: 	
+
+[INFO] 15:36:52:17 Team/(7204:7214): Mensaje recibido: 	
+
+[INFO] 15:36:52:17 Team/(7204:7214): Mensaje recibido: 
+
+[INFO] 15:36:52:18 Team/(7204:7214): Mensaje recibido: 
+
+[INFO] 15:36:52:18 Team/(7204:7214): Mensaje recibido: 
+
+[DEBUG] 15:36:52:18 Team/(7204:7226): Se recibio un LOCALIZED
+[DEBUG] 15:36:52:18 Team/(7204:7226): Pokemon: Pikachu
+[DEBUG] 15:36:52:18 Team/(7204:7226): El pokemon no me interesa o llego vacio
+[DEBUG] 15:36:52:18 Team/(7204:7226): Se proceso el LOCALIZED
+[DEBUG] 15:36:52:18 Team/(7204:7225): Se recibio un LOCALIZED
+[DEBUG] 15:36:52:18 Team/(7204:7225): Pokemon: Onix
+[DEBUG] 15:36:52:18 Team/(7204:7225): El pokemon no me interesa o llego vacio
+[DEBUG] 15:36:52:18 Team/(7204:7225): Se proceso el LOCALIZED
+[DEBUG] 15:36:52:18 Team/(7204:7223): Se recibio un LOCALIZED
+[DEBUG] 15:36:52:18 Team/(7204:7223): Pokemon: Squirtle
+[DEBUG] 15:36:52:18 Team/(7204:7223): El pokemon no me interesa o llego vacio
+[DEBUG] 15:36:52:18 Team/(7204:7223): Se proceso el LOCALIZED
+[DEBUG] 15:36:52:18 Team/(7204:7224): Se recibio un LOCALIZED
+[DEBUG] 15:36:52:18 Team/(7204:7224): Pokemon: Gengar
+[DEBUG] 15:36:52:18 Team/(7204:7224): El pokemon no me interesa o llego vacio
+[DEBUG] 15:36:52:18 Team/(7204:7224): Se proceso el LOCALIZED
+[DEBUG] 15:36:52:18 Team/(7204:7222): Se recibio un LOCALIZED
+[DEBUG] 15:36:52:18 Team/(7204:7222): Pokemon: Squirtle
+[DEBUG] 15:36:52:18 Team/(7204:7222): El pokemon no me interesa o llego vacio
+[DEBUG] 15:36:52:18 Team/(7204:7222): Se proceso el LOCALIZED
+[INFO] 15:36:55:960 Team/(7204:7215): Mensaje recibido: 
+
+[DEBUG] 15:36:55:962 Team/(7204:7235): Se recibio un APPEARED
+[DEBUG] 15:36:55:962 Team/(7204:7235): El pokemon esta en nuestro objetivo
+[INFO] 15:36:55:963 Team/(7204:7235): Pokemon: Pikachu
+[DEBUG] 15:36:55:963 Team/(7204:7235): Se agrego al entrenador 0 a la lista de ready
+[DEBUG] 15:36:55:963 Team/(7204:7209): Hurra, tengo algo en ready
+[DEBUG] 15:36:55:963 Team/(7204:7206): Conectandose al servidor...
+[DEBUG] 15:36:55:963 Team/(7204:7206): Enviando mensaje CATCH...
+[INFO] 15:36:55:969 Team/(7204:7215): Mensaje recibido: 
+
+[DEBUG] 15:36:55:984 Team/(7204:7238): Se recibio un APPEARED
+[DEBUG] 15:36:55:985 Team/(7204:7238): El pokemon esta en nuestro objetivo
+[INFO] 15:36:55:986 Team/(7204:7238): Pokemon: Squirtle
+[DEBUG] 15:36:55:989 Team/(7204:7238): Se agrego al entrenador 2 a la lista de ready
+[INFO] 15:36:55:989 Team/(7204:7216): Mensaje recibido: 
+
+[DEBUG] 15:36:55:990 Team/(7204:7209): Hurra, tengo algo en ready
+[DEBUG] 15:36:55:990 Team/(7204:7208): El entrenador id: 2 esta en la posicion [9,8]
+[DEBUG] 15:36:55:990 Team/(7204:7239): Se recibio un CAUGHT
+[INFO] 15:36:55:990 Team/(7204:7239): El entrenador 0 capturo un Pikachu!
+[INFO] 15:36:55:990 Team/(7204:7239): El entrenador removio el pokemon Pikachu de sus objetivos si lo tuviese
+[INFO] 15:36:55:990 Team/(7204:7239): El entrenador 0 tiene los sig objetivos:
+[INFO] 15:36:55:990 Team/(7204:7239): Squirtle
+[INFO] 15:36:55:990 Team/(7204:7239): El entrenador 0 tiene los sig pokemones:
+[INFO] 15:36:55:990 Team/(7204:7239): Pikachu
+[INFO] 15:36:55:990 Team/(7204:7239): Pikachu
+[INFO] 15:36:55:990 Team/(7204:7239): El entrenador 0 tiene el siguien estado: 2
+[INFO] 15:36:55:995 Team/(7204:7215): Mensaje recibido: 
+
+[DEBUG] 15:36:55:998 Team/(7204:7240): Se recibio un APPEARED
+[DEBUG] 15:36:55:998 Team/(7204:7240): El pokemon esta en nuestro objetivo
+[INFO] 15:36:55:998 Team/(7204:7240): Pokemon: Onix
+[DEBUG] 15:36:55:998 Team/(7204:7240): Se agrego al entrenador 1 a la lista de ready
+[DEBUG] 15:37:00:990 Team/(7204:7208): El entrenador id: 2 esta en la posicion [9,7]
+[DEBUG] 15:37:05:993 Team/(7204:7208): Conectandose al servidor...
+[DEBUG] 15:37:05:994 Team/(7204:7208): Enviando mensaje CATCH...
+[DEBUG] 15:37:05:995 Team/(7204:7209): Hurra, tengo algo en ready
+[DEBUG] 15:37:05:995 Team/(7204:7207): El entrenador id: 1 esta en la posicion [4,5]
+[INFO] 15:37:06:7 Team/(7204:7216): Mensaje recibido: 
+
+[DEBUG] 15:37:06:7 Team/(7204:7252): Se recibio un CAUGHT
+[INFO] 15:37:06:7 Team/(7204:7252): El entrenador 2 capturo un Squirtle!
+[INFO] 15:37:06:8 Team/(7204:7252): El entrenador removio el pokemon Squirtle de sus objetivos si lo tuviese
+[INFO] 15:37:06:8 Team/(7204:7252): El entrenador 2 tiene los sig objetivos:
+[INFO] 15:37:06:8 Team/(7204:7252): Onix
+[INFO] 15:37:06:8 Team/(7204:7252): El entrenador 2 tiene los sig pokemones:
+[INFO] 15:37:06:8 Team/(7204:7252): Squirtle
+[INFO] 15:37:06:8 Team/(7204:7252): El entrenador 2 tiene el siguien estado: 2
+[DEBUG] 15:37:10:996 Team/(7204:7207): El entrenador id: 1 esta en la posicion [4,4]
+[DEBUG] 15:37:15:997 Team/(7204:7207): El entrenador id: 1 esta en la posicion [3,4]
+[DEBUG] 15:37:20:999 Team/(7204:7207): El entrenador id: 1 esta en la posicion [3,3]
+[DEBUG] 15:37:25:0 Team/(7204:7207): El entrenador id: 1 esta en la posicion [2,3]
+[DEBUG] 15:37:30:1 Team/(7204:7207): El entrenador id: 1 esta en la posicion [2,2]
+[DEBUG] 15:37:36:5 Team/(7204:7207): Conectandose al servidor...
+[DEBUG] 15:37:36:6 Team/(7204:7207): Enviando mensaje CATCH...
+[INFO] 15:37:36:26 Team/(7204:7216): Mensaje recibido: 
+
+[DEBUG] 15:37:36:27 Team/(7204:7273): Se recibio un CAUGHT
+[INFO] 15:37:36:27 Team/(7204:7273): El entrenador 1 capturo un Onix!
+[INFO] 15:37:36:27 Team/(7204:7273): El entrenador removio el pokemon Onix de sus objetivos si lo tuviese
+[INFO] 15:37:36:27 Team/(7204:7273): El entrenador 1 tiene los sig objetivos:
+[INFO] 15:37:36:27 Team/(7204:7273): Pikachu
+[INFO] 15:37:36:27 Team/(7204:7273): Gengar
+[INFO] 15:37:36:27 Team/(7204:7273): El entrenador 1 tiene los sig pokemones:
+[INFO] 15:37:36:27 Team/(7204:7273): Onix
+[INFO] 15:37:36:27 Team/(7204:7273): El entrenador 1 tiene el siguien estado: 2
+[INFO] 15:38:21:381 Team/(7204:7215): Mensaje recibido: 
+
+[DEBUG] 15:38:21:390 Team/(7204:7293): Se recibio un APPEARED
+[DEBUG] 15:38:21:390 Team/(7204:7293): El pokemon esta en nuestro objetivo
+[INFO] 15:38:21:390 Team/(7204:7293): Pokemon: Squirtle
+[DEBUG] 15:38:21:390 Team/(7204:7293): Se agrego al entrenador 1 a la lista de ready
+[DEBUG] 15:38:21:390 Team/(7204:7209): Hurra, tengo algo en ready
+[DEBUG] 15:38:21:390 Team/(7204:7207): El entrenador id: 1 esta en la posicion [3,2]
+[INFO] 15:38:21:392 Team/(7204:7215): Mensaje recibido: 
+
+[DEBUG] 15:38:21:392 Team/(7204:7294): Se recibio un APPEARED
+[DEBUG] 15:38:21:392 Team/(7204:7294): El pokemon esta en nuestro objetivo
+[INFO] 15:38:21:392 Team/(7204:7294): Pokemon: Gengar
+[DEBUG] 15:38:21:392 Team/(7204:7294): Se agrego al entrenador 2 a la lista de ready
+[DEBUG] 15:38:26:391 Team/(7204:7207): El entrenador id: 1 esta en la posicion [3,3]
+[DEBUG] 15:38:31:391 Team/(7204:7207): El entrenador id: 1 esta en la posicion [3,4]
+[DEBUG] 15:38:36:393 Team/(7204:7207): El entrenador id: 1 esta en la posicion [3,5]
+[DEBUG] 15:38:41:396 Team/(7204:7207): Conectandose al servidor...
+[DEBUG] 15:38:41:400 Team/(7204:7207): Enviando mensaje CATCH...
+[DEBUG] 15:38:41:402 Team/(7204:7209): Hurra, tengo algo en ready
+[DEBUG] 15:38:41:402 Team/(7204:7208): El entrenador id: 2 esta en la posicion [8,7]
+[INFO] 15:38:41:424 Team/(7204:7216): Mensaje recibido: 
+
+[DEBUG] 15:38:41:430 Team/(7204:7300): Se recibio un CAUGHT
+[INFO] 15:38:41:430 Team/(7204:7300): El entrenador 1 capturo un Squirtle!
+[INFO] 15:38:41:430 Team/(7204:7300): El entrenador removio el pokemon Squirtle de sus objetivos si lo tuviese
+[INFO] 15:38:41:430 Team/(7204:7300): El entrenador 1 tiene los sig objetivos:
+[INFO] 15:38:41:430 Team/(7204:7300): Pikachu
+[INFO] 15:38:41:430 Team/(7204:7300): Gengar
+[INFO] 15:38:41:430 Team/(7204:7300): El entrenador 1 tiene los sig pokemones:
+[INFO] 15:38:41:430 Team/(7204:7300): Squirtle
+[INFO] 15:38:41:430 Team/(7204:7300): Squirtle
+[INFO] 15:38:41:430 Team/(7204:7300): El entrenador 1 tiene el siguien estado: 2
+[DEBUG] 15:38:46:402 Team/(7204:7208): El entrenador id: 2 esta en la posicion [8,6]
+[DEBUG] 15:38:51:403 Team/(7204:7208): El entrenador id: 2 esta en la posicion [7,6]
+[DEBUG] 15:38:56:403 Team/(7204:7208): El entrenador id: 2 esta en la posicion [7,5]
+[DEBUG] 15:39:01:405 Team/(7204:7208): Conectandose al servidor...
+[DEBUG] 15:39:01:408 Team/(7204:7208): Enviando mensaje CATCH...
+[INFO] 15:39:01:432 Team/(7204:7216): Mensaje recibido: 
+
+[DEBUG] 15:39:01:444 Team/(7204:7308): Se recibio un CAUGHT
+[INFO] 15:39:01:444 Team/(7204:7308): El entrenador 2 capturo un Gengar!
+[INFO] 15:39:01:444 Team/(7204:7308): El entrenador removio el pokemon Gengar de sus objetivos si lo tuviese
+[DEBUG] 15:39:01:444 Team/(7204:7308): Se comienza el analisis de deadlock
+[ERROR] 15:39:01:444 Team/(7204:7308): Pokemon a intercambiar del entrenador 0: Pikachu
+Pokemon a intercambiar del entrenador 1: Squirtle
+[INFO] 15:39:01:444 Team/(7204:7308): Pikachu
+[INFO] 15:39:01:444 Team/(7204:7308): Squirtle
+[INFO] 15:39:01:444 Team/(7204:7308): Pikachu
+[INFO] 15:39:01:444 Team/(7204:7308): Squirtle
+[ERROR] 15:39:01:444 Team/(7204:7308): Pokemon a intercambiar despues de asignarse: Pikachu
+[ERROR] 15:39:01:444 Team/(7204:7308): Pokemon a dar: Pikachu
+[DEBUG] 15:39:01:445 Team/(7204:7308): Estoy intercambiando el pokemon Pikachu por Squirtle
+[DEBUG] 15:39:01:445 Team/(7204:7209): Hurra, tengo algo en ready
+[DEBUG] 15:39:01:445 Team/(7204:7206): El entrenador id: 0 esta en la posicion [2,1]
+[DEBUG] 15:39:06:445 Team/(7204:7206): El entrenador id: 0 esta en la posicion [2,2]
+[DEBUG] 15:39:11:446 Team/(7204:7206): El entrenador id: 0 esta en la posicion [3,2]
+[DEBUG] 15:39:16:447 Team/(7204:7206): El entrenador id: 0 esta en la posicion [3,3]
+[DEBUG] 15:39:21:448 Team/(7204:7206): El entrenador id: 0 esta en la posicion [3,4]
+[DEBUG] 15:39:26:449 Team/(7204:7206): El entrenador id: 0 esta en la posicion [3,5]
+[DEBUG] 15:39:31:451 Team/(7204:7206): Estoy intercambiando el pokemon Pikachu por Squirtle
+[DEBUG] 15:39:56:451 Team/(7204:7206): Estoy intercambiando el pokemon Pikachu por Squirtle
+[ERROR] 15:39:56:452 Team/(7204:7308): Pokemon a intercambiar del entrenador 1: Squirtle
+Pokemon a intercambiar del entrenador 2: Gengar
+[INFO] 15:39:56:452 Team/(7204:7308): Gengar
+[INFO] 15:39:56:452 Team/(7204:7308): Pikachu
+[INFO] 15:39:56:453 Team/(7204:7308): Gengar
+[INFO] 15:39:56:453 Team/(7204:7308): Pikachu
+[ERROR] 15:39:56:453 Team/(7204:7308): Pokemon a intercambiar despues de asignarse: Squirtle
+[ERROR] 15:39:56:453 Team/(7204:7308): Pokemon a dar: Squirtle
+[DEBUG] 15:39:56:453 Team/(7204:7308): Estoy intercambiando el pokemon Squirtle por Gengar
+[DEBUG] 15:39:56:453 Team/(7204:7209): Hurra, tengo algo en ready
+[DEBUG] 15:39:56:453 Team/(7204:7207): El entrenador id: 1 esta en la posicion [4,5]
+[DEBUG] 15:40:01:454 Team/(7204:7207): El entrenador id: 1 esta en la posicion [5,5]
+[DEBUG] 15:40:06:454 Team/(7204:7207): El entrenador id: 1 esta en la posicion [6,5]
+[DEBUG] 15:40:11:459 Team/(7204:7207): El entrenador id: 1 esta en la posicion [7,5]
+[DEBUG] 15:40:16:461 Team/(7204:7207): Estoy intercambiando el pokemon Squirtle por Gengar
+[DEBUG] 15:40:41:463 Team/(7204:7207): Estoy intercambiando el pokemon Squirtle por Gengar

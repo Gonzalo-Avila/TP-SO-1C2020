@@ -238,77 +238,87 @@ void planificarRR(){
 	int quantum = atoi(config_get_string_value(config, "QUANTUM"));
 	log_debug(logger,"Se activa el planificador");
 
-			while(noSeCumplieronLosObjetivos()){
-				t_entrenador *entrenador;
+			while(1){
+					t_entrenador *entrenador;
 
-				sem_wait(&procesoEnReady);
-				log_debug(logger,"Hurra, tengo algo en ready");
+					sem_wait(&procesoEnReady);
 
-				if(!list_is_empty(listaDeReady)){
-					//es necesario este if? si tengo el semaforo...
+					if(noSeCumplieronLosObjetivos()){
 
-					sem_wait(&mutexEntrenadores);
-					entrenador = list_get(listaDeReady,0);
-					entrenador->estado = EJEC;
-					sem_post(&mutexEntrenadores);
+						if(!list_is_empty(listaDeReady)){
+							log_debug(logger,"Hurra, tengo algo en ready");
 
-					list_remove(listaDeReady,0);
-					//No esta mas en ready el entrenador, esta en EXEC.
-					//El entrenador debe poder cambiar su estado para que no sea mas EXEC luego de ejecutar.
+							sem_wait(&mutexEntrenadores);
+							entrenador = list_get(listaDeReady,0);
+							entrenador->estado = EJEC;
+							sem_post(&mutexEntrenadores);
 
-					activarHiloDe(entrenador->id);
-					activarHiloDeRR(entrenador->id, quantum);
+							list_remove(listaDeReady,0);
+
+							activarHiloDe(entrenador->id);
+							activarHiloDeRR(entrenador->id, quantum);
+							sem_wait(&semPlanif);
+						}
+					}
+					else
+						break;
 				}
-				sem_wait(&semPlanif);
-			}
 }
 
 void planificarSJFsinDesalojo(){
 	log_debug(logger,"Se activa el planificador");
+	while(1){
+		t_entrenador *entrenador;
 
-			while(noSeCumplieronLosObjetivos()){
-				t_entrenador *entrenador;
+		sem_wait(&procesoEnReady);
 
-				sem_wait(&procesoEnReady);
+		if(noSeCumplieronLosObjetivos()){
+
+			if(!list_is_empty(listaDeReady)){
 				log_debug(logger,"Hurra, tengo algo en ready");
 
-				if(!list_is_empty(listaDeReady)){
-					//es necesario este if? si tengo el semaforo...
+				sem_wait(&mutexEntrenadores);
+				entrenador = entrenadorConMenorRafaga();
+				entrenador->estado = EJEC;
+				sem_post(&mutexEntrenadores);
 
-					sem_wait(&mutexEntrenadores);
-					entrenador = entrenadorConMenorRafaga();
-					entrenador->estado = EJEC;
-					sem_post(&mutexEntrenadores);
-					//Remuevo de la listaDeReady el primer entrenador ya que la ordene por antes menor rafaga
-					list_remove(listaDeReady,0);
-					//No esta mas en ready el entrenador, esta en EXEC.
-					//El entrenador debe poder cambiar su estado para que no sea mas EXEC luego de ejecutar.
+				list_remove(listaDeReady,0);
 
-					activarHiloDe(entrenador->id);
-				}
+				activarHiloDe(entrenador->id);
 				sem_wait(&semPlanif);
 			}
+		}
+		else
+			break;
+	}
 }
 
 void planificarSJFconDesalojo(){
 	log_debug(logger,"Se activa el planificador");
+	while(1){
+			t_entrenador *entrenador;
 
-			while(noSeCumplieronLosObjetivos()){
-				t_entrenador *entrenador;
+			sem_wait(&procesoEnReady);
 
-				sem_wait(&procesoEnReady);
-				log_debug(logger,"Hurra, tengo algo en ready");
+			if(noSeCumplieronLosObjetivos()){
 
 				if(!list_is_empty(listaDeReady)){
+					log_debug(logger,"Hurra, tengo algo en ready");
+
 					sem_wait(&mutexEntrenadores);
 					entrenador = entrenadorConMenorRafaga();
 					entrenador->estado = EJEC;
 					sem_post(&mutexEntrenadores);
+
 					list_remove(listaDeReady,0);
+
 					activarHiloDe(entrenador->id);
+					sem_wait(&semPlanif);
 				}
-				sem_wait(&semPlanif);
 			}
+			else
+				break;
+		}
 }
 
 bool puedeExistirDeadlock(){
