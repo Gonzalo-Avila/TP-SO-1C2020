@@ -55,7 +55,9 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 		t_list* pokemonesDelEntrenador = catchProcesado->entrenadorConCatch->pokemones;
 		char* pokemonAtrapado = catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon;
 
+		sem_wait(&mutexEntrenadores);
 		enlistar(pokemonAtrapado, pokemonesDelEntrenador);
+		sem_post(&mutexEntrenadores);
 
 		bool esUnObjetivo(void *objetivo){
 			bool verifica = false;
@@ -66,7 +68,9 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 			return verifica;
 		}
 
+		sem_wait(&mutexOBJETIVOS);
 		list_remove_by_condition(team->objetivo,esUnObjetivo);
+		sem_post(&mutexOBJETIVOS);
 
 		list_remove_by_condition(catchProcesado->entrenadorConCatch->objetivos,esUnObjetivo);
 
@@ -100,37 +104,45 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 
 void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 
-	if(estaEnLosObjetivos(entrenador->pokemonAAtrapar.pokemon)){
-		int *socketBroker = malloc(sizeof(int));
-		*socketBroker = crearConexionClienteConReintento(ip, puerto, tiempoDeEspera);
-		uint32_t idRespuesta;
+	if(brokerConectado){
 
-		mensajeCatch *msg = malloc(sizeof(mensajeCatch));
+		sem_wait(&mutexOBJETIVOS);
 
-		msg->longPokemon = strlen(entrenador->pokemonAAtrapar.pokemon) + 1;
-		msg->pokemon = malloc(msg->longPokemon);
-		strcpy(msg->pokemon, entrenador->pokemonAAtrapar.pokemon);
-		msg->posicionX = entrenador->pokemonAAtrapar.pos[0];
-		msg->posicionY = entrenador->pokemonAAtrapar.pos[1];
+		if(estaEnLosObjetivos(entrenador->pokemonAAtrapar.pokemon)){
+			int *socketBroker = malloc(sizeof(int));
+			*socketBroker = crearConexionClienteConReintento(ip, puerto, tiempoDeEspera);
+			uint32_t idRespuesta;
 
-		log_debug(logger,"Enviando mensaje CATCH...");
-		enviarMensajeABroker(*socketBroker, CATCH, -1, sizeof(uint32_t)*3 + msg->longPokemon, msg);
-		recv(*socketBroker,&idRespuesta,sizeof(uint32_t),MSG_WAITALL);                              //Recibo el ID que envia automaticamente el Broker
+			mensajeCatch *msg = malloc(sizeof(mensajeCatch));
 
-		//Me guardo el ID del CATCH. Es necesario para procesar el CAUGHT
-		t_catchEnEspera* elIdCorrelativo = malloc(sizeof(t_catchEnEspera));
-		elIdCorrelativo->idCorrelativo = idRespuesta;
-		elIdCorrelativo->entrenadorConCatch = entrenador;
+			msg->longPokemon = strlen(entrenador->pokemonAAtrapar.pokemon) + 1;
+			msg->pokemon = malloc(msg->longPokemon);
+			strcpy(msg->pokemon, entrenador->pokemonAAtrapar.pokemon);
+			msg->posicionX = entrenador->pokemonAAtrapar.pos[0];
+			msg->posicionY = entrenador->pokemonAAtrapar.pos[1];
 
-		list_add(idsDeCatch, elIdCorrelativo);
+			log_debug(logger,"Enviando mensaje CATCH...");
+			enviarMensajeABroker(*socketBroker, CATCH, -1, sizeof(uint32_t)*3 + msg->longPokemon, msg);
+			recv(*socketBroker,&idRespuesta,sizeof(uint32_t),MSG_WAITALL);                              //Recibo el ID que envia automaticamente el Broker
 
-		free(msg->pokemon);
-		free(msg);
-		close(*socketBroker);
-		free(socketBroker);
-	}
-	else{
-		entrenador->suspendido = false;
+			//Me guardo el ID del CATCH. Es necesario para procesar el CAUGHT
+			t_catchEnEspera* elIdCorrelativo = malloc(sizeof(t_catchEnEspera));
+			elIdCorrelativo->idCorrelativo = idRespuesta;
+			elIdCorrelativo->entrenadorConCatch = entrenador;
+
+			list_add(idsDeCatch, elIdCorrelativo);
+
+			free(msg->pokemon);
+			free(msg);
+			close(*socketBroker);
+			free(socketBroker);
+		}
+		else{
+			entrenador->suspendido = false;
+		}
+
+		sem_post(&mutexOBJETIVOS);
+
 	}
 }
 
@@ -222,7 +234,6 @@ void procesarAPPEARED(mensajeRecibido* miMensajeRecibido) {
 	pokemonRecibido[longPokemon]='\0';
 	offset += longPokemon;
 
-
 	if (estaEnLosObjetivos(pokemonRecibido)) {
 		log_debug(logger, "El pokemon esta en nuestro objetivo");
 		log_info(logger, "Pokemon: %s", pokemonRecibido);
@@ -310,6 +321,7 @@ void atenderServidor(int *socketServidor) {
 				}
 			}
 			else {
+				brokerConectado = false;
 				log_error(logger, "Se perdio la conexión con el Broker.");
 				close(*socketServidor);
 				log_debug(logger, "Reintentando conexion...");
@@ -360,8 +372,6 @@ void crearConexionesYSuscribirseALasColas() {
 	pthread_create(&hiloSocketApp, NULL, (void*) crearConexion, socketBrokerApp);
 	pthread_create(&hiloSocketCau, NULL, (void*) crearConexion, socketBrokerCau);
 
-	//pthread_join(hiloObtenerID, NULL);
-
 	//Espero a que el socket este conectado antes de utilizarlo
 	pthread_join(hiloSocketLoc, NULL);
 	suscribirseACola(*socketBrokerLoc,LOCALIZED, idDelProceso);
@@ -381,6 +391,7 @@ void crearConexionesYSuscribirseALasColas() {
 
 	log_debug(logger, "Suscripto a la cola CAUGHT.");
 
+	brokerConectado = true;
 	sem_post(&conexionCreada);
 
 }
@@ -457,9 +468,6 @@ void esperarMensajesGameboy(int* socketSuscripcion) {
 	}
 
 	}
-	free(mensaje->mensaje);
-	free(mensaje);
-
 }
 
 t_mensaje* deserializar(void* paquete) {
@@ -485,8 +493,10 @@ void enviarGetSegunObjetivo(char *ip, char *puerto) {
 	sem_wait(&conexionCreada);
 	char *pokemon;
 
+	sem_wait(&mutexOBJETIVOS);
 	for (int i = 0; i < list_size(team->objetivo); i++) {
 		pokemon = list_get(team->objetivo, i);
 		enviarGetDePokemon(ip, puerto, pokemon);
 	}
+	sem_post(&mutexOBJETIVOS);
 }

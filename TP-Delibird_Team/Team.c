@@ -23,6 +23,7 @@ void inicializarVariablesGlobales() {
 	socketBrokerLoc = malloc(sizeof(int));
 	socketBrokerCau = malloc(sizeof(int));
 	socketGameboy = malloc(sizeof(int));
+	brokerConectado = false;
 
 	//inicializo el mutex para los mensajes que llegan del broker
 	sem_init(&mutexMensajes, 0, 1);
@@ -30,6 +31,7 @@ void inicializarVariablesGlobales() {
 	sem_init(&mutexAPPEARED, 0, 1);
 	sem_init(&mutexLOCALIZED, 0, 1);
 	sem_init(&mutexCAUGHT, 0, 1);
+	sem_init(&mutexOBJETIVOS, 0, 1);
 	sem_init(&semPlanif, 0, 0);
 	sem_init(&procesoEnReady,0,0);
 	sem_init(&conexionCreada, 0, 0);
@@ -147,7 +149,6 @@ int main() {
 	signal(SIGINT,finalizarProceso);
 
 	inicializarVariablesGlobales();
-
 
 	generarEntrenadores();
 

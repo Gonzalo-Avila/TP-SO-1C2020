@@ -204,8 +204,11 @@ void verificarDeadlock() {
 		escaneoDeDeadlock();
 }
 void seCumplieronLosObjetivosDelEntrenador(t_entrenador* entrenador) {
-	if(list_is_empty(entrenador->objetivos))
+	if(list_is_empty(entrenador->objetivos)){
+		sem_wait(&mutexEntrenadores);
 		entrenador->estado = FIN;
+		sem_post(&mutexEntrenadores);
+	}
 }
 
 
@@ -259,8 +262,11 @@ void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 				}
 				if(!entrenador->datosDeadlock.estaEnDeadlock){
 					enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+
+					sem_wait(&mutexEntrenadores);
 					entrenador->estado = BLOQUEADO;
 					entrenador->suspendido = true;
+					sem_post(&mutexEntrenadores);
 				}
 				else{
 
@@ -325,8 +331,11 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 
 				if(!entrenador->datosDeadlock.estaEnDeadlock){
 					enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+
+					sem_wait(&mutexEntrenadores);
 					entrenador->estado = BLOQUEADO;
 					entrenador->suspendido = true;
+					sem_post(&mutexEntrenadores);
 				}
 				else{
 
@@ -425,8 +434,11 @@ void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 				entrenador->datosSjf.fueDesalojado = false;
 
 				enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+
+				sem_wait(&mutexEntrenadores);
 				entrenador->estado = BLOQUEADO;
 				entrenador->suspendido = true;
+				sem_post(&mutexEntrenadores);
 
 				sem_post(&semPlanif);
 

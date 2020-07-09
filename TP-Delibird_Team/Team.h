@@ -109,6 +109,7 @@ int *socketBrokerApp;
 int *socketBrokerLoc;
 int *socketBrokerCau;
 int *socketGameboy;
+bool brokerConectado;
 
 char* ipServidor;
 char* puertoServidor;
@@ -121,6 +122,7 @@ sem_t mutexEntrenadores;
 sem_t mutexAPPEARED;
 sem_t mutexLOCALIZED;
 sem_t mutexCAUGHT;
+sem_t mutexOBJETIVOS;
 sem_t semPlanif;
 sem_t *semEntrenadores;
 sem_t *semEntrenadoresRR;

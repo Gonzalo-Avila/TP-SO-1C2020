@@ -91,11 +91,11 @@ int entrenadorMasCercanoEnEspera(int posX, int posY) {
 
 		idEntrenadorAux = ((t_dist*) list_get(listaDistancias, j))->id;
 
-		if(estaEnEspera(((t_entrenador*) list_get(team->entrenadores,idEntrenadorAux))) &&
-				puedaAtraparPokemones((t_entrenador*)list_get(team->entrenadores,idEntrenadorAux))){
+		if(estaEnEspera(((t_entrenador*) list_get(team->entrenadores,idEntrenadorAux))) && puedaAtraparPokemones((t_entrenador*)list_get(team->entrenadores,idEntrenadorAux))){
 			idEntrenadorConDistMenor = idEntrenadorAux;
 			break;
 		}
+
 		j++;
 	}//esta estructura se fija si el entrenador esta en espera.
 
@@ -260,8 +260,6 @@ void planificarRR(){
 					list_remove(listaDeReady,0);
 
 					activarHiloDeRR(entrenador->id, quantum);
-					log_error(logger,"Se entrego el control del CPU al entrenador id %d",entrenador->id);
-					log_error(logger,"Estado actual del entrenador %d",entrenador->estado);
 					sem_wait(&semPlanif);
 				}
 			}
@@ -333,9 +331,11 @@ bool puedeExistirDeadlock(){
 	for(int i = 0; i < list_size(team->entrenadores);i++){
 		entrenador = list_get(team->entrenadores,i);
 
+		sem_wait(&mutexEntrenadores);
 		if(entrenador->estado != FIN){
 			verifica = true;
 		}
+		sem_post(&mutexEntrenadores);
 	}
 	return verifica;
 }
