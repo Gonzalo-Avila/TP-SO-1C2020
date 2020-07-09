@@ -148,6 +148,7 @@ int main() {
 
 	inicializarVariablesGlobales();
 
+
 	generarEntrenadores();
 
 	setearObjetivosDeTeam();
@@ -158,13 +159,16 @@ int main() {
 
 	crearHiloPlanificador();
 
-	//Creo conexion con Gameboy
-	conectarGameboy();
+	if(noSeCumplieronLosObjetivos()){
 
-	//Se suscribe el Team a las colas
-	crearConexionesYSuscribirseALasColas();
+		//Creo conexion con Gameboy
+		conectarGameboy();
 
-	enviarGetSegunObjetivo(ipServidor,puertoServidor);
+		//Se suscribe el Team a las colas
+		crearConexionesYSuscribirseALasColas();
+
+		enviarGetSegunObjetivo(ipServidor,puertoServidor);
+	}
 
 	//El TEAM finaliza cuando termine de ejecutarse el planificador, que sera cuando se cumplan todos los objetivos.
 	pthread_join(hiloPlanificador, NULL);

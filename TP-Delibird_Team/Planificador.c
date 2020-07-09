@@ -5,10 +5,10 @@ void crearHiloPlanificador(){
 }
 
 e_algoritmo obtenerAlgoritmoPlanificador() {
-	char* algoritmo = malloc(
-			strlen(config_get_string_value(config, "ALGORITMO_PLANIFICACION"))
-					+ 1);
+	char* algoritmo;
+
 	algoritmo = config_get_string_value(config, "ALGORITMO_PLANIFICACION");
+
 	if (strcmp(algoritmo, "FIFO") == 0) {
 		return FIFO;
 	} else if (strcmp(algoritmo, "RR") == 0) {
@@ -126,7 +126,7 @@ bool noSeCumplieronLosObjetivos(){
 	t_entrenador *entrenador;
 
 	int i = 0;
-
+	sem_wait(&mutexEntrenadores);
 	while(i < list_size(team->entrenadores)){
 		entrenador = list_get(team->entrenadores,i);
 
@@ -136,6 +136,8 @@ bool noSeCumplieronLosObjetivos(){
 		}
 		i++;
 	}
+	sem_post(&mutexEntrenadores);
+
 	return verifica;
 }
 
@@ -152,7 +154,7 @@ void ponerEnReadyAlMasCercano(int x, int y, char* pokemon){
 
 
 		sem_wait(&mutexEntrenadores);
-		entrenadorMasCercano->estado = LISTO;//me aseguro de que tengo uno en READY antes de llamar para planificar
+		entrenadorMasCercano->estado = LISTO;
 		strcpy(entrenadorMasCercano->pokemonAAtrapar.pokemon, pokemon);
 		entrenadorMasCercano->pokemonAAtrapar.pos[0] = x;
 		entrenadorMasCercano->pokemonAAtrapar.pos[1] = y;
@@ -202,6 +204,8 @@ void activarHiloDe(int id){
 }
 
 void activarHiloDeRR(int id, int quantum){
+	activarHiloDe(id);
+
 	for(int i = 0; i<quantum; i++)
 		sem_post(&semEntrenadoresRR[id]);
 }
@@ -213,7 +217,6 @@ void planificarFifo(){
 			t_entrenador *entrenador;
 
 			sem_wait(&procesoEnReady);
-
 			if(noSeCumplieronLosObjetivos()){
 
 				if(!list_is_empty(listaDeReady)){
@@ -229,40 +232,42 @@ void planificarFifo(){
 					sem_wait(&semPlanif);
 				}
 			}
-			else
+			else{
+				log_debug(logger,"Se cumplieron los objetivos, finaliza el Planificador");
 				break;
+			}
 		}
 }
 
 void planificarRR(){
 	int quantum = atoi(config_get_string_value(config, "QUANTUM"));
 	log_debug(logger,"Se activa el planificador");
+	t_entrenador *entrenador;
 
-			while(1){
-					t_entrenador *entrenador;
+	while(1){
+			sem_wait(&procesoEnReady);
 
-					sem_wait(&procesoEnReady);
+			if(noSeCumplieronLosObjetivos()){
 
-					if(noSeCumplieronLosObjetivos()){
+				if(!list_is_empty(listaDeReady)){
+					log_debug(logger,"Hurra, tengo algo en ready");
 
-						if(!list_is_empty(listaDeReady)){
-							log_debug(logger,"Hurra, tengo algo en ready");
+					sem_wait(&mutexEntrenadores);
+					entrenador = list_get(listaDeReady,0);
+					entrenador->estado = EJEC;
+					sem_post(&mutexEntrenadores);
 
-							sem_wait(&mutexEntrenadores);
-							entrenador = list_get(listaDeReady,0);
-							entrenador->estado = EJEC;
-							sem_post(&mutexEntrenadores);
+					list_remove(listaDeReady,0);
 
-							list_remove(listaDeReady,0);
-
-							activarHiloDe(entrenador->id);
-							activarHiloDeRR(entrenador->id, quantum);
-							sem_wait(&semPlanif);
-						}
-					}
-					else
-						break;
+					activarHiloDeRR(entrenador->id, quantum);
+					log_error(logger,"Se entrego el control del CPU al entrenador id %d",entrenador->id);
+					log_error(logger,"Estado actual del entrenador %d",entrenador->estado);
+					sem_wait(&semPlanif);
 				}
+			}
+			else
+				break;
+		}
 }
 
 void planificarSJFsinDesalojo(){
@@ -422,8 +427,7 @@ void realizarIntercambio(t_entrenador *entrenador, t_entrenador *entrenadorAInte
 		strcpy(pokeADarQueNoQuiero,list_get(pokemonesNoRequeridos,0));
 		//Vos tenes uno que yo necesito, ahora tengo yo alguno que vos necesitas?
 
-		log_error(logger,"Pokemon a intercambiar del entrenador %d: %s\nPokemon a intercambiar del entrenador %d: %s",entrenador->id,
-				list_get(pokemonesNoRequeridos,0),entrenadorAIntercambiar->id,pokeAIntercambiar);
+		log_debug(logger,"Pokemon a intercambiar del entrenador %d: %s\nPokemon a intercambiar del entrenador %d: %s",entrenador->id,list_get(pokemonesNoRequeridos,0),entrenadorAIntercambiar->id,pokeAIntercambiar);
 
 		sem_wait(&mutexEntrenadores);
 		entrenador->estado = LISTO;
@@ -433,20 +437,10 @@ void realizarIntercambio(t_entrenador *entrenador, t_entrenador *entrenadorAInte
 
 		entrenador->datosDeadlock.pokemonAIntercambiar = malloc(strlen(pokeADarQueNoQuiero) + 1);
 
-		imprimirListaDeCadenas(pokemonesNoRequeridos);
-
 		strcpy(entrenador->datosDeadlock.pokemonAIntercambiar,pokeADarQueNoQuiero);
-
-		imprimirListaDeCadenas(pokemonesNoRequeridos);
-
-		log_error(logger,"Pokemon a intercambiar despues de asignarse: %s",entrenador->datosDeadlock.pokemonAIntercambiar);
-		log_error(logger,"Pokemon a dar: %s",pokeADarQueNoQuiero);
 
 		entrenador->datosDeadlock.idEntrenadorAIntercambiar = entrenadorAIntercambiar->id;
 		list_add(listaDeReady,entrenador);
-
-		//Aca rompe.
-		log_debug(logger,"Estoy intercambiando el pokemon %s por %s",pokeADarQueNoQuiero,pokeAIntercambiar);
 
 		list_destroy(pokemonesNoRequeridos);
 		list_destroy(pokemonesNoRequeridosAIntercambiar);
@@ -495,10 +489,12 @@ void escaneoDeDeadlock(){
 			list_destroy(entrenadoresEnDeadlock);
 			entrenadoresEnDeadlock = list_filter(team->entrenadores,estaEnDeadlock);
 		}
+		log_debug(logger,"Se termino la resolucion de deadlocks");
 	}
 	else{
-		sem_post(&procesoEnReady);
+		log_debug(logger,"No hay deadlocks pendientes");
 	}
+	sem_post(&procesoEnReady);
 }
 
 void planificador(){

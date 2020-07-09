@@ -38,7 +38,6 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivos
 	nuevoEntrenador->pokemonAAtrapar.pokemon = malloc(MAXSIZE);
 
 	list_destroy(posicionEntrenador);
-
 	return nuevoEntrenador;
 }
 
@@ -65,7 +64,7 @@ void generarEntrenadores() {
 	list_destroy(pokemones);
 }
 
-void removerObjetivosCumplidos(char *pokemon){
+void removerObjetivosCumplidos(char *pokemon,t_list *listaObjetivos){
 
 	bool esUnObjetivo(void *objetivo){
 			bool verifica = false;
@@ -76,7 +75,7 @@ void removerObjetivosCumplidos(char *pokemon){
 			return verifica;
 		}
 
-	list_remove_by_condition(team->objetivo,esUnObjetivo);
+	list_remove_by_condition(listaObjetivos,esUnObjetivo);
 }
 
 void setearObjetivosDeTeam() {
@@ -110,10 +109,13 @@ void setearObjetivosDeTeam() {
 
 			pokemon = (char *)list_get(entrenador->pokemones,j);
 
-			removerObjetivosCumplidos(pokemon);
-
+			removerObjetivosCumplidos(pokemon,team->objetivo);
+			removerObjetivosCumplidos(pokemon,entrenador->objetivos);
 		}
+
+		seCumplieronLosObjetivosDelEntrenador(entrenador);
 	}
+
 	//Se verifica por deadlock en caso que venga ya sin objetivos globales.
 	verificarDeadlock();
 }
@@ -232,46 +234,51 @@ void intercambiar(t_entrenador *entrenador){
 void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 	 while(1){
 
-		 if(entrenador->estado != FIN){
-			sem_wait(&semEntrenadores[entrenador->id]);
-			bool alternadorXY = true;
+		sem_wait(&semEntrenadores[entrenador->id]);
 
-			while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
-				sem_wait(&mutexEntrenadores);
 
-				if(alternadorXY){
-					moverXDelEntrenador(entrenador);
+		if(entrenador->estado != FIN){
+
+			if(entrenador->estado == EJEC){
+
+				bool alternadorXY = true;
+
+				while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
+					sem_wait(&mutexEntrenadores);
+
+					if(alternadorXY){
+						moverXDelEntrenador(entrenador);
+					}
+					else{
+						moverYDelEntrenador(entrenador);
+					}
+					sem_post(&mutexEntrenadores);
+
+					alternadorXY = !alternadorXY;
+					usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
+				}
+				if(!entrenador->datosDeadlock.estaEnDeadlock){
+					enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+					entrenador->estado = BLOQUEADO;
+					entrenador->suspendido = true;
 				}
 				else{
-					moverYDelEntrenador(entrenador);
+
+					log_debug(logger,"Estoy intercambiando el pokemon %s por %s",entrenador->datosDeadlock.pokemonAIntercambiar,entrenador->pokemonAAtrapar.pokemon);
+
+					intercambiar(entrenador);
+
+					log_debug(logger,"Se finalizo el intercambio entre entrenador %d y entrenador %d",entrenador->id,entrenador->datosDeadlock.idEntrenadorAIntercambiar);
+
+					sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
 				}
-				sem_post(&mutexEntrenadores);
-
-				alternadorXY = !alternadorXY;
-				usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
-			}
-			if(!entrenador->datosDeadlock.estaEnDeadlock){
-				enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-				entrenador->estado = BLOQUEADO;
-				entrenador->suspendido = true;
-			}
-			else{
-				//aca va el intercambio entre pokemones.
-
-				log_debug(logger,"Estoy intercambiando el pokemon %s por %s",entrenador->datosDeadlock.pokemonAIntercambiar,entrenador->pokemonAAtrapar.pokemon);
-
-				intercambiar(entrenador);
-
-				log_debug(logger,"Estoy intercambiando el pokemon %s por %s",entrenador->datosDeadlock.pokemonAIntercambiar,entrenador->pokemonAAtrapar.pokemon);
-
-				sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
-			}
-			sem_post(&semPlanif);
-		 }
+				sem_post(&semPlanif);
+			 }
+		}
 		else{
 			break;
-		 }
-	 }
+		}
+	}
 
 }
 
@@ -279,46 +286,61 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 
 	while(1){
 
-		if(entrenador->estado != FIN){
-			sem_wait(&semEntrenadores[entrenador->id]);
-			sem_wait(&semEntrenadores[entrenador->id]);
-			bool alternadorXY = true;
-			int quantum = atoi(config_get_string_value(config, "QUANTUM"));
-			int contadorQuantum = quantum;
+		sem_wait(&semEntrenadores[entrenador->id]);
+		log_error(logger,"Estado actual del entrenador %d",entrenador->estado);
 
-			while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
-				printf("%d", contadorQuantum);
-				if(!contadorQuantum){
-					contadorQuantum = quantum;
-					log_debug(logger, "El entrenador %d se quedó sin Quantum. Vuelve a la cola de ready.", entrenador->id);
-					entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
-					list_add(listaDeReady,entrenador);
-					sem_post(&procesoEnReady);
-					sem_post(&semPlanif);
+		if(entrenador->estado != FIN){
+
+			if(entrenador->estado == EJEC){
+
+				bool alternadorXY = true;
+				int quantum = atoi(config_get_string_value(config, "QUANTUM"));
+				int contadorQuantum = quantum;
+
+				while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
+					if(contadorQuantum == 0){
+						contadorQuantum = quantum;
+						log_debug(logger, "El entrenador %d se quedó sin Quantum. Vuelve a la cola de ready.", entrenador->id);
+						entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
+						list_add(listaDeReady,entrenador);
+						sem_post(&procesoEnReady);
+						sem_post(&semPlanif);
+					}
+
+					sem_wait(&semEntrenadoresRR[entrenador->id]);
+					sem_wait(&mutexEntrenadores);
+
+					if(alternadorXY){
+						moverXDelEntrenador(entrenador);
+					}
+					else{
+						moverYDelEntrenador(entrenador);
+					}
+					sem_post(&mutexEntrenadores);
+
+					alternadorXY = !alternadorXY;
+					usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
+					contadorQuantum--;
 				}
 
-				sem_wait(&semEntrenadoresRR[entrenador->id]);
-				sem_wait(&mutexEntrenadores);
-
-				if(alternadorXY){
-					moverXDelEntrenador(entrenador);
+				if(!entrenador->datosDeadlock.estaEnDeadlock){
+					enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+					entrenador->estado = BLOQUEADO;
+					entrenador->suspendido = true;
 				}
 				else{
-					moverYDelEntrenador(entrenador);
+
+					log_debug(logger,"Estoy intercambiando el pokemon %s por %s",entrenador->datosDeadlock.pokemonAIntercambiar,entrenador->pokemonAAtrapar.pokemon);
+
+					intercambiar(entrenador);
+
+					log_debug(logger,"Se finalizo el intercambio entre entrenador %d y entrenador %d",entrenador->id,entrenador->datosDeadlock.idEntrenadorAIntercambiar);
+
+					sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
 				}
-				sem_post(&mutexEntrenadores);
+				sem_post(&semPlanif);
 
-				alternadorXY = !alternadorXY;
-				usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
-				contadorQuantum--;
 			}
-
-			enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-			entrenador->estado = BLOQUEADO;
-			entrenador->suspendido = true;
-
-			sem_post(&semPlanif);
-
 		}
 		else{
 			break;

@@ -82,7 +82,6 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 
 
 	//Marca objetivos cumplidos de entrenador.
-
 	seCumplieronLosObjetivosDelEntrenador(catchProcesado->entrenadorConCatch);
 
 	//Verifica si estan en deadlock, SOLO cuando se acabaron los objetivos generales.
@@ -97,8 +96,6 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 	log_info(logger,"El entrenador %d tiene los sig pokemones:",catchProcesado->entrenadorConCatch->id);
 	imprimirListaDeCadenas(catchProcesado->entrenadorConCatch->pokemones);
 	log_info(logger,"El entrenador %d tiene el siguien estado: %d",catchProcesado->entrenadorConCatch->id,catchProcesado->entrenadorConCatch->estado);
-
-	//sem_post(&procesoEnReady);
 }
 
 void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
@@ -182,9 +179,8 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 	if (estaEnLosObjetivos(pokemon) && cantPokes>0) {
 		log_debug(logger, "El pokemon %s es un objetivo", pokemon);
 
+		t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
 		for (int i = 0; i < cantPokes; i++) {
-			t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
-			//posicion->pokemon = malloc(longPokemon);
 			posicion->pokemon = pokemon;
 
 			memcpy(&(posicion->pos[0]), miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
@@ -194,10 +190,9 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 			offset += sizeof(uint32_t);
 
 			list_add(listaPosicionesInternas, posicion);
-
-			ponerEnReadyAlMasCercano(posicion->pos[0], posicion->pos[1],pokemon);
-			//le aviso al planificador que pase un entrenador a ready.
 		}
+
+		ponerEnReadyAlMasCercano(posicion->pos[0], posicion->pos[1],pokemon);
 		sem_post(&procesoEnReady);
 	}
 	else{
@@ -488,12 +483,10 @@ t_mensaje* deserializar(void* paquete) {
 
 void enviarGetSegunObjetivo(char *ip, char *puerto) {
 	sem_wait(&conexionCreada);
-
 	char *pokemon;
 
 	for (int i = 0; i < list_size(team->objetivo); i++) {
 		pokemon = list_get(team->objetivo, i);
 		enviarGetDePokemon(ip, puerto, pokemon);
 	}
-
 }
