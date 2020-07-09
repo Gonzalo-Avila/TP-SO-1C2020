@@ -4,6 +4,7 @@
 t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivosEntrenador,
 		char *pokemonesEntrenador, float estInicialEntrenador) {
 	t_entrenador* nuevoEntrenador = malloc(sizeof(t_entrenador));
+
 	t_list *posicionEntrenador = list_create();
 	t_list *objetivoEntrenador = list_create();
 	t_list *pokemonEntrenador = list_create();
@@ -35,7 +36,6 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivos
 	nuevoEntrenador->datosDeadlock.estaEnDeadlock = false;
 	nuevoEntrenador->cantidadMaxDePokes = list_size(nuevoEntrenador->objetivos);
 	nuevoEntrenador->pokemonAAtrapar.pokemon = malloc(MAXSIZE);
-	nuevoEntrenador->datosDeadlock.pokemonAIntercambiar = malloc(MAXSIZE);
 
 	list_destroy(posicionEntrenador);
 
@@ -65,19 +65,57 @@ void generarEntrenadores() {
 	list_destroy(pokemones);
 }
 
+void removerObjetivosCumplidos(char *pokemon){
+
+	bool esUnObjetivo(void *objetivo){
+			bool verifica = false;
+
+			if(string_equals_ignore_case((char *)objetivo, pokemon))
+				verifica = true;
+
+			return verifica;
+		}
+
+	list_remove_by_condition(team->objetivo,esUnObjetivo);
+}
+
 void setearObjetivosDeTeam() {
-	t_entrenador *entrenador;
+	char *pokemon;
+
+	bool esUnObjetivo(void *objetivo){
+		bool verifica = false;
+
+		if(string_equals_ignore_case((char *)objetivo, pokemon))
+			verifica = true;
+
+		return verifica;
+	}
 
 	for (int i = 0; i < list_size(team->entrenadores); i++) {
+		t_entrenador *entrenador;
+
 		entrenador = list_get(team->entrenadores, i);
 
 		for (int j = 0; j < list_size(entrenador->objetivos); j++) {
-			log_info(logger,"Agregando objetivo %s del entrenador %d a los objetivos globales",(char*)list_get(entrenador->objetivos,j),i);
-
-			list_add(team->objetivo, list_get(entrenador->objetivos, j));
+				list_add(team->objetivo, list_get(entrenador->objetivos, j));
 		}
 	}
 
+	for(int i = 0; i < list_size(team->entrenadores); i++){
+		t_entrenador *entrenador;
+
+		entrenador = list_get(team->entrenadores, i);
+
+		for (int j = 0; j < list_size(entrenador->pokemones); j++) {
+
+			pokemon = (char *)list_get(entrenador->pokemones,j);
+
+			removerObjetivosCumplidos(pokemon);
+
+		}
+	}
+	//Se verifica por deadlock en caso que venga ya sin objetivos globales.
+	verificarDeadlock();
 }
 
 void crearHiloEntrenador(t_entrenador* entrenador) {
@@ -112,10 +150,6 @@ void moverXDelEntrenador(t_entrenador *entrenador){
 
 }
 
-//	Nico | Se podría dejar los dos movimientos en una sola función y que reciba 0 o 1 para mover X o Y.
-//		   No lo hice pq me parece más declarativo con las 2 funciones, pero se puede ver. Tambien se
-//  	   Ahorraria el if de gestionarEntrenador.
-
 void moverYDelEntrenador(t_entrenador *entrenador){
 
 	if(entrenador->pos[1] < entrenador->pokemonAAtrapar.pos[1]){
@@ -135,23 +169,13 @@ void moverYDelEntrenador(t_entrenador *entrenador){
 }
 
 bool estaEnLosObjetivos(char *pokemon){
-	log_error(logger,"Comparando pokemon recibido...");
-	log_error(logger,"Pokemon recibido: %s",pokemon);
-
-	for (int j = 0; j < list_size(team->objetivo); j++) {
-		log_info(logger,"En la posicion %d esta el pokemon %s",j, (char *)list_get(team->objetivo, j));
-	}
-
 	bool esUnObjetivo(void *elemento) {
 		bool verifica = false;
 
-		log_error(logger,"Comparando con: %s", (char *)elemento);
 		if (string_equals_ignore_case(pokemon, (char *)elemento)) {
 			verifica = true;
-			log_error(logger,"Coincide");
 		}
 		else{
-			log_error(logger, "No coincide");
 		}
 		return verifica;
 	}
@@ -173,6 +197,16 @@ void removerPokemonDeListaSegunCondicion(t_list* lista,char *pokemon){
 	list_remove_by_condition(lista,esElPokemonAAtrapar);
 }
 
+void verificarDeadlock() {
+	if(list_is_empty(team->objetivo))
+		escaneoDeDeadlock();
+}
+void seCumplieronLosObjetivosDelEntrenador(t_entrenador* entrenador) {
+	if(list_is_empty(entrenador->objetivos))
+		entrenador->estado = FIN;
+}
+
+
 void intercambiar(t_entrenador *entrenador){
 	t_entrenador *entrenadorParejaIntercambio = (t_entrenador*)list_get(team->entrenadores,entrenador->datosDeadlock.idEntrenadorAIntercambiar);
 
@@ -186,11 +220,19 @@ void intercambiar(t_entrenador *entrenador){
 	removerPokemonDeListaSegunCondicion(entrenador->objetivos,entrenador->pokemonAAtrapar.pokemon);
 	removerPokemonDeListaSegunCondicion(entrenadorParejaIntercambio->objetivos,entrenador->datosDeadlock.pokemonAIntercambiar);
 
+
+	seCumplieronLosObjetivosDelEntrenador(entrenador);
+
+	seCumplieronLosObjetivosDelEntrenador(entrenadorParejaIntercambio);
+
+	//Corresponde al requerimiento de que el intercambio debe demorar 5 ciclos de CPU.
+	usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 5000000);
 }
 
 void gestionarEntrenadorFIFO(t_entrenador *entrenador){
-	 while(entrenador->estado != FIN){
-			//me quedo esperando a estar en EJEC
+	 while(1){
+
+		 if(entrenador->estado != FIN){
 			sem_wait(&semEntrenadores[entrenador->id]);
 			bool alternadorXY = true;
 
@@ -225,72 +267,74 @@ void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 				sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
 			}
 			sem_post(&semPlanif);
+		 }
+		else{
+			break;
+		 }
 	 }
+
 }
 
 void gestionarEntrenadorRR(t_entrenador* entrenador){
-	 while(entrenador->estado != FIN){
-				//me quedo esperando a estar en EJEC
-				sem_wait(&semEntrenadores[entrenador->id]);
-				bool alternadorXY = true;
-				int quantum = atoi(config_get_string_value(config, "QUANTUM"));
-				int contadorQuantum = quantum;
 
-				while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
-					printf("%d", contadorQuantum);
-					if(!contadorQuantum){
-						contadorQuantum = quantum;
-						log_debug(logger, "El entrenador %d se quedó sin Quantum. Vuelve a la cola de ready.", entrenador->id);
-						entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
-						list_add(listaDeReady,entrenador);
-						sem_post(&procesoEnReady);
-						sem_post(&semPlanif);
-					}
+	while(1){
 
-					sem_wait(&semEntrenadoresRR[entrenador->id]);
-					sem_wait(&mutexEntrenadores);
+		if(entrenador->estado != FIN){
+			sem_wait(&semEntrenadores[entrenador->id]);
+			sem_wait(&semEntrenadores[entrenador->id]);
+			bool alternadorXY = true;
+			int quantum = atoi(config_get_string_value(config, "QUANTUM"));
+			int contadorQuantum = quantum;
 
-		//			Nico | Separado en X e Y para cumplir con el requerimiento que prohibe los movimientos diagonales.
-					if(alternadorXY){
-						moverXDelEntrenador(entrenador);
-					}
-					else{
-						moverYDelEntrenador(entrenador);
-					}
-					sem_post(&mutexEntrenadores);
-
-					alternadorXY = !alternadorXY;
-					usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
-					contadorQuantum--;
+			while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
+				printf("%d", contadorQuantum);
+				if(!contadorQuantum){
+					contadorQuantum = quantum;
+					log_debug(logger, "El entrenador %d se quedó sin Quantum. Vuelve a la cola de ready.", entrenador->id);
+					entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
+					list_add(listaDeReady,entrenador);
+					sem_post(&procesoEnReady);
+					sem_post(&semPlanif);
 				}
-				//TODO
-		//		Comentamos pokemonRecibido porke funciona con otra logica.
-		//			-acomodar appeared y caught.
 
-				enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-				entrenador->estado = BLOQUEADO;
-				entrenador->suspendido = true;
+				sem_wait(&semEntrenadoresRR[entrenador->id]);
+				sem_wait(&mutexEntrenadores);
 
-				//recibir caught
-				//agrego el pokemon a la lista de pokemones del entrenador
-				//remuevo al pokempn del obetivo global????
-				//me bloqueo
+				if(alternadorXY){
+					moverXDelEntrenador(entrenador);
+				}
+				else{
+					moverYDelEntrenador(entrenador);
+				}
+				sem_post(&mutexEntrenadores);
 
-				sem_post(&semPlanif);
+				alternadorXY = !alternadorXY;
+				usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
+				contadorQuantum--;
+			}
 
+			enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+			entrenador->estado = BLOQUEADO;
+			entrenador->suspendido = true;
+
+			sem_post(&semPlanif);
+
+		}
+		else{
+			break;
+		}
 	}
 }
 
 void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador){
 	 while(entrenador->estado != FIN){
-				//me quedo esperando a estar en EJEC
+
 				sem_wait(&semEntrenadores[entrenador->id]);
 				bool alternadorXY = true;
 				int rafagaActual;
 				while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
 					sem_wait(&mutexEntrenadores);
 
-		//			Separado en X e Y para cumplir con el requerimiento que prohibe los movimientos diagonales.
 					if(alternadorXY){
 						moverXDelEntrenador(entrenador);
 					}
@@ -305,18 +349,10 @@ void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador){
 				}
 				entrenador->datosSjf.duracionRafagaAnt = rafagaActual;
 				entrenador->datosSjf.fueDesalojado = false;
-				//TODO
-		//		Comentamos pokemonRecibido porke funciona con otra logica.
-		//			-acomodar appeared y caught.
 
 				enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
 				entrenador->estado = BLOQUEADO;
 				entrenador->suspendido = true;
-
-				//recibir caught
-				//agrego el pokemon a la lista de pokemones del entrenador
-				//remuevo al pokempn del obetivo global????
-				//me bloqueo
 
 				sem_post(&semPlanif);
 
@@ -325,13 +361,13 @@ void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador){
 
 void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 	 while(entrenador->estado != FIN){
-				//me quedo esperando a estar en EJEC
+
 				sem_wait(&semEntrenadores[entrenador->id]);
 				bool alternadorXY = true;
 				int rafagaActual=0;
 				while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
 					sem_wait(&mutexEntrenadores);
-		//			Separado en X e Y para cumplir con el requerimiento que prohibe los movimientos diagonales.
+
 					if(alternadorXY){
 						moverXDelEntrenador(entrenador);
 					}
@@ -366,18 +402,9 @@ void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 
 				entrenador->datosSjf.fueDesalojado = false;
 
-				//TODO
-		//		Comentamos pokemonRecibido porke funciona con otra logica.
-		//			-acomodar appeared y caught.
-
 				enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
 				entrenador->estado = BLOQUEADO;
 				entrenador->suspendido = true;
-
-				//recibir caught
-				//agrego el pokemon a la lista de pokemones del entrenador
-				//remuevo al pokempn del obetivo global????
-				//me bloqueo
 
 				sem_post(&semPlanif);
 

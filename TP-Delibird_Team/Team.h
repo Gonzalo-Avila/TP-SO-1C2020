@@ -195,6 +195,8 @@ void esperarMensajesGameboy(int* socketSuscripcion);
 void crearHiloPlanificador();
 void escaneoDeDeadlock();
 void imprimirListaDeCadenas(t_list * listaDeCadenas);
+void seCumplieronLosObjetivosDelEntrenador(t_entrenador *entrenador);
+void verificarDeadlock();
 int crearConexionClienteConReintento(char * ip, char * puerto, int tiempoDeEspera);
 
 

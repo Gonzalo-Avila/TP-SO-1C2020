@@ -1,17 +1,5 @@
 #include "Team.h"
 
-/*uint32_t obtenerIdDelProceso(char* ip, char* puerto) {
-	int socketBroker = crearConexionClienteConReintento(ip, puerto);
-	uint32_t idProceso;
-
-	opCode codigoOP = NUEVA_CONEXION;
-	send(socketBroker, &codigoOP, sizeof(opCode), 0);
-	recv(socketBroker, &idProceso, sizeof(uint32_t), MSG_WAITALL);
-	close(socketBroker);
-
-	return idProceso;
-}*/
-
 void enviarGetDePokemon(char *ip, char *puerto, char *pokemon) {
 	int *socketBroker = malloc(sizeof(int));
 	*socketBroker = crearConexionClienteConReintento(ip, puerto, tiempoDeEspera);
@@ -55,11 +43,7 @@ t_catchEnEspera* buscarCatch(uint32_t idCorrelativo){
 	bool encontrarCatch(void* elemento){
 		t_catchEnEspera* unCatch = elemento;
 
-		if(unCatch->idCorrelativo == idCorrelativo){
-			return true;
-		}
-
-		return false;
+		return unCatch->idCorrelativo == idCorrelativo;
 	}
 
 	return list_find(idsDeCatch, encontrarCatch);
@@ -76,7 +60,7 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 			bool verifica = false;
 
 			if(string_equals_ignore_case((char *)objetivo, pokemonAtrapado))
-				verifica = false;
+				verifica = true;
 
 			return verifica;
 		}
@@ -88,17 +72,32 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 		log_info(logger, "El entrenador %d capturo un %s!", catchProcesado->entrenadorConCatch->id,
 				catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon);
 
-		log_info(logger, "El entrenador removio el pokemon %s de sus objetivos",pokemonAtrapado);
-
-		//TODO agregar escaneo de deadlock si se cumplieron los objetivos generales y
-		//	   los entrenadores no estan en fin.
+		log_info(logger, "El entrenador removio el pokemon %s de sus objetivos si lo tuviese",pokemonAtrapado);
 	}
 	else{
 		log_info(logger, "El entrenador %d no pudo capturar un %s :(.", catchProcesado->entrenadorConCatch->id,
 				catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon);
 	}
 
+
+	//Marca objetivos cumplidos de entrenador.
+
+	seCumplieronLosObjetivosDelEntrenador(catchProcesado->entrenadorConCatch);
+
+	//Verifica si estan en deadlock, SOLO cuando se acabaron los objetivos generales.
+	verificarDeadlock();
+
+	sem_wait(&mutexEntrenadores);
 	catchProcesado->entrenadorConCatch->suspendido = false;
+	sem_post(&mutexEntrenadores);
+
+	log_info(logger,"El entrenador %d tiene los sig objetivos:",catchProcesado->entrenadorConCatch->id);
+	imprimirListaDeCadenas(catchProcesado->entrenadorConCatch->objetivos);
+	log_info(logger,"El entrenador %d tiene los sig pokemones:",catchProcesado->entrenadorConCatch->id);
+	imprimirListaDeCadenas(catchProcesado->entrenadorConCatch->pokemones);
+	log_info(logger,"El entrenador %d tiene el siguien estado: %d",catchProcesado->entrenadorConCatch->id,catchProcesado->entrenadorConCatch->estado);
+
+	//sem_post(&procesoEnReady);
 }
 
 void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
@@ -117,15 +116,11 @@ void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 	log_debug(logger,"Enviando mensaje CATCH...");
 	enviarMensajeABroker(*socketBroker, CATCH, -1, sizeof(uint32_t)*3 + msg->longPokemon, msg);
 	recv(*socketBroker,&idRespuesta,sizeof(uint32_t),MSG_WAITALL);                              //Recibo el ID que envia automaticamente el Broker
-	log_debug(logger,"Mensaje enviado CATCH :smilieface:");
 
 	//Me guardo el ID del CATCH. Es necesario para procesar el CAUGHT
 	t_catchEnEspera* elIdCorrelativo = malloc(sizeof(t_catchEnEspera));
 	elIdCorrelativo->idCorrelativo = idRespuesta;
 	elIdCorrelativo->entrenadorConCatch = entrenador;
-
-	log_info(logger, "ID del CATCH recibido y guardado: %d", idRespuesta);
-
 
 	list_add(idsDeCatch, elIdCorrelativo);
 
@@ -188,7 +183,6 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 			memcpy(&(posicion->pos[0]), miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
 			offset += sizeof(uint32_t);
 
-			//TODO - Esta leyendo mal la posicion Y. Por algun motivo siempre lee 21, 17, o 64.
 			memcpy(&(posicion->pos[1]), miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
 			offset += sizeof(uint32_t);
 

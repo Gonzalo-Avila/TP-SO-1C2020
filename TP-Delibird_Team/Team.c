@@ -9,10 +9,9 @@ void inicializarVariablesGlobales() {
 	team->objetivo = list_create();
 	listaDeReady = list_create(); //esto se necesita para el FIFO.
 	listaDeBloqued = list_create(); //esto es necesario??
-	//pokemonRecibido = string_new();
-	ipServidor = malloc(strlen(config_get_string_value(config, "IP")) + 1);
+//	ipServidor = malloc(strlen(config_get_string_value(config, "IP")) + 1);
 	ipServidor = config_get_string_value(config, "IP");
-	puertoServidor = malloc(strlen(config_get_string_value(config, "PUERTO")) + 1);
+//	puertoServidor = malloc(strlen(config_get_string_value(config, "PUERTO")) + 1);
 	puertoServidor = config_get_string_value(config, "PUERTO");
 	tiempoDeEspera = atoi(config_get_string_value(config, "TIEMPO_DE_ESPERA"));
 	team->algoritmoPlanificacion = obtenerAlgoritmoPlanificador();
@@ -34,7 +33,7 @@ void inicializarVariablesGlobales() {
 	sem_init(&semPlanif, 0, 0);
 	sem_init(&procesoEnReady,0,0);
 	sem_init(&conexionCreada, 0, 0);
-	sem_init(&resolviendoDeadlock,0,1);
+	sem_init(&resolviendoDeadlock,0,0);
 
 	log_debug(logger, "Se ha iniciado un Team.");
 }
@@ -68,7 +67,9 @@ void destruirEntrenadores() {
 		//TODO - Rompe el cierre por doble free si se capturo algun pokemon. Revisar despues.
 		//list_destroy_and_destroy_elements(entrenadorABorrar->pokemones,	destructorGeneral);
 		free(entrenadorABorrar->pokemonAAtrapar.pokemon);
-		free(entrenadorABorrar->datosDeadlock.pokemonAIntercambiar);
+
+		if(entrenadorABorrar->datosDeadlock.pokemonAIntercambiar != NULL)
+			free(entrenadorABorrar->datosDeadlock.pokemonAIntercambiar);
 	}
 
 	list_destroy_and_destroy_elements(team->entrenadores, destructorGeneral);
@@ -93,8 +94,8 @@ void liberarMemoria() {
 	free(socketBrokerLoc);
 	free(socketBrokerCau);
 	free(socketGameboy);
-	free(ipServidor);
-	free(puertoServidor);
+//	free(ipServidor);
+//	free(puertoServidor);
 	free(semEntrenadores);
 	free(semEntrenadoresRR);
 	config_destroy(config);
@@ -121,6 +122,7 @@ bool elementoEstaEnLista(t_list *lista, char *elemento) {
 void inicializarSemEntrenadores() {
 	semEntrenadores = malloc(list_size(team->entrenadores) * sizeof(sem_t));
 	semEntrenadoresRR = malloc(list_size(team->entrenadores) * sizeof(sem_t));
+
 	for (int j = 0; j < list_size(team->entrenadores); j++) {
 		sem_init(&(semEntrenadores[j]), 0, 0);
 		sem_init(&(semEntrenadoresRR[j]), 0, 0);
@@ -141,26 +143,6 @@ void finalizarProceso(){
 	liberarMemoria();
 }
 
-/*void crearConexionesCliente(int* socketBrokerLoc, int* socketBrokerApp, int* socketBrokerCau) {
-	pthread_t hiloSocketLoc;
-	pthread_t hiloSocketApp;
-	pthread_t hiloSocketCau;
-
-	pthread_create(&hiloSocketLoc, NULL, (void*) suscribirseACola, APPEARED);
-	pthread_detach(hiloSocketLoc);
-
-	pthread_create(&hiloSocketApp, NULL, (void*) suscribirseACola, socketBrokerApp);
-	pthread_detach(hiloSocketApp);
-
-	pthread_create(&hiloSocketCau, NULL, (void*) crearConexion, socketBrokerCau);
-	pthread_detach(hiloSocketCau);
-
-
-//	*socketBrokerLoc = crearConexionClienteConReintento(ipServidor, puertoServidor, tiempoDeEspera);
-//	*socketBrokerApp = crearConexionClienteConReintento(ipServidor, puertoServidor, tiempoDeEspera);
-//	*socketBrokerCau = crearConexionClienteConReintento(ipServidor, puertoServidor, tiempoDeEspera);
-}*/
-
 int main() {
 	signal(SIGINT,finalizarProceso);
 
@@ -174,13 +156,13 @@ int main() {
 
 	crearHilosDeEntrenadores();
 
+	crearHiloPlanificador();
+
 	//Creo conexion con Gameboy
 	conectarGameboy();
 
 	//Se suscribe el Team a las colas
 	crearConexionesYSuscribirseALasColas();
-
-	crearHiloPlanificador();
 
 	enviarGetSegunObjetivo(ipServidor,puertoServidor);
 
@@ -191,8 +173,7 @@ int main() {
 	log_info(logger, "El proceso Team finalizó su ejecución\n");
 
 
-//	liberarMemoria();
-	//Todo revisar porque pincha en LiberarMemoria().
+	liberarMemoria();
 	return 0;
 }
 
