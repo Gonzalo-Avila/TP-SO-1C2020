@@ -7,10 +7,10 @@
 #include "Game-Card.h"
 
 void crearConexionBroker() {
-	log_info(logger, "Creando hilo de conexion Broker");
+	log_info(logger, "Creando hilo de conexión con el broker...");
 	pthread_create(&hiloReconexiones, NULL, (void*) mantenerConexionBroker, NULL);
 	pthread_detach(hiloReconexiones);
-	log_info(logger, "Hilo de conexion Broker creado");
+	log_info(logger, "Hilo de conexion con el broker creado");
 }
 
 int enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo,uint32_t sizeMensaje, void * mensaje) {
@@ -71,11 +71,11 @@ estadoConexion conectarYSuscribir(){
 			log_info(logger, "No se pudo establecer la conexion inicial con el broker");
 			return ERROR_CONEXION;
 		}
-		log_info(logger, "IDProceso asignado: %d", idProceso);
+		log_info(logger, "ID de proceso asignado a GameCard: %d", idProceso);
 	}
 	estadoConexion statusConexion = crearSuscripcionesBroker();
 	if(statusConexion==ERROR_CONEXION)
-		log_info(logger,"No se pudieron realizar las suscripciones. Error de conexion");
+		log_info(logger,"No se pudieron realizar las suscripciones. Error de conexión");
 	return statusConexion;
 }
 
@@ -92,6 +92,7 @@ void mantenerConexionBroker(){
 }
 
 void cerrarConexiones(){
+	log_info(logger,"Cerrando conexiones...");
 	close(socketEscuchaGameboy);
 	close(socketSuscripcionNEW);
 	close(socketSuscripcionCATCH);
@@ -107,18 +108,20 @@ void esperarMensajesBroker(int* socketSuscripcion) {
 		pthread_t atencionDeMensaje;
 
 		if(mensaje->codeOP==FINALIZAR){
+			log_info(logger,"Hay problemas de conexión con el broker...");
 			free(mensaje);
 			statusConexionBroker=ERROR_CONEXION;
 			close(*socketSuscripcion);
 			break;
 		}
+		log_info(logger,"Se recibió un mensaje del broker");
 		send(*socketSuscripcion, &ack, sizeof(uint32_t), 0);
-		log_info(logger,"[BROKER] Mensaje recibido");
+		log_info(logger,"Enviando confirmación...");
 
 		switch (mensaje->colaEmisora) {
 		case NEW: {
 			//Procesar mensaje NEW
-			log_debug(logger, "[BROKER] Llegó un mensaje de la cola NEW");
+			log_debug(logger, "Mensaje de la cola: NEW_POKEMON");
 			pthread_create(&atencionDeMensaje, NULL, (void *)procesarNEW,mensaje);
 			pthread_detach(atencionDeMensaje);
 			//procesarNEW(mensaje);
@@ -126,7 +129,7 @@ void esperarMensajesBroker(int* socketSuscripcion) {
 		}
 		case GET: {
 			//Procesar mensaje GET
-			log_debug(logger, "[BROKER] Llegó un mensaje de la cola GET");
+			log_debug(logger, "Mensaje de la cola: GET_POKEMON");
 			pthread_create(&atencionDeMensaje, NULL, (void *)procesarGET,mensaje);
 			pthread_detach(atencionDeMensaje);
 			//procesarGET(mensaje);
@@ -134,7 +137,7 @@ void esperarMensajesBroker(int* socketSuscripcion) {
 		}
 		case CATCH: {
 			//Procesar mensaje CATCH
-			log_debug(logger, "[BROKER] Llegó un mensaje de la cola CATCH");
+			log_debug(logger, "Mensaje de la cola: CATCH_POKEMON");
 			pthread_create(&atencionDeMensaje, NULL, (void *)procesarCATCH,mensaje);
 			pthread_detach(atencionDeMensaje);
 			//procesarCATCH(mensaje);
@@ -142,7 +145,8 @@ void esperarMensajesBroker(int* socketSuscripcion) {
 		}
 		default: {
 
-			log_error(logger, "[BROKER] Mensaje recibido de una cola no correspondiente");
+			log_error(logger, "Se recibió un mensaje dañado o de una cola no correspondiente");
+			log_error(logger, "Informando error de conexión...");
 			statusConexionBroker = ERROR_CONEXION;
 			break;
 		}

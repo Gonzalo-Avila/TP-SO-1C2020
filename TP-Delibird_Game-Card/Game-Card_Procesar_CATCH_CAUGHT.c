@@ -2,7 +2,7 @@
 
 void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 
-	log_debug(logger, "[CATCH] Procesando");
+	log_debug(logger, "Procesando mensaje CATCH...");
 
 	mensajeCatch * msgCatch = desarmarMensajeCATCH(mensajeRecibido);
 
@@ -18,8 +18,8 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 
 	sem_wait(&mutexListaDeSemaforos);
 	if(!existeSemaforo(rutaMetadataPokemon)){
-				mutexPokemon * nuevoSemaforo =  crearNuevoSemaforo(rutaMetadataPokemon);
-				list_add(semaforosPokemon,nuevoSemaforo);
+			mutexPokemon * nuevoSemaforo =  crearNuevoSemaforo(rutaMetadataPokemon);
+			list_add(semaforosPokemon,nuevoSemaforo);
 	}
 	sem_t * mutexMetadata = obtenerMutexPokemon(rutaMetadataPokemon);
 	sem_post(&mutexListaDeSemaforos);

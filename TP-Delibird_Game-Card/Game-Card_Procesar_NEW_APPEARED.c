@@ -4,7 +4,7 @@
 
 void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
-	log_debug(logger, "[NEW] Procesando");
+	log_debug(logger, "Procesando mensaje NEW...");
 
 	mensajeNew * msgNew = desarmarMensajeNEW(mensajeRecibido);
 

@@ -3,7 +3,7 @@
 void inicializarVariablesGlobales() {
 
 	config = config_create("gamecard.config");
-	logger = log_create("gamecard_logs", "GameCard", 1, LOG_LEVEL_TRACE);
+	logger = log_create("gamecard_logs_oficial", "GameCard", 1, LOG_LEVEL_TRACE);
 
 	ipServidor = malloc(strlen(config_get_string_value(config, "IP_BROKER")) + 1);
 	strcpy(ipServidor, config_get_string_value(config, "IP_BROKER"));
@@ -409,6 +409,8 @@ void inicializarFileSystem() {
 	char * rutaDirBlocks = cadenasConcatenadas(puntoDeMontaje,"/Blocks");
 	char * rutaMetadataFiles = cadenasConcatenadas(rutaDirFiles,"/metadata.bin");
 
+	log_info(logger,"Inicializando filesystem...");
+
 	if (!existeElArchivo(rutaMetadata)) {
 		log_error(logger,"No se encontró el archivo metadata en el punto de montaje. El proceso GameCard no puede continuar");
 		exit(0);
@@ -417,12 +419,14 @@ void inicializarFileSystem() {
 	obtenerParametrosDelFS(rutaMetadata);
 
 	if (existeElArchivo(rutaBitmap)){
+		log_info(logger,"El filesystem ya estaba inicializado");
 		int fd = open(rutaBitmap, O_RDWR);
 		struct stat sb;
 		fstat(fd, &sb);
 		sizeBitmap = sb.st_size;
 		bitmap = mmap(NULL, sizeBitmap, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 		bitarrayBloques = bitarray_create_with_mode(bitmap, sb.st_size,MSB_FIRST);
+		log_info(logger,"Leida configuración preexistente");
 
 	} else {
 
@@ -455,6 +459,7 @@ void inicializarFileSystem() {
 			free(rutaBloque);
 		}
 	    msync(bitmap,sb.st_size,MS_SYNC);
+	    log_info(logger,"Filesystem inicializado");
 	}
 
 	free(rutaBitmap);

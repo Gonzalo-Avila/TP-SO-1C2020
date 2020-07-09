@@ -3,7 +3,7 @@
 
 void procesarGET(mensajeRecibido * mensajeRecibido) {
 
-	log_debug(logger, "[GET] Procesando");
+	log_debug(logger, "Procesando mensaje GET...");
 
 	mensajeGet * msgGet = desarmarMensajeGET(mensajeRecibido);
 

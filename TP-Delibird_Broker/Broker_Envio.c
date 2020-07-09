@@ -23,7 +23,7 @@ void agregarAListaDeEnviados(uint32_t idMsg, uint32_t idProceso){
 			free(idProcesoAAgregar);
 		}
 	}else{
-		log_debug(logger, "No se encontro registro para agregarAListaDeEnviados");
+		log_debug(logger, "No se encontro registro para agregarAListaDeEnviados: el mensaje no está en cache");
 	}
 }
 
@@ -40,7 +40,7 @@ void agregarAListaDeConfirmados(uint32_t idMsg, uint32_t idProceso){
 		list_add(registroAActualizar->procesosQueConfirmaronRecepcion,idProcesoAAgregar);
 		log_debug(logger, "Se agrego a clientID %d lista de confirmados de mensaje con id %d ", *idProcesoAAgregar, idMsg);
 	}else{
-		log_debug(logger, "No se encontro registro para agregarAListaDeConfirmados");
+		log_debug(logger, "No se encontro registro para agregarAListaDeConfirmados: el mensaje no está en cache");
 	}
 }
 
@@ -58,12 +58,13 @@ void imprimirListasIDs(uint32_t idMsg){
 		log_debug(logger, "Elemento #%d: %d", i, *cid);
 		i++;
 	}
-
-	log_debug(logger, "procesosALosQueSeEnvio");
-	list_iterate(registroAActualizar->procesosALosQueSeEnvio, imprimirElemento);
-	i = 1;
-	log_debug(logger, "procesosQueConfirmaronRecepcion");
-	list_iterate(registroAActualizar->procesosQueConfirmaronRecepcion, imprimirElemento);
+	if(registroAActualizar!=NULL){
+		log_debug(logger, "procesosALosQueSeEnvio");
+		list_iterate(registroAActualizar->procesosALosQueSeEnvio, imprimirElemento);
+		i = 1;
+		log_debug(logger, "procesosQueConfirmaronRecepcion");
+		list_iterate(registroAActualizar->procesosQueConfirmaronRecepcion, imprimirElemento);
+	}
 }
 
 void enviarEstructuraMensajeASuscriptor(void* estMensaje) {
