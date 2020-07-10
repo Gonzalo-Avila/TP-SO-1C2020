@@ -10,7 +10,7 @@ void registrarCicloDeCPU(){
 
 /*Arma el Entrenador*/
 t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivosEntrenador,
-		char *pokemonesEntrenador, float estInicialEntrenador) {
+	char *pokemonesEntrenador, float estInicialEntrenador) {
 	t_entrenador* nuevoEntrenador = malloc(sizeof(t_entrenador));
 
 	t_list *posicionEntrenador = list_create();
@@ -45,13 +45,13 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivos
 	nuevoEntrenador->cantidadMaxDePokes = list_size(nuevoEntrenador->objetivos);
 	nuevoEntrenador->pokemonAAtrapar.pokemon = malloc(MAXSIZE);
 
-	list_destroy(posicionEntrenador);
+	list_destroy_and_destroy_elements(posicionEntrenador,destructorGeneral);
+
 	return nuevoEntrenador;
 }
 
 /* Genera los Entrenadores con los datos del Config */
 void generarEntrenadores() {
-	//t_entrenador* unEntrenador = malloc(sizeof(t_entrenador));
 	t_entrenador * unEntrenador;
 		t_list* posiciones = list_create();
 		t_list* objetivos = list_create();
@@ -67,9 +67,9 @@ void generarEntrenadores() {
 				list_get(objetivos, contador), list_get(pokemones, contador), estimacion);
 		list_add(team->entrenadores, unEntrenador);
 	}
-	list_destroy(posiciones);
-	list_destroy(objetivos);
-	list_destroy(pokemones);
+	list_destroy_and_destroy_elements(posiciones,destructorGeneral);
+	list_destroy_and_destroy_elements(objetivos,destructorGeneral);
+	list_destroy_and_destroy_elements(pokemones,destructorGeneral);
 }
 
 void removerObjetivosCumplidos(char *pokemon,t_list *listaObjetivos){
@@ -104,9 +104,9 @@ void setearObjetivosDeTeam() {
 		entrenador = list_get(team->entrenadores, i);
 
 		for (int j = 0; j < list_size(entrenador->objetivos); j++) {
-				list_add(team->objetivo, list_get(entrenador->objetivos, j));
+			list_add(team->objetivo, list_get(entrenador->objetivos, j));
 		}
-	}
+	}//Usamos la misma referencia que la que tienen los entrenadores.
 
 	for(int i = 0; i < list_size(team->entrenadores); i++){
 		t_entrenador *entrenador;

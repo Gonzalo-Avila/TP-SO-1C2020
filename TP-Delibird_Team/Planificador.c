@@ -218,7 +218,17 @@ void planificarFifo(){
 		while(1){
 			t_entrenador *entrenador;
 
+
 			sem_wait(&procesoEnReady);
+
+			if(!list_is_empty(listaPosicionesInternas)){
+				t_posicionEnMapa *pos;
+				pos = list_remove(listaPosicionesInternas,0);
+
+				if(estaEnLosObjetivos(pos->pokemon))
+					ponerEnReadyAlMasCercano(pos->pos[0],pos->pos[1],pos->pokemon);
+			}
+
 			if(noSeCumplieronLosObjetivos()){
 
 				if(!list_is_empty(listaDeReady)){
@@ -248,6 +258,13 @@ void planificarRR(){
 
 	while(1){
 			sem_wait(&procesoEnReady);
+			if(!list_is_empty(listaPosicionesInternas)){
+				t_posicionEnMapa *pos;
+				pos = list_remove(listaPosicionesInternas,0);
+
+				if(estaEnLosObjetivos(pos->pokemon))
+					ponerEnReadyAlMasCercano(pos->pos[0],pos->pos[1],pos->pokemon);
+			}
 
 			if(noSeCumplieronLosObjetivos()){
 
@@ -278,6 +295,13 @@ void planificarSJFsinDesalojo(){
 		t_entrenador *entrenador;
 
 		sem_wait(&procesoEnReady);
+		if(!list_is_empty(listaPosicionesInternas)){
+			t_posicionEnMapa *pos;
+			pos = list_remove(listaPosicionesInternas,0);
+
+			if(estaEnLosObjetivos(pos->pokemon))
+				ponerEnReadyAlMasCercano(pos->pos[0],pos->pos[1],pos->pokemon);
+		}
 
 		if(noSeCumplieronLosObjetivos()){
 
@@ -307,6 +331,14 @@ void planificarSJFconDesalojo(){
 			t_entrenador *entrenador;
 
 			sem_wait(&procesoEnReady);
+
+			if(!list_is_empty(listaPosicionesInternas)){
+				t_posicionEnMapa *pos;
+				pos = list_remove(listaPosicionesInternas,0);
+
+				if(estaEnLosObjetivos(pos->pokemon))
+					ponerEnReadyAlMasCercano(pos->pos[0],pos->pos[1],pos->pokemon);
+			}
 
 			if(noSeCumplieronLosObjetivos()){
 
@@ -491,10 +523,19 @@ void escaneoDeDeadlock(){
 		int contadorDeDeadlocks = 0;
 
 		while(!list_is_empty(entrenadoresEnDeadlock)){
+
 			resolverDeadlock(entrenadoresEnDeadlock);
 			sem_wait(&resolviendoDeadlock);
+
 			list_destroy(entrenadoresEnDeadlock);
 			entrenadoresEnDeadlock = list_filter(team->entrenadores,estaEnDeadlock);
+
+//			for(int i = 0;i < list_size(entrenadoresEnDeadlock);i++){
+//				t_entrenador *entrenador = list_get(entrenadoresEnDeadlock,i);
+//
+//				log_info(logger,"id entrenador en deadlock: %d en la posicion %d",entrenador->id,i);
+//				log_info(logger,"estado del entrenador en deadlock %d",entrenador->estado);
+//			}
 			contadorDeDeadlocks++;
 			registrarDeadlockResuelto();
 		}

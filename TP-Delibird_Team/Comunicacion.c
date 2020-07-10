@@ -67,7 +67,8 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 
 	if(resultado){
 		t_list* pokemonesDelEntrenador = catchProcesado->entrenadorConCatch->pokemones;
-		char* pokemonAtrapado = catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon;
+		char* pokemonAtrapado = malloc(strlen(catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon) + 1);
+		strcpy(pokemonAtrapado,catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon);
 
 		sem_wait(&mutexEntrenadores);
 		enlistar(pokemonAtrapado, pokemonesDelEntrenador);
@@ -87,6 +88,7 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 		sem_post(&mutexOBJETIVOS);
 
 		list_remove_by_condition(catchProcesado->entrenadorConCatch->objetivos,esUnObjetivo);
+		//Ver leak posible de objetivo.
 
 		loggearPokemonCapturado(catchProcesado->entrenadorConCatch, true);
 	}
@@ -97,13 +99,19 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 	//Marca objetivos cumplidos de entrenador.
 	seCumplieronLosObjetivosDelEntrenador(catchProcesado->entrenadorConCatch);
 
-	//Verifica si estan en deadlock, SOLO cuando se acabaron los objetivos generales.
-	verificarDeadlock();
-
 	sem_wait(&mutexEntrenadores);
 	catchProcesado->entrenadorConCatch->suspendido = false;
 	sem_post(&mutexEntrenadores);
 
+
+	log_info(logger,"Pokemones: ");
+	imprimirListaDeCadenas(catchProcesado->entrenadorConCatch->pokemones);
+
+	log_info(logger,"Objetivos: ");
+	imprimirListaDeCadenas(catchProcesado->entrenadorConCatch->objetivos);
+
+	//Verifica si estan en deadlock, SOLO cuando se acabaron los objetivos generales.
+	verificarDeadlock();
 }
 
 void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
@@ -157,16 +165,17 @@ void procesarCAUGHT(mensajeRecibido* miMensajeRecibido) {
 	char* resultado = malloc(5); //OK o FAIL
 	memcpy(&miCaught->resultado,miMensajeRecibido->mensaje,sizeof(resultado));
 
-	resultado = (miCaught->resultado == 1) ? "OK" : "FAIL";
+	strcpy(resultado,(miCaught->resultado ? "OK" : "FAIL"));
 
-	if (validarIDCorrelativoCatch(miMensajeRecibido->idCorrelativo)) {
-		log_debug(logger, "Se recibio un CAUGHT");
+	if(validarIDCorrelativoCatch(miMensajeRecibido->idCorrelativo)) {
+		log_debug(logger, "Se recibio un CAUGHT valido");
 		procesarObjetivoCumplido(buscarCatch(miMensajeRecibido->idCorrelativo),miCaught->resultado);
 	}
 
 	log_info(logger, "Mensaje recibido: CAUGHT_POKEMON %s", resultado);
 	log_info(loggerOficial, "Mensaje recibido: CAUGHT_POKEMON %s", resultado);
 
+	free(resultado);
 	free(miCaught);
 	free(miMensajeRecibido->mensaje);
 	free(miMensajeRecibido);
@@ -183,7 +192,7 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 	memcpy(&longPokemon, miMensajeRecibido->mensaje, sizeof(uint32_t));
 	offset = sizeof(uint32_t);
 
-	char* pokemon = malloc(longPokemon);
+	char* pokemon = malloc(longPokemon + 1);
 	memcpy(pokemon, miMensajeRecibido->mensaje + offset, longPokemon);
 	offset += longPokemon;
 
@@ -211,7 +220,7 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 			list_add(listaPosicionesInternas, posicion);
 		}
 
-		ponerEnReadyAlMasCercano(posicion->pos[0], posicion->pos[1],pokemon);
+		//ponerEnReadyAlMasCercano(posicion->pos[0], posicion->pos[1],pokemon);
 		sem_post(&procesoEnReady);
 	}
 	log_info(logger, "Mensaje recibido: LOCALIZED_POKEMON %s con %d pokemones", pokemon, cantPokes);
@@ -252,7 +261,7 @@ void procesarAPPEARED(mensajeRecibido* miMensajeRecibido) {
 
 		list_add(listaPosicionesInternas, posicion);
 
-		ponerEnReadyAlMasCercano(posicion->pos[0], posicion->pos[1],pokemonRecibido);
+		//ponerEnReadyAlMasCercano(posicion->pos[0], posicion->pos[1],pokemonRecibido);
 
 		log_info(logger, "Mensaje recibido: APPEARED_POKEMON %s %d %d.", pokemonRecibido, posicion->pos[0], posicion->pos[1]);
 		log_info(loggerOficial, "Mensaje recibido: APPEARED_POKEMON %s %d %d.", pokemonRecibido, posicion->pos[0], posicion->pos[1]);
