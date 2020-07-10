@@ -329,6 +329,7 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 						contadorQuantum = quantum;
 						log_debug(logger, "El entrenador %d se quedó sin Quantum. Vuelve a la cola de ready.", entrenador->id);
 						log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: Quantum agotado.", entrenador->id);
+						registrarCambioDeContexto();
 						entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
 						list_add(listaDeReady,entrenador);
 						sem_post(&procesoEnReady);
@@ -470,6 +471,7 @@ void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 							t_entrenador* entrenadorDesalojante = list_get(listaDeReady,0);
 							log_debug(logger, "El entrenador %d fue desalojado por el entrenador %d. Vuelve a la cola de ready.", entrenador->id, entrenadorDesalojante->id);
 							log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: fue desalojado por el entrenador %d.", entrenador->id, entrenadorDesalojante->id);
+							registrarCambioDeContexto();
 							entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
 							list_add(listaDeReady,entrenador);
 							entrenador->datosSjf.fueDesalojado = true;
