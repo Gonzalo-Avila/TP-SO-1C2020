@@ -97,6 +97,9 @@ typedef struct{
 }t_catchEnEspera;
 
 int tiempoDeEspera;
+int ciclosDeCPUTotales;
+int cambiosDeContexto;
+int deadlocksResueltos;
 uint32_t idDelProceso;
 float alfa;
 t_team *team;
@@ -128,6 +131,7 @@ sem_t *semEntrenadores;
 sem_t *semEntrenadoresRR;
 sem_t procesoEnReady;
 sem_t conexionCreada;
+sem_t reconexion;
 sem_t resolviendoDeadlock;
 
 pthread_t hiloPlanificador;

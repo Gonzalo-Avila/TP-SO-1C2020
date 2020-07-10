@@ -4,6 +4,10 @@ void crearHiloPlanificador(){
 	pthread_create(&hiloPlanificador, NULL, (void*) planificador, NULL);
 }
 
+void registrarDeadlockResuelto(){
+	deadlocksResueltos++;
+}
+
 e_algoritmo obtenerAlgoritmoPlanificador() {
 	char* algoritmo;
 
@@ -152,13 +156,11 @@ void ponerEnReadyAlMasCercano(int x, int y, char* pokemon){
 
 		entrenadorMasCercano = (t_entrenador*) list_get(team->entrenadores,idEntrenadorMasCercano);
 
-
 		sem_wait(&mutexEntrenadores);
 		entrenadorMasCercano->estado = LISTO;
 		strcpy(entrenadorMasCercano->pokemonAAtrapar.pokemon, pokemon);
 		entrenadorMasCercano->pokemonAAtrapar.pos[0] = x;
 		entrenadorMasCercano->pokemonAAtrapar.pos[1] = y;
-		log_debug(logger,"Se agrego al entrenador %d a la lista de ready",idEntrenadorMasCercano);
 		list_add(listaDeReady,entrenadorMasCercano);
 		sem_post(&mutexEntrenadores);
 	}
@@ -263,8 +265,10 @@ void planificarRR(){
 					sem_wait(&semPlanif);
 				}
 			}
-			else
+			else{
+				log_debug(logger,"Se cumplieron los objetivos, finaliza el Planificador");
 				break;
+			}
 		}
 }
 
@@ -291,9 +295,10 @@ void planificarSJFsinDesalojo(){
 				sem_wait(&semPlanif);
 			}
 		}
-		else
+		else{
+			log_debug(logger,"Se cumplieron los objetivos, finaliza el Planificador");
 			break;
-	}
+	}   }
 }
 
 void planificarSJFconDesalojo(){
@@ -319,9 +324,10 @@ void planificarSJFconDesalojo(){
 					sem_wait(&semPlanif);
 				}
 			}
-			else
+			else{
+				log_debug(logger,"Se cumplieron los objetivos, finaliza el Planificador");
 				break;
-		}
+		}  }
 }
 
 bool puedeExistirDeadlock(){
@@ -482,14 +488,18 @@ void escaneoDeDeadlock(){
 
 	if(puedeExistirDeadlock()){
 		t_list *entrenadoresEnDeadlock = list_filter(team->entrenadores,estaEnDeadlock);
+		int contadorDeDeadlocks = 0;
 
 		while(!list_is_empty(entrenadoresEnDeadlock)){
 			resolverDeadlock(entrenadoresEnDeadlock);
 			sem_wait(&resolviendoDeadlock);
 			list_destroy(entrenadoresEnDeadlock);
 			entrenadoresEnDeadlock = list_filter(team->entrenadores,estaEnDeadlock);
+			contadorDeDeadlocks++;
+			registrarDeadlockResuelto();
 		}
 		log_debug(logger,"Se termino la resolucion de deadlocks");
+		log_info(loggerOficial, "Finalizo la resolucion de deadlocks. Deadlocks resueltos = %d.", contadorDeDeadlocks);
 	}
 	else{
 		log_debug(logger,"No hay deadlocks pendientes");

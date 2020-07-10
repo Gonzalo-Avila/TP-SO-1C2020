@@ -3,6 +3,7 @@
 void inicializarVariablesGlobales() {
 	config = config_create("team.config");
 	logger = log_create("team_logs", "Team", 1, LOG_LEVEL_TRACE);
+	loggerOficial = log_create(config_get_string_value(config, "LOG_FILE"),"Delibird - Team", 0, LOG_LEVEL_TRACE);
 	listaHilos = list_create();
 	team = malloc(sizeof(t_team));
 	team->entrenadores = list_create();
@@ -13,7 +14,7 @@ void inicializarVariablesGlobales() {
 	ipServidor = config_get_string_value(config, "IP");
 //	puertoServidor = malloc(strlen(config_get_string_value(config, "PUERTO")) + 1);
 	puertoServidor = config_get_string_value(config, "PUERTO");
-	tiempoDeEspera = atoi(config_get_string_value(config, "TIEMPO_DE_ESPERA"));
+	tiempoDeEspera = atoi(config_get_string_value(config, "CONNECTION_RETRY"));
 	team->algoritmoPlanificacion = obtenerAlgoritmoPlanificador();
 	listaCondsEntrenadores = list_create();
 	listaPosicionesInternas = list_create();
@@ -25,6 +26,10 @@ void inicializarVariablesGlobales() {
 	socketGameboy = malloc(sizeof(int));
 	brokerConectado = false;
 
+	ciclosDeCPUTotales = 0;
+	cambiosDeContexto = 0;
+	deadlocksResueltos = 0;
+
 	//inicializo el mutex para los mensajes que llegan del broker
 	sem_init(&mutexMensajes, 0, 1);
 	sem_init(&mutexEntrenadores,0,1);
@@ -35,6 +40,7 @@ void inicializarVariablesGlobales() {
 	sem_init(&semPlanif, 0, 0);
 	sem_init(&procesoEnReady,0,0);
 	sem_init(&conexionCreada, 0, 0);
+	sem_init(&reconexion, 0, 0);
 	sem_init(&resolviendoDeadlock,0,0);
 
 	log_debug(logger, "Se ha iniciado un Team.");
@@ -65,6 +71,8 @@ void destruirEntrenadores() {
 	for (int i = 0; i < list_size(team->entrenadores); i++) {
 		t_entrenador* entrenadorABorrar = (t_entrenador*) (list_get(team->entrenadores, i));
 
+		sem_destroy(&semEntrenadores[i]);
+		sem_destroy(&semEntrenadoresRR[i]);
 		list_destroy_and_destroy_elements(entrenadorABorrar->objetivos,	destructorGeneral);
 		//TODO - Rompe el cierre por doble free si se capturo algun pokemon. Revisar despues.
 		//list_destroy_and_destroy_elements(entrenadorABorrar->pokemones,	destructorGeneral);
@@ -98,18 +106,40 @@ void liberarMemoria() {
 	free(socketGameboy);
 //	free(ipServidor);
 //	free(puertoServidor);
-	free(semEntrenadores);
-	free(semEntrenadoresRR);
+//	free(semEntrenadores);
+//	free(semEntrenadoresRR);
+	sem_destroy(&mutexMensajes);
+	sem_destroy(&mutexEntrenadores);
+	sem_destroy(&mutexAPPEARED);
+	sem_destroy(&mutexLOCALIZED);
+	sem_destroy(&mutexCAUGHT);
+	sem_destroy(&mutexOBJETIVOS);
+	sem_destroy(&semPlanif);
+	sem_destroy(&procesoEnReady);
+	sem_destroy(&conexionCreada);
+	sem_destroy(&reconexion);
+	sem_destroy(&resolviendoDeadlock);
 	config_destroy(config);
-
-	log_info(logger, "El proceso Team ha finalizado.");
+	log_destroy(loggerOficial);
+	log_info(logger, "Memoria liberada.");
 	log_destroy(logger);
 
 	exit(0);
 }
 
 void imprimirResultadosDelTeam(){
-	//TODO - Logs con datos del team al concluir
+	log_info(loggerOficial,"El proceso Team ha finalizado.");
+	log_info(loggerOficial,"Ciclos de CPU totales = %d", ciclosDeCPUTotales);
+	log_info(loggerOficial,"Cambios de contexto realizados = %d", cambiosDeContexto);
+	//TODO - loggear cambios de contexto por entrenador.
+	log_info(loggerOficial, "Deadlocks detectados y resueltos = %d", deadlocksResueltos);
+
+	log_info(logger,"El proceso Team ha finalizado.");
+	log_info(logger,"Ciclos de CPU totales = %d", ciclosDeCPUTotales);
+	log_info(logger,"Cambios de contexto realizados = %d", cambiosDeContexto);
+	//TODO - loggear cambios de contexto por entrenador.
+	log_info(logger, "Deadlocks detectados y resueltos = %d", deadlocksResueltos);
+
 }
 
 bool elementoEstaEnLista(t_list *lista, char *elemento) {
@@ -128,8 +158,6 @@ void inicializarSemEntrenadores() {
 	for (int j = 0; j < list_size(team->entrenadores); j++) {
 		sem_init(&(semEntrenadores[j]), 0, 0);
 		sem_init(&(semEntrenadoresRR[j]), 0, 0);
-		log_info(logger, "Iniciado semáforos para entrenador %d",
-				semEntrenadores[j]);
 	}
 }
 
@@ -175,10 +203,8 @@ int main() {
 	pthread_join(hiloPlanificador, NULL);
 
 	log_info(logger, "Finalizó la conexión con el servidor\n");
-	log_info(logger, "El proceso Team finalizó su ejecución\n");
 
-
-	liberarMemoria();
+	finalizarProceso();
 	return 0;
 }
 

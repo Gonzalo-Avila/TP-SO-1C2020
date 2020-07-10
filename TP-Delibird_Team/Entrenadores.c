@@ -1,5 +1,13 @@
 #include "Team.h"
 
+void registrarCambioDeContexto(){
+	cambiosDeContexto++;
+}
+
+void registrarCicloDeCPU(){
+	ciclosDeCPUTotales++;
+}
+
 /*Arma el Entrenador*/
 t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivosEntrenador,
 		char *pokemonesEntrenador, float estInicialEntrenador) {
@@ -115,7 +123,6 @@ void setearObjetivosDeTeam() {
 
 		seCumplieronLosObjetivosDelEntrenador(entrenador);
 	}
-
 	//Se verifica por deadlock en caso que venga ya sin objetivos globales.
 	verificarDeadlock();
 }
@@ -134,16 +141,24 @@ void crearHiloEntrenador(t_entrenador* entrenador) {
 	pthread_detach(nuevoHilo);
 }
 
+void loggearPosicion(t_entrenador* entrenador) {
+	log_debug(logger,
+			"El entrenador id: %d se movio a la posicion [%d,%d]",
+			entrenador->id, entrenador->pos[0], entrenador->pos[1]);
+	log_debug(loggerOficial,
+			"El entrenador id: %d se movio a la posicion [%d,%d]",
+			entrenador->id, entrenador->pos[0], entrenador->pos[1]);
+}
+
 void moverXDelEntrenador(t_entrenador *entrenador){
 
-
 	if(entrenador->pos[0] < entrenador->pokemonAAtrapar.pos[0]){
-			entrenador->pos[0]++;
-	log_debug(logger,"El entrenador id: %d esta en la posicion [%d,%d]",entrenador->id,entrenador->pos[0],entrenador->pos[1]);
+		entrenador->pos[0]++;
+		loggearPosicion(entrenador);
 		}
 	else if(entrenador->pos[0] > entrenador->pokemonAAtrapar.pos[0]){
-			entrenador->pos[0]--;
-	log_debug(logger,"El entrenador id: %d esta en la posicion [%d,%d]",entrenador->id,entrenador->pos[0],entrenador->pos[1]);
+		entrenador->pos[0]--;
+		loggearPosicion(entrenador);
 		}
 	else{
 		//Si el entrenador ya esta en el X del pokemon, que mueva la Y.
@@ -156,11 +171,11 @@ void moverYDelEntrenador(t_entrenador *entrenador){
 
 	if(entrenador->pos[1] < entrenador->pokemonAAtrapar.pos[1]){
 		entrenador->pos[1]++;
-	log_debug(logger,"El entrenador id: %d esta en la posicion [%d,%d]",entrenador->id,entrenador->pos[0],entrenador->pos[1]);
+		loggearPosicion(entrenador);
 	}
 	else if(entrenador->pos[1] > entrenador->pokemonAAtrapar.pos[1]){
 		entrenador->pos[1]--;
-	log_debug(logger,"El entrenador id: %d esta en la posicion [%d,%d]",entrenador->id,entrenador->pos[0],entrenador->pos[1]);
+		loggearPosicion(entrenador);
 	}
 	else{
 		//Si el entrenador ya esta en el Y del pokemon, que mueva la X
@@ -200,8 +215,10 @@ void removerPokemonDeListaSegunCondicion(t_list* lista,char *pokemon){
 }
 
 void verificarDeadlock() {
-	if(list_is_empty(team->objetivo))
+	if(list_is_empty(team->objetivo)){
+		log_info(loggerOficial, "Se inicia la deteccion de deadlock.");
 		escaneoDeDeadlock();
+	}
 }
 void seCumplieronLosObjetivosDelEntrenador(t_entrenador* entrenador) {
 	if(list_is_empty(entrenador->objetivos)){
@@ -214,6 +231,8 @@ void seCumplieronLosObjetivosDelEntrenador(t_entrenador* entrenador) {
 
 void intercambiar(t_entrenador *entrenador){
 	t_entrenador *entrenadorParejaIntercambio = (t_entrenador*)list_get(team->entrenadores,entrenador->datosDeadlock.idEntrenadorAIntercambiar);
+	log_debug(logger,"Estoy intercambiando el pokemon %s por %s",entrenador->datosDeadlock.pokemonAIntercambiar,entrenador->pokemonAAtrapar.pokemon);
+	log_info(loggerOficial, "Se comienza el intercambio entre el entrenador %d y el entrenador %d", entrenador->id, entrenadorParejaIntercambio->id);
 
 	sem_wait(&mutexEntrenadores);
 	list_add(entrenador->pokemones,entrenador->pokemonAAtrapar.pokemon);
@@ -225,20 +244,24 @@ void intercambiar(t_entrenador *entrenador){
 	removerPokemonDeListaSegunCondicion(entrenador->objetivos,entrenador->pokemonAAtrapar.pokemon);
 	removerPokemonDeListaSegunCondicion(entrenadorParejaIntercambio->objetivos,entrenador->datosDeadlock.pokemonAIntercambiar);
 
-
 	seCumplieronLosObjetivosDelEntrenador(entrenador);
-
 	seCumplieronLosObjetivosDelEntrenador(entrenadorParejaIntercambio);
 
 	//Corresponde al requerimiento de que el intercambio debe demorar 5 ciclos de CPU.
 	usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 5000000);
+
+	for(int i = 0; i < 5; i++){
+		registrarCicloDeCPU();
+	}
+
+	log_debug(logger,"Se finalizo el intercambio entre el entrenador %d y el entrenador %d",entrenador->id,entrenadorParejaIntercambio->id);
+	log_info(loggerOficial,"Se finalizo el intercambio entre el entrenador %d y el entrenador %d",entrenador->id,entrenadorParejaIntercambio->id);
 }
 
 void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 	 while(1){
-
 		sem_wait(&semEntrenadores[entrenador->id]);
-
+		registrarCambioDeContexto();
 
 		if(entrenador->estado != FIN){
 
@@ -258,10 +281,15 @@ void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 					sem_post(&mutexEntrenadores);
 
 					alternadorXY = !alternadorXY;
+
+					registrarCicloDeCPU();
 					usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
 				}
 				if(!entrenador->datosDeadlock.estaEnDeadlock){
 					enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+					registrarCambioDeContexto();
+
+					log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
 
 					sem_wait(&mutexEntrenadores);
 					entrenador->estado = BLOQUEADO;
@@ -269,13 +297,7 @@ void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 					sem_post(&mutexEntrenadores);
 				}
 				else{
-
-					log_debug(logger,"Estoy intercambiando el pokemon %s por %s",entrenador->datosDeadlock.pokemonAIntercambiar,entrenador->pokemonAAtrapar.pokemon);
-
 					intercambiar(entrenador);
-
-					log_debug(logger,"Se finalizo el intercambio entre entrenador %d y entrenador %d",entrenador->id,entrenador->datosDeadlock.idEntrenadorAIntercambiar);
-
 					sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
 				}
 				sem_post(&semPlanif);
@@ -291,9 +313,8 @@ void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 void gestionarEntrenadorRR(t_entrenador* entrenador){
 
 	while(1){
-
 		sem_wait(&semEntrenadores[entrenador->id]);
-		log_error(logger,"Estado actual del entrenador %d",entrenador->estado);
+		registrarCambioDeContexto();
 
 		if(entrenador->estado != FIN){
 
@@ -307,6 +328,7 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 					if(contadorQuantum == 0){
 						contadorQuantum = quantum;
 						log_debug(logger, "El entrenador %d se quedó sin Quantum. Vuelve a la cola de ready.", entrenador->id);
+						log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: Quantum agotado.", entrenador->id);
 						entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
 						list_add(listaDeReady,entrenador);
 						sem_post(&procesoEnReady);
@@ -325,12 +347,16 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 					sem_post(&mutexEntrenadores);
 
 					alternadorXY = !alternadorXY;
+
+					registrarCicloDeCPU();
 					usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
 					contadorQuantum--;
 				}
 
 				if(!entrenador->datosDeadlock.estaEnDeadlock){
 					enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+					registrarCambioDeContexto();
+					log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
 
 					sem_wait(&mutexEntrenadores);
 					entrenador->estado = BLOQUEADO;
@@ -338,13 +364,7 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 					sem_post(&mutexEntrenadores);
 				}
 				else{
-
-					log_debug(logger,"Estoy intercambiando el pokemon %s por %s",entrenador->datosDeadlock.pokemonAIntercambiar,entrenador->pokemonAAtrapar.pokemon);
-
 					intercambiar(entrenador);
-
-					log_debug(logger,"Se finalizo el intercambio entre entrenador %d y entrenador %d",entrenador->id,entrenador->datosDeadlock.idEntrenadorAIntercambiar);
-
 					sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
 				}
 				sem_post(&semPlanif);
@@ -358,90 +378,124 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 }
 
 void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador){
-	 while(entrenador->estado != FIN){
+	while(1){
+		sem_wait(&semEntrenadores[entrenador->id]);
+		registrarCambioDeContexto();
 
-				sem_wait(&semEntrenadores[entrenador->id]);
-				bool alternadorXY = true;
-				int rafagaActual;
-				while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
+		if(entrenador->estado != FIN){
+
+			if(entrenador->estado == EJEC){
+
+					bool alternadorXY = true;
+					int rafagaActual;
+					while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
+						sem_wait(&mutexEntrenadores);
+
+						if(alternadorXY){
+							moverXDelEntrenador(entrenador);
+						}
+						else{
+							moverYDelEntrenador(entrenador);
+						}
+						sem_post(&mutexEntrenadores);
+
+						alternadorXY = !alternadorXY;
+
+						registrarCicloDeCPU();
+						usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
+						rafagaActual++;
+					}
+					entrenador->datosSjf.duracionRafagaAnt = rafagaActual;
+					entrenador->datosSjf.fueDesalojado = false;
+
+					if(!entrenador->datosDeadlock.estaEnDeadlock){
+					enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+					registrarCambioDeContexto();
+					log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
+
 					sem_wait(&mutexEntrenadores);
-
-					if(alternadorXY){
-						moverXDelEntrenador(entrenador);
+					entrenador->estado = BLOQUEADO;
+					entrenador->suspendido = true;
+					sem_post(&mutexEntrenadores);
 					}
 					else{
-						moverYDelEntrenador(entrenador);
-					}
-					sem_post(&mutexEntrenadores);
-
-					alternadorXY = !alternadorXY;
-					usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
-					rafagaActual++;
+					intercambiar(entrenador);
+					sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
 				}
-				entrenador->datosSjf.duracionRafagaAnt = rafagaActual;
-				entrenador->datosSjf.fueDesalojado = false;
+					sem_post(&semPlanif);
+			}
 
-				enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-				entrenador->estado = BLOQUEADO;
-				entrenador->suspendido = true;
-
-				sem_post(&semPlanif);
-
+		}
 	}
 }
 
 void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
-	 while(entrenador->estado != FIN){
+	while(1){
+		sem_wait(&semEntrenadores[entrenador->id]);
+		registrarCambioDeContexto();
 
-				sem_wait(&semEntrenadores[entrenador->id]);
-				bool alternadorXY = true;
-				int rafagaActual=0;
-				while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
-					sem_wait(&mutexEntrenadores);
+		if(entrenador->estado != FIN){
 
-					if(alternadorXY){
-						moverXDelEntrenador(entrenador);
+			if(entrenador->estado == EJEC){
+
+					bool alternadorXY = true;
+					int rafagaActual=0;
+					while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
+						sem_wait(&mutexEntrenadores);
+
+						if(alternadorXY){
+							moverXDelEntrenador(entrenador);
+						}
+						else{
+							moverYDelEntrenador(entrenador);
+						}
+						sem_post(&mutexEntrenadores);
+
+						alternadorXY = !alternadorXY;
+
+						registrarCicloDeCPU();
+						usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
+						rafagaActual++;
+						//Actualizo estimacion
+						entrenador->datosSjf.estimadoRafagaAct--;
+						// Actualizo duracion real de rafaga
+						if(!entrenador->datosSjf.fueDesalojado)
+							entrenador->datosSjf.duracionRafagaAnt = rafagaActual;
+						else entrenador->datosSjf.duracionRafagaAnt = entrenador->datosSjf.duracionRafagaAnt + rafagaActual;
+						//Chequeo si hay nuevo entrenador en ready con menor rafaga que el actual
+						//TODO
+						//Chequear funcionamiento del desalojo. Necesitamos tener mas de un entrenador en ready.
+						if(hayNuevoEntrenadorConMenorRafaga(entrenador)){
+							rafagaActual=0;
+							t_entrenador* entrenadorDesalojante = list_get(listaDeReady,0);
+							log_debug(logger, "El entrenador %d fue desalojado por el entrenador %d. Vuelve a la cola de ready.", entrenador->id, entrenadorDesalojante->id);
+							log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: fue desalojado por el entrenador %d.", entrenador->id, entrenadorDesalojante->id);
+							entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
+							list_add(listaDeReady,entrenador);
+							entrenador->datosSjf.fueDesalojado = true;
+							sem_post(&procesoEnReady);
+							sem_post(&semPlanif);
+						}
+					}
+					entrenador->datosSjf.fueDesalojado = false;
+
+					if(!entrenador->datosDeadlock.estaEnDeadlock){
+						enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+						registrarCambioDeContexto();
+						log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
+						sem_wait(&mutexEntrenadores);
+						entrenador->estado = BLOQUEADO;
+						entrenador->suspendido = true;
+						sem_post(&mutexEntrenadores);
 					}
 					else{
-						moverYDelEntrenador(entrenador);
+						intercambiar(entrenador);;
+						sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
 					}
-					sem_post(&mutexEntrenadores);
+					sem_post(&semPlanif);
+			}
 
-					alternadorXY = !alternadorXY;
-					usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
-					rafagaActual++;
-					//Actualizo estimacion
-					entrenador->datosSjf.estimadoRafagaAct--;
-					// Actualizo duracion real de rafaga
-					if(!entrenador->datosSjf.fueDesalojado)
-						entrenador->datosSjf.duracionRafagaAnt = rafagaActual;
-					else entrenador->datosSjf.duracionRafagaAnt = entrenador->datosSjf.duracionRafagaAnt + rafagaActual;
-					//Chequeo si hay nuevo entrenador en ready con menor rafaga que el actual
-					//TODO
-					//Chequear funcionamiento del desalojo. Necesitamos tener mas de un entrenador en ready.
-					if(hayNuevoEntrenadorConMenorRafaga(entrenador)){
-						rafagaActual=0;
-						t_entrenador* entrenadorDesalojante = list_get(listaDeReady,0);
-						log_debug(logger, "El entrenador %d fue desalojado por el entrenador %d. Vuelve a la cola de ready.", entrenador->id, entrenadorDesalojante->id);
-						entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
-						list_add(listaDeReady,entrenador);
-						entrenador->datosSjf.fueDesalojado = true;
-						sem_post(&procesoEnReady);
-						sem_post(&semPlanif);
-					}
-				}
-
-				entrenador->datosSjf.fueDesalojado = false;
-
-				enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-
-				sem_wait(&mutexEntrenadores);
-				entrenador->estado = BLOQUEADO;
-				entrenador->suspendido = true;
-				sem_post(&mutexEntrenadores);
-
-				sem_post(&semPlanif);
-
+		}
 	}
 }
 

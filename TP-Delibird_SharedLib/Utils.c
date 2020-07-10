@@ -77,7 +77,6 @@ int crearConexionClienteConReintento(char * ip, char * puerto, int tiempoDeEsper
     socketServidor = socket(serverInfo->ai_family, serverInfo->ai_socktype,
             serverInfo->ai_protocol);
 
-    log_debug(logger, "Conectandose al servidor...");
     while(1){
         int status = connect(socketServidor, serverInfo->ai_addr, serverInfo->ai_addrlen);
         if(status != -1)
