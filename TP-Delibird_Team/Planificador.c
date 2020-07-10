@@ -193,12 +193,16 @@ t_entrenador* entrenadorConMenorRafaga(){
 }
 
 bool hayNuevoEntrenadorConMenorRafaga(t_entrenador* entrenador){
+	bool verifica = false;
 	if(!list_is_empty(listaDeReady)){
 		list_sort(listaDeReady,menorEstimacion);
 		t_entrenador* entrenador2 = list_get(listaDeReady,0);
-		return entrenador->datosSjf.estimadoRafagaAct < entrenador2->datosSjf.estimadoRafagaAct;
+		if(entrenador->datosSjf.estimadoRafagaAct > entrenador2->datosSjf.estimadoRafagaAct){
+            hayEntrenadorDesalojante=true;
+            verifica = true;
+        }
 	}
-	else return false;
+	return verifica;
 }
 
 void activarHiloDe(int id){
@@ -332,28 +336,31 @@ void planificarSJFconDesalojo(){
 
 			sem_wait(&procesoEnReady);
 
-			if(!list_is_empty(listaPosicionesInternas)){
-				t_posicionEnMapa *pos;
-				pos = list_remove(listaPosicionesInternas,0);
-
-				if(estaEnLosObjetivos(pos->pokemon))
-					ponerEnReadyAlMasCercano(pos->pos[0],pos->pos[1],pos->pokemon);
-			}
-
 			if(noSeCumplieronLosObjetivos()){
 
 				if(!list_is_empty(listaDeReady)){
 					log_debug(logger,"Hurra, tengo algo en ready");
+                    if(!hayEntrenadorDesalojante){
+                        sem_wait(&mutexEntrenadores);
+                        entrenador = entrenadorConMenorRafaga();
+                        entrenador->estado = EJEC;
+                        sem_post(&mutexEntrenadores);
+                    }
+                    else{
+                        sem_wait(&mutexEntrenadores);
+                        entrenador = list_get(listaDeReady,0);
+                        entrenador->estado = EJEC;
+                        sem_post(&mutexEntrenadores);
+                        hayEntrenadorDesalojante = false;
+                    }
+                        list_remove(listaDeReady,0);
 
-					sem_wait(&mutexEntrenadores);
-					entrenador = entrenadorConMenorRafaga();
-					entrenador->estado = EJEC;
-					sem_post(&mutexEntrenadores);
+                        activarHiloDe(entrenador->id);
+                        if(entrenador->datosSjf.fueDesalojado)
+                        sem_post(&semSRT[entrenador->id]);
 
-					list_remove(listaDeReady,0);
+                        sem_wait(&semPlanif);
 
-					activarHiloDe(entrenador->id);
-					sem_wait(&semPlanif);
 				}
 			}
 			else{

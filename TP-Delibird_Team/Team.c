@@ -30,6 +30,8 @@ void inicializarVariablesGlobales() {
 	cambiosDeContexto = 0;
 	deadlocksResueltos = 0;
 
+	hayEntrenadorDesalojante = false;
+
 	//inicializo el mutex para los mensajes que llegan del broker
 	sem_init(&mutexMensajes, 0, 1);
 	sem_init(&mutexEntrenadores,0,1);
@@ -154,10 +156,12 @@ bool elementoEstaEnLista(t_list *lista, char *elemento) {
 void inicializarSemEntrenadores() {
 	semEntrenadores = malloc(list_size(team->entrenadores) * sizeof(sem_t));
 	semEntrenadoresRR = malloc(list_size(team->entrenadores) * sizeof(sem_t));
+	semSRT = malloc(list_size(team->entrenadores) * sizeof(sem_t));
 
 	for (int j = 0; j < list_size(team->entrenadores); j++) {
 		sem_init(&(semEntrenadores[j]), 0, 0);
 		sem_init(&(semEntrenadoresRR[j]), 0, 0);
+		sem_init(&(semSRT[j]),0,0);
 	}
 }
 

@@ -113,6 +113,7 @@ int *socketBrokerLoc;
 int *socketBrokerCau;
 int *socketGameboy;
 bool brokerConectado;
+bool hayEntrenadorDesalojante;
 
 char* ipServidor;
 char* puertoServidor;
@@ -133,6 +134,7 @@ sem_t procesoEnReady;
 sem_t conexionCreada;
 sem_t reconexion;
 sem_t resolviendoDeadlock;
+sem_t *semSRT;
 
 pthread_t hiloPlanificador;
 

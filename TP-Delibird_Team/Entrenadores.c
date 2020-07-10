@@ -471,15 +471,16 @@ void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 							t_entrenador* entrenadorDesalojante = list_get(listaDeReady,0);
 							log_debug(logger, "El entrenador %d fue desalojado por el entrenador %d. Vuelve a la cola de ready.", entrenador->id, entrenadorDesalojante->id);
 							log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: fue desalojado por el entrenador %d.", entrenador->id, entrenadorDesalojante->id);
-							registrarCambioDeContexto();
 							entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
 							list_add(listaDeReady,entrenador);
 							entrenador->datosSjf.fueDesalojado = true;
-							list_remove(listaDeReady,0);
-							activarHiloDe(entrenadorDesalojante->id);
-							//sem_post(&procesoEnReady);
-							//sem_post(&semPlanif);
+							sem_post(&procesoEnReady);
+							sem_post(&semPlanif);
 						}
+                        else{
+                            sem_post(&semSRT[entrenador->id]);
+                        }
+						sem_wait(&semSRT[entrenador->id]);
 					}
 					entrenador->datosSjf.fueDesalojado = false;
 
@@ -496,6 +497,8 @@ void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 						intercambiar(entrenador);;
 						sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
 					}
+
+
 					sem_post(&semPlanif);
 			}
 
