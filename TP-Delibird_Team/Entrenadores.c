@@ -473,8 +473,10 @@ void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 							entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
 							list_add(listaDeReady,entrenador);
 							entrenador->datosSjf.fueDesalojado = true;
-							sem_post(&procesoEnReady);
-							sem_post(&semPlanif);
+							list_remove(listaDeReady,0);
+							activarHiloDe(entrenadorDesalojante->id);
+							//sem_post(&procesoEnReady);
+							//sem_post(&semPlanif);
 						}
 					}
 					entrenador->datosSjf.fueDesalojado = false;

@@ -261,7 +261,7 @@ void procesarAPPEARED(mensajeRecibido* miMensajeRecibido) {
 	}
 	else{
 		log_error(logger,"No me interesa el pokemon %s",pokemonRecibido);
-		log_info(loggerOficial, "Se recibio mensaje APPEARED_POKEMON para un %s. Ese pokemon no esta en mis objetivos.");
+		log_info(loggerOficial, "Se recibio mensaje APPEARED_POKEMON para un %s. Ese pokemon no esta en mis objetivos.",pokemonRecibido);
 	}
 
 
