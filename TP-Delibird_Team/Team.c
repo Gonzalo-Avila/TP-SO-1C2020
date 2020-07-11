@@ -75,9 +75,8 @@ void destruirEntrenadores() {
 
 		sem_destroy(&semEntrenadores[i]);
 		sem_destroy(&semEntrenadoresRR[i]);
-		list_destroy_and_destroy_elements(entrenadorABorrar->objetivos,	destructorGeneral);
-		//TODO - Rompe el cierre por doble free si se capturo algun pokemon. Revisar despues.
-		//list_destroy_and_destroy_elements(entrenadorABorrar->pokemones,	destructorGeneral);
+		list_destroy_and_destroy_elements(entrenadorABorrar->objetivosOriginales,destructorGeneral);
+		list_destroy_and_destroy_elements(entrenadorABorrar->pokemones,	destructorGeneral);
 		free(entrenadorABorrar->pokemonAAtrapar.pokemon);
 
 		if(entrenadorABorrar->datosDeadlock.pokemonAIntercambiar != NULL)
@@ -91,7 +90,7 @@ void destruirEntrenadores() {
 void liberarMemoria() {
 	destruirEntrenadores();
 	//asumo que el list_destroy hace los free correspondientes.
-	list_destroy_and_destroy_elements(team->objetivo, destructorGeneral);
+	list_destroy(team->objetivo);
 	list_destroy_and_destroy_elements(listaHilos, destructorGeneral);
 	list_destroy_and_destroy_elements(listaDeReady, destructorGeneral);
 	list_destroy_and_destroy_elements(listaDeBloqued, destructorGeneral);
@@ -156,12 +155,10 @@ bool elementoEstaEnLista(t_list *lista, char *elemento) {
 void inicializarSemEntrenadores() {
 	semEntrenadores = malloc(list_size(team->entrenadores) * sizeof(sem_t));
 	semEntrenadoresRR = malloc(list_size(team->entrenadores) * sizeof(sem_t));
-	semSRT = malloc(list_size(team->entrenadores) * sizeof(sem_t));
 
 	for (int j = 0; j < list_size(team->entrenadores); j++) {
 		sem_init(&(semEntrenadores[j]), 0, 0);
 		sem_init(&(semEntrenadoresRR[j]), 0, 0);
-		sem_init(&(semSRT[j]),0,0);
 	}
 }
 

@@ -33,11 +33,13 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivos
 	}
 	nuevoEntrenador->id = id;
 	nuevoEntrenador->objetivos = objetivoEntrenador;
+	nuevoEntrenador->objetivosOriginales = list_duplicate(objetivoEntrenador);
 	nuevoEntrenador->pokemones = pokemonEntrenador;
 	nuevoEntrenador->estado = NUEVO; // Debugeando de mi cuenta que sin esta linea de codigo solo el ultimo elemento lo pasa a new
 	nuevoEntrenador->suspendido = false;
 	nuevoEntrenador->datosSjf.duracionRafagaAnt = 0;
-	nuevoEntrenador->datosSjf.estimadoRafagaAnt = 0;
+	nuevoEntrenador->datosSjf.duracionRafagaAct = 0;
+	nuevoEntrenador->datosSjf.estimadoRafagaAnt = estInicialEntrenador;
 	nuevoEntrenador->datosSjf.estimadoRafagaAct = estInicialEntrenador;
 	//Pongo variable fue desalojado en true, asi en la primer vuelta el algoritmo toma las estimaciones iniciales.
 	nuevoEntrenador->datosSjf.fueDesalojado = true;
@@ -60,13 +62,14 @@ void generarEntrenadores() {
 		obtenerDeConfig("POSICIONES_ENTRENADORES", posiciones);
 		obtenerDeConfig("OBJETIVO_ENTRENADORES", objetivos);
 		obtenerDeConfig("POKEMON_ENTRENADORES", pokemones);
-		float estimacion =(float)atof(config_get_string_value(config, "ESTIMACION_INICIAL"));//Puede romper el atof, puede estar redondeando la coma
+		float estimacion = atof(config_get_string_value(config, "ESTIMACION_INICIAL"));
 
 	for (int contador = 0; contador < list_size(posiciones); contador++){
 		unEntrenador = armarEntrenador(contador, list_get(posiciones, contador),
 				list_get(objetivos, contador), list_get(pokemones, contador), estimacion);
 		list_add(team->entrenadores, unEntrenador);
 	}
+
 	list_destroy_and_destroy_elements(posiciones,destructorGeneral);
 	list_destroy_and_destroy_elements(objetivos,destructorGeneral);
 	list_destroy_and_destroy_elements(pokemones,destructorGeneral);
@@ -388,7 +391,6 @@ void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador){
 			if(entrenador->estado == EJEC){
 
 					bool alternadorXY = true;
-					int rafagaActual;
 					while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
 						sem_wait(&mutexEntrenadores);
 
@@ -404,25 +406,34 @@ void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador){
 
 						registrarCicloDeCPU();
 						usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
-						rafagaActual++;
+					//Actualizo estimacion
+					entrenador->datosSjf.estimadoRafagaAct-=1;
+					log_error(logger,"Estimado de rafaga actual: %f",entrenador->datosSjf.estimadoRafagaAct);
+
+					entrenador->datosSjf.duracionRafagaAct+=1;
+					log_error(logger,"Duracion de rafaga actual: %f",entrenador->datosSjf.duracionRafagaAct);
+
 					}
-					entrenador->datosSjf.duracionRafagaAnt = rafagaActual;
-					entrenador->datosSjf.fueDesalojado = false;
-
 					if(!entrenador->datosDeadlock.estaEnDeadlock){
-					enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-					registrarCambioDeContexto();
-					log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
+						enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+						registrarCambioDeContexto();
+						log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
 
-					sem_wait(&mutexEntrenadores);
-					entrenador->estado = BLOQUEADO;
-					entrenador->suspendido = true;
-					sem_post(&mutexEntrenadores);
+						sem_wait(&mutexEntrenadores);
+						entrenador->estado = BLOQUEADO;
+						entrenador->suspendido = true;
+						sem_post(&mutexEntrenadores);
 					}
 					else{
 					intercambiar(entrenador);
 					sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
 				}
+
+					entrenador->datosSjf.duracionRafagaAnt = entrenador->datosSjf.duracionRafagaAct;
+					entrenador->datosSjf.duracionRafagaAct = 0;
+					entrenador->datosSjf.estimadoRafagaAct = alfa*entrenador->datosSjf.duracionRafagaAnt+(1-alfa)*entrenador->datosSjf.estimadoRafagaAnt;
+					entrenador->datosSjf.estimadoRafagaAnt = entrenador->datosSjf.estimadoRafagaAct;
+
 					sem_post(&semPlanif);
 			}
 
@@ -439,67 +450,71 @@ void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 
 			if(entrenador->estado == EJEC){
 
-					bool alternadorXY = true;
-					int rafagaActual=0;
-					while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
-						sem_wait(&mutexEntrenadores);
+				bool alternadorXY = true;
+				while(entrenador->pos[0] != entrenador->pokemonAAtrapar.pos[0] || entrenador->pos[1] != entrenador->pokemonAAtrapar.pos[1]){
 
-						if(alternadorXY){
-							moverXDelEntrenador(entrenador);
-						}
-						else{
-							moverYDelEntrenador(entrenador);
-						}
-						sem_post(&mutexEntrenadores);
-
-						alternadorXY = !alternadorXY;
-
-						registrarCicloDeCPU();
-						usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
-						rafagaActual++;
-						//Actualizo estimacion
-						entrenador->datosSjf.estimadoRafagaAct--;
-						// Actualizo duracion real de rafaga
-						if(!entrenador->datosSjf.fueDesalojado)
-							entrenador->datosSjf.duracionRafagaAnt = rafagaActual;
-						else entrenador->datosSjf.duracionRafagaAnt = entrenador->datosSjf.duracionRafagaAnt + rafagaActual;
-						//Chequeo si hay nuevo entrenador en ready con menor rafaga que el actual
-						//TODO
-						//Chequear funcionamiento del desalojo. Necesitamos tener mas de un entrenador en ready.
-						if(hayNuevoEntrenadorConMenorRafaga(entrenador)){
-							rafagaActual=0;
-							t_entrenador* entrenadorDesalojante = list_get(listaDeReady,0);
-							log_debug(logger, "El entrenador %d fue desalojado por el entrenador %d. Vuelve a la cola de ready.", entrenador->id, entrenadorDesalojante->id);
-							log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: fue desalojado por el entrenador %d.", entrenador->id, entrenadorDesalojante->id);
-							entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
-							list_add(listaDeReady,entrenador);
-							entrenador->datosSjf.fueDesalojado = true;
-							sem_post(&procesoEnReady);
-							sem_post(&semPlanif);
-						}
-                        else{
-                            sem_post(&semSRT[entrenador->id]);
-                        }
-						sem_wait(&semSRT[entrenador->id]);
-					}
-					entrenador->datosSjf.fueDesalojado = false;
-
-					if(!entrenador->datosDeadlock.estaEnDeadlock){
-						enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-						registrarCambioDeContexto();
-						log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
-						sem_wait(&mutexEntrenadores);
-						entrenador->estado = BLOQUEADO;
-						entrenador->suspendido = true;
-						sem_post(&mutexEntrenadores);
+					sem_wait(&mutexEntrenadores);
+					if(alternadorXY){
+						moverXDelEntrenador(entrenador);
 					}
 					else{
-						intercambiar(entrenador);;
-						sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
+						moverYDelEntrenador(entrenador);
 					}
+					sem_post(&mutexEntrenadores);
 
+					alternadorXY = !alternadorXY;
+					//Los parciales son temporales, los amigos y el tp de operativos son eternos.
 
-					sem_post(&semPlanif);
+					registrarCicloDeCPU();
+					usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
+
+					//Actualizo estimacion
+					entrenador->datosSjf.estimadoRafagaAct-=1;
+					log_error(logger,"Estimado de rafaga actual: %f",entrenador->datosSjf.estimadoRafagaAct);
+
+					entrenador->datosSjf.duracionRafagaAct+=1;
+					log_error(logger,"Duracion de rafaga actual: %f",entrenador->datosSjf.duracionRafagaAct);
+
+					//Chequear funcionamiento del desalojo. Necesitamos tener mas de un entrenador en ready.
+					if(hayNuevoEntrenadorConMenorRafaga(entrenador)){
+						t_entrenador* entrenadorDesalojante = list_get(listaDeReady,0);
+						log_debug(logger, "El entrenador %d fue desalojado por el entrenador %d. Vuelve a la cola de ready.", entrenador->id, entrenadorDesalojante->id);
+						log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: fue desalojado por el entrenador %d.", entrenador->id, entrenadorDesalojante->id);
+						entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
+						list_add(listaDeReady,entrenador);
+						entrenador->datosSjf.fueDesalojado = true;
+
+						registrarCambioDeContexto();
+						sem_post(&procesoEnReady);
+						sem_post(&semPlanif);
+					}
+					else{
+						sem_post(&semEntrenadores[entrenador->id]);
+					}
+					sem_wait(&semEntrenadores[entrenador->id]);
+				}
+					entrenador->datosSjf.fueDesalojado = false;
+
+			if(!entrenador->datosDeadlock.estaEnDeadlock){
+				enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+				registrarCambioDeContexto();
+				log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
+				sem_wait(&mutexEntrenadores);
+				entrenador->estado = BLOQUEADO;
+				entrenador->suspendido = true;
+				sem_post(&mutexEntrenadores);
+			}
+			else{
+				intercambiar(entrenador);
+				sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
+			}
+
+			entrenador->datosSjf.duracionRafagaAnt = entrenador->datosSjf.duracionRafagaAct;
+			entrenador->datosSjf.duracionRafagaAct = 0;
+			entrenador->datosSjf.estimadoRafagaAct = alfa*entrenador->datosSjf.duracionRafagaAnt+(1-alfa)*entrenador->datosSjf.estimadoRafagaAnt;
+			entrenador->datosSjf.estimadoRafagaAnt = entrenador->datosSjf.estimadoRafagaAct;
+
+			sem_post(&semPlanif);
 			}
 
 		}

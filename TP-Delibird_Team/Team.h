@@ -60,6 +60,7 @@ typedef struct{
 	t_posicion pos;
 	t_list *objetivos;
 	t_list *pokemones;
+	t_list *objetivosOriginales;
 	int cantidadMaxDePokes;
 	e_estado estado;
 	bool suspendido;
@@ -134,7 +135,6 @@ sem_t procesoEnReady;
 sem_t conexionCreada;
 sem_t reconexion;
 sem_t resolviendoDeadlock;
-sem_t *semSRT;
 
 pthread_t hiloPlanificador;
 
@@ -186,7 +186,6 @@ void enviarGetDePokemon(char *ip, char *puerto, char *pokemon);
 void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador);
 void planificarFifo();
 void planificador();
-void ponerEnReadyAlMasCercano(int x, int y, char* pokemon);
 void moverXDelEntrenador(t_entrenador *entrenador);
 void moverYDelEntrenador(t_entrenador *entrenador);
 void inicializarSemEntrenadores();
@@ -205,6 +204,7 @@ void escaneoDeDeadlock();
 void imprimirListaDeCadenas(t_list * listaDeCadenas);
 void seCumplieronLosObjetivosDelEntrenador(t_entrenador *entrenador);
 void verificarDeadlock();
+int ponerEnReadyAlMasCercano(int x, int y, char* pokemon);
 int crearConexionClienteConReintento(char * ip, char * puerto, int tiempoDeEspera);
 
 

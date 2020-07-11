@@ -146,7 +146,7 @@ bool noSeCumplieronLosObjetivos(){
 }
 
 
-void ponerEnReadyAlMasCercano(int x, int y, char* pokemon){
+int ponerEnReadyAlMasCercano(int x, int y, char* pokemon){
 	t_entrenador* entrenadorMasCercano;
 	int idEntrenadorMasCercano;
 
@@ -164,39 +164,75 @@ void ponerEnReadyAlMasCercano(int x, int y, char* pokemon){
 		list_add(listaDeReady,entrenadorMasCercano);
 		sem_post(&mutexEntrenadores);
 	}
-}
-
-float calcularEstimacion(t_entrenador* entrenador){
-	float rafagaAnterior = entrenador->datosSjf.duracionRafagaAnt;
-	float estimadoAnterior = entrenador->datosSjf.estimadoRafagaAnt;
-	//Chequeo si el entrenador fue desalojado
-	if(!entrenador->datosSjf.fueDesalojado){
-		float estimadoProximaRafaga = alfa*rafagaAnterior+(1-alfa)*estimadoAnterior;
-		// Modifico valor del estimado actual
-		entrenador->datosSjf.estimadoRafagaAct = estimadoProximaRafaga;
-		//modifico valor del proximo estimado anterior
-		entrenador->datosSjf.estimadoRafagaAnt = entrenador->datosSjf.estimadoRafagaAct;
-	}
- 	return entrenador->datosSjf.estimadoRafagaAct;
+	return idEntrenadorMasCercano;
 }
 
 bool menorEstimacion(void* entrenador1, void* entrenador2) {
-	float estimadoEntrenador1 = calcularEstimacion((t_entrenador*) entrenador1);
-	float estimadoEntrenador2 = calcularEstimacion((t_entrenador*) entrenador2);
+	float estimadoEntrenador1 = ((t_entrenador*)entrenador1)->datosSjf.estimadoRafagaAct;
+	float estimadoEntrenador2 = ((t_entrenador*)entrenador2)->datosSjf.estimadoRafagaAct;
+
 	return estimadoEntrenador1 < estimadoEntrenador2;
 }
 
 t_entrenador* entrenadorConMenorRafaga(){
 		list_sort(listaDeReady,menorEstimacion);
 		t_entrenador* entrenador = list_get(listaDeReady,0);
+
+		for(int i = 0;i < list_size(listaDeReady);i++){
+			t_entrenador *entr = list_get(listaDeReady,i);
+
+			log_info(logger,"Id del entrenador en lista de ready: %d",entr->id);
+		}
 		return entrenador;
+}
+
+void verificarPokemonesEnMapaYPonerEnReady(){
+	if(!list_is_empty(listaPosicionesInternas)) {
+		t_posicionEnMapa* pos;
+
+		pos = list_remove(listaPosicionesInternas, 0);
+		if(estaEnLosObjetivos(pos->pokemon))
+			ponerEnReadyAlMasCercano(pos->pos[0], pos->pos[1], pos->pokemon);
+	}
+}
+
+void verificarPokemonesEnMapaYPonerEnReadyParaSJF(){
+	int pudePlanificar;
+
+	if(!list_is_empty(listaPosicionesInternas)) {
+		t_list *copialistaPosicionesInternas = list_duplicate(listaPosicionesInternas);
+		t_posicionEnMapa* pos;
+
+		bool esLaPosicionARemover(void *elemento){
+			return pos == elemento;
+		}
+
+		for(int i=0 ;i < list_size(copialistaPosicionesInternas);i++){
+			pos = list_get(copialistaPosicionesInternas,i);
+
+			if(estaEnLosObjetivos(pos->pokemon)){
+				pudePlanificar = ponerEnReadyAlMasCercano(pos->pos[0], pos->pos[1], pos->pokemon);
+
+				if(pudePlanificar != -1){
+					list_remove_by_condition(listaPosicionesInternas,esLaPosicionARemover);
+				}
+
+			}
+		}
+
+	}
 }
 
 bool hayNuevoEntrenadorConMenorRafaga(t_entrenador* entrenador){
 	bool verifica = false;
+
+	verificarPokemonesEnMapaYPonerEnReady();
+
 	if(!list_is_empty(listaDeReady)){
 		list_sort(listaDeReady,menorEstimacion);
 		t_entrenador* entrenador2 = list_get(listaDeReady,0);
+
+		log_error(logger,"Estimacion entrenador %d en ejec: %f y el entrenador en lista de ready: %f",entrenador->id,entrenador->datosSjf.estimadoRafagaAct,entrenador2->datosSjf.estimadoRafagaAct);
 		if(entrenador->datosSjf.estimadoRafagaAct > entrenador2->datosSjf.estimadoRafagaAct){
             hayEntrenadorDesalojante=true;
             verifica = true;
@@ -225,13 +261,7 @@ void planificarFifo(){
 
 			sem_wait(&procesoEnReady);
 
-			if(!list_is_empty(listaPosicionesInternas)){
-				t_posicionEnMapa *pos;
-				pos = list_remove(listaPosicionesInternas,0);
-
-				if(estaEnLosObjetivos(pos->pokemon))
-					ponerEnReadyAlMasCercano(pos->pos[0],pos->pos[1],pos->pokemon);
-			}
+			verificarPokemonesEnMapaYPonerEnReady();
 
 			if(noSeCumplieronLosObjetivos()){
 
@@ -262,13 +292,7 @@ void planificarRR(){
 
 	while(1){
 			sem_wait(&procesoEnReady);
-			if(!list_is_empty(listaPosicionesInternas)){
-				t_posicionEnMapa *pos;
-				pos = list_remove(listaPosicionesInternas,0);
-
-				if(estaEnLosObjetivos(pos->pokemon))
-					ponerEnReadyAlMasCercano(pos->pos[0],pos->pos[1],pos->pokemon);
-			}
+			verificarPokemonesEnMapaYPonerEnReady();
 
 			if(noSeCumplieronLosObjetivos()){
 
@@ -299,13 +323,7 @@ void planificarSJFsinDesalojo(){
 		t_entrenador *entrenador;
 
 		sem_wait(&procesoEnReady);
-		if(!list_is_empty(listaPosicionesInternas)){
-			t_posicionEnMapa *pos;
-			pos = list_remove(listaPosicionesInternas,0);
-
-			if(estaEnLosObjetivos(pos->pokemon))
-				ponerEnReadyAlMasCercano(pos->pos[0],pos->pos[1],pos->pokemon);
-		}
+		verificarPokemonesEnMapaYPonerEnReadyParaSJF();
 
 		if(noSeCumplieronLosObjetivos()){
 
@@ -335,6 +353,9 @@ void planificarSJFconDesalojo(){
 			t_entrenador *entrenador;
 
 			sem_wait(&procesoEnReady);
+			//Este semaforo avisa que meto un pokemon en la lista de pokemones del mapa interno.
+
+			verificarPokemonesEnMapaYPonerEnReady();
 
 			if(noSeCumplieronLosObjetivos()){
 
@@ -356,8 +377,8 @@ void planificarSJFconDesalojo(){
                         list_remove(listaDeReady,0);
 
                         activarHiloDe(entrenador->id);
-                        if(entrenador->datosSjf.fueDesalojado)
-                        sem_post(&semSRT[entrenador->id]);
+//                        if(entrenador->datosSjf.fueDesalojado)
+//                        	sem_post(&semSRT[entrenador->id]);
 
                         sem_wait(&semPlanif);
 
@@ -390,27 +411,36 @@ bool puedeExistirDeadlock(){
 //[Pikachu, Charmander] - [Charmander - Squirtle - Bulbasaur]
 //
 t_list *pokesNoObjetivoEnDeadlock(t_list *pokemonesPosibles,t_list *pokemonesObjetivoEntrenador){
+	t_list *copiaPokemonesObjetivoEntrenador = list_duplicate(pokemonesObjetivoEntrenador);
+	t_list *listaFiltrada;
 
 
 	bool noLoNecesita(void *pokemon){
-			bool verifica = true;
-			char* objetivo;
+		bool verifica = true;
+		char* objetivo;
 
-			for(int i = 0; i < list_size(pokemonesObjetivoEntrenador);i++){
-				objetivo = (char*)list_get(pokemonesObjetivoEntrenador,i);
+		bool coincideCon(void *elemento){
+			return string_equals_ignore_case((char*)elemento,objetivo);
+		}
 
-				if(string_equals_ignore_case((char*)pokemon, objetivo))
-				{
-					verifica = false;
-					break;
-				}
+		for(int i = 0; i < list_size(copiaPokemonesObjetivoEntrenador);i++){
+			objetivo = (char*)list_get(copiaPokemonesObjetivoEntrenador,i);
 
+			if(string_equals_ignore_case((char*)pokemon, objetivo))
+			{
+				list_remove_by_condition(copiaPokemonesObjetivoEntrenador,coincideCon);
+				verifica = false;
+				break;
 			}
+
+		}
 
 			return verifica;
 		}
 
-	return list_filter(pokemonesPosibles,noLoNecesita);
+	listaFiltrada = list_filter(pokemonesPosibles,noLoNecesita);
+	list_destroy(copiaPokemonesObjetivoEntrenador);
+	return listaFiltrada;
 }
 
 bool estaEnDeadlock(void *entrenador){
@@ -450,8 +480,19 @@ bool tieneAlgunoQueNecesita(t_list *lista1, t_list *lista2){
 
 
 void realizarIntercambio(t_entrenador *entrenador, t_entrenador *entrenadorAIntercambiar){
-		t_list *pokemonesNoRequeridos = pokesNoObjetivoEnDeadlock(entrenador->pokemones,entrenador->objetivos);
-		t_list *pokemonesNoRequeridosAIntercambiar = pokesNoObjetivoEnDeadlock(entrenadorAIntercambiar->pokemones,entrenadorAIntercambiar->objetivos);
+
+		log_info(logger,"Objetivos:");
+		imprimirListaDeCadenas(entrenador->objetivosOriginales);
+		log_info(logger,"Pokemones:");
+		imprimirListaDeCadenas(entrenador->pokemones);
+
+
+		t_list *pokemonesNoRequeridos = pokesNoObjetivoEnDeadlock(entrenador->pokemones,entrenador->objetivosOriginales);
+		log_info(logger,"Pokemones no requeridos:");
+		imprimirListaDeCadenas(pokemonesNoRequeridos);
+
+
+		t_list *pokemonesNoRequeridosAIntercambiar = pokesNoObjetivoEnDeadlock(entrenadorAIntercambiar->pokemones,entrenadorAIntercambiar->objetivosOriginales);
 
 		bool pokemonAIntercambiar(void * elemento){
 			bool verifica = false;
@@ -506,7 +547,7 @@ void resolverDeadlock(t_list *entrenadoresEnDeadlock){
 		bool verifica;
 		t_entrenador *entrPotencial1 = (t_entrenador*)entrPotencial;
 
-		t_list *pokemonesNoRequeridosDeEntrPotencial = pokesNoObjetivoEnDeadlock(entrPotencial1->pokemones,entrPotencial1->objetivos);
+		t_list *pokemonesNoRequeridosDeEntrPotencial = pokesNoObjetivoEnDeadlock(entrPotencial1->pokemones,entrPotencial1->objetivosOriginales);
 
 		if(entrPotencial1->id != entrenador->id && tieneAlgunoQueNecesita(entrenador->objetivos,pokemonesNoRequeridosDeEntrPotencial))
 			verifica = true;
@@ -537,12 +578,6 @@ void escaneoDeDeadlock(){
 			list_destroy(entrenadoresEnDeadlock);
 			entrenadoresEnDeadlock = list_filter(team->entrenadores,estaEnDeadlock);
 
-//			for(int i = 0;i < list_size(entrenadoresEnDeadlock);i++){
-//				t_entrenador *entrenador = list_get(entrenadoresEnDeadlock,i);
-//
-//				log_info(logger,"id entrenador en deadlock: %d en la posicion %d",entrenador->id,i);
-//				log_info(logger,"estado del entrenador en deadlock %d",entrenador->estado);
-//			}
 			contadorDeDeadlocks++;
 			registrarDeadlockResuelto();
 		}
