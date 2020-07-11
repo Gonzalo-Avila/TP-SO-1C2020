@@ -207,9 +207,11 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 	if (estaEnLosObjetivos(pokemon) && cantPokes>0) {
 		log_debug(logger, "El pokemon %s es un objetivo", pokemon);
 
-		t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
 		for (int i = 0; i < cantPokes; i++) {
-			posicion->pokemon = pokemon;
+
+			t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
+			posicion->pokemon=malloc(strlen(pokemon)+1);
+			strcpy(posicion->pokemon, pokemon);
 
 			memcpy(&(posicion->pos[0]), miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
 			offset += sizeof(uint32_t);
@@ -223,9 +225,11 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 		//ponerEnReadyAlMasCercano(posicion->pos[0], posicion->pos[1],pokemon);
 		sem_post(&procesoEnReady);
 	}
+
 	log_info(logger, "Mensaje recibido: LOCALIZED_POKEMON %s con %d pokemones", pokemon, cantPokes);
 	log_info(loggerOficial, "Mensaje recibido: LOCALIZED_POKEMON %s con %d pokemones", pokemon, cantPokes);
 
+	free(pokemon);
 	free(miMensajeRecibido->mensaje);
 	free(miMensajeRecibido);
 
@@ -437,16 +441,14 @@ void crearConexionesYSuscribirseALasColas() {
 
 void crearConexionEscuchaGameboy(int* socketGameboy) {
 
-	char * ipEscucha = malloc(strlen(config_get_string_value(config, "IP_TEAM")) + 1);
+	char * ipEscucha;
 	ipEscucha = config_get_string_value(config, "IP_TEAM");
 
-	char * puertoEscucha = malloc(strlen(config_get_string_value(config, "PUERTO_TEAM")) + 1);
+	char * puertoEscucha;
 	puertoEscucha = config_get_string_value(config, "PUERTO_TEAM");
 
 	*socketGameboy = crearConexionServer(ipEscucha, puertoEscucha);
 
-	free(ipEscucha);
-	free(puertoEscucha);
 	
 	log_info(logger, "Socket de escucha para Gameboy creado");
 

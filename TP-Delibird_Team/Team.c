@@ -48,8 +48,8 @@ void inicializarVariablesGlobales() {
 	log_debug(logger, "Se ha iniciado un Team.");
 }
 
-void array_iterate_element(char** strings, void (*closure)(char*, t_list*),
-		t_list *lista) {
+void array_iterate_element(char** strings, void (*closure)(char*, t_list*),t_list *lista) {
+
 	while (*strings != NULL) {
 		closure(*strings, lista);
 		strings++;
@@ -67,6 +67,7 @@ void obtenerDeConfig(char *clave, t_list *lista) {
 	listaDeConfig = config_get_array_value(config, clave);
 
 	array_iterate_element(listaDeConfig, enlistar, lista);
+	free(listaDeConfig);
 }
 
 void destruirEntrenadores() {
@@ -88,7 +89,7 @@ void destruirEntrenadores() {
 
 /* Liberar memoria al finalizar el programa */
 void liberarMemoria() {
-	destruirEntrenadores();
+	//destruirEntrenadores();
 	//asumo que el list_destroy hace los free correspondientes.
 	list_destroy(team->objetivo);
 	list_destroy_and_destroy_elements(listaHilos, destructorGeneral);
@@ -97,18 +98,13 @@ void liberarMemoria() {
 	list_destroy_and_destroy_elements(idsDeCatch, destructorGeneral);
 	list_destroy_and_destroy_elements(listaPosicionesInternas, destructorGeneral);
 	list_destroy_and_destroy_elements(listaCondsEntrenadores, destructorGeneral);
-	close(*socketBrokerApp);
-	close(*socketBrokerLoc);
-	close(*socketBrokerCau);
-	close(*socketGameboy);
-	free(socketBrokerApp);
-	free(socketBrokerLoc);
-	free(socketBrokerCau);
-	free(socketGameboy);
-//	free(ipServidor);
-//	free(puertoServidor);
-//	free(semEntrenadores);
-//	free(semEntrenadoresRR);
+
+	config_destroy(config);
+	log_destroy(loggerOficial);
+	log_info(logger, "Memoria liberada.");
+	log_destroy(logger);
+}
+void destruirSemaforos(){
 	sem_destroy(&mutexMensajes);
 	sem_destroy(&mutexEntrenadores);
 	sem_destroy(&mutexAPPEARED);
@@ -120,14 +116,17 @@ void liberarMemoria() {
 	sem_destroy(&conexionCreada);
 	sem_destroy(&reconexion);
 	sem_destroy(&resolviendoDeadlock);
-	config_destroy(config);
-	log_destroy(loggerOficial);
-	log_info(logger, "Memoria liberada.");
-	log_destroy(logger);
-
-	exit(0);
 }
-
+void liberarConexiones(){
+	close(*socketBrokerApp);
+	close(*socketBrokerLoc);
+	close(*socketBrokerCau);
+	close(*socketGameboy);
+	free(socketBrokerApp);
+	free(socketBrokerLoc);
+	free(socketBrokerCau);
+	free(socketGameboy);
+}
 void imprimirResultadosDelTeam(){
 	log_info(loggerOficial,"El proceso Team ha finalizado.");
 	log_info(loggerOficial,"Ciclos de CPU totales = %d", ciclosDeCPUTotales);
@@ -171,7 +170,10 @@ void crearHilosDeEntrenadores() {
 
 void finalizarProceso(){
 	imprimirResultadosDelTeam();
-	liberarMemoria();
+	liberarConexiones();
+	destruirSemaforos();
+	//liberarMemoria();
+	exit(0);
 }
 
 int main() {

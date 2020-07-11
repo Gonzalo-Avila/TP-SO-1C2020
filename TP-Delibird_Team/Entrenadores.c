@@ -8,6 +8,15 @@ void registrarCicloDeCPU(){
 	ciclosDeCPUTotales++;
 }
 
+void liberarStringSplitteado(char ** stringSplitteado){
+	int index=0;
+	while(stringSplitteado[index]!=NULL){  //["asd","qwe","qweqw",NULL]
+		free(stringSplitteado[index]);
+		index++;
+	}
+	free(stringSplitteado);
+}
+
 /*Arma el Entrenador*/
 t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivosEntrenador,
 	char *pokemonesEntrenador, float estInicialEntrenador) {
@@ -17,16 +26,25 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivos
 	t_list *objetivoEntrenador = list_create();
 	t_list *pokemonEntrenador = list_create();
 
+	//"1|2"
+	//["1", "2", NULL]
+	//posicionEntrenador = "1" -> "2" -> NULL
+	//
+
 	//TODO - Solucionar los leaks sin que rompa nada
 	//--------------------------------------------------------------------------
-	array_iterate_element((char **) string_split(posicionesEntrenador, "|"),
-			(void *) enlistar, posicionEntrenador);
-	array_iterate_element((char **) string_split(objetivosEntrenador, "|"),
-			(void *) enlistar, objetivoEntrenador);
+	char ** posicionesSplitteadas = string_split(posicionesEntrenador,"|");
+	char ** objetivosSplitteados =  string_split(objetivosEntrenador, "|");
+
+	array_iterate_element(posicionesSplitteadas,(void *) enlistar, posicionEntrenador);
+	array_iterate_element(objetivosSplitteados, (void *) enlistar, objetivoEntrenador);
 	//--------------------------------------------------------------------------
 
-	if(pokemonesEntrenador != NULL)
-		array_iterate_element((char **) string_split(pokemonesEntrenador, "|"),(void *) enlistar, pokemonEntrenador);
+	if(pokemonesEntrenador != NULL){
+		char ** pokemonesEntrenadorSplitteados = string_split(pokemonesEntrenador, "|");
+		array_iterate_element(pokemonesEntrenadorSplitteados,(void *) enlistar, pokemonEntrenador);
+		free(pokemonesEntrenadorSplitteados);
+	}
 
 	for (int i = 0; i < 2; i++) {
 		nuevoEntrenador->pos[i] = atoi(list_get(posicionEntrenador, i));
@@ -47,7 +65,10 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivos
 	nuevoEntrenador->cantidadMaxDePokes = list_size(nuevoEntrenador->objetivos);
 	nuevoEntrenador->pokemonAAtrapar.pokemon = malloc(MAXSIZE);
 
-	list_destroy_and_destroy_elements(posicionEntrenador,destructorGeneral);
+
+	list_destroy(posicionEntrenador);
+	liberarStringSplitteado(posicionesSplitteadas);
+	free(objetivosSplitteados);
 
 	return nuevoEntrenador;
 }
@@ -217,6 +238,20 @@ void removerPokemonDeListaSegunCondicion(t_list* lista,char *pokemon){
 	list_remove_by_condition(lista,esElPokemonAAtrapar);
 }
 
+void removerYDestruirPokemonDeListaSegunCondicion(t_list* lista,char *pokemon){
+
+	bool esElPokemonAAtrapar(void *poke){
+		bool verifica = false;
+
+		if(string_equals_ignore_case((char*)poke, pokemon))
+			verifica = true;
+
+		return verifica;
+	}
+
+	list_remove_and_destroy_by_condition(lista,esElPokemonAAtrapar,destructorGeneral);
+}
+
 void verificarDeadlock() {
 	if(list_is_empty(team->objetivo)){
 		log_info(loggerOficial, "Se inicia la deteccion de deadlock.");
@@ -239,9 +274,9 @@ void intercambiar(t_entrenador *entrenador){
 
 	sem_wait(&mutexEntrenadores);
 	list_add(entrenador->pokemones,entrenador->pokemonAAtrapar.pokemon);
-	removerPokemonDeListaSegunCondicion(entrenadorParejaIntercambio->pokemones,entrenador->pokemonAAtrapar.pokemon);
+	removerYDestruirPokemonDeListaSegunCondicion(entrenadorParejaIntercambio->pokemones,entrenador->pokemonAAtrapar.pokemon);
 	list_add(entrenadorParejaIntercambio->pokemones,entrenador->datosDeadlock.pokemonAIntercambiar);
-	removerPokemonDeListaSegunCondicion(entrenador->pokemones,entrenador->datosDeadlock.pokemonAIntercambiar);
+	removerYDestruirPokemonDeListaSegunCondicion(entrenador->pokemones,entrenador->datosDeadlock.pokemonAIntercambiar);
 	sem_post(&mutexEntrenadores);
 
 	removerPokemonDeListaSegunCondicion(entrenador->objetivos,entrenador->pokemonAAtrapar.pokemon);
@@ -289,8 +324,6 @@ void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 					usleep(atoi(config_get_string_value(config, "RETARDO_CICLO_CPU")) * 1000000);
 				}
 				if(!entrenador->datosDeadlock.estaEnDeadlock){
-					enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-					registrarCambioDeContexto();
 
 					log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
 
@@ -298,6 +331,8 @@ void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 					entrenador->estado = BLOQUEADO;
 					entrenador->suspendido = true;
 					sem_post(&mutexEntrenadores);
+					registrarCambioDeContexto();
+					enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
 				}
 				else{
 					intercambiar(entrenador);

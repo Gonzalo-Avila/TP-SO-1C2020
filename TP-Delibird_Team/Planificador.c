@@ -193,9 +193,16 @@ void verificarPokemonesEnMapaYPonerEnReady(){
 		pos = list_remove(listaPosicionesInternas, 0);
 		if(estaEnLosObjetivos(pos->pokemon))
 			ponerEnReadyAlMasCercano(pos->pos[0], pos->pos[1], pos->pokemon);
+		free(pos->pokemon);
+		free(pos);
 	}
 }
 
+void destructorPosiciones(void * posicion){
+	t_posicionEnMapa * posic  = (t_posicionEnMapa * ) posicion;
+	free(posic->pokemon);
+	free(posic);
+}
 void verificarPokemonesEnMapaYPonerEnReadyParaSJF(){
 	int pudePlanificar;
 
@@ -214,12 +221,15 @@ void verificarPokemonesEnMapaYPonerEnReadyParaSJF(){
 				pudePlanificar = ponerEnReadyAlMasCercano(pos->pos[0], pos->pos[1], pos->pokemon);
 
 				if(pudePlanificar != -1){
-					list_remove_by_condition(listaPosicionesInternas,esLaPosicionARemover);
+					list_remove_and_destroy_by_condition(listaPosicionesInternas,esLaPosicionARemover,destructorPosiciones);
 				}
-
+				else
+				{
+					break;
+				}
 			}
 		}
-
+		list_destroy(copialistaPosicionesInternas);
 	}
 }
 
@@ -261,7 +271,7 @@ void planificarFifo(){
 
 			sem_wait(&procesoEnReady);
 
-			verificarPokemonesEnMapaYPonerEnReady();
+			verificarPokemonesEnMapaYPonerEnReadyParaSJF();
 
 			if(noSeCumplieronLosObjetivos()){
 
@@ -528,6 +538,7 @@ void realizarIntercambio(t_entrenador *entrenador, t_entrenador *entrenadorAInte
 		entrenador->datosDeadlock.idEntrenadorAIntercambiar = entrenadorAIntercambiar->id;
 		list_add(listaDeReady,entrenador);
 
+		free(pokeADarQueNoQuiero);
 		list_destroy(pokemonesNoRequeridos);
 		list_destroy(pokemonesNoRequeridosAIntercambiar);
 		sem_post(&mutexEntrenadores);
@@ -581,6 +592,7 @@ void escaneoDeDeadlock(){
 			contadorDeDeadlocks++;
 			registrarDeadlockResuelto();
 		}
+		list_destroy(entrenadoresEnDeadlock);
 		log_debug(logger,"Se termino la resolucion de deadlocks");
 		log_info(loggerOficial, "Finalizo la resolucion de deadlocks. Deadlocks resueltos = %d.", contadorDeDeadlocks);
 	}
