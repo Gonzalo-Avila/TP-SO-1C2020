@@ -4,13 +4,22 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Broker.c 
+../Broker.c \
+../Broker_Cache.c \
+../Broker_Envio.c \
+../Broker_Recepcion.c 
 
 OBJS += \
-./Broker.o 
+./Broker.o \
+./Broker_Cache.o \
+./Broker_Envio.o \
+./Broker_Recepcion.o 
 
 C_DEPS += \
-./Broker.d 
+./Broker.d \
+./Broker_Cache.d \
+./Broker_Envio.d \
+./Broker_Recepcion.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
