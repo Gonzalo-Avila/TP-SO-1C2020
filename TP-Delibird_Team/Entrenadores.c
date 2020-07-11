@@ -331,7 +331,9 @@ void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 					entrenador->estado = BLOQUEADO;
 					entrenador->suspendido = true;
 					sem_post(&mutexEntrenadores);
+
 					registrarCambioDeContexto();
+
 					enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
 				}
 				else{

@@ -110,6 +110,8 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 	log_info(logger,"Objetivos: ");
 	imprimirListaDeCadenas(catchProcesado->entrenadorConCatch->objetivos);
 
+	log_info(logger,"Estado Actual: %d",catchProcesado->entrenadorConCatch->estado);
+
 	//Verifica si estan en deadlock, SOLO cuando se acabaron los objetivos generales.
 	verificarDeadlock();
 }
@@ -150,6 +152,7 @@ void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 			free(socketBroker);
 		}
 		else{
+			log_info(logger,"Estado Actual: %d",entrenador->estado);
 			entrenador->suspendido = false;
 		}
 
