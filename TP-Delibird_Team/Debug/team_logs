@@ -8940,3 +8940,47 @@ Pokemon a intercambiar del entrenador 2: Charmander
 [INFO] 15:12:14:444 Team/(5162:5162): Ciclos de CPU totales = 81
 [INFO] 15:12:14:444 Team/(5162:5162): Cambios de contexto realizados = 10
 [INFO] 15:12:14:444 Team/(5162:5162): Deadlocks detectados y resueltos = 0
+[DEBUG] 18:23:23:438 Team/(7372:7372): Se ha iniciado un Team.
+[DEBUG] 18:23:23:448 Team/(7372:7372): ID obtenido = 2
+[INFO] 18:23:23:448 Team/(7372:7378): Socket de escucha para Gameboy creado
+[DEBUG] 18:23:23:450 Team/(7372:7377): Se activa el planificador
+[INFO] 18:23:23:451 Team/(7372:7372): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 18:23:23:452 Team/(7372:7372): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 18:23:23:452 Team/(7372:7372): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 18:23:23:452 Team/(7372:7372): Enviando GETs...
+[INFO] 18:23:23:460 Team/(7372:7372): GETs enviados
+[DEBUG] 18:23:23:469 Team/(7372:7391): Pokemon: Vaporeon
+[INFO] 18:23:23:470 Team/(7372:7391): Mensaje recibido: LOCALIZED_POKEMON Vaporeon con 0 pokemones
+[DEBUG] 18:23:23:475 Team/(7372:7392): Pokemon: Charmander
+[INFO] 18:23:23:475 Team/(7372:7392): Mensaje recibido: LOCALIZED_POKEMON Charmander con 0 pokemones
+[DEBUG] 18:23:23:475 Team/(7372:7393): Pokemon: Pikachu
+[INFO] 18:23:23:475 Team/(7372:7393): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 0 pokemones
+[DEBUG] 18:23:23:476 Team/(7372:7394): Pokemon: Squirtle
+[INFO] 18:23:23:476 Team/(7372:7394): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 0 pokemones
+[DEBUG] 18:23:23:476 Team/(7372:7395): Pokemon: Flareon
+[INFO] 18:23:23:476 Team/(7372:7395): Mensaje recibido: LOCALIZED_POKEMON Flareon con 0 pokemones
+[DEBUG] 18:24:42:962 Team/(7372:7468): El pokemon esta en nuestro objetivo
+[INFO] 18:24:42:962 Team/(7372:7468): Pokemon: Pikachu
+[INFO] 18:24:42:962 Team/(7372:7468): Mensaje recibido: APPEARED_POKEMON Pikachu 9 9.
+[DEBUG] 18:24:42:962 Team/(7372:7377): Hurra, tengo algo en ready
+[DEBUG] 18:24:42:962 Team/(7372:7376): El entrenador id: 2 se movio a la posicion [2,9]
+[DEBUG] 18:24:43:963 Team/(7372:7376): El entrenador id: 2 se movio a la posicion [3,9]
+[DEBUG] 18:24:44:964 Team/(7372:7376): El entrenador id: 2 se movio a la posicion [4,9]
+[DEBUG] 18:24:45:964 Team/(7372:7376): El entrenador id: 2 se movio a la posicion [5,9]
+[DEBUG] 18:24:46:965 Team/(7372:7376): El entrenador id: 2 se movio a la posicion [6,9]
+[DEBUG] 18:24:47:966 Team/(7372:7376): El entrenador id: 2 se movio a la posicion [7,9]
+[DEBUG] 18:24:48:967 Team/(7372:7376): El entrenador id: 2 se movio a la posicion [8,9]
+[DEBUG] 18:24:49:967 Team/(7372:7376): El entrenador id: 2 se movio a la posicion [9,9]
+[DEBUG] 18:24:50:968 Team/(7372:7376): Enviando mensaje CATCH...
+[DEBUG] 18:24:50:977 Team/(7372:7472): Se recibio un CAUGHT valido
+[INFO] 18:24:50:977 Team/(7372:7472): El entrenador 2 capturo un Pikachu!
+[INFO] 18:24:50:977 Team/(7372:7472): Pokemones: 
+[INFO] 18:24:50:977 Team/(7372:7472): Pikachu
+[INFO] 18:24:50:978 Team/(7372:7472): Objetivos: 
+[INFO] 18:24:50:978 Team/(7372:7472): Flareon
+[INFO] 18:24:50:978 Team/(7372:7472): Estado Actual: 2
+[INFO] 18:24:50:978 Team/(7372:7472): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 18:34:33:951 Team/(7372:7372): El proceso Team ha finalizado.
+[INFO] 18:34:33:951 Team/(7372:7372): Ciclos de CPU totales = 8
+[INFO] 18:34:33:951 Team/(7372:7372): Cambios de contexto realizados = 2
+[INFO] 18:34:33:951 Team/(7372:7372): Deadlocks detectados y resueltos = 0
