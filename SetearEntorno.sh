@@ -1,11 +1,11 @@
 pathTP='/home/utnso'
 
-echo "TP DELIBIRD - Ripped Dinos"
-echo "Creando carpeta /home/utnso/ ..."
+echo "######################## TP DELIBIRD - Ripped Dinos ##########################"
+echo "Creando carpeta /home/utnso/commons/ ..."
 mkdir "${pathTP}/commons/"
 
-echo "Clonando repo de TP..."
-git clone https://github.com/sisoputnfrba/tp-2020-1c-Ripped-Dinos
+# echo "Clonando repo de TP..."
+# git clone https://github.com/sisoputnfrba/tp-2020-1c-Ripped-Dinos
 
 echo "Clonando repo de commons..."
 git clone https://github.com/sisoputnfrba/so-commons-library "${pathTP}/commons/"
@@ -35,6 +35,6 @@ cd "${pathTP}/tp-2020-1c-Ripped-Dinos/TP-Delibird_Game-Boy/Debug/"
 make all 
 
 echo "Seteando variable de entorno"
-export LD_LIBRARY_PATH=/home/utnso/tp-2020-1c-Ripped-Dinos/TP-Delibird_SharedLib/Debug/
+echo "export LD_LIBRARY_PATH=/home/utnso/tp-2020-1c-Ripped-Dinos/TP-Delibird_SharedLib/Debug/" >> ~/.bashrc
 
 
