@@ -57,6 +57,7 @@ typedef struct {
 
 typedef struct{
 	int id;
+	int cambiosDeContexto;
 	t_posicion pos;
 	t_list *objetivos;
 	t_list *pokemones;

@@ -8940,3 +8940,188 @@ Pokemon a intercambiar del entrenador 2: Charmander
 [INFO] 15:12:14:444 Team/(5162:5162): Ciclos de CPU totales = 81
 [INFO] 15:12:14:444 Team/(5162:5162): Cambios de contexto realizados = 10
 [INFO] 15:12:14:444 Team/(5162:5162): Deadlocks detectados y resueltos = 0
+[DEBUG] 01:18:49:707 Team/(5334:5334): Se ha iniciado un Team.
+[DEBUG] 01:18:49:711 Team/(5334:5334): ID obtenido = 104
+[INFO] 01:18:49:711 Team/(5334:5340): Socket de escucha para Gameboy creado
+[DEBUG] 01:18:49:711 Team/(5334:5339): Se activa el planificador
+[INFO] 01:18:49:712 Team/(5334:5334): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 01:18:49:713 Team/(5334:5334): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 01:18:49:715 Team/(5334:5334): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 01:18:49:715 Team/(5334:5334): Enviando GETs...
+[INFO] 01:18:49:732 Team/(5334:5334): GETs enviados
+[DEBUG] 01:18:49:747 Team/(5334:5352): Pokemon: Vaporeon
+[INFO] 01:18:49:747 Team/(5334:5352): Mensaje recibido: LOCALIZED_POKEMON Vaporeon con 0 pokemones
+[DEBUG] 01:18:49:749 Team/(5334:5353): Pokemon: Pikachu
+[INFO] 01:18:49:749 Team/(5334:5353): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 0 pokemones
+[DEBUG] 01:18:49:751 Team/(5334:5354): Pokemon: Squirtle
+[INFO] 01:18:49:754 Team/(5334:5354): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 0 pokemones
+[DEBUG] 01:18:49:755 Team/(5334:5355): Pokemon: Charmander
+[INFO] 01:18:49:757 Team/(5334:5355): Mensaje recibido: LOCALIZED_POKEMON Charmander con 0 pokemones
+[DEBUG] 01:18:49:757 Team/(5334:5356): Pokemon: Flareon
+[INFO] 01:18:49:757 Team/(5334:5356): Mensaje recibido: LOCALIZED_POKEMON Flareon con 0 pokemones
+[DEBUG] 01:19:10:273 Team/(5334:5368): El pokemon esta en nuestro objetivo
+[INFO] 01:19:10:273 Team/(5334:5368): Pokemon: Vaporeon
+[INFO] 01:19:10:273 Team/(5334:5368): Mensaje recibido: APPEARED_POKEMON Vaporeon 10 1.
+[DEBUG] 01:19:10:273 Team/(5334:5339): Hurra, tengo algo en ready
+[DEBUG] 01:19:10:273 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [2,1]
+[DEBUG] 01:19:10:291 Team/(5334:5372): El pokemon esta en nuestro objetivo
+[INFO] 01:19:10:291 Team/(5334:5372): Pokemon: Pikachu
+[INFO] 01:19:10:292 Team/(5334:5372): Mensaje recibido: APPEARED_POKEMON Pikachu 3 5.
+[DEBUG] 01:19:10:311 Team/(5334:5375): El pokemon esta en nuestro objetivo
+[INFO] 01:19:10:311 Team/(5334:5375): Pokemon: Charmander
+[INFO] 01:19:10:311 Team/(5334:5375): Mensaje recibido: APPEARED_POKEMON Charmander 1 30.
+[DEBUG] 01:19:10:334 Team/(5334:5378): El pokemon esta en nuestro objetivo
+[INFO] 01:19:10:334 Team/(5334:5378): Pokemon: Flareon
+[INFO] 01:19:10:334 Team/(5334:5378): Mensaje recibido: APPEARED_POKEMON Flareon 12 1.
+[DEBUG] 01:19:10:350 Team/(5334:5379): El pokemon esta en nuestro objetivo
+[INFO] 01:19:10:350 Team/(5334:5379): Pokemon: Squirtle
+[INFO] 01:19:10:350 Team/(5334:5379): Mensaje recibido: APPEARED_POKEMON Squirtle 7 5.
+[DEBUG] 01:19:11:274 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [3,1]
+[DEBUG] 01:19:12:274 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [4,1]
+[DEBUG] 01:19:13:274 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [5,1]
+[DEBUG] 01:19:14:275 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [6,1]
+[DEBUG] 01:19:15:275 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [7,1]
+[DEBUG] 01:19:16:275 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [8,1]
+[DEBUG] 01:19:17:276 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [9,1]
+[DEBUG] 01:19:18:276 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [10,1]
+[DEBUG] 01:19:19:276 Team/(5334:5336): Enviando mensaje CATCH...
+[DEBUG] 01:19:19:277 Team/(5334:5339): Hurra, tengo algo en ready
+[DEBUG] 01:19:19:277 Team/(5334:5337): El entrenador id: 1 se movio a la posicion [2,5]
+[DEBUG] 01:19:19:309 Team/(5334:5388): Se recibio un CAUGHT valido
+[INFO] 01:19:19:310 Team/(5334:5388): El entrenador 0 capturo un Vaporeon!
+[INFO] 01:19:19:310 Team/(5334:5388): Pokemones: 
+[INFO] 01:19:19:310 Team/(5334:5388): Vaporeon
+[INFO] 01:19:19:311 Team/(5334:5388): Objetivos: 
+[INFO] 01:19:19:314 Team/(5334:5388): Charmander
+[INFO] 01:19:19:314 Team/(5334:5388): Estado Actual: 2
+[INFO] 01:19:19:314 Team/(5334:5388): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 01:19:20:278 Team/(5334:5337): El entrenador id: 1 se movio a la posicion [3,5]
+[DEBUG] 01:19:21:279 Team/(5334:5337): Enviando mensaje CATCH...
+[DEBUG] 01:19:21:280 Team/(5334:5339): Hurra, tengo algo en ready
+[DEBUG] 01:19:21:280 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,10]
+[DEBUG] 01:19:21:284 Team/(5334:5391): Se recibio un CAUGHT valido
+[INFO] 01:19:21:284 Team/(5334:5391): El entrenador 1 capturo un Pikachu!
+[INFO] 01:19:21:284 Team/(5334:5391): Pokemones: 
+[INFO] 01:19:21:284 Team/(5334:5391): Pikachu
+[INFO] 01:19:21:284 Team/(5334:5391): Objetivos: 
+[INFO] 01:19:21:285 Team/(5334:5391): Squirtle
+[INFO] 01:19:21:285 Team/(5334:5391): Estado Actual: 2
+[INFO] 01:19:21:286 Team/(5334:5391): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 01:19:22:280 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,11]
+[DEBUG] 01:19:23:281 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,12]
+[DEBUG] 01:19:24:281 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,13]
+[DEBUG] 01:19:25:281 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,14]
+[DEBUG] 01:19:26:281 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,15]
+[DEBUG] 01:19:27:281 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,16]
+[DEBUG] 01:19:28:282 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,17]
+[DEBUG] 01:19:29:282 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,18]
+[DEBUG] 01:19:30:282 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,19]
+[DEBUG] 01:19:31:282 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,20]
+[DEBUG] 01:19:32:282 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,21]
+[DEBUG] 01:19:33:283 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,22]
+[DEBUG] 01:19:34:283 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,23]
+[DEBUG] 01:19:35:283 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,24]
+[DEBUG] 01:19:36:283 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,25]
+[DEBUG] 01:19:37:283 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,26]
+[DEBUG] 01:19:38:284 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,27]
+[DEBUG] 01:19:39:284 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,28]
+[DEBUG] 01:19:40:284 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,29]
+[DEBUG] 01:19:41:284 Team/(5334:5338): El entrenador id: 2 se movio a la posicion [1,30]
+[DEBUG] 01:19:42:285 Team/(5334:5338): Enviando mensaje CATCH...
+[DEBUG] 01:19:42:286 Team/(5334:5339): Hurra, tengo algo en ready
+[DEBUG] 01:19:42:286 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [11,1]
+[DEBUG] 01:19:42:322 Team/(5334:5406): Se recibio un CAUGHT valido
+[INFO] 01:19:42:322 Team/(5334:5406): El entrenador 2 capturo un Charmander!
+[INFO] 01:19:42:322 Team/(5334:5406): Pokemones: 
+[INFO] 01:19:42:322 Team/(5334:5406): Charmander
+[INFO] 01:19:42:322 Team/(5334:5406): Objetivos: 
+[INFO] 01:19:42:322 Team/(5334:5406): Flareon
+[INFO] 01:19:42:322 Team/(5334:5406): Estado Actual: 2
+[INFO] 01:19:42:322 Team/(5334:5406): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 01:19:43:286 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [12,1]
+[DEBUG] 01:19:44:287 Team/(5334:5336): Enviando mensaje CATCH...
+[DEBUG] 01:19:44:288 Team/(5334:5339): Hurra, tengo algo en ready
+[DEBUG] 01:19:44:288 Team/(5334:5337): El entrenador id: 1 se movio a la posicion [4,5]
+[DEBUG] 01:19:44:297 Team/(5334:5410): Se recibio un CAUGHT valido
+[INFO] 01:19:44:297 Team/(5334:5410): El entrenador 0 capturo un Flareon!
+[INFO] 01:19:44:297 Team/(5334:5410): Pokemones: 
+[INFO] 01:19:44:298 Team/(5334:5410): Vaporeon
+[INFO] 01:19:44:298 Team/(5334:5410): Flareon
+[INFO] 01:19:44:298 Team/(5334:5410): Objetivos: 
+[INFO] 01:19:44:298 Team/(5334:5410): Charmander
+[INFO] 01:19:44:298 Team/(5334:5410): Estado Actual: 2
+[INFO] 01:19:44:298 Team/(5334:5410): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 01:19:45:288 Team/(5334:5337): El entrenador id: 1 se movio a la posicion [5,5]
+[DEBUG] 01:19:46:289 Team/(5334:5337): El entrenador id: 1 se movio a la posicion [6,5]
+[DEBUG] 01:19:47:289 Team/(5334:5337): El entrenador id: 1 se movio a la posicion [7,5]
+[DEBUG] 01:19:48:289 Team/(5334:5337): Enviando mensaje CATCH...
+[DEBUG] 01:19:48:294 Team/(5334:5414): Se recibio un CAUGHT valido
+[INFO] 01:19:48:294 Team/(5334:5414): El entrenador 1 capturo un Squirtle!
+[INFO] 01:19:48:294 Team/(5334:5414): Pokemones: 
+[INFO] 01:19:48:294 Team/(5334:5414): Pikachu
+[INFO] 01:19:48:294 Team/(5334:5414): Squirtle
+[INFO] 01:19:48:295 Team/(5334:5414): Objetivos: 
+[INFO] 01:19:48:295 Team/(5334:5414): Estado Actual: 4
+[DEBUG] 01:19:48:296 Team/(5334:5414): Se comienza el analisis de deadlock
+[INFO] 01:19:48:296 Team/(5334:5414): Objetivos:
+[INFO] 01:19:48:296 Team/(5334:5414): Vaporeon
+[INFO] 01:19:48:296 Team/(5334:5414): Charmander
+[INFO] 01:19:48:297 Team/(5334:5414): Pokemones:
+[INFO] 01:19:48:297 Team/(5334:5414): Vaporeon
+[INFO] 01:19:48:297 Team/(5334:5414): Flareon
+[INFO] 01:19:48:297 Team/(5334:5414): Pokemones no requeridos:
+[INFO] 01:19:48:298 Team/(5334:5414): Flareon
+[DEBUG] 01:19:48:299 Team/(5334:5414): Pokemon a intercambiar del entrenador 0: Flareon
+Pokemon a intercambiar del entrenador 2: Charmander
+[DEBUG] 01:19:48:299 Team/(5334:5339): Hurra, tengo algo en ready
+[DEBUG] 01:19:48:299 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [11,1]
+[DEBUG] 01:19:49:299 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [11,2]
+[DEBUG] 01:19:50:299 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [10,2]
+[DEBUG] 01:19:51:299 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [10,3]
+[DEBUG] 01:19:52:300 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [9,3]
+[DEBUG] 01:19:53:302 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [9,4]
+[DEBUG] 01:19:54:302 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [8,4]
+[DEBUG] 01:19:55:303 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [8,5]
+[DEBUG] 01:19:56:303 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [7,5]
+[DEBUG] 01:19:57:304 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [7,6]
+[DEBUG] 01:19:58:304 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [6,6]
+[DEBUG] 01:19:59:305 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [6,7]
+[DEBUG] 01:20:00:305 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [5,7]
+[DEBUG] 01:20:01:305 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [5,8]
+[DEBUG] 01:20:02:305 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [4,8]
+[DEBUG] 01:20:03:305 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [4,9]
+[DEBUG] 01:20:04:305 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [3,9]
+[DEBUG] 01:20:05:306 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [3,10]
+[DEBUG] 01:20:06:306 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [2,10]
+[DEBUG] 01:20:07:307 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [2,11]
+[DEBUG] 01:20:08:307 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,11]
+[DEBUG] 01:20:09:307 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,12]
+[DEBUG] 01:20:10:308 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,13]
+[DEBUG] 01:20:11:308 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,14]
+[DEBUG] 01:20:12:308 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,15]
+[DEBUG] 01:20:13:308 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,16]
+[DEBUG] 01:20:14:308 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,17]
+[DEBUG] 01:20:15:309 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,18]
+[DEBUG] 01:20:16:309 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,19]
+[DEBUG] 01:20:17:309 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,20]
+[DEBUG] 01:20:18:309 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,21]
+[DEBUG] 01:20:19:309 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,22]
+[DEBUG] 01:20:20:310 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,23]
+[DEBUG] 01:20:21:310 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,24]
+[DEBUG] 01:20:22:310 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,25]
+[DEBUG] 01:20:23:310 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,26]
+[DEBUG] 01:20:24:310 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,27]
+[DEBUG] 01:20:25:311 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,28]
+[DEBUG] 01:20:26:311 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,29]
+[DEBUG] 01:20:27:312 Team/(5334:5336): El entrenador id: 0 se movio a la posicion [1,30]
+[DEBUG] 01:20:28:312 Team/(5334:5336): Estoy intercambiando el pokemon Flareon por Charmander
+[DEBUG] 01:20:33:313 Team/(5334:5336): Se finalizo el intercambio entre el entrenador 0 y el entrenador 2
+[DEBUG] 01:20:33:313 Team/(5334:5414): Se termino la resolucion de deadlocks
+[INFO] 01:20:33:313 Team/(5334:5414): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 01:20:33:313 Team/(5334:5339): Se cumplieron los objetivos, finaliza el Planificador
+[INFO] 01:20:33:313 Team/(5334:5334): Finalizó la conexión con el servidor
+
+[INFO] 01:20:33:313 Team/(5334:5334): El proceso Team ha finalizado.
+[INFO] 01:20:33:313 Team/(5334:5334): Ciclos de CPU totales = 83
+[INFO] 01:20:33:313 Team/(5334:5334): Cambios de contexto realizados = 11
+[INFO] 01:20:33:313 Team/(5334:5334): Deadlocks detectados y resueltos = 1
