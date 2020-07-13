@@ -65,7 +65,6 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivos
 	nuevoEntrenador->cantidadMaxDePokes = list_size(nuevoEntrenador->objetivos);
 	nuevoEntrenador->pokemonAAtrapar.pokemon = malloc(MAXSIZE);
 
-
 	list_destroy(posicionEntrenador);
 	liberarStringSplitteado(posicionesSplitteadas);
 	free(objetivosSplitteados);
@@ -89,6 +88,7 @@ void generarEntrenadores() {
 		unEntrenador = armarEntrenador(contador, list_get(posiciones, contador),
 				list_get(objetivos, contador), list_get(pokemones, contador), estimacion);
 		list_add(team->entrenadores, unEntrenador);
+		sem_post(&entrenadorDisponible);
 	}
 
 	list_destroy_and_destroy_elements(posiciones,destructorGeneral);
@@ -128,7 +128,7 @@ void setearObjetivosDeTeam() {
 		entrenador = list_get(team->entrenadores, i);
 
 		for (int j = 0; j < list_size(entrenador->objetivos); j++) {
-			list_add(team->objetivo, list_get(entrenador->objetivos, j));
+			list_add(team->objetivosNoAtendidos, list_get(entrenador->objetivos, j));
 		}
 	}//Usamos la misma referencia que la que tienen los entrenadores.
 
@@ -141,12 +141,14 @@ void setearObjetivosDeTeam() {
 
 			pokemon = (char *)list_get(entrenador->pokemones,j);
 
-			removerObjetivosCumplidos(pokemon,team->objetivo);
+			removerObjetivosCumplidos(pokemon,team->objetivosNoAtendidos);
 			removerObjetivosCumplidos(pokemon,entrenador->objetivos);
 		}
 
 		seCumplieronLosObjetivosDelEntrenador(entrenador);
 	}
+
+	team->objetivosOriginales = list_duplicate(team->objetivosNoAtendidos);
 	//Se verifica por deadlock en caso que venga ya sin objetivos globales.
 	verificarDeadlock();
 }
@@ -221,7 +223,22 @@ bool estaEnLosObjetivos(char *pokemon){
 		return verifica;
 	}
 
-	return list_any_satisfy(team->objetivo,esUnObjetivo);
+	return list_any_satisfy(team->objetivosNoAtendidos,esUnObjetivo);
+}
+
+bool estaEnLosObjetivosOriginales(char *pokemon){
+	bool esUnObjetivo(void *elemento) {
+			bool verifica = false;
+
+			if (string_equals_ignore_case(pokemon, (char *)elemento)) {
+				verifica = true;
+			}
+			else{
+			}
+			return verifica;
+		}
+
+		return list_any_satisfy(team->objetivosOriginales,esUnObjetivo);
 }
 
 void removerPokemonDeListaSegunCondicion(t_list* lista,char *pokemon){
@@ -253,16 +270,23 @@ void removerYDestruirPokemonDeListaSegunCondicion(t_list* lista,char *pokemon){
 }
 
 void verificarDeadlock() {
-	if(list_is_empty(team->objetivo)){
+	sem_wait(&mutexListaObjetivosOriginales);
+	if(list_is_empty(team->objetivosOriginales)){
+		sem_post(&mutexListaObjetivosOriginales);
 		log_info(loggerOficial, "Se inicia la deteccion de deadlock.");
 		escaneoDeDeadlock();
 	}
+	sem_post(&mutexListaObjetivosOriginales);
 }
 void seCumplieronLosObjetivosDelEntrenador(t_entrenador* entrenador) {
 	if(list_is_empty(entrenador->objetivos)){
 		sem_wait(&mutexEntrenadores);
 		entrenador->estado = FIN;
 		sem_post(&mutexEntrenadores);
+	}
+	else{
+		if(puedaAtraparPokemones(entrenador))
+			sem_post(&entrenadorDisponible);
 	}
 }
 
@@ -340,7 +364,7 @@ void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 					intercambiar(entrenador);
 					sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
 				}
-				sem_post(&semPlanif);
+				sem_post(&ejecutando);
 			 }
 		}
 		else{
@@ -373,7 +397,7 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 						entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
 						list_add(listaDeReady,entrenador);
 						sem_post(&procesoEnReady);
-						sem_post(&semPlanif);
+						sem_post(&ejecutando);
 					}
 
 					sem_wait(&semEntrenadoresRR[entrenador->id]);
@@ -408,7 +432,7 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 					intercambiar(entrenador);
 					sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
 				}
-				sem_post(&semPlanif);
+				sem_post(&ejecutando);
 
 			}
 		}
@@ -471,7 +495,7 @@ void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador){
 					entrenador->datosSjf.estimadoRafagaAct = alfa*entrenador->datosSjf.duracionRafagaAnt+(1-alfa)*entrenador->datosSjf.estimadoRafagaAnt;
 					entrenador->datosSjf.estimadoRafagaAnt = entrenador->datosSjf.estimadoRafagaAct;
 
-					sem_post(&semPlanif);
+					sem_post(&ejecutando);
 			}
 
 		}
@@ -523,7 +547,7 @@ void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 
 						registrarCambioDeContexto();
 						sem_post(&procesoEnReady);
-						sem_post(&semPlanif);
+						sem_post(&ejecutando);
 					}
 					else{
 						sem_post(&semEntrenadores[entrenador->id]);
@@ -551,7 +575,7 @@ void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 			entrenador->datosSjf.estimadoRafagaAct = alfa*entrenador->datosSjf.duracionRafagaAnt+(1-alfa)*entrenador->datosSjf.estimadoRafagaAnt;
 			entrenador->datosSjf.estimadoRafagaAnt = entrenador->datosSjf.estimadoRafagaAct;
 
-			sem_post(&semPlanif);
+			sem_post(&ejecutando);
 			}
 
 		}

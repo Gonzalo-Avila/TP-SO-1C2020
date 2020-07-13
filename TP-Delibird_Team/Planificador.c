@@ -2,6 +2,10 @@
 
 void crearHiloPlanificador(){
 	pthread_create(&hiloPlanificador, NULL, (void*) planificador, NULL);
+
+	pthread_t hiloPlanificadorLargoPlazo;
+	pthread_create(&hiloPlanificadorLargoPlazo, NULL, (void*)planificadorDeLargoPlazo, NULL);
+	pthread_detach(hiloPlanificadorLargoPlazo);
 }
 
 void registrarDeadlockResuelto(){
@@ -163,7 +167,28 @@ int ponerEnReadyAlMasCercano(int x, int y, char* pokemon){
 		entrenadorMasCercano->pokemonAAtrapar.pos[1] = y;
 		list_add(listaDeReady,entrenadorMasCercano);
 		sem_post(&mutexEntrenadores);
+
+
+		bool esUnObjetivo(void *objetivo){
+			bool verifica = false;
+
+			if(string_equals_ignore_case((char *)objetivo, pokemon))
+				verifica = true;
+
+			return verifica;
+		}
+
+		sem_wait(&mutexOBJETIVOS);
+		list_remove_by_condition(team->objetivosNoAtendidos,esUnObjetivo);
+		sem_post(&mutexOBJETIVOS);
+
 	}
+	else{
+		log_error(logger,"No tengo entrenadores libres");
+		sem_post(&posicionesPendientes);
+//		sem_post(&entrenadorDisponible);
+	}
+
 	return idEntrenadorMasCercano;
 }
 
@@ -186,52 +211,41 @@ t_entrenador* entrenadorConMenorRafaga(){
 		return entrenador;
 }
 
-void verificarPokemonesEnMapaYPonerEnReady(){
-	if(!list_is_empty(listaPosicionesInternas)) {
-		t_posicionEnMapa* pos;
-
-		pos = list_remove(listaPosicionesInternas, 0);
-		if(estaEnLosObjetivos(pos->pokemon))
-			ponerEnReadyAlMasCercano(pos->pos[0], pos->pos[1], pos->pokemon);
-		free(pos->pokemon);
-		free(pos);
-	}
-}
 
 void destructorPosiciones(void * posicion){
 	t_posicionEnMapa * posic  = (t_posicionEnMapa * ) posicion;
 	free(posic->pokemon);
 	free(posic);
 }
-void verificarPokemonesEnMapaYPonerEnReadyParaSJF(){
-	int pudePlanificar;
-
-	if(!list_is_empty(listaPosicionesInternas)) {
-		t_list *copialistaPosicionesInternas = list_duplicate(listaPosicionesInternas);
-		t_posicionEnMapa* pos;
-
-		bool esLaPosicionARemover(void *elemento){
-			return pos == elemento;
-		}
-
-		for(int i=0 ;i < list_size(copialistaPosicionesInternas);i++){
-			pos = list_get(copialistaPosicionesInternas,i);
-
-			if(estaEnLosObjetivos(pos->pokemon)){
-				pudePlanificar = ponerEnReadyAlMasCercano(pos->pos[0], pos->pos[1], pos->pokemon);
-
-				if(pudePlanificar != -1){
-					list_remove_and_destroy_by_condition(listaPosicionesInternas,esLaPosicionARemover,destructorPosiciones);
-				}
-				else
-				{
-					break;
-				}
-			}
-		}
-		list_destroy(copialistaPosicionesInternas);
-	}
-}
+//void verificarPokemonesEnMapaYPonerEnReadyParaSJF(){
+//	int pudePlanificar;
+//
+//	if(!list_is_empty(listaPosicionesInternas)){
+//		t_list *copialistaPosicionesInternas = list_duplicate(listaPosicionesInternas);
+//		t_posicionEnMapa* pos;
+//
+//		bool esLaPosicionARemover(void *elemento){
+//			return pos == elemento;
+//		}
+//
+//		for(int i=0 ;i < list_size(copialistaPosicionesInternas);i++){
+//			pos = list_get(copialistaPosicionesInternas,i);
+//
+//			if(estaEnLosObjetivos(pos->pokemon)){
+//				pudePlanificar = ponerEnReadyAlMasCercano(pos->pos[0], pos->pos[1], pos->pokemon);
+//
+//				if(pudePlanificar != -1){
+//					list_remove_and_destroy_by_condition(listaPosicionesInternas,esLaPosicionARemover,destructorPosiciones);
+//				}
+//				else
+//				{
+//					break;
+//				}
+//			}
+//		}
+//		list_destroy(copialistaPosicionesInternas);
+//	}
+//}
 
 bool hayNuevoEntrenadorConMenorRafaga(t_entrenador* entrenador){
 	bool verifica = false;
@@ -262,16 +276,43 @@ void activarHiloDeRR(int id, int quantum){
 		sem_post(&semEntrenadoresRR[id]);
 }
 
+void verificarPokemonesEnMapaYPonerEnReady(){
+	if(!list_is_empty(listaPosicionesInternas)){
+		t_posicionEnMapa* pos;
+
+		sem_wait(&mutexListaPosiciones);
+		pos = list_remove(listaPosicionesInternas, 0);
+		sem_post(&mutexListaPosiciones);
+
+		if(estaEnLosObjetivos(pos->pokemon)){
+		ponerEnReadyAlMasCercano(pos->pos[0], pos->pos[1], pos->pokemon);
+		sem_post(&procesoEnReady);
+		}
+
+		free(pos->pokemon);
+		free(pos);
+	}
+}
+
+void planificadorDeLargoPlazo(){
+	while(1){
+		log_error(logger,"Entrando al semaforo de entrenadores disponibles");
+		sem_wait(&entrenadorDisponible);
+
+		log_error(logger,"Entrando al semaforo de posiciones pendientes");
+		sem_wait(&posicionesPendientes);
+
+		verificarPokemonesEnMapaYPonerEnReady();
+	}
+}
+
 void planificarFifo(){
 		log_debug(logger,"Se activa el planificador");
 
 		while(1){
 			t_entrenador *entrenador;
 
-
 			sem_wait(&procesoEnReady);
-
-			verificarPokemonesEnMapaYPonerEnReadyParaSJF();
 
 			if(noSeCumplieronLosObjetivos()){
 
@@ -285,7 +326,7 @@ void planificarFifo(){
 
 					list_remove(listaDeReady,0);
 					activarHiloDe(entrenador->id);
-					sem_wait(&semPlanif);
+					sem_wait(&ejecutando);
 				}
 			}
 			else{
@@ -302,7 +343,6 @@ void planificarRR(){
 
 	while(1){
 			sem_wait(&procesoEnReady);
-			verificarPokemonesEnMapaYPonerEnReady();
 
 			if(noSeCumplieronLosObjetivos()){
 
@@ -317,7 +357,7 @@ void planificarRR(){
 					list_remove(listaDeReady,0);
 
 					activarHiloDeRR(entrenador->id, quantum);
-					sem_wait(&semPlanif);
+					sem_wait(&ejecutando);
 				}
 			}
 			else{
@@ -333,7 +373,6 @@ void planificarSJFsinDesalojo(){
 		t_entrenador *entrenador;
 
 		sem_wait(&procesoEnReady);
-		verificarPokemonesEnMapaYPonerEnReadyParaSJF();
 
 		if(noSeCumplieronLosObjetivos()){
 
@@ -346,9 +385,8 @@ void planificarSJFsinDesalojo(){
 				sem_post(&mutexEntrenadores);
 
 				list_remove(listaDeReady,0);
-
 				activarHiloDe(entrenador->id);
-				sem_wait(&semPlanif);
+				sem_wait(&ejecutando);
 			}
 		}
 		else{
@@ -363,9 +401,6 @@ void planificarSJFconDesalojo(){
 			t_entrenador *entrenador;
 
 			sem_wait(&procesoEnReady);
-			//Este semaforo avisa que meto un pokemon en la lista de pokemones del mapa interno.
-
-			verificarPokemonesEnMapaYPonerEnReady();
 
 			if(noSeCumplieronLosObjetivos()){
 
@@ -384,14 +419,10 @@ void planificarSJFconDesalojo(){
                         sem_post(&mutexEntrenadores);
                         hayEntrenadorDesalojante = false;
                     }
+
                         list_remove(listaDeReady,0);
-
                         activarHiloDe(entrenador->id);
-//                        if(entrenador->datosSjf.fueDesalojado)
-//                        	sem_post(&semSRT[entrenador->id]);
-
-                        sem_wait(&semPlanif);
-
+                        sem_wait(&ejecutando);
 				}
 			}
 			else{
@@ -595,11 +626,12 @@ void escaneoDeDeadlock(){
 		list_destroy(entrenadoresEnDeadlock);
 		log_debug(logger,"Se termino la resolucion de deadlocks");
 		log_info(loggerOficial, "Finalizo la resolucion de deadlocks. Deadlocks resueltos = %d.", contadorDeDeadlocks);
+
+		sem_post(&procesoEnReady);
 	}
 	else{
 		log_debug(logger,"No hay deadlocks pendientes");
 	}
-	sem_post(&procesoEnReady);
 }
 
 void planificador(){

@@ -63,7 +63,27 @@ void loggearPokemonCapturado(t_entrenador* entrenador, bool resultado){
 	}
 }
 
+void agregarInfoDeEspecie(char *especie){
+	char *pokemon = malloc(strlen(especie) +1);
+
+	strcpy(pokemon,especie);
+
+	list_add(especiesRecibidas,pokemon);
+}
+
+bool recibiInfoDe(char *especie){
+
+	bool coincideCon(void *elemento){
+		return string_equals_ignore_case(especie, (char*)elemento);
+	}
+
+	return list_any_satisfy(especiesRecibidas,coincideCon);
+}
+
 void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultado){
+	sem_wait(&mutexEntrenadores);
+	catchProcesado->entrenadorConCatch->suspendido = false;
+	sem_post(&mutexEntrenadores);
 
 	if(resultado){
 		t_list* pokemonesDelEntrenador = catchProcesado->entrenadorConCatch->pokemones;
@@ -83,25 +103,43 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 			return verifica;
 		}
 
-		sem_wait(&mutexOBJETIVOS);
-		list_remove_by_condition(team->objetivo,esUnObjetivo);
-		sem_post(&mutexOBJETIVOS);
-
 		list_remove_by_condition(catchProcesado->entrenadorConCatch->objetivos,esUnObjetivo);
-		//Ver leak posible de objetivo.
+
+		sem_wait(&mutexListaObjetivosOriginales);
+		list_remove_by_condition(team->objetivosOriginales,esUnObjetivo);
+		sem_post(&mutexListaObjetivosOriginales);
+
+		//Marca objetivos cumplidos de entrenador.
 
 		loggearPokemonCapturado(catchProcesado->entrenadorConCatch, true);
 	}
 	else{
 		loggearPokemonCapturado(catchProcesado->entrenadorConCatch, false);
+		char* pokemonNoAtrapado = malloc(strlen(catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon) + 1);
+		strcpy(pokemonNoAtrapado,catchProcesado->entrenadorConCatch->pokemonAAtrapar.pokemon);
+
+
+		bool tieneElPokemon(void *elemento){
+			return string_equals_ignore_case(pokemonNoAtrapado,((t_posicionEnMapa*)elemento)->pokemon);
+		}
+
+		sem_wait(&mutexOBJETIVOS);
+		list_add(team->objetivosNoAtendidos,pokemonNoAtrapado);
+		sem_post(&mutexOBJETIVOS);
+
+		t_posicionEnMapa *backUp = list_remove_by_condition(listaPosicionesBackUp,tieneElPokemon);
+
+		if(backUp != NULL){
+			sem_wait(&mutexListaPosiciones);
+			list_add(listaPosicionesInternas,backUp);
+			sem_post(&mutexListaPosiciones);
+			log_info(logger,"Posicion de back up restaurada: [%d,%d]",backUp->pos[0],backUp->pos[1]);
+
+			sem_post(&posicionesPendientes);
+		}
+
+//		sem_post(&entrenadorDisponible);
 	}
-
-	//Marca objetivos cumplidos de entrenador.
-	seCumplieronLosObjetivosDelEntrenador(catchProcesado->entrenadorConCatch);
-
-	sem_wait(&mutexEntrenadores);
-	catchProcesado->entrenadorConCatch->suspendido = false;
-	sem_post(&mutexEntrenadores);
 
 
 	log_info(logger,"Pokemones: ");
@@ -111,6 +149,11 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 	imprimirListaDeCadenas(catchProcesado->entrenadorConCatch->objetivos);
 
 	log_info(logger,"Estado Actual: %d",catchProcesado->entrenadorConCatch->estado);
+
+	log_info(logger,"Objetivos generales:");
+	imprimirListaDeCadenas(team->objetivosOriginales);
+
+	seCumplieronLosObjetivosDelEntrenador(catchProcesado->entrenadorConCatch);
 
 	//Verifica si estan en deadlock, SOLO cuando se acabaron los objetivos generales.
 	verificarDeadlock();
@@ -122,7 +165,7 @@ void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 
 		sem_wait(&mutexOBJETIVOS);
 
-		if(estaEnLosObjetivos(entrenador->pokemonAAtrapar.pokemon)){
+//		if(estaEnLosObjetivos(entrenador->pokemonAAtrapar.pokemon)){
 			int *socketBroker = malloc(sizeof(int));
 			*socketBroker = crearConexionClienteConReintento(ip, puerto, tiempoDeEspera);
 			uint32_t idRespuesta;
@@ -150,11 +193,12 @@ void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 			free(msg);
 			close(*socketBroker);
 			free(socketBroker);
-		}
-		else{
-			log_info(logger,"Estado Actual: %d",entrenador->estado);
-			entrenador->suspendido = false;
-		}
+//		}
+//		else{
+//			log_info(logger,"Estado Actual: %d",entrenador->estado);
+//			entrenador->suspendido = false;
+//			sem_post(&entrenadorDisponible);
+//		}
 
 		sem_post(&mutexOBJETIVOS);
 
@@ -206,27 +250,44 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 	memcpy(&cantPokes, miMensajeRecibido->mensaje + offset, sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 
+	bool esDeEstaEspecie(void *elemento){
+		return string_equals_ignore_case(pokemon, (char*)elemento);
+	}
 
-	if (estaEnLosObjetivos(pokemon) && cantPokes>0) {
-		log_debug(logger, "El pokemon %s es un objetivo", pokemon);
+	if(!recibiInfoDe(pokemon)){
+		agregarInfoDeEspecie(pokemon);
 
-		for (int i = 0; i < cantPokes; i++) {
+		if(estaEnLosObjetivos(pokemon) && cantPokes>0){
+			log_debug(logger, "El pokemon %s es un objetivo", pokemon);
 
-			t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
-			posicion->pokemon=malloc(strlen(pokemon)+1);
-			strcpy(posicion->pokemon, pokemon);
+			int cantQueNecesito = list_count_satisfying(team->objetivosNoAtendidos, esDeEstaEspecie);
 
-			memcpy(&(posicion->pos[0]), miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
-			offset += sizeof(uint32_t);
+			for (int i = 0; i < cantPokes; i++) {
+				t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
+				posicion->pokemon=malloc(strlen(pokemon)+1);
+				strcpy(posicion->pokemon, pokemon);
 
-			memcpy(&(posicion->pos[1]), miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
-			offset += sizeof(uint32_t);
+				memcpy(&(posicion->pos[0]), miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
+				offset += sizeof(uint32_t);
 
-			list_add(listaPosicionesInternas, posicion);
+				memcpy(&(posicion->pos[1]), miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
+				offset += sizeof(uint32_t);
+
+				if(cantQueNecesito > 0){
+					sem_wait(&mutexListaPosiciones);
+					list_add(listaPosicionesInternas, posicion);
+					sem_post(&mutexListaPosiciones);
+
+					sem_post(&posicionesPendientes);
+					cantQueNecesito--;
+				}
+				else{
+					list_add(listaPosicionesBackUp, posicion);
+				}
+			}
 		}
-
-		//ponerEnReadyAlMasCercano(posicion->pos[0], posicion->pos[1],pokemon);
-		sem_post(&procesoEnReady);
+	}else{
+		log_debug(logger,"El localized se ingora dado que ya recibi informacion de este pokemon");
 	}
 
 	log_info(logger, "Mensaje recibido: LOCALIZED_POKEMON %s con %d pokemones", pokemon, cantPokes);
@@ -235,7 +296,6 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 	free(pokemon);
 	free(miMensajeRecibido->mensaje);
 	free(miMensajeRecibido);
-
 	sem_post(&mutexLOCALIZED);
 }
 
@@ -254,26 +314,35 @@ void procesarAPPEARED(mensajeRecibido* miMensajeRecibido) {
 	pokemonRecibido[longPokemon]='\0';
 	offset += longPokemon;
 
-	if (estaEnLosObjetivos(pokemonRecibido)) {
-		log_debug(logger, "El pokemon esta en nuestro objetivo");
-		log_info(logger, "Pokemon: %s", pokemonRecibido);
+	t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
+	posicion->pokemon = pokemonRecibido;
 
-		t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
-		posicion->pokemon = pokemonRecibido;
+	memcpy(&(posicion->pos[0]), miMensajeRecibido->mensaje+offset, sizeof(uint32_t));
+	offset += sizeof(uint32_t);
 
-		memcpy(&(posicion->pos[0]), miMensajeRecibido->mensaje+offset, sizeof(uint32_t));
-		offset += sizeof(uint32_t);
+	memcpy(&(posicion->pos[1]), miMensajeRecibido->mensaje+offset, sizeof(uint32_t));
 
-		memcpy(&(posicion->pos[1]), miMensajeRecibido->mensaje+offset, sizeof(uint32_t));
+	if(estaEnLosObjetivosOriginales(pokemonRecibido)){
+		if(!recibiInfoDe(pokemonRecibido))
+			agregarInfoDeEspecie(pokemonRecibido);
 
-		list_add(listaPosicionesInternas, posicion);
+		if(estaEnLosObjetivos(pokemonRecibido)){
+			log_debug(logger, "El pokemon esta en nuestro objetivo");
+			log_info(logger, "Pokemon: %s", pokemonRecibido);
 
-		//ponerEnReadyAlMasCercano(posicion->pos[0], posicion->pos[1],pokemonRecibido);
+			sem_wait(&mutexListaPosiciones);
+			list_add(listaPosicionesInternas, posicion);
+			sem_post(&mutexListaPosiciones);
 
-		log_info(logger, "Mensaje recibido: APPEARED_POKEMON %s %d %d.", pokemonRecibido, posicion->pos[0], posicion->pos[1]);
-		log_info(loggerOficial, "Mensaje recibido: APPEARED_POKEMON %s %d %d.", pokemonRecibido, posicion->pos[0], posicion->pos[1]);
+			log_info(logger, "Mensaje recibido: APPEARED_POKEMON %s %d %d.", pokemonRecibido, posicion->pos[0], posicion->pos[1]);
+			log_info(loggerOficial, "Mensaje recibido: APPEARED_POKEMON %s %d %d.", pokemonRecibido, posicion->pos[0], posicion->pos[1]);
 
-		sem_post(&procesoEnReady);
+			sem_post(&posicionesPendientes);
+		}
+		else{
+			list_add(listaPosicionesBackUp,posicion);
+		}
+
 	}
 	else{
 		log_error(logger,"No me interesa el pokemon %s",pokemonRecibido);
@@ -534,13 +603,23 @@ t_mensaje* deserializar(void* paquete) {
 void enviarGetSegunObjetivo(char *ip, char *puerto) {
 	sem_wait(&conexionCreada);
 	char *pokemon;
+	t_list *getsEnviados = list_create();
+
+	bool fueEnviado(void *elemento){
+		return string_equals_ignore_case(pokemon, (char*)elemento);
+	}
 
 	log_info(logger, "Enviando GETs...");
 	sem_wait(&mutexOBJETIVOS);
-	for (int i = 0; i < list_size(team->objetivo); i++) {
-		pokemon = list_get(team->objetivo, i);
-		enviarGetDePokemon(ip, puerto, pokemon);
+	for (int i = 0; i < list_size(team->objetivosNoAtendidos); i++) {
+		pokemon = list_get(team->objetivosNoAtendidos, i);
+
+		if(!list_any_satisfy(getsEnviados, fueEnviado)){
+			enviarGetDePokemon(ip, puerto, pokemon);
+			list_add(getsEnviados,pokemon);
+		}
 	}
 	sem_post(&mutexOBJETIVOS);
 	log_info(logger, "GETs enviados");
+	list_destroy(getsEnviados);
 }
