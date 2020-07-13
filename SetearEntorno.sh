@@ -2,7 +2,8 @@ pathTP='/home/utnso'
 
 echo "######################## TP DELIBIRD - Ripped Dinos ##########################"
 echo "Clonando repo de commons..."
-sudo git clone https://github.com/sisoputnfrba/so-commons-library "${pathTP}/"
+sudo mkdir "${pathTP}/so-commons-library/"
+sudo git clone https://github.com/sisoputnfrba/so-commons-library "${pathTP}/so-commons-library/"
 
 echo "Instalando commons..."
 cd  "${pathTP}/so-commons-library/"
