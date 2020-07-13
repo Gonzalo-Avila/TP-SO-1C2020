@@ -93,8 +93,12 @@ void generarEntrenadores() {
 		unEntrenador = armarEntrenador(contador, list_get(posiciones, contador),
 				list_get(objetivos, contador), list_get(pokemones, contador), estimacion);
 		list_add(team->entrenadores, unEntrenador);
-		sem_post(&entrenadorDisponible);
 	}
+	log_info(logger,"Cantidad de posiciones: %d",list_size(posiciones));
+	log_info(logger,"Cantidad de entrenadores: %d",list_size(team->entrenadores));
+	int cant=0;
+	sem_getvalue(&entrenadorDisponible,&cant);
+	log_info(logger,"Entrenadores disponibles: %d",cant);
 
 	list_destroy_and_destroy_elements(posiciones,destructorGeneral);
 	list_destroy_and_destroy_elements(objetivos,destructorGeneral);
@@ -248,9 +252,9 @@ bool estaEnLosObjetivosOriginales(char *pokemon){
 		}
 
 	sem_wait(&mutexListaObjetivosOriginales);
-	bool resultadoFinal = list_any_satisfy(team->objetivosOriginales,esUnObjetivo);
+	bool esta = list_any_satisfy(team->objetivosOriginales,esUnObjetivo);
 	sem_post(&mutexListaObjetivosOriginales);
-	return resultadoFinal;
+	return esta;
 }
 
 void removerPokemonDeListaSegunCondicion(t_list* lista,char *pokemon){

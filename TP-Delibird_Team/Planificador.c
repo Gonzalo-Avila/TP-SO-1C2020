@@ -260,8 +260,8 @@ void verificarPokemonesEnMapaYPonerEnReady(){
 		sem_post(&mutexListaPosiciones);
 
 		if(estaEnLosObjetivos(pos->pokemon)){
-		ponerEnReadyAlMasCercano(pos->pos[0], pos->pos[1], pos->pokemon);
-		sem_post(&procesoEnReady);
+			ponerEnReadyAlMasCercano(pos->pos[0], pos->pos[1], pos->pokemon);
+			sem_post(&procesoEnReady);
 		}
 
 		free(pos->pokemon);
@@ -270,7 +270,12 @@ void verificarPokemonesEnMapaYPonerEnReady(){
 }
 
 void planificadorDeLargoPlazo(){
+	sem_wait(&semGetsEnviados);
+	int cant=0;
+	sem_getvalue(&entrenadorDisponible,&cant);
+	log_info(logger,"Entrenadores disponibles: %d",cant);
 	while(1){
+
 		log_error(logger,"Entrando al semaforo de entrenadores disponibles");
 		sem_wait(&entrenadorDisponible);
 

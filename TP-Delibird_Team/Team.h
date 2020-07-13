@@ -150,6 +150,7 @@ sem_t procesoEnReady;
 sem_t conexionCreada;
 sem_t reconexion;
 sem_t resolviendoDeadlock;
+sem_t semGetsEnviados;
 
 pthread_t hiloPlanificador;
 

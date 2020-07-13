@@ -78,6 +78,7 @@ void agregarInfoDeEspecie(char *especie){
 	sem_wait(&mutexEspeciesRecibidas);
 	list_add(especiesRecibidas,pokemon);
 	sem_post(&mutexEspeciesRecibidas);
+
 }
 
 bool recibiInfoDe(char *especie){
@@ -89,6 +90,15 @@ bool recibiInfoDe(char *especie){
 	bool recibi = list_any_satisfy(especiesRecibidas,coincideCon);
 	sem_post(&mutexEspeciesRecibidas);
 	return recibi;
+}
+
+void imprimirListaDePosiciones(){
+	log_info(logger,"Posiciones pendientes: ");
+	for(int i=0; i<list_size(listaPosicionesInternas);i++){
+		t_posicionEnMapa* posic =list_get(listaPosicionesInternas,i);
+		log_info(logger,"%s",posic->pokemon);
+		log_info(logger,"%d-%d",posic->pos[0],posic->pos[1]);
+	}
 }
 
 void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultado){
@@ -170,11 +180,17 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 	log_info(logger,"Objetivos generales:");
 	imprimirListaDeCadenas(team->objetivosOriginales);
 
+	sem_wait(&mutexListaPosiciones);
+	imprimirListaDePosiciones();
+	sem_post(&mutexListaPosiciones);
+
 	seCumplieronLosObjetivosDelEntrenador(catchProcesado->entrenadorConCatch);
 
 	//Verifica si estan en deadlock, SOLO cuando se acabaron los objetivos generales.
 	verificarDeadlock();
 }
+
+
 
 void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 
@@ -690,8 +706,8 @@ void enviarGetSegunObjetivo(char *ip, char *puerto) {
 
 	log_info(logger, "Enviando GETs...");
 	sem_wait(&mutexOBJETIVOS);
-	for (int i = 0; i < list_size(team->objetivosNoAtendidos); i++) {
-		pokemon = list_get(team->objetivosNoAtendidos, i);
+	for (int i = 0; i < list_size(team->objetivosOriginales); i++) {
+		pokemon = list_get(team->objetivosOriginales, i);
 
 		if(!list_any_satisfy(getsEnviados, fueEnviado)){
 			enviarGetDePokemon(ip, puerto, pokemon);
@@ -699,6 +715,7 @@ void enviarGetSegunObjetivo(char *ip, char *puerto) {
 		}
 	}
 	sem_post(&mutexOBJETIVOS);
+	sem_post(&semGetsEnviados);
 	log_info(logger, "GETs enviados");
 	list_destroy(getsEnviados);
 }

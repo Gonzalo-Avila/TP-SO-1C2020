@@ -54,6 +54,7 @@ void inicializarVariablesGlobales() {
 	sem_init(&resolviendoDeadlock,0,0);
 	sem_init(&posicionesPendientes, 0, 0);
 	sem_init(&entrenadorDisponible,0,0);
+	sem_init(&semGetsEnviados, 0, 0);
 
 
 
@@ -222,6 +223,8 @@ int main() {
 	crearHiloPlanificador();
 
 	if(noSeCumplieronLosObjetivos()){
+
+		//Hasta aca es thread safe
 
 		//Creo conexion con Gameboy
 		conectarGameboy();
