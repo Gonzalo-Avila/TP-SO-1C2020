@@ -77,7 +77,10 @@ bool menorDist(void *dist1, void *dist2) {
 }
 
 bool puedaAtraparPokemones(t_entrenador *entrenador){
-	return list_size(entrenador->pokemones) < entrenador->cantidadMaxDePokes;
+	sem_wait(&mutexEntrenadores);
+	bool puede = list_size(entrenador->pokemones) < entrenador->cantidadMaxDePokes;
+	sem_post(&mutexEntrenadores);
+	return puede;
 }
 
 //Retorna id -1 si no encuentra un entrenador para planificar.
@@ -217,35 +220,7 @@ void destructorPosiciones(void * posicion){
 	free(posic->pokemon);
 	free(posic);
 }
-//void verificarPokemonesEnMapaYPonerEnReadyParaSJF(){
-//	int pudePlanificar;
-//
-//	if(!list_is_empty(listaPosicionesInternas)){
-//		t_list *copialistaPosicionesInternas = list_duplicate(listaPosicionesInternas);
-//		t_posicionEnMapa* pos;
-//
-//		bool esLaPosicionARemover(void *elemento){
-//			return pos == elemento;
-//		}
-//
-//		for(int i=0 ;i < list_size(copialistaPosicionesInternas);i++){
-//			pos = list_get(copialistaPosicionesInternas,i);
-//
-//			if(estaEnLosObjetivos(pos->pokemon)){
-//				pudePlanificar = ponerEnReadyAlMasCercano(pos->pos[0], pos->pos[1], pos->pokemon);
-//
-//				if(pudePlanificar != -1){
-//					list_remove_and_destroy_by_condition(listaPosicionesInternas,esLaPosicionARemover,destructorPosiciones);
-//				}
-//				else
-//				{
-//					break;
-//				}
-//			}
-//		}
-//		list_destroy(copialistaPosicionesInternas);
-//	}
-//}
+
 
 bool hayNuevoEntrenadorConMenorRafaga(t_entrenador* entrenador){
 	bool verifica = false;
@@ -609,7 +584,9 @@ void escaneoDeDeadlock(){
 	log_debug(logger,"Se comienza el analisis de deadlock");
 
 	if(puedeExistirDeadlock()){
+		sem_wait(&mutexEntrenadores);
 		t_list *entrenadoresEnDeadlock = list_filter(team->entrenadores,estaEnDeadlock);
+		sem_post(&mutexEntrenadores);
 		int contadorDeDeadlocks = 0;
 
 		while(!list_is_empty(entrenadoresEnDeadlock)){
@@ -618,7 +595,10 @@ void escaneoDeDeadlock(){
 			sem_wait(&resolviendoDeadlock);
 
 			list_destroy(entrenadoresEnDeadlock);
+
+			sem_wait(&mutexEntrenadores);
 			entrenadoresEnDeadlock = list_filter(team->entrenadores,estaEnDeadlock);
+			sem_post(&mutexEntrenadores);
 
 			contadorDeDeadlocks++;
 			registrarDeadlockResuelto();

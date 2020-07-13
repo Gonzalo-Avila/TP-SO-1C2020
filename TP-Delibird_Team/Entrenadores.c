@@ -223,7 +223,11 @@ bool estaEnLosObjetivos(char *pokemon){
 		return verifica;
 	}
 
-	return list_any_satisfy(team->objetivosNoAtendidos,esUnObjetivo);
+	sem_wait(&mutexOBJETIVOS);
+	bool esta = list_any_satisfy(team->objetivosNoAtendidos,esUnObjetivo);
+	sem_post(&mutexOBJETIVOS);
+
+	return esta;
 }
 
 bool estaEnLosObjetivosOriginales(char *pokemon){
@@ -238,7 +242,10 @@ bool estaEnLosObjetivosOriginales(char *pokemon){
 			return verifica;
 		}
 
-		return list_any_satisfy(team->objetivosOriginales,esUnObjetivo);
+	sem_wait(&mutexListaObjetivosOriginales);
+	bool resultadoFinal = list_any_satisfy(team->objetivosOriginales,esUnObjetivo);
+	sem_post(&mutexListaObjetivosOriginales);
+	return resultadoFinal;
 }
 
 void removerPokemonDeListaSegunCondicion(t_list* lista,char *pokemon){

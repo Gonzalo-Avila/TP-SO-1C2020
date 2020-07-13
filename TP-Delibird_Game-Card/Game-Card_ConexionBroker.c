@@ -13,6 +13,18 @@ void crearConexionBroker() {
 	log_info(logger, "Hilo de conexion con el broker creado");
 }
 
+void mantenerConexionBroker(){
+	int tiempoReintento = config_get_int_value(config, "TIEMPO_DE_REINTENTO_CONEXION");
+	statusConexionBroker = conectarYSuscribir();
+	while(1){
+		if(statusConexionBroker!=CONECTADO){
+			log_info(logger, "Reintentando conectar con el broker...");
+			statusConexionBroker = conectarYSuscribir();
+		}
+		sleep(tiempoReintento);
+	}
+}
+
 int enviarMensajeBroker(cola colaDestino, uint32_t idCorrelativo,uint32_t sizeMensaje, void * mensaje) {
 	int socketBroker = crearConexionCliente(ipServidor, puertoServidor);
 	if (socketBroker < 0) {
@@ -79,17 +91,6 @@ estadoConexion conectarYSuscribir(){
 	return statusConexion;
 }
 
-void mantenerConexionBroker(){
-	int tiempoReintento = config_get_int_value(config, "TIEMPO_DE_REINTENTO_CONEXION");
-	statusConexionBroker = conectarYSuscribir();
-	while(1){
-		if(statusConexionBroker!=CONECTADO){
-			log_info(logger, "Reintentando conectar con el broker...");
-			statusConexionBroker = conectarYSuscribir();
-		}
-		sleep(tiempoReintento);
-	}
-}
 
 void cerrarConexiones(){
 	log_info(logger,"Cerrando conexiones...");

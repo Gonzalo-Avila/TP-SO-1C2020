@@ -3,7 +3,7 @@
 void enviarGetDePokemon(char *ip, char *puerto, char *pokemon) {
 	int *socketBroker = malloc(sizeof(int));
 	*socketBroker = crearConexionClienteConReintento(ip, puerto, tiempoDeEspera);
-	uint32_t idRespuesta;
+	uint32_t * idRespuesta = malloc(sizeof(uint32_t));
 
 	mensajeGet *msg = malloc(sizeof(mensajeGet));
 
@@ -12,7 +12,11 @@ void enviarGetDePokemon(char *ip, char *puerto, char *pokemon) {
 	strcpy(msg->pokemon, pokemon);
 
 	enviarMensajeABroker(*socketBroker, GET, -1, sizeof(uint32_t) + msg->longPokemon, msg);
-	recv(*socketBroker,&idRespuesta,sizeof(uint32_t),MSG_WAITALL);
+	recv(*socketBroker,idRespuesta,sizeof(uint32_t),MSG_WAITALL);
+
+	sem_wait(&mutexidsGet);
+	list_add(idsDeGet,idRespuesta);
+	sem_post(&mutexidsGet);
 
 	free(msg->pokemon);
 	free(msg);
@@ -43,7 +47,11 @@ t_catchEnEspera* buscarCatch(uint32_t idCorrelativo){
 		return unCatch->idCorrelativo == idCorrelativo;
 	}
 
-	return list_find(idsDeCatch, encontrarCatch);
+	sem_wait(&mutexCATCH);
+	t_catchEnEspera * catchEncontrado = list_find(idsDeCatch, encontrarCatch);
+	sem_post(&mutexCATCH);
+
+	return catchEncontrado;
 }
 
 void loggearPokemonCapturado(t_entrenador* entrenador, bool resultado){
@@ -67,8 +75,9 @@ void agregarInfoDeEspecie(char *especie){
 	char *pokemon = malloc(strlen(especie) +1);
 
 	strcpy(pokemon,especie);
-
+	sem_wait(&mutexEspeciesRecibidas);
 	list_add(especiesRecibidas,pokemon);
+	sem_post(&mutexEspeciesRecibidas);
 }
 
 bool recibiInfoDe(char *especie){
@@ -76,8 +85,10 @@ bool recibiInfoDe(char *especie){
 	bool coincideCon(void *elemento){
 		return string_equals_ignore_case(especie, (char*)elemento);
 	}
-
-	return list_any_satisfy(especiesRecibidas,coincideCon);
+	sem_wait(&mutexEspeciesRecibidas);
+	bool recibi = list_any_satisfy(especiesRecibidas,coincideCon);
+	sem_post(&mutexEspeciesRecibidas);
+	return recibi;
 }
 
 void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultado){
@@ -103,7 +114,9 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 			return verifica;
 		}
 
+		sem_wait(&mutexEntrenadores);
 		list_remove_by_condition(catchProcesado->entrenadorConCatch->objetivos,esUnObjetivo);
+		sem_post(&mutexEntrenadores);
 
 		sem_wait(&mutexListaObjetivosOriginales);
 		list_remove_by_condition(team->objetivosOriginales,esUnObjetivo);
@@ -124,10 +137,14 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 		}
 
 		sem_wait(&mutexOBJETIVOS);
+		//FIXME - Tener en cuenta que estamos alterando la idea de guardar las mismas referencias en objetivos originales y objetivos no atendidos.
+		//		  En teoria, solo podria traer leaks en casos border, pero si rompe algo tenerlo en cuenta
 		list_add(team->objetivosNoAtendidos,pokemonNoAtrapado);
 		sem_post(&mutexOBJETIVOS);
 
+		sem_wait(&mutexListaPosicionesBackup);
 		t_posicionEnMapa *backUp = list_remove_by_condition(listaPosicionesBackUp,tieneElPokemon);
+		sem_post(&mutexListaPosicionesBackup);
 
 		if(backUp != NULL){
 			sem_wait(&mutexListaPosiciones);
@@ -161,15 +178,15 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 
 void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 
-	if(brokerConectado){
-
-		sem_wait(&mutexOBJETIVOS);
+	//if(brokerConectado){
 
 //		if(estaEnLosObjetivos(entrenador->pokemonAAtrapar.pokemon)){
-			int *socketBroker = malloc(sizeof(int));
-			*socketBroker = crearConexionClienteConReintento(ip, puerto, tiempoDeEspera);
-			uint32_t idRespuesta;
+		int *socketBroker = malloc(sizeof(int));
+		*socketBroker = crearConexionCliente(ip, puerto);
+		uint32_t idRespuesta;
 
+		if(*socketBroker!=-1)
+		{
 			mensajeCatch *msg = malloc(sizeof(mensajeCatch));
 
 			msg->longPokemon = strlen(entrenador->pokemonAAtrapar.pokemon) + 1;
@@ -187,26 +204,55 @@ void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 			elIdCorrelativo->idCorrelativo = idRespuesta;
 			elIdCorrelativo->entrenadorConCatch = entrenador;
 
+			sem_wait(&mutexCATCH);
 			list_add(idsDeCatch, elIdCorrelativo);
+			sem_post(&mutexCATCH);
 
 			free(msg->pokemon);
 			free(msg);
 			close(*socketBroker);
 			free(socketBroker);
-//		}
-//		else{
-//			log_info(logger,"Estado Actual: %d",entrenador->estado);
-//			entrenador->suspendido = false;
-//			sem_post(&entrenadorDisponible);
-//		}
+		}
+		else{
+			log_info(logger,"No se pudo enviar el CATCH (broker desonectado)");
+			sem_wait(&mutexEntrenadores);
+			entrenador->suspendido = false;
+			sem_post(&mutexEntrenadores);
+			char* pokemonNoAtrapado = malloc(strlen(entrenador->pokemonAAtrapar.pokemon) + 1);
+			strcpy(pokemonNoAtrapado,entrenador->pokemonAAtrapar.pokemon);
+			bool tieneElPokemon(void *elemento){
+				return string_equals_ignore_case(pokemonNoAtrapado,((t_posicionEnMapa*)elemento)->pokemon);
+			}
 
-		sem_post(&mutexOBJETIVOS);
 
-	}
+			sem_wait(&mutexOBJETIVOS);
+			//FIXME - Tener en cuenta que estamos alterando la idea de guardar las mismas referencias en objetivos originales y objetivos no atendidos.
+			//		  En teoria, solo podria traer leaks en casos border, pero si rompe algo tenerlo en cuenta
+			list_add(team->objetivosNoAtendidos,pokemonNoAtrapado);
+			sem_post(&mutexOBJETIVOS);
+
+			sem_wait(&mutexListaPosicionesBackup);
+			t_posicionEnMapa *backUp = list_remove_by_condition(listaPosicionesBackUp,tieneElPokemon);
+			sem_post(&mutexListaPosicionesBackup);
+
+			if(backUp != NULL){
+				sem_wait(&mutexListaPosiciones);
+				list_add(listaPosicionesInternas,backUp);
+				sem_post(&mutexListaPosiciones);
+
+				log_info(logger,"Posicion de back up restaurada: [%d,%d]",backUp->pos[0],backUp->pos[1]);
+
+				sem_post(&posicionesPendientes);
+			}
+
+			sem_post(&entrenadorDisponible);
+		}
+	//}
 }
 
 void procesarCAUGHT(mensajeRecibido* miMensajeRecibido) {
 	sem_wait(&mutexCAUGHT);
+	log_info(logger,"Procesando CAUGHT...");
 
 	mensajeCaught* miCaught = malloc(sizeof(mensajeCaught));
 	char* resultado = malloc(5); //OK o FAIL
@@ -232,6 +278,7 @@ void procesarCAUGHT(mensajeRecibido* miMensajeRecibido) {
 
 void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 	sem_wait(&mutexLOCALIZED);
+	log_info(logger,"Procesando LOCALIZED...");
 
 	uint32_t cantPokes, longPokemon;
 	int offset = 0;
@@ -253,41 +300,52 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 	bool esDeEstaEspecie(void *elemento){
 		return string_equals_ignore_case(pokemon, (char*)elemento);
 	}
+	bool respondeAUnMensajeNuestro(void * id){
+		return miMensajeRecibido->idCorrelativo==*(uint32_t *)id;
+	}
 
-	if(!recibiInfoDe(pokemon)){
-		agregarInfoDeEspecie(pokemon);
+	if(list_any_satisfy(idsDeGet,respondeAUnMensajeNuestro))
+	{
+		if(!recibiInfoDe(pokemon)){
+			agregarInfoDeEspecie(pokemon);
 
-		if(estaEnLosObjetivos(pokemon) && cantPokes>0){
-			log_debug(logger, "El pokemon %s es un objetivo", pokemon);
+			if(estaEnLosObjetivos(pokemon) && cantPokes>0){
+				log_debug(logger, "El pokemon %s es un objetivo", pokemon);
 
-			int cantQueNecesito = list_count_satisfying(team->objetivosNoAtendidos, esDeEstaEspecie);
+				int cantQueNecesito = list_count_satisfying(team->objetivosNoAtendidos, esDeEstaEspecie);
 
-			for (int i = 0; i < cantPokes; i++) {
-				t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
-				posicion->pokemon=malloc(strlen(pokemon)+1);
-				strcpy(posicion->pokemon, pokemon);
+				for (int i = 0; i < cantPokes; i++) {
+					t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
+					posicion->pokemon=malloc(strlen(pokemon)+1);
+					strcpy(posicion->pokemon, pokemon);
 
-				memcpy(&(posicion->pos[0]), miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
-				offset += sizeof(uint32_t);
+					memcpy(&(posicion->pos[0]), miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
+					offset += sizeof(uint32_t);
 
-				memcpy(&(posicion->pos[1]), miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
-				offset += sizeof(uint32_t);
+					memcpy(&(posicion->pos[1]), miMensajeRecibido->mensaje + offset,sizeof(uint32_t));
+					offset += sizeof(uint32_t);
 
-				if(cantQueNecesito > 0){
-					sem_wait(&mutexListaPosiciones);
-					list_add(listaPosicionesInternas, posicion);
-					sem_post(&mutexListaPosiciones);
+					if(cantQueNecesito > 0){
+						sem_wait(&mutexListaPosiciones);
+						list_add(listaPosicionesInternas, posicion);
+						sem_post(&mutexListaPosiciones);
 
-					sem_post(&posicionesPendientes);
-					cantQueNecesito--;
-				}
-				else{
-					list_add(listaPosicionesBackUp, posicion);
+						sem_post(&posicionesPendientes);
+						cantQueNecesito--;
+					}
+					else{
+						sem_wait(&mutexListaPosicionesBackup);
+						list_add(listaPosicionesBackUp, posicion);
+						sem_post(&mutexListaPosicionesBackup);
+					}
 				}
 			}
+		}else{
+			log_debug(logger,"El localized se ingora dado que ya recibi informacion de este pokemon");
 		}
-	}else{
-		log_debug(logger,"El localized se ingora dado que ya recibi informacion de este pokemon");
+	}
+	else{
+		log_debug(logger,"El localized se ignoró ya que no corresponde con un GET enviado por el team");
 	}
 
 	log_info(logger, "Mensaje recibido: LOCALIZED_POKEMON %s con %d pokemones", pokemon, cantPokes);
@@ -301,6 +359,7 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 
 void procesarAPPEARED(mensajeRecibido* miMensajeRecibido) {
 	sem_wait(&mutexAPPEARED);
+	log_info(logger,"Procesando APPEARED...");
 
 	char * pokemonRecibido;
 	uint32_t longPokemon;
@@ -340,15 +399,15 @@ void procesarAPPEARED(mensajeRecibido* miMensajeRecibido) {
 			sem_post(&posicionesPendientes);
 		}
 		else{
+			sem_wait(&mutexListaPosicionesBackup);
 			list_add(listaPosicionesBackUp,posicion);
+			sem_post(&mutexListaPosicionesBackup);
 		}
-
 	}
 	else{
 		log_error(logger,"No me interesa el pokemon %s",pokemonRecibido);
 		log_info(loggerOficial, "Se recibio mensaje APPEARED_POKEMON para un %s. Ese pokemon no esta en mis objetivos.",pokemonRecibido);
 	}
-
 
 	free(miMensajeRecibido->mensaje);
 	free(miMensajeRecibido);
@@ -385,14 +444,42 @@ void levantarHiloDeRecepcionCAUGHT(mensajeRecibido* miMensajeRecibido){
 /* Atender al Broker y Gameboy */
 void atenderServidor(int *socketServidor) {
 	while (1) {
+		log_info(logger,"Esperando mensajes de broker...");
 		mensajeRecibido *miMensajeRecibido = recibirMensajeDeBroker(*socketServidor);
 
 		if (miMensajeRecibido->codeOP == FINALIZAR) {
-			break;
-		}
+			free(miMensajeRecibido);
 
-		enviarACK(socketServidor);
-		if(miMensajeRecibido->codeOP > 0 && miMensajeRecibido->codeOP <= 6) {
+			brokerConectado = false;
+			log_error(logger, "Se perdio la conexión con el Broker.");
+			close(*socketServidor);
+			close(*socketBrokerApp);
+			close(*socketBrokerLoc);
+			close(*socketBrokerCau);
+			log_debug(logger, "Reintentando conexion...");
+
+			log_info(loggerOficial, "Se perdio la conexion con el Broker");
+			while(1){
+				*socketServidor = crearConexionCliente(ipServidor, puertoServidor);
+				if(*socketServidor == -1){
+					log_info(loggerOficial, "No se pudo reestablecer la conexion con el Broker. Reintentando...");
+					log_info(logger, "No se pudo reestablecer la conexion con el Broker. Reintentando...");
+					usleep(tiempoDeEspera * 1000000);
+				}
+				else{
+					log_info(logger,"Reconexion con el Broker realizada correctamente.");
+					log_info(loggerOficial,"Reconexion con el Broker realizada correctamente.");
+					break;
+				}
+			}
+			sem_post(&reconexion);
+			break;
+
+		}
+		else{
+			log_info(logger,"Recibido un mensaje de broker");
+			enviarACK(socketServidor);
+			if(miMensajeRecibido->codeOP > 0 && miMensajeRecibido->codeOP <= 6) {
 				switch(miMensajeRecibido->colaEmisora){
 					case APPEARED:{
 						levantarHiloDeRecepcionAPPEARED(miMensajeRecibido);
@@ -413,31 +500,9 @@ void atenderServidor(int *socketServidor) {
 					}
 				}
 			}
-		else {
-			brokerConectado = false;
-			log_error(logger, "Se perdio la conexión con el Broker.");
-			close(*socketServidor);
-			close(*socketBrokerApp);
-			close(*socketBrokerLoc);
-			close(*socketBrokerCau);
-			log_debug(logger, "Reintentando conexion...");
-
-			log_info(loggerOficial, "Se perdio la conexion con el Broker");
-			while(1){
-				*socketServidor = crearConexionCliente(ipServidor, puertoServidor);
-				if(*socketServidor == -1){
-					log_info(loggerOficial, "No se pudo reestablecer la conexion con el Broker. Reintentando...");
-					usleep(tiempoDeEspera * 1000000);
-				}
-				else{
-					log_info(loggerOficial,"Reconexion con el Broker realizada correctamente.");
-					break;
-				}
-			}
-			sem_post(&reconexion);
-			break;
 		}
 	}
+
 }
 
 void crearHiloParaAtenderServidor(int *socketServidor) {
@@ -448,12 +513,18 @@ void crearHiloParaAtenderServidor(int *socketServidor) {
 }
 
 void reconectar(){
-	while(noSeCumplieronLosObjetivos()){
-		sem_wait(&reconexion);
-		usleep(1 * 1000000);
+	sem_wait(&reconexion);
+	sem_wait(&reconexion);
+	sem_wait(&reconexion);
+	log_info(logger,"Reconectando...");
+	usleep(1 * 1000000);
+	if(!list_is_empty(team->objetivosOriginales)){
 		crearConexionesYSuscribirseALasColas();
-
 	}
+	else{
+		log_info(logger,"Los objetivos globales ya están cumplido: se omite la reconexión");
+	}
+
 }
 
 void crearHiloDeReconexion(){
@@ -488,26 +559,34 @@ void crearConexionesYSuscribirseALasColas() {
 	pthread_t hiloSocketCau;
 
 	//pthread_create(&hiloObtenerID, NULL, (void*) obtenerID, &idDelProceso); //No funciona pq le paso la direccion y la funcion recibe un entero. TODO - Revisar
-	obtenerID();
-	pthread_create(&hiloSocketLoc, NULL, (void*) crearConexion, socketBrokerLoc);
-	pthread_create(&hiloSocketApp, NULL, (void*) crearConexion, socketBrokerApp);
-	pthread_create(&hiloSocketCau, NULL, (void*) crearConexion, socketBrokerCau);
+	if(!yaTengoID){
+		obtenerID();
+		yaTengoID=true;
+		pthread_create(&hiloSocketLoc, NULL, (void*) crearConexion, socketBrokerLoc);
+		pthread_create(&hiloSocketApp, NULL, (void*) crearConexion, socketBrokerApp);
+		pthread_create(&hiloSocketCau, NULL, (void*) crearConexion, socketBrokerCau);
+		pthread_join(hiloSocketLoc, NULL);
+		pthread_join(hiloSocketApp, NULL);
+		pthread_join(hiloSocketCau, NULL);
+	}
 
 	//Espero a que el socket este conectado antes de utilizarlo
-	pthread_join(hiloSocketLoc, NULL);
+
 	suscribirseACola(*socketBrokerLoc,LOCALIZED, idDelProceso);
 	crearHiloParaAtenderServidor(socketBrokerLoc);
 
-	pthread_join(hiloSocketApp, NULL);
+
 	suscribirseACola(*socketBrokerApp,APPEARED, idDelProceso);
 	crearHiloParaAtenderServidor(socketBrokerApp);
 
-	pthread_join(hiloSocketCau, NULL);
+
 	suscribirseACola(*socketBrokerCau,CAUGHT, idDelProceso);
 	crearHiloParaAtenderServidor(socketBrokerCau);
 
 	brokerConectado = true;
 	sem_post(&conexionCreada);
+
+	crearHiloDeReconexion();
 
 }
 

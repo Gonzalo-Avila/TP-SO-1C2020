@@ -103,12 +103,14 @@ int ciclosDeCPUTotales;
 int cambiosDeContexto;
 int deadlocksResueltos;
 uint32_t idDelProceso;
+bool yaTengoID;
 float alfa;
 t_team *team;
 t_list *listaHilos;
 t_list *listaDeReady;
 t_list *listaDeBloqued;
 t_list *idsDeCatch;
+t_list *idsDeGet;
 t_list *especiesRecibidas;
 t_list *listaCondsEntrenadores;
 t_list *listaPosicionesInternas;
@@ -130,7 +132,14 @@ sem_t mutexEntrenadores;
 sem_t mutexAPPEARED;
 sem_t mutexLOCALIZED;
 sem_t mutexCAUGHT;
+sem_t mutexCATCH;
 sem_t mutexOBJETIVOS;
+sem_t mutexListaPosiciones;
+sem_t mutexListaPosicionesBackup;
+sem_t mutexListaObjetivosOriginales;
+sem_t mutexEspeciesRecibidas;
+sem_t mutexidsGet;
+
 sem_t ejecutando;
 sem_t *semEntrenadores;
 sem_t *semEntrenadoresRR;
@@ -140,8 +149,6 @@ sem_t procesoEnReady;
 sem_t conexionCreada;
 sem_t reconexion;
 sem_t resolviendoDeadlock;
-sem_t mutexListaPosiciones;
-sem_t mutexListaObjetivosOriginales;
 
 pthread_t hiloPlanificador;
 

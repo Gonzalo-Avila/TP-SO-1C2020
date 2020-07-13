@@ -19,6 +19,7 @@ void inicializarVariablesGlobales() {
 	listaPosicionesBackUp =list_create();
 	especiesRecibidas = list_create();
 	idsDeCatch = list_create();
+	idsDeGet = list_create();
 	alfa =(float)atof(config_get_string_value(config, "ALFA"));
 	socketBrokerApp = malloc(sizeof(int));
 	socketBrokerLoc = malloc(sizeof(int));
@@ -31,6 +32,7 @@ void inicializarVariablesGlobales() {
 	deadlocksResueltos = 0;
 
 	hayEntrenadorDesalojante = false;
+	yaTengoID = false;
 
 	//inicializo el mutex para los mensajes que llegan del broker
 	sem_init(&mutexMensajes, 0, 1);
@@ -38,9 +40,13 @@ void inicializarVariablesGlobales() {
 	sem_init(&mutexAPPEARED, 0, 1);
 	sem_init(&mutexLOCALIZED, 0, 1);
 	sem_init(&mutexCAUGHT, 0, 1);
+	sem_init(&mutexCATCH, 0, 1);
 	sem_init(&mutexOBJETIVOS, 0, 1);
 	sem_init(&mutexListaPosiciones, 0, 1);
+	sem_init(&mutexListaPosicionesBackup, 0, 1);
 	sem_init(&mutexListaObjetivosOriginales, 0, 1);
+	sem_init(&mutexEspeciesRecibidas, 0, 1);
+	sem_init(&mutexidsGet, 0, 1);
 	sem_init(&ejecutando, 0, 0);
 	sem_init(&procesoEnReady,0,0);
 	sem_init(&conexionCreada, 0, 0);
@@ -48,6 +54,7 @@ void inicializarVariablesGlobales() {
 	sem_init(&resolviendoDeadlock,0,0);
 	sem_init(&posicionesPendientes, 0, 0);
 	sem_init(&entrenadorDisponible,0,0);
+
 
 
 	log_debug(logger, "Se ha iniciado un Team.");
