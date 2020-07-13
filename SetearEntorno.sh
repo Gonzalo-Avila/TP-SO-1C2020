@@ -7,7 +7,11 @@ sudo git clone https://github.com/sisoputnfrba/so-commons-library "${pathTP}/so-
 
 echo "Instalando commons..."
 cd  "${pathTP}/so-commons-library/"
+sudo make clean
 sudo make install
+
+echo "Seteando variable de entorno"
+sudo echo "export LD_LIBRARY_PATH=/home/utnso/tp-2020-1c-Ripped-Dinos/TP-Delibird_SharedLib/Debug/" >> ~/.bashrc
 
 echo "Compilando Shared Library..."
 cd "${pathTP}/tp-2020-1c-Ripped-Dinos/TP-Delibird_SharedLib/Debug/"
@@ -33,6 +37,3 @@ echo "Compilando gameboy..."
 cd "${pathTP}/tp-2020-1c-Ripped-Dinos/TP-Delibird_Game-Boy/Debug/"
 sudo make clean
 sudo make all
-
-echo "Seteando variable de entorno"
-sudo echo "export LD_LIBRARY_PATH=/home/utnso/tp-2020-1c-Ripped-Dinos/TP-Delibird_SharedLib/Debug/" >> ~/.bashrc
