@@ -143,7 +143,13 @@ void imprimirResultadosDelTeam(){
 	log_info(loggerOficial,"El proceso Team ha finalizado.");
 	log_info(loggerOficial,"Ciclos de CPU totales = %d", ciclosDeCPUTotales);
 	log_info(loggerOficial,"Cambios de contexto realizados = %d", cambiosDeContexto);
-	//TODO - loggear cambios de contexto por entrenador.
+	
+	for(int id = 0; id < list_size(team->entrenadores);id++){
+		t_entrenador* entrenador = list_get(team->entrenadores, id);
+		log_info(loggerOficial, "Cambios de contexto del entrenador %d = %d",
+				 entrenador->id, entrenador->cambiosDeContexto);
+	}
+	
 	log_info(loggerOficial, "Deadlocks detectados y resueltos = %d", deadlocksResueltos);
 
 	log_info(logger,"El proceso Team ha finalizado.");
