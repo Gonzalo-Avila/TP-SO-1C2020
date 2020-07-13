@@ -5,7 +5,7 @@ echo "Clonando repo de commons..."
 sudo git clone https://github.com/sisoputnfrba/so-commons-library "${pathTP}/"
 
 echo "Instalando commons..."
-cd  "${pathTP}/so-commons-library"
+cd  "${pathTP}/so-commons-library/"
 sudo make install
 
 echo "Compilando Shared Library..."
