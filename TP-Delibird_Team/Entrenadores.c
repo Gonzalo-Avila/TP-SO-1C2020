@@ -1,7 +1,12 @@
 #include "Team.h"
 
-void registrarCambioDeContexto(){
+void registrarCambioDeContextoGeneral(){
 	cambiosDeContexto++;
+}
+
+void registrarCambioDeContexto(t_entrenador* entrenador){
+	entrenador->cambiosDeContexto++;
+	registrarCambioDeContextoGeneral();
 }
 
 void registrarCicloDeCPU(){
@@ -330,7 +335,7 @@ void intercambiar(t_entrenador *entrenador){
 void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 	 while(1){
 		sem_wait(&semEntrenadores[entrenador->id]);
-		registrarCambioDeContexto();
+		registrarCambioDeContexto(entrenador);
 
 		if(entrenador->estado != FIN){
 
@@ -363,7 +368,7 @@ void gestionarEntrenadorFIFO(t_entrenador *entrenador){
 					entrenador->suspendido = true;
 					sem_post(&mutexEntrenadores);
 
-					registrarCambioDeContexto();
+					registrarCambioDeContexto(entrenador);
 
 					enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
 				}
@@ -385,7 +390,7 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 
 	while(1){
 		sem_wait(&semEntrenadores[entrenador->id]);
-		registrarCambioDeContexto();
+		registrarCambioDeContexto(entrenador);
 
 		if(entrenador->estado != FIN){
 
@@ -400,7 +405,7 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 						contadorQuantum = quantum;
 						log_debug(logger, "El entrenador %d se quedó sin Quantum. Vuelve a la cola de ready.", entrenador->id);
 						log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: Quantum agotado.", entrenador->id);
-						registrarCambioDeContexto();
+						registrarCambioDeContexto(entrenador);
 						entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
 						list_add(listaDeReady,entrenador);
 						sem_post(&procesoEnReady);
@@ -427,7 +432,7 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 
 				if(!entrenador->datosDeadlock.estaEnDeadlock){
 					enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-					registrarCambioDeContexto();
+					registrarCambioDeContexto(entrenador);
 					log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
 
 					sem_wait(&mutexEntrenadores);
@@ -452,7 +457,7 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador){
 	while(1){
 		sem_wait(&semEntrenadores[entrenador->id]);
-		registrarCambioDeContexto();
+		registrarCambioDeContexto(entrenador);
 
 		if(entrenador->estado != FIN){
 
@@ -484,7 +489,7 @@ void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador){
 					}
 					if(!entrenador->datosDeadlock.estaEnDeadlock){
 						enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-						registrarCambioDeContexto();
+						registrarCambioDeContexto(entrenador);
 						log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
 
 						sem_wait(&mutexEntrenadores);
@@ -512,7 +517,7 @@ void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador){
 void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 	while(1){
 		sem_wait(&semEntrenadores[entrenador->id]);
-		registrarCambioDeContexto();
+		registrarCambioDeContexto(entrenador);
 
 		if(entrenador->estado != FIN){
 
@@ -552,7 +557,7 @@ void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 						list_add(listaDeReady,entrenador);
 						entrenador->datosSjf.fueDesalojado = true;
 
-						registrarCambioDeContexto();
+						registrarCambioDeContexto(entrenador);
 						sem_post(&procesoEnReady);
 						sem_post(&ejecutando);
 					}
@@ -565,7 +570,7 @@ void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 
 			if(!entrenador->datosDeadlock.estaEnDeadlock){
 				enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-				registrarCambioDeContexto();
+				registrarCambioDeContexto(entrenador);
 				log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
 				sem_wait(&mutexEntrenadores);
 				entrenador->estado = BLOQUEADO;
