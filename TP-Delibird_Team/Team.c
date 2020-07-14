@@ -47,6 +47,9 @@ void inicializarVariablesGlobales() {
 	sem_init(&mutexListaObjetivosOriginales, 0, 1);
 	sem_init(&mutexEspeciesRecibidas, 0, 1);
 	sem_init(&mutexidsGet, 0, 1);
+	sem_init(&mutexListaDeReady, 0, 1);
+	sem_init(&mutexListaCatch, 0, 1);
+
 	sem_init(&ejecutando, 0, 0);
 	sem_init(&procesoEnReady,0,0);
 	sem_init(&conexionCreada, 0, 0);

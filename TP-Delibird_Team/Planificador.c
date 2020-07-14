@@ -35,9 +35,11 @@ e_algoritmo obtenerAlgoritmoPlanificador() {
 //Esta funcion se podria codear para que sea una funcion generica, pero por el momento solo me sirve saber si está o no en ready.
 bool estaEnEspera(t_entrenador *trainer) { // @suppress("Type cannot be resolved")
 	bool verifica = false;
+	sem_wait(&mutexEntrenadores);
 	if (trainer->estado == NUEVO || (trainer->estado == BLOQUEADO && !trainer->suspendido))
 		verifica = true;
 
+	sem_post(&mutexEntrenadores);
 	return verifica;
 }
 
@@ -168,8 +170,11 @@ int ponerEnReadyAlMasCercano(int x, int y, char* pokemon){
 		strcpy(entrenadorMasCercano->pokemonAAtrapar.pokemon, pokemon);
 		entrenadorMasCercano->pokemonAAtrapar.pos[0] = x;
 		entrenadorMasCercano->pokemonAAtrapar.pos[1] = y;
-		list_add(listaDeReady,entrenadorMasCercano);
 		sem_post(&mutexEntrenadores);
+
+		sem_wait(&mutexListaDeReady);
+		list_add(listaDeReady,entrenadorMasCercano);
+		sem_post(&mutexListaDeReady);
 
 
 		bool esUnObjetivo(void *objetivo){
@@ -304,7 +309,10 @@ void planificarFifo(){
 					entrenador->estado = EJEC;
 					sem_post(&mutexEntrenadores);
 
+					sem_wait(&mutexListaDeReady);
 					list_remove(listaDeReady,0);
+					sem_post(&mutexListaDeReady);
+
 					activarHiloDe(entrenador->id);
 					sem_wait(&ejecutando);
 				}
@@ -320,24 +328,39 @@ void planificarRR(){
 	int quantum = atoi(config_get_string_value(config, "QUANTUM"));
 	log_debug(logger,"Se activa el planificador");
 	t_entrenador *entrenador;
+	int cant=0;
 
 	while(1){
+
+			sem_getvalue(&procesoEnReady,&cant);
 			sem_wait(&procesoEnReady);
 
 			if(noSeCumplieronLosObjetivos()){
 
+				sem_wait(&mutexListaDeReady);
 				if(!list_is_empty(listaDeReady)){
+					sem_post(&mutexListaDeReady);
 					log_debug(logger,"Hurra, tengo algo en ready");
 
+					sem_wait(&mutexListaDeReady);
+					for(int i = 0;i < list_size(listaDeReady);i++){
+						log_info(logger,"id entrenador en ready: %d",((t_entrenador*)list_get(listaDeReady,i))->id);
+					}
+					sem_post(&mutexListaDeReady);
+
+					sem_wait(&mutexListaDeReady);
+					entrenador = list_remove(listaDeReady,0);
+					sem_post(&mutexListaDeReady);
+
 					sem_wait(&mutexEntrenadores);
-					entrenador = list_get(listaDeReady,0);
 					entrenador->estado = EJEC;
 					sem_post(&mutexEntrenadores);
 
-					list_remove(listaDeReady,0);
-
 					activarHiloDeRR(entrenador->id, quantum);
 					sem_wait(&ejecutando);
+				}
+				else{
+					sem_post(&mutexListaDeReady);
 				}
 			}
 			else{
@@ -435,7 +458,6 @@ t_list *pokesNoObjetivoEnDeadlock(t_list *pokemonesPosibles,t_list *pokemonesObj
 	t_list *copiaPokemonesObjetivoEntrenador = list_duplicate(pokemonesObjetivoEntrenador);
 	t_list *listaFiltrada;
 
-
 	bool noLoNecesita(void *pokemon){
 		bool verifica = true;
 		char* objetivo;
@@ -461,6 +483,7 @@ t_list *pokesNoObjetivoEnDeadlock(t_list *pokemonesPosibles,t_list *pokemonesObj
 
 	listaFiltrada = list_filter(pokemonesPosibles,noLoNecesita);
 	list_destroy(copiaPokemonesObjetivoEntrenador);
+
 	return listaFiltrada;
 }
 
@@ -502,6 +525,8 @@ bool tieneAlgunoQueNecesita(t_list *lista1, t_list *lista2){
 
 void realizarIntercambio(t_entrenador *entrenador, t_entrenador *entrenadorAIntercambiar){
 
+
+		log_info(logger,"Entrenador id: %d",entrenador->id);
 		log_info(logger,"Objetivos:");
 		imprimirListaDeCadenas(entrenador->objetivosOriginales);
 		log_info(logger,"Pokemones:");
@@ -512,8 +537,15 @@ void realizarIntercambio(t_entrenador *entrenador, t_entrenador *entrenadorAInte
 		log_info(logger,"Pokemones no requeridos:");
 		imprimirListaDeCadenas(pokemonesNoRequeridos);
 
-
 		t_list *pokemonesNoRequeridosAIntercambiar = pokesNoObjetivoEnDeadlock(entrenadorAIntercambiar->pokemones,entrenadorAIntercambiar->objetivosOriginales);
+
+		log_info(logger,"Entrenador id: %d",entrenadorAIntercambiar->id);
+		log_info(logger,"Objetivos:");
+		imprimirListaDeCadenas(entrenadorAIntercambiar->objetivosOriginales);
+		log_info(logger,"Pokemones:");
+		imprimirListaDeCadenas(entrenadorAIntercambiar->pokemones);
+		log_info(logger,"Pokemones no requeridos:");
+		imprimirListaDeCadenas(pokemonesNoRequeridosAIntercambiar);
 
 		bool pokemonAIntercambiar(void * elemento){
 			bool verifica = false;
@@ -547,7 +579,10 @@ void realizarIntercambio(t_entrenador *entrenador, t_entrenador *entrenadorAInte
 		strcpy(entrenador->datosDeadlock.pokemonAIntercambiar,pokeADarQueNoQuiero);
 
 		entrenador->datosDeadlock.idEntrenadorAIntercambiar = entrenadorAIntercambiar->id;
+
+		sem_wait(&mutexListaDeReady);
 		list_add(listaDeReady,entrenador);
+		sem_post(&mutexListaDeReady);
 
 		free(pokeADarQueNoQuiero);
 		list_destroy(pokemonesNoRequeridos);
@@ -580,6 +615,8 @@ void resolverDeadlock(t_list *entrenadoresEnDeadlock){
 
 	entrenadorAIntercambiar = list_find(entrenadoresEnDeadlock,swapDePokemonesValidos);
 
+
+
 	realizarIntercambio(entrenador,entrenadorAIntercambiar);
 
 }
@@ -588,6 +625,8 @@ void resolverDeadlock(t_list *entrenadoresEnDeadlock){
 void escaneoDeDeadlock(){
 	log_debug(logger,"Se comienza el analisis de deadlock");
 
+
+	imprimirEstadoFinalEntrenadores();
 	if(puedeExistirDeadlock()){
 		sem_wait(&mutexEntrenadores);
 		t_list *entrenadoresEnDeadlock = list_filter(team->entrenadores,estaEnDeadlock);
@@ -608,6 +647,7 @@ void escaneoDeDeadlock(){
 			contadorDeDeadlocks++;
 			registrarDeadlockResuelto();
 		}
+
 		list_destroy(entrenadoresEnDeadlock);
 		log_debug(logger,"Se termino la resolucion de deadlocks");
 		log_info(loggerOficial, "Finalizo la resolucion de deadlocks. Deadlocks resueltos = %d.", contadorDeDeadlocks);
@@ -616,7 +656,10 @@ void escaneoDeDeadlock(){
 	}
 	else{
 		log_debug(logger,"No hay deadlocks pendientes");
+		sem_post(&procesoEnReady);
 	}
+
+
 }
 
 void planificador(){

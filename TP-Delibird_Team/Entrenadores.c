@@ -55,6 +55,7 @@ t_entrenador* armarEntrenador(int id, char *posicionesEntrenador,char *objetivos
 		nuevoEntrenador->pos[i] = atoi(list_get(posicionEntrenador, i));
 	}
 	nuevoEntrenador->id = id;
+	nuevoEntrenador->cambiosDeContexto = 0;
 	nuevoEntrenador->objetivos = objetivoEntrenador;
 	nuevoEntrenador->objetivosOriginales = list_duplicate(objetivoEntrenador);
 	nuevoEntrenador->pokemones = pokemonEntrenador;
@@ -309,12 +310,15 @@ void seCumplieronLosObjetivosDelEntrenador(t_entrenador* entrenador) {
 
 void intercambiar(t_entrenador *entrenador){
 	t_entrenador *entrenadorParejaIntercambio = (t_entrenador*)list_get(team->entrenadores,entrenador->datosDeadlock.idEntrenadorAIntercambiar);
+	char*pokemonAAtrapar = malloc(strlen(entrenador->pokemonAAtrapar.pokemon) + 1 );
+	strcpy(pokemonAAtrapar, entrenador->pokemonAAtrapar.pokemon);
+
 	log_debug(logger,"Estoy intercambiando el pokemon %s por %s",entrenador->datosDeadlock.pokemonAIntercambiar,entrenador->pokemonAAtrapar.pokemon);
 	log_info(loggerOficial, "Se comienza el intercambio entre el entrenador %d y el entrenador %d", entrenador->id, entrenadorParejaIntercambio->id);
 
 	sem_wait(&mutexEntrenadores);
-	list_add(entrenador->pokemones,entrenador->pokemonAAtrapar.pokemon);
-	removerYDestruirPokemonDeListaSegunCondicion(entrenadorParejaIntercambio->pokemones,entrenador->pokemonAAtrapar.pokemon);
+	list_add(entrenador->pokemones,pokemonAAtrapar);
+	removerYDestruirPokemonDeListaSegunCondicion(entrenadorParejaIntercambio->pokemones,pokemonAAtrapar);
 	list_add(entrenadorParejaIntercambio->pokemones,entrenador->datosDeadlock.pokemonAIntercambiar);
 	removerYDestruirPokemonDeListaSegunCondicion(entrenador->pokemones,entrenador->datosDeadlock.pokemonAIntercambiar);
 	sem_post(&mutexEntrenadores);
@@ -396,9 +400,13 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 		sem_wait(&semEntrenadores[entrenador->id]);
 		registrarCambioDeContexto(entrenador);
 
+		sem_wait(&mutexEntrenadores);
 		if(entrenador->estado != FIN){
+			sem_post(&mutexEntrenadores);
 
+			sem_wait(&mutexEntrenadores);
 			if(entrenador->estado == EJEC){
+				sem_post(&mutexEntrenadores);
 
 				bool alternadorXY = true;
 				int quantum = atoi(config_get_string_value(config, "QUANTUM"));
@@ -410,8 +418,14 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 						log_debug(logger, "El entrenador %d se quedó sin Quantum. Vuelve a la cola de ready.", entrenador->id);
 						log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: Quantum agotado.", entrenador->id);
 						registrarCambioDeContexto(entrenador);
+
+						sem_wait(&mutexEntrenadores);
 						entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
+						sem_post(&mutexEntrenadores);
+
+						sem_wait(&mutexListaDeReady);
 						list_add(listaDeReady,entrenador);
+						sem_post(&mutexListaDeReady);
 						sem_post(&procesoEnReady);
 						sem_post(&ejecutando);
 					}
@@ -445,14 +459,22 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 					sem_post(&mutexEntrenadores);
 				}
 				else{
+					sem_wait(&mutexEntrenadores);
+					entrenador->estado = BLOQUEADO;
+					sem_post(&mutexEntrenadores);
+
 					intercambiar(entrenador);
 					sem_post(&resolviendoDeadlock);//Semaforo de finalizacion de deadlock.
 				}
 				sem_post(&ejecutando);
 
 			}
+			else{
+				sem_post(&mutexEntrenadores);
+			}
 		}
 		else{
+			sem_post(&mutexEntrenadores);
 			break;
 		}
 	}

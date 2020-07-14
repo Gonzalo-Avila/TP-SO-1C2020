@@ -140,6 +140,8 @@ sem_t mutexListaPosicionesBackup;
 sem_t mutexListaObjetivosOriginales;
 sem_t mutexEspeciesRecibidas;
 sem_t mutexidsGet;
+sem_t mutexListaDeReady;
+sem_t mutexListaCatch;
 
 sem_t ejecutando;
 sem_t *semEntrenadores;
@@ -224,6 +226,7 @@ void seCumplieronLosObjetivosDelEntrenador(t_entrenador *entrenador);
 void verificarDeadlock();
 void planificadorDeLargoPlazo();
 void verificarPokemonesEnMapaYPonerEnReady();
+void imprimirEstadoFinalEntrenadores();
 int ponerEnReadyAlMasCercano(int x, int y, char* pokemon);
 int crearConexionClienteConReintento(char * ip, char * puerto, int tiempoDeEspera);
 
