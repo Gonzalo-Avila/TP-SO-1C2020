@@ -9553,3 +9553,524 @@
 [INFO] 00:28:01:193 Delibird - Team/(24683:24683): Cambios de contexto del entrenador 3 = 82
 [INFO] 00:28:01:193 Delibird - Team/(24683:24683): Cambios de contexto del entrenador 4 = 60
 [INFO] 00:28:01:197 Delibird - Team/(24683:24683): Deadlocks detectados y resueltos = 3
+[INFO] 01:18:08:402 Delibird - Team/(5269:5295): Mensaje recibido: LOCALIZED_POKEMON Onix con 1 pokemones
+[INFO] 01:18:08:404 Delibird - Team/(5269:5296): Mensaje recibido: LOCALIZED_POKEMON Flareon con 1 pokemones
+[INFO] 01:18:08:405 Delibird - Team/(5269:5297): Mensaje recibido: LOCALIZED_POKEMON Jolteon con 2 pokemones
+[INFO] 01:18:08:406 Delibird - Team/(5269:5298): Mensaje recibido: LOCALIZED_POKEMON Vaporeon con 1 pokemones
+[INFO] 01:18:08:413 Delibird - Team/(5269:5299): Mensaje recibido: LOCALIZED_POKEMON Espeon con 1 pokemones
+[INFO] 01:18:08:415 Delibird - Team/(5269:5300): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 1 pokemones
+[INFO] 01:18:08:416 Delibird - Team/(5269:5301): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 1 pokemones
+[INFO] 01:18:08:417 Delibird - Team/(5269:5302): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 2 pokemones
+[INFO] 01:18:34:356 Delibird - Team/(5269:5269): El proceso Team ha finalizado.
+[INFO] 01:18:34:356 Delibird - Team/(5269:5269): Ciclos de CPU totales = 0
+[INFO] 01:18:34:356 Delibird - Team/(5269:5269): Cambios de contexto realizados = 0
+[INFO] 01:18:34:356 Delibird - Team/(5269:5269): Cambios de contexto del entrenador 0 = 0
+[INFO] 01:18:34:356 Delibird - Team/(5269:5269): Cambios de contexto del entrenador 1 = 0
+[INFO] 01:18:34:356 Delibird - Team/(5269:5269): Cambios de contexto del entrenador 2 = 0
+[INFO] 01:18:34:356 Delibird - Team/(5269:5269): Cambios de contexto del entrenador 3 = 0
+[INFO] 01:18:34:356 Delibird - Team/(5269:5269): Cambios de contexto del entrenador 4 = 0
+[INFO] 01:18:34:356 Delibird - Team/(5269:5269): Deadlocks detectados y resueltos = 0
+[INFO] 01:19:22:103 Delibird - Team/(5414:5439): Mensaje recibido: LOCALIZED_POKEMON Espeon con 1 pokemones
+[INFO] 01:19:22:104 Delibird - Team/(5414:5440): Mensaje recibido: LOCALIZED_POKEMON Onix con 1 pokemones
+[INFO] 01:19:22:107 Delibird - Team/(5414:5441): Mensaje recibido: LOCALIZED_POKEMON Jolteon con 2 pokemones
+[INFO] 01:19:22:108 Delibird - Team/(5414:5442): Mensaje recibido: LOCALIZED_POKEMON Vaporeon con 1 pokemones
+[INFO] 01:19:22:110 Delibird - Team/(5414:5443): Mensaje recibido: LOCALIZED_POKEMON Flareon con 1 pokemones
+[INFO] 01:19:22:110 Delibird - Team/(5414:5444): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 1 pokemones
+[INFO] 01:19:22:117 Delibird - Team/(5414:5445): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 1 pokemones
+[INFO] 01:19:22:118 Delibird - Team/(5414:5446): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 2 pokemones
+[INFO] 01:19:42:929 Delibird - Team/(5414:5429): Se perdio la conexion con el Broker
+[INFO] 01:19:42:929 Delibird - Team/(5414:5427): Se perdio la conexion con el Broker
+[INFO] 01:19:42:929 Delibird - Team/(5414:5428): Se perdio la conexion con el Broker
+[INFO] 01:19:42:929 Delibird - Team/(5414:5428): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 01:19:42:929 Delibird - Team/(5414:5427): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 01:19:42:929 Delibird - Team/(5414:5429): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 01:19:49:528 Delibird - Team/(5414:5414): El proceso Team ha finalizado.
+[INFO] 01:19:49:528 Delibird - Team/(5414:5414): Ciclos de CPU totales = 0
+[INFO] 01:19:49:528 Delibird - Team/(5414:5414): Cambios de contexto realizados = 0
+[INFO] 01:19:49:528 Delibird - Team/(5414:5414): Cambios de contexto del entrenador 0 = 0
+[INFO] 01:19:49:528 Delibird - Team/(5414:5414): Cambios de contexto del entrenador 1 = 0
+[INFO] 01:19:49:528 Delibird - Team/(5414:5414): Cambios de contexto del entrenador 2 = 0
+[INFO] 01:19:49:528 Delibird - Team/(5414:5414): Cambios de contexto del entrenador 3 = 0
+[INFO] 01:19:49:528 Delibird - Team/(5414:5414): Cambios de contexto del entrenador 4 = 0
+[INFO] 01:19:49:528 Delibird - Team/(5414:5414): Deadlocks detectados y resueltos = 0
+[DEBUG] 01:20:13:675 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [10,9]
+[INFO] 01:20:13:675 Delibird - Team/(5586:5610): Mensaje recibido: LOCALIZED_POKEMON Espeon con 1 pokemones
+[INFO] 01:20:13:678 Delibird - Team/(5586:5611): Mensaje recibido: LOCALIZED_POKEMON Vaporeon con 1 pokemones
+[INFO] 01:20:13:679 Delibird - Team/(5586:5612): Mensaje recibido: LOCALIZED_POKEMON Onix con 1 pokemones
+[INFO] 01:20:13:682 Delibird - Team/(5586:5613): Mensaje recibido: LOCALIZED_POKEMON Jolteon con 2 pokemones
+[INFO] 01:20:13:683 Delibird - Team/(5586:5614): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 1 pokemones
+[INFO] 01:20:13:684 Delibird - Team/(5586:5615): Mensaje recibido: LOCALIZED_POKEMON Flareon con 1 pokemones
+[INFO] 01:20:13:685 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: alcanzo su objetivo y envio un CATCH.
+[INFO] 01:20:13:686 Delibird - Team/(5586:5616): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 1 pokemones
+[INFO] 01:20:13:693 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 01:20:13:693 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,0]
+[INFO] 01:20:13:693 Delibird - Team/(5586:5617): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 2 pokemones
+[INFO] 01:20:13:694 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:694 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [2,23]
+[INFO] 01:20:13:694 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:694 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [11,34]
+[INFO] 01:20:13:695 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:695 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,1]
+[INFO] 01:20:13:696 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:697 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [2,22]
+[INFO] 01:20:13:698 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:698 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [11,33]
+[INFO] 01:20:13:698 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:698 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [2,1]
+[INFO] 01:20:13:698 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:699 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [3,22]
+[INFO] 01:20:13:699 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:699 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,33]
+[INFO] 01:20:13:699 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:700 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [3,1]
+[INFO] 01:20:13:700 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:700 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [3,21]
+[INFO] 01:20:13:700 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:700 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,32]
+[INFO] 01:20:13:701 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:701 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [4,1]
+[INFO] 01:20:13:701 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:701 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [4,21]
+[INFO] 01:20:13:703 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:704 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,31]
+[INFO] 01:20:13:704 Delibird - Team/(5586:5620): El entrenador 2 capturo un Espeon en la posicion [10,9].
+[INFO] 01:20:13:704 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:705 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [5,1]
+[INFO] 01:20:13:705 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:705 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [4,20]
+[INFO] 01:20:13:705 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:706 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,30]
+[INFO] 01:20:13:706 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:707 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [6,1]
+[INFO] 01:20:13:707 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:707 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [5,20]
+[INFO] 01:20:13:708 Delibird - Team/(5586:5620): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 01:20:13:708 Delibird - Team/(5586:5621): El entrenador 1 capturo un Vaporeon en la posicion [5,5].
+[INFO] 01:20:13:708 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:709 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,29]
+[INFO] 01:20:13:709 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:709 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [7,1]
+[INFO] 01:20:13:709 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:709 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [5,19]
+[INFO] 01:20:13:710 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:710 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,28]
+[INFO] 01:20:13:711 Delibird - Team/(5586:5621): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 01:20:13:711 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:711 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [8,1]
+[INFO] 01:20:13:711 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:712 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [6,19]
+[INFO] 01:20:13:712 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:712 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [6,5]
+[INFO] 01:20:13:712 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:712 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [6,6]
+[INFO] 01:20:13:712 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:713 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,27]
+[DEBUG] 01:20:13:713 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [9,1]
+[INFO] 01:20:13:713 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[INFO] 01:20:13:713 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:713 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [6,18]
+[DEBUG] 01:20:13:713 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [7,6]
+[INFO] 01:20:13:714 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[INFO] 01:20:13:714 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:714 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [7,7]
+[DEBUG] 01:20:13:714 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,26]
+[INFO] 01:20:13:714 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[INFO] 01:20:13:714 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:715 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [10,1]
+[DEBUG] 01:20:13:715 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [7,18]
+[INFO] 01:20:13:715 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[INFO] 01:20:13:716 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 01:20:13:716 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [8,7]
+[INFO] 01:20:13:716 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:717 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,25]
+[DEBUG] 01:20:13:717 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [8,8]
+[INFO] 01:20:13:717 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[INFO] 01:20:13:717 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:717 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [7,17]
+[DEBUG] 01:20:13:717 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [9,8]
+[INFO] 01:20:13:718 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[INFO] 01:20:13:718 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:718 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,24]
+[DEBUG] 01:20:13:718 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [9,9]
+[INFO] 01:20:13:719 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[INFO] 01:20:13:719 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:719 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [8,17]
+[DEBUG] 01:20:13:719 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [10,9]
+[INFO] 01:20:13:719 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[INFO] 01:20:13:719 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:720 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,23]
+[DEBUG] 01:20:13:720 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [10,10]
+[INFO] 01:20:13:720 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[INFO] 01:20:13:720 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:720 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [8,16]
+[INFO] 01:20:13:721 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:721 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [11,10]
+[DEBUG] 01:20:13:721 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,22]
+[INFO] 01:20:13:721 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[INFO] 01:20:13:721 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:721 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [11,11]
+[DEBUG] 01:20:13:721 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [8,15]
+[INFO] 01:20:13:722 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[INFO] 01:20:13:722 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:722 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [12,11]
+[DEBUG] 01:20:13:722 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,21]
+[INFO] 01:20:13:724 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:724 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [8,14]
+[INFO] 01:20:13:724 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[INFO] 01:20:13:724 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:725 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [12,12]
+[INFO] 01:20:13:725 Delibird - Team/(5586:5623): El entrenador 0 capturo un Onix en la posicion [10,1].
+[INFO] 01:20:13:725 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:725 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [13,12]
+[DEBUG] 01:20:13:725 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [8,13]
+[INFO] 01:20:13:726 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[INFO] 01:20:13:726 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:726 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,20]
+[DEBUG] 01:20:13:726 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [13,13]
+[INFO] 01:20:13:729 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[INFO] 01:20:13:729 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:729 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [14,13]
+[DEBUG] 01:20:13:729 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [8,12]
+[INFO] 01:20:13:730 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[INFO] 01:20:13:730 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:730 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,19]
+[DEBUG] 01:20:13:730 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [14,14]
+[INFO] 01:20:13:730 Delibird - Team/(5586:5623): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 01:20:13:731 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[INFO] 01:20:13:731 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:731 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [15,14]
+[DEBUG] 01:20:13:731 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [8,11]
+[INFO] 01:20:13:732 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:732 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,18]
+[INFO] 01:20:13:732 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:732 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [15,15]
+[INFO] 01:20:13:733 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[INFO] 01:20:13:733 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:733 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [16,15]
+[DEBUG] 01:20:13:733 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [8,10]
+[INFO] 01:20:13:734 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:734 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,17]
+[INFO] 01:20:13:734 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:734 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [16,16]
+[INFO] 01:20:13:735 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[INFO] 01:20:13:735 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:735 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [17,16]
+[DEBUG] 01:20:13:735 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [8,9]
+[INFO] 01:20:13:736 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:736 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,16]
+[INFO] 01:20:13:736 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:736 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [17,17]
+[INFO] 01:20:13:737 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[INFO] 01:20:13:737 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:737 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [18,17]
+[DEBUG] 01:20:13:737 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [8,8]
+[INFO] 01:20:13:738 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:738 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,15]
+[INFO] 01:20:13:738 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:738 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [18,18]
+[INFO] 01:20:13:738 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[INFO] 01:20:13:739 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:739 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [19,18]
+[DEBUG] 01:20:13:739 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [8,7]
+[INFO] 01:20:13:740 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:740 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,14]
+[INFO] 01:20:13:740 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:741 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [19,19]
+[INFO] 01:20:13:741 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:741 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [20,19]
+[INFO] 01:20:13:741 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 01:20:13:741 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,13]
+[INFO] 01:20:13:742 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[INFO] 01:20:13:743 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:743 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [20,20]
+[INFO] 01:20:13:744 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 01:20:13:744 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,12]
+[INFO] 01:20:13:744 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:744 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,11]
+[INFO] 01:20:13:744 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:745 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,10]
+[INFO] 01:20:13:745 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:745 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,9]
+[INFO] 01:20:13:745 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:745 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,8]
+[INFO] 01:20:13:746 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:747 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [10,7]
+[INFO] 01:20:13:747 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: alcanzo su objetivo y envio un CATCH.
+[INFO] 01:20:13:760 Delibird - Team/(5586:5627): El entrenador 3 capturo un Jolteon en la posicion [8,7].
+[DEBUG] 01:20:13:761 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [7,7]
+[INFO] 01:20:13:761 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:761 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [7,6]
+[INFO] 01:20:13:763 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:763 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [6,6]
+[INFO] 01:20:13:763 Delibird - Team/(5586:5627): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 01:20:13:764 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:764 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [6,5]
+[INFO] 01:20:13:765 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:765 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [5,5]
+[INFO] 01:20:13:765 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:765 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [5,4]
+[INFO] 01:20:13:766 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:766 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [4,4]
+[INFO] 01:20:13:767 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:767 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [4,3]
+[INFO] 01:20:13:767 Delibird - Team/(5586:5628): El entrenador 1 capturo un Squirtle en la posicion [20,20].
+[INFO] 01:20:13:768 Delibird - Team/(5586:5628): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 01:20:13:768 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:768 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [19,20]
+[INFO] 01:20:13:768 Delibird - Team/(5586:5629): El entrenador 4 capturo un Jolteon en la posicion [10,7].
+[INFO] 01:20:13:773 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:773 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [19,19]
+[INFO] 01:20:13:773 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:773 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [3,3]
+[DEBUG] 01:20:13:773 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [18,19]
+[INFO] 01:20:13:774 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[INFO] 01:20:13:774 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:774 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [18,18]
+[DEBUG] 01:20:13:774 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [3,2]
+[INFO] 01:20:13:774 Delibird - Team/(5586:5629): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 01:20:13:776 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[INFO] 01:20:13:776 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:776 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [17,18]
+[INFO] 01:20:13:776 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:778 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [9,7]
+[DEBUG] 01:20:13:778 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [17,17]
+[INFO] 01:20:13:780 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:780 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [2,2]
+[INFO] 01:20:13:780 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[INFO] 01:20:13:780 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:780 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [16,17]
+[DEBUG] 01:20:13:780 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [9,8]
+[INFO] 01:20:13:781 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[INFO] 01:20:13:781 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:781 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [2,1]
+[DEBUG] 01:20:13:781 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [16,16]
+[INFO] 01:20:13:781 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: Quantum agotado.
+[INFO] 01:20:13:782 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:782 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [15,16]
+[DEBUG] 01:20:13:782 Delibird - Team/(5586:5591): El entrenador id: 4 se movio a la posicion [9,9]
+[INFO] 01:20:13:783 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:783 Delibird - Team/(5586:5590): El entrenador id: 3 se movio a la posicion [1,1]
+[INFO] 01:20:13:784 Delibird - Team/(5586:5591): Se desaloja al entrenador 4. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 01:20:13:784 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [14,16]
+[INFO] 01:20:13:785 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:785 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [13,16]
+[INFO] 01:20:13:785 Delibird - Team/(5586:5590): Se desaloja al entrenador 3. Motivo: alcanzo su objetivo y envio un CATCH.
+[INFO] 01:20:13:786 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:786 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [12,16]
+[INFO] 01:20:13:786 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:786 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [11,16]
+[INFO] 01:20:13:787 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:787 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [10,16]
+[INFO] 01:20:13:788 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:788 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [9,16]
+[INFO] 01:20:13:788 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:788 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [8,16]
+[INFO] 01:20:13:789 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:789 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [7,16]
+[INFO] 01:20:13:789 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:789 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [6,16]
+[INFO] 01:20:13:789 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:789 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [5,16]
+[INFO] 01:20:13:790 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:790 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [4,16]
+[INFO] 01:20:13:791 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:791 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [3,16]
+[INFO] 01:20:13:792 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: alcanzo su objetivo y envio un CATCH.
+[INFO] 01:20:13:804 Delibird - Team/(5586:5634): El entrenador 4 capturo un Pikachu en la posicion [9,9].
+[INFO] 01:20:13:805 Delibird - Team/(5586:5634): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 01:20:13:805 Delibird - Team/(5586:5633): El entrenador 3 capturo un Flareon en la posicion [1,1].
+[INFO] 01:20:13:805 Delibird - Team/(5586:5633): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 01:20:13:813 Delibird - Team/(5586:5635): El entrenador 1 capturo un Bulbasaur en la posicion [3,16].
+[INFO] 01:20:13:813 Delibird - Team/(5586:5635): Se inicia la deteccion de deadlock.
+[DEBUG] 01:20:13:815 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [9,1]
+[INFO] 01:20:13:816 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:816 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [9,2]
+[INFO] 01:20:13:822 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:822 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [8,2]
+[INFO] 01:20:13:822 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:823 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [8,3]
+[INFO] 01:20:13:823 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:824 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [7,3]
+[INFO] 01:20:13:824 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:825 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [7,4]
+[INFO] 01:20:13:825 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:825 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [6,4]
+[INFO] 01:20:13:826 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:826 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [6,5]
+[INFO] 01:20:13:826 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:826 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [5,5]
+[INFO] 01:20:13:826 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:826 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [5,6]
+[INFO] 01:20:13:826 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:827 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [4,6]
+[INFO] 01:20:13:827 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:827 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [4,7]
+[INFO] 01:20:13:827 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:827 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [3,7]
+[INFO] 01:20:13:827 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:827 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [3,8]
+[INFO] 01:20:13:828 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:828 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [3,9]
+[INFO] 01:20:13:828 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:828 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [3,10]
+[INFO] 01:20:13:828 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:828 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [3,11]
+[INFO] 01:20:13:828 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:828 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [3,12]
+[INFO] 01:20:13:829 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:829 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [3,13]
+[INFO] 01:20:13:829 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:829 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [3,14]
+[INFO] 01:20:13:829 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:829 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [3,15]
+[INFO] 01:20:13:829 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:830 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [3,16]
+[INFO] 01:20:13:830 Delibird - Team/(5586:5587): Se comienza el intercambio entre el entrenador 0 y el entrenador 1
+[INFO] 01:20:13:830 Delibird - Team/(5586:5587): Se finalizo el intercambio entre el entrenador 0 y el entrenador 1
+[DEBUG] 01:20:13:831 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [2,16]
+[INFO] 01:20:13:831 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:831 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [2,15]
+[INFO] 01:20:13:831 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:831 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,15]
+[INFO] 01:20:13:831 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:832 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,14]
+[INFO] 01:20:13:832 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:832 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,13]
+[INFO] 01:20:13:832 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:832 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,12]
+[INFO] 01:20:13:832 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:832 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,11]
+[INFO] 01:20:13:833 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:833 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,10]
+[INFO] 01:20:13:833 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:833 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,9]
+[INFO] 01:20:13:833 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:833 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,8]
+[INFO] 01:20:13:833 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:834 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,7]
+[INFO] 01:20:13:834 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:834 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,6]
+[INFO] 01:20:13:834 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:834 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,5]
+[INFO] 01:20:13:834 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:834 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,4]
+[INFO] 01:20:13:834 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:835 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,3]
+[INFO] 01:20:13:835 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:835 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,2]
+[INFO] 01:20:13:835 Delibird - Team/(5586:5587): Se desaloja al entrenador 0. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:835 Delibird - Team/(5586:5587): El entrenador id: 0 se movio a la posicion [1,1]
+[INFO] 01:20:13:835 Delibird - Team/(5586:5587): Se comienza el intercambio entre el entrenador 0 y el entrenador 3
+[INFO] 01:20:13:835 Delibird - Team/(5586:5587): Se finalizo el intercambio entre el entrenador 0 y el entrenador 3
+[DEBUG] 01:20:13:836 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [4,16]
+[INFO] 01:20:13:836 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:836 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [4,15]
+[INFO] 01:20:13:836 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:837 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [5,15]
+[INFO] 01:20:13:837 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:837 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [5,14]
+[INFO] 01:20:13:837 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:837 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [6,14]
+[INFO] 01:20:13:837 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:837 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [6,13]
+[INFO] 01:20:13:837 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:837 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [7,13]
+[INFO] 01:20:13:838 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:838 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [7,12]
+[INFO] 01:20:13:838 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:838 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [8,12]
+[INFO] 01:20:13:838 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:838 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [8,11]
+[INFO] 01:20:13:839 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:839 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [9,11]
+[INFO] 01:20:13:840 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:840 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [9,10]
+[INFO] 01:20:13:841 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:841 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [10,10]
+[INFO] 01:20:13:842 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:842 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [10,9]
+[INFO] 01:20:13:843 Delibird - Team/(5586:5588): Se comienza el intercambio entre el entrenador 1 y el entrenador 2
+[INFO] 01:20:13:850 Delibird - Team/(5586:5588): Se finalizo el intercambio entre el entrenador 1 y el entrenador 2
+[DEBUG] 01:20:13:850 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [9,9]
+[INFO] 01:20:13:850 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:851 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [9,8]
+[INFO] 01:20:13:851 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:851 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [8,8]
+[INFO] 01:20:13:852 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:852 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [8,7]
+[INFO] 01:20:13:852 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:852 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [7,7]
+[INFO] 01:20:13:852 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:852 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [7,6]
+[INFO] 01:20:13:852 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:852 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [6,6]
+[INFO] 01:20:13:852 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:852 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [6,5]
+[INFO] 01:20:13:852 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:852 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [5,5]
+[INFO] 01:20:13:853 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:853 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [5,4]
+[INFO] 01:20:13:853 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:853 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [4,4]
+[INFO] 01:20:13:854 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:854 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [4,3]
+[INFO] 01:20:13:854 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:854 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [3,3]
+[INFO] 01:20:13:854 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:854 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [3,2]
+[INFO] 01:20:13:854 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:854 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [2,2]
+[INFO] 01:20:13:854 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:855 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [2,1]
+[INFO] 01:20:13:855 Delibird - Team/(5586:5588): Se desaloja al entrenador 1. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:855 Delibird - Team/(5586:5588): El entrenador id: 1 se movio a la posicion [1,1]
+[INFO] 01:20:13:855 Delibird - Team/(5586:5588): Se comienza el intercambio entre el entrenador 1 y el entrenador 3
+[INFO] 01:20:13:855 Delibird - Team/(5586:5588): Se finalizo el intercambio entre el entrenador 1 y el entrenador 3
+[INFO] 01:20:13:856 Delibird - Team/(5586:5588): Se comienza el intercambio entre el entrenador 1 y el entrenador 3
+[INFO] 01:20:13:856 Delibird - Team/(5586:5588): Se finalizo el intercambio entre el entrenador 1 y el entrenador 3
+[DEBUG] 01:20:13:857 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [9,9]
+[INFO] 01:20:13:857 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:857 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [9,8]
+[INFO] 01:20:13:857 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:857 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [8,8]
+[INFO] 01:20:13:857 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:857 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [8,7]
+[INFO] 01:20:13:858 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:858 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [7,7]
+[INFO] 01:20:13:858 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:858 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [7,6]
+[INFO] 01:20:13:858 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:858 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [6,6]
+[INFO] 01:20:13:858 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:858 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [6,5]
+[INFO] 01:20:13:858 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:859 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [5,5]
+[INFO] 01:20:13:859 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:859 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [5,4]
+[INFO] 01:20:13:859 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:859 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [4,4]
+[INFO] 01:20:13:860 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:860 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [4,3]
+[INFO] 01:20:13:860 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:860 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [3,3]
+[INFO] 01:20:13:860 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:860 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [3,2]
+[INFO] 01:20:13:860 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:860 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [2,2]
+[INFO] 01:20:13:860 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:861 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [2,1]
+[INFO] 01:20:13:861 Delibird - Team/(5586:5589): Se desaloja al entrenador 2. Motivo: Quantum agotado.
+[DEBUG] 01:20:13:861 Delibird - Team/(5586:5589): El entrenador id: 2 se movio a la posicion [1,1]
+[INFO] 01:20:13:861 Delibird - Team/(5586:5589): Se comienza el intercambio entre el entrenador 2 y el entrenador 3
+[INFO] 01:20:13:861 Delibird - Team/(5586:5589): Se finalizo el intercambio entre el entrenador 2 y el entrenador 3
+[INFO] 01:20:13:861 Delibird - Team/(5586:5635): Finalizo la resolucion de deadlocks. Deadlocks resueltos = 6.
+[INFO] 01:20:13:861 Delibird - Team/(5586:5635): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 01:20:13:862 Delibird - Team/(5586:5586): El proceso Team ha finalizado.
+[INFO] 01:20:13:862 Delibird - Team/(5586:5586): Ciclos de CPU totales = 248
+[INFO] 01:20:13:862 Delibird - Team/(5586:5586): Cambios de contexto realizados = 383
+[INFO] 01:20:13:862 Delibird - Team/(5586:5586): Cambios de contexto del entrenador 0 = 62
+[INFO] 01:20:13:863 Delibird - Team/(5586:5586): Cambios de contexto del entrenador 1 = 165
+[INFO] 01:20:13:863 Delibird - Team/(5586:5586): Cambios de contexto del entrenador 2 = 20
+[INFO] 01:20:13:863 Delibird - Team/(5586:5586): Cambios de contexto del entrenador 3 = 72
+[INFO] 01:20:13:863 Delibird - Team/(5586:5586): Cambios de contexto del entrenador 4 = 64
+[INFO] 01:20:13:863 Delibird - Team/(5586:5586): Deadlocks detectados y resueltos = 6
