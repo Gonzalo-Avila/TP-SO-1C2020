@@ -72,7 +72,6 @@ void esperarMensajesGameboy(int* socketSuscripcion) {
 	}
 
 	}
-	free(mensaje->mensaje);
-	free(mensaje);
+
 
 }
