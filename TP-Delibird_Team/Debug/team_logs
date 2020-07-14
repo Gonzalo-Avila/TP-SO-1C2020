@@ -3259,3 +3259,1324 @@ Pokemon a intercambiar del entrenador 2: Gengar
 [INFO] 18:38:12:648 Team/(32272:32272): Ciclos de CPU totales = 53
 [INFO] 18:38:12:648 Team/(32272:32272): Cambios de contexto realizados = 12
 [INFO] 18:38:12:648 Team/(32272:32272): Deadlocks detectados y resueltos = 2
+[DEBUG] 18:49:02:966 Team/(306:306): Se ha iniciado un Team.
+[INFO] 18:49:02:966 Team/(306:306): Cantidad de posiciones: 4
+[INFO] 18:49:02:966 Team/(306:306): Cantidad de entrenadores: 4
+[INFO] 18:49:02:967 Team/(306:306): Entrenadores disponibles: 0
+[DEBUG] 18:49:02:968 Team/(306:306): ID obtenido = 165
+[INFO] 18:49:02:968 Team/(306:315): Socket de escucha para Gameboy creado
+[INFO] 18:49:02:975 Team/(306:306): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 18:49:02:975 Team/(306:306): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 18:49:02:977 Team/(306:306): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 18:49:02:977 Team/(306:306): Enviando GETs...
+[DEBUG] 18:49:02:984 Team/(306:313): Se activa el planificador
+[INFO] 18:49:02:985 Team/(306:306): GETs enviados
+[INFO] 18:49:02:985 Team/(306:314): Entrenadores disponibles: 4
+[ERROR] 18:49:02:985 Team/(306:314): Entrando al semaforo de entrenadores disponibles
+[ERROR] 18:49:02:985 Team/(306:314): Entrando al semaforo de posiciones pendientes
+[INFO] 18:49:02:986 Team/(306:323): Esperando mensajes de broker...
+[INFO] 18:49:02:986 Team/(306:324): Esperando mensajes de broker...
+[INFO] 18:49:02:986 Team/(306:325): Esperando mensajes de broker...
+[INFO] 18:49:02:990 Team/(306:323): Recibido un mensaje de broker
+[INFO] 18:49:02:990 Team/(306:323): Esperando mensajes de broker...
+[INFO] 18:49:02:990 Team/(306:323): Recibido un mensaje de broker
+[INFO] 18:49:02:990 Team/(306:323): Esperando mensajes de broker...
+[INFO] 18:49:02:994 Team/(306:323): Recibido un mensaje de broker
+[INFO] 18:49:02:994 Team/(306:323): Esperando mensajes de broker...
+[INFO] 18:49:02:995 Team/(306:323): Recibido un mensaje de broker
+[INFO] 18:49:02:995 Team/(306:323): Esperando mensajes de broker...
+[INFO] 18:49:02:995 Team/(306:334): Procesando LOCALIZED...
+[DEBUG] 18:49:02:995 Team/(306:334): Pokemon: Charmander
+[INFO] 18:49:02:995 Team/(306:334): Mensaje recibido: LOCALIZED_POKEMON Charmander con 0 pokemones
+[INFO] 18:49:02:995 Team/(306:335): Procesando LOCALIZED...
+[DEBUG] 18:49:02:995 Team/(306:335): Pokemon: Bulbasaur
+[INFO] 18:49:02:995 Team/(306:335): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 0 pokemones
+[INFO] 18:49:02:996 Team/(306:323): Recibido un mensaje de broker
+[INFO] 18:49:02:996 Team/(306:323): Esperando mensajes de broker...
+[INFO] 18:49:02:996 Team/(306:336): Procesando LOCALIZED...
+[DEBUG] 18:49:02:996 Team/(306:336): Pokemon: Snorlax
+[INFO] 18:49:02:996 Team/(306:336): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 0 pokemones
+[INFO] 18:49:02:997 Team/(306:323): Recibido un mensaje de broker
+[INFO] 18:49:02:997 Team/(306:323): Esperando mensajes de broker...
+[INFO] 18:49:02:997 Team/(306:337): Procesando LOCALIZED...
+[DEBUG] 18:49:02:997 Team/(306:337): Pokemon: Onix
+[INFO] 18:49:02:997 Team/(306:337): Mensaje recibido: LOCALIZED_POKEMON Onix con 0 pokemones
+[INFO] 18:49:02:997 Team/(306:323): Recibido un mensaje de broker
+[INFO] 18:49:02:998 Team/(306:323): Esperando mensajes de broker...
+[INFO] 18:49:02:998 Team/(306:338): Procesando LOCALIZED...
+[DEBUG] 18:49:02:998 Team/(306:338): Pokemon: Pikachu
+[INFO] 18:49:02:998 Team/(306:338): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 0 pokemones
+[INFO] 18:49:02:998 Team/(306:339): Procesando LOCALIZED...
+[DEBUG] 18:49:02:998 Team/(306:339): Pokemon: Squirtle
+[INFO] 18:49:02:998 Team/(306:339): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 0 pokemones
+[INFO] 18:49:02:998 Team/(306:340): Procesando LOCALIZED...
+[DEBUG] 18:49:02:998 Team/(306:340): Pokemon: Meowth
+[INFO] 18:49:02:998 Team/(306:340): Mensaje recibido: LOCALIZED_POKEMON Meowth con 0 pokemones
+[INFO] 18:49:36:932 Team/(306:324): Recibido un mensaje de broker
+[INFO] 18:49:36:932 Team/(306:324): Esperando mensajes de broker...
+[INFO] 18:49:36:933 Team/(306:367): Procesando APPEARED...
+[DEBUG] 18:49:36:933 Team/(306:367): El pokemon esta en nuestro objetivo
+[INFO] 18:49:36:933 Team/(306:367): Pokemon: Onix
+[INFO] 18:49:36:933 Team/(306:367): Mensaje recibido: APPEARED_POKEMON Onix 9 1.
+[ERROR] 18:49:36:933 Team/(306:314): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 18:49:36:933 Team/(306:313): Hurra, tengo algo en ready
+[ERROR] 18:49:36:933 Team/(306:314): Entrando al semaforo de posiciones pendientes
+[DEBUG] 18:49:36:933 Team/(306:309): El entrenador id: 0 se movio a la posicion [1,1]
+[INFO] 18:49:37:443 Team/(306:324): Recibido un mensaje de broker
+[INFO] 18:49:37:443 Team/(306:324): Esperando mensajes de broker...
+[INFO] 18:49:37:444 Team/(306:371): Procesando APPEARED...
+[DEBUG] 18:49:37:444 Team/(306:371): El pokemon esta en nuestro objetivo
+[INFO] 18:49:37:444 Team/(306:371): Pokemon: Charmander
+[INFO] 18:49:37:444 Team/(306:371): Mensaje recibido: APPEARED_POKEMON Charmander 5 5.
+[ERROR] 18:49:37:445 Team/(306:314): Entrando al semaforo de entrenadores disponibles
+[ERROR] 18:49:37:445 Team/(306:314): Entrando al semaforo de posiciones pendientes
+[INFO] 18:49:37:952 Team/(306:324): Recibido un mensaje de broker
+[INFO] 18:49:37:952 Team/(306:324): Esperando mensajes de broker...
+[INFO] 18:49:37:961 Team/(306:377): Procesando APPEARED...
+[DEBUG] 18:49:37:961 Team/(306:377): El pokemon esta en nuestro objetivo
+[INFO] 18:49:37:961 Team/(306:377): Pokemon: Meowth
+[INFO] 18:49:37:961 Team/(306:377): Mensaje recibido: APPEARED_POKEMON Meowth 3 9.
+[ERROR] 18:49:37:961 Team/(306:314): Entrando al semaforo de entrenadores disponibles
+[ERROR] 18:49:37:961 Team/(306:314): Entrando al semaforo de posiciones pendientes
+[ERROR] 18:49:38:934 Team/(306:309): Estimado de rafaga actual: 1.000000
+[ERROR] 18:49:38:934 Team/(306:309): Duracion de rafaga actual: 1.000000
+[DEBUG] 18:49:38:934 Team/(306:309): El entrenador id: 0 se movio a la posicion [2,1]
+[ERROR] 18:49:40:934 Team/(306:309): Estimado de rafaga actual: 0.000000
+[ERROR] 18:49:40:934 Team/(306:309): Duracion de rafaga actual: 2.000000
+[DEBUG] 18:49:40:934 Team/(306:309): El entrenador id: 0 se movio a la posicion [3,1]
+[ERROR] 18:49:42:935 Team/(306:309): Estimado de rafaga actual: -1.000000
+[ERROR] 18:49:42:935 Team/(306:309): Duracion de rafaga actual: 3.000000
+[DEBUG] 18:49:42:935 Team/(306:309): El entrenador id: 0 se movio a la posicion [4,1]
+[ERROR] 18:49:44:936 Team/(306:309): Estimado de rafaga actual: -2.000000
+[ERROR] 18:49:44:937 Team/(306:309): Duracion de rafaga actual: 4.000000
+[DEBUG] 18:49:44:937 Team/(306:309): El entrenador id: 0 se movio a la posicion [5,1]
+[ERROR] 18:49:46:937 Team/(306:309): Estimado de rafaga actual: -3.000000
+[ERROR] 18:49:46:938 Team/(306:309): Duracion de rafaga actual: 5.000000
+[DEBUG] 18:49:46:938 Team/(306:309): El entrenador id: 0 se movio a la posicion [6,1]
+[ERROR] 18:49:48:939 Team/(306:309): Estimado de rafaga actual: -4.000000
+[ERROR] 18:49:48:939 Team/(306:309): Duracion de rafaga actual: 6.000000
+[DEBUG] 18:49:48:940 Team/(306:309): El entrenador id: 0 se movio a la posicion [7,1]
+[ERROR] 18:49:50:940 Team/(306:309): Estimado de rafaga actual: -5.000000
+[ERROR] 18:49:50:941 Team/(306:309): Duracion de rafaga actual: 7.000000
+[DEBUG] 18:49:50:941 Team/(306:309): El entrenador id: 0 se movio a la posicion [8,1]
+[ERROR] 18:49:52:941 Team/(306:309): Estimado de rafaga actual: -6.000000
+[ERROR] 18:49:52:941 Team/(306:309): Duracion de rafaga actual: 8.000000
+[DEBUG] 18:49:52:941 Team/(306:309): El entrenador id: 0 se movio a la posicion [9,1]
+[ERROR] 18:49:54:941 Team/(306:309): Estimado de rafaga actual: -7.000000
+[ERROR] 18:49:54:941 Team/(306:309): Duracion de rafaga actual: 9.000000
+[DEBUG] 18:49:54:942 Team/(306:309): Enviando mensaje CATCH...
+[DEBUG] 18:49:54:943 Team/(306:313): Hurra, tengo algo en ready
+[DEBUG] 18:49:54:943 Team/(306:311): El entrenador id: 2 se movio a la posicion [1,9]
+[INFO] 18:49:54:962 Team/(306:325): Recibido un mensaje de broker
+[INFO] 18:49:54:962 Team/(306:325): Esperando mensajes de broker...
+[INFO] 18:49:54:965 Team/(306:391): Procesando CAUGHT...
+[DEBUG] 18:49:54:966 Team/(306:391): Se recibio un CAUGHT valido
+[INFO] 18:49:54:966 Team/(306:391): El entrenador 0 capturo un Onix!
+[INFO] 18:49:54:966 Team/(306:391): Pokemones: 
+[INFO] 18:49:54:966 Team/(306:391): Onix
+[INFO] 18:49:54:966 Team/(306:391): Objetivos: 
+[INFO] 18:49:54:966 Team/(306:391): Charmander
+[INFO] 18:49:54:966 Team/(306:391): Bulbasaur
+[INFO] 18:49:54:966 Team/(306:391): Squirtle
+[INFO] 18:49:54:966 Team/(306:391): Estado Actual: 2
+[INFO] 18:49:54:966 Team/(306:391): Objetivos generales:
+[INFO] 18:49:54:967 Team/(306:391): Charmander
+[INFO] 18:49:54:967 Team/(306:391): Bulbasaur
+[INFO] 18:49:54:967 Team/(306:391): Squirtle
+[INFO] 18:49:54:967 Team/(306:391): Snorlax
+[INFO] 18:49:54:967 Team/(306:391): Pikachu
+[INFO] 18:49:54:967 Team/(306:391): Meowth
+[INFO] 18:49:54:967 Team/(306:391): Posiciones pendientes: 
+[INFO] 18:49:54:967 Team/(306:391): Mensaje recibido: CAUGHT_POKEMON OK
+[ERROR] 18:49:56:943 Team/(306:311): Estimado de rafaga actual: 1.000000
+[ERROR] 18:49:56:943 Team/(306:311): Duracion de rafaga actual: 1.000000
+[DEBUG] 18:49:56:943 Team/(306:311): El entrenador id: 2 se movio a la posicion [2,9]
+[ERROR] 18:49:58:944 Team/(306:311): Estimado de rafaga actual: 0.000000
+[ERROR] 18:49:58:944 Team/(306:311): Duracion de rafaga actual: 2.000000
+[DEBUG] 18:49:58:944 Team/(306:311): El entrenador id: 2 se movio a la posicion [3,9]
+[ERROR] 18:50:00:944 Team/(306:311): Estimado de rafaga actual: -1.000000
+[ERROR] 18:50:00:944 Team/(306:311): Duracion de rafaga actual: 3.000000
+[DEBUG] 18:50:00:945 Team/(306:311): Enviando mensaje CATCH...
+[DEBUG] 18:50:00:945 Team/(306:313): Hurra, tengo algo en ready
+[DEBUG] 18:50:00:945 Team/(306:310): El entrenador id: 1 se movio a la posicion [1,5]
+[INFO] 18:50:00:959 Team/(306:325): Recibido un mensaje de broker
+[INFO] 18:50:00:959 Team/(306:325): Esperando mensajes de broker...
+[INFO] 18:50:00:962 Team/(306:401): Procesando CAUGHT...
+[DEBUG] 18:50:00:962 Team/(306:401): Se recibio un CAUGHT valido
+[INFO] 18:50:00:962 Team/(306:401): El entrenador 2 capturo un Meowth!
+[INFO] 18:50:00:962 Team/(306:401): Pokemones: 
+[INFO] 18:50:00:962 Team/(306:401): Meowth
+[INFO] 18:50:00:963 Team/(306:401): Objetivos: 
+[INFO] 18:50:00:963 Team/(306:401): Pikachu
+[INFO] 18:50:00:963 Team/(306:401): Estado Actual: 2
+[INFO] 18:50:00:963 Team/(306:401): Objetivos generales:
+[INFO] 18:50:00:963 Team/(306:401): Charmander
+[INFO] 18:50:00:963 Team/(306:401): Bulbasaur
+[INFO] 18:50:00:963 Team/(306:401): Squirtle
+[INFO] 18:50:00:963 Team/(306:401): Snorlax
+[INFO] 18:50:00:963 Team/(306:401): Pikachu
+[INFO] 18:50:00:963 Team/(306:401): Posiciones pendientes: 
+[INFO] 18:50:00:963 Team/(306:401): Mensaje recibido: CAUGHT_POKEMON OK
+[ERROR] 18:50:02:946 Team/(306:310): Estimado de rafaga actual: 1.000000
+[ERROR] 18:50:02:946 Team/(306:310): Duracion de rafaga actual: 1.000000
+[DEBUG] 18:50:02:946 Team/(306:310): El entrenador id: 1 se movio a la posicion [2,5]
+[ERROR] 18:50:04:946 Team/(306:310): Estimado de rafaga actual: 0.000000
+[ERROR] 18:50:04:947 Team/(306:310): Duracion de rafaga actual: 2.000000
+[DEBUG] 18:50:04:947 Team/(306:310): El entrenador id: 1 se movio a la posicion [3,5]
+[ERROR] 18:50:06:948 Team/(306:310): Estimado de rafaga actual: -1.000000
+[ERROR] 18:50:06:948 Team/(306:310): Duracion de rafaga actual: 3.000000
+[DEBUG] 18:50:06:948 Team/(306:310): El entrenador id: 1 se movio a la posicion [4,5]
+[ERROR] 18:50:08:948 Team/(306:310): Estimado de rafaga actual: -2.000000
+[ERROR] 18:50:08:949 Team/(306:310): Duracion de rafaga actual: 4.000000
+[DEBUG] 18:50:08:949 Team/(306:310): El entrenador id: 1 se movio a la posicion [5,5]
+[ERROR] 18:50:10:950 Team/(306:310): Estimado de rafaga actual: -3.000000
+[ERROR] 18:50:10:950 Team/(306:310): Duracion de rafaga actual: 5.000000
+[DEBUG] 18:50:10:954 Team/(306:310): Enviando mensaje CATCH...
+[INFO] 18:50:10:975 Team/(306:325): Recibido un mensaje de broker
+[INFO] 18:50:10:975 Team/(306:325): Esperando mensajes de broker...
+[INFO] 18:50:10:985 Team/(306:409): Procesando CAUGHT...
+[DEBUG] 18:50:10:986 Team/(306:409): Se recibio un CAUGHT valido
+[INFO] 18:50:10:986 Team/(306:409): El entrenador 1 capturo un Charmander!
+[INFO] 18:50:10:986 Team/(306:409): Pokemones: 
+[INFO] 18:50:10:986 Team/(306:409): Charmander
+[INFO] 18:50:10:986 Team/(306:409): Objetivos: 
+[INFO] 18:50:10:986 Team/(306:409): Onix
+[INFO] 18:50:10:986 Team/(306:409): Snorlax
+[INFO] 18:50:10:986 Team/(306:409): Estado Actual: 2
+[INFO] 18:50:10:986 Team/(306:409): Objetivos generales:
+[INFO] 18:50:10:986 Team/(306:409): Bulbasaur
+[INFO] 18:50:10:986 Team/(306:409): Squirtle
+[INFO] 18:50:10:986 Team/(306:409): Snorlax
+[INFO] 18:50:10:986 Team/(306:409): Pikachu
+[INFO] 18:50:10:986 Team/(306:409): Posiciones pendientes: 
+[INFO] 18:50:10:986 Team/(306:409): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 18:51:08:670 Team/(306:324): Recibido un mensaje de broker
+[INFO] 18:51:08:670 Team/(306:324): Esperando mensajes de broker...
+[INFO] 18:51:08:670 Team/(306:451): Procesando APPEARED...
+[DEBUG] 18:51:08:670 Team/(306:451): El pokemon esta en nuestro objetivo
+[INFO] 18:51:08:670 Team/(306:451): Pokemon: Bulbasaur
+[INFO] 18:51:08:670 Team/(306:451): Mensaje recibido: APPEARED_POKEMON Bulbasaur 40 40.
+[ERROR] 18:51:08:670 Team/(306:314): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 18:51:08:670 Team/(306:313): Hurra, tengo algo en ready
+[ERROR] 18:51:08:670 Team/(306:314): Entrando al semaforo de posiciones pendientes
+[DEBUG] 18:51:08:670 Team/(306:312): El entrenador id: 3 se movio a la posicion [31,30]
+[INFO] 18:51:09:167 Team/(306:324): Recibido un mensaje de broker
+[INFO] 18:51:09:167 Team/(306:324): Esperando mensajes de broker...
+[INFO] 18:51:09:167 Team/(306:455): Procesando APPEARED...
+[DEBUG] 18:51:09:167 Team/(306:455): El pokemon esta en nuestro objetivo
+[INFO] 18:51:09:167 Team/(306:455): Pokemon: Squirtle
+[INFO] 18:51:09:168 Team/(306:455): Mensaje recibido: APPEARED_POKEMON Squirtle 13 1.
+[ERROR] 18:51:09:168 Team/(306:314): Entrando al semaforo de entrenadores disponibles
+[ERROR] 18:51:09:168 Team/(306:314): Entrando al semaforo de posiciones pendientes
+[INFO] 18:51:09:673 Team/(306:324): Recibido un mensaje de broker
+[INFO] 18:51:09:674 Team/(306:324): Esperando mensajes de broker...
+[INFO] 18:51:09:674 Team/(306:460): Procesando APPEARED...
+[DEBUG] 18:51:09:674 Team/(306:460): El pokemon esta en nuestro objetivo
+[INFO] 18:51:09:680 Team/(306:460): Pokemon: Pikachu
+[INFO] 18:51:09:680 Team/(306:460): Mensaje recibido: APPEARED_POKEMON Pikachu 10 5.
+[ERROR] 18:51:09:680 Team/(306:314): Entrando al semaforo de entrenadores disponibles
+[INFO] 18:51:10:189 Team/(306:324): Recibido un mensaje de broker
+[INFO] 18:51:10:189 Team/(306:324): Esperando mensajes de broker...
+[INFO] 18:51:10:202 Team/(306:463): Procesando APPEARED...
+[DEBUG] 18:51:10:202 Team/(306:463): El pokemon esta en nuestro objetivo
+[INFO] 18:51:10:202 Team/(306:463): Pokemon: Snorlax
+[INFO] 18:51:10:202 Team/(306:463): Mensaje recibido: APPEARED_POKEMON Snorlax 15 9.
+[ERROR] 18:51:10:671 Team/(306:312): Estimado de rafaga actual: 1.000000
+[ERROR] 18:51:10:671 Team/(306:312): Duracion de rafaga actual: 1.000000
+[DEBUG] 18:51:10:671 Team/(306:312): El entrenador id: 3 se movio a la posicion [31,31]
+[ERROR] 18:51:12:671 Team/(306:312): Estimado de rafaga actual: 0.000000
+[ERROR] 18:51:12:671 Team/(306:312): Duracion de rafaga actual: 2.000000
+[DEBUG] 18:51:12:671 Team/(306:312): El entrenador id: 3 se movio a la posicion [32,31]
+[ERROR] 18:51:14:671 Team/(306:312): Estimado de rafaga actual: -1.000000
+[ERROR] 18:51:14:671 Team/(306:312): Duracion de rafaga actual: 3.000000
+[DEBUG] 18:51:14:671 Team/(306:312): El entrenador id: 3 se movio a la posicion [32,32]
+[ERROR] 18:51:16:672 Team/(306:312): Estimado de rafaga actual: -2.000000
+[ERROR] 18:51:16:673 Team/(306:312): Duracion de rafaga actual: 4.000000
+[DEBUG] 18:51:16:673 Team/(306:312): El entrenador id: 3 se movio a la posicion [33,32]
+[ERROR] 18:51:18:673 Team/(306:312): Estimado de rafaga actual: -3.000000
+[ERROR] 18:51:18:673 Team/(306:312): Duracion de rafaga actual: 5.000000
+[DEBUG] 18:51:18:673 Team/(306:312): El entrenador id: 3 se movio a la posicion [33,33]
+[ERROR] 18:51:20:674 Team/(306:312): Estimado de rafaga actual: -4.000000
+[ERROR] 18:51:20:674 Team/(306:312): Duracion de rafaga actual: 6.000000
+[DEBUG] 18:51:20:674 Team/(306:312): El entrenador id: 3 se movio a la posicion [34,33]
+[ERROR] 18:51:22:674 Team/(306:312): Estimado de rafaga actual: -5.000000
+[ERROR] 18:51:22:674 Team/(306:312): Duracion de rafaga actual: 7.000000
+[DEBUG] 18:51:22:674 Team/(306:312): El entrenador id: 3 se movio a la posicion [34,34]
+[ERROR] 18:51:24:674 Team/(306:312): Estimado de rafaga actual: -6.000000
+[ERROR] 18:51:24:675 Team/(306:312): Duracion de rafaga actual: 8.000000
+[DEBUG] 18:51:24:675 Team/(306:312): El entrenador id: 3 se movio a la posicion [35,34]
+[ERROR] 18:51:26:675 Team/(306:312): Estimado de rafaga actual: -7.000000
+[ERROR] 18:51:26:675 Team/(306:312): Duracion de rafaga actual: 9.000000
+[DEBUG] 18:51:26:675 Team/(306:312): El entrenador id: 3 se movio a la posicion [35,35]
+[ERROR] 18:51:28:676 Team/(306:312): Estimado de rafaga actual: -8.000000
+[ERROR] 18:51:28:677 Team/(306:312): Duracion de rafaga actual: 10.000000
+[DEBUG] 18:51:28:677 Team/(306:312): El entrenador id: 3 se movio a la posicion [36,35]
+[ERROR] 18:51:30:677 Team/(306:312): Estimado de rafaga actual: -9.000000
+[ERROR] 18:51:30:677 Team/(306:312): Duracion de rafaga actual: 11.000000
+[DEBUG] 18:51:30:677 Team/(306:312): El entrenador id: 3 se movio a la posicion [36,36]
+[ERROR] 18:51:32:677 Team/(306:312): Estimado de rafaga actual: -10.000000
+[ERROR] 18:51:32:677 Team/(306:312): Duracion de rafaga actual: 12.000000
+[DEBUG] 18:51:32:677 Team/(306:312): El entrenador id: 3 se movio a la posicion [37,36]
+[ERROR] 18:51:34:678 Team/(306:312): Estimado de rafaga actual: -11.000000
+[ERROR] 18:51:34:678 Team/(306:312): Duracion de rafaga actual: 13.000000
+[DEBUG] 18:51:34:678 Team/(306:312): El entrenador id: 3 se movio a la posicion [37,37]
+[ERROR] 18:51:36:678 Team/(306:312): Estimado de rafaga actual: -12.000000
+[ERROR] 18:51:36:678 Team/(306:312): Duracion de rafaga actual: 14.000000
+[DEBUG] 18:51:36:678 Team/(306:312): El entrenador id: 3 se movio a la posicion [38,37]
+[ERROR] 18:51:38:679 Team/(306:312): Estimado de rafaga actual: -13.000000
+[ERROR] 18:51:38:679 Team/(306:312): Duracion de rafaga actual: 15.000000
+[DEBUG] 18:51:38:679 Team/(306:312): El entrenador id: 3 se movio a la posicion [38,38]
+[ERROR] 18:51:40:679 Team/(306:312): Estimado de rafaga actual: -14.000000
+[ERROR] 18:51:40:679 Team/(306:312): Duracion de rafaga actual: 16.000000
+[DEBUG] 18:51:40:679 Team/(306:312): El entrenador id: 3 se movio a la posicion [39,38]
+[ERROR] 18:51:42:680 Team/(306:312): Estimado de rafaga actual: -15.000000
+[ERROR] 18:51:42:680 Team/(306:312): Duracion de rafaga actual: 17.000000
+[DEBUG] 18:51:42:680 Team/(306:312): El entrenador id: 3 se movio a la posicion [39,39]
+[ERROR] 18:51:44:680 Team/(306:312): Estimado de rafaga actual: -16.000000
+[ERROR] 18:51:44:680 Team/(306:312): Duracion de rafaga actual: 18.000000
+[DEBUG] 18:51:44:680 Team/(306:312): El entrenador id: 3 se movio a la posicion [40,39]
+[ERROR] 18:51:46:680 Team/(306:312): Estimado de rafaga actual: -17.000000
+[ERROR] 18:51:46:680 Team/(306:312): Duracion de rafaga actual: 19.000000
+[DEBUG] 18:51:46:680 Team/(306:312): El entrenador id: 3 se movio a la posicion [40,40]
+[ERROR] 18:51:48:681 Team/(306:312): Estimado de rafaga actual: -18.000000
+[ERROR] 18:51:48:681 Team/(306:312): Duracion de rafaga actual: 20.000000
+[DEBUG] 18:51:48:681 Team/(306:312): Enviando mensaje CATCH...
+[DEBUG] 18:51:48:683 Team/(306:313): Hurra, tengo algo en ready
+[DEBUG] 18:51:48:683 Team/(306:310): El entrenador id: 1 se movio a la posicion [6,5]
+[INFO] 18:51:48:695 Team/(306:325): Recibido un mensaje de broker
+[INFO] 18:51:48:695 Team/(306:325): Esperando mensajes de broker...
+[INFO] 18:51:48:701 Team/(306:475): Procesando CAUGHT...
+[DEBUG] 18:51:48:701 Team/(306:475): Se recibio un CAUGHT valido
+[INFO] 18:51:48:701 Team/(306:475): El entrenador 3 capturo un Bulbasaur!
+[INFO] 18:51:48:701 Team/(306:475): Pokemones: 
+[INFO] 18:51:48:702 Team/(306:475): Bulbasaur
+[INFO] 18:51:48:702 Team/(306:475): Objetivos: 
+[INFO] 18:51:48:702 Team/(306:475): Meowth
+[INFO] 18:51:48:702 Team/(306:475): Estado Actual: 2
+[INFO] 18:51:48:702 Team/(306:475): Objetivos generales:
+[INFO] 18:51:48:702 Team/(306:475): Squirtle
+[INFO] 18:51:48:703 Team/(306:475): Snorlax
+[INFO] 18:51:48:703 Team/(306:475): Pikachu
+[INFO] 18:51:48:703 Team/(306:475): Posiciones pendientes: 
+[INFO] 18:51:48:703 Team/(306:475): Snorlax
+[INFO] 18:51:48:703 Team/(306:475): 15-9
+[INFO] 18:51:48:703 Team/(306:475): Mensaje recibido: CAUGHT_POKEMON OK
+[ERROR] 18:51:50:683 Team/(306:310): Estimado de rafaga actual: 2.500000
+[ERROR] 18:51:50:683 Team/(306:310): Duracion de rafaga actual: 1.000000
+[DEBUG] 18:51:50:683 Team/(306:310): El entrenador id: 1 se movio a la posicion [7,5]
+[ERROR] 18:51:52:683 Team/(306:310): Estimado de rafaga actual: 1.500000
+[ERROR] 18:51:52:683 Team/(306:310): Duracion de rafaga actual: 2.000000
+[DEBUG] 18:51:52:684 Team/(306:310): El entrenador id: 1 se movio a la posicion [8,5]
+[ERROR] 18:51:54:684 Team/(306:310): Estimado de rafaga actual: 0.500000
+[ERROR] 18:51:54:684 Team/(306:310): Duracion de rafaga actual: 3.000000
+[DEBUG] 18:51:54:684 Team/(306:310): El entrenador id: 1 se movio a la posicion [9,5]
+[ERROR] 18:51:56:685 Team/(306:310): Estimado de rafaga actual: -0.500000
+[ERROR] 18:51:56:685 Team/(306:310): Duracion de rafaga actual: 4.000000
+[DEBUG] 18:51:56:685 Team/(306:310): El entrenador id: 1 se movio a la posicion [10,5]
+[ERROR] 18:51:58:685 Team/(306:310): Estimado de rafaga actual: -1.500000
+[ERROR] 18:51:58:685 Team/(306:310): Duracion de rafaga actual: 5.000000
+[DEBUG] 18:51:58:686 Team/(306:310): Enviando mensaje CATCH...
+[DEBUG] 18:51:58:690 Team/(306:313): Hurra, tengo algo en ready
+[DEBUG] 18:51:58:690 Team/(306:309): El entrenador id: 0 se movio a la posicion [10,1]
+[INFO] 18:51:58:705 Team/(306:325): Recibido un mensaje de broker
+[INFO] 18:51:58:705 Team/(306:325): Esperando mensajes de broker...
+[INFO] 18:51:58:707 Team/(306:485): Procesando CAUGHT...
+[DEBUG] 18:51:58:707 Team/(306:485): Se recibio un CAUGHT valido
+[INFO] 18:51:58:707 Team/(306:485): El entrenador 1 capturo un Pikachu!
+[INFO] 18:51:58:707 Team/(306:485): Pokemones: 
+[INFO] 18:51:58:707 Team/(306:485): Charmander
+[INFO] 18:51:58:708 Team/(306:485): Pikachu
+[INFO] 18:51:58:708 Team/(306:485): Objetivos: 
+[INFO] 18:51:58:708 Team/(306:485): Onix
+[INFO] 18:51:58:708 Team/(306:485): Snorlax
+[INFO] 18:51:58:708 Team/(306:485): Estado Actual: 2
+[INFO] 18:51:58:708 Team/(306:485): Objetivos generales:
+[INFO] 18:51:58:708 Team/(306:485): Squirtle
+[INFO] 18:51:58:709 Team/(306:485): Snorlax
+[INFO] 18:51:58:709 Team/(306:485): Posiciones pendientes: 
+[INFO] 18:51:58:709 Team/(306:485): Snorlax
+[INFO] 18:51:58:709 Team/(306:485): 15-9
+[INFO] 18:51:58:709 Team/(306:485): Mensaje recibido: CAUGHT_POKEMON OK
+[ERROR] 18:52:00:690 Team/(306:309): Estimado de rafaga actual: 4.500000
+[ERROR] 18:52:00:690 Team/(306:309): Duracion de rafaga actual: 1.000000
+[DEBUG] 18:52:00:690 Team/(306:309): El entrenador id: 0 se movio a la posicion [11,1]
+[ERROR] 18:52:02:690 Team/(306:309): Estimado de rafaga actual: 3.500000
+[ERROR] 18:52:02:690 Team/(306:309): Duracion de rafaga actual: 2.000000
+[DEBUG] 18:52:02:690 Team/(306:309): El entrenador id: 0 se movio a la posicion [12,1]
+[ERROR] 18:52:04:691 Team/(306:309): Estimado de rafaga actual: 2.500000
+[ERROR] 18:52:04:691 Team/(306:309): Duracion de rafaga actual: 3.000000
+[DEBUG] 18:52:04:691 Team/(306:309): El entrenador id: 0 se movio a la posicion [13,1]
+[ERROR] 18:52:06:691 Team/(306:309): Estimado de rafaga actual: 1.500000
+[ERROR] 18:52:06:691 Team/(306:309): Duracion de rafaga actual: 4.000000
+[DEBUG] 18:52:06:693 Team/(306:309): Enviando mensaje CATCH...
+[INFO] 18:52:06:712 Team/(306:325): Recibido un mensaje de broker
+[INFO] 18:52:06:712 Team/(306:325): Esperando mensajes de broker...
+[INFO] 18:52:06:715 Team/(306:495): Procesando CAUGHT...
+[DEBUG] 18:52:06:716 Team/(306:495): Se recibio un CAUGHT valido
+[INFO] 18:52:06:716 Team/(306:495): El entrenador 0 capturo un Squirtle!
+[INFO] 18:52:06:716 Team/(306:495): Pokemones: 
+[INFO] 18:52:06:716 Team/(306:495): Onix
+[INFO] 18:52:06:717 Team/(306:495): Squirtle
+[INFO] 18:52:06:717 Team/(306:495): Objetivos: 
+[INFO] 18:52:06:724 Team/(306:495): Charmander
+[INFO] 18:52:06:724 Team/(306:495): Bulbasaur
+[INFO] 18:52:06:724 Team/(306:495): Estado Actual: 2
+[INFO] 18:52:06:724 Team/(306:495): Objetivos generales:
+[INFO] 18:52:06:724 Team/(306:495): Snorlax
+[INFO] 18:52:06:724 Team/(306:495): Posiciones pendientes: 
+[INFO] 18:52:06:724 Team/(306:495): Snorlax
+[INFO] 18:52:06:724 Team/(306:495): 15-9
+[ERROR] 18:52:06:724 Team/(306:314): Entrando al semaforo de posiciones pendientes
+[ERROR] 18:52:06:724 Team/(306:314): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 18:52:06:724 Team/(306:313): Hurra, tengo algo en ready
+[DEBUG] 18:52:06:724 Team/(306:309): El entrenador id: 0 se movio a la posicion [14,1]
+[INFO] 18:52:06:724 Team/(306:495): Mensaje recibido: CAUGHT_POKEMON OK
+[ERROR] 18:52:08:725 Team/(306:309): Estimado de rafaga actual: 3.750000
+[ERROR] 18:52:08:725 Team/(306:309): Duracion de rafaga actual: 1.000000
+[DEBUG] 18:52:08:725 Team/(306:309): El entrenador id: 0 se movio a la posicion [14,2]
+[ERROR] 18:52:10:726 Team/(306:309): Estimado de rafaga actual: 2.750000
+[ERROR] 18:52:10:726 Team/(306:309): Duracion de rafaga actual: 2.000000
+[DEBUG] 18:52:10:726 Team/(306:309): El entrenador id: 0 se movio a la posicion [15,2]
+[ERROR] 18:52:12:726 Team/(306:309): Estimado de rafaga actual: 1.750000
+[ERROR] 18:52:12:726 Team/(306:309): Duracion de rafaga actual: 3.000000
+[DEBUG] 18:52:12:726 Team/(306:309): El entrenador id: 0 se movio a la posicion [15,3]
+[ERROR] 18:52:14:726 Team/(306:309): Estimado de rafaga actual: 0.750000
+[ERROR] 18:52:14:726 Team/(306:309): Duracion de rafaga actual: 4.000000
+[DEBUG] 18:52:14:726 Team/(306:309): El entrenador id: 0 se movio a la posicion [15,4]
+[ERROR] 18:52:16:727 Team/(306:309): Estimado de rafaga actual: -0.250000
+[ERROR] 18:52:16:728 Team/(306:309): Duracion de rafaga actual: 5.000000
+[DEBUG] 18:52:16:728 Team/(306:309): El entrenador id: 0 se movio a la posicion [15,5]
+[ERROR] 18:52:18:728 Team/(306:309): Estimado de rafaga actual: -1.250000
+[ERROR] 18:52:18:728 Team/(306:309): Duracion de rafaga actual: 6.000000
+[DEBUG] 18:52:18:728 Team/(306:309): El entrenador id: 0 se movio a la posicion [15,6]
+[ERROR] 18:52:20:729 Team/(306:309): Estimado de rafaga actual: -2.250000
+[ERROR] 18:52:20:729 Team/(306:309): Duracion de rafaga actual: 7.000000
+[DEBUG] 18:52:20:729 Team/(306:309): El entrenador id: 0 se movio a la posicion [15,7]
+[ERROR] 18:52:22:729 Team/(306:309): Estimado de rafaga actual: -3.250000
+[ERROR] 18:52:22:729 Team/(306:309): Duracion de rafaga actual: 8.000000
+[DEBUG] 18:52:22:729 Team/(306:309): El entrenador id: 0 se movio a la posicion [15,8]
+[ERROR] 18:52:24:730 Team/(306:309): Estimado de rafaga actual: -4.250000
+[ERROR] 18:52:24:730 Team/(306:309): Duracion de rafaga actual: 9.000000
+[DEBUG] 18:52:24:730 Team/(306:309): El entrenador id: 0 se movio a la posicion [15,9]
+[ERROR] 18:52:26:730 Team/(306:309): Estimado de rafaga actual: -5.250000
+[ERROR] 18:52:26:730 Team/(306:309): Duracion de rafaga actual: 10.000000
+[DEBUG] 18:52:26:731 Team/(306:309): Enviando mensaje CATCH...
+[INFO] 18:52:26:741 Team/(306:325): Recibido un mensaje de broker
+[INFO] 18:52:26:741 Team/(306:325): Esperando mensajes de broker...
+[INFO] 18:52:26:744 Team/(306:509): Procesando CAUGHT...
+[DEBUG] 18:52:26:744 Team/(306:509): Se recibio un CAUGHT valido
+[INFO] 18:52:26:744 Team/(306:509): El entrenador 0 capturo un Snorlax!
+[INFO] 18:52:26:744 Team/(306:509): Pokemones: 
+[INFO] 18:52:26:744 Team/(306:509): Onix
+[INFO] 18:52:26:744 Team/(306:509): Squirtle
+[INFO] 18:52:26:744 Team/(306:509): Snorlax
+[INFO] 18:52:26:744 Team/(306:509): Objetivos: 
+[INFO] 18:52:26:744 Team/(306:509): Charmander
+[INFO] 18:52:26:744 Team/(306:509): Bulbasaur
+[INFO] 18:52:26:745 Team/(306:509): Estado Actual: 2
+[INFO] 18:52:26:745 Team/(306:509): Objetivos generales:
+[INFO] 18:52:26:745 Team/(306:509): Posiciones pendientes: 
+[DEBUG] 18:52:26:745 Team/(306:509): Se comienza el analisis de deadlock
+[INFO] 18:52:26:745 Team/(306:509): Estado final de los entrenadores
+[INFO] 18:52:26:745 Team/(306:509): Entrenador id: 0
+[INFO] 18:52:26:745 Team/(306:509): Objetivos Originales:
+[INFO] 18:52:26:745 Team/(306:509): Charmander
+[INFO] 18:52:26:745 Team/(306:509): Bulbasaur
+[INFO] 18:52:26:745 Team/(306:509): Squirtle
+[INFO] 18:52:26:745 Team/(306:509): Pokemones:
+[INFO] 18:52:26:745 Team/(306:509): Onix
+[INFO] 18:52:26:745 Team/(306:509): Squirtle
+[INFO] 18:52:26:746 Team/(306:509): Snorlax
+[INFO] 18:52:26:746 Team/(306:509): Entrenador id: 1
+[INFO] 18:52:26:746 Team/(306:509): Objetivos Originales:
+[INFO] 18:52:26:746 Team/(306:509): Onix
+[INFO] 18:52:26:746 Team/(306:509): Snorlax
+[INFO] 18:52:26:746 Team/(306:509): Pokemones:
+[INFO] 18:52:26:746 Team/(306:509): Charmander
+[INFO] 18:52:26:746 Team/(306:509): Pikachu
+[INFO] 18:52:26:746 Team/(306:509): Entrenador id: 2
+[INFO] 18:52:26:746 Team/(306:509): Objetivos Originales:
+[INFO] 18:52:26:746 Team/(306:509): Pikachu
+[INFO] 18:52:26:746 Team/(306:509): Pokemones:
+[INFO] 18:52:26:747 Team/(306:509): Meowth
+[INFO] 18:52:26:748 Team/(306:509): Entrenador id: 3
+[INFO] 18:52:26:748 Team/(306:509): Objetivos Originales:
+[INFO] 18:52:26:748 Team/(306:509): Meowth
+[INFO] 18:52:26:748 Team/(306:509): Pokemones:
+[INFO] 18:52:26:748 Team/(306:509): Bulbasaur
+[INFO] 18:52:26:748 Team/(306:509): Entrenador id: 0
+[INFO] 18:52:26:748 Team/(306:509): Objetivos:
+[INFO] 18:52:26:748 Team/(306:509): Charmander
+[INFO] 18:52:26:748 Team/(306:509): Bulbasaur
+[INFO] 18:52:26:748 Team/(306:509): Squirtle
+[INFO] 18:52:26:748 Team/(306:509): Pokemones:
+[INFO] 18:52:26:749 Team/(306:509): Onix
+[INFO] 18:52:26:749 Team/(306:509): Squirtle
+[INFO] 18:52:26:749 Team/(306:509): Snorlax
+[INFO] 18:52:26:749 Team/(306:509): Pokemones no requeridos:
+[INFO] 18:52:26:749 Team/(306:509): Onix
+[INFO] 18:52:26:749 Team/(306:509): Snorlax
+[INFO] 18:52:26:749 Team/(306:509): Entrenador id: 1
+[INFO] 18:52:26:749 Team/(306:509): Objetivos:
+[INFO] 18:52:26:749 Team/(306:509): Onix
+[INFO] 18:52:26:749 Team/(306:509): Snorlax
+[INFO] 18:52:26:749 Team/(306:509): Pokemones:
+[INFO] 18:52:26:749 Team/(306:509): Charmander
+[INFO] 18:52:26:749 Team/(306:509): Pikachu
+[INFO] 18:52:26:749 Team/(306:509): Pokemones no requeridos:
+[INFO] 18:52:26:749 Team/(306:509): Charmander
+[INFO] 18:52:26:749 Team/(306:509): Pikachu
+[DEBUG] 18:52:26:749 Team/(306:509): Pokemon a intercambiar del entrenador 0: Onix
+Pokemon a intercambiar del entrenador 1: Charmander
+[DEBUG] 18:52:26:749 Team/(306:313): Hurra, tengo algo en ready
+[DEBUG] 18:52:26:750 Team/(306:309): El entrenador id: 0 se movio a la posicion [14,9]
+[ERROR] 18:52:28:750 Team/(306:309): Estimado de rafaga actual: 6.375000
+[ERROR] 18:52:28:750 Team/(306:309): Duracion de rafaga actual: 1.000000
+[DEBUG] 18:52:28:750 Team/(306:309): El entrenador id: 0 se movio a la posicion [14,8]
+[ERROR] 18:52:30:750 Team/(306:309): Estimado de rafaga actual: 5.375000
+[ERROR] 18:52:30:750 Team/(306:309): Duracion de rafaga actual: 2.000000
+[DEBUG] 18:52:30:750 Team/(306:309): El entrenador id: 0 se movio a la posicion [13,8]
+[ERROR] 18:52:32:750 Team/(306:309): Estimado de rafaga actual: 4.375000
+[ERROR] 18:52:32:751 Team/(306:309): Duracion de rafaga actual: 3.000000
+[DEBUG] 18:52:32:751 Team/(306:309): El entrenador id: 0 se movio a la posicion [13,7]
+[ERROR] 18:52:34:751 Team/(306:309): Estimado de rafaga actual: 3.375000
+[ERROR] 18:52:34:752 Team/(306:309): Duracion de rafaga actual: 4.000000
+[DEBUG] 18:52:34:752 Team/(306:309): El entrenador id: 0 se movio a la posicion [12,7]
+[ERROR] 18:52:36:752 Team/(306:309): Estimado de rafaga actual: 2.375000
+[ERROR] 18:52:36:752 Team/(306:309): Duracion de rafaga actual: 5.000000
+[DEBUG] 18:52:36:752 Team/(306:309): El entrenador id: 0 se movio a la posicion [12,6]
+[ERROR] 18:52:38:752 Team/(306:309): Estimado de rafaga actual: 1.375000
+[ERROR] 18:52:38:753 Team/(306:309): Duracion de rafaga actual: 6.000000
+[DEBUG] 18:52:38:753 Team/(306:309): El entrenador id: 0 se movio a la posicion [11,6]
+[ERROR] 18:52:40:753 Team/(306:309): Estimado de rafaga actual: 0.375000
+[ERROR] 18:52:40:753 Team/(306:309): Duracion de rafaga actual: 7.000000
+[DEBUG] 18:52:40:753 Team/(306:309): El entrenador id: 0 se movio a la posicion [11,5]
+[ERROR] 18:52:42:753 Team/(306:309): Estimado de rafaga actual: -0.625000
+[ERROR] 18:52:42:754 Team/(306:309): Duracion de rafaga actual: 8.000000
+[DEBUG] 18:52:42:754 Team/(306:309): El entrenador id: 0 se movio a la posicion [10,5]
+[ERROR] 18:52:44:754 Team/(306:309): Estimado de rafaga actual: -1.625000
+[ERROR] 18:52:44:754 Team/(306:309): Duracion de rafaga actual: 9.000000
+[DEBUG] 18:52:44:754 Team/(306:309): Estoy intercambiando el pokemon Onix por Charmander
+[DEBUG] 18:52:54:754 Team/(306:309): Se finalizo el intercambio entre el entrenador 0 y el entrenador 1
+[INFO] 18:52:54:755 Team/(306:509): Entrenador id: 0
+[INFO] 18:52:54:755 Team/(306:509): Objetivos:
+[INFO] 18:52:54:755 Team/(306:509): Charmander
+[INFO] 18:52:54:755 Team/(306:509): Bulbasaur
+[INFO] 18:52:54:755 Team/(306:509): Squirtle
+[INFO] 18:52:54:755 Team/(306:509): Pokemones:
+[INFO] 18:52:54:755 Team/(306:509): Squirtle
+[INFO] 18:52:54:755 Team/(306:509): Snorlax
+[INFO] 18:52:54:755 Team/(306:509): Charmander
+[INFO] 18:52:54:755 Team/(306:509): Pokemones no requeridos:
+[INFO] 18:52:54:755 Team/(306:509): Snorlax
+[INFO] 18:52:54:755 Team/(306:509): Entrenador id: 3
+[INFO] 18:52:54:755 Team/(306:509): Objetivos:
+[INFO] 18:52:54:755 Team/(306:509): Meowth
+[INFO] 18:52:54:755 Team/(306:509): Pokemones:
+[INFO] 18:52:54:755 Team/(306:509): Bulbasaur
+[INFO] 18:52:54:755 Team/(306:509): Pokemones no requeridos:
+[INFO] 18:52:54:755 Team/(306:509): Bulbasaur
+[DEBUG] 18:52:54:755 Team/(306:509): Pokemon a intercambiar del entrenador 0: Snorlax
+Pokemon a intercambiar del entrenador 3: Bulbasaur
+[DEBUG] 18:52:54:755 Team/(306:313): Hurra, tengo algo en ready
+[DEBUG] 18:52:54:755 Team/(306:309): El entrenador id: 0 se movio a la posicion [11,5]
+[ERROR] 18:52:56:756 Team/(306:309): Estimado de rafaga actual: 7.187500
+[ERROR] 18:52:56:756 Team/(306:309): Duracion de rafaga actual: 1.000000
+[DEBUG] 18:52:56:756 Team/(306:309): El entrenador id: 0 se movio a la posicion [11,6]
+[ERROR] 18:52:58:756 Team/(306:309): Estimado de rafaga actual: 6.187500
+[ERROR] 18:52:58:756 Team/(306:309): Duracion de rafaga actual: 2.000000
+[DEBUG] 18:52:58:756 Team/(306:309): El entrenador id: 0 se movio a la posicion [12,6]
+[ERROR] 18:53:00:757 Team/(306:309): Estimado de rafaga actual: 5.187500
+[ERROR] 18:53:00:757 Team/(306:309): Duracion de rafaga actual: 3.000000
+[DEBUG] 18:53:00:757 Team/(306:309): El entrenador id: 0 se movio a la posicion [12,7]
+[ERROR] 18:53:02:757 Team/(306:309): Estimado de rafaga actual: 4.187500
+[ERROR] 18:53:02:757 Team/(306:309): Duracion de rafaga actual: 4.000000
+[DEBUG] 18:53:02:757 Team/(306:309): El entrenador id: 0 se movio a la posicion [13,7]
+[ERROR] 18:53:04:758 Team/(306:309): Estimado de rafaga actual: 3.187500
+[ERROR] 18:53:04:758 Team/(306:309): Duracion de rafaga actual: 5.000000
+[DEBUG] 18:53:04:758 Team/(306:309): El entrenador id: 0 se movio a la posicion [13,8]
+[ERROR] 18:53:06:759 Team/(306:309): Estimado de rafaga actual: 2.187500
+[ERROR] 18:53:06:759 Team/(306:309): Duracion de rafaga actual: 6.000000
+[DEBUG] 18:53:06:759 Team/(306:309): El entrenador id: 0 se movio a la posicion [14,8]
+[ERROR] 18:53:08:759 Team/(306:309): Estimado de rafaga actual: 1.187500
+[ERROR] 18:53:08:759 Team/(306:309): Duracion de rafaga actual: 7.000000
+[DEBUG] 18:53:08:759 Team/(306:309): El entrenador id: 0 se movio a la posicion [14,9]
+[ERROR] 18:53:10:760 Team/(306:309): Estimado de rafaga actual: 0.187500
+[ERROR] 18:53:10:760 Team/(306:309): Duracion de rafaga actual: 8.000000
+[DEBUG] 18:53:10:760 Team/(306:309): El entrenador id: 0 se movio a la posicion [15,9]
+[ERROR] 18:53:11:981 Team/(306:325): Se perdio la conexión con el Broker.
+[ERROR] 18:53:11:981 Team/(306:324): Se perdio la conexión con el Broker.
+[ERROR] 18:53:11:981 Team/(306:323): Se perdio la conexión con el Broker.
+[DEBUG] 18:53:11:981 Team/(306:325): Reintentando conexion...
+[DEBUG] 18:53:11:982 Team/(306:323): Reintentando conexion...
+[DEBUG] 18:53:11:982 Team/(306:324): Reintentando conexion...
+[INFO] 18:53:11:982 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:11:982 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:11:982 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:53:12:760 Team/(306:309): Estimado de rafaga actual: -0.812500
+[ERROR] 18:53:12:760 Team/(306:309): Duracion de rafaga actual: 9.000000
+[DEBUG] 18:53:12:760 Team/(306:309): El entrenador id: 0 se movio a la posicion [15,10]
+[ERROR] 18:53:14:761 Team/(306:309): Estimado de rafaga actual: -1.812500
+[ERROR] 18:53:14:762 Team/(306:309): Duracion de rafaga actual: 10.000000
+[DEBUG] 18:53:14:762 Team/(306:309): El entrenador id: 0 se movio a la posicion [16,10]
+[ERROR] 18:53:16:764 Team/(306:309): Estimado de rafaga actual: -2.812500
+[ERROR] 18:53:16:764 Team/(306:309): Duracion de rafaga actual: 11.000000
+[DEBUG] 18:53:16:764 Team/(306:309): El entrenador id: 0 se movio a la posicion [16,11]
+[ERROR] 18:53:18:765 Team/(306:309): Estimado de rafaga actual: -3.812500
+[ERROR] 18:53:18:765 Team/(306:309): Duracion de rafaga actual: 12.000000
+[DEBUG] 18:53:18:765 Team/(306:309): El entrenador id: 0 se movio a la posicion [17,11]
+[ERROR] 18:53:20:765 Team/(306:309): Estimado de rafaga actual: -4.812500
+[ERROR] 18:53:20:765 Team/(306:309): Duracion de rafaga actual: 13.000000
+[DEBUG] 18:53:20:765 Team/(306:309): El entrenador id: 0 se movio a la posicion [17,12]
+[INFO] 18:53:21:982 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:21:982 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:21:982 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:53:22:766 Team/(306:309): Estimado de rafaga actual: -5.812500
+[ERROR] 18:53:22:766 Team/(306:309): Duracion de rafaga actual: 14.000000
+[DEBUG] 18:53:22:766 Team/(306:309): El entrenador id: 0 se movio a la posicion [18,12]
+[ERROR] 18:53:24:767 Team/(306:309): Estimado de rafaga actual: -6.812500
+[ERROR] 18:53:24:767 Team/(306:309): Duracion de rafaga actual: 15.000000
+[DEBUG] 18:53:24:767 Team/(306:309): El entrenador id: 0 se movio a la posicion [18,13]
+[ERROR] 18:53:26:768 Team/(306:309): Estimado de rafaga actual: -7.812500
+[ERROR] 18:53:26:768 Team/(306:309): Duracion de rafaga actual: 16.000000
+[DEBUG] 18:53:26:768 Team/(306:309): El entrenador id: 0 se movio a la posicion [19,13]
+[ERROR] 18:53:28:769 Team/(306:309): Estimado de rafaga actual: -8.812500
+[ERROR] 18:53:28:769 Team/(306:309): Duracion de rafaga actual: 17.000000
+[DEBUG] 18:53:28:769 Team/(306:309): El entrenador id: 0 se movio a la posicion [19,14]
+[ERROR] 18:53:30:770 Team/(306:309): Estimado de rafaga actual: -9.812500
+[ERROR] 18:53:30:770 Team/(306:309): Duracion de rafaga actual: 18.000000
+[DEBUG] 18:53:30:770 Team/(306:309): El entrenador id: 0 se movio a la posicion [20,14]
+[INFO] 18:53:31:984 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:31:985 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:31:985 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:53:32:770 Team/(306:309): Estimado de rafaga actual: -10.812500
+[ERROR] 18:53:32:770 Team/(306:309): Duracion de rafaga actual: 19.000000
+[DEBUG] 18:53:32:770 Team/(306:309): El entrenador id: 0 se movio a la posicion [20,15]
+[ERROR] 18:53:34:771 Team/(306:309): Estimado de rafaga actual: -11.812500
+[ERROR] 18:53:34:771 Team/(306:309): Duracion de rafaga actual: 20.000000
+[DEBUG] 18:53:34:771 Team/(306:309): El entrenador id: 0 se movio a la posicion [21,15]
+[ERROR] 18:53:36:771 Team/(306:309): Estimado de rafaga actual: -12.812500
+[ERROR] 18:53:36:771 Team/(306:309): Duracion de rafaga actual: 21.000000
+[DEBUG] 18:53:36:771 Team/(306:309): El entrenador id: 0 se movio a la posicion [21,16]
+[ERROR] 18:53:38:772 Team/(306:309): Estimado de rafaga actual: -13.812500
+[ERROR] 18:53:38:772 Team/(306:309): Duracion de rafaga actual: 22.000000
+[DEBUG] 18:53:38:772 Team/(306:309): El entrenador id: 0 se movio a la posicion [22,16]
+[ERROR] 18:53:40:772 Team/(306:309): Estimado de rafaga actual: -14.812500
+[ERROR] 18:53:40:772 Team/(306:309): Duracion de rafaga actual: 23.000000
+[DEBUG] 18:53:40:772 Team/(306:309): El entrenador id: 0 se movio a la posicion [22,17]
+[INFO] 18:53:41:985 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:41:985 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:41:986 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:53:42:773 Team/(306:309): Estimado de rafaga actual: -15.812500
+[ERROR] 18:53:42:773 Team/(306:309): Duracion de rafaga actual: 24.000000
+[DEBUG] 18:53:42:773 Team/(306:309): El entrenador id: 0 se movio a la posicion [23,17]
+[ERROR] 18:53:44:774 Team/(306:309): Estimado de rafaga actual: -16.812500
+[ERROR] 18:53:44:774 Team/(306:309): Duracion de rafaga actual: 25.000000
+[DEBUG] 18:53:44:774 Team/(306:309): El entrenador id: 0 se movio a la posicion [23,18]
+[ERROR] 18:53:46:775 Team/(306:309): Estimado de rafaga actual: -17.812500
+[ERROR] 18:53:46:775 Team/(306:309): Duracion de rafaga actual: 26.000000
+[DEBUG] 18:53:46:775 Team/(306:309): El entrenador id: 0 se movio a la posicion [24,18]
+[ERROR] 18:53:48:778 Team/(306:309): Estimado de rafaga actual: -18.812500
+[ERROR] 18:53:48:778 Team/(306:309): Duracion de rafaga actual: 27.000000
+[DEBUG] 18:53:48:778 Team/(306:309): El entrenador id: 0 se movio a la posicion [24,19]
+[ERROR] 18:53:50:778 Team/(306:309): Estimado de rafaga actual: -19.812500
+[ERROR] 18:53:50:778 Team/(306:309): Duracion de rafaga actual: 28.000000
+[DEBUG] 18:53:50:778 Team/(306:309): El entrenador id: 0 se movio a la posicion [25,19]
+[INFO] 18:53:51:986 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:51:986 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:51:986 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:53:52:779 Team/(306:309): Estimado de rafaga actual: -20.812500
+[ERROR] 18:53:52:779 Team/(306:309): Duracion de rafaga actual: 29.000000
+[DEBUG] 18:53:52:779 Team/(306:309): El entrenador id: 0 se movio a la posicion [25,20]
+[ERROR] 18:53:54:779 Team/(306:309): Estimado de rafaga actual: -21.812500
+[ERROR] 18:53:54:779 Team/(306:309): Duracion de rafaga actual: 30.000000
+[DEBUG] 18:53:54:779 Team/(306:309): El entrenador id: 0 se movio a la posicion [26,20]
+[ERROR] 18:53:56:779 Team/(306:309): Estimado de rafaga actual: -22.812500
+[ERROR] 18:53:56:780 Team/(306:309): Duracion de rafaga actual: 31.000000
+[DEBUG] 18:53:56:780 Team/(306:309): El entrenador id: 0 se movio a la posicion [26,21]
+[ERROR] 18:53:58:780 Team/(306:309): Estimado de rafaga actual: -23.812500
+[ERROR] 18:53:58:780 Team/(306:309): Duracion de rafaga actual: 32.000000
+[DEBUG] 18:53:58:780 Team/(306:309): El entrenador id: 0 se movio a la posicion [27,21]
+[ERROR] 18:54:00:780 Team/(306:309): Estimado de rafaga actual: -24.812500
+[ERROR] 18:54:00:781 Team/(306:309): Duracion de rafaga actual: 33.000000
+[DEBUG] 18:54:00:781 Team/(306:309): El entrenador id: 0 se movio a la posicion [27,22]
+[INFO] 18:54:01:987 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:01:987 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:01:987 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:54:02:782 Team/(306:309): Estimado de rafaga actual: -25.812500
+[ERROR] 18:54:02:782 Team/(306:309): Duracion de rafaga actual: 34.000000
+[DEBUG] 18:54:02:782 Team/(306:309): El entrenador id: 0 se movio a la posicion [28,22]
+[ERROR] 18:54:04:782 Team/(306:309): Estimado de rafaga actual: -26.812500
+[ERROR] 18:54:04:783 Team/(306:309): Duracion de rafaga actual: 35.000000
+[DEBUG] 18:54:04:783 Team/(306:309): El entrenador id: 0 se movio a la posicion [28,23]
+[ERROR] 18:54:06:783 Team/(306:309): Estimado de rafaga actual: -27.812500
+[ERROR] 18:54:06:783 Team/(306:309): Duracion de rafaga actual: 36.000000
+[DEBUG] 18:54:06:783 Team/(306:309): El entrenador id: 0 se movio a la posicion [29,23]
+[ERROR] 18:54:08:783 Team/(306:309): Estimado de rafaga actual: -28.812500
+[ERROR] 18:54:08:783 Team/(306:309): Duracion de rafaga actual: 37.000000
+[DEBUG] 18:54:08:783 Team/(306:309): El entrenador id: 0 se movio a la posicion [29,24]
+[ERROR] 18:54:10:784 Team/(306:309): Estimado de rafaga actual: -29.812500
+[ERROR] 18:54:10:784 Team/(306:309): Duracion de rafaga actual: 38.000000
+[DEBUG] 18:54:10:784 Team/(306:309): El entrenador id: 0 se movio a la posicion [30,24]
+[INFO] 18:54:11:988 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:11:988 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:11:988 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:54:12:784 Team/(306:309): Estimado de rafaga actual: -30.812500
+[ERROR] 18:54:12:785 Team/(306:309): Duracion de rafaga actual: 39.000000
+[DEBUG] 18:54:12:785 Team/(306:309): El entrenador id: 0 se movio a la posicion [30,25]
+[ERROR] 18:54:14:785 Team/(306:309): Estimado de rafaga actual: -31.812500
+[ERROR] 18:54:14:785 Team/(306:309): Duracion de rafaga actual: 40.000000
+[DEBUG] 18:54:14:785 Team/(306:309): El entrenador id: 0 se movio a la posicion [31,25]
+[ERROR] 18:54:16:786 Team/(306:309): Estimado de rafaga actual: -32.812500
+[ERROR] 18:54:16:786 Team/(306:309): Duracion de rafaga actual: 41.000000
+[DEBUG] 18:54:16:786 Team/(306:309): El entrenador id: 0 se movio a la posicion [31,26]
+[ERROR] 18:54:18:786 Team/(306:309): Estimado de rafaga actual: -33.812500
+[ERROR] 18:54:18:786 Team/(306:309): Duracion de rafaga actual: 42.000000
+[DEBUG] 18:54:18:786 Team/(306:309): El entrenador id: 0 se movio a la posicion [32,26]
+[ERROR] 18:54:20:787 Team/(306:309): Estimado de rafaga actual: -34.812500
+[ERROR] 18:54:20:788 Team/(306:309): Duracion de rafaga actual: 43.000000
+[DEBUG] 18:54:20:788 Team/(306:309): El entrenador id: 0 se movio a la posicion [32,27]
+[INFO] 18:54:21:989 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:21:990 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:21:990 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:54:22:788 Team/(306:309): Estimado de rafaga actual: -35.812500
+[ERROR] 18:54:22:788 Team/(306:309): Duracion de rafaga actual: 44.000000
+[DEBUG] 18:54:22:788 Team/(306:309): El entrenador id: 0 se movio a la posicion [33,27]
+[ERROR] 18:54:24:788 Team/(306:309): Estimado de rafaga actual: -36.812500
+[ERROR] 18:54:24:788 Team/(306:309): Duracion de rafaga actual: 45.000000
+[DEBUG] 18:54:24:788 Team/(306:309): El entrenador id: 0 se movio a la posicion [33,28]
+[ERROR] 18:54:26:789 Team/(306:309): Estimado de rafaga actual: -37.812500
+[ERROR] 18:54:26:789 Team/(306:309): Duracion de rafaga actual: 46.000000
+[DEBUG] 18:54:26:789 Team/(306:309): El entrenador id: 0 se movio a la posicion [34,28]
+[ERROR] 18:54:28:790 Team/(306:309): Estimado de rafaga actual: -38.812500
+[ERROR] 18:54:28:791 Team/(306:309): Duracion de rafaga actual: 47.000000
+[DEBUG] 18:54:28:791 Team/(306:309): El entrenador id: 0 se movio a la posicion [34,29]
+[ERROR] 18:54:30:793 Team/(306:309): Estimado de rafaga actual: -39.812500
+[ERROR] 18:54:30:793 Team/(306:309): Duracion de rafaga actual: 48.000000
+[DEBUG] 18:54:30:793 Team/(306:309): El entrenador id: 0 se movio a la posicion [35,29]
+[INFO] 18:54:31:991 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:31:991 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:31:991 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:54:32:793 Team/(306:309): Estimado de rafaga actual: -40.812500
+[ERROR] 18:54:32:794 Team/(306:309): Duracion de rafaga actual: 49.000000
+[DEBUG] 18:54:32:794 Team/(306:309): El entrenador id: 0 se movio a la posicion [35,30]
+[ERROR] 18:54:34:794 Team/(306:309): Estimado de rafaga actual: -41.812500
+[ERROR] 18:54:34:794 Team/(306:309): Duracion de rafaga actual: 50.000000
+[DEBUG] 18:54:34:794 Team/(306:309): El entrenador id: 0 se movio a la posicion [36,30]
+[ERROR] 18:54:36:794 Team/(306:309): Estimado de rafaga actual: -42.812500
+[ERROR] 18:54:36:795 Team/(306:309): Duracion de rafaga actual: 51.000000
+[DEBUG] 18:54:36:795 Team/(306:309): El entrenador id: 0 se movio a la posicion [36,31]
+[ERROR] 18:54:38:795 Team/(306:309): Estimado de rafaga actual: -43.812500
+[ERROR] 18:54:38:795 Team/(306:309): Duracion de rafaga actual: 52.000000
+[DEBUG] 18:54:38:795 Team/(306:309): El entrenador id: 0 se movio a la posicion [37,31]
+[ERROR] 18:54:40:796 Team/(306:309): Estimado de rafaga actual: -44.812500
+[ERROR] 18:54:40:797 Team/(306:309): Duracion de rafaga actual: 53.000000
+[DEBUG] 18:54:40:797 Team/(306:309): El entrenador id: 0 se movio a la posicion [37,32]
+[INFO] 18:54:41:993 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:41:993 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:41:993 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:54:42:798 Team/(306:309): Estimado de rafaga actual: -45.812500
+[ERROR] 18:54:42:798 Team/(306:309): Duracion de rafaga actual: 54.000000
+[DEBUG] 18:54:42:798 Team/(306:309): El entrenador id: 0 se movio a la posicion [38,32]
+[ERROR] 18:54:44:799 Team/(306:309): Estimado de rafaga actual: -46.812500
+[ERROR] 18:54:44:799 Team/(306:309): Duracion de rafaga actual: 55.000000
+[DEBUG] 18:54:44:799 Team/(306:309): El entrenador id: 0 se movio a la posicion [38,33]
+[ERROR] 18:54:46:800 Team/(306:309): Estimado de rafaga actual: -47.812500
+[ERROR] 18:54:46:800 Team/(306:309): Duracion de rafaga actual: 56.000000
+[DEBUG] 18:54:46:801 Team/(306:309): El entrenador id: 0 se movio a la posicion [39,33]
+[ERROR] 18:54:48:801 Team/(306:309): Estimado de rafaga actual: -48.812500
+[ERROR] 18:54:48:801 Team/(306:309): Duracion de rafaga actual: 57.000000
+[DEBUG] 18:54:48:801 Team/(306:309): El entrenador id: 0 se movio a la posicion [39,34]
+[ERROR] 18:54:50:801 Team/(306:309): Estimado de rafaga actual: -49.812500
+[ERROR] 18:54:50:802 Team/(306:309): Duracion de rafaga actual: 58.000000
+[DEBUG] 18:54:50:802 Team/(306:309): El entrenador id: 0 se movio a la posicion [40,34]
+[INFO] 18:54:51:994 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:51:994 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:51:994 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:54:52:802 Team/(306:309): Estimado de rafaga actual: -50.812500
+[ERROR] 18:54:52:802 Team/(306:309): Duracion de rafaga actual: 59.000000
+[DEBUG] 18:54:52:802 Team/(306:309): El entrenador id: 0 se movio a la posicion [40,35]
+[ERROR] 18:54:54:802 Team/(306:309): Estimado de rafaga actual: -51.812500
+[ERROR] 18:54:54:803 Team/(306:309): Duracion de rafaga actual: 60.000000
+[DEBUG] 18:54:54:803 Team/(306:309): El entrenador id: 0 se movio a la posicion [40,36]
+[ERROR] 18:54:56:803 Team/(306:309): Estimado de rafaga actual: -52.812500
+[ERROR] 18:54:56:803 Team/(306:309): Duracion de rafaga actual: 61.000000
+[DEBUG] 18:54:56:804 Team/(306:309): El entrenador id: 0 se movio a la posicion [40,37]
+[ERROR] 18:54:58:804 Team/(306:309): Estimado de rafaga actual: -53.812500
+[ERROR] 18:54:58:804 Team/(306:309): Duracion de rafaga actual: 62.000000
+[DEBUG] 18:54:58:805 Team/(306:309): El entrenador id: 0 se movio a la posicion [40,38]
+[ERROR] 18:55:00:805 Team/(306:309): Estimado de rafaga actual: -54.812500
+[ERROR] 18:55:00:805 Team/(306:309): Duracion de rafaga actual: 63.000000
+[DEBUG] 18:55:00:805 Team/(306:309): El entrenador id: 0 se movio a la posicion [40,39]
+[INFO] 18:55:01:997 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:01:997 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:01:997 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:55:02:805 Team/(306:309): Estimado de rafaga actual: -55.812500
+[ERROR] 18:55:02:805 Team/(306:309): Duracion de rafaga actual: 64.000000
+[DEBUG] 18:55:02:805 Team/(306:309): El entrenador id: 0 se movio a la posicion [40,40]
+[ERROR] 18:55:04:805 Team/(306:309): Estimado de rafaga actual: -56.812500
+[ERROR] 18:55:04:805 Team/(306:309): Duracion de rafaga actual: 65.000000
+[DEBUG] 18:55:04:806 Team/(306:309): Estoy intercambiando el pokemon Snorlax por Bulbasaur
+[INFO] 18:55:11:998 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:11:998 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:11:998 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:55:14:806 Team/(306:309): Se finalizo el intercambio entre el entrenador 0 y el entrenador 3
+[INFO] 18:55:14:806 Team/(306:509): Entrenador id: 1
+[INFO] 18:55:14:806 Team/(306:509): Objetivos:
+[INFO] 18:55:14:806 Team/(306:509): Onix
+[INFO] 18:55:14:806 Team/(306:509): Snorlax
+[INFO] 18:55:14:806 Team/(306:509): Pokemones:
+[INFO] 18:55:14:807 Team/(306:509): Pikachu
+[INFO] 18:55:14:807 Team/(306:509): Onix
+[INFO] 18:55:14:807 Team/(306:509): Pokemones no requeridos:
+[INFO] 18:55:14:807 Team/(306:509): Pikachu
+[INFO] 18:55:14:807 Team/(306:509): Entrenador id: 3
+[INFO] 18:55:14:807 Team/(306:509): Objetivos:
+[INFO] 18:55:14:807 Team/(306:509): Meowth
+[INFO] 18:55:14:807 Team/(306:509): Pokemones:
+[INFO] 18:55:14:808 Team/(306:509): Snorlax
+[INFO] 18:55:14:808 Team/(306:509): Pokemones no requeridos:
+[INFO] 18:55:14:808 Team/(306:509): Snorlax
+[DEBUG] 18:55:14:808 Team/(306:509): Pokemon a intercambiar del entrenador 1: Pikachu
+Pokemon a intercambiar del entrenador 3: Snorlax
+[DEBUG] 18:55:14:808 Team/(306:313): Hurra, tengo algo en ready
+[DEBUG] 18:55:14:808 Team/(306:310): El entrenador id: 1 se movio a la posicion [11,5]
+[ERROR] 18:55:16:809 Team/(306:310): Estimado de rafaga actual: 3.250000
+[ERROR] 18:55:16:809 Team/(306:310): Duracion de rafaga actual: 1.000000
+[DEBUG] 18:55:16:809 Team/(306:310): El entrenador id: 1 se movio a la posicion [11,6]
+[ERROR] 18:55:18:811 Team/(306:310): Estimado de rafaga actual: 2.250000
+[ERROR] 18:55:18:811 Team/(306:310): Duracion de rafaga actual: 2.000000
+[DEBUG] 18:55:18:811 Team/(306:310): El entrenador id: 1 se movio a la posicion [12,6]
+[ERROR] 18:55:20:811 Team/(306:310): Estimado de rafaga actual: 1.250000
+[ERROR] 18:55:20:811 Team/(306:310): Duracion de rafaga actual: 3.000000
+[DEBUG] 18:55:20:811 Team/(306:310): El entrenador id: 1 se movio a la posicion [12,7]
+[INFO] 18:55:21:999 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:21:0 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:21:0 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:55:22:812 Team/(306:310): Estimado de rafaga actual: 0.250000
+[ERROR] 18:55:22:812 Team/(306:310): Duracion de rafaga actual: 4.000000
+[DEBUG] 18:55:22:812 Team/(306:310): El entrenador id: 1 se movio a la posicion [13,7]
+[ERROR] 18:55:24:812 Team/(306:310): Estimado de rafaga actual: -0.750000
+[ERROR] 18:55:24:813 Team/(306:310): Duracion de rafaga actual: 5.000000
+[DEBUG] 18:55:24:813 Team/(306:310): El entrenador id: 1 se movio a la posicion [13,8]
+[ERROR] 18:55:26:813 Team/(306:310): Estimado de rafaga actual: -1.750000
+[ERROR] 18:55:26:813 Team/(306:310): Duracion de rafaga actual: 6.000000
+[DEBUG] 18:55:26:813 Team/(306:310): El entrenador id: 1 se movio a la posicion [14,8]
+[ERROR] 18:55:28:814 Team/(306:310): Estimado de rafaga actual: -2.750000
+[ERROR] 18:55:28:814 Team/(306:310): Duracion de rafaga actual: 7.000000
+[DEBUG] 18:55:28:814 Team/(306:310): El entrenador id: 1 se movio a la posicion [14,9]
+[ERROR] 18:55:30:815 Team/(306:310): Estimado de rafaga actual: -3.750000
+[ERROR] 18:55:30:815 Team/(306:310): Duracion de rafaga actual: 8.000000
+[DEBUG] 18:55:30:815 Team/(306:310): El entrenador id: 1 se movio a la posicion [15,9]
+[INFO] 18:55:31:1 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:31:1 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:31:1 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:55:32:816 Team/(306:310): Estimado de rafaga actual: -4.750000
+[ERROR] 18:55:32:816 Team/(306:310): Duracion de rafaga actual: 9.000000
+[DEBUG] 18:55:32:816 Team/(306:310): El entrenador id: 1 se movio a la posicion [15,10]
+[ERROR] 18:55:34:817 Team/(306:310): Estimado de rafaga actual: -5.750000
+[ERROR] 18:55:34:817 Team/(306:310): Duracion de rafaga actual: 10.000000
+[DEBUG] 18:55:34:817 Team/(306:310): El entrenador id: 1 se movio a la posicion [16,10]
+[ERROR] 18:55:36:817 Team/(306:310): Estimado de rafaga actual: -6.750000
+[ERROR] 18:55:36:817 Team/(306:310): Duracion de rafaga actual: 11.000000
+[DEBUG] 18:55:36:817 Team/(306:310): El entrenador id: 1 se movio a la posicion [16,11]
+[ERROR] 18:55:38:818 Team/(306:310): Estimado de rafaga actual: -7.750000
+[ERROR] 18:55:38:818 Team/(306:310): Duracion de rafaga actual: 12.000000
+[DEBUG] 18:55:38:818 Team/(306:310): El entrenador id: 1 se movio a la posicion [17,11]
+[ERROR] 18:55:40:819 Team/(306:310): Estimado de rafaga actual: -8.750000
+[ERROR] 18:55:40:819 Team/(306:310): Duracion de rafaga actual: 13.000000
+[DEBUG] 18:55:40:819 Team/(306:310): El entrenador id: 1 se movio a la posicion [17,12]
+[INFO] 18:55:42:2 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:42:2 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:42:2 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:55:42:819 Team/(306:310): Estimado de rafaga actual: -9.750000
+[ERROR] 18:55:42:820 Team/(306:310): Duracion de rafaga actual: 14.000000
+[DEBUG] 18:55:42:820 Team/(306:310): El entrenador id: 1 se movio a la posicion [18,12]
+[ERROR] 18:55:44:820 Team/(306:310): Estimado de rafaga actual: -10.750000
+[ERROR] 18:55:44:820 Team/(306:310): Duracion de rafaga actual: 15.000000
+[DEBUG] 18:55:44:820 Team/(306:310): El entrenador id: 1 se movio a la posicion [18,13]
+[ERROR] 18:55:46:820 Team/(306:310): Estimado de rafaga actual: -11.750000
+[ERROR] 18:55:46:820 Team/(306:310): Duracion de rafaga actual: 16.000000
+[DEBUG] 18:55:46:821 Team/(306:310): El entrenador id: 1 se movio a la posicion [19,13]
+[ERROR] 18:55:48:821 Team/(306:310): Estimado de rafaga actual: -12.750000
+[ERROR] 18:55:48:821 Team/(306:310): Duracion de rafaga actual: 17.000000
+[DEBUG] 18:55:48:821 Team/(306:310): El entrenador id: 1 se movio a la posicion [19,14]
+[ERROR] 18:55:50:821 Team/(306:310): Estimado de rafaga actual: -13.750000
+[ERROR] 18:55:50:821 Team/(306:310): Duracion de rafaga actual: 18.000000
+[DEBUG] 18:55:50:821 Team/(306:310): El entrenador id: 1 se movio a la posicion [20,14]
+[INFO] 18:55:52:3 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:52:3 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:52:3 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:55:52:822 Team/(306:310): Estimado de rafaga actual: -14.750000
+[ERROR] 18:55:52:822 Team/(306:310): Duracion de rafaga actual: 19.000000
+[DEBUG] 18:55:52:822 Team/(306:310): El entrenador id: 1 se movio a la posicion [20,15]
+[ERROR] 18:55:54:823 Team/(306:310): Estimado de rafaga actual: -15.750000
+[ERROR] 18:55:54:823 Team/(306:310): Duracion de rafaga actual: 20.000000
+[DEBUG] 18:55:54:823 Team/(306:310): El entrenador id: 1 se movio a la posicion [21,15]
+[ERROR] 18:55:56:824 Team/(306:310): Estimado de rafaga actual: -16.750000
+[ERROR] 18:55:56:824 Team/(306:310): Duracion de rafaga actual: 21.000000
+[DEBUG] 18:55:56:824 Team/(306:310): El entrenador id: 1 se movio a la posicion [21,16]
+[ERROR] 18:55:58:825 Team/(306:310): Estimado de rafaga actual: -17.750000
+[ERROR] 18:55:58:825 Team/(306:310): Duracion de rafaga actual: 22.000000
+[DEBUG] 18:55:58:825 Team/(306:310): El entrenador id: 1 se movio a la posicion [22,16]
+[ERROR] 18:56:00:826 Team/(306:310): Estimado de rafaga actual: -18.750000
+[ERROR] 18:56:00:827 Team/(306:310): Duracion de rafaga actual: 23.000000
+[DEBUG] 18:56:00:827 Team/(306:310): El entrenador id: 1 se movio a la posicion [22,17]
+[INFO] 18:56:02:3 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:02:3 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:02:3 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:56:02:827 Team/(306:310): Estimado de rafaga actual: -19.750000
+[ERROR] 18:56:02:827 Team/(306:310): Duracion de rafaga actual: 24.000000
+[DEBUG] 18:56:02:827 Team/(306:310): El entrenador id: 1 se movio a la posicion [23,17]
+[ERROR] 18:56:04:828 Team/(306:310): Estimado de rafaga actual: -20.750000
+[ERROR] 18:56:04:828 Team/(306:310): Duracion de rafaga actual: 25.000000
+[DEBUG] 18:56:04:828 Team/(306:310): El entrenador id: 1 se movio a la posicion [23,18]
+[ERROR] 18:56:06:829 Team/(306:310): Estimado de rafaga actual: -21.750000
+[ERROR] 18:56:06:829 Team/(306:310): Duracion de rafaga actual: 26.000000
+[DEBUG] 18:56:06:829 Team/(306:310): El entrenador id: 1 se movio a la posicion [24,18]
+[ERROR] 18:56:08:830 Team/(306:310): Estimado de rafaga actual: -22.750000
+[ERROR] 18:56:08:831 Team/(306:310): Duracion de rafaga actual: 27.000000
+[DEBUG] 18:56:08:831 Team/(306:310): El entrenador id: 1 se movio a la posicion [24,19]
+[ERROR] 18:56:10:831 Team/(306:310): Estimado de rafaga actual: -23.750000
+[ERROR] 18:56:10:831 Team/(306:310): Duracion de rafaga actual: 28.000000
+[DEBUG] 18:56:10:831 Team/(306:310): El entrenador id: 1 se movio a la posicion [25,19]
+[INFO] 18:56:12:4 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:12:4 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:12:5 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:56:12:832 Team/(306:310): Estimado de rafaga actual: -24.750000
+[ERROR] 18:56:12:832 Team/(306:310): Duracion de rafaga actual: 29.000000
+[DEBUG] 18:56:12:832 Team/(306:310): El entrenador id: 1 se movio a la posicion [25,20]
+[ERROR] 18:56:14:832 Team/(306:310): Estimado de rafaga actual: -25.750000
+[ERROR] 18:56:14:832 Team/(306:310): Duracion de rafaga actual: 30.000000
+[DEBUG] 18:56:14:832 Team/(306:310): El entrenador id: 1 se movio a la posicion [26,20]
+[ERROR] 18:56:16:833 Team/(306:310): Estimado de rafaga actual: -26.750000
+[ERROR] 18:56:16:833 Team/(306:310): Duracion de rafaga actual: 31.000000
+[DEBUG] 18:56:16:833 Team/(306:310): El entrenador id: 1 se movio a la posicion [26,21]
+[ERROR] 18:56:18:834 Team/(306:310): Estimado de rafaga actual: -27.750000
+[ERROR] 18:56:18:834 Team/(306:310): Duracion de rafaga actual: 32.000000
+[DEBUG] 18:56:18:834 Team/(306:310): El entrenador id: 1 se movio a la posicion [27,21]
+[ERROR] 18:56:20:834 Team/(306:310): Estimado de rafaga actual: -28.750000
+[ERROR] 18:56:20:835 Team/(306:310): Duracion de rafaga actual: 33.000000
+[DEBUG] 18:56:20:835 Team/(306:310): El entrenador id: 1 se movio a la posicion [27,22]
+[INFO] 18:56:22:6 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:22:6 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:22:6 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:56:22:836 Team/(306:310): Estimado de rafaga actual: -29.750000
+[ERROR] 18:56:22:836 Team/(306:310): Duracion de rafaga actual: 34.000000
+[DEBUG] 18:56:22:836 Team/(306:310): El entrenador id: 1 se movio a la posicion [28,22]
+[ERROR] 18:56:24:836 Team/(306:310): Estimado de rafaga actual: -30.750000
+[ERROR] 18:56:24:836 Team/(306:310): Duracion de rafaga actual: 35.000000
+[DEBUG] 18:56:24:837 Team/(306:310): El entrenador id: 1 se movio a la posicion [28,23]
+[ERROR] 18:56:26:837 Team/(306:310): Estimado de rafaga actual: -31.750000
+[ERROR] 18:56:26:837 Team/(306:310): Duracion de rafaga actual: 36.000000
+[DEBUG] 18:56:26:837 Team/(306:310): El entrenador id: 1 se movio a la posicion [29,23]
+[ERROR] 18:56:28:838 Team/(306:310): Estimado de rafaga actual: -32.750000
+[ERROR] 18:56:28:838 Team/(306:310): Duracion de rafaga actual: 37.000000
+[DEBUG] 18:56:28:838 Team/(306:310): El entrenador id: 1 se movio a la posicion [29,24]
+[ERROR] 18:56:30:838 Team/(306:310): Estimado de rafaga actual: -33.750000
+[ERROR] 18:56:30:839 Team/(306:310): Duracion de rafaga actual: 38.000000
+[DEBUG] 18:56:30:839 Team/(306:310): El entrenador id: 1 se movio a la posicion [30,24]
+[INFO] 18:56:32:7 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:32:7 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:32:7 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:56:32:839 Team/(306:310): Estimado de rafaga actual: -34.750000
+[ERROR] 18:56:32:839 Team/(306:310): Duracion de rafaga actual: 39.000000
+[DEBUG] 18:56:32:839 Team/(306:310): El entrenador id: 1 se movio a la posicion [30,25]
+[ERROR] 18:56:34:840 Team/(306:310): Estimado de rafaga actual: -35.750000
+[ERROR] 18:56:34:840 Team/(306:310): Duracion de rafaga actual: 40.000000
+[DEBUG] 18:56:34:840 Team/(306:310): El entrenador id: 1 se movio a la posicion [31,25]
+[ERROR] 18:56:36:841 Team/(306:310): Estimado de rafaga actual: -36.750000
+[ERROR] 18:56:36:841 Team/(306:310): Duracion de rafaga actual: 41.000000
+[DEBUG] 18:56:36:841 Team/(306:310): El entrenador id: 1 se movio a la posicion [31,26]
+[ERROR] 18:56:38:842 Team/(306:310): Estimado de rafaga actual: -37.750000
+[ERROR] 18:56:38:842 Team/(306:310): Duracion de rafaga actual: 42.000000
+[DEBUG] 18:56:38:843 Team/(306:310): El entrenador id: 1 se movio a la posicion [32,26]
+[ERROR] 18:56:40:843 Team/(306:310): Estimado de rafaga actual: -38.750000
+[ERROR] 18:56:40:843 Team/(306:310): Duracion de rafaga actual: 43.000000
+[DEBUG] 18:56:40:844 Team/(306:310): El entrenador id: 1 se movio a la posicion [32,27]
+[INFO] 18:56:42:9 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:42:9 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:42:9 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:56:42:844 Team/(306:310): Estimado de rafaga actual: -39.750000
+[ERROR] 18:56:42:844 Team/(306:310): Duracion de rafaga actual: 44.000000
+[DEBUG] 18:56:42:845 Team/(306:310): El entrenador id: 1 se movio a la posicion [33,27]
+[ERROR] 18:56:44:845 Team/(306:310): Estimado de rafaga actual: -40.750000
+[ERROR] 18:56:44:845 Team/(306:310): Duracion de rafaga actual: 45.000000
+[DEBUG] 18:56:44:845 Team/(306:310): El entrenador id: 1 se movio a la posicion [33,28]
+[ERROR] 18:56:46:845 Team/(306:310): Estimado de rafaga actual: -41.750000
+[ERROR] 18:56:46:845 Team/(306:310): Duracion de rafaga actual: 46.000000
+[DEBUG] 18:56:46:845 Team/(306:310): El entrenador id: 1 se movio a la posicion [34,28]
+[ERROR] 18:56:48:846 Team/(306:310): Estimado de rafaga actual: -42.750000
+[ERROR] 18:56:48:846 Team/(306:310): Duracion de rafaga actual: 47.000000
+[DEBUG] 18:56:48:847 Team/(306:310): El entrenador id: 1 se movio a la posicion [34,29]
+[ERROR] 18:56:50:847 Team/(306:310): Estimado de rafaga actual: -43.750000
+[ERROR] 18:56:50:848 Team/(306:310): Duracion de rafaga actual: 48.000000
+[DEBUG] 18:56:50:848 Team/(306:310): El entrenador id: 1 se movio a la posicion [35,29]
+[INFO] 18:56:52:10 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:52:10 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:52:10 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:56:52:848 Team/(306:310): Estimado de rafaga actual: -44.750000
+[ERROR] 18:56:52:848 Team/(306:310): Duracion de rafaga actual: 49.000000
+[DEBUG] 18:56:52:849 Team/(306:310): El entrenador id: 1 se movio a la posicion [35,30]
+[ERROR] 18:56:54:849 Team/(306:310): Estimado de rafaga actual: -45.750000
+[ERROR] 18:56:54:849 Team/(306:310): Duracion de rafaga actual: 50.000000
+[DEBUG] 18:56:54:849 Team/(306:310): El entrenador id: 1 se movio a la posicion [36,30]
+[ERROR] 18:56:56:850 Team/(306:310): Estimado de rafaga actual: -46.750000
+[ERROR] 18:56:56:850 Team/(306:310): Duracion de rafaga actual: 51.000000
+[DEBUG] 18:56:56:850 Team/(306:310): El entrenador id: 1 se movio a la posicion [36,31]
+[ERROR] 18:56:58:851 Team/(306:310): Estimado de rafaga actual: -47.750000
+[ERROR] 18:56:58:851 Team/(306:310): Duracion de rafaga actual: 52.000000
+[DEBUG] 18:56:58:852 Team/(306:310): El entrenador id: 1 se movio a la posicion [37,31]
+[ERROR] 18:57:00:853 Team/(306:310): Estimado de rafaga actual: -48.750000
+[ERROR] 18:57:00:853 Team/(306:310): Duracion de rafaga actual: 53.000000
+[DEBUG] 18:57:00:853 Team/(306:310): El entrenador id: 1 se movio a la posicion [37,32]
+[INFO] 18:57:02:12 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:02:12 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:02:12 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:57:02:854 Team/(306:310): Estimado de rafaga actual: -49.750000
+[ERROR] 18:57:02:854 Team/(306:310): Duracion de rafaga actual: 54.000000
+[DEBUG] 18:57:02:854 Team/(306:310): El entrenador id: 1 se movio a la posicion [38,32]
+[ERROR] 18:57:04:854 Team/(306:310): Estimado de rafaga actual: -50.750000
+[ERROR] 18:57:04:854 Team/(306:310): Duracion de rafaga actual: 55.000000
+[DEBUG] 18:57:04:855 Team/(306:310): El entrenador id: 1 se movio a la posicion [38,33]
+[ERROR] 18:57:06:855 Team/(306:310): Estimado de rafaga actual: -51.750000
+[ERROR] 18:57:06:855 Team/(306:310): Duracion de rafaga actual: 56.000000
+[DEBUG] 18:57:06:855 Team/(306:310): El entrenador id: 1 se movio a la posicion [39,33]
+[ERROR] 18:57:08:856 Team/(306:310): Estimado de rafaga actual: -52.750000
+[ERROR] 18:57:08:856 Team/(306:310): Duracion de rafaga actual: 57.000000
+[DEBUG] 18:57:08:857 Team/(306:310): El entrenador id: 1 se movio a la posicion [39,34]
+[ERROR] 18:57:10:857 Team/(306:310): Estimado de rafaga actual: -53.750000
+[ERROR] 18:57:10:857 Team/(306:310): Duracion de rafaga actual: 58.000000
+[DEBUG] 18:57:10:858 Team/(306:310): El entrenador id: 1 se movio a la posicion [40,34]
+[INFO] 18:57:12:13 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:12:13 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:12:13 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:57:12:858 Team/(306:310): Estimado de rafaga actual: -54.750000
+[ERROR] 18:57:12:859 Team/(306:310): Duracion de rafaga actual: 59.000000
+[DEBUG] 18:57:12:859 Team/(306:310): El entrenador id: 1 se movio a la posicion [40,35]
+[ERROR] 18:57:14:859 Team/(306:310): Estimado de rafaga actual: -55.750000
+[ERROR] 18:57:14:859 Team/(306:310): Duracion de rafaga actual: 60.000000
+[DEBUG] 18:57:14:859 Team/(306:310): El entrenador id: 1 se movio a la posicion [40,36]
+[ERROR] 18:57:16:860 Team/(306:310): Estimado de rafaga actual: -56.750000
+[ERROR] 18:57:16:860 Team/(306:310): Duracion de rafaga actual: 61.000000
+[DEBUG] 18:57:16:860 Team/(306:310): El entrenador id: 1 se movio a la posicion [40,37]
+[ERROR] 18:57:18:861 Team/(306:310): Estimado de rafaga actual: -57.750000
+[ERROR] 18:57:18:861 Team/(306:310): Duracion de rafaga actual: 62.000000
+[DEBUG] 18:57:18:861 Team/(306:310): El entrenador id: 1 se movio a la posicion [40,38]
+[ERROR] 18:57:20:861 Team/(306:310): Estimado de rafaga actual: -58.750000
+[ERROR] 18:57:20:862 Team/(306:310): Duracion de rafaga actual: 63.000000
+[DEBUG] 18:57:20:862 Team/(306:310): El entrenador id: 1 se movio a la posicion [40,39]
+[INFO] 18:57:22:14 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:22:14 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:22:14 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:57:22:863 Team/(306:310): Estimado de rafaga actual: -59.750000
+[ERROR] 18:57:22:863 Team/(306:310): Duracion de rafaga actual: 64.000000
+[DEBUG] 18:57:22:864 Team/(306:310): El entrenador id: 1 se movio a la posicion [40,40]
+[ERROR] 18:57:24:864 Team/(306:310): Estimado de rafaga actual: -60.750000
+[ERROR] 18:57:24:864 Team/(306:310): Duracion de rafaga actual: 65.000000
+[DEBUG] 18:57:24:864 Team/(306:310): Estoy intercambiando el pokemon Pikachu por Snorlax
+[INFO] 18:57:32:14 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:32:15 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:32:15 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:57:34:866 Team/(306:310): Se finalizo el intercambio entre el entrenador 1 y el entrenador 3
+[INFO] 18:57:34:866 Team/(306:509): Entrenador id: 2
+[INFO] 18:57:34:866 Team/(306:509): Objetivos:
+[INFO] 18:57:34:866 Team/(306:509): Pikachu
+[INFO] 18:57:34:866 Team/(306:509): Pokemones:
+[INFO] 18:57:34:867 Team/(306:509): Meowth
+[INFO] 18:57:34:867 Team/(306:509): Pokemones no requeridos:
+[INFO] 18:57:34:867 Team/(306:509): Meowth
+[INFO] 18:57:34:867 Team/(306:509): Entrenador id: 3
+[INFO] 18:57:34:867 Team/(306:509): Objetivos:
+[INFO] 18:57:34:867 Team/(306:509): Meowth
+[INFO] 18:57:34:867 Team/(306:509): Pokemones:
+[INFO] 18:57:34:867 Team/(306:509): Pikachu
+[INFO] 18:57:34:868 Team/(306:509): Pokemones no requeridos:
+[INFO] 18:57:34:868 Team/(306:509): Pikachu
+[DEBUG] 18:57:34:868 Team/(306:509): Pokemon a intercambiar del entrenador 2: Meowth
+Pokemon a intercambiar del entrenador 3: Pikachu
+[DEBUG] 18:57:34:868 Team/(306:313): Hurra, tengo algo en ready
+[DEBUG] 18:57:34:868 Team/(306:311): El entrenador id: 2 se movio a la posicion [4,9]
+[ERROR] 18:57:36:869 Team/(306:311): Estimado de rafaga actual: 1.500000
+[ERROR] 18:57:36:869 Team/(306:311): Duracion de rafaga actual: 1.000000
+[DEBUG] 18:57:36:869 Team/(306:311): El entrenador id: 2 se movio a la posicion [4,10]
+[ERROR] 18:57:38:869 Team/(306:311): Estimado de rafaga actual: 0.500000
+[ERROR] 18:57:38:870 Team/(306:311): Duracion de rafaga actual: 2.000000
+[DEBUG] 18:57:38:870 Team/(306:311): El entrenador id: 2 se movio a la posicion [5,10]
+[ERROR] 18:57:40:871 Team/(306:311): Estimado de rafaga actual: -0.500000
+[ERROR] 18:57:40:871 Team/(306:311): Duracion de rafaga actual: 3.000000
+[DEBUG] 18:57:40:871 Team/(306:311): El entrenador id: 2 se movio a la posicion [5,11]
+[INFO] 18:57:42:15 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:42:16 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:42:16 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:57:42:872 Team/(306:311): Estimado de rafaga actual: -1.500000
+[ERROR] 18:57:42:872 Team/(306:311): Duracion de rafaga actual: 4.000000
+[DEBUG] 18:57:42:872 Team/(306:311): El entrenador id: 2 se movio a la posicion [6,11]
+[ERROR] 18:57:44:873 Team/(306:311): Estimado de rafaga actual: -2.500000
+[ERROR] 18:57:44:873 Team/(306:311): Duracion de rafaga actual: 5.000000
+[DEBUG] 18:57:44:873 Team/(306:311): El entrenador id: 2 se movio a la posicion [6,12]
+[ERROR] 18:57:46:873 Team/(306:311): Estimado de rafaga actual: -3.500000
+[ERROR] 18:57:46:873 Team/(306:311): Duracion de rafaga actual: 6.000000
+[DEBUG] 18:57:46:873 Team/(306:311): El entrenador id: 2 se movio a la posicion [7,12]
+[ERROR] 18:57:48:874 Team/(306:311): Estimado de rafaga actual: -4.500000
+[ERROR] 18:57:48:874 Team/(306:311): Duracion de rafaga actual: 7.000000
+[DEBUG] 18:57:48:874 Team/(306:311): El entrenador id: 2 se movio a la posicion [7,13]
+[ERROR] 18:57:50:875 Team/(306:311): Estimado de rafaga actual: -5.500000
+[ERROR] 18:57:50:875 Team/(306:311): Duracion de rafaga actual: 8.000000
+[DEBUG] 18:57:50:875 Team/(306:311): El entrenador id: 2 se movio a la posicion [8,13]
+[INFO] 18:57:52:17 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:52:17 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:52:17 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:57:52:876 Team/(306:311): Estimado de rafaga actual: -6.500000
+[ERROR] 18:57:52:876 Team/(306:311): Duracion de rafaga actual: 9.000000
+[DEBUG] 18:57:52:876 Team/(306:311): El entrenador id: 2 se movio a la posicion [8,14]
+[ERROR] 18:57:54:877 Team/(306:311): Estimado de rafaga actual: -7.500000
+[ERROR] 18:57:54:877 Team/(306:311): Duracion de rafaga actual: 10.000000
+[DEBUG] 18:57:54:877 Team/(306:311): El entrenador id: 2 se movio a la posicion [9,14]
+[ERROR] 18:57:56:877 Team/(306:311): Estimado de rafaga actual: -8.500000
+[ERROR] 18:57:56:877 Team/(306:311): Duracion de rafaga actual: 11.000000
+[DEBUG] 18:57:56:877 Team/(306:311): El entrenador id: 2 se movio a la posicion [9,15]
+[ERROR] 18:57:58:878 Team/(306:311): Estimado de rafaga actual: -9.500000
+[ERROR] 18:57:58:878 Team/(306:311): Duracion de rafaga actual: 12.000000
+[DEBUG] 18:57:58:878 Team/(306:311): El entrenador id: 2 se movio a la posicion [10,15]
+[ERROR] 18:58:00:878 Team/(306:311): Estimado de rafaga actual: -10.500000
+[ERROR] 18:58:00:879 Team/(306:311): Duracion de rafaga actual: 13.000000
+[DEBUG] 18:58:00:879 Team/(306:311): El entrenador id: 2 se movio a la posicion [10,16]
+[INFO] 18:58:02:18 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:02:18 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:02:18 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:58:02:879 Team/(306:311): Estimado de rafaga actual: -11.500000
+[ERROR] 18:58:02:879 Team/(306:311): Duracion de rafaga actual: 14.000000
+[DEBUG] 18:58:02:880 Team/(306:311): El entrenador id: 2 se movio a la posicion [11,16]
+[ERROR] 18:58:04:880 Team/(306:311): Estimado de rafaga actual: -12.500000
+[ERROR] 18:58:04:880 Team/(306:311): Duracion de rafaga actual: 15.000000
+[DEBUG] 18:58:04:880 Team/(306:311): El entrenador id: 2 se movio a la posicion [11,17]
+[ERROR] 18:58:06:881 Team/(306:311): Estimado de rafaga actual: -13.500000
+[ERROR] 18:58:06:881 Team/(306:311): Duracion de rafaga actual: 16.000000
+[DEBUG] 18:58:06:881 Team/(306:311): El entrenador id: 2 se movio a la posicion [12,17]
+[ERROR] 18:58:08:881 Team/(306:311): Estimado de rafaga actual: -14.500000
+[ERROR] 18:58:08:881 Team/(306:311): Duracion de rafaga actual: 17.000000
+[DEBUG] 18:58:08:881 Team/(306:311): El entrenador id: 2 se movio a la posicion [12,18]
+[ERROR] 18:58:10:882 Team/(306:311): Estimado de rafaga actual: -15.500000
+[ERROR] 18:58:10:882 Team/(306:311): Duracion de rafaga actual: 18.000000
+[DEBUG] 18:58:10:882 Team/(306:311): El entrenador id: 2 se movio a la posicion [13,18]
+[INFO] 18:58:12:19 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:12:19 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:12:19 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:58:12:882 Team/(306:311): Estimado de rafaga actual: -16.500000
+[ERROR] 18:58:12:883 Team/(306:311): Duracion de rafaga actual: 19.000000
+[DEBUG] 18:58:12:883 Team/(306:311): El entrenador id: 2 se movio a la posicion [13,19]
+[ERROR] 18:58:14:883 Team/(306:311): Estimado de rafaga actual: -17.500000
+[ERROR] 18:58:14:883 Team/(306:311): Duracion de rafaga actual: 20.000000
+[DEBUG] 18:58:14:883 Team/(306:311): El entrenador id: 2 se movio a la posicion [14,19]
+[ERROR] 18:58:16:884 Team/(306:311): Estimado de rafaga actual: -18.500000
+[ERROR] 18:58:16:884 Team/(306:311): Duracion de rafaga actual: 21.000000
+[DEBUG] 18:58:16:884 Team/(306:311): El entrenador id: 2 se movio a la posicion [14,20]
+[ERROR] 18:58:18:885 Team/(306:311): Estimado de rafaga actual: -19.500000
+[ERROR] 18:58:18:885 Team/(306:311): Duracion de rafaga actual: 22.000000
+[DEBUG] 18:58:18:885 Team/(306:311): El entrenador id: 2 se movio a la posicion [15,20]
+[ERROR] 18:58:20:885 Team/(306:311): Estimado de rafaga actual: -20.500000
+[ERROR] 18:58:20:886 Team/(306:311): Duracion de rafaga actual: 23.000000
+[DEBUG] 18:58:20:886 Team/(306:311): El entrenador id: 2 se movio a la posicion [15,21]
+[INFO] 18:58:22:20 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:22:20 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:22:20 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:58:22:886 Team/(306:311): Estimado de rafaga actual: -21.500000
+[ERROR] 18:58:22:887 Team/(306:311): Duracion de rafaga actual: 24.000000
+[DEBUG] 18:58:22:887 Team/(306:311): El entrenador id: 2 se movio a la posicion [16,21]
+[ERROR] 18:58:24:887 Team/(306:311): Estimado de rafaga actual: -22.500000
+[ERROR] 18:58:24:887 Team/(306:311): Duracion de rafaga actual: 25.000000
+[DEBUG] 18:58:24:887 Team/(306:311): El entrenador id: 2 se movio a la posicion [16,22]
+[ERROR] 18:58:26:887 Team/(306:311): Estimado de rafaga actual: -23.500000
+[ERROR] 18:58:26:888 Team/(306:311): Duracion de rafaga actual: 26.000000
+[DEBUG] 18:58:26:888 Team/(306:311): El entrenador id: 2 se movio a la posicion [17,22]
+[ERROR] 18:58:28:888 Team/(306:311): Estimado de rafaga actual: -24.500000
+[ERROR] 18:58:28:889 Team/(306:311): Duracion de rafaga actual: 27.000000
+[DEBUG] 18:58:28:889 Team/(306:311): El entrenador id: 2 se movio a la posicion [17,23]
+[ERROR] 18:58:30:890 Team/(306:311): Estimado de rafaga actual: -25.500000
+[ERROR] 18:58:30:890 Team/(306:311): Duracion de rafaga actual: 28.000000
+[DEBUG] 18:58:30:890 Team/(306:311): El entrenador id: 2 se movio a la posicion [18,23]
+[INFO] 18:58:32:22 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:32:22 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:32:22 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:58:32:890 Team/(306:311): Estimado de rafaga actual: -26.500000
+[ERROR] 18:58:32:890 Team/(306:311): Duracion de rafaga actual: 29.000000
+[DEBUG] 18:58:32:891 Team/(306:311): El entrenador id: 2 se movio a la posicion [18,24]
+[ERROR] 18:58:34:891 Team/(306:311): Estimado de rafaga actual: -27.500000
+[ERROR] 18:58:34:891 Team/(306:311): Duracion de rafaga actual: 30.000000
+[DEBUG] 18:58:34:891 Team/(306:311): El entrenador id: 2 se movio a la posicion [19,24]
+[ERROR] 18:58:36:892 Team/(306:311): Estimado de rafaga actual: -28.500000
+[ERROR] 18:58:36:892 Team/(306:311): Duracion de rafaga actual: 31.000000
+[DEBUG] 18:58:36:892 Team/(306:311): El entrenador id: 2 se movio a la posicion [19,25]
+[ERROR] 18:58:38:893 Team/(306:311): Estimado de rafaga actual: -29.500000
+[ERROR] 18:58:38:893 Team/(306:311): Duracion de rafaga actual: 32.000000
+[DEBUG] 18:58:38:893 Team/(306:311): El entrenador id: 2 se movio a la posicion [20,25]
+[ERROR] 18:58:40:894 Team/(306:311): Estimado de rafaga actual: -30.500000
+[ERROR] 18:58:40:894 Team/(306:311): Duracion de rafaga actual: 33.000000
+[DEBUG] 18:58:40:894 Team/(306:311): El entrenador id: 2 se movio a la posicion [20,26]
+[INFO] 18:58:42:22 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:42:23 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:42:23 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:58:42:894 Team/(306:311): Estimado de rafaga actual: -31.500000
+[ERROR] 18:58:42:894 Team/(306:311): Duracion de rafaga actual: 34.000000
+[DEBUG] 18:58:42:895 Team/(306:311): El entrenador id: 2 se movio a la posicion [21,26]
+[ERROR] 18:58:44:895 Team/(306:311): Estimado de rafaga actual: -32.500000
+[ERROR] 18:58:44:895 Team/(306:311): Duracion de rafaga actual: 35.000000
+[DEBUG] 18:58:44:895 Team/(306:311): El entrenador id: 2 se movio a la posicion [21,27]
+[ERROR] 18:58:46:896 Team/(306:311): Estimado de rafaga actual: -33.500000
+[ERROR] 18:58:46:896 Team/(306:311): Duracion de rafaga actual: 36.000000
+[DEBUG] 18:58:46:896 Team/(306:311): El entrenador id: 2 se movio a la posicion [22,27]
+[ERROR] 18:58:48:896 Team/(306:311): Estimado de rafaga actual: -34.500000
+[ERROR] 18:58:48:896 Team/(306:311): Duracion de rafaga actual: 37.000000
+[DEBUG] 18:58:48:896 Team/(306:311): El entrenador id: 2 se movio a la posicion [22,28]
+[ERROR] 18:58:50:897 Team/(306:311): Estimado de rafaga actual: -35.500000
+[ERROR] 18:58:50:897 Team/(306:311): Duracion de rafaga actual: 38.000000
+[DEBUG] 18:58:50:897 Team/(306:311): El entrenador id: 2 se movio a la posicion [23,28]
+[INFO] 18:58:52:23 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:52:23 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:52:23 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:58:52:897 Team/(306:311): Estimado de rafaga actual: -36.500000
+[ERROR] 18:58:52:898 Team/(306:311): Duracion de rafaga actual: 39.000000
+[DEBUG] 18:58:52:898 Team/(306:311): El entrenador id: 2 se movio a la posicion [23,29]
+[ERROR] 18:58:54:898 Team/(306:311): Estimado de rafaga actual: -37.500000
+[ERROR] 18:58:54:898 Team/(306:311): Duracion de rafaga actual: 40.000000
+[DEBUG] 18:58:54:898 Team/(306:311): El entrenador id: 2 se movio a la posicion [24,29]
+[ERROR] 18:58:56:898 Team/(306:311): Estimado de rafaga actual: -38.500000
+[ERROR] 18:58:56:898 Team/(306:311): Duracion de rafaga actual: 41.000000
+[DEBUG] 18:58:56:899 Team/(306:311): El entrenador id: 2 se movio a la posicion [24,30]
+[ERROR] 18:58:58:899 Team/(306:311): Estimado de rafaga actual: -39.500000
+[ERROR] 18:58:58:899 Team/(306:311): Duracion de rafaga actual: 42.000000
+[DEBUG] 18:58:58:899 Team/(306:311): El entrenador id: 2 se movio a la posicion [25,30]
+[ERROR] 18:59:00:900 Team/(306:311): Estimado de rafaga actual: -40.500000
+[ERROR] 18:59:00:900 Team/(306:311): Duracion de rafaga actual: 43.000000
+[DEBUG] 18:59:00:900 Team/(306:311): El entrenador id: 2 se movio a la posicion [25,31]
+[INFO] 18:59:02:25 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:02:25 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:02:25 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:59:02:900 Team/(306:311): Estimado de rafaga actual: -41.500000
+[ERROR] 18:59:02:900 Team/(306:311): Duracion de rafaga actual: 44.000000
+[DEBUG] 18:59:02:900 Team/(306:311): El entrenador id: 2 se movio a la posicion [26,31]
+[ERROR] 18:59:04:900 Team/(306:311): Estimado de rafaga actual: -42.500000
+[ERROR] 18:59:04:900 Team/(306:311): Duracion de rafaga actual: 45.000000
+[DEBUG] 18:59:04:900 Team/(306:311): El entrenador id: 2 se movio a la posicion [26,32]
+[ERROR] 18:59:06:901 Team/(306:311): Estimado de rafaga actual: -43.500000
+[ERROR] 18:59:06:901 Team/(306:311): Duracion de rafaga actual: 46.000000
+[DEBUG] 18:59:06:901 Team/(306:311): El entrenador id: 2 se movio a la posicion [27,32]
+[ERROR] 18:59:08:902 Team/(306:311): Estimado de rafaga actual: -44.500000
+[ERROR] 18:59:08:902 Team/(306:311): Duracion de rafaga actual: 47.000000
+[DEBUG] 18:59:08:902 Team/(306:311): El entrenador id: 2 se movio a la posicion [27,33]
+[ERROR] 18:59:10:902 Team/(306:311): Estimado de rafaga actual: -45.500000
+[ERROR] 18:59:10:902 Team/(306:311): Duracion de rafaga actual: 48.000000
+[DEBUG] 18:59:10:902 Team/(306:311): El entrenador id: 2 se movio a la posicion [28,33]
+[INFO] 18:59:12:25 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:12:25 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:12:26 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:59:12:903 Team/(306:311): Estimado de rafaga actual: -46.500000
+[ERROR] 18:59:12:904 Team/(306:311): Duracion de rafaga actual: 49.000000
+[DEBUG] 18:59:12:904 Team/(306:311): El entrenador id: 2 se movio a la posicion [28,34]
+[ERROR] 18:59:14:904 Team/(306:311): Estimado de rafaga actual: -47.500000
+[ERROR] 18:59:14:904 Team/(306:311): Duracion de rafaga actual: 50.000000
+[DEBUG] 18:59:14:904 Team/(306:311): El entrenador id: 2 se movio a la posicion [29,34]
+[ERROR] 18:59:16:905 Team/(306:311): Estimado de rafaga actual: -48.500000
+[ERROR] 18:59:16:905 Team/(306:311): Duracion de rafaga actual: 51.000000
+[DEBUG] 18:59:16:905 Team/(306:311): El entrenador id: 2 se movio a la posicion [29,35]
+[ERROR] 18:59:18:906 Team/(306:311): Estimado de rafaga actual: -49.500000
+[ERROR] 18:59:18:906 Team/(306:311): Duracion de rafaga actual: 52.000000
+[DEBUG] 18:59:18:906 Team/(306:311): El entrenador id: 2 se movio a la posicion [30,35]
+[ERROR] 18:59:20:906 Team/(306:311): Estimado de rafaga actual: -50.500000
+[ERROR] 18:59:20:907 Team/(306:311): Duracion de rafaga actual: 53.000000
+[DEBUG] 18:59:20:907 Team/(306:311): El entrenador id: 2 se movio a la posicion [30,36]
+[INFO] 18:59:22:27 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:22:27 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:22:27 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:59:22:908 Team/(306:311): Estimado de rafaga actual: -51.500000
+[ERROR] 18:59:22:908 Team/(306:311): Duracion de rafaga actual: 54.000000
+[DEBUG] 18:59:22:908 Team/(306:311): El entrenador id: 2 se movio a la posicion [31,36]
+[ERROR] 18:59:24:908 Team/(306:311): Estimado de rafaga actual: -52.500000
+[ERROR] 18:59:24:908 Team/(306:311): Duracion de rafaga actual: 55.000000
+[DEBUG] 18:59:24:908 Team/(306:311): El entrenador id: 2 se movio a la posicion [31,37]
+[ERROR] 18:59:26:908 Team/(306:311): Estimado de rafaga actual: -53.500000
+[ERROR] 18:59:26:908 Team/(306:311): Duracion de rafaga actual: 56.000000
+[DEBUG] 18:59:26:908 Team/(306:311): El entrenador id: 2 se movio a la posicion [32,37]
+[ERROR] 18:59:28:909 Team/(306:311): Estimado de rafaga actual: -54.500000
+[ERROR] 18:59:28:909 Team/(306:311): Duracion de rafaga actual: 57.000000
+[DEBUG] 18:59:28:909 Team/(306:311): El entrenador id: 2 se movio a la posicion [32,38]
+[ERROR] 18:59:30:909 Team/(306:311): Estimado de rafaga actual: -55.500000
+[ERROR] 18:59:30:909 Team/(306:311): Duracion de rafaga actual: 58.000000
+[DEBUG] 18:59:30:909 Team/(306:311): El entrenador id: 2 se movio a la posicion [33,38]
+[INFO] 18:59:32:27 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:32:27 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:32:27 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:59:32:909 Team/(306:311): Estimado de rafaga actual: -56.500000
+[ERROR] 18:59:32:909 Team/(306:311): Duracion de rafaga actual: 59.000000
+[DEBUG] 18:59:32:909 Team/(306:311): El entrenador id: 2 se movio a la posicion [33,39]
+[ERROR] 18:59:34:910 Team/(306:311): Estimado de rafaga actual: -57.500000
+[ERROR] 18:59:34:910 Team/(306:311): Duracion de rafaga actual: 60.000000
+[DEBUG] 18:59:34:910 Team/(306:311): El entrenador id: 2 se movio a la posicion [34,39]
+[ERROR] 18:59:36:911 Team/(306:311): Estimado de rafaga actual: -58.500000
+[ERROR] 18:59:36:911 Team/(306:311): Duracion de rafaga actual: 61.000000
+[DEBUG] 18:59:36:911 Team/(306:311): El entrenador id: 2 se movio a la posicion [34,40]
+[ERROR] 18:59:38:912 Team/(306:311): Estimado de rafaga actual: -59.500000
+[ERROR] 18:59:38:912 Team/(306:311): Duracion de rafaga actual: 62.000000
+[DEBUG] 18:59:38:912 Team/(306:311): El entrenador id: 2 se movio a la posicion [35,40]
+[ERROR] 18:59:40:913 Team/(306:311): Estimado de rafaga actual: -60.500000
+[ERROR] 18:59:40:913 Team/(306:311): Duracion de rafaga actual: 63.000000
+[DEBUG] 18:59:40:913 Team/(306:311): El entrenador id: 2 se movio a la posicion [36,40]
+[INFO] 18:59:42:28 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:42:29 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:42:29 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[ERROR] 18:59:42:914 Team/(306:311): Estimado de rafaga actual: -61.500000
+[ERROR] 18:59:42:914 Team/(306:311): Duracion de rafaga actual: 64.000000
+[DEBUG] 18:59:42:915 Team/(306:311): El entrenador id: 2 se movio a la posicion [37,40]
+[ERROR] 18:59:44:915 Team/(306:311): Estimado de rafaga actual: -62.500000
+[ERROR] 18:59:44:915 Team/(306:311): Duracion de rafaga actual: 65.000000
+[DEBUG] 18:59:44:915 Team/(306:311): El entrenador id: 2 se movio a la posicion [38,40]
+[ERROR] 18:59:46:915 Team/(306:311): Estimado de rafaga actual: -63.500000
+[ERROR] 18:59:46:916 Team/(306:311): Duracion de rafaga actual: 66.000000
+[DEBUG] 18:59:46:916 Team/(306:311): El entrenador id: 2 se movio a la posicion [39,40]
+[ERROR] 18:59:48:916 Team/(306:311): Estimado de rafaga actual: -64.500000
+[ERROR] 18:59:48:916 Team/(306:311): Duracion de rafaga actual: 67.000000
+[DEBUG] 18:59:48:916 Team/(306:311): El entrenador id: 2 se movio a la posicion [40,40]
+[ERROR] 18:59:50:917 Team/(306:311): Estimado de rafaga actual: -65.500000
+[ERROR] 18:59:50:917 Team/(306:311): Duracion de rafaga actual: 68.000000
+[DEBUG] 18:59:50:917 Team/(306:311): Estoy intercambiando el pokemon Meowth por Pikachu
+[INFO] 18:59:52:30 Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:52:30 Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:52:30 Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 19:00:00:917 Team/(306:311): Se finalizo el intercambio entre el entrenador 2 y el entrenador 3
+[DEBUG] 19:00:00:918 Team/(306:509): Se termino la resolucion de deadlocks
+[INFO] 19:00:00:918 Team/(306:509): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 19:00:00:918 Team/(306:313): Se cumplieron los objetivos, finaliza el Planificador
+[INFO] 19:00:00:918 Team/(306:306): Estado final de los entrenadores
+[INFO] 19:00:00:918 Team/(306:306): Entrenador id: 0
+[INFO] 19:00:00:919 Team/(306:306): Objetivos Originales:
+[INFO] 19:00:00:919 Team/(306:306): Charmander
+[INFO] 19:00:00:919 Team/(306:306): Bulbasaur
+[INFO] 19:00:00:919 Team/(306:306): Squirtle
+[INFO] 19:00:00:919 Team/(306:306): Pokemones:
+[INFO] 19:00:00:919 Team/(306:306): Squirtle
+[INFO] 19:00:00:919 Team/(306:306): Charmander
+[INFO] 19:00:00:919 Team/(306:306): Bulbasaur
+[INFO] 19:00:00:920 Team/(306:306): Entrenador id: 1
+[INFO] 19:00:00:920 Team/(306:306): Objetivos Originales:
+[INFO] 19:00:00:920 Team/(306:306): Onix
+[INFO] 19:00:00:920 Team/(306:306): Snorlax
+[INFO] 19:00:00:920 Team/(306:306): Pokemones:
+[INFO] 19:00:00:920 Team/(306:306): Onix
+[INFO] 19:00:00:920 Team/(306:306): Snorlax
+[INFO] 19:00:00:920 Team/(306:306): Entrenador id: 2
+[INFO] 19:00:00:920 Team/(306:306): Objetivos Originales:
+[INFO] 19:00:00:920 Team/(306:306): Pikachu
+[INFO] 19:00:00:921 Team/(306:306): Pokemones:
+[INFO] 19:00:00:921 Team/(306:306): Pikachu
+[INFO] 19:00:00:921 Team/(306:306): Entrenador id: 3
+[INFO] 19:00:00:921 Team/(306:306): Objetivos Originales:
+[INFO] 19:00:00:921 Team/(306:306): Meowth
+[INFO] 19:00:00:921 Team/(306:306): Pokemones:
+[INFO] 19:00:00:921 Team/(306:306): Meowth
+[INFO] 19:00:00:922 Team/(306:306): Finalizó la conexión con el servidor
+
+[INFO] 19:00:00:922 Team/(306:306): El proceso Team ha finalizado.
+[INFO] 19:00:00:922 Team/(306:306): Ciclos de CPU totales = 283
+[INFO] 19:00:00:922 Team/(306:306): Cambios de contexto realizados = 18
+[INFO] 19:00:00:923 Team/(306:306): Deadlocks detectados y resueltos = 4

@@ -758,3 +758,445 @@
 [INFO] 18:38:12:648 Delibird - Team/(32272:32272): Cambios de contexto del entrenador 1 = 5
 [INFO] 18:38:12:648 Delibird - Team/(32272:32272): Cambios de contexto del entrenador 2 = 4
 [INFO] 18:38:12:648 Delibird - Team/(32272:32272): Deadlocks detectados y resueltos = 2
+[INFO] 18:49:02:995 Delibird - Team/(306:334): Mensaje recibido: LOCALIZED_POKEMON Charmander con 0 pokemones
+[INFO] 18:49:02:995 Delibird - Team/(306:335): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 0 pokemones
+[INFO] 18:49:02:997 Delibird - Team/(306:336): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 0 pokemones
+[INFO] 18:49:02:997 Delibird - Team/(306:337): Mensaje recibido: LOCALIZED_POKEMON Onix con 0 pokemones
+[INFO] 18:49:02:998 Delibird - Team/(306:338): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 0 pokemones
+[INFO] 18:49:02:998 Delibird - Team/(306:339): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 0 pokemones
+[INFO] 18:49:02:998 Delibird - Team/(306:340): Mensaje recibido: LOCALIZED_POKEMON Meowth con 0 pokemones
+[INFO] 18:49:36:933 Delibird - Team/(306:367): Mensaje recibido: APPEARED_POKEMON Onix 9 1.
+[DEBUG] 18:49:36:933 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [1,1]
+[INFO] 18:49:37:445 Delibird - Team/(306:371): Mensaje recibido: APPEARED_POKEMON Charmander 5 5.
+[INFO] 18:49:37:961 Delibird - Team/(306:377): Mensaje recibido: APPEARED_POKEMON Meowth 3 9.
+[DEBUG] 18:49:38:934 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [2,1]
+[DEBUG] 18:49:40:934 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [3,1]
+[DEBUG] 18:49:42:936 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [4,1]
+[DEBUG] 18:49:44:937 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [5,1]
+[DEBUG] 18:49:46:938 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [6,1]
+[DEBUG] 18:49:48:940 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [7,1]
+[DEBUG] 18:49:50:941 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [8,1]
+[DEBUG] 18:49:52:941 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [9,1]
+[INFO] 18:49:54:943 Delibird - Team/(306:309): Se desaloja al entrenador 0. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 18:49:54:943 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [1,9]
+[INFO] 18:49:54:966 Delibird - Team/(306:391): El entrenador 0 capturo un Onix en la posicion [9,1].
+[INFO] 18:49:54:967 Delibird - Team/(306:391): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 18:49:56:944 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [2,9]
+[DEBUG] 18:49:58:944 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [3,9]
+[INFO] 18:50:00:945 Delibird - Team/(306:311): Se desaloja al entrenador 2. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 18:50:00:945 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [1,5]
+[INFO] 18:50:00:962 Delibird - Team/(306:401): El entrenador 2 capturo un Meowth en la posicion [3,9].
+[INFO] 18:50:00:963 Delibird - Team/(306:401): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 18:50:02:946 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [2,5]
+[DEBUG] 18:50:04:947 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [3,5]
+[DEBUG] 18:50:06:948 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [4,5]
+[DEBUG] 18:50:08:949 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [5,5]
+[INFO] 18:50:10:955 Delibird - Team/(306:310): Se desaloja al entrenador 1. Motivo: alcanzo su objetivo y envio un CATCH.
+[INFO] 18:50:10:986 Delibird - Team/(306:409): El entrenador 1 capturo un Charmander en la posicion [5,5].
+[INFO] 18:50:10:988 Delibird - Team/(306:409): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 18:51:08:670 Delibird - Team/(306:451): Mensaje recibido: APPEARED_POKEMON Bulbasaur 40 40.
+[DEBUG] 18:51:08:670 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [31,30]
+[INFO] 18:51:09:168 Delibird - Team/(306:455): Mensaje recibido: APPEARED_POKEMON Squirtle 13 1.
+[INFO] 18:51:09:680 Delibird - Team/(306:460): Mensaje recibido: APPEARED_POKEMON Pikachu 10 5.
+[INFO] 18:51:10:202 Delibird - Team/(306:463): Mensaje recibido: APPEARED_POKEMON Snorlax 15 9.
+[DEBUG] 18:51:10:671 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [31,31]
+[DEBUG] 18:51:12:671 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [32,31]
+[DEBUG] 18:51:14:671 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [32,32]
+[DEBUG] 18:51:16:673 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [33,32]
+[DEBUG] 18:51:18:673 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [33,33]
+[DEBUG] 18:51:20:674 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [34,33]
+[DEBUG] 18:51:22:674 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [34,34]
+[DEBUG] 18:51:24:675 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [35,34]
+[DEBUG] 18:51:26:676 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [35,35]
+[DEBUG] 18:51:28:677 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [36,35]
+[DEBUG] 18:51:30:677 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [36,36]
+[DEBUG] 18:51:32:678 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [37,36]
+[DEBUG] 18:51:34:678 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [37,37]
+[DEBUG] 18:51:36:679 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [38,37]
+[DEBUG] 18:51:38:679 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [38,38]
+[DEBUG] 18:51:40:679 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [39,38]
+[DEBUG] 18:51:42:680 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [39,39]
+[DEBUG] 18:51:44:680 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [40,39]
+[DEBUG] 18:51:46:680 Delibird - Team/(306:312): El entrenador id: 3 se movio a la posicion [40,40]
+[INFO] 18:51:48:683 Delibird - Team/(306:312): Se desaloja al entrenador 3. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 18:51:48:683 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [6,5]
+[INFO] 18:51:48:701 Delibird - Team/(306:475): El entrenador 3 capturo un Bulbasaur en la posicion [40,40].
+[INFO] 18:51:48:703 Delibird - Team/(306:475): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 18:51:50:683 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [7,5]
+[DEBUG] 18:51:52:684 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [8,5]
+[DEBUG] 18:51:54:684 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [9,5]
+[DEBUG] 18:51:56:685 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [10,5]
+[INFO] 18:51:58:690 Delibird - Team/(306:310): Se desaloja al entrenador 1. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 18:51:58:690 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [10,1]
+[INFO] 18:51:58:707 Delibird - Team/(306:485): El entrenador 1 capturo un Pikachu en la posicion [10,5].
+[INFO] 18:51:58:709 Delibird - Team/(306:485): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 18:52:00:690 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [11,1]
+[DEBUG] 18:52:02:691 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [12,1]
+[DEBUG] 18:52:04:691 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [13,1]
+[INFO] 18:52:06:695 Delibird - Team/(306:309): Se desaloja al entrenador 0. Motivo: alcanzo su objetivo y envio un CATCH.
+[INFO] 18:52:06:716 Delibird - Team/(306:495): El entrenador 0 capturo un Squirtle en la posicion [13,1].
+[DEBUG] 18:52:06:724 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [14,1]
+[INFO] 18:52:06:724 Delibird - Team/(306:495): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 18:52:08:725 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [14,2]
+[DEBUG] 18:52:10:726 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [15,2]
+[DEBUG] 18:52:12:726 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [15,3]
+[DEBUG] 18:52:14:727 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [15,4]
+[DEBUG] 18:52:16:728 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [15,5]
+[DEBUG] 18:52:18:728 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [15,6]
+[DEBUG] 18:52:20:729 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [15,7]
+[DEBUG] 18:52:22:729 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [15,8]
+[DEBUG] 18:52:24:730 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [15,9]
+[INFO] 18:52:26:731 Delibird - Team/(306:309): Se desaloja al entrenador 0. Motivo: alcanzo su objetivo y envio un CATCH.
+[INFO] 18:52:26:744 Delibird - Team/(306:509): El entrenador 0 capturo un Snorlax en la posicion [15,9].
+[INFO] 18:52:26:745 Delibird - Team/(306:509): Se inicia la deteccion de deadlock.
+[DEBUG] 18:52:26:750 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [14,9]
+[DEBUG] 18:52:28:750 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [14,8]
+[DEBUG] 18:52:30:750 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [13,8]
+[DEBUG] 18:52:32:751 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [13,7]
+[DEBUG] 18:52:34:752 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [12,7]
+[DEBUG] 18:52:36:752 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [12,6]
+[DEBUG] 18:52:38:753 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [11,6]
+[DEBUG] 18:52:40:753 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [11,5]
+[DEBUG] 18:52:42:754 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [10,5]
+[INFO] 18:52:44:754 Delibird - Team/(306:309): Se comienza el intercambio entre el entrenador 0 y el entrenador 1
+[INFO] 18:52:54:754 Delibird - Team/(306:309): Se finalizo el intercambio entre el entrenador 0 y el entrenador 1
+[DEBUG] 18:52:54:755 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [11,5]
+[DEBUG] 18:52:56:756 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [11,6]
+[DEBUG] 18:52:58:756 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [12,6]
+[DEBUG] 18:53:00:757 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [12,7]
+[DEBUG] 18:53:02:757 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [13,7]
+[DEBUG] 18:53:04:758 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [13,8]
+[DEBUG] 18:53:06:759 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [14,8]
+[DEBUG] 18:53:08:759 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [14,9]
+[DEBUG] 18:53:10:760 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [15,9]
+[INFO] 18:53:11:982 Delibird - Team/(306:325): Se perdio la conexion con el Broker
+[INFO] 18:53:11:982 Delibird - Team/(306:323): Se perdio la conexion con el Broker
+[INFO] 18:53:11:982 Delibird - Team/(306:324): Se perdio la conexion con el Broker
+[INFO] 18:53:11:982 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:11:982 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:11:982 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:53:12:760 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [15,10]
+[DEBUG] 18:53:14:763 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [16,10]
+[DEBUG] 18:53:16:765 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [16,11]
+[DEBUG] 18:53:18:765 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [17,11]
+[DEBUG] 18:53:20:765 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [17,12]
+[INFO] 18:53:21:982 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:21:982 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:21:982 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:53:22:767 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [18,12]
+[DEBUG] 18:53:24:767 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [18,13]
+[DEBUG] 18:53:26:768 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [19,13]
+[DEBUG] 18:53:28:769 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [19,14]
+[DEBUG] 18:53:30:770 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [20,14]
+[INFO] 18:53:31:983 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:31:985 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:31:984 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:53:32:770 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [20,15]
+[DEBUG] 18:53:34:771 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [21,15]
+[DEBUG] 18:53:36:771 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [21,16]
+[DEBUG] 18:53:38:772 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [22,16]
+[DEBUG] 18:53:40:772 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [22,17]
+[INFO] 18:53:41:985 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:41:985 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:41:986 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:53:42:773 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [23,17]
+[DEBUG] 18:53:44:774 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [23,18]
+[DEBUG] 18:53:46:776 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [24,18]
+[DEBUG] 18:53:48:778 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [24,19]
+[DEBUG] 18:53:50:778 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [25,19]
+[INFO] 18:53:51:986 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:51:986 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:53:51:986 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:53:52:779 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [25,20]
+[DEBUG] 18:53:54:779 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [26,20]
+[DEBUG] 18:53:56:780 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [26,21]
+[DEBUG] 18:53:58:780 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [27,21]
+[DEBUG] 18:54:00:781 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [27,22]
+[INFO] 18:54:01:987 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:01:987 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:01:987 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:54:02:782 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [28,22]
+[DEBUG] 18:54:04:783 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [28,23]
+[DEBUG] 18:54:06:783 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [29,23]
+[DEBUG] 18:54:08:783 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [29,24]
+[DEBUG] 18:54:10:784 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [30,24]
+[INFO] 18:54:11:988 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:11:988 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:11:988 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:54:12:785 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [30,25]
+[DEBUG] 18:54:14:785 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [31,25]
+[DEBUG] 18:54:16:786 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [31,26]
+[DEBUG] 18:54:18:786 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [32,26]
+[DEBUG] 18:54:20:788 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [32,27]
+[INFO] 18:54:21:989 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:21:989 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:21:989 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:54:22:788 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [33,27]
+[DEBUG] 18:54:24:788 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [33,28]
+[DEBUG] 18:54:26:789 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [34,28]
+[DEBUG] 18:54:28:792 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [34,29]
+[DEBUG] 18:54:30:793 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [35,29]
+[INFO] 18:54:31:991 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:31:991 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:31:991 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:54:32:794 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [35,30]
+[DEBUG] 18:54:34:794 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [36,30]
+[DEBUG] 18:54:36:795 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [36,31]
+[DEBUG] 18:54:38:796 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [37,31]
+[DEBUG] 18:54:40:797 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [37,32]
+[INFO] 18:54:41:993 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:41:993 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:41:993 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:54:42:798 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [38,32]
+[DEBUG] 18:54:44:800 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [38,33]
+[DEBUG] 18:54:46:801 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [39,33]
+[DEBUG] 18:54:48:801 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [39,34]
+[DEBUG] 18:54:50:802 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [40,34]
+[INFO] 18:54:51:993 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:51:993 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:54:51:993 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:54:52:802 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [40,35]
+[DEBUG] 18:54:54:803 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [40,36]
+[DEBUG] 18:54:56:804 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [40,37]
+[DEBUG] 18:54:58:805 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [40,38]
+[DEBUG] 18:55:00:805 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [40,39]
+[INFO] 18:55:01:997 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:01:997 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:01:997 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:55:02:805 Delibird - Team/(306:309): El entrenador id: 0 se movio a la posicion [40,40]
+[INFO] 18:55:04:806 Delibird - Team/(306:309): Se comienza el intercambio entre el entrenador 0 y el entrenador 3
+[INFO] 18:55:11:998 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:11:998 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:11:998 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:14:806 Delibird - Team/(306:309): Se finalizo el intercambio entre el entrenador 0 y el entrenador 3
+[DEBUG] 18:55:14:808 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [11,5]
+[DEBUG] 18:55:16:810 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [11,6]
+[DEBUG] 18:55:18:811 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [12,6]
+[DEBUG] 18:55:20:811 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [12,7]
+[INFO] 18:55:21:999 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:21:999 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:21:0 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:55:22:812 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [13,7]
+[DEBUG] 18:55:24:813 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [13,8]
+[DEBUG] 18:55:26:813 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [14,8]
+[DEBUG] 18:55:28:814 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [14,9]
+[DEBUG] 18:55:30:815 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [15,9]
+[INFO] 18:55:31:1 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:31:1 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:31:1 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:55:32:816 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [15,10]
+[DEBUG] 18:55:34:817 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [16,10]
+[DEBUG] 18:55:36:817 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [16,11]
+[DEBUG] 18:55:38:818 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [17,11]
+[DEBUG] 18:55:40:819 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [17,12]
+[INFO] 18:55:42:2 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:42:2 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:42:2 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:55:42:820 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [18,12]
+[DEBUG] 18:55:44:820 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [18,13]
+[DEBUG] 18:55:46:821 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [19,13]
+[DEBUG] 18:55:48:821 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [19,14]
+[DEBUG] 18:55:50:821 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [20,14]
+[INFO] 18:55:52:2 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:52:3 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:55:52:3 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:55:52:822 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [20,15]
+[DEBUG] 18:55:54:823 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [21,15]
+[DEBUG] 18:55:56:824 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [21,16]
+[DEBUG] 18:55:58:825 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [22,16]
+[DEBUG] 18:56:00:827 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [22,17]
+[INFO] 18:56:02:3 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:02:3 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:02:3 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:56:02:827 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [23,17]
+[DEBUG] 18:56:04:829 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [23,18]
+[DEBUG] 18:56:06:829 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [24,18]
+[DEBUG] 18:56:08:831 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [24,19]
+[DEBUG] 18:56:10:831 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [25,19]
+[INFO] 18:56:12:4 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:12:4 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:12:5 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:56:12:832 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [25,20]
+[DEBUG] 18:56:14:832 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [26,20]
+[DEBUG] 18:56:16:834 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [26,21]
+[DEBUG] 18:56:18:834 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [27,21]
+[DEBUG] 18:56:20:835 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [27,22]
+[INFO] 18:56:22:5 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:22:6 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:22:6 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:56:22:836 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [28,22]
+[DEBUG] 18:56:24:837 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [28,23]
+[DEBUG] 18:56:26:837 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [29,23]
+[DEBUG] 18:56:28:838 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [29,24]
+[DEBUG] 18:56:30:839 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [30,24]
+[INFO] 18:56:32:7 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:32:7 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:32:7 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:56:32:839 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [30,25]
+[DEBUG] 18:56:34:841 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [31,25]
+[DEBUG] 18:56:36:841 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [31,26]
+[DEBUG] 18:56:38:843 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [32,26]
+[DEBUG] 18:56:40:844 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [32,27]
+[INFO] 18:56:42:8 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:42:9 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:42:9 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:56:42:845 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [33,27]
+[DEBUG] 18:56:44:845 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [33,28]
+[DEBUG] 18:56:46:846 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [34,28]
+[DEBUG] 18:56:48:847 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [34,29]
+[DEBUG] 18:56:50:848 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [35,29]
+[INFO] 18:56:52:10 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:52:10 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:56:52:10 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:56:52:849 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [35,30]
+[DEBUG] 18:56:54:850 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [36,30]
+[DEBUG] 18:56:56:850 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [36,31]
+[DEBUG] 18:56:58:852 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [37,31]
+[DEBUG] 18:57:00:853 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [37,32]
+[INFO] 18:57:02:11 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:02:11 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:02:11 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:57:02:854 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [38,32]
+[DEBUG] 18:57:04:855 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [38,33]
+[DEBUG] 18:57:06:856 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [39,33]
+[DEBUG] 18:57:08:857 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [39,34]
+[DEBUG] 18:57:10:858 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [40,34]
+[INFO] 18:57:12:13 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:12:13 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:12:13 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:57:12:859 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [40,35]
+[DEBUG] 18:57:14:859 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [40,36]
+[DEBUG] 18:57:16:860 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [40,37]
+[DEBUG] 18:57:18:861 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [40,38]
+[DEBUG] 18:57:20:863 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [40,39]
+[INFO] 18:57:22:14 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:22:14 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:22:14 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:57:22:864 Delibird - Team/(306:310): El entrenador id: 1 se movio a la posicion [40,40]
+[INFO] 18:57:24:865 Delibird - Team/(306:310): Se comienza el intercambio entre el entrenador 1 y el entrenador 3
+[INFO] 18:57:32:14 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:32:15 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:32:15 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:34:866 Delibird - Team/(306:310): Se finalizo el intercambio entre el entrenador 1 y el entrenador 3
+[DEBUG] 18:57:34:868 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [4,9]
+[DEBUG] 18:57:36:869 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [4,10]
+[DEBUG] 18:57:38:870 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [5,10]
+[DEBUG] 18:57:40:871 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [5,11]
+[INFO] 18:57:42:15 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:42:16 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:42:16 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:57:42:873 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [6,11]
+[DEBUG] 18:57:44:873 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [6,12]
+[DEBUG] 18:57:46:874 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [7,12]
+[DEBUG] 18:57:48:874 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [7,13]
+[DEBUG] 18:57:50:875 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [8,13]
+[INFO] 18:57:52:17 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:52:17 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:57:52:17 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:57:52:876 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [8,14]
+[DEBUG] 18:57:54:877 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [9,14]
+[DEBUG] 18:57:56:877 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [9,15]
+[DEBUG] 18:57:58:878 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [10,15]
+[DEBUG] 18:58:00:879 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [10,16]
+[INFO] 18:58:02:18 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:02:18 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:02:18 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:58:02:880 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [11,16]
+[DEBUG] 18:58:04:880 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [11,17]
+[DEBUG] 18:58:06:881 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [12,17]
+[DEBUG] 18:58:08:881 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [12,18]
+[DEBUG] 18:58:10:882 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [13,18]
+[INFO] 18:58:12:19 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:12:19 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:12:19 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:58:12:883 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [13,19]
+[DEBUG] 18:58:14:883 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [14,19]
+[DEBUG] 18:58:16:884 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [14,20]
+[DEBUG] 18:58:18:885 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [15,20]
+[DEBUG] 18:58:20:886 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [15,21]
+[INFO] 18:58:22:19 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:22:20 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:22:20 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:58:22:887 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [16,21]
+[DEBUG] 18:58:24:887 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [16,22]
+[DEBUG] 18:58:26:888 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [17,22]
+[DEBUG] 18:58:28:889 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [17,23]
+[DEBUG] 18:58:30:890 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [18,23]
+[INFO] 18:58:32:22 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:32:22 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:32:22 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:58:32:891 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [18,24]
+[DEBUG] 18:58:34:891 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [19,24]
+[DEBUG] 18:58:36:892 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [19,25]
+[DEBUG] 18:58:38:893 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [20,25]
+[DEBUG] 18:58:40:894 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [20,26]
+[INFO] 18:58:42:22 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:42:23 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:42:23 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:58:42:895 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [21,26]
+[DEBUG] 18:58:44:895 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [21,27]
+[DEBUG] 18:58:46:896 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [22,27]
+[DEBUG] 18:58:48:896 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [22,28]
+[DEBUG] 18:58:50:897 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [23,28]
+[INFO] 18:58:52:23 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:52:23 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:58:52:23 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:58:52:898 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [23,29]
+[DEBUG] 18:58:54:898 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [24,29]
+[DEBUG] 18:58:56:899 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [24,30]
+[DEBUG] 18:58:58:899 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [25,30]
+[DEBUG] 18:59:00:900 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [25,31]
+[INFO] 18:59:02:25 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:02:25 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:02:25 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:59:02:900 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [26,31]
+[DEBUG] 18:59:04:900 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [26,32]
+[DEBUG] 18:59:06:901 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [27,32]
+[DEBUG] 18:59:08:902 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [27,33]
+[DEBUG] 18:59:10:903 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [28,33]
+[INFO] 18:59:12:25 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:12:25 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:12:26 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:59:12:904 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [28,34]
+[DEBUG] 18:59:14:904 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [29,34]
+[DEBUG] 18:59:16:905 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [29,35]
+[DEBUG] 18:59:18:906 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [30,35]
+[DEBUG] 18:59:20:907 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [30,36]
+[INFO] 18:59:22:27 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:22:27 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:22:27 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:59:22:908 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [31,36]
+[DEBUG] 18:59:24:908 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [31,37]
+[DEBUG] 18:59:26:909 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [32,37]
+[DEBUG] 18:59:28:909 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [32,38]
+[DEBUG] 18:59:30:909 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [33,38]
+[INFO] 18:59:32:27 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:32:27 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:32:27 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:59:32:909 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [33,39]
+[DEBUG] 18:59:34:910 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [34,39]
+[DEBUG] 18:59:36:911 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [34,40]
+[DEBUG] 18:59:38:912 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [35,40]
+[DEBUG] 18:59:40:913 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [36,40]
+[INFO] 18:59:42:28 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:42:28 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:42:28 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[DEBUG] 18:59:42:915 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [37,40]
+[DEBUG] 18:59:44:915 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [38,40]
+[DEBUG] 18:59:46:916 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [39,40]
+[DEBUG] 18:59:48:917 Delibird - Team/(306:311): El entrenador id: 2 se movio a la posicion [40,40]
+[INFO] 18:59:50:917 Delibird - Team/(306:311): Se comienza el intercambio entre el entrenador 2 y el entrenador 3
+[INFO] 18:59:52:29 Delibird - Team/(306:323): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:52:30 Delibird - Team/(306:325): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 18:59:52:30 Delibird - Team/(306:324): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 19:00:00:918 Delibird - Team/(306:311): Se finalizo el intercambio entre el entrenador 2 y el entrenador 3
+[INFO] 19:00:00:918 Delibird - Team/(306:509): Finalizo la resolucion de deadlocks. Deadlocks resueltos = 4.
+[INFO] 19:00:00:918 Delibird - Team/(306:509): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 19:00:00:922 Delibird - Team/(306:306): El proceso Team ha finalizado.
+[INFO] 19:00:00:922 Delibird - Team/(306:306): Ciclos de CPU totales = 283
+[INFO] 19:00:00:922 Delibird - Team/(306:306): Cambios de contexto realizados = 18
+[INFO] 19:00:00:922 Delibird - Team/(306:306): Cambios de contexto del entrenador 0 = 8
+[INFO] 19:00:00:922 Delibird - Team/(306:306): Cambios de contexto del entrenador 1 = 5
+[INFO] 19:00:00:922 Delibird - Team/(306:306): Cambios de contexto del entrenador 2 = 3
+[INFO] 19:00:00:922 Delibird - Team/(306:306): Cambios de contexto del entrenador 3 = 2
+[INFO] 19:00:00:922 Delibird - Team/(306:306): Deadlocks detectados y resueltos = 4
