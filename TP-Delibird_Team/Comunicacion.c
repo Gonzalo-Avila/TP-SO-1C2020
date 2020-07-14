@@ -35,7 +35,10 @@ bool validarIDCorrelativoCatch(uint32_t id){
 		return false;
 	}
 
-	return list_any_satisfy(idsDeCatch, esUnIDCatch);
+	sem_wait(&mutexCATCH);
+	bool valido = list_any_satisfy(idsDeCatch, esUnIDCatch);
+	sem_post(&mutexCATCH);
+	return valido;
 }
 
 

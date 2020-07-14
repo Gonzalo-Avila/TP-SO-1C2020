@@ -50,7 +50,7 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 					char** posicionCantidad = string_split(entradaActual, "=");	//["5-4", "3", NULL]
 					char* posicion = posicionCantidad[0];						// "5-4"
 
-					log_debug(logger, "posicion encontrada: %s", posicion);
+					log_debug(logger, "Posicion encontrada: %s", posicion);
 
 					char** posSplitteada = string_split(posicion, "-");			//["5", "4", NULL]
 
@@ -80,7 +80,7 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 				mensajeLocalized * msgLoc = armarMensajeLocalized(msgGet, posicionesList);
 				int sizeMensaje = sizeof(uint32_t) + msgGet->longPokemon + sizeof(uint32_t) + list_size(posicionesList) * 2 * sizeof(uint32_t);
 
-				log_debug(logger, "[GET] Enviando LOCALIZED");
+				log_debug(logger, "Enviando LOCALIZED");
 				enviarMensajeBroker(LOCALIZED, mensajeRecibido->idMensaje, sizeMensaje, msgLoc);
 
 				operacionFinalizada=true;
@@ -111,7 +111,7 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 		}
 	}
 
-	log_debug(logger, "[GET] LOCALIZED enviado");
+	log_debug(logger, "LOCALIZED enviado");
 	list_destroy_and_destroy_elements(posicionesList,(void *) destroyer);
 	free(rutaPokemon);
 	free(rutaMetadataPokemon);

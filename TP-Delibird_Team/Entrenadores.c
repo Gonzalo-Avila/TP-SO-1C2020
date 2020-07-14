@@ -296,6 +296,7 @@ void verificarDeadlock() {
 	sem_post(&mutexListaObjetivosOriginales);
 }
 void seCumplieronLosObjetivosDelEntrenador(t_entrenador* entrenador) {
+
 	if(list_is_empty(entrenador->objetivos)){
 		sem_wait(&mutexEntrenadores);
 		entrenador->estado = FIN;
@@ -305,6 +306,7 @@ void seCumplieronLosObjetivosDelEntrenador(t_entrenador* entrenador) {
 		if(puedaAtraparPokemones(entrenador))
 			sem_post(&entrenadorDisponible);
 	}
+
 }
 
 

@@ -62,8 +62,7 @@ t_dist *setearDistanciaEntrenadores(int id, int posX, int posY) {
 
 	entrenador = list_get(team->entrenadores, id);
 
-	distancia->dist = calcularDistancia(entrenador->pos[0], entrenador->pos[1],
-			posX, posY);
+	distancia->dist = calcularDistancia(entrenador->pos[0], entrenador->pos[1],posX, posY);
 	distancia->id = id;
 
 	return distancia;
@@ -208,14 +207,15 @@ bool menorEstimacion(void* entrenador1, void* entrenador2) {
 }
 
 t_entrenador* entrenadorConMenorRafaga(){
+
+
 		list_sort(listaDeReady,menorEstimacion);
 		t_entrenador* entrenador = list_get(listaDeReady,0);
-
+		/*
 		for(int i = 0;i < list_size(listaDeReady);i++){
 			t_entrenador *entr = list_get(listaDeReady,i);
-
 			log_info(logger,"Id del entrenador en lista de ready: %d",entr->id);
-		}
+		}*/
 		return entrenador;
 }
 
@@ -230,17 +230,22 @@ void destructorPosiciones(void * posicion){
 bool hayNuevoEntrenadorConMenorRafaga(t_entrenador* entrenador){
 	bool verifica = false;
 
-	verificarPokemonesEnMapaYPonerEnReady();
+	//verificarPokemonesEnMapaYPonerEnReady();
 
+	sem_wait(&mutexListaDeReady);
 	if(!list_is_empty(listaDeReady)){
 		list_sort(listaDeReady,menorEstimacion);
 		t_entrenador* entrenador2 = list_get(listaDeReady,0);
+		sem_post(&mutexListaDeReady);
 
 		log_error(logger,"Estimacion entrenador %d en ejec: %f y el entrenador en lista de ready: %f",entrenador->id,entrenador->datosSjf.estimadoRafagaAct,entrenador2->datosSjf.estimadoRafagaAct);
 		if(entrenador->datosSjf.estimadoRafagaAct > entrenador2->datosSjf.estimadoRafagaAct){
             hayEntrenadorDesalojante=true;
             verifica = true;
         }
+	}
+	else{
+		sem_post(&mutexListaDeReady);
 	}
 	return verifica;
 }
@@ -257,10 +262,9 @@ void activarHiloDeRR(int id, int quantum){
 }
 
 void verificarPokemonesEnMapaYPonerEnReady(){
+	sem_wait(&mutexListaPosiciones);
 	if(!list_is_empty(listaPosicionesInternas)){
 		t_posicionEnMapa* pos;
-
-		sem_wait(&mutexListaPosiciones);
 		pos = list_remove(listaPosicionesInternas, 0);
 		sem_post(&mutexListaPosiciones);
 
@@ -272,10 +276,13 @@ void verificarPokemonesEnMapaYPonerEnReady(){
 		free(pos->pokemon);
 		free(pos);
 	}
+	else{
+		sem_post(&mutexListaPosiciones);
+	}
 }
 
 void planificadorDeLargoPlazo(){
-	sem_wait(&semGetsEnviados);
+	//sem_wait(&semGetsEnviados); si no mandamos los gets, el planificador deberia poder funcionar para gameboy
 	int cant=0;
 	sem_getvalue(&entrenadorDisponible,&cant);
 	log_info(logger,"Entrenadores disponibles: %d",cant);
@@ -301,7 +308,9 @@ void planificarFifo(){
 
 			if(noSeCumplieronLosObjetivos()){
 
+				sem_wait(&mutexListaDeReady);
 				if(!list_is_empty(listaDeReady)){
+					sem_post(&mutexListaDeReady);
 					log_debug(logger,"Hurra, tengo algo en ready");
 
 					sem_wait(&mutexEntrenadores);
@@ -315,6 +324,9 @@ void planificarFifo(){
 
 					activarHiloDe(entrenador->id);
 					sem_wait(&ejecutando);
+				}
+				else{
+					sem_post(&mutexListaDeReady);
 				}
 			}
 			else{
@@ -379,7 +391,9 @@ void planificarSJFsinDesalojo(){
 
 		if(noSeCumplieronLosObjetivos()){
 
+			sem_wait(&mutexListaDeReady);							//<-- Hasta que no defino bien la lista de ready nadie la toca
 			if(!list_is_empty(listaDeReady)){
+
 				log_debug(logger,"Hurra, tengo algo en ready");
 
 				sem_wait(&mutexEntrenadores);
@@ -388,8 +402,14 @@ void planificarSJFsinDesalojo(){
 				sem_post(&mutexEntrenadores);
 
 				list_remove(listaDeReady,0);
+
+
+				sem_post(&mutexListaDeReady);						//<--
 				activarHiloDe(entrenador->id);
 				sem_wait(&ejecutando);
+			}
+			else{
+				sem_post(&mutexListaDeReady);						//<--
 			}
 		}
 		else{
@@ -407,7 +427,9 @@ void planificarSJFconDesalojo(){
 
 			if(noSeCumplieronLosObjetivos()){
 
+				sem_wait(&mutexListaDeReady);							//<-- Hasta que no defino bien la lista de ready nadie la toca
 				if(!list_is_empty(listaDeReady)){
+
 					log_debug(logger,"Hurra, tengo algo en ready");
                     if(!hayEntrenadorDesalojante){
                         sem_wait(&mutexEntrenadores);
@@ -424,8 +446,12 @@ void planificarSJFconDesalojo(){
                     }
 
                         list_remove(listaDeReady,0);
+                        sem_post(&mutexListaDeReady);					//<--
                         activarHiloDe(entrenador->id);
                         sem_wait(&ejecutando);
+				}
+				else{
+					sem_post(&mutexListaDeReady);						//<--
 				}
 			}
 			else{
@@ -443,10 +469,13 @@ bool puedeExistirDeadlock(){
 
 		sem_wait(&mutexEntrenadores);
 		if(entrenador->estado != FIN){
+			sem_post(&mutexEntrenadores);
 			verifica = true;
+			break;
 		}
 		sem_post(&mutexEntrenadores);
 	}
+
 	return verifica;
 }
 
@@ -477,8 +506,7 @@ t_list *pokesNoObjetivoEnDeadlock(t_list *pokemonesPosibles,t_list *pokemonesObj
 			}
 
 		}
-
-			return verifica;
+		return verifica;
 		}
 
 	listaFiltrada = list_filter(pokemonesPosibles,noLoNecesita);

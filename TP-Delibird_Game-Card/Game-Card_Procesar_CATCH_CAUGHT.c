@@ -120,9 +120,9 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 					config_save(metadataPokemon);
 					sem_post(mutexMetadata);
 
-					log_info(logger, "No existe %s en esa posicion", msgCatch->pokemon);
+					log_info(logger, "No existe %s en la posicion requerida", msgCatch->pokemon);
 					mensajeCaught * msgCaught = armarMensajeCaught(FAIL);
-					log_debug(logger, "[NEW] Enviando APPEARED");
+					log_debug(logger, "Enviando CAUGHT");
 					enviarMensajeBroker(CAUGHT, mensajeRecibido->idMensaje,sizeMensaje, msgCaught);
 					free(msgCaught);
 				}
@@ -137,9 +137,9 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 		}
 		else{
 			sem_post(mutexMetadata);
-			log_info(logger, "No existe el pokemon %s", msgCatch->pokemon);
+			log_info(logger, "No existe el pokemon %s en el filesystem", msgCatch->pokemon);
 			mensajeCaught * msgCaught = armarMensajeCaught(FAIL);
-			log_debug(logger, "[NEW] Enviando APPEARED");
+			log_debug(logger, "Enviando CAUGHT");
 			enviarMensajeBroker(CAUGHT, mensajeRecibido->idMensaje,sizeMensaje, msgCaught);
 			free(msgCaught);
 			operacionFinalizada=true;
@@ -153,7 +153,7 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 	free(mensajeRecibido->mensaje);
 	free(mensajeRecibido);
 
-	log_debug(logger, "[CATCH] CAUGHT enviado");
+	log_debug(logger, "CAUGHT enviado");
 }
 
 mensajeCatch * desarmarMensajeCATCH(mensajeRecibido * mensajeRecibido) {
