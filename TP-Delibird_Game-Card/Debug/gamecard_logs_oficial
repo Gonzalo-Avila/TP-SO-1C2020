@@ -8588,3 +8588,133 @@
 [INFO] 22:58:09:326 GameCard/(10024:10024): Cerrando conexiones...
 [INFO] 22:58:09:334 GameCard/(10024:10024): El proceso gamecard finalizó su ejecución
 
+[INFO] 17:12:40:85 GameCard/(13455:13455): Inicializando filesystem...
+[INFO] 17:12:40:142 GameCard/(13455:13455): El filesystem ya estaba inicializado
+[INFO] 17:12:40:150 GameCard/(13455:13455): Leida configuración preexistente
+[INFO] 17:12:40:156 GameCard/(13455:13455): Se ha iniciado el cliente GameCard
+
+[INFO] 17:12:40:159 GameCard/(13455:13455): Creando hilo de conexión con el broker...
+[INFO] 17:12:40:196 GameCard/(13455:13455): Hilo de conexion con el broker creado
+[INFO] 17:12:40:203 GameCard/(13455:13456): Intentando establecer conexion inicial con broker...
+[INFO] 17:12:40:205 GameCard/(13455:13455): Creando hilo de conexión con GameBoy
+[DEBUG] 17:12:40:271 GameCard/(13455:13455): Esperando cliente GameBoy...
+[INFO] 17:12:40:293 GameCard/(13455:13456): ID de proceso asignado a GameCard: 18
+[INFO] 17:12:40:294 GameCard/(13455:13456): Intentando crear suscripciones a broker
+[INFO] 17:12:40:320 GameCard/(13455:13456): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 17:12:40:321 GameCard/(13455:13456): Suscripcion a NEW_POKEMON realizada
+[INFO] 17:12:40:336 GameCard/(13455:13456): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 17:12:40:337 GameCard/(13455:13456): Suscripcion a CATCH_POKEMON realizada
+[INFO] 17:12:40:339 GameCard/(13455:13456): Se ha suscrito a la cola GET_POKEMON
+[INFO] 17:12:40:342 GameCard/(13455:13456): Suscripcion a GET_POKEMON realizada
+[INFO] 17:12:40:492 GameCard/(13455:13456): Suscripciones a colas realizadas exitosamente
+[INFO] 17:13:56:598 GameCard/(13455:13455): Cerrando conexiones...
+[INFO] 17:13:56:604 GameCard/(13455:13455): El proceso gamecard finalizó su ejecución
+
+[INFO] 17:16:06:211 GameCard/(13506:13506): Inicializando filesystem...
+[INFO] 17:16:06:272 GameCard/(13506:13506): El filesystem ya estaba inicializado
+[INFO] 17:16:06:280 GameCard/(13506:13506): Leida configuración preexistente
+[INFO] 17:16:06:290 GameCard/(13506:13506): Se ha iniciado el cliente GameCard
+
+[INFO] 17:16:06:291 GameCard/(13506:13506): Creando hilo de conexión con el broker...
+[INFO] 17:16:06:329 GameCard/(13506:13506): Hilo de conexion con el broker creado
+[INFO] 17:16:06:336 GameCard/(13506:13507): Intentando establecer conexion inicial con broker...
+[INFO] 17:16:06:337 GameCard/(13506:13506): Creando hilo de conexión con GameBoy
+[DEBUG] 17:16:06:364 GameCard/(13506:13506): Esperando cliente GameBoy...
+[INFO] 17:16:06:417 GameCard/(13506:13507): ID de proceso asignado a GameCard: 19
+[INFO] 17:16:06:419 GameCard/(13506:13507): Intentando crear suscripciones a broker
+[INFO] 17:16:06:452 GameCard/(13506:13507): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 17:16:06:453 GameCard/(13506:13507): Suscripcion a NEW_POKEMON realizada
+[INFO] 17:16:06:455 GameCard/(13506:13507): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 17:16:06:460 GameCard/(13506:13507): Suscripcion a CATCH_POKEMON realizada
+[INFO] 17:16:06:461 GameCard/(13506:13507): Se ha suscrito a la cola GET_POKEMON
+[INFO] 17:16:06:462 GameCard/(13506:13507): Suscripcion a GET_POKEMON realizada
+[INFO] 17:16:06:615 GameCard/(13506:13507): Suscripciones a colas realizadas exitosamente
+[INFO] 17:18:30:686 GameCard/(13506:13506): Cerrando conexiones...
+[INFO] 17:18:30:692 GameCard/(13506:13506): El proceso gamecard finalizó su ejecución
+
+[INFO] 18:19:36:145 GameCard/(15229:15229): Inicializando filesystem...
+[INFO] 18:19:36:318 GameCard/(15229:15229): Filesystem inicializado
+[INFO] 18:19:36:326 GameCard/(15229:15229): Se ha iniciado el cliente GameCard
+
+[INFO] 18:19:36:327 GameCard/(15229:15229): Creando hilo de conexión con el broker...
+[INFO] 18:19:36:365 GameCard/(15229:15229): Hilo de conexion con el broker creado
+[INFO] 18:19:36:371 GameCard/(15229:15230): Intentando establecer conexion inicial con broker...
+[INFO] 18:19:36:373 GameCard/(15229:15229): Creando hilo de conexión con GameBoy
+[DEBUG] 18:19:36:405 GameCard/(15229:15229): Esperando cliente GameBoy...
+[INFO] 18:19:36:450 GameCard/(15229:15230): ID de proceso asignado a GameCard: 26
+[INFO] 18:19:36:452 GameCard/(15229:15230): Intentando crear suscripciones a broker
+[INFO] 18:19:36:482 GameCard/(15229:15230): Se ha suscrito a la cola NEW_POKEMON
+[INFO] 18:19:36:485 GameCard/(15229:15230): Suscripcion a NEW_POKEMON realizada
+[INFO] 18:19:36:489 GameCard/(15229:15230): Se ha suscrito a la cola CATCH_POKEMON
+[INFO] 18:19:36:497 GameCard/(15229:15230): Suscripcion a CATCH_POKEMON realizada
+[INFO] 18:19:36:502 GameCard/(15229:15230): Se ha suscrito a la cola GET_POKEMON
+[INFO] 18:19:36:512 GameCard/(15229:15230): Suscripcion a GET_POKEMON realizada
+[INFO] 18:19:36:649 GameCard/(15229:15230): Suscripciones a colas realizadas exitosamente
+[INFO] 18:22:14:471 GameCard/(15229:15229): Se ha conectado un cliente. Número de socket: 8
+[INFO] 18:22:14:475 GameCard/(15229:15229): Se recibió un mensaje de GameBoy con socket cliente 8
+[INFO] 18:22:14:478 GameCard/(15229:15229): Mensaje de la cola: NEW_POKEMON
+[DEBUG] 18:22:14:489 GameCard/(15229:15229): Procesando mensaje NEW...
+[DEBUG] 18:22:14:566 GameCard/(15229:15229): [NEW] Enviando APPEARED
+[DEBUG] 18:22:14:645 GameCard/(15229:15229): Esperando cliente GameBoy...
+[INFO] 18:22:53:12 GameCard/(15229:15229): Se ha conectado un cliente. Número de socket: 11
+[INFO] 18:22:53:13 GameCard/(15229:15229): Se recibió un mensaje de GameBoy con socket cliente 11
+[INFO] 18:22:53:13 GameCard/(15229:15229): Mensaje de la cola: NEW_POKEMON
+[DEBUG] 18:22:53:14 GameCard/(15229:15229): Procesando mensaje NEW...
+[DEBUG] 18:22:53:69 GameCard/(15229:15229): [NEW] Enviando APPEARED
+[DEBUG] 18:22:53:107 GameCard/(15229:15229): Esperando cliente GameBoy...
+[INFO] 18:22:53:108 GameCard/(15229:15229): Se ha conectado un cliente. Número de socket: 12
+[INFO] 18:22:53:109 GameCard/(15229:15229): Se recibió un mensaje de GameBoy con socket cliente 12
+[INFO] 18:22:53:112 GameCard/(15229:15229): Mensaje de la cola: NEW_POKEMON
+[DEBUG] 18:22:53:115 GameCard/(15229:15229): Procesando mensaje NEW...
+[DEBUG] 18:22:53:155 GameCard/(15229:15229): [NEW] Enviando APPEARED
+[DEBUG] 18:22:53:217 GameCard/(15229:15229): Esperando cliente GameBoy...
+[INFO] 18:22:53:217 GameCard/(15229:15229): Se ha conectado un cliente. Número de socket: 13
+[INFO] 18:22:53:218 GameCard/(15229:15229): Se recibió un mensaje de GameBoy con socket cliente 13
+[INFO] 18:22:53:219 GameCard/(15229:15229): Mensaje de la cola: NEW_POKEMON
+[DEBUG] 18:22:53:219 GameCard/(15229:15229): Procesando mensaje NEW...
+[DEBUG] 18:22:53:227 GameCard/(15229:15229): [NEW] Enviando APPEARED
+[DEBUG] 18:22:53:250 GameCard/(15229:15229): Esperando cliente GameBoy...
+[INFO] 18:22:53:256 GameCard/(15229:15229): Se ha conectado un cliente. Número de socket: 14
+[INFO] 18:22:53:257 GameCard/(15229:15229): Se recibió un mensaje de GameBoy con socket cliente 14
+[INFO] 18:22:53:258 GameCard/(15229:15229): Mensaje de la cola: NEW_POKEMON
+[DEBUG] 18:22:53:258 GameCard/(15229:15229): Procesando mensaje NEW...
+[DEBUG] 18:22:53:271 GameCard/(15229:15229): [NEW] Enviando APPEARED
+[DEBUG] 18:22:53:297 GameCard/(15229:15229): Esperando cliente GameBoy...
+[INFO] 18:22:53:300 GameCard/(15229:15229): Se ha conectado un cliente. Número de socket: 15
+[INFO] 18:22:53:301 GameCard/(15229:15229): Se recibió un mensaje de GameBoy con socket cliente 15
+[INFO] 18:22:53:303 GameCard/(15229:15229): Mensaje de la cola: NEW_POKEMON
+[DEBUG] 18:22:53:304 GameCard/(15229:15229): Procesando mensaje NEW...
+[DEBUG] 18:22:53:321 GameCard/(15229:15229): [NEW] Enviando APPEARED
+[DEBUG] 18:22:53:348 GameCard/(15229:15229): Esperando cliente GameBoy...
+[INFO] 18:22:53:351 GameCard/(15229:15229): Se ha conectado un cliente. Número de socket: 16
+[INFO] 18:22:53:352 GameCard/(15229:15229): Se recibió un mensaje de GameBoy con socket cliente 16
+[INFO] 18:22:53:356 GameCard/(15229:15229): Mensaje de la cola: NEW_POKEMON
+[DEBUG] 18:22:53:357 GameCard/(15229:15229): Procesando mensaje NEW...
+[DEBUG] 18:22:53:368 GameCard/(15229:15229): [NEW] Enviando APPEARED
+[DEBUG] 18:22:53:398 GameCard/(15229:15229): Esperando cliente GameBoy...
+[INFO] 18:22:53:398 GameCard/(15229:15229): Se ha conectado un cliente. Número de socket: 17
+[INFO] 18:22:53:399 GameCard/(15229:15229): Se recibió un mensaje de GameBoy con socket cliente 17
+[INFO] 18:22:53:400 GameCard/(15229:15229): Mensaje de la cola: NEW_POKEMON
+[DEBUG] 18:22:53:400 GameCard/(15229:15229): Procesando mensaje NEW...
+[DEBUG] 18:22:53:419 GameCard/(15229:15229): [NEW] Enviando APPEARED
+[DEBUG] 18:22:53:448 GameCard/(15229:15229): Esperando cliente GameBoy...
+[INFO] 18:22:53:451 GameCard/(15229:15229): Se ha conectado un cliente. Número de socket: 18
+[INFO] 18:22:53:452 GameCard/(15229:15229): Se recibió un mensaje de GameBoy con socket cliente 18
+[INFO] 18:22:53:453 GameCard/(15229:15229): Mensaje de la cola: NEW_POKEMON
+[DEBUG] 18:22:53:453 GameCard/(15229:15229): Procesando mensaje NEW...
+[DEBUG] 18:22:53:501 GameCard/(15229:15229): [NEW] Enviando APPEARED
+[DEBUG] 18:22:53:527 GameCard/(15229:15229): Esperando cliente GameBoy...
+[INFO] 18:23:55:764 GameCard/(15229:15229): Se ha conectado un cliente. Número de socket: 19
+[INFO] 18:23:55:765 GameCard/(15229:15229): Se recibió un mensaje de GameBoy con socket cliente 19
+[INFO] 18:23:55:766 GameCard/(15229:15229): Mensaje de la cola: CATCH_POKEMON
+[DEBUG] 18:23:55:768 GameCard/(15229:15229): Procesando mensaje CATCH...
+[DEBUG] 18:23:55:846 GameCard/(15229:15229): [CATCH] CAUGHT enviado
+[DEBUG] 18:23:55:849 GameCard/(15229:15229): Esperando cliente GameBoy...
+[INFO] 18:24:54:858 GameCard/(15229:15229): Se ha conectado un cliente. Número de socket: 20
+[INFO] 18:24:54:859 GameCard/(15229:15229): Se recibió un mensaje de GameBoy con socket cliente 20
+[INFO] 18:24:54:860 GameCard/(15229:15229): Mensaje de la cola: CATCH_POKEMON
+[DEBUG] 18:24:54:861 GameCard/(15229:15229): Procesando mensaje CATCH...
+[INFO] 18:24:54:889 GameCard/(15229:15229): No existe Charmander en esa posicion
+[DEBUG] 18:24:54:891 GameCard/(15229:15229): [NEW] Enviando APPEARED
+[DEBUG] 18:24:54:905 GameCard/(15229:15229): [CATCH] CAUGHT enviado
+[DEBUG] 18:24:54:909 GameCard/(15229:15229): Esperando cliente GameBoy...
