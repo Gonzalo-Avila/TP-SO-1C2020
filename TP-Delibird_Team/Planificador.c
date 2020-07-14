@@ -92,10 +92,12 @@ int entrenadorMasCercanoEnEspera(int posX, int posY) {
 	int idEntrenadorAux;
 	int j = 0;
 
+	sem_wait(&mutexEntrenadores);
 	for (int i = 0; i < list_size(team->entrenadores); i++) {
 		distancia = setearDistanciaEntrenadores(i, posX, posY);
 		list_add(listaDistancias, distancia);
 	}
+	sem_post(&mutexEntrenadores);
 
 	list_sort(listaDistancias, menorDist);
 
@@ -109,7 +111,7 @@ int entrenadorMasCercanoEnEspera(int posX, int posY) {
 		}
 
 		j++;
-	}//esta estructura se fija si el entrenador esta en espera.
+	}
 
 	list_destroy_and_destroy_elements(listaDistancias,(void *)destructorGeneral);
 
@@ -157,23 +159,10 @@ bool noSeCumplieronLosObjetivos(){
 int ponerEnReadyAlMasCercano(int x, int y, char* pokemon){
 	t_entrenador* entrenadorMasCercano;
 	int idEntrenadorMasCercano;
-
 	idEntrenadorMasCercano = entrenadorMasCercanoEnEspera(x,y);
 
 	if(idEntrenadorMasCercano != -1){
-
 		entrenadorMasCercano = (t_entrenador*) list_get(team->entrenadores,idEntrenadorMasCercano);
-
-		sem_wait(&mutexEntrenadores);
-		entrenadorMasCercano->estado = LISTO;
-		strcpy(entrenadorMasCercano->pokemonAAtrapar.pokemon, pokemon);
-		entrenadorMasCercano->pokemonAAtrapar.pos[0] = x;
-		entrenadorMasCercano->pokemonAAtrapar.pos[1] = y;
-		sem_post(&mutexEntrenadores);
-
-		sem_wait(&mutexListaDeReady);
-		list_add(listaDeReady,entrenadorMasCercano);
-		sem_post(&mutexListaDeReady);
 
 
 		bool esUnObjetivo(void *objetivo){
@@ -189,6 +178,16 @@ int ponerEnReadyAlMasCercano(int x, int y, char* pokemon){
 		list_remove_by_condition(team->objetivosNoAtendidos,esUnObjetivo);
 		sem_post(&mutexOBJETIVOS);
 
+		sem_wait(&mutexEntrenadores);
+		entrenadorMasCercano->estado = LISTO;
+		strcpy(entrenadorMasCercano->pokemonAAtrapar.pokemon, pokemon);
+		entrenadorMasCercano->pokemonAAtrapar.pos[0] = x;
+		entrenadorMasCercano->pokemonAAtrapar.pos[1] = y;
+		sem_post(&mutexEntrenadores);
+
+		sem_wait(&mutexListaDeReady);
+		list_add(listaDeReady,entrenadorMasCercano);
+		sem_post(&mutexListaDeReady);
 	}
 	else{
 		log_error(logger,"No tengo entrenadores libres");
@@ -257,6 +256,12 @@ void activarHiloDe(int id){
 void activarHiloDeRR(int id, int quantum){
 	activarHiloDe(id);
 
+	int valorSemRR;
+	sem_getvalue(&semEntrenadoresRR[id],&valorSemRR);
+
+	for(int i = 0;i < valorSemRR;i++)
+		sem_wait(&semEntrenadoresRR[id]);
+
 	for(int i = 0; i<quantum; i++)
 		sem_post(&semEntrenadoresRR[id]);
 }
@@ -282,7 +287,7 @@ void verificarPokemonesEnMapaYPonerEnReady(){
 }
 
 void planificadorDeLargoPlazo(){
-	//sem_wait(&semGetsEnviados); si no mandamos los gets, el planificador deberia poder funcionar para gameboy
+	sem_wait(&semGetsEnviados); //si no mandamos los gets, el planificador deberia poder funcionar para gameboy
 	int cant=0;
 	sem_getvalue(&entrenadorDisponible,&cant);
 	log_info(logger,"Entrenadores disponibles: %d",cant);
@@ -339,8 +344,8 @@ void planificarFifo(){
 void planificarRR(){
 	int quantum = atoi(config_get_string_value(config, "QUANTUM"));
 	log_debug(logger,"Se activa el planificador");
-	t_entrenador *entrenador;
 	int cant=0;
+	t_entrenador *entrenador;
 
 	while(1){
 
@@ -351,16 +356,13 @@ void planificarRR(){
 
 				sem_wait(&mutexListaDeReady);
 				if(!list_is_empty(listaDeReady)){
-					sem_post(&mutexListaDeReady);
+
 					log_debug(logger,"Hurra, tengo algo en ready");
 
-					sem_wait(&mutexListaDeReady);
 					for(int i = 0;i < list_size(listaDeReady);i++){
 						log_info(logger,"id entrenador en ready: %d",((t_entrenador*)list_get(listaDeReady,i))->id);
 					}
-					sem_post(&mutexListaDeReady);
 
-					sem_wait(&mutexListaDeReady);
 					entrenador = list_remove(listaDeReady,0);
 					sem_post(&mutexListaDeReady);
 

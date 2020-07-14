@@ -2,26 +2,32 @@
 
 void enviarGetDePokemon(char *ip, char *puerto, char *pokemon) {
 	int *socketBroker = malloc(sizeof(int));
-	*socketBroker = crearConexionClienteConReintento(ip, puerto, tiempoDeEspera);
-	uint32_t * idRespuesta = malloc(sizeof(uint32_t));
+	*socketBroker = crearConexionCliente(ip, puerto);
 
-	mensajeGet *msg = malloc(sizeof(mensajeGet));
+	if(*socketBroker != -1){
+		uint32_t * idRespuesta = malloc(sizeof(uint32_t));
 
-	msg->longPokemon = strlen(pokemon) + 1;
-	msg->pokemon = malloc(msg->longPokemon);
-	strcpy(msg->pokemon, pokemon);
+		mensajeGet *msg = malloc(sizeof(mensajeGet));
 
-	enviarMensajeABroker(*socketBroker, GET, -1, sizeof(uint32_t) + msg->longPokemon, msg);
-	recv(*socketBroker,idRespuesta,sizeof(uint32_t),MSG_WAITALL);
+		msg->longPokemon = strlen(pokemon) + 1;
+		msg->pokemon = malloc(msg->longPokemon);
+		strcpy(msg->pokemon, pokemon);
 
-	sem_wait(&mutexidsGet);
-	list_add(idsDeGet,idRespuesta);
-	sem_post(&mutexidsGet);
+		enviarMensajeABroker(*socketBroker, GET, -1, sizeof(uint32_t) + msg->longPokemon, msg);
+		recv(*socketBroker,idRespuesta,sizeof(uint32_t),MSG_WAITALL);
 
-	free(msg->pokemon);
-	free(msg);
-	close(*socketBroker);
-	free(socketBroker);
+		sem_wait(&mutexidsGet);
+		list_add(idsDeGet,idRespuesta);
+		sem_post(&mutexidsGet);
+
+		free(msg->pokemon);
+		free(msg);
+		close(*socketBroker);
+		free(socketBroker);
+	}
+	else{
+		log_info(logger,"No se pudo enviar el get");
+	}
 }
 
 bool validarIDCorrelativoCatch(uint32_t id){
@@ -331,9 +337,13 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 			if(estaEnLosObjetivos(pokemon) && cantPokes>0){
 				log_debug(logger, "El pokemon %s es un objetivo", pokemon);
 
+				sem_wait(&mutexOBJETIVOS);
 				int cantQueNecesito = list_count_satisfying(team->objetivosNoAtendidos, esDeEstaEspecie);
+				sem_post(&mutexOBJETIVOS);
+				int cantAuxQueNecesito = cantQueNecesito;
 
-				for (int i = 0; i < cantPokes; i++) {
+
+				for(int i = 0; i < cantPokes; i++){
 					t_posicionEnMapa* posicion = malloc(sizeof(t_posicionEnMapa));
 					posicion->pokemon=malloc(strlen(pokemon)+1);
 					strcpy(posicion->pokemon, pokemon);
@@ -349,7 +359,7 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 						list_add(listaPosicionesInternas, posicion);
 						sem_post(&mutexListaPosiciones);
 
-						sem_post(&posicionesPendientes);
+//						sem_post(&posicionesPendientes);
 						cantQueNecesito--;
 					}
 					else{
@@ -357,6 +367,10 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 						list_add(listaPosicionesBackUp, posicion);
 						sem_post(&mutexListaPosicionesBackup);
 					}
+				}
+
+				for(int i = 0; i < ((cantAuxQueNecesito <= cantPokes) ? cantAuxQueNecesito : cantPokes);i++){
+					sem_post(&posicionesPendientes);
 				}
 			}
 		}else{
@@ -677,25 +691,6 @@ void esperarMensajesGameboy(int* socketSuscripcion) {
 	}
 
 	}
-}
-
-t_mensaje* deserializar(void* paquete) {
-	t_mensaje* mensaje = malloc(sizeof(paquete));
-	int offset = 0;
-
-	memcpy((void*) mensaje->tipoDeMensaje, paquete, sizeof(int));
-	offset += sizeof(int);
-	memcpy((void*) mensaje->pokemonSize, paquete + offset, sizeof(int));
-	offset += sizeof(int);
-	memcpy((void*) mensaje->pokemon, paquete + offset, mensaje->pokemonSize);
-	offset += mensaje->pokemonSize;
-	if (mensaje->tipoDeMensaje == LOCALIZED
-			|| mensaje->tipoDeMensaje == CAUGHT) {
-		memcpy((void*) mensaje->posicionX, paquete + offset, sizeof(int));
-		offset += sizeof(int);
-		memcpy((void*) mensaje->posicionY, paquete + offset, sizeof(int));
-	}
-	return mensaje;
 }
 
 void enviarGetSegunObjetivo(char *ip, char *puerto) {

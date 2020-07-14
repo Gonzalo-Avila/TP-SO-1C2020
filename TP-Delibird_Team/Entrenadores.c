@@ -5,7 +5,10 @@ void registrarCambioDeContextoGeneral(){
 }
 
 void registrarCambioDeContexto(t_entrenador* entrenador){
+	sem_wait(&mutexEntrenadores);
 	entrenador->cambiosDeContexto++;
+	sem_post(&mutexEntrenadores);
+
 	registrarCambioDeContextoGeneral();
 }
 
@@ -165,16 +168,16 @@ void setearObjetivosDeTeam() {
 
 void crearHiloEntrenador(t_entrenador* entrenador) {
 	pthread_t nuevoHilo;
-	t_listaHilos* nodoListaDeHilos = malloc(sizeof(t_listaHilos));
+//	t_listaHilos* nodoListaDeHilos = malloc(sizeof(t_listaHilos));
 
 	pthread_create(&nuevoHilo, NULL, (void*) gestionarEntrenador, entrenador);
 
-	nodoListaDeHilos->hilo = nuevoHilo;
-	nodoListaDeHilos->id = entrenador->id;
-
-	list_add(listaHilos, nodoListaDeHilos);
-
 	pthread_detach(nuevoHilo);
+//	nodoListaDeHilos->hilo = nuevoHilo;
+//	nodoListaDeHilos->id = entrenador->id;
+//
+//	list_add(listaHilos, nodoListaDeHilos);
+
 }
 
 void loggearPosicion(t_entrenador* entrenador) {
@@ -297,16 +300,16 @@ void verificarDeadlock() {
 }
 void seCumplieronLosObjetivosDelEntrenador(t_entrenador* entrenador) {
 
+	sem_wait(&mutexEntrenadores);
 	if(list_is_empty(entrenador->objetivos)){
-		sem_wait(&mutexEntrenadores);
 		entrenador->estado = FIN;
 		sem_post(&mutexEntrenadores);
 	}
 	else{
+		sem_post(&mutexEntrenadores);
 		if(puedaAtraparPokemones(entrenador))
 			sem_post(&entrenadorDisponible);
 	}
-
 }
 
 
@@ -422,7 +425,7 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 						registrarCambioDeContexto(entrenador);
 
 						sem_wait(&mutexEntrenadores);
-						entrenador->estado = LISTO; //Nico | Podría primero mandarlo a blocked y dps a ready, para respetar el modelo.
+						entrenador->estado = LISTO;
 						sem_post(&mutexEntrenadores);
 
 						sem_wait(&mutexListaDeReady);
@@ -431,8 +434,8 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 						sem_post(&procesoEnReady);
 						sem_post(&ejecutando);
 					}
-
 					sem_wait(&semEntrenadoresRR[entrenador->id]);
+
 					sem_wait(&mutexEntrenadores);
 
 					if(alternadorXY){
@@ -451,14 +454,15 @@ void gestionarEntrenadorRR(t_entrenador* entrenador){
 				}
 
 				if(!entrenador->datosDeadlock.estaEnDeadlock){
-					enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-					registrarCambioDeContexto(entrenador);
-					log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
-
 					sem_wait(&mutexEntrenadores);
 					entrenador->estado = BLOQUEADO;
 					entrenador->suspendido = true;
 					sem_post(&mutexEntrenadores);
+
+					enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+					registrarCambioDeContexto(entrenador);
+					log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
+
 				}
 				else{
 					sem_wait(&mutexEntrenadores);
