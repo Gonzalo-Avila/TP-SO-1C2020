@@ -163,21 +163,11 @@ int ponerEnReadyAlMasCercano(int x, int y, char* pokemon){
 
 	if(idEntrenadorMasCercano != -1){
 		entrenadorMasCercano = (t_entrenador*) list_get(team->entrenadores,idEntrenadorMasCercano);
-
-
-		bool esUnObjetivo(void *objetivo){
-			bool verifica = false;
-
-			if(string_equals_ignore_case((char *)objetivo, pokemon))
-				verifica = true;
-
-			return verifica;
-		}
-
+		/*
 		sem_wait(&mutexOBJETIVOS);
 		list_remove_by_condition(team->objetivosNoAtendidos,esUnObjetivo);
 		sem_post(&mutexOBJETIVOS);
-
+		*/
 		sem_wait(&mutexEntrenadores);
 		entrenadorMasCercano->estado = LISTO;
 		strcpy(entrenadorMasCercano->pokemonAAtrapar.pokemon, pokemon);
@@ -202,7 +192,7 @@ bool menorEstimacion(void* entrenador1, void* entrenador2) {
 	float estimadoEntrenador1 = ((t_entrenador*)entrenador1)->datosSjf.estimadoRafagaAct;
 	float estimadoEntrenador2 = ((t_entrenador*)entrenador2)->datosSjf.estimadoRafagaAct;
 
-	return estimadoEntrenador1 < estimadoEntrenador2;
+	return estimadoEntrenador1 <= estimadoEntrenador2;
 }
 
 t_entrenador* entrenadorConMenorRafaga(){
@@ -273,9 +263,12 @@ void verificarPokemonesEnMapaYPonerEnReady(){
 		pos = list_remove(listaPosicionesInternas, 0);
 		sem_post(&mutexListaPosiciones);
 
-		if(estaEnLosObjetivos(pos->pokemon)){
+		if(estaEnLosObjetivosOriginales(pos->pokemon)){
 			ponerEnReadyAlMasCercano(pos->pos[0], pos->pos[1], pos->pokemon);
 			sem_post(&procesoEnReady);
+		}
+		else{
+			sem_post(&entrenadorDisponible);
 		}
 
 		free(pos->pokemon);
@@ -287,7 +280,7 @@ void verificarPokemonesEnMapaYPonerEnReady(){
 }
 
 void planificadorDeLargoPlazo(){
-	sem_wait(&semGetsEnviados); //si no mandamos los gets, el planificador deberia poder funcionar para gameboy
+	//sem_wait(&semGetsEnviados); //si no mandamos los gets, el planificador deberia poder funcionar para gameboy
 	int cant=0;
 	sem_getvalue(&entrenadorDisponible,&cant);
 	log_info(logger,"Entrenadores disponibles: %d",cant);

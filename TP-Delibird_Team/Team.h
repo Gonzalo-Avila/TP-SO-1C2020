@@ -132,6 +132,7 @@ sem_t mutexMensajes;
 sem_t mutexEntrenadores;
 sem_t mutexAPPEARED;
 sem_t mutexLOCALIZED;
+sem_t mutexAPPEARED_LOCALIZED;
 sem_t mutexCAUGHT;
 sem_t mutexCATCH;
 sem_t mutexOBJETIVOS;
