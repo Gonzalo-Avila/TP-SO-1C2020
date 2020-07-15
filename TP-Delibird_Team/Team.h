@@ -32,7 +32,8 @@ typedef enum{ //
 
 typedef struct {
 	t_list *entrenadores;
-	t_list *objetivo;
+	t_list *objetivosNoAtendidos;
+	t_list *objetivosOriginales;
 	e_algoritmo algoritmoPlanificacion;
 }t_team;
 
@@ -103,12 +104,18 @@ int ciclosDeCPUTotales;
 int cambiosDeContexto;
 int deadlocksResueltos;
 uint32_t idDelProceso;
+bool yaTengoID;
 float alfa;
 t_team *team;
 t_list *listaHilos;
 t_list *listaDeReady;
 t_list *listaDeBloqued;
 t_list *idsDeCatch;
+t_list *idsDeGet;
+t_list *especiesRecibidas;
+t_list *listaCondsEntrenadores;
+t_list *listaPosicionesInternas;
+t_list *listaPosicionesBackUp;
 
 int *socketBrokerApp;
 int *socketBrokerLoc;
@@ -120,22 +127,32 @@ bool hayEntrenadorDesalojante;
 char* ipServidor;
 char* puertoServidor;
 
-t_list *listaCondsEntrenadores;
-t_list *listaPosicionesInternas;
 
 sem_t mutexMensajes;
 sem_t mutexEntrenadores;
 sem_t mutexAPPEARED;
 sem_t mutexLOCALIZED;
 sem_t mutexCAUGHT;
+sem_t mutexCATCH;
 sem_t mutexOBJETIVOS;
-sem_t semPlanif;
+sem_t mutexListaPosiciones;
+sem_t mutexListaPosicionesBackup;
+sem_t mutexListaObjetivosOriginales;
+sem_t mutexEspeciesRecibidas;
+sem_t mutexidsGet;
+sem_t mutexListaDeReady;
+sem_t mutexListaCatch;
+
+sem_t ejecutando;
 sem_t *semEntrenadores;
 sem_t *semEntrenadoresRR;
+sem_t entrenadorDisponible;
+sem_t posicionesPendientes;
 sem_t procesoEnReady;
 sem_t conexionCreada;
 sem_t reconexion;
 sem_t resolviendoDeadlock;
+sem_t semGetsEnviados;
 
 pthread_t hiloPlanificador;
 
@@ -149,6 +166,8 @@ bool estaEnLosObjetivos(char *pokemon);
 bool validarIDCorrelativoCatch(uint32_t id);
 bool menorEstimacion(void* entrenador1, void* entrenador2);
 bool hayNuevoEntrenadorConMenorRafaga(t_entrenador* entrenador);
+bool puedaAtraparPokemones(t_entrenador *entrenador);
+bool estaEnLosObjetivosOriginales(char *pokemon);
 float calcularDistancia(int posX1, int posY1,int posX2,int posY2);
 float calcularEstimacion(t_entrenador* entrenador);
 void crearConexionEscuchaGameboy(int* socket);
@@ -205,6 +224,9 @@ void escaneoDeDeadlock();
 void imprimirListaDeCadenas(t_list * listaDeCadenas);
 void seCumplieronLosObjetivosDelEntrenador(t_entrenador *entrenador);
 void verificarDeadlock();
+void planificadorDeLargoPlazo();
+void verificarPokemonesEnMapaYPonerEnReady();
+void imprimirEstadoFinalEntrenadores();
 int ponerEnReadyAlMasCercano(int x, int y, char* pokemon);
 int crearConexionClienteConReintento(char * ip, char * puerto, int tiempoDeEspera);
 

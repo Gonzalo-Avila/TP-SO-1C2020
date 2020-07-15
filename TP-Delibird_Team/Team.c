@@ -7,18 +7,19 @@ void inicializarVariablesGlobales() {
 	listaHilos = list_create();
 	team = malloc(sizeof(t_team));
 	team->entrenadores = list_create();
-	team->objetivo = list_create();
+	team->objetivosNoAtendidos = list_create();
 	listaDeReady = list_create(); //esto se necesita para el FIFO.
 	listaDeBloqued = list_create(); //esto es necesario??
-//	ipServidor = malloc(strlen(config_get_string_value(config, "IP")) + 1);
 	ipServidor = config_get_string_value(config, "IP");
-//	puertoServidor = malloc(strlen(config_get_string_value(config, "PUERTO")) + 1);
 	puertoServidor = config_get_string_value(config, "PUERTO");
 	tiempoDeEspera = atoi(config_get_string_value(config, "CONNECTION_RETRY"));
 	team->algoritmoPlanificacion = obtenerAlgoritmoPlanificador();
 	listaCondsEntrenadores = list_create();
 	listaPosicionesInternas = list_create();
+	listaPosicionesBackUp =list_create();
+	especiesRecibidas = list_create();
 	idsDeCatch = list_create();
+	idsDeGet = list_create();
 	alfa =(float)atof(config_get_string_value(config, "ALFA"));
 	socketBrokerApp = malloc(sizeof(int));
 	socketBrokerLoc = malloc(sizeof(int));
@@ -31,6 +32,7 @@ void inicializarVariablesGlobales() {
 	deadlocksResueltos = 0;
 
 	hayEntrenadorDesalojante = false;
+	yaTengoID = false;
 
 	//inicializo el mutex para los mensajes que llegan del broker
 	sem_init(&mutexMensajes, 0, 1);
@@ -38,12 +40,26 @@ void inicializarVariablesGlobales() {
 	sem_init(&mutexAPPEARED, 0, 1);
 	sem_init(&mutexLOCALIZED, 0, 1);
 	sem_init(&mutexCAUGHT, 0, 1);
+	sem_init(&mutexCATCH, 0, 1);
 	sem_init(&mutexOBJETIVOS, 0, 1);
-	sem_init(&semPlanif, 0, 0);
+	sem_init(&mutexListaPosiciones, 0, 1);
+	sem_init(&mutexListaPosicionesBackup, 0, 1);
+	sem_init(&mutexListaObjetivosOriginales, 0, 1);
+	sem_init(&mutexEspeciesRecibidas, 0, 1);
+	sem_init(&mutexidsGet, 0, 1);
+	sem_init(&mutexListaDeReady, 0, 1);
+	sem_init(&mutexListaCatch, 0, 1);
+
+	sem_init(&ejecutando, 0, 0);
 	sem_init(&procesoEnReady,0,0);
 	sem_init(&conexionCreada, 0, 0);
 	sem_init(&reconexion, 0, 0);
 	sem_init(&resolviendoDeadlock,0,0);
+	sem_init(&posicionesPendientes, 0, 0);
+	sem_init(&entrenadorDisponible,0,0);
+	sem_init(&semGetsEnviados, 0, 0);
+
+
 
 	log_debug(logger, "Se ha iniciado un Team.");
 }
@@ -91,7 +107,7 @@ void destruirEntrenadores() {
 void liberarMemoria() {
 	//destruirEntrenadores();
 	//asumo que el list_destroy hace los free correspondientes.
-	list_destroy(team->objetivo);
+	list_destroy(team->objetivosNoAtendidos);
 	list_destroy_and_destroy_elements(listaHilos, destructorGeneral);
 	list_destroy_and_destroy_elements(listaDeReady, destructorGeneral);
 	list_destroy_and_destroy_elements(listaDeBloqued, destructorGeneral);
@@ -111,7 +127,7 @@ void destruirSemaforos(){
 	sem_destroy(&mutexLOCALIZED);
 	sem_destroy(&mutexCAUGHT);
 	sem_destroy(&mutexOBJETIVOS);
-	sem_destroy(&semPlanif);
+	sem_destroy(&ejecutando);
 	sem_destroy(&procesoEnReady);
 	sem_destroy(&conexionCreada);
 	sem_destroy(&reconexion);
@@ -131,13 +147,13 @@ void imprimirResultadosDelTeam(){
 	log_info(loggerOficial,"El proceso Team ha finalizado.");
 	log_info(loggerOficial,"Ciclos de CPU totales = %d", ciclosDeCPUTotales);
 	log_info(loggerOficial,"Cambios de contexto realizados = %d", cambiosDeContexto);
-
+	
 	for(int id = 0; id < list_size(team->entrenadores);id++){
 		t_entrenador* entrenador = list_get(team->entrenadores, id);
 		log_info(loggerOficial, "Cambios de contexto del entrenador %d = %d",
 				 entrenador->id, entrenador->cambiosDeContexto);
 	}
-
+	
 	log_info(loggerOficial, "Deadlocks detectados y resueltos = %d", deadlocksResueltos);
 
 	log_info(logger,"El proceso Team ha finalizado.");
@@ -182,6 +198,18 @@ void finalizarProceso(){
 	exit(0);
 }
 
+void imprimirEstadoFinalEntrenadores() {
+	log_info(logger, "Estado final de los entrenadores");
+	for (int i = 0; i < list_size(team->entrenadores); i++) {
+		t_entrenador* entrenador = list_get(team->entrenadores, i);
+		log_info(logger, "Entrenador id: %d", entrenador->id);
+		log_info(logger, "Objetivos Originales:");
+		imprimirListaDeCadenas(entrenador->objetivosOriginales);
+		log_info(logger, "Pokemones:");
+		imprimirListaDeCadenas(entrenador->pokemones);
+	}
+}
+
 int main() {
 	signal(SIGINT,finalizarProceso);
 
@@ -199,6 +227,8 @@ int main() {
 
 	if(noSeCumplieronLosObjetivos()){
 
+		//Hasta aca es thread safe
+
 		//Creo conexion con Gameboy
 		conectarGameboy();
 
@@ -210,6 +240,8 @@ int main() {
 
 	//El TEAM finaliza cuando termine de ejecutarse el planificador, que sera cuando se cumplan todos los objetivos.
 	pthread_join(hiloPlanificador, NULL);
+
+	imprimirEstadoFinalEntrenadores();
 
 	log_info(logger, "Finalizó la conexión con el servidor\n");
 
