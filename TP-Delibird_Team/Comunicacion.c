@@ -197,7 +197,6 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 
 	//Verifica si estan en deadlock, SOLO cuando se acabaron los objetivos generales.
 	verificarDeadlock();
-	//Eli gato cabe
 }
 
 
