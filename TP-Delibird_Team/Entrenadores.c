@@ -520,14 +520,14 @@ void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador){
 
 					}
 					if(!entrenador->datosDeadlock.estaEnDeadlock){
-						enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-						registrarCambioDeContexto(entrenador);
-						log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
-
 						sem_wait(&mutexEntrenadores);
 						entrenador->estado = BLOQUEADO;
 						entrenador->suspendido = true;
 						sem_post(&mutexEntrenadores);
+
+						enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+						registrarCambioDeContexto(entrenador);
+						log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
 					}
 					else{
 					intercambiar(entrenador);
@@ -601,13 +601,13 @@ void gestionarEntrenadorSJFconDesalojo(t_entrenador* entrenador){
 					entrenador->datosSjf.fueDesalojado = false;
 
 			if(!entrenador->datosDeadlock.estaEnDeadlock){
-				enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
-				registrarCambioDeContexto(entrenador);
-				log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
 				sem_wait(&mutexEntrenadores);
 				entrenador->estado = BLOQUEADO;
 				entrenador->suspendido = true;
 				sem_post(&mutexEntrenadores);
+				enviarCatchDePokemon(ipServidor, puertoServidor, entrenador);
+				log_info(loggerOficial, "Se desaloja al entrenador %d. Motivo: alcanzo su objetivo y envio un CATCH.", entrenador->id);
+				registrarCambioDeContexto(entrenador);
 			}
 			else{
 				intercambiar(entrenador);

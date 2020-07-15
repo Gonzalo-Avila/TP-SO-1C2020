@@ -11437,3 +11437,1494 @@ Pokemon a intercambiar del entrenador 2: Snorlax
 [INFO] 17:11:13:364 Team/(23394:23394): Ciclos de CPU totales = 203
 [INFO] 17:11:13:364 Team/(23394:23394): Cambios de contexto realizados = 19
 [INFO] 17:11:13:364 Team/(23394:23394): Deadlocks detectados y resueltos = 3
+[DEBUG] 17:44:05:542 Team/(1789:1789): Se ha iniciado un Team.
+[INFO] 17:44:05:545 Team/(1789:1789): Cantidad de posiciones: 3
+[INFO] 17:44:05:545 Team/(1789:1789): Cantidad de entrenadores: 3
+[INFO] 17:44:05:545 Team/(1789:1789): Entrenadores disponibles: 0
+[INFO] 17:44:05:545 Team/(1789:1795): Socket de escucha para Gameboy creado
+[INFO] 17:44:05:545 Team/(1789:1794): Entrenadores disponibles: 3
+[ERROR] 17:44:05:546 Team/(1789:1794): Entrando al semaforo de entrenadores disponibles
+[ERROR] 17:44:05:546 Team/(1789:1794): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:44:05:546 Team/(1789:1793): Se activa el planificador
+[INFO] 17:44:39:43 Team/(1789:1795): [GAMEBOY] Recibiendo mensaje del socket cliente: 7
+[INFO] 17:44:39:44 Team/(1789:1795): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:44:39:44 Team/(1789:1795): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:44:39:44 Team/(1789:1795): Procesando APPEARED...
+[ERROR] 17:44:39:44 Team/(1789:1795): No me interesa el pokemon EliGato
+[INFO] 17:45:13:741 Team/(1789:1795): [GAMEBOY] Recibiendo mensaje del socket cliente: 8
+[INFO] 17:45:13:741 Team/(1789:1795): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:45:13:741 Team/(1789:1795): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:45:13:741 Team/(1789:1795): Procesando APPEARED...
+[DEBUG] 17:45:13:741 Team/(1789:1795): El pokemon esta en nuestro objetivo
+[INFO] 17:45:13:741 Team/(1789:1795): Pokemon: Pikachu
+[INFO] 17:45:13:741 Team/(1789:1795): Mensaje recibido: APPEARED_POKEMON Pikachu 1 1.
+[ERROR] 17:45:13:741 Team/(1789:1794): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 17:45:13:741 Team/(1789:1793): Hurra, tengo algo en ready
+[ERROR] 17:45:13:741 Team/(1789:1794): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:45:13:741 Team/(1789:1790): El entrenador id: 0 se movio a la posicion [1,1]
+[ERROR] 17:45:14:742 Team/(1789:1790): Estimado de rafaga actual: 1.000000
+[ERROR] 17:45:14:742 Team/(1789:1790): Duracion de rafaga actual: 1.000000
+[INFO] 17:45:14:743 Team/(1789:1790): No se pudo enviar el CATCH (broker desonectado)
+[INFO] 17:45:32:46 Team/(1789:1795): [GAMEBOY] Recibiendo mensaje del socket cliente: 9
+[INFO] 17:45:32:46 Team/(1789:1795): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:45:32:46 Team/(1789:1795): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:45:32:46 Team/(1789:1795): Procesando APPEARED...
+[DEBUG] 17:45:32:46 Team/(1789:1795): El pokemon esta en nuestro objetivo
+[INFO] 17:45:32:46 Team/(1789:1795): Pokemon: Pikachu
+[INFO] 17:45:32:46 Team/(1789:1795): Mensaje recibido: APPEARED_POKEMON Pikachu 120 120.
+[ERROR] 17:45:32:47 Team/(1789:1794): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 17:45:32:47 Team/(1789:1793): Hurra, tengo algo en ready
+[ERROR] 17:45:32:47 Team/(1789:1794): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:45:32:47 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [1,9]
+[ERROR] 17:45:33:47 Team/(1789:1792): Estimado de rafaga actual: 1.000000
+[ERROR] 17:45:33:48 Team/(1789:1792): Duracion de rafaga actual: 1.000000
+[DEBUG] 17:45:33:48 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [1,10]
+[ERROR] 17:45:34:48 Team/(1789:1792): Estimado de rafaga actual: 0.000000
+[ERROR] 17:45:34:48 Team/(1789:1792): Duracion de rafaga actual: 2.000000
+[DEBUG] 17:45:34:48 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [2,10]
+[ERROR] 17:45:35:49 Team/(1789:1792): Estimado de rafaga actual: -1.000000
+[ERROR] 17:45:35:49 Team/(1789:1792): Duracion de rafaga actual: 3.000000
+[DEBUG] 17:45:35:49 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [2,11]
+[ERROR] 17:45:36:50 Team/(1789:1792): Estimado de rafaga actual: -2.000000
+[ERROR] 17:45:36:50 Team/(1789:1792): Duracion de rafaga actual: 4.000000
+[DEBUG] 17:45:36:51 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [3,11]
+[ERROR] 17:45:37:51 Team/(1789:1792): Estimado de rafaga actual: -3.000000
+[ERROR] 17:45:37:52 Team/(1789:1792): Duracion de rafaga actual: 5.000000
+[DEBUG] 17:45:37:52 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [3,12]
+[ERROR] 17:45:38:53 Team/(1789:1792): Estimado de rafaga actual: -4.000000
+[ERROR] 17:45:38:53 Team/(1789:1792): Duracion de rafaga actual: 6.000000
+[DEBUG] 17:45:38:53 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [4,12]
+[ERROR] 17:45:39:54 Team/(1789:1792): Estimado de rafaga actual: -5.000000
+[ERROR] 17:45:39:54 Team/(1789:1792): Duracion de rafaga actual: 7.000000
+[DEBUG] 17:45:39:54 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [4,13]
+[ERROR] 17:45:40:55 Team/(1789:1792): Estimado de rafaga actual: -6.000000
+[ERROR] 17:45:40:55 Team/(1789:1792): Duracion de rafaga actual: 8.000000
+[DEBUG] 17:45:40:55 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [5,13]
+[ERROR] 17:45:41:56 Team/(1789:1792): Estimado de rafaga actual: -7.000000
+[ERROR] 17:45:41:56 Team/(1789:1792): Duracion de rafaga actual: 9.000000
+[DEBUG] 17:45:41:56 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [5,14]
+[ERROR] 17:45:42:57 Team/(1789:1792): Estimado de rafaga actual: -8.000000
+[ERROR] 17:45:42:58 Team/(1789:1792): Duracion de rafaga actual: 10.000000
+[DEBUG] 17:45:42:58 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [6,14]
+[ERROR] 17:45:43:58 Team/(1789:1792): Estimado de rafaga actual: -9.000000
+[ERROR] 17:45:43:58 Team/(1789:1792): Duracion de rafaga actual: 11.000000
+[DEBUG] 17:45:43:58 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [6,15]
+[ERROR] 17:45:44:59 Team/(1789:1792): Estimado de rafaga actual: -10.000000
+[ERROR] 17:45:44:60 Team/(1789:1792): Duracion de rafaga actual: 12.000000
+[DEBUG] 17:45:44:61 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [7,15]
+[ERROR] 17:45:45:62 Team/(1789:1792): Estimado de rafaga actual: -11.000000
+[ERROR] 17:45:45:62 Team/(1789:1792): Duracion de rafaga actual: 13.000000
+[DEBUG] 17:45:45:62 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [7,16]
+[ERROR] 17:45:46:63 Team/(1789:1792): Estimado de rafaga actual: -12.000000
+[ERROR] 17:45:46:63 Team/(1789:1792): Duracion de rafaga actual: 14.000000
+[DEBUG] 17:45:46:64 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [8,16]
+[ERROR] 17:45:47:64 Team/(1789:1792): Estimado de rafaga actual: -13.000000
+[ERROR] 17:45:47:64 Team/(1789:1792): Duracion de rafaga actual: 15.000000
+[DEBUG] 17:45:47:64 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [8,17]
+[ERROR] 17:45:48:65 Team/(1789:1792): Estimado de rafaga actual: -14.000000
+[ERROR] 17:45:48:65 Team/(1789:1792): Duracion de rafaga actual: 16.000000
+[DEBUG] 17:45:48:65 Team/(1789:1792): El entrenador id: 2 se movio a la posicion [9,17]
+[INFO] 17:45:48:739 Team/(1789:1789): El proceso Team ha finalizado.
+[INFO] 17:45:48:739 Team/(1789:1789): Ciclos de CPU totales = 18
+[INFO] 17:45:48:739 Team/(1789:1789): Cambios de contexto realizados = 3
+[INFO] 17:45:48:739 Team/(1789:1789): Deadlocks detectados y resueltos = 0
+[DEBUG] 17:45:57:388 Team/(1827:1827): Se ha iniciado un Team.
+[INFO] 17:45:57:388 Team/(1827:1827): Cantidad de posiciones: 3
+[INFO] 17:45:57:388 Team/(1827:1827): Cantidad de entrenadores: 3
+[INFO] 17:45:57:389 Team/(1827:1827): Entrenadores disponibles: 0
+[INFO] 17:45:57:389 Team/(1827:1833): Socket de escucha para Gameboy creado
+[INFO] 17:45:57:389 Team/(1827:1832): Entrenadores disponibles: 3
+[ERROR] 17:45:57:389 Team/(1827:1832): Entrando al semaforo de entrenadores disponibles
+[ERROR] 17:45:57:389 Team/(1827:1832): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:45:57:389 Team/(1827:1831): Se activa el planificador
+[INFO] 17:46:06:92 Team/(1827:1833): [GAMEBOY] Recibiendo mensaje del socket cliente: 7
+[INFO] 17:46:06:93 Team/(1827:1833): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:46:06:93 Team/(1827:1833): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:46:06:93 Team/(1827:1833): Procesando APPEARED...
+[DEBUG] 17:46:06:93 Team/(1827:1833): El pokemon esta en nuestro objetivo
+[INFO] 17:46:06:93 Team/(1827:1833): Pokemon: Pikachu
+[INFO] 17:46:06:93 Team/(1827:1833): Mensaje recibido: APPEARED_POKEMON Pikachu 20 20.
+[ERROR] 17:46:06:93 Team/(1827:1832): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 17:46:06:93 Team/(1827:1831): Hurra, tengo algo en ready
+[ERROR] 17:46:06:93 Team/(1827:1832): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:46:06:93 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [1,9]
+[ERROR] 17:46:07:94 Team/(1827:1830): Estimado de rafaga actual: 1.000000
+[ERROR] 17:46:07:94 Team/(1827:1830): Duracion de rafaga actual: 1.000000
+[DEBUG] 17:46:07:94 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [1,10]
+[ERROR] 17:46:08:94 Team/(1827:1830): Estimado de rafaga actual: 0.000000
+[ERROR] 17:46:08:95 Team/(1827:1830): Duracion de rafaga actual: 2.000000
+[DEBUG] 17:46:08:95 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [2,10]
+[ERROR] 17:46:09:95 Team/(1827:1830): Estimado de rafaga actual: -1.000000
+[ERROR] 17:46:09:96 Team/(1827:1830): Duracion de rafaga actual: 3.000000
+[DEBUG] 17:46:09:96 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [2,11]
+[ERROR] 17:46:10:96 Team/(1827:1830): Estimado de rafaga actual: -2.000000
+[ERROR] 17:46:10:97 Team/(1827:1830): Duracion de rafaga actual: 4.000000
+[DEBUG] 17:46:10:97 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [3,11]
+[ERROR] 17:46:11:98 Team/(1827:1830): Estimado de rafaga actual: -3.000000
+[ERROR] 17:46:11:98 Team/(1827:1830): Duracion de rafaga actual: 5.000000
+[DEBUG] 17:46:11:98 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [3,12]
+[ERROR] 17:46:12:98 Team/(1827:1830): Estimado de rafaga actual: -4.000000
+[ERROR] 17:46:12:99 Team/(1827:1830): Duracion de rafaga actual: 6.000000
+[DEBUG] 17:46:12:99 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [4,12]
+[ERROR] 17:46:13:99 Team/(1827:1830): Estimado de rafaga actual: -5.000000
+[ERROR] 17:46:13:99 Team/(1827:1830): Duracion de rafaga actual: 7.000000
+[DEBUG] 17:46:13:99 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [4,13]
+[ERROR] 17:46:14:100 Team/(1827:1830): Estimado de rafaga actual: -6.000000
+[ERROR] 17:46:14:100 Team/(1827:1830): Duracion de rafaga actual: 8.000000
+[DEBUG] 17:46:14:100 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [5,13]
+[ERROR] 17:46:15:100 Team/(1827:1830): Estimado de rafaga actual: -7.000000
+[ERROR] 17:46:15:100 Team/(1827:1830): Duracion de rafaga actual: 9.000000
+[DEBUG] 17:46:15:100 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [5,14]
+[ERROR] 17:46:16:101 Team/(1827:1830): Estimado de rafaga actual: -8.000000
+[ERROR] 17:46:16:101 Team/(1827:1830): Duracion de rafaga actual: 10.000000
+[DEBUG] 17:46:16:101 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [6,14]
+[ERROR] 17:46:17:101 Team/(1827:1830): Estimado de rafaga actual: -9.000000
+[ERROR] 17:46:17:101 Team/(1827:1830): Duracion de rafaga actual: 11.000000
+[DEBUG] 17:46:17:102 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [6,15]
+[ERROR] 17:46:18:102 Team/(1827:1830): Estimado de rafaga actual: -10.000000
+[ERROR] 17:46:18:103 Team/(1827:1830): Duracion de rafaga actual: 12.000000
+[DEBUG] 17:46:18:103 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [7,15]
+[ERROR] 17:46:19:104 Team/(1827:1830): Estimado de rafaga actual: -11.000000
+[ERROR] 17:46:19:104 Team/(1827:1830): Duracion de rafaga actual: 13.000000
+[DEBUG] 17:46:19:104 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [7,16]
+[ERROR] 17:46:20:104 Team/(1827:1830): Estimado de rafaga actual: -12.000000
+[ERROR] 17:46:20:105 Team/(1827:1830): Duracion de rafaga actual: 14.000000
+[DEBUG] 17:46:20:105 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [8,16]
+[ERROR] 17:46:21:105 Team/(1827:1830): Estimado de rafaga actual: -13.000000
+[ERROR] 17:46:21:105 Team/(1827:1830): Duracion de rafaga actual: 15.000000
+[DEBUG] 17:46:21:105 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [8,17]
+[ERROR] 17:46:22:106 Team/(1827:1830): Estimado de rafaga actual: -14.000000
+[ERROR] 17:46:22:107 Team/(1827:1830): Duracion de rafaga actual: 16.000000
+[DEBUG] 17:46:22:107 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [9,17]
+[ERROR] 17:46:23:108 Team/(1827:1830): Estimado de rafaga actual: -15.000000
+[ERROR] 17:46:23:108 Team/(1827:1830): Duracion de rafaga actual: 17.000000
+[DEBUG] 17:46:23:108 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [9,18]
+[ERROR] 17:46:24:109 Team/(1827:1830): Estimado de rafaga actual: -16.000000
+[ERROR] 17:46:24:109 Team/(1827:1830): Duracion de rafaga actual: 18.000000
+[DEBUG] 17:46:24:109 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [10,18]
+[ERROR] 17:46:25:109 Team/(1827:1830): Estimado de rafaga actual: -17.000000
+[ERROR] 17:46:25:110 Team/(1827:1830): Duracion de rafaga actual: 19.000000
+[DEBUG] 17:46:25:110 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [10,19]
+[ERROR] 17:46:26:110 Team/(1827:1830): Estimado de rafaga actual: -18.000000
+[ERROR] 17:46:26:110 Team/(1827:1830): Duracion de rafaga actual: 20.000000
+[DEBUG] 17:46:26:110 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [11,19]
+[ERROR] 17:46:27:111 Team/(1827:1830): Estimado de rafaga actual: -19.000000
+[ERROR] 17:46:27:111 Team/(1827:1830): Duracion de rafaga actual: 21.000000
+[DEBUG] 17:46:27:111 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [11,20]
+[INFO] 17:46:27:772 Team/(1827:1833): [GAMEBOY] Recibiendo mensaje del socket cliente: 8
+[INFO] 17:46:27:773 Team/(1827:1833): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:46:27:773 Team/(1827:1833): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:46:27:773 Team/(1827:1833): Procesando APPEARED...
+[ERROR] 17:46:28:112 Team/(1827:1830): Estimado de rafaga actual: -20.000000
+[ERROR] 17:46:28:112 Team/(1827:1830): Duracion de rafaga actual: 22.000000
+[DEBUG] 17:46:28:112 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [12,20]
+[ERROR] 17:46:29:112 Team/(1827:1830): Estimado de rafaga actual: -21.000000
+[ERROR] 17:46:29:113 Team/(1827:1830): Duracion de rafaga actual: 23.000000
+[DEBUG] 17:46:29:113 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [13,20]
+[ERROR] 17:46:30:113 Team/(1827:1830): Estimado de rafaga actual: -22.000000
+[ERROR] 17:46:30:113 Team/(1827:1830): Duracion de rafaga actual: 24.000000
+[DEBUG] 17:46:30:114 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [14,20]
+[ERROR] 17:46:31:114 Team/(1827:1830): Estimado de rafaga actual: -23.000000
+[ERROR] 17:46:31:114 Team/(1827:1830): Duracion de rafaga actual: 25.000000
+[DEBUG] 17:46:31:114 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [15,20]
+[ERROR] 17:46:32:114 Team/(1827:1830): Estimado de rafaga actual: -24.000000
+[ERROR] 17:46:32:116 Team/(1827:1830): Duracion de rafaga actual: 26.000000
+[DEBUG] 17:46:32:116 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [16,20]
+[ERROR] 17:46:33:116 Team/(1827:1830): Estimado de rafaga actual: -25.000000
+[ERROR] 17:46:33:116 Team/(1827:1830): Duracion de rafaga actual: 27.000000
+[DEBUG] 17:46:33:116 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [17,20]
+[ERROR] 17:46:34:117 Team/(1827:1830): Estimado de rafaga actual: -26.000000
+[ERROR] 17:46:34:117 Team/(1827:1830): Duracion de rafaga actual: 28.000000
+[DEBUG] 17:46:34:117 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [18,20]
+[ERROR] 17:46:35:118 Team/(1827:1830): Estimado de rafaga actual: -27.000000
+[ERROR] 17:46:35:118 Team/(1827:1830): Duracion de rafaga actual: 29.000000
+[DEBUG] 17:46:35:118 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [19,20]
+[ERROR] 17:46:36:118 Team/(1827:1830): Estimado de rafaga actual: -28.000000
+[ERROR] 17:46:36:118 Team/(1827:1830): Duracion de rafaga actual: 30.000000
+[DEBUG] 17:46:36:118 Team/(1827:1830): El entrenador id: 2 se movio a la posicion [20,20]
+[ERROR] 17:46:37:119 Team/(1827:1830): Estimado de rafaga actual: -29.000000
+[ERROR] 17:46:37:119 Team/(1827:1830): Duracion de rafaga actual: 31.000000
+[INFO] 17:46:37:119 Team/(1827:1830): No se pudo enviar el CATCH (broker desonectado)
+[INFO] 17:46:37:120 Team/(1827:1830): Posicion de back up restaurada: [30,30]
+[ERROR] 17:46:37:120 Team/(1827:1832): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 17:46:37:120 Team/(1827:1831): Hurra, tengo algo en ready
+[ERROR] 17:46:37:120 Team/(1827:1832): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:46:37:120 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [1,5]
+[ERROR] 17:46:38:120 Team/(1827:1829): Estimado de rafaga actual: 1.000000
+[ERROR] 17:46:38:120 Team/(1827:1829): Duracion de rafaga actual: 1.000000
+[DEBUG] 17:46:38:121 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [1,6]
+[ERROR] 17:46:39:121 Team/(1827:1829): Estimado de rafaga actual: 0.000000
+[ERROR] 17:46:39:121 Team/(1827:1829): Duracion de rafaga actual: 2.000000
+[DEBUG] 17:46:39:121 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [2,6]
+[ERROR] 17:46:40:122 Team/(1827:1829): Estimado de rafaga actual: -1.000000
+[ERROR] 17:46:40:122 Team/(1827:1829): Duracion de rafaga actual: 3.000000
+[DEBUG] 17:46:40:122 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [2,7]
+[ERROR] 17:46:41:122 Team/(1827:1829): Estimado de rafaga actual: -2.000000
+[ERROR] 17:46:41:122 Team/(1827:1829): Duracion de rafaga actual: 4.000000
+[DEBUG] 17:46:41:122 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [3,7]
+[ERROR] 17:46:42:123 Team/(1827:1829): Estimado de rafaga actual: -3.000000
+[ERROR] 17:46:42:123 Team/(1827:1829): Duracion de rafaga actual: 5.000000
+[DEBUG] 17:46:42:123 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [3,8]
+[ERROR] 17:46:43:124 Team/(1827:1829): Estimado de rafaga actual: -4.000000
+[ERROR] 17:46:43:124 Team/(1827:1829): Duracion de rafaga actual: 6.000000
+[DEBUG] 17:46:43:124 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [4,8]
+[ERROR] 17:46:44:125 Team/(1827:1829): Estimado de rafaga actual: -5.000000
+[ERROR] 17:46:44:125 Team/(1827:1829): Duracion de rafaga actual: 7.000000
+[DEBUG] 17:46:44:126 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [4,9]
+[ERROR] 17:46:45:127 Team/(1827:1829): Estimado de rafaga actual: -6.000000
+[ERROR] 17:46:45:127 Team/(1827:1829): Duracion de rafaga actual: 8.000000
+[DEBUG] 17:46:45:127 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [5,9]
+[ERROR] 17:46:46:128 Team/(1827:1829): Estimado de rafaga actual: -7.000000
+[ERROR] 17:46:46:128 Team/(1827:1829): Duracion de rafaga actual: 9.000000
+[DEBUG] 17:46:46:128 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [5,10]
+[ERROR] 17:46:47:128 Team/(1827:1829): Estimado de rafaga actual: -8.000000
+[ERROR] 17:46:47:128 Team/(1827:1829): Duracion de rafaga actual: 10.000000
+[DEBUG] 17:46:47:128 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [6,10]
+[ERROR] 17:46:48:129 Team/(1827:1829): Estimado de rafaga actual: -9.000000
+[ERROR] 17:46:48:129 Team/(1827:1829): Duracion de rafaga actual: 11.000000
+[DEBUG] 17:46:48:129 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [6,11]
+[ERROR] 17:46:49:130 Team/(1827:1829): Estimado de rafaga actual: -10.000000
+[ERROR] 17:46:49:130 Team/(1827:1829): Duracion de rafaga actual: 12.000000
+[DEBUG] 17:46:49:130 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [7,11]
+[ERROR] 17:46:50:130 Team/(1827:1829): Estimado de rafaga actual: -11.000000
+[ERROR] 17:46:50:130 Team/(1827:1829): Duracion de rafaga actual: 13.000000
+[DEBUG] 17:46:50:130 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [7,12]
+[ERROR] 17:46:51:131 Team/(1827:1829): Estimado de rafaga actual: -12.000000
+[ERROR] 17:46:51:131 Team/(1827:1829): Duracion de rafaga actual: 14.000000
+[DEBUG] 17:46:51:131 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [8,12]
+[ERROR] 17:46:52:132 Team/(1827:1829): Estimado de rafaga actual: -13.000000
+[ERROR] 17:46:52:132 Team/(1827:1829): Duracion de rafaga actual: 15.000000
+[DEBUG] 17:46:52:132 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [8,13]
+[ERROR] 17:46:53:133 Team/(1827:1829): Estimado de rafaga actual: -14.000000
+[ERROR] 17:46:53:133 Team/(1827:1829): Duracion de rafaga actual: 16.000000
+[DEBUG] 17:46:53:133 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [9,13]
+[ERROR] 17:46:54:133 Team/(1827:1829): Estimado de rafaga actual: -15.000000
+[ERROR] 17:46:54:133 Team/(1827:1829): Duracion de rafaga actual: 17.000000
+[DEBUG] 17:46:54:133 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [9,14]
+[ERROR] 17:46:55:134 Team/(1827:1829): Estimado de rafaga actual: -16.000000
+[ERROR] 17:46:55:134 Team/(1827:1829): Duracion de rafaga actual: 18.000000
+[DEBUG] 17:46:55:134 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [10,14]
+[ERROR] 17:46:56:134 Team/(1827:1829): Estimado de rafaga actual: -17.000000
+[ERROR] 17:46:56:134 Team/(1827:1829): Duracion de rafaga actual: 19.000000
+[DEBUG] 17:46:56:135 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [10,15]
+[ERROR] 17:46:57:135 Team/(1827:1829): Estimado de rafaga actual: -18.000000
+[ERROR] 17:46:57:135 Team/(1827:1829): Duracion de rafaga actual: 20.000000
+[DEBUG] 17:46:57:135 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [11,15]
+[ERROR] 17:46:58:135 Team/(1827:1829): Estimado de rafaga actual: -19.000000
+[ERROR] 17:46:58:136 Team/(1827:1829): Duracion de rafaga actual: 21.000000
+[DEBUG] 17:46:58:136 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [11,16]
+[ERROR] 17:46:59:136 Team/(1827:1829): Estimado de rafaga actual: -20.000000
+[ERROR] 17:46:59:136 Team/(1827:1829): Duracion de rafaga actual: 22.000000
+[DEBUG] 17:46:59:136 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [12,16]
+[ERROR] 17:47:00:137 Team/(1827:1829): Estimado de rafaga actual: -21.000000
+[ERROR] 17:47:00:137 Team/(1827:1829): Duracion de rafaga actual: 23.000000
+[DEBUG] 17:47:00:137 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [12,17]
+[ERROR] 17:47:01:138 Team/(1827:1829): Estimado de rafaga actual: -22.000000
+[ERROR] 17:47:01:138 Team/(1827:1829): Duracion de rafaga actual: 24.000000
+[DEBUG] 17:47:01:138 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [13,17]
+[ERROR] 17:47:02:138 Team/(1827:1829): Estimado de rafaga actual: -23.000000
+[ERROR] 17:47:02:138 Team/(1827:1829): Duracion de rafaga actual: 25.000000
+[DEBUG] 17:47:02:138 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [13,18]
+[ERROR] 17:47:03:139 Team/(1827:1829): Estimado de rafaga actual: -24.000000
+[ERROR] 17:47:03:139 Team/(1827:1829): Duracion de rafaga actual: 26.000000
+[DEBUG] 17:47:03:139 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [14,18]
+[ERROR] 17:47:04:139 Team/(1827:1829): Estimado de rafaga actual: -25.000000
+[ERROR] 17:47:04:139 Team/(1827:1829): Duracion de rafaga actual: 27.000000
+[DEBUG] 17:47:04:139 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [14,19]
+[ERROR] 17:47:05:140 Team/(1827:1829): Estimado de rafaga actual: -26.000000
+[ERROR] 17:47:05:140 Team/(1827:1829): Duracion de rafaga actual: 28.000000
+[DEBUG] 17:47:05:140 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [15,19]
+[ERROR] 17:47:06:140 Team/(1827:1829): Estimado de rafaga actual: -27.000000
+[ERROR] 17:47:06:140 Team/(1827:1829): Duracion de rafaga actual: 29.000000
+[DEBUG] 17:47:06:140 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [15,20]
+[ERROR] 17:47:07:140 Team/(1827:1829): Estimado de rafaga actual: -28.000000
+[ERROR] 17:47:07:141 Team/(1827:1829): Duracion de rafaga actual: 30.000000
+[DEBUG] 17:47:07:141 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [16,20]
+[ERROR] 17:47:08:141 Team/(1827:1829): Estimado de rafaga actual: -29.000000
+[ERROR] 17:47:08:141 Team/(1827:1829): Duracion de rafaga actual: 31.000000
+[DEBUG] 17:47:08:141 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [16,21]
+[ERROR] 17:47:09:142 Team/(1827:1829): Estimado de rafaga actual: -30.000000
+[ERROR] 17:47:09:142 Team/(1827:1829): Duracion de rafaga actual: 32.000000
+[DEBUG] 17:47:09:142 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [17,21]
+[ERROR] 17:47:10:143 Team/(1827:1829): Estimado de rafaga actual: -31.000000
+[ERROR] 17:47:10:143 Team/(1827:1829): Duracion de rafaga actual: 33.000000
+[DEBUG] 17:47:10:143 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [17,22]
+[ERROR] 17:47:11:143 Team/(1827:1829): Estimado de rafaga actual: -32.000000
+[ERROR] 17:47:11:144 Team/(1827:1829): Duracion de rafaga actual: 34.000000
+[DEBUG] 17:47:11:144 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [18,22]
+[ERROR] 17:47:12:144 Team/(1827:1829): Estimado de rafaga actual: -33.000000
+[ERROR] 17:47:12:145 Team/(1827:1829): Duracion de rafaga actual: 35.000000
+[DEBUG] 17:47:12:145 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [18,23]
+[ERROR] 17:47:13:145 Team/(1827:1829): Estimado de rafaga actual: -34.000000
+[ERROR] 17:47:13:146 Team/(1827:1829): Duracion de rafaga actual: 36.000000
+[DEBUG] 17:47:13:146 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [19,23]
+[ERROR] 17:47:14:147 Team/(1827:1829): Estimado de rafaga actual: -35.000000
+[ERROR] 17:47:14:148 Team/(1827:1829): Duracion de rafaga actual: 37.000000
+[DEBUG] 17:47:14:148 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [19,24]
+[ERROR] 17:47:15:148 Team/(1827:1829): Estimado de rafaga actual: -36.000000
+[ERROR] 17:47:15:148 Team/(1827:1829): Duracion de rafaga actual: 38.000000
+[DEBUG] 17:47:15:148 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [20,24]
+[ERROR] 17:47:16:149 Team/(1827:1829): Estimado de rafaga actual: -37.000000
+[ERROR] 17:47:16:149 Team/(1827:1829): Duracion de rafaga actual: 39.000000
+[DEBUG] 17:47:16:149 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [20,25]
+[ERROR] 17:47:17:150 Team/(1827:1829): Estimado de rafaga actual: -38.000000
+[ERROR] 17:47:17:151 Team/(1827:1829): Duracion de rafaga actual: 40.000000
+[DEBUG] 17:47:17:151 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [21,25]
+[ERROR] 17:47:18:151 Team/(1827:1829): Estimado de rafaga actual: -39.000000
+[ERROR] 17:47:18:152 Team/(1827:1829): Duracion de rafaga actual: 41.000000
+[DEBUG] 17:47:18:152 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [21,26]
+[ERROR] 17:47:19:152 Team/(1827:1829): Estimado de rafaga actual: -40.000000
+[ERROR] 17:47:19:152 Team/(1827:1829): Duracion de rafaga actual: 42.000000
+[DEBUG] 17:47:19:152 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [22,26]
+[ERROR] 17:47:20:153 Team/(1827:1829): Estimado de rafaga actual: -41.000000
+[ERROR] 17:47:20:154 Team/(1827:1829): Duracion de rafaga actual: 43.000000
+[DEBUG] 17:47:20:154 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [22,27]
+[ERROR] 17:47:21:154 Team/(1827:1829): Estimado de rafaga actual: -42.000000
+[ERROR] 17:47:21:154 Team/(1827:1829): Duracion de rafaga actual: 44.000000
+[DEBUG] 17:47:21:154 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [23,27]
+[ERROR] 17:47:22:155 Team/(1827:1829): Estimado de rafaga actual: -43.000000
+[ERROR] 17:47:22:155 Team/(1827:1829): Duracion de rafaga actual: 45.000000
+[DEBUG] 17:47:22:155 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [23,28]
+[ERROR] 17:47:23:156 Team/(1827:1829): Estimado de rafaga actual: -44.000000
+[ERROR] 17:47:23:156 Team/(1827:1829): Duracion de rafaga actual: 46.000000
+[DEBUG] 17:47:23:156 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [24,28]
+[ERROR] 17:47:24:156 Team/(1827:1829): Estimado de rafaga actual: -45.000000
+[ERROR] 17:47:24:156 Team/(1827:1829): Duracion de rafaga actual: 47.000000
+[DEBUG] 17:47:24:156 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [24,29]
+[ERROR] 17:47:25:157 Team/(1827:1829): Estimado de rafaga actual: -46.000000
+[ERROR] 17:47:25:157 Team/(1827:1829): Duracion de rafaga actual: 48.000000
+[DEBUG] 17:47:25:157 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [25,29]
+[ERROR] 17:47:26:157 Team/(1827:1829): Estimado de rafaga actual: -47.000000
+[ERROR] 17:47:26:157 Team/(1827:1829): Duracion de rafaga actual: 49.000000
+[DEBUG] 17:47:26:157 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [25,30]
+[ERROR] 17:47:27:157 Team/(1827:1829): Estimado de rafaga actual: -48.000000
+[ERROR] 17:47:27:158 Team/(1827:1829): Duracion de rafaga actual: 50.000000
+[DEBUG] 17:47:27:158 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [26,30]
+[ERROR] 17:47:28:159 Team/(1827:1829): Estimado de rafaga actual: -49.000000
+[ERROR] 17:47:28:159 Team/(1827:1829): Duracion de rafaga actual: 51.000000
+[DEBUG] 17:47:28:159 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [27,30]
+[ERROR] 17:47:29:160 Team/(1827:1829): Estimado de rafaga actual: -50.000000
+[ERROR] 17:47:29:160 Team/(1827:1829): Duracion de rafaga actual: 52.000000
+[DEBUG] 17:47:29:160 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [28,30]
+[ERROR] 17:47:30:161 Team/(1827:1829): Estimado de rafaga actual: -51.000000
+[ERROR] 17:47:30:161 Team/(1827:1829): Duracion de rafaga actual: 53.000000
+[DEBUG] 17:47:30:162 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [29,30]
+[ERROR] 17:47:31:162 Team/(1827:1829): Estimado de rafaga actual: -52.000000
+[ERROR] 17:47:31:162 Team/(1827:1829): Duracion de rafaga actual: 54.000000
+[DEBUG] 17:47:31:162 Team/(1827:1829): El entrenador id: 1 se movio a la posicion [30,30]
+[ERROR] 17:47:32:163 Team/(1827:1829): Estimado de rafaga actual: -53.000000
+[ERROR] 17:47:32:163 Team/(1827:1829): Duracion de rafaga actual: 55.000000
+[INFO] 17:47:32:163 Team/(1827:1829): No se pudo enviar el CATCH (broker desonectado)
+[INFO] 17:47:42:428 Team/(1827:1833): [GAMEBOY] Recibiendo mensaje del socket cliente: 9
+[INFO] 17:47:42:429 Team/(1827:1833): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:47:42:429 Team/(1827:1833): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:47:42:429 Team/(1827:1833): Procesando APPEARED...
+[DEBUG] 17:47:42:429 Team/(1827:1833): El pokemon esta en nuestro objetivo
+[INFO] 17:47:42:429 Team/(1827:1833): Pokemon: Pikachu
+[INFO] 17:47:42:429 Team/(1827:1833): Mensaje recibido: APPEARED_POKEMON Pikachu 40 40.
+[ERROR] 17:47:42:429 Team/(1827:1832): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 17:47:42:429 Team/(1827:1831): Hurra, tengo algo en ready
+[ERROR] 17:47:42:429 Team/(1827:1832): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:47:42:429 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [1,1]
+[ERROR] 17:47:43:430 Team/(1827:1828): Estimado de rafaga actual: 1.000000
+[ERROR] 17:47:43:430 Team/(1827:1828): Duracion de rafaga actual: 1.000000
+[DEBUG] 17:47:43:430 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [1,2]
+[ERROR] 17:47:44:431 Team/(1827:1828): Estimado de rafaga actual: 0.000000
+[ERROR] 17:47:44:431 Team/(1827:1828): Duracion de rafaga actual: 2.000000
+[DEBUG] 17:47:44:431 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [2,2]
+[ERROR] 17:47:45:432 Team/(1827:1828): Estimado de rafaga actual: -1.000000
+[ERROR] 17:47:45:433 Team/(1827:1828): Duracion de rafaga actual: 3.000000
+[DEBUG] 17:47:45:433 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [2,3]
+[ERROR] 17:47:46:433 Team/(1827:1828): Estimado de rafaga actual: -2.000000
+[ERROR] 17:47:46:433 Team/(1827:1828): Duracion de rafaga actual: 4.000000
+[DEBUG] 17:47:46:433 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [3,3]
+[ERROR] 17:47:47:434 Team/(1827:1828): Estimado de rafaga actual: -3.000000
+[ERROR] 17:47:47:434 Team/(1827:1828): Duracion de rafaga actual: 5.000000
+[DEBUG] 17:47:47:434 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [3,4]
+[ERROR] 17:47:48:435 Team/(1827:1828): Estimado de rafaga actual: -4.000000
+[ERROR] 17:47:48:435 Team/(1827:1828): Duracion de rafaga actual: 6.000000
+[DEBUG] 17:47:48:435 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [4,4]
+[ERROR] 17:47:49:436 Team/(1827:1828): Estimado de rafaga actual: -5.000000
+[ERROR] 17:47:49:436 Team/(1827:1828): Duracion de rafaga actual: 7.000000
+[DEBUG] 17:47:49:436 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [4,5]
+[ERROR] 17:47:50:437 Team/(1827:1828): Estimado de rafaga actual: -6.000000
+[ERROR] 17:47:50:437 Team/(1827:1828): Duracion de rafaga actual: 8.000000
+[DEBUG] 17:47:50:437 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [5,5]
+[ERROR] 17:47:51:438 Team/(1827:1828): Estimado de rafaga actual: -7.000000
+[ERROR] 17:47:51:438 Team/(1827:1828): Duracion de rafaga actual: 9.000000
+[DEBUG] 17:47:51:438 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [5,6]
+[ERROR] 17:47:52:438 Team/(1827:1828): Estimado de rafaga actual: -8.000000
+[ERROR] 17:47:52:439 Team/(1827:1828): Duracion de rafaga actual: 10.000000
+[DEBUG] 17:47:52:439 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [6,6]
+[ERROR] 17:47:53:440 Team/(1827:1828): Estimado de rafaga actual: -9.000000
+[ERROR] 17:47:53:440 Team/(1827:1828): Duracion de rafaga actual: 11.000000
+[DEBUG] 17:47:53:440 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [6,7]
+[ERROR] 17:47:54:440 Team/(1827:1828): Estimado de rafaga actual: -10.000000
+[ERROR] 17:47:54:440 Team/(1827:1828): Duracion de rafaga actual: 12.000000
+[DEBUG] 17:47:54:440 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [7,7]
+[ERROR] 17:47:55:441 Team/(1827:1828): Estimado de rafaga actual: -11.000000
+[ERROR] 17:47:55:441 Team/(1827:1828): Duracion de rafaga actual: 13.000000
+[DEBUG] 17:47:55:441 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [7,8]
+[ERROR] 17:47:56:441 Team/(1827:1828): Estimado de rafaga actual: -12.000000
+[ERROR] 17:47:56:442 Team/(1827:1828): Duracion de rafaga actual: 14.000000
+[DEBUG] 17:47:56:442 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [8,8]
+[ERROR] 17:47:57:442 Team/(1827:1828): Estimado de rafaga actual: -13.000000
+[ERROR] 17:47:57:443 Team/(1827:1828): Duracion de rafaga actual: 15.000000
+[DEBUG] 17:47:57:443 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [8,9]
+[ERROR] 17:47:58:443 Team/(1827:1828): Estimado de rafaga actual: -14.000000
+[ERROR] 17:47:58:443 Team/(1827:1828): Duracion de rafaga actual: 16.000000
+[DEBUG] 17:47:58:443 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [9,9]
+[ERROR] 17:47:59:444 Team/(1827:1828): Estimado de rafaga actual: -15.000000
+[ERROR] 17:47:59:444 Team/(1827:1828): Duracion de rafaga actual: 17.000000
+[DEBUG] 17:47:59:444 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [9,10]
+[ERROR] 17:48:00:445 Team/(1827:1828): Estimado de rafaga actual: -16.000000
+[ERROR] 17:48:00:445 Team/(1827:1828): Duracion de rafaga actual: 18.000000
+[DEBUG] 17:48:00:445 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [10,10]
+[ERROR] 17:48:01:445 Team/(1827:1828): Estimado de rafaga actual: -17.000000
+[ERROR] 17:48:01:445 Team/(1827:1828): Duracion de rafaga actual: 19.000000
+[DEBUG] 17:48:01:445 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [10,11]
+[ERROR] 17:48:02:446 Team/(1827:1828): Estimado de rafaga actual: -18.000000
+[ERROR] 17:48:02:446 Team/(1827:1828): Duracion de rafaga actual: 20.000000
+[DEBUG] 17:48:02:446 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [11,11]
+[ERROR] 17:48:03:446 Team/(1827:1828): Estimado de rafaga actual: -19.000000
+[ERROR] 17:48:03:447 Team/(1827:1828): Duracion de rafaga actual: 21.000000
+[DEBUG] 17:48:03:447 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [11,12]
+[ERROR] 17:48:04:447 Team/(1827:1828): Estimado de rafaga actual: -20.000000
+[ERROR] 17:48:04:448 Team/(1827:1828): Duracion de rafaga actual: 22.000000
+[DEBUG] 17:48:04:448 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [12,12]
+[ERROR] 17:48:05:448 Team/(1827:1828): Estimado de rafaga actual: -21.000000
+[ERROR] 17:48:05:448 Team/(1827:1828): Duracion de rafaga actual: 23.000000
+[DEBUG] 17:48:05:448 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [12,13]
+[ERROR] 17:48:06:448 Team/(1827:1828): Estimado de rafaga actual: -22.000000
+[ERROR] 17:48:06:448 Team/(1827:1828): Duracion de rafaga actual: 24.000000
+[DEBUG] 17:48:06:448 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [13,13]
+[ERROR] 17:48:07:449 Team/(1827:1828): Estimado de rafaga actual: -23.000000
+[ERROR] 17:48:07:449 Team/(1827:1828): Duracion de rafaga actual: 25.000000
+[DEBUG] 17:48:07:449 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [13,14]
+[ERROR] 17:48:08:450 Team/(1827:1828): Estimado de rafaga actual: -24.000000
+[ERROR] 17:48:08:450 Team/(1827:1828): Duracion de rafaga actual: 26.000000
+[DEBUG] 17:48:08:450 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [14,14]
+[ERROR] 17:48:09:450 Team/(1827:1828): Estimado de rafaga actual: -25.000000
+[ERROR] 17:48:09:450 Team/(1827:1828): Duracion de rafaga actual: 27.000000
+[DEBUG] 17:48:09:451 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [14,15]
+[ERROR] 17:48:10:451 Team/(1827:1828): Estimado de rafaga actual: -26.000000
+[ERROR] 17:48:10:451 Team/(1827:1828): Duracion de rafaga actual: 28.000000
+[DEBUG] 17:48:10:451 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [15,15]
+[ERROR] 17:48:11:451 Team/(1827:1828): Estimado de rafaga actual: -27.000000
+[ERROR] 17:48:11:451 Team/(1827:1828): Duracion de rafaga actual: 29.000000
+[DEBUG] 17:48:11:452 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [15,16]
+[ERROR] 17:48:12:452 Team/(1827:1828): Estimado de rafaga actual: -28.000000
+[ERROR] 17:48:12:452 Team/(1827:1828): Duracion de rafaga actual: 30.000000
+[DEBUG] 17:48:12:452 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [16,16]
+[ERROR] 17:48:13:453 Team/(1827:1828): Estimado de rafaga actual: -29.000000
+[ERROR] 17:48:13:453 Team/(1827:1828): Duracion de rafaga actual: 31.000000
+[DEBUG] 17:48:13:453 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [16,17]
+[ERROR] 17:48:14:453 Team/(1827:1828): Estimado de rafaga actual: -30.000000
+[ERROR] 17:48:14:453 Team/(1827:1828): Duracion de rafaga actual: 32.000000
+[DEBUG] 17:48:14:454 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [17,17]
+[ERROR] 17:48:15:454 Team/(1827:1828): Estimado de rafaga actual: -31.000000
+[ERROR] 17:48:15:454 Team/(1827:1828): Duracion de rafaga actual: 33.000000
+[DEBUG] 17:48:15:454 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [17,18]
+[ERROR] 17:48:16:455 Team/(1827:1828): Estimado de rafaga actual: -32.000000
+[ERROR] 17:48:16:455 Team/(1827:1828): Duracion de rafaga actual: 34.000000
+[DEBUG] 17:48:16:455 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [18,18]
+[ERROR] 17:48:17:455 Team/(1827:1828): Estimado de rafaga actual: -33.000000
+[ERROR] 17:48:17:455 Team/(1827:1828): Duracion de rafaga actual: 35.000000
+[DEBUG] 17:48:17:455 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [18,19]
+[ERROR] 17:48:18:456 Team/(1827:1828): Estimado de rafaga actual: -34.000000
+[ERROR] 17:48:18:456 Team/(1827:1828): Duracion de rafaga actual: 36.000000
+[DEBUG] 17:48:18:456 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [19,19]
+[ERROR] 17:48:19:459 Team/(1827:1828): Estimado de rafaga actual: -35.000000
+[ERROR] 17:48:19:459 Team/(1827:1828): Duracion de rafaga actual: 37.000000
+[DEBUG] 17:48:19:459 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [19,20]
+[ERROR] 17:48:20:460 Team/(1827:1828): Estimado de rafaga actual: -36.000000
+[ERROR] 17:48:20:460 Team/(1827:1828): Duracion de rafaga actual: 38.000000
+[DEBUG] 17:48:20:460 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [20,20]
+[ERROR] 17:48:21:460 Team/(1827:1828): Estimado de rafaga actual: -37.000000
+[ERROR] 17:48:21:460 Team/(1827:1828): Duracion de rafaga actual: 39.000000
+[DEBUG] 17:48:21:460 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [20,21]
+[ERROR] 17:48:22:460 Team/(1827:1828): Estimado de rafaga actual: -38.000000
+[ERROR] 17:48:22:461 Team/(1827:1828): Duracion de rafaga actual: 40.000000
+[DEBUG] 17:48:22:461 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [21,21]
+[ERROR] 17:48:23:461 Team/(1827:1828): Estimado de rafaga actual: -39.000000
+[ERROR] 17:48:23:461 Team/(1827:1828): Duracion de rafaga actual: 41.000000
+[DEBUG] 17:48:23:462 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [21,22]
+[ERROR] 17:48:24:462 Team/(1827:1828): Estimado de rafaga actual: -40.000000
+[ERROR] 17:48:24:462 Team/(1827:1828): Duracion de rafaga actual: 42.000000
+[DEBUG] 17:48:24:462 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [22,22]
+[ERROR] 17:48:25:463 Team/(1827:1828): Estimado de rafaga actual: -41.000000
+[ERROR] 17:48:25:463 Team/(1827:1828): Duracion de rafaga actual: 43.000000
+[DEBUG] 17:48:25:463 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [22,23]
+[ERROR] 17:48:26:463 Team/(1827:1828): Estimado de rafaga actual: -42.000000
+[ERROR] 17:48:26:463 Team/(1827:1828): Duracion de rafaga actual: 44.000000
+[DEBUG] 17:48:26:463 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [23,23]
+[ERROR] 17:48:27:464 Team/(1827:1828): Estimado de rafaga actual: -43.000000
+[ERROR] 17:48:27:464 Team/(1827:1828): Duracion de rafaga actual: 45.000000
+[DEBUG] 17:48:27:464 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [23,24]
+[ERROR] 17:48:28:464 Team/(1827:1828): Estimado de rafaga actual: -44.000000
+[ERROR] 17:48:28:464 Team/(1827:1828): Duracion de rafaga actual: 46.000000
+[DEBUG] 17:48:28:464 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [24,24]
+[ERROR] 17:48:29:464 Team/(1827:1828): Estimado de rafaga actual: -45.000000
+[ERROR] 17:48:29:465 Team/(1827:1828): Duracion de rafaga actual: 47.000000
+[DEBUG] 17:48:29:465 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [24,25]
+[ERROR] 17:48:30:465 Team/(1827:1828): Estimado de rafaga actual: -46.000000
+[ERROR] 17:48:30:465 Team/(1827:1828): Duracion de rafaga actual: 48.000000
+[DEBUG] 17:48:30:466 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [25,25]
+[ERROR] 17:48:31:467 Team/(1827:1828): Estimado de rafaga actual: -47.000000
+[ERROR] 17:48:31:467 Team/(1827:1828): Duracion de rafaga actual: 49.000000
+[DEBUG] 17:48:31:468 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [25,26]
+[ERROR] 17:48:32:468 Team/(1827:1828): Estimado de rafaga actual: -48.000000
+[ERROR] 17:48:32:468 Team/(1827:1828): Duracion de rafaga actual: 50.000000
+[DEBUG] 17:48:32:469 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [26,26]
+[ERROR] 17:48:33:469 Team/(1827:1828): Estimado de rafaga actual: -49.000000
+[ERROR] 17:48:33:469 Team/(1827:1828): Duracion de rafaga actual: 51.000000
+[DEBUG] 17:48:33:469 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [26,27]
+[ERROR] 17:48:34:470 Team/(1827:1828): Estimado de rafaga actual: -50.000000
+[ERROR] 17:48:34:471 Team/(1827:1828): Duracion de rafaga actual: 52.000000
+[DEBUG] 17:48:34:471 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [27,27]
+[ERROR] 17:48:35:471 Team/(1827:1828): Estimado de rafaga actual: -51.000000
+[ERROR] 17:48:35:471 Team/(1827:1828): Duracion de rafaga actual: 53.000000
+[DEBUG] 17:48:35:471 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [27,28]
+[ERROR] 17:48:36:471 Team/(1827:1828): Estimado de rafaga actual: -52.000000
+[ERROR] 17:48:36:472 Team/(1827:1828): Duracion de rafaga actual: 54.000000
+[DEBUG] 17:48:36:472 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [28,28]
+[ERROR] 17:48:37:472 Team/(1827:1828): Estimado de rafaga actual: -53.000000
+[ERROR] 17:48:37:472 Team/(1827:1828): Duracion de rafaga actual: 55.000000
+[DEBUG] 17:48:37:472 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [28,29]
+[ERROR] 17:48:38:472 Team/(1827:1828): Estimado de rafaga actual: -54.000000
+[ERROR] 17:48:38:472 Team/(1827:1828): Duracion de rafaga actual: 56.000000
+[DEBUG] 17:48:38:473 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [29,29]
+[ERROR] 17:48:39:473 Team/(1827:1828): Estimado de rafaga actual: -55.000000
+[ERROR] 17:48:39:474 Team/(1827:1828): Duracion de rafaga actual: 57.000000
+[DEBUG] 17:48:39:474 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [29,30]
+[ERROR] 17:48:40:475 Team/(1827:1828): Estimado de rafaga actual: -56.000000
+[ERROR] 17:48:40:475 Team/(1827:1828): Duracion de rafaga actual: 58.000000
+[DEBUG] 17:48:40:475 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [30,30]
+[ERROR] 17:48:41:475 Team/(1827:1828): Estimado de rafaga actual: -57.000000
+[ERROR] 17:48:41:475 Team/(1827:1828): Duracion de rafaga actual: 59.000000
+[DEBUG] 17:48:41:476 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [30,31]
+[ERROR] 17:48:42:476 Team/(1827:1828): Estimado de rafaga actual: -58.000000
+[ERROR] 17:48:42:476 Team/(1827:1828): Duracion de rafaga actual: 60.000000
+[DEBUG] 17:48:42:476 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [31,31]
+[ERROR] 17:48:43:480 Team/(1827:1828): Estimado de rafaga actual: -59.000000
+[ERROR] 17:48:43:481 Team/(1827:1828): Duracion de rafaga actual: 61.000000
+[DEBUG] 17:48:43:481 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [31,32]
+[ERROR] 17:48:44:481 Team/(1827:1828): Estimado de rafaga actual: -60.000000
+[ERROR] 17:48:44:482 Team/(1827:1828): Duracion de rafaga actual: 62.000000
+[DEBUG] 17:48:44:482 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [32,32]
+[ERROR] 17:48:45:482 Team/(1827:1828): Estimado de rafaga actual: -61.000000
+[ERROR] 17:48:45:482 Team/(1827:1828): Duracion de rafaga actual: 63.000000
+[DEBUG] 17:48:45:482 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [32,33]
+[ERROR] 17:48:46:483 Team/(1827:1828): Estimado de rafaga actual: -62.000000
+[ERROR] 17:48:46:483 Team/(1827:1828): Duracion de rafaga actual: 64.000000
+[DEBUG] 17:48:46:483 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [33,33]
+[ERROR] 17:48:47:483 Team/(1827:1828): Estimado de rafaga actual: -63.000000
+[ERROR] 17:48:47:484 Team/(1827:1828): Duracion de rafaga actual: 65.000000
+[DEBUG] 17:48:47:484 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [33,34]
+[ERROR] 17:48:48:485 Team/(1827:1828): Estimado de rafaga actual: -64.000000
+[ERROR] 17:48:48:485 Team/(1827:1828): Duracion de rafaga actual: 66.000000
+[DEBUG] 17:48:48:485 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [34,34]
+[ERROR] 17:48:49:485 Team/(1827:1828): Estimado de rafaga actual: -65.000000
+[ERROR] 17:48:49:486 Team/(1827:1828): Duracion de rafaga actual: 67.000000
+[DEBUG] 17:48:49:486 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [34,35]
+[ERROR] 17:48:50:486 Team/(1827:1828): Estimado de rafaga actual: -66.000000
+[ERROR] 17:48:50:486 Team/(1827:1828): Duracion de rafaga actual: 68.000000
+[DEBUG] 17:48:50:486 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [35,35]
+[ERROR] 17:48:51:486 Team/(1827:1828): Estimado de rafaga actual: -67.000000
+[ERROR] 17:48:51:487 Team/(1827:1828): Duracion de rafaga actual: 69.000000
+[DEBUG] 17:48:51:487 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [35,36]
+[ERROR] 17:48:52:487 Team/(1827:1828): Estimado de rafaga actual: -68.000000
+[ERROR] 17:48:52:488 Team/(1827:1828): Duracion de rafaga actual: 70.000000
+[DEBUG] 17:48:52:488 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [36,36]
+[ERROR] 17:48:53:488 Team/(1827:1828): Estimado de rafaga actual: -69.000000
+[ERROR] 17:48:53:488 Team/(1827:1828): Duracion de rafaga actual: 71.000000
+[DEBUG] 17:48:53:488 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [36,37]
+[ERROR] 17:48:54:489 Team/(1827:1828): Estimado de rafaga actual: -70.000000
+[ERROR] 17:48:54:489 Team/(1827:1828): Duracion de rafaga actual: 72.000000
+[DEBUG] 17:48:54:489 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [37,37]
+[ERROR] 17:48:55:490 Team/(1827:1828): Estimado de rafaga actual: -71.000000
+[ERROR] 17:48:55:490 Team/(1827:1828): Duracion de rafaga actual: 73.000000
+[DEBUG] 17:48:55:490 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [37,38]
+[ERROR] 17:48:56:490 Team/(1827:1828): Estimado de rafaga actual: -72.000000
+[ERROR] 17:48:56:491 Team/(1827:1828): Duracion de rafaga actual: 74.000000
+[DEBUG] 17:48:56:491 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [38,38]
+[ERROR] 17:48:57:620 Team/(1827:1828): Estimado de rafaga actual: -73.000000
+[ERROR] 17:48:57:620 Team/(1827:1828): Duracion de rafaga actual: 75.000000
+[DEBUG] 17:48:57:620 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [38,39]
+[ERROR] 17:48:58:621 Team/(1827:1828): Estimado de rafaga actual: -74.000000
+[ERROR] 17:48:58:621 Team/(1827:1828): Duracion de rafaga actual: 76.000000
+[DEBUG] 17:48:58:621 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [39,39]
+[ERROR] 17:48:59:621 Team/(1827:1828): Estimado de rafaga actual: -75.000000
+[ERROR] 17:48:59:621 Team/(1827:1828): Duracion de rafaga actual: 77.000000
+[DEBUG] 17:48:59:621 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [39,40]
+[ERROR] 17:49:00:622 Team/(1827:1828): Estimado de rafaga actual: -76.000000
+[ERROR] 17:49:00:622 Team/(1827:1828): Duracion de rafaga actual: 78.000000
+[DEBUG] 17:49:00:622 Team/(1827:1828): El entrenador id: 0 se movio a la posicion [40,40]
+[ERROR] 17:49:01:623 Team/(1827:1828): Estimado de rafaga actual: -77.000000
+[ERROR] 17:49:01:623 Team/(1827:1828): Duracion de rafaga actual: 79.000000
+[INFO] 17:49:01:623 Team/(1827:1828): No se pudo enviar el CATCH (broker desonectado)
+[INFO] 17:50:16:104 Team/(1827:1827): El proceso Team ha finalizado.
+[INFO] 17:50:16:104 Team/(1827:1827): Ciclos de CPU totales = 165
+[INFO] 17:50:16:104 Team/(1827:1827): Cambios de contexto realizados = 6
+[INFO] 17:50:16:104 Team/(1827:1827): Deadlocks detectados y resueltos = 0
+[DEBUG] 17:50:55:0 Team/(2275:2275): Se ha iniciado un Team.
+[INFO] 17:50:55:0 Team/(2275:2275): Cantidad de posiciones: 3
+[INFO] 17:50:55:1 Team/(2275:2275): Cantidad de entrenadores: 3
+[INFO] 17:50:55:1 Team/(2275:2275): Entrenadores disponibles: 0
+[INFO] 17:50:55:1 Team/(2275:2281): Socket de escucha para Gameboy creado
+[INFO] 17:50:55:1 Team/(2275:2280): Entrenadores disponibles: 3
+[ERROR] 17:50:55:1 Team/(2275:2280): Entrando al semaforo de entrenadores disponibles
+[ERROR] 17:50:55:1 Team/(2275:2280): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:50:55:1 Team/(2275:2279): Se activa el planificador
+[INFO] 17:51:06:944 Team/(2275:2281): [GAMEBOY] Recibiendo mensaje del socket cliente: 7
+[INFO] 17:51:06:945 Team/(2275:2281): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:51:06:945 Team/(2275:2281): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:51:06:945 Team/(2275:2281): Procesando APPEARED...
+[DEBUG] 17:51:06:945 Team/(2275:2281): El pokemon esta en nuestro objetivo
+[INFO] 17:51:06:945 Team/(2275:2281): Pokemon: Pikachu
+[INFO] 17:51:06:945 Team/(2275:2281): Mensaje recibido: APPEARED_POKEMON Pikachu 20 20.
+[ERROR] 17:51:06:945 Team/(2275:2280): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 17:51:06:945 Team/(2275:2279): Hurra, tengo algo en ready
+[ERROR] 17:51:06:945 Team/(2275:2280): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:51:06:945 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [1,9]
+[ERROR] 17:51:07:946 Team/(2275:2278): Estimado de rafaga actual: 1.000000
+[ERROR] 17:51:07:946 Team/(2275:2278): Duracion de rafaga actual: 1.000000
+[DEBUG] 17:51:07:946 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [1,10]
+[ERROR] 17:51:08:946 Team/(2275:2278): Estimado de rafaga actual: 0.000000
+[ERROR] 17:51:08:946 Team/(2275:2278): Duracion de rafaga actual: 2.000000
+[DEBUG] 17:51:08:947 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [2,10]
+[ERROR] 17:51:09:947 Team/(2275:2278): Estimado de rafaga actual: -1.000000
+[ERROR] 17:51:09:947 Team/(2275:2278): Duracion de rafaga actual: 3.000000
+[DEBUG] 17:51:09:947 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [2,11]
+[INFO] 17:51:10:680 Team/(2275:2281): [GAMEBOY] Recibiendo mensaje del socket cliente: 8
+[INFO] 17:51:10:681 Team/(2275:2281): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:51:10:681 Team/(2275:2281): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:51:10:681 Team/(2275:2281): Procesando APPEARED...
+[ERROR] 17:51:10:948 Team/(2275:2278): Estimado de rafaga actual: -2.000000
+[ERROR] 17:51:10:948 Team/(2275:2278): Duracion de rafaga actual: 4.000000
+[DEBUG] 17:51:10:948 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [3,11]
+[ERROR] 17:51:11:948 Team/(2275:2278): Estimado de rafaga actual: -3.000000
+[ERROR] 17:51:11:949 Team/(2275:2278): Duracion de rafaga actual: 5.000000
+[DEBUG] 17:51:11:949 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [3,12]
+[ERROR] 17:51:12:949 Team/(2275:2278): Estimado de rafaga actual: -4.000000
+[ERROR] 17:51:12:950 Team/(2275:2278): Duracion de rafaga actual: 6.000000
+[DEBUG] 17:51:12:950 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [4,12]
+[ERROR] 17:51:13:950 Team/(2275:2278): Estimado de rafaga actual: -5.000000
+[ERROR] 17:51:13:951 Team/(2275:2278): Duracion de rafaga actual: 7.000000
+[DEBUG] 17:51:13:951 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [4,13]
+[ERROR] 17:51:14:951 Team/(2275:2278): Estimado de rafaga actual: -6.000000
+[ERROR] 17:51:14:952 Team/(2275:2278): Duracion de rafaga actual: 8.000000
+[DEBUG] 17:51:14:952 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [5,13]
+[ERROR] 17:51:15:952 Team/(2275:2278): Estimado de rafaga actual: -7.000000
+[ERROR] 17:51:15:953 Team/(2275:2278): Duracion de rafaga actual: 9.000000
+[DEBUG] 17:51:15:953 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [5,14]
+[ERROR] 17:51:16:953 Team/(2275:2278): Estimado de rafaga actual: -8.000000
+[ERROR] 17:51:16:954 Team/(2275:2278): Duracion de rafaga actual: 10.000000
+[DEBUG] 17:51:16:954 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [6,14]
+[ERROR] 17:51:17:954 Team/(2275:2278): Estimado de rafaga actual: -9.000000
+[ERROR] 17:51:17:954 Team/(2275:2278): Duracion de rafaga actual: 11.000000
+[DEBUG] 17:51:17:954 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [6,15]
+[ERROR] 17:51:18:955 Team/(2275:2278): Estimado de rafaga actual: -10.000000
+[ERROR] 17:51:18:955 Team/(2275:2278): Duracion de rafaga actual: 12.000000
+[DEBUG] 17:51:18:955 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [7,15]
+[ERROR] 17:51:19:956 Team/(2275:2278): Estimado de rafaga actual: -11.000000
+[ERROR] 17:51:19:956 Team/(2275:2278): Duracion de rafaga actual: 13.000000
+[DEBUG] 17:51:19:957 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [7,16]
+[ERROR] 17:51:20:958 Team/(2275:2278): Estimado de rafaga actual: -12.000000
+[ERROR] 17:51:20:958 Team/(2275:2278): Duracion de rafaga actual: 14.000000
+[DEBUG] 17:51:20:958 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [8,16]
+[ERROR] 17:51:21:958 Team/(2275:2278): Estimado de rafaga actual: -13.000000
+[ERROR] 17:51:21:958 Team/(2275:2278): Duracion de rafaga actual: 15.000000
+[DEBUG] 17:51:21:958 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [8,17]
+[ERROR] 17:51:22:958 Team/(2275:2278): Estimado de rafaga actual: -14.000000
+[ERROR] 17:51:22:958 Team/(2275:2278): Duracion de rafaga actual: 16.000000
+[DEBUG] 17:51:22:958 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [9,17]
+[ERROR] 17:51:23:959 Team/(2275:2278): Estimado de rafaga actual: -15.000000
+[ERROR] 17:51:23:959 Team/(2275:2278): Duracion de rafaga actual: 17.000000
+[DEBUG] 17:51:23:959 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [9,18]
+[ERROR] 17:51:24:959 Team/(2275:2278): Estimado de rafaga actual: -16.000000
+[ERROR] 17:51:24:960 Team/(2275:2278): Duracion de rafaga actual: 18.000000
+[DEBUG] 17:51:24:960 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [10,18]
+[ERROR] 17:51:25:960 Team/(2275:2278): Estimado de rafaga actual: -17.000000
+[ERROR] 17:51:25:960 Team/(2275:2278): Duracion de rafaga actual: 19.000000
+[DEBUG] 17:51:25:960 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [10,19]
+[ERROR] 17:51:26:961 Team/(2275:2278): Estimado de rafaga actual: -18.000000
+[ERROR] 17:51:26:961 Team/(2275:2278): Duracion de rafaga actual: 20.000000
+[DEBUG] 17:51:26:961 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [11,19]
+[ERROR] 17:51:27:961 Team/(2275:2278): Estimado de rafaga actual: -19.000000
+[ERROR] 17:51:27:962 Team/(2275:2278): Duracion de rafaga actual: 21.000000
+[DEBUG] 17:51:27:962 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [11,20]
+[ERROR] 17:51:28:962 Team/(2275:2278): Estimado de rafaga actual: -20.000000
+[ERROR] 17:51:28:963 Team/(2275:2278): Duracion de rafaga actual: 22.000000
+[DEBUG] 17:51:28:963 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [12,20]
+[ERROR] 17:51:29:963 Team/(2275:2278): Estimado de rafaga actual: -21.000000
+[ERROR] 17:51:29:964 Team/(2275:2278): Duracion de rafaga actual: 23.000000
+[DEBUG] 17:51:29:964 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [13,20]
+[ERROR] 17:51:30:964 Team/(2275:2278): Estimado de rafaga actual: -22.000000
+[ERROR] 17:51:30:964 Team/(2275:2278): Duracion de rafaga actual: 24.000000
+[DEBUG] 17:51:30:964 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [14,20]
+[ERROR] 17:51:31:966 Team/(2275:2278): Estimado de rafaga actual: -23.000000
+[ERROR] 17:51:31:966 Team/(2275:2278): Duracion de rafaga actual: 25.000000
+[DEBUG] 17:51:31:966 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [15,20]
+[ERROR] 17:51:32:967 Team/(2275:2278): Estimado de rafaga actual: -24.000000
+[ERROR] 17:51:32:967 Team/(2275:2278): Duracion de rafaga actual: 26.000000
+[DEBUG] 17:51:32:968 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [16,20]
+[ERROR] 17:51:33:968 Team/(2275:2278): Estimado de rafaga actual: -25.000000
+[ERROR] 17:51:33:969 Team/(2275:2278): Duracion de rafaga actual: 27.000000
+[DEBUG] 17:51:33:969 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [17,20]
+[ERROR] 17:51:34:970 Team/(2275:2278): Estimado de rafaga actual: -26.000000
+[ERROR] 17:51:34:970 Team/(2275:2278): Duracion de rafaga actual: 28.000000
+[DEBUG] 17:51:34:970 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [18,20]
+[ERROR] 17:51:35:970 Team/(2275:2278): Estimado de rafaga actual: -27.000000
+[ERROR] 17:51:35:971 Team/(2275:2278): Duracion de rafaga actual: 29.000000
+[DEBUG] 17:51:35:971 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [19,20]
+[ERROR] 17:51:36:971 Team/(2275:2278): Estimado de rafaga actual: -28.000000
+[ERROR] 17:51:36:972 Team/(2275:2278): Duracion de rafaga actual: 30.000000
+[DEBUG] 17:51:36:972 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [20,20]
+[ERROR] 17:51:37:973 Team/(2275:2278): Estimado de rafaga actual: -29.000000
+[ERROR] 17:51:37:973 Team/(2275:2278): Duracion de rafaga actual: 31.000000
+[INFO] 17:51:37:973 Team/(2275:2278): No se pudo enviar el CATCH (broker desonectado)
+[INFO] 17:51:37:973 Team/(2275:2278): Posicion de back up restaurada: [30,30]
+[ERROR] 17:51:37:973 Team/(2275:2280): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 17:51:37:973 Team/(2275:2279): Hurra, tengo algo en ready
+[ERROR] 17:51:37:973 Team/(2275:2280): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:51:37:973 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [21,20]
+[ERROR] 17:51:38:974 Team/(2275:2278): Estimado de rafaga actual: 15.500000
+[ERROR] 17:51:38:974 Team/(2275:2278): Duracion de rafaga actual: 1.000000
+[DEBUG] 17:51:38:975 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [21,21]
+[ERROR] 17:51:39:976 Team/(2275:2278): Estimado de rafaga actual: 14.500000
+[ERROR] 17:51:39:976 Team/(2275:2278): Duracion de rafaga actual: 2.000000
+[DEBUG] 17:51:39:977 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [22,21]
+[ERROR] 17:51:40:977 Team/(2275:2278): Estimado de rafaga actual: 13.500000
+[ERROR] 17:51:40:977 Team/(2275:2278): Duracion de rafaga actual: 3.000000
+[DEBUG] 17:51:40:978 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [22,22]
+[ERROR] 17:51:41:978 Team/(2275:2278): Estimado de rafaga actual: 12.500000
+[ERROR] 17:51:41:979 Team/(2275:2278): Duracion de rafaga actual: 4.000000
+[DEBUG] 17:51:41:979 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [23,22]
+[ERROR] 17:51:42:979 Team/(2275:2278): Estimado de rafaga actual: 11.500000
+[ERROR] 17:51:42:979 Team/(2275:2278): Duracion de rafaga actual: 5.000000
+[DEBUG] 17:51:42:979 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [23,23]
+[ERROR] 17:51:43:980 Team/(2275:2278): Estimado de rafaga actual: 10.500000
+[ERROR] 17:51:43:980 Team/(2275:2278): Duracion de rafaga actual: 6.000000
+[DEBUG] 17:51:43:980 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [24,23]
+[ERROR] 17:51:44:981 Team/(2275:2278): Estimado de rafaga actual: 9.500000
+[ERROR] 17:51:44:981 Team/(2275:2278): Duracion de rafaga actual: 7.000000
+[DEBUG] 17:51:44:981 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [24,24]
+[ERROR] 17:51:45:981 Team/(2275:2278): Estimado de rafaga actual: 8.500000
+[ERROR] 17:51:45:981 Team/(2275:2278): Duracion de rafaga actual: 8.000000
+[DEBUG] 17:51:45:982 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [25,24]
+[ERROR] 17:51:46:982 Team/(2275:2278): Estimado de rafaga actual: 7.500000
+[ERROR] 17:51:46:983 Team/(2275:2278): Duracion de rafaga actual: 9.000000
+[DEBUG] 17:51:46:983 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [25,25]
+[ERROR] 17:51:47:983 Team/(2275:2278): Estimado de rafaga actual: 6.500000
+[ERROR] 17:51:47:984 Team/(2275:2278): Duracion de rafaga actual: 10.000000
+[DEBUG] 17:51:47:984 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [26,25]
+[ERROR] 17:51:48:985 Team/(2275:2278): Estimado de rafaga actual: 5.500000
+[ERROR] 17:51:48:985 Team/(2275:2278): Duracion de rafaga actual: 11.000000
+[DEBUG] 17:51:48:985 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [26,26]
+[ERROR] 17:51:49:985 Team/(2275:2278): Estimado de rafaga actual: 4.500000
+[ERROR] 17:51:49:985 Team/(2275:2278): Duracion de rafaga actual: 12.000000
+[DEBUG] 17:51:49:985 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [27,26]
+[ERROR] 17:51:50:985 Team/(2275:2278): Estimado de rafaga actual: 3.500000
+[ERROR] 17:51:50:985 Team/(2275:2278): Duracion de rafaga actual: 13.000000
+[DEBUG] 17:51:50:986 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [27,27]
+[ERROR] 17:51:51:986 Team/(2275:2278): Estimado de rafaga actual: 2.500000
+[ERROR] 17:51:51:986 Team/(2275:2278): Duracion de rafaga actual: 14.000000
+[DEBUG] 17:51:51:987 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [28,27]
+[ERROR] 17:51:52:988 Team/(2275:2278): Estimado de rafaga actual: 1.500000
+[ERROR] 17:51:52:988 Team/(2275:2278): Duracion de rafaga actual: 15.000000
+[DEBUG] 17:51:52:988 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [28,28]
+[ERROR] 17:51:53:989 Team/(2275:2278): Estimado de rafaga actual: 0.500000
+[ERROR] 17:51:53:989 Team/(2275:2278): Duracion de rafaga actual: 16.000000
+[DEBUG] 17:51:53:989 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [29,28]
+[ERROR] 17:51:54:990 Team/(2275:2278): Estimado de rafaga actual: -0.500000
+[ERROR] 17:51:54:990 Team/(2275:2278): Duracion de rafaga actual: 17.000000
+[DEBUG] 17:51:54:990 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [29,29]
+[ERROR] 17:51:55:990 Team/(2275:2278): Estimado de rafaga actual: -1.500000
+[ERROR] 17:51:55:991 Team/(2275:2278): Duracion de rafaga actual: 18.000000
+[DEBUG] 17:51:55:991 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [30,29]
+[ERROR] 17:51:56:991 Team/(2275:2278): Estimado de rafaga actual: -2.500000
+[ERROR] 17:51:56:991 Team/(2275:2278): Duracion de rafaga actual: 19.000000
+[DEBUG] 17:51:56:991 Team/(2275:2278): El entrenador id: 2 se movio a la posicion [30,30]
+[INFO] 17:51:57:496 Team/(2275:2281): [GAMEBOY] Recibiendo mensaje del socket cliente: 9
+[INFO] 17:51:57:497 Team/(2275:2281): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:51:57:497 Team/(2275:2281): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:51:57:497 Team/(2275:2281): Procesando APPEARED...
+[DEBUG] 17:51:57:497 Team/(2275:2281): El pokemon esta en nuestro objetivo
+[INFO] 17:51:57:497 Team/(2275:2281): Pokemon: Pikachu
+[INFO] 17:51:57:497 Team/(2275:2281): Mensaje recibido: APPEARED_POKEMON Pikachu 40 40.
+[ERROR] 17:51:57:497 Team/(2275:2280): Entrando al semaforo de entrenadores disponibles
+[ERROR] 17:51:57:497 Team/(2275:2280): Entrando al semaforo de posiciones pendientes
+[ERROR] 17:51:57:992 Team/(2275:2278): Estimado de rafaga actual: -3.500000
+[ERROR] 17:51:57:992 Team/(2275:2278): Duracion de rafaga actual: 20.000000
+[ERROR] 17:51:57:992 Team/(2275:2278): Estimacion entrenador 2 en ejec: -3.500000 y el entrenador en lista de ready: 2.000000
+[INFO] 17:51:57:992 Team/(2275:2278): No se pudo enviar el CATCH (broker desonectado)
+[DEBUG] 17:51:57:992 Team/(2275:2279): Hurra, tengo algo en ready
+[DEBUG] 17:51:57:992 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [1,5]
+[ERROR] 17:51:58:993 Team/(2275:2277): Estimado de rafaga actual: 1.000000
+[ERROR] 17:51:58:993 Team/(2275:2277): Duracion de rafaga actual: 1.000000
+[DEBUG] 17:51:58:993 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [1,6]
+[ERROR] 17:51:59:993 Team/(2275:2277): Estimado de rafaga actual: 0.000000
+[ERROR] 17:51:59:994 Team/(2275:2277): Duracion de rafaga actual: 2.000000
+[DEBUG] 17:51:59:994 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [2,6]
+[ERROR] 17:52:00:995 Team/(2275:2277): Estimado de rafaga actual: -1.000000
+[ERROR] 17:52:00:995 Team/(2275:2277): Duracion de rafaga actual: 3.000000
+[DEBUG] 17:52:00:995 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [2,7]
+[ERROR] 17:52:01:996 Team/(2275:2277): Estimado de rafaga actual: -2.000000
+[ERROR] 17:52:01:997 Team/(2275:2277): Duracion de rafaga actual: 4.000000
+[DEBUG] 17:52:01:997 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [3,7]
+[ERROR] 17:52:02:997 Team/(2275:2277): Estimado de rafaga actual: -3.000000
+[ERROR] 17:52:02:997 Team/(2275:2277): Duracion de rafaga actual: 5.000000
+[DEBUG] 17:52:02:997 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [3,8]
+[ERROR] 17:52:03:998 Team/(2275:2277): Estimado de rafaga actual: -4.000000
+[ERROR] 17:52:03:998 Team/(2275:2277): Duracion de rafaga actual: 6.000000
+[DEBUG] 17:52:03:998 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [4,8]
+[ERROR] 17:52:04:999 Team/(2275:2277): Estimado de rafaga actual: -5.000000
+[ERROR] 17:52:04:999 Team/(2275:2277): Duracion de rafaga actual: 7.000000
+[DEBUG] 17:52:04:999 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [4,9]
+[ERROR] 17:52:05:999 Team/(2275:2277): Estimado de rafaga actual: -6.000000
+[ERROR] 17:52:05:999 Team/(2275:2277): Duracion de rafaga actual: 8.000000
+[DEBUG] 17:52:05:999 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [5,9]
+[ERROR] 17:52:06:999 Team/(2275:2277): Estimado de rafaga actual: -7.000000
+[ERROR] 17:52:06:0 Team/(2275:2277): Duracion de rafaga actual: 9.000000
+[DEBUG] 17:52:06:0 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [5,10]
+[ERROR] 17:52:07:1 Team/(2275:2277): Estimado de rafaga actual: -8.000000
+[ERROR] 17:52:07:1 Team/(2275:2277): Duracion de rafaga actual: 10.000000
+[DEBUG] 17:52:07:1 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [6,10]
+[ERROR] 17:52:09:1 Team/(2275:2277): Estimado de rafaga actual: -9.000000
+[ERROR] 17:52:09:2 Team/(2275:2277): Duracion de rafaga actual: 11.000000
+[DEBUG] 17:52:09:2 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [6,11]
+[ERROR] 17:52:10:3 Team/(2275:2277): Estimado de rafaga actual: -10.000000
+[ERROR] 17:52:10:3 Team/(2275:2277): Duracion de rafaga actual: 12.000000
+[DEBUG] 17:52:10:3 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [7,11]
+[ERROR] 17:52:11:3 Team/(2275:2277): Estimado de rafaga actual: -11.000000
+[ERROR] 17:52:11:3 Team/(2275:2277): Duracion de rafaga actual: 13.000000
+[DEBUG] 17:52:11:3 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [7,12]
+[ERROR] 17:52:12:3 Team/(2275:2277): Estimado de rafaga actual: -12.000000
+[ERROR] 17:52:12:4 Team/(2275:2277): Duracion de rafaga actual: 14.000000
+[DEBUG] 17:52:12:4 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [8,12]
+[ERROR] 17:52:13:7 Team/(2275:2277): Estimado de rafaga actual: -13.000000
+[ERROR] 17:52:13:7 Team/(2275:2277): Duracion de rafaga actual: 15.000000
+[DEBUG] 17:52:13:7 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [8,13]
+[ERROR] 17:52:14:8 Team/(2275:2277): Estimado de rafaga actual: -14.000000
+[ERROR] 17:52:14:8 Team/(2275:2277): Duracion de rafaga actual: 16.000000
+[DEBUG] 17:52:14:8 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [9,13]
+[ERROR] 17:52:15:8 Team/(2275:2277): Estimado de rafaga actual: -15.000000
+[ERROR] 17:52:15:8 Team/(2275:2277): Duracion de rafaga actual: 17.000000
+[DEBUG] 17:52:15:8 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [9,14]
+[ERROR] 17:52:16:9 Team/(2275:2277): Estimado de rafaga actual: -16.000000
+[ERROR] 17:52:16:9 Team/(2275:2277): Duracion de rafaga actual: 18.000000
+[DEBUG] 17:52:16:9 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [10,14]
+[ERROR] 17:52:17:9 Team/(2275:2277): Estimado de rafaga actual: -17.000000
+[ERROR] 17:52:17:10 Team/(2275:2277): Duracion de rafaga actual: 19.000000
+[DEBUG] 17:52:17:10 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [10,15]
+[ERROR] 17:52:18:10 Team/(2275:2277): Estimado de rafaga actual: -18.000000
+[ERROR] 17:52:18:10 Team/(2275:2277): Duracion de rafaga actual: 20.000000
+[DEBUG] 17:52:18:10 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [11,15]
+[ERROR] 17:52:19:10 Team/(2275:2277): Estimado de rafaga actual: -19.000000
+[ERROR] 17:52:19:11 Team/(2275:2277): Duracion de rafaga actual: 21.000000
+[DEBUG] 17:52:19:11 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [11,16]
+[ERROR] 17:52:20:11 Team/(2275:2277): Estimado de rafaga actual: -20.000000
+[ERROR] 17:52:20:11 Team/(2275:2277): Duracion de rafaga actual: 22.000000
+[DEBUG] 17:52:20:11 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [12,16]
+[ERROR] 17:52:21:13 Team/(2275:2277): Estimado de rafaga actual: -21.000000
+[ERROR] 17:52:21:13 Team/(2275:2277): Duracion de rafaga actual: 23.000000
+[DEBUG] 17:52:21:13 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [12,17]
+[ERROR] 17:52:22:14 Team/(2275:2277): Estimado de rafaga actual: -22.000000
+[ERROR] 17:52:22:14 Team/(2275:2277): Duracion de rafaga actual: 24.000000
+[DEBUG] 17:52:22:14 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [13,17]
+[ERROR] 17:52:23:14 Team/(2275:2277): Estimado de rafaga actual: -23.000000
+[ERROR] 17:52:23:15 Team/(2275:2277): Duracion de rafaga actual: 25.000000
+[DEBUG] 17:52:23:15 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [13,18]
+[ERROR] 17:52:24:15 Team/(2275:2277): Estimado de rafaga actual: -24.000000
+[ERROR] 17:52:24:15 Team/(2275:2277): Duracion de rafaga actual: 26.000000
+[DEBUG] 17:52:24:15 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [14,18]
+[ERROR] 17:52:25:16 Team/(2275:2277): Estimado de rafaga actual: -25.000000
+[ERROR] 17:52:25:16 Team/(2275:2277): Duracion de rafaga actual: 27.000000
+[DEBUG] 17:52:25:16 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [14,19]
+[ERROR] 17:52:26:17 Team/(2275:2277): Estimado de rafaga actual: -26.000000
+[ERROR] 17:52:26:17 Team/(2275:2277): Duracion de rafaga actual: 28.000000
+[DEBUG] 17:52:26:17 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [15,19]
+[ERROR] 17:52:27:18 Team/(2275:2277): Estimado de rafaga actual: -27.000000
+[ERROR] 17:52:27:18 Team/(2275:2277): Duracion de rafaga actual: 29.000000
+[DEBUG] 17:52:27:18 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [15,20]
+[ERROR] 17:52:28:19 Team/(2275:2277): Estimado de rafaga actual: -28.000000
+[ERROR] 17:52:28:20 Team/(2275:2277): Duracion de rafaga actual: 30.000000
+[DEBUG] 17:52:28:20 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [16,20]
+[ERROR] 17:52:29:20 Team/(2275:2277): Estimado de rafaga actual: -29.000000
+[ERROR] 17:52:29:20 Team/(2275:2277): Duracion de rafaga actual: 31.000000
+[DEBUG] 17:52:29:20 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [16,21]
+[ERROR] 17:52:30:20 Team/(2275:2277): Estimado de rafaga actual: -30.000000
+[ERROR] 17:52:30:20 Team/(2275:2277): Duracion de rafaga actual: 32.000000
+[DEBUG] 17:52:30:20 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [17,21]
+[ERROR] 17:52:31:21 Team/(2275:2277): Estimado de rafaga actual: -31.000000
+[ERROR] 17:52:31:21 Team/(2275:2277): Duracion de rafaga actual: 33.000000
+[DEBUG] 17:52:31:21 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [17,22]
+[ERROR] 17:52:32:21 Team/(2275:2277): Estimado de rafaga actual: -32.000000
+[ERROR] 17:52:32:22 Team/(2275:2277): Duracion de rafaga actual: 34.000000
+[DEBUG] 17:52:32:22 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [18,22]
+[ERROR] 17:52:33:23 Team/(2275:2277): Estimado de rafaga actual: -33.000000
+[ERROR] 17:52:33:23 Team/(2275:2277): Duracion de rafaga actual: 35.000000
+[DEBUG] 17:52:33:23 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [18,23]
+[ERROR] 17:52:34:23 Team/(2275:2277): Estimado de rafaga actual: -34.000000
+[ERROR] 17:52:34:23 Team/(2275:2277): Duracion de rafaga actual: 36.000000
+[DEBUG] 17:52:34:23 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [19,23]
+[ERROR] 17:52:35:24 Team/(2275:2277): Estimado de rafaga actual: -35.000000
+[ERROR] 17:52:35:24 Team/(2275:2277): Duracion de rafaga actual: 37.000000
+[DEBUG] 17:52:35:24 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [19,24]
+[ERROR] 17:52:36:24 Team/(2275:2277): Estimado de rafaga actual: -36.000000
+[ERROR] 17:52:36:25 Team/(2275:2277): Duracion de rafaga actual: 38.000000
+[DEBUG] 17:52:36:25 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [20,24]
+[ERROR] 17:52:37:26 Team/(2275:2277): Estimado de rafaga actual: -37.000000
+[ERROR] 17:52:37:27 Team/(2275:2277): Duracion de rafaga actual: 39.000000
+[DEBUG] 17:52:37:27 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [20,25]
+[ERROR] 17:52:38:27 Team/(2275:2277): Estimado de rafaga actual: -38.000000
+[ERROR] 17:52:38:28 Team/(2275:2277): Duracion de rafaga actual: 40.000000
+[DEBUG] 17:52:38:28 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [21,25]
+[ERROR] 17:52:39:28 Team/(2275:2277): Estimado de rafaga actual: -39.000000
+[ERROR] 17:52:39:29 Team/(2275:2277): Duracion de rafaga actual: 41.000000
+[DEBUG] 17:52:39:29 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [21,26]
+[ERROR] 17:52:40:29 Team/(2275:2277): Estimado de rafaga actual: -40.000000
+[ERROR] 17:52:40:29 Team/(2275:2277): Duracion de rafaga actual: 42.000000
+[DEBUG] 17:52:40:29 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [22,26]
+[ERROR] 17:52:41:30 Team/(2275:2277): Estimado de rafaga actual: -41.000000
+[ERROR] 17:52:41:30 Team/(2275:2277): Duracion de rafaga actual: 43.000000
+[DEBUG] 17:52:41:30 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [22,27]
+[ERROR] 17:52:42:30 Team/(2275:2277): Estimado de rafaga actual: -42.000000
+[ERROR] 17:52:42:30 Team/(2275:2277): Duracion de rafaga actual: 44.000000
+[DEBUG] 17:52:42:30 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [23,27]
+[ERROR] 17:52:43:30 Team/(2275:2277): Estimado de rafaga actual: -43.000000
+[ERROR] 17:52:43:30 Team/(2275:2277): Duracion de rafaga actual: 45.000000
+[DEBUG] 17:52:43:31 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [23,28]
+[ERROR] 17:52:44:31 Team/(2275:2277): Estimado de rafaga actual: -44.000000
+[ERROR] 17:52:44:31 Team/(2275:2277): Duracion de rafaga actual: 46.000000
+[DEBUG] 17:52:44:31 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [24,28]
+[ERROR] 17:52:45:31 Team/(2275:2277): Estimado de rafaga actual: -45.000000
+[ERROR] 17:52:45:31 Team/(2275:2277): Duracion de rafaga actual: 47.000000
+[DEBUG] 17:52:45:31 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [24,29]
+[ERROR] 17:52:46:31 Team/(2275:2277): Estimado de rafaga actual: -46.000000
+[ERROR] 17:52:46:31 Team/(2275:2277): Duracion de rafaga actual: 48.000000
+[DEBUG] 17:52:46:31 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [25,29]
+[ERROR] 17:52:47:32 Team/(2275:2277): Estimado de rafaga actual: -47.000000
+[ERROR] 17:52:47:32 Team/(2275:2277): Duracion de rafaga actual: 49.000000
+[DEBUG] 17:52:47:32 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [25,30]
+[ERROR] 17:52:48:33 Team/(2275:2277): Estimado de rafaga actual: -48.000000
+[ERROR] 17:52:48:33 Team/(2275:2277): Duracion de rafaga actual: 50.000000
+[DEBUG] 17:52:48:33 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [26,30]
+[ERROR] 17:52:49:33 Team/(2275:2277): Estimado de rafaga actual: -49.000000
+[ERROR] 17:52:49:33 Team/(2275:2277): Duracion de rafaga actual: 51.000000
+[DEBUG] 17:52:49:33 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [26,31]
+[ERROR] 17:52:50:33 Team/(2275:2277): Estimado de rafaga actual: -50.000000
+[ERROR] 17:52:50:33 Team/(2275:2277): Duracion de rafaga actual: 52.000000
+[DEBUG] 17:52:50:34 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [27,31]
+[ERROR] 17:52:51:34 Team/(2275:2277): Estimado de rafaga actual: -51.000000
+[ERROR] 17:52:51:34 Team/(2275:2277): Duracion de rafaga actual: 53.000000
+[DEBUG] 17:52:51:34 Team/(2275:2277): El entrenador id: 1 se movio a la posicion [27,32]
+[INFO] 17:52:51:832 Team/(2275:2275): El proceso Team ha finalizado.
+[INFO] 17:52:51:832 Team/(2275:2275): Ciclos de CPU totales = 105
+[INFO] 17:52:51:832 Team/(2275:2275): Cambios de contexto realizados = 5
+[INFO] 17:52:51:832 Team/(2275:2275): Deadlocks detectados y resueltos = 0
+[DEBUG] 17:53:02:176 Team/(2318:2318): Se ha iniciado un Team.
+[INFO] 17:53:02:176 Team/(2318:2318): Cantidad de posiciones: 3
+[INFO] 17:53:02:177 Team/(2318:2318): Cantidad de entrenadores: 3
+[INFO] 17:53:02:177 Team/(2318:2318): Entrenadores disponibles: 0
+[INFO] 17:53:02:177 Team/(2318:2324): Socket de escucha para Gameboy creado
+[INFO] 17:53:02:177 Team/(2318:2323): Entrenadores disponibles: 3
+[ERROR] 17:53:02:177 Team/(2318:2323): Entrando al semaforo de entrenadores disponibles
+[ERROR] 17:53:02:177 Team/(2318:2323): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:53:02:177 Team/(2318:2322): Se activa el planificador
+[INFO] 17:53:04:241 Team/(2318:2324): [GAMEBOY] Recibiendo mensaje del socket cliente: 7
+[INFO] 17:53:04:241 Team/(2318:2324): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:53:04:241 Team/(2318:2324): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:53:04:241 Team/(2318:2324): Procesando APPEARED...
+[DEBUG] 17:53:04:241 Team/(2318:2324): El pokemon esta en nuestro objetivo
+[INFO] 17:53:04:241 Team/(2318:2324): Pokemon: Pikachu
+[INFO] 17:53:04:241 Team/(2318:2324): Mensaje recibido: APPEARED_POKEMON Pikachu 20 20.
+[ERROR] 17:53:04:241 Team/(2318:2323): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 17:53:04:241 Team/(2318:2322): Hurra, tengo algo en ready
+[ERROR] 17:53:04:241 Team/(2318:2323): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:53:04:241 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [1,9]
+[ERROR] 17:53:05:242 Team/(2318:2321): Estimado de rafaga actual: 1.000000
+[ERROR] 17:53:05:243 Team/(2318:2321): Duracion de rafaga actual: 1.000000
+[DEBUG] 17:53:05:243 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [1,10]
+[ERROR] 17:53:06:243 Team/(2318:2321): Estimado de rafaga actual: 0.000000
+[ERROR] 17:53:06:243 Team/(2318:2321): Duracion de rafaga actual: 2.000000
+[DEBUG] 17:53:06:243 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [2,10]
+[INFO] 17:53:06:825 Team/(2318:2324): [GAMEBOY] Recibiendo mensaje del socket cliente: 8
+[INFO] 17:53:06:825 Team/(2318:2324): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:53:06:825 Team/(2318:2324): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:53:06:825 Team/(2318:2324): Procesando APPEARED...
+[ERROR] 17:53:07:244 Team/(2318:2321): Estimado de rafaga actual: -1.000000
+[ERROR] 17:53:07:244 Team/(2318:2321): Duracion de rafaga actual: 3.000000
+[DEBUG] 17:53:07:244 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [2,11]
+[ERROR] 17:53:08:245 Team/(2318:2321): Estimado de rafaga actual: -2.000000
+[ERROR] 17:53:08:245 Team/(2318:2321): Duracion de rafaga actual: 4.000000
+[DEBUG] 17:53:08:245 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [3,11]
+[ERROR] 17:53:09:246 Team/(2318:2321): Estimado de rafaga actual: -3.000000
+[ERROR] 17:53:09:246 Team/(2318:2321): Duracion de rafaga actual: 5.000000
+[DEBUG] 17:53:09:246 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [3,12]
+[INFO] 17:53:09:313 Team/(2318:2324): [GAMEBOY] Recibiendo mensaje del socket cliente: 9
+[INFO] 17:53:09:313 Team/(2318:2324): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:53:09:313 Team/(2318:2324): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:53:09:313 Team/(2318:2324): Procesando APPEARED...
+[ERROR] 17:53:10:247 Team/(2318:2321): Estimado de rafaga actual: -4.000000
+[ERROR] 17:53:10:247 Team/(2318:2321): Duracion de rafaga actual: 6.000000
+[DEBUG] 17:53:10:247 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [4,12]
+[ERROR] 17:53:11:247 Team/(2318:2321): Estimado de rafaga actual: -5.000000
+[ERROR] 17:53:11:247 Team/(2318:2321): Duracion de rafaga actual: 7.000000
+[DEBUG] 17:53:11:248 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [4,13]
+[ERROR] 17:53:12:248 Team/(2318:2321): Estimado de rafaga actual: -6.000000
+[ERROR] 17:53:12:249 Team/(2318:2321): Duracion de rafaga actual: 8.000000
+[DEBUG] 17:53:12:249 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [5,13]
+[ERROR] 17:53:13:249 Team/(2318:2321): Estimado de rafaga actual: -7.000000
+[ERROR] 17:53:13:249 Team/(2318:2321): Duracion de rafaga actual: 9.000000
+[DEBUG] 17:53:13:249 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [5,14]
+[ERROR] 17:53:14:250 Team/(2318:2321): Estimado de rafaga actual: -8.000000
+[ERROR] 17:53:14:251 Team/(2318:2321): Duracion de rafaga actual: 10.000000
+[DEBUG] 17:53:14:251 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [6,14]
+[ERROR] 17:53:15:251 Team/(2318:2321): Estimado de rafaga actual: -9.000000
+[ERROR] 17:53:15:251 Team/(2318:2321): Duracion de rafaga actual: 11.000000
+[DEBUG] 17:53:15:251 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [6,15]
+[ERROR] 17:53:16:252 Team/(2318:2321): Estimado de rafaga actual: -10.000000
+[ERROR] 17:53:16:252 Team/(2318:2321): Duracion de rafaga actual: 12.000000
+[DEBUG] 17:53:16:252 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [7,15]
+[ERROR] 17:53:17:252 Team/(2318:2321): Estimado de rafaga actual: -11.000000
+[ERROR] 17:53:17:253 Team/(2318:2321): Duracion de rafaga actual: 13.000000
+[DEBUG] 17:53:17:253 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [7,16]
+[ERROR] 17:53:18:254 Team/(2318:2321): Estimado de rafaga actual: -12.000000
+[ERROR] 17:53:18:254 Team/(2318:2321): Duracion de rafaga actual: 14.000000
+[DEBUG] 17:53:18:254 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [8,16]
+[ERROR] 17:53:19:255 Team/(2318:2321): Estimado de rafaga actual: -13.000000
+[ERROR] 17:53:19:255 Team/(2318:2321): Duracion de rafaga actual: 15.000000
+[DEBUG] 17:53:19:255 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [8,17]
+[ERROR] 17:53:20:255 Team/(2318:2321): Estimado de rafaga actual: -14.000000
+[ERROR] 17:53:20:256 Team/(2318:2321): Duracion de rafaga actual: 16.000000
+[DEBUG] 17:53:20:256 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [9,17]
+[ERROR] 17:53:21:257 Team/(2318:2321): Estimado de rafaga actual: -15.000000
+[ERROR] 17:53:21:257 Team/(2318:2321): Duracion de rafaga actual: 17.000000
+[DEBUG] 17:53:21:257 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [9,18]
+[ERROR] 17:53:22:258 Team/(2318:2321): Estimado de rafaga actual: -16.000000
+[ERROR] 17:53:22:259 Team/(2318:2321): Duracion de rafaga actual: 18.000000
+[DEBUG] 17:53:22:259 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [10,18]
+[ERROR] 17:53:23:259 Team/(2318:2321): Estimado de rafaga actual: -17.000000
+[ERROR] 17:53:23:259 Team/(2318:2321): Duracion de rafaga actual: 19.000000
+[DEBUG] 17:53:23:260 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [10,19]
+[ERROR] 17:53:24:260 Team/(2318:2321): Estimado de rafaga actual: -18.000000
+[ERROR] 17:53:24:260 Team/(2318:2321): Duracion de rafaga actual: 20.000000
+[DEBUG] 17:53:24:260 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [11,19]
+[ERROR] 17:53:25:260 Team/(2318:2321): Estimado de rafaga actual: -19.000000
+[ERROR] 17:53:25:261 Team/(2318:2321): Duracion de rafaga actual: 21.000000
+[DEBUG] 17:53:25:261 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [11,20]
+[ERROR] 17:53:26:262 Team/(2318:2321): Estimado de rafaga actual: -20.000000
+[ERROR] 17:53:26:262 Team/(2318:2321): Duracion de rafaga actual: 22.000000
+[DEBUG] 17:53:26:262 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [12,20]
+[ERROR] 17:53:27:263 Team/(2318:2321): Estimado de rafaga actual: -21.000000
+[ERROR] 17:53:27:264 Team/(2318:2321): Duracion de rafaga actual: 23.000000
+[DEBUG] 17:53:27:264 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [13,20]
+[ERROR] 17:53:28:264 Team/(2318:2321): Estimado de rafaga actual: -22.000000
+[ERROR] 17:53:28:265 Team/(2318:2321): Duracion de rafaga actual: 24.000000
+[DEBUG] 17:53:28:265 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [14,20]
+[ERROR] 17:53:29:265 Team/(2318:2321): Estimado de rafaga actual: -23.000000
+[ERROR] 17:53:29:265 Team/(2318:2321): Duracion de rafaga actual: 25.000000
+[DEBUG] 17:53:29:265 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [15,20]
+[ERROR] 17:53:30:266 Team/(2318:2321): Estimado de rafaga actual: -24.000000
+[ERROR] 17:53:30:266 Team/(2318:2321): Duracion de rafaga actual: 26.000000
+[DEBUG] 17:53:30:266 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [16,20]
+[ERROR] 17:53:31:267 Team/(2318:2321): Estimado de rafaga actual: -25.000000
+[ERROR] 17:53:31:268 Team/(2318:2321): Duracion de rafaga actual: 27.000000
+[DEBUG] 17:53:31:268 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [17,20]
+[ERROR] 17:53:32:269 Team/(2318:2321): Estimado de rafaga actual: -26.000000
+[ERROR] 17:53:32:269 Team/(2318:2321): Duracion de rafaga actual: 28.000000
+[DEBUG] 17:53:32:270 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [18,20]
+[ERROR] 17:53:33:270 Team/(2318:2321): Estimado de rafaga actual: -27.000000
+[ERROR] 17:53:33:271 Team/(2318:2321): Duracion de rafaga actual: 29.000000
+[DEBUG] 17:53:33:271 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [19,20]
+[ERROR] 17:53:34:271 Team/(2318:2321): Estimado de rafaga actual: -28.000000
+[ERROR] 17:53:34:272 Team/(2318:2321): Duracion de rafaga actual: 30.000000
+[DEBUG] 17:53:34:272 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [20,20]
+[ERROR] 17:53:35:272 Team/(2318:2321): Estimado de rafaga actual: -29.000000
+[ERROR] 17:53:35:273 Team/(2318:2321): Duracion de rafaga actual: 31.000000
+[INFO] 17:53:35:273 Team/(2318:2321): No se pudo enviar el CATCH (broker desonectado)
+[INFO] 17:53:35:273 Team/(2318:2321): Posicion de back up restaurada: [30,30]
+[ERROR] 17:53:35:274 Team/(2318:2323): Entrando al semaforo de entrenadores disponibles
+[ERROR] 17:53:35:274 Team/(2318:2323): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:53:35:274 Team/(2318:2322): Hurra, tengo algo en ready
+[DEBUG] 17:53:35:274 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [21,20]
+[ERROR] 17:53:36:274 Team/(2318:2321): Estimado de rafaga actual: 15.500000
+[ERROR] 17:53:36:274 Team/(2318:2321): Duracion de rafaga actual: 1.000000
+[DEBUG] 17:53:36:275 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [21,21]
+[ERROR] 17:53:37:275 Team/(2318:2321): Estimado de rafaga actual: 14.500000
+[ERROR] 17:53:37:276 Team/(2318:2321): Duracion de rafaga actual: 2.000000
+[DEBUG] 17:53:37:276 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [22,21]
+[ERROR] 17:53:38:277 Team/(2318:2321): Estimado de rafaga actual: 13.500000
+[ERROR] 17:53:38:277 Team/(2318:2321): Duracion de rafaga actual: 3.000000
+[DEBUG] 17:53:38:277 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [22,22]
+[ERROR] 17:53:39:278 Team/(2318:2321): Estimado de rafaga actual: 12.500000
+[ERROR] 17:53:39:278 Team/(2318:2321): Duracion de rafaga actual: 4.000000
+[DEBUG] 17:53:39:278 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [23,22]
+[ERROR] 17:53:40:278 Team/(2318:2321): Estimado de rafaga actual: 11.500000
+[ERROR] 17:53:40:279 Team/(2318:2321): Duracion de rafaga actual: 5.000000
+[DEBUG] 17:53:40:279 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [23,23]
+[ERROR] 17:53:41:280 Team/(2318:2321): Estimado de rafaga actual: 10.500000
+[ERROR] 17:53:41:280 Team/(2318:2321): Duracion de rafaga actual: 6.000000
+[DEBUG] 17:53:41:280 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [24,23]
+[ERROR] 17:53:42:280 Team/(2318:2321): Estimado de rafaga actual: 9.500000
+[ERROR] 17:53:42:281 Team/(2318:2321): Duracion de rafaga actual: 7.000000
+[DEBUG] 17:53:42:281 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [24,24]
+[ERROR] 17:53:43:282 Team/(2318:2321): Estimado de rafaga actual: 8.500000
+[ERROR] 17:53:43:282 Team/(2318:2321): Duracion de rafaga actual: 8.000000
+[DEBUG] 17:53:43:282 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [25,24]
+[ERROR] 17:53:44:283 Team/(2318:2321): Estimado de rafaga actual: 7.500000
+[ERROR] 17:53:44:283 Team/(2318:2321): Duracion de rafaga actual: 9.000000
+[DEBUG] 17:53:44:283 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [25,25]
+[ERROR] 17:53:45:285 Team/(2318:2321): Estimado de rafaga actual: 6.500000
+[ERROR] 17:53:45:285 Team/(2318:2321): Duracion de rafaga actual: 10.000000
+[DEBUG] 17:53:45:285 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [26,25]
+[ERROR] 17:53:46:285 Team/(2318:2321): Estimado de rafaga actual: 5.500000
+[ERROR] 17:53:46:286 Team/(2318:2321): Duracion de rafaga actual: 11.000000
+[DEBUG] 17:53:46:286 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [26,26]
+[ERROR] 17:53:47:287 Team/(2318:2321): Estimado de rafaga actual: 4.500000
+[ERROR] 17:53:47:287 Team/(2318:2321): Duracion de rafaga actual: 12.000000
+[DEBUG] 17:53:47:287 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [27,26]
+[ERROR] 17:53:48:288 Team/(2318:2321): Estimado de rafaga actual: 3.500000
+[ERROR] 17:53:48:288 Team/(2318:2321): Duracion de rafaga actual: 13.000000
+[DEBUG] 17:53:48:288 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [27,27]
+[ERROR] 17:53:49:289 Team/(2318:2321): Estimado de rafaga actual: 2.500000
+[ERROR] 17:53:49:290 Team/(2318:2321): Duracion de rafaga actual: 14.000000
+[DEBUG] 17:53:49:290 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [28,27]
+[ERROR] 17:53:50:290 Team/(2318:2321): Estimado de rafaga actual: 1.500000
+[ERROR] 17:53:50:290 Team/(2318:2321): Duracion de rafaga actual: 15.000000
+[DEBUG] 17:53:50:291 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [28,28]
+[ERROR] 17:53:51:291 Team/(2318:2321): Estimado de rafaga actual: 0.500000
+[ERROR] 17:53:51:291 Team/(2318:2321): Duracion de rafaga actual: 16.000000
+[DEBUG] 17:53:51:291 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [29,28]
+[ERROR] 17:53:52:292 Team/(2318:2321): Estimado de rafaga actual: -0.500000
+[ERROR] 17:53:52:292 Team/(2318:2321): Duracion de rafaga actual: 17.000000
+[DEBUG] 17:53:52:292 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [29,29]
+[ERROR] 17:53:53:292 Team/(2318:2321): Estimado de rafaga actual: -1.500000
+[ERROR] 17:53:53:292 Team/(2318:2321): Duracion de rafaga actual: 18.000000
+[DEBUG] 17:53:53:293 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [30,29]
+[ERROR] 17:53:54:293 Team/(2318:2321): Estimado de rafaga actual: -2.500000
+[ERROR] 17:53:54:294 Team/(2318:2321): Duracion de rafaga actual: 19.000000
+[DEBUG] 17:53:54:294 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [30,30]
+[ERROR] 17:53:55:294 Team/(2318:2321): Estimado de rafaga actual: -3.500000
+[ERROR] 17:53:55:295 Team/(2318:2321): Duracion de rafaga actual: 20.000000
+[INFO] 17:53:55:295 Team/(2318:2321): No se pudo enviar el CATCH (broker desonectado)
+[INFO] 17:53:55:295 Team/(2318:2321): Posicion de back up restaurada: [40,40]
+[ERROR] 17:53:55:296 Team/(2318:2323): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 17:53:55:296 Team/(2318:2322): Hurra, tengo algo en ready
+[ERROR] 17:53:55:296 Team/(2318:2323): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:53:55:296 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [31,30]
+[ERROR] 17:53:56:297 Team/(2318:2321): Estimado de rafaga actual: 17.250000
+[ERROR] 17:53:56:297 Team/(2318:2321): Duracion de rafaga actual: 1.000000
+[DEBUG] 17:53:56:297 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [31,31]
+[ERROR] 17:53:57:297 Team/(2318:2321): Estimado de rafaga actual: 16.250000
+[ERROR] 17:53:57:298 Team/(2318:2321): Duracion de rafaga actual: 2.000000
+[DEBUG] 17:53:57:298 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [32,31]
+[ERROR] 17:53:58:299 Team/(2318:2321): Estimado de rafaga actual: 15.250000
+[ERROR] 17:53:58:299 Team/(2318:2321): Duracion de rafaga actual: 3.000000
+[DEBUG] 17:53:58:299 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [32,32]
+[ERROR] 17:53:59:300 Team/(2318:2321): Estimado de rafaga actual: 14.250000
+[ERROR] 17:53:59:301 Team/(2318:2321): Duracion de rafaga actual: 4.000000
+[DEBUG] 17:53:59:301 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [33,32]
+[ERROR] 17:54:00:301 Team/(2318:2321): Estimado de rafaga actual: 13.250000
+[ERROR] 17:54:00:301 Team/(2318:2321): Duracion de rafaga actual: 5.000000
+[DEBUG] 17:54:00:301 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [33,33]
+[ERROR] 17:54:01:302 Team/(2318:2321): Estimado de rafaga actual: 12.250000
+[ERROR] 17:54:01:302 Team/(2318:2321): Duracion de rafaga actual: 6.000000
+[DEBUG] 17:54:01:302 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [34,33]
+[ERROR] 17:54:02:303 Team/(2318:2321): Estimado de rafaga actual: 11.250000
+[ERROR] 17:54:02:303 Team/(2318:2321): Duracion de rafaga actual: 7.000000
+[DEBUG] 17:54:02:303 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [34,34]
+[ERROR] 17:54:03:304 Team/(2318:2321): Estimado de rafaga actual: 10.250000
+[ERROR] 17:54:03:304 Team/(2318:2321): Duracion de rafaga actual: 8.000000
+[DEBUG] 17:54:03:304 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [35,34]
+[ERROR] 17:54:04:305 Team/(2318:2321): Estimado de rafaga actual: 9.250000
+[ERROR] 17:54:04:305 Team/(2318:2321): Duracion de rafaga actual: 9.000000
+[DEBUG] 17:54:04:305 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [35,35]
+[ERROR] 17:54:05:306 Team/(2318:2321): Estimado de rafaga actual: 8.250000
+[ERROR] 17:54:05:306 Team/(2318:2321): Duracion de rafaga actual: 10.000000
+[DEBUG] 17:54:05:306 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [36,35]
+[ERROR] 17:54:06:306 Team/(2318:2321): Estimado de rafaga actual: 7.250000
+[ERROR] 17:54:06:307 Team/(2318:2321): Duracion de rafaga actual: 11.000000
+[DEBUG] 17:54:06:307 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [36,36]
+[ERROR] 17:54:07:307 Team/(2318:2321): Estimado de rafaga actual: 6.250000
+[ERROR] 17:54:07:307 Team/(2318:2321): Duracion de rafaga actual: 12.000000
+[DEBUG] 17:54:07:307 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [37,36]
+[ERROR] 17:54:08:308 Team/(2318:2321): Estimado de rafaga actual: 5.250000
+[ERROR] 17:54:08:308 Team/(2318:2321): Duracion de rafaga actual: 13.000000
+[DEBUG] 17:54:08:308 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [37,37]
+[ERROR] 17:54:09:309 Team/(2318:2321): Estimado de rafaga actual: 4.250000
+[ERROR] 17:54:09:310 Team/(2318:2321): Duracion de rafaga actual: 14.000000
+[DEBUG] 17:54:09:310 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [38,37]
+[ERROR] 17:54:10:310 Team/(2318:2321): Estimado de rafaga actual: 3.250000
+[ERROR] 17:54:10:310 Team/(2318:2321): Duracion de rafaga actual: 15.000000
+[DEBUG] 17:54:10:310 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [38,38]
+[ERROR] 17:54:11:310 Team/(2318:2321): Estimado de rafaga actual: 2.250000
+[ERROR] 17:54:11:311 Team/(2318:2321): Duracion de rafaga actual: 16.000000
+[DEBUG] 17:54:11:311 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [39,38]
+[ERROR] 17:54:12:311 Team/(2318:2321): Estimado de rafaga actual: 1.250000
+[ERROR] 17:54:12:311 Team/(2318:2321): Duracion de rafaga actual: 17.000000
+[DEBUG] 17:54:12:311 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [39,39]
+[ERROR] 17:54:13:312 Team/(2318:2321): Estimado de rafaga actual: 0.250000
+[ERROR] 17:54:13:312 Team/(2318:2321): Duracion de rafaga actual: 18.000000
+[DEBUG] 17:54:13:312 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [40,39]
+[ERROR] 17:54:14:313 Team/(2318:2321): Estimado de rafaga actual: -0.750000
+[ERROR] 17:54:14:313 Team/(2318:2321): Duracion de rafaga actual: 19.000000
+[DEBUG] 17:54:14:313 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [40,40]
+[ERROR] 17:54:15:313 Team/(2318:2321): Estimado de rafaga actual: -1.750000
+[ERROR] 17:54:15:314 Team/(2318:2321): Duracion de rafaga actual: 20.000000
+[INFO] 17:54:15:314 Team/(2318:2321): No se pudo enviar el CATCH (broker desonectado)
+[INFO] 17:54:17:336 Team/(2318:2324): [GAMEBOY] Recibiendo mensaje del socket cliente: 10
+[INFO] 17:54:17:337 Team/(2318:2324): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:54:17:337 Team/(2318:2324): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:54:17:337 Team/(2318:2324): Procesando APPEARED...
+[DEBUG] 17:54:17:337 Team/(2318:2324): El pokemon esta en nuestro objetivo
+[INFO] 17:54:17:337 Team/(2318:2324): Pokemon: Pikachu
+[INFO] 17:54:17:337 Team/(2318:2324): Mensaje recibido: APPEARED_POKEMON Pikachu 50 50.
+[ERROR] 17:54:17:337 Team/(2318:2323): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 17:54:17:337 Team/(2318:2322): Hurra, tengo algo en ready
+[ERROR] 17:54:17:337 Team/(2318:2323): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:54:17:337 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [41,40]
+[ERROR] 17:54:18:337 Team/(2318:2321): Estimado de rafaga actual: 18.125000
+[ERROR] 17:54:18:338 Team/(2318:2321): Duracion de rafaga actual: 1.000000
+[DEBUG] 17:54:18:338 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [41,41]
+[ERROR] 17:54:19:338 Team/(2318:2321): Estimado de rafaga actual: 17.125000
+[ERROR] 17:54:19:339 Team/(2318:2321): Duracion de rafaga actual: 2.000000
+[DEBUG] 17:54:19:339 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [42,41]
+[ERROR] 17:54:20:340 Team/(2318:2321): Estimado de rafaga actual: 16.125000
+[ERROR] 17:54:20:340 Team/(2318:2321): Duracion de rafaga actual: 3.000000
+[DEBUG] 17:54:20:340 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [42,42]
+[ERROR] 17:54:21:340 Team/(2318:2321): Estimado de rafaga actual: 15.125000
+[ERROR] 17:54:21:341 Team/(2318:2321): Duracion de rafaga actual: 4.000000
+[DEBUG] 17:54:21:341 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [43,42]
+[ERROR] 17:54:22:341 Team/(2318:2321): Estimado de rafaga actual: 14.125000
+[ERROR] 17:54:22:341 Team/(2318:2321): Duracion de rafaga actual: 5.000000
+[DEBUG] 17:54:22:342 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [43,43]
+[ERROR] 17:54:23:342 Team/(2318:2321): Estimado de rafaga actual: 13.125000
+[ERROR] 17:54:23:342 Team/(2318:2321): Duracion de rafaga actual: 6.000000
+[DEBUG] 17:54:23:342 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [44,43]
+[ERROR] 17:54:24:342 Team/(2318:2321): Estimado de rafaga actual: 12.125000
+[ERROR] 17:54:24:343 Team/(2318:2321): Duracion de rafaga actual: 7.000000
+[DEBUG] 17:54:24:343 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [44,44]
+[ERROR] 17:54:25:344 Team/(2318:2321): Estimado de rafaga actual: 11.125000
+[ERROR] 17:54:25:345 Team/(2318:2321): Duracion de rafaga actual: 8.000000
+[DEBUG] 17:54:25:345 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [45,44]
+[ERROR] 17:54:26:345 Team/(2318:2321): Estimado de rafaga actual: 10.125000
+[ERROR] 17:54:26:345 Team/(2318:2321): Duracion de rafaga actual: 9.000000
+[DEBUG] 17:54:26:345 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [45,45]
+[INFO] 17:54:27:160 Team/(2318:2324): [GAMEBOY] Recibiendo mensaje del socket cliente: 14
+[INFO] 17:54:27:161 Team/(2318:2324): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:54:27:161 Team/(2318:2324): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:54:27:161 Team/(2318:2324): Procesando APPEARED...
+[DEBUG] 17:54:27:161 Team/(2318:2324): El pokemon esta en nuestro objetivo
+[INFO] 17:54:27:161 Team/(2318:2324): Pokemon: Squirtle
+[INFO] 17:54:27:161 Team/(2318:2324): Mensaje recibido: APPEARED_POKEMON Squirtle 1 1.
+[ERROR] 17:54:27:161 Team/(2318:2323): Entrando al semaforo de entrenadores disponibles
+[ERROR] 17:54:27:161 Team/(2318:2323): Entrando al semaforo de posiciones pendientes
+[ERROR] 17:54:27:345 Team/(2318:2321): Estimado de rafaga actual: 9.125000
+[ERROR] 17:54:27:345 Team/(2318:2321): Duracion de rafaga actual: 10.000000
+[ERROR] 17:54:27:345 Team/(2318:2321): Estimacion entrenador 2 en ejec: 9.125000 y el entrenador en lista de ready: 2.000000
+[DEBUG] 17:54:27:345 Team/(2318:2321): El entrenador 2 fue desalojado por el entrenador 0. Vuelve a la cola de ready.
+[DEBUG] 17:54:27:345 Team/(2318:2322): Hurra, tengo algo en ready
+[DEBUG] 17:54:27:345 Team/(2318:2319): El entrenador id: 0 se movio a la posicion [1,1]
+[ERROR] 17:54:28:346 Team/(2318:2319): Estimado de rafaga actual: 1.000000
+[ERROR] 17:54:28:346 Team/(2318:2319): Duracion de rafaga actual: 1.000000
+[ERROR] 17:54:28:346 Team/(2318:2319): Estimacion entrenador 0 en ejec: 1.000000 y el entrenador en lista de ready: 9.125000
+[INFO] 17:54:28:346 Team/(2318:2319): No se pudo enviar el CATCH (broker desonectado)
+[DEBUG] 17:54:28:346 Team/(2318:2322): Hurra, tengo algo en ready
+[DEBUG] 17:54:28:346 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [46,45]
+[ERROR] 17:54:29:346 Team/(2318:2321): Estimado de rafaga actual: 8.125000
+[ERROR] 17:54:29:347 Team/(2318:2321): Duracion de rafaga actual: 11.000000
+[DEBUG] 17:54:29:348 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [46,46]
+[ERROR] 17:54:30:348 Team/(2318:2321): Estimado de rafaga actual: 7.125000
+[ERROR] 17:54:30:348 Team/(2318:2321): Duracion de rafaga actual: 12.000000
+[DEBUG] 17:54:30:348 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [47,46]
+[ERROR] 17:54:31:349 Team/(2318:2321): Estimado de rafaga actual: 6.125000
+[ERROR] 17:54:31:349 Team/(2318:2321): Duracion de rafaga actual: 13.000000
+[DEBUG] 17:54:31:349 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [47,47]
+[ERROR] 17:54:32:349 Team/(2318:2321): Estimado de rafaga actual: 5.125000
+[ERROR] 17:54:32:349 Team/(2318:2321): Duracion de rafaga actual: 14.000000
+[DEBUG] 17:54:32:349 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [48,47]
+[ERROR] 17:54:33:349 Team/(2318:2321): Estimado de rafaga actual: 4.125000
+[ERROR] 17:54:33:349 Team/(2318:2321): Duracion de rafaga actual: 15.000000
+[DEBUG] 17:54:33:349 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [48,48]
+[ERROR] 17:54:34:350 Team/(2318:2321): Estimado de rafaga actual: 3.125000
+[ERROR] 17:54:34:350 Team/(2318:2321): Duracion de rafaga actual: 16.000000
+[DEBUG] 17:54:34:350 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [49,48]
+[ERROR] 17:54:35:350 Team/(2318:2321): Estimado de rafaga actual: 2.125000
+[ERROR] 17:54:35:350 Team/(2318:2321): Duracion de rafaga actual: 17.000000
+[DEBUG] 17:54:35:350 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [49,49]
+[ERROR] 17:54:36:351 Team/(2318:2321): Estimado de rafaga actual: 1.125000
+[ERROR] 17:54:36:351 Team/(2318:2321): Duracion de rafaga actual: 18.000000
+[DEBUG] 17:54:36:351 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [50,49]
+[ERROR] 17:54:37:352 Team/(2318:2321): Estimado de rafaga actual: 0.125000
+[ERROR] 17:54:37:353 Team/(2318:2321): Duracion de rafaga actual: 19.000000
+[DEBUG] 17:54:37:353 Team/(2318:2321): El entrenador id: 2 se movio a la posicion [50,50]
+[ERROR] 17:54:38:353 Team/(2318:2321): Estimado de rafaga actual: -0.875000
+[ERROR] 17:54:38:353 Team/(2318:2321): Duracion de rafaga actual: 20.000000
+[INFO] 17:54:38:353 Team/(2318:2321): No se pudo enviar el CATCH (broker desonectado)
+[DEBUG] 17:55:32:183 Team/(2318:2318): ID obtenido = 253
+[INFO] 17:55:32:184 Team/(2318:2318): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 17:55:32:184 Team/(2318:2318): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 17:55:32:184 Team/(2318:2318): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 17:55:32:184 Team/(2318:2318): Enviando GETs...
+[INFO] 17:55:32:191 Team/(2318:2351): Esperando mensajes de broker...
+[INFO] 17:55:32:192 Team/(2318:2350): Esperando mensajes de broker...
+[INFO] 17:55:32:193 Team/(2318:2349): Esperando mensajes de broker...
+[INFO] 17:55:32:195 Team/(2318:2318): GETs enviados
+[INFO] 17:56:00:576 Team/(2318:2324): [GAMEBOY] Recibiendo mensaje del socket cliente: 15
+[INFO] 17:56:00:576 Team/(2318:2324): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:56:00:577 Team/(2318:2324): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:56:00:577 Team/(2318:2324): Procesando APPEARED...
+[DEBUG] 17:56:00:577 Team/(2318:2324): El pokemon esta en nuestro objetivo
+[INFO] 17:56:00:577 Team/(2318:2324): Pokemon: Pikachu
+[INFO] 17:56:00:577 Team/(2318:2324): Mensaje recibido: APPEARED_POKEMON Pikachu 50 50.
+[ERROR] 17:56:00:577 Team/(2318:2323): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 17:56:00:577 Team/(2318:2322): Hurra, tengo algo en ready
+[ERROR] 17:56:00:577 Team/(2318:2323): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:56:00:577 Team/(2318:2321): Enviando mensaje CATCH...
+[INFO] 17:56:46:696 Team/(2318:2324): [GAMEBOY] Recibiendo mensaje del socket cliente: 20
+[INFO] 17:56:46:697 Team/(2318:2324): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:56:46:697 Team/(2318:2324): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:56:46:697 Team/(2318:2324): Procesando APPEARED...
+[ERROR] 17:56:46:697 Team/(2318:2324): No me interesa el pokemon 
+[INFO] 17:57:05:521 Team/(2318:2324): [GAMEBOY] Recibiendo mensaje del socket cliente: 21
+[INFO] 17:57:05:521 Team/(2318:2324): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:57:05:521 Team/(2318:2324): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:57:05:521 Team/(2318:2324): Procesando APPEARED...
+[DEBUG] 17:57:38:32 Team/(2365:2365): Se ha iniciado un Team.
+[INFO] 17:57:38:32 Team/(2365:2365): Cantidad de posiciones: 3
+[INFO] 17:57:38:32 Team/(2365:2365): Cantidad de entrenadores: 3
+[INFO] 17:57:38:33 Team/(2365:2365): Entrenadores disponibles: 0
+[DEBUG] 17:57:38:34 Team/(2365:2365): ID obtenido = 254
+[INFO] 17:57:38:34 Team/(2365:2371): Socket de escucha para Gameboy creado
+[INFO] 17:57:38:34 Team/(2365:2370): Entrenadores disponibles: 3
+[ERROR] 17:57:38:34 Team/(2365:2370): Entrando al semaforo de entrenadores disponibles
+[ERROR] 17:57:38:34 Team/(2365:2370): Entrando al semaforo de posiciones pendientes
+[INFO] 17:57:38:35 Team/(2365:2365): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 17:57:38:35 Team/(2365:2365): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 17:57:38:36 Team/(2365:2365): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 17:57:38:36 Team/(2365:2365): Enviando GETs...
+[INFO] 17:57:38:44 Team/(2365:2365): GETs enviados
+[DEBUG] 17:57:38:44 Team/(2365:2369): Se activa el planificador
+[INFO] 17:57:38:44 Team/(2365:2377): Esperando mensajes de broker...
+[INFO] 17:57:38:44 Team/(2365:2376): Esperando mensajes de broker...
+[INFO] 17:57:38:44 Team/(2365:2375): Esperando mensajes de broker...
+[INFO] 17:57:42:800 Team/(2365:2371): [GAMEBOY] Recibiendo mensaje del socket cliente: 7
+[INFO] 17:57:42:801 Team/(2365:2371): [GAMEBOY] Mensaje recibido
+[ERROR] 17:57:42:801 Team/(2365:2371): [GAMEBOY] Mensaje recibido de una cola no correspondiente
+[INFO] 17:58:01:705 Team/(2365:2371): [GAMEBOY] Recibiendo mensaje del socket cliente: 10
+[INFO] 17:58:01:705 Team/(2365:2371): [GAMEBOY] Mensaje recibido
+[ERROR] 17:58:01:705 Team/(2365:2371): [GAMEBOY] Mensaje recibido de una cola no correspondiente
+[INFO] 17:59:00:354 Team/(2365:2377): Recibido un mensaje de broker
+[INFO] 17:59:00:354 Team/(2365:2377): Esperando mensajes de broker...
+[INFO] 17:59:00:356 Team/(2365:2408): Procesando CAUGHT...
+[INFO] 17:59:30:56 Team/(2365:2371): [GAMEBOY] Recibiendo mensaje del socket cliente: 11
+[INFO] 17:59:30:57 Team/(2365:2371): [GAMEBOY] Mensaje recibido
+[DEBUG] 17:59:30:57 Team/(2365:2371): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 17:59:30:57 Team/(2365:2371): Procesando APPEARED...
+[DEBUG] 17:59:30:57 Team/(2365:2371): El pokemon esta en nuestro objetivo
+[INFO] 17:59:30:57 Team/(2365:2371): Pokemon: Pikachu
+[INFO] 17:59:30:57 Team/(2365:2371): Mensaje recibido: APPEARED_POKEMON Pikachu 20 20.
+[ERROR] 17:59:30:57 Team/(2365:2370): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 17:59:30:57 Team/(2365:2369): Hurra, tengo algo en ready
+[ERROR] 17:59:30:57 Team/(2365:2370): Entrando al semaforo de posiciones pendientes
+[DEBUG] 17:59:30:57 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [1,9]
+[ERROR] 17:59:31:57 Team/(2365:2368): Estimado de rafaga actual: 1.000000
+[ERROR] 17:59:31:58 Team/(2365:2368): Duracion de rafaga actual: 1.000000
+[DEBUG] 17:59:31:58 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [1,10]
+[ERROR] 17:59:32:58 Team/(2365:2368): Estimado de rafaga actual: 0.000000
+[ERROR] 17:59:32:59 Team/(2365:2368): Duracion de rafaga actual: 2.000000
+[DEBUG] 17:59:32:59 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [2,10]
+[ERROR] 17:59:33:59 Team/(2365:2368): Estimado de rafaga actual: -1.000000
+[ERROR] 17:59:33:59 Team/(2365:2368): Duracion de rafaga actual: 3.000000
+[DEBUG] 17:59:33:59 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [2,11]
+[ERROR] 17:59:34:60 Team/(2365:2368): Estimado de rafaga actual: -2.000000
+[ERROR] 17:59:34:60 Team/(2365:2368): Duracion de rafaga actual: 4.000000
+[DEBUG] 17:59:34:60 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [3,11]
+[ERROR] 17:59:35:60 Team/(2365:2368): Estimado de rafaga actual: -3.000000
+[ERROR] 17:59:35:61 Team/(2365:2368): Duracion de rafaga actual: 5.000000
+[DEBUG] 17:59:35:61 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [3,12]
+[ERROR] 17:59:36:61 Team/(2365:2368): Estimado de rafaga actual: -4.000000
+[ERROR] 17:59:36:62 Team/(2365:2368): Duracion de rafaga actual: 6.000000
+[DEBUG] 17:59:36:62 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [4,12]
+[ERROR] 17:59:37:63 Team/(2365:2368): Estimado de rafaga actual: -5.000000
+[ERROR] 17:59:37:63 Team/(2365:2368): Duracion de rafaga actual: 7.000000
+[DEBUG] 17:59:37:63 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [4,13]
+[ERROR] 17:59:38:63 Team/(2365:2368): Estimado de rafaga actual: -6.000000
+[ERROR] 17:59:38:64 Team/(2365:2368): Duracion de rafaga actual: 8.000000
+[DEBUG] 17:59:38:64 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [5,13]
+[ERROR] 17:59:39:64 Team/(2365:2368): Estimado de rafaga actual: -7.000000
+[ERROR] 17:59:39:64 Team/(2365:2368): Duracion de rafaga actual: 9.000000
+[DEBUG] 17:59:39:64 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [5,14]
+[ERROR] 17:59:40:64 Team/(2365:2368): Estimado de rafaga actual: -8.000000
+[ERROR] 17:59:40:65 Team/(2365:2368): Duracion de rafaga actual: 10.000000
+[DEBUG] 17:59:40:65 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [6,14]
+[ERROR] 17:59:41:66 Team/(2365:2368): Estimado de rafaga actual: -9.000000
+[ERROR] 17:59:41:67 Team/(2365:2368): Duracion de rafaga actual: 11.000000
+[DEBUG] 17:59:41:67 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [6,15]
+[ERROR] 17:59:42:68 Team/(2365:2368): Estimado de rafaga actual: -10.000000
+[ERROR] 17:59:42:68 Team/(2365:2368): Duracion de rafaga actual: 12.000000
+[DEBUG] 17:59:42:68 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [7,15]
+[ERROR] 17:59:43:69 Team/(2365:2368): Estimado de rafaga actual: -11.000000
+[ERROR] 17:59:43:69 Team/(2365:2368): Duracion de rafaga actual: 13.000000
+[DEBUG] 17:59:43:69 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [7,16]
+[ERROR] 17:59:44:69 Team/(2365:2368): Estimado de rafaga actual: -12.000000
+[ERROR] 17:59:44:70 Team/(2365:2368): Duracion de rafaga actual: 14.000000
+[DEBUG] 17:59:44:70 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [8,16]
+[ERROR] 17:59:45:71 Team/(2365:2368): Estimado de rafaga actual: -13.000000
+[ERROR] 17:59:45:71 Team/(2365:2368): Duracion de rafaga actual: 15.000000
+[DEBUG] 17:59:45:71 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [8,17]
+[ERROR] 17:59:46:71 Team/(2365:2368): Estimado de rafaga actual: -14.000000
+[ERROR] 17:59:46:72 Team/(2365:2368): Duracion de rafaga actual: 16.000000
+[DEBUG] 17:59:46:72 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [9,17]
+[ERROR] 17:59:47:73 Team/(2365:2368): Estimado de rafaga actual: -15.000000
+[ERROR] 17:59:47:73 Team/(2365:2368): Duracion de rafaga actual: 17.000000
+[DEBUG] 17:59:47:73 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [9,18]
+[ERROR] 17:59:48:74 Team/(2365:2368): Estimado de rafaga actual: -16.000000
+[ERROR] 17:59:48:74 Team/(2365:2368): Duracion de rafaga actual: 18.000000
+[DEBUG] 17:59:48:74 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [10,18]
+[ERROR] 17:59:49:75 Team/(2365:2368): Estimado de rafaga actual: -17.000000
+[ERROR] 17:59:49:75 Team/(2365:2368): Duracion de rafaga actual: 19.000000
+[DEBUG] 17:59:49:75 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [10,19]
+[ERROR] 17:59:50:76 Team/(2365:2368): Estimado de rafaga actual: -18.000000
+[ERROR] 17:59:50:76 Team/(2365:2368): Duracion de rafaga actual: 20.000000
+[DEBUG] 17:59:50:76 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [11,19]
+[ERROR] 17:59:51:76 Team/(2365:2368): Estimado de rafaga actual: -19.000000
+[ERROR] 17:59:51:77 Team/(2365:2368): Duracion de rafaga actual: 21.000000
+[DEBUG] 17:59:51:77 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [11,20]
+[ERROR] 17:59:52:77 Team/(2365:2368): Estimado de rafaga actual: -20.000000
+[ERROR] 17:59:52:78 Team/(2365:2368): Duracion de rafaga actual: 22.000000
+[DEBUG] 17:59:52:78 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [12,20]
+[ERROR] 17:59:53:78 Team/(2365:2368): Estimado de rafaga actual: -21.000000
+[ERROR] 17:59:53:78 Team/(2365:2368): Duracion de rafaga actual: 23.000000
+[DEBUG] 17:59:53:78 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [13,20]
+[ERROR] 17:59:54:79 Team/(2365:2368): Estimado de rafaga actual: -22.000000
+[ERROR] 17:59:54:80 Team/(2365:2368): Duracion de rafaga actual: 24.000000
+[DEBUG] 17:59:54:80 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [14,20]
+[ERROR] 17:59:55:80 Team/(2365:2368): Estimado de rafaga actual: -23.000000
+[ERROR] 17:59:55:81 Team/(2365:2368): Duracion de rafaga actual: 25.000000
+[DEBUG] 17:59:55:81 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [15,20]
+[ERROR] 17:59:56:81 Team/(2365:2368): Estimado de rafaga actual: -24.000000
+[ERROR] 17:59:56:81 Team/(2365:2368): Duracion de rafaga actual: 26.000000
+[DEBUG] 17:59:56:81 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [16,20]
+[ERROR] 17:59:57:81 Team/(2365:2368): Estimado de rafaga actual: -25.000000
+[ERROR] 17:59:57:82 Team/(2365:2368): Duracion de rafaga actual: 27.000000
+[DEBUG] 17:59:57:82 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [17,20]
+[ERROR] 17:59:58:83 Team/(2365:2368): Estimado de rafaga actual: -26.000000
+[ERROR] 17:59:58:83 Team/(2365:2368): Duracion de rafaga actual: 28.000000
+[DEBUG] 17:59:58:83 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [18,20]
+[ERROR] 17:59:58:891 Team/(2365:2368): Estimado de rafaga actual: -27.000000
+[ERROR] 17:59:58:891 Team/(2365:2368): Duracion de rafaga actual: 29.000000
+[DEBUG] 17:59:58:891 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [19,20]
+[ERROR] 17:59:59:892 Team/(2365:2368): Estimado de rafaga actual: -28.000000
+[ERROR] 17:59:59:892 Team/(2365:2368): Duracion de rafaga actual: 30.000000
+[DEBUG] 17:59:59:892 Team/(2365:2368): El entrenador id: 2 se movio a la posicion [20,20]
+[ERROR] 18:00:00:892 Team/(2365:2368): Estimado de rafaga actual: -29.000000
+[ERROR] 18:00:00:892 Team/(2365:2368): Duracion de rafaga actual: 31.000000
+[DEBUG] 18:00:00:892 Team/(2365:2368): Enviando mensaje CATCH...
+[INFO] 18:00:28:527 Team/(2365:2371): [GAMEBOY] Recibiendo mensaje del socket cliente: 12
+[INFO] 18:00:28:527 Team/(2365:2371): [GAMEBOY] Mensaje recibido
+[DEBUG] 18:00:28:527 Team/(2365:2371): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 18:00:28:527 Team/(2365:2371): Procesando APPEARED...

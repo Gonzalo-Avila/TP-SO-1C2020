@@ -8795,3 +8795,71 @@
 [INFO] 17:10:09:139 Delibird - Broker/(23321:23322): Se guardó en memoría cache el mensaje 5980 en la posición 0x96d1b30
 [INFO] 17:10:09:139 Delibird - Broker/(23321:23321): Se envió el mensaje 5980 al suscriptor 252
 [INFO] 17:10:09:139 Delibird - Broker/(23321:23321): El suscriptor 252 confirmó recepción del mensaje 5980
+[INFO] 17:55:32:182 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:55:32:183 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:55:32:184 Delibird - Broker/(2344:2345): El proceso 253 se ha suscripto a la cola CAUGHT_POKEMON
+[INFO] 17:55:32:184 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:55:32:184 Delibird - Broker/(2344:2345): El proceso 253 se ha suscripto a la cola APPEARED_POKEMON
+[INFO] 17:55:32:185 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:55:32:185 Delibird - Broker/(2344:2345): El proceso 253 se ha suscripto a la cola LOCALIZED_POKEMON
+[INFO] 17:55:32:185 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:55:32:185 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 5981
+[INFO] 17:55:32:185 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5981 en la posición 0x8b35880
+[INFO] 17:55:32:186 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:55:32:186 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 5982
+[INFO] 17:55:32:186 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5982 en la posición 0x8b3588f
+[INFO] 17:55:32:187 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:55:32:188 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 5983
+[INFO] 17:55:32:188 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5983 en la posición 0x8b3589d
+[INFO] 17:55:32:189 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:55:32:190 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 5984
+[INFO] 17:55:32:190 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5984 en la posición 0x8b358aa
+[INFO] 17:55:32:190 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:55:32:191 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 5985
+[INFO] 17:55:32:191 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5985 en la posición 0x8b358b3
+[INFO] 17:55:32:192 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:55:32:193 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 5986
+[INFO] 17:55:32:193 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5986 en la posición 0x8b358bf
+[INFO] 17:55:32:194 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:55:32:195 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 5987
+[INFO] 17:55:32:195 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5987 en la posición 0x8b358cb
+[INFO] 17:56:00:577 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:56:00:577 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 5988
+[INFO] 17:56:00:577 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5988 en la posición 0x8b358d6
+[INFO] 17:57:38:33 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:57:38:34 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:57:38:35 Delibird - Broker/(2344:2345): El proceso 254 se ha suscripto a la cola LOCALIZED_POKEMON
+[INFO] 17:57:38:35 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:57:38:35 Delibird - Broker/(2344:2345): El proceso 254 se ha suscripto a la cola APPEARED_POKEMON
+[INFO] 17:57:38:35 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:57:38:36 Delibird - Broker/(2344:2345): El proceso 254 se ha suscripto a la cola CAUGHT_POKEMON
+[INFO] 17:57:38:36 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:57:38:36 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 5989
+[INFO] 17:57:38:36 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5989 en la posición 0x8b358ea
+[INFO] 17:57:38:37 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:57:38:37 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 5990
+[INFO] 17:57:38:37 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5990 en la posición 0x8b358f9
+[INFO] 17:57:38:38 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:57:38:38 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 5991
+[INFO] 17:57:38:38 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5991 en la posición 0x8b35907
+[INFO] 17:57:38:38 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:57:38:39 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 5992
+[INFO] 17:57:38:39 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5992 en la posición 0x8b35914
+[INFO] 17:57:38:39 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:57:38:40 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 5993
+[INFO] 17:57:38:40 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5993 en la posición 0x8b3591d
+[INFO] 17:57:38:40 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:57:38:41 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 5994
+[INFO] 17:57:38:41 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5994 en la posición 0x8b35929
+[INFO] 17:57:38:41 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:57:38:44 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 5995
+[INFO] 17:57:38:44 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5995 en la posición 0x8b35935
+[INFO] 17:59:00:353 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 17:59:00:353 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 5996
+[INFO] 17:59:00:353 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5996 en la posición 0x8b35940
+[INFO] 17:59:00:354 Delibird - Broker/(2344:2344): Se envió el mensaje 5996 al suscriptor 253
+[INFO] 17:59:00:354 Delibird - Broker/(2344:2344): Se envió el mensaje 5996 al suscriptor 254
+[INFO] 17:59:00:354 Delibird - Broker/(2344:2344): El suscriptor 254 confirmó recepción del mensaje 5996
+[INFO] 18:00:00:892 Delibird - Broker/(2344:2345): Se ha conectado un proceso al broker.
+[INFO] 18:00:00:893 Delibird - Broker/(2344:2345): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 5997
+[INFO] 18:00:00:893 Delibird - Broker/(2344:2345): Se guardó en memoría cache el mensaje 5997 en la posición 0x8b35944
