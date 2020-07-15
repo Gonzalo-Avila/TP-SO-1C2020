@@ -8871,3 +8871,193 @@ PUERTO: 6987
 Socket:5
 [INFO] 18:24:54:864 GameBoy/(15391:15391): Se envió un mensaje al proceso GAMECARD
 [INFO] 18:24:54:864 GameBoy/(15391:15391): El proceso GameBoy finalizó su ejecución
+[INFO] 21:27:51:731 GameBoy/(17387:17387): Se ha iniciado el cliente gameboy
+
+[INFO] 21:27:51:736 GameBoy/(17387:17387): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 21:27:51:736 GameBoy/(17387:17387): Se envió un mensaje a la cola CAUGHT_POKEMON del proceso BROKER
+[INFO] 21:27:51:736 GameBoy/(17387:17387): El proceso GameBoy finalizó su ejecución
+[INFO] 21:29:18:731 GameBoy/(17682:17682): Se ha iniciado el cliente gameboy
+
+[INFO] 21:29:18:739 GameBoy/(17682:17682): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 21:29:18:745 GameBoy/(17682:17682): Se envió un mensaje a la cola CAUGHT_POKEMON del proceso BROKER
+[INFO] 21:29:18:745 GameBoy/(17682:17682): El proceso GameBoy finalizó su ejecución
+[INFO] 21:29:24:715 GameBoy/(17689:17689): Se ha iniciado el cliente gameboy
+
+[INFO] 21:29:24:722 GameBoy/(17689:17689): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 21:29:24:726 GameBoy/(17689:17689): Se envió un mensaje a la cola CATCH_POKEMON del proceso BROKER
+[INFO] 21:29:24:728 GameBoy/(17689:17689): El proceso GameBoy finalizó su ejecución
+[INFO] 21:29:31:517 GameBoy/(17699:17699): Se ha iniciado el cliente gameboy
+
+[INFO] 21:29:31:524 GameBoy/(17699:17699): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 21:29:31:532 GameBoy/(17699:17699): Se envió un mensaje a la cola CATCH_POKEMON del proceso BROKER
+[INFO] 21:29:31:532 GameBoy/(17699:17699): El proceso GameBoy finalizó su ejecución
+[INFO] 21:29:36:828 GameBoy/(17705:17705): Se ha iniciado el cliente gameboy
+
+[INFO] 21:29:36:835 GameBoy/(17705:17705): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 21:29:36:841 GameBoy/(17705:17705): Se envió un mensaje a la cola CATCH_POKEMON del proceso BROKER
+[INFO] 21:29:36:842 GameBoy/(17705:17705): El proceso GameBoy finalizó su ejecución
+[INFO] 21:29:47:612 GameBoy/(17717:17717): Se ha iniciado el cliente gameboy
+
+[INFO] 21:29:47:622 GameBoy/(17717:17717): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[DEBUG] 21:29:47:630 GameBoy/(17717:17717): El broker ha asignado el siguiente ID de proceso: 27
+[INFO] 21:29:47:630 GameBoy/(17717:17717): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:6
+[INFO] 21:29:47:631 GameBoy/(17717:17717): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 21:29:47:631 GameBoy/(17717:17717): Se realizó suscripción a la cola CAUGHT_POKEMON
+[INFO] 21:29:47:631 GameBoy/(17717:17717): Esperando mensajes...
+[INFO] 21:29:47:747 GameBoy/(17717:17717): Se recibió un nuevo mensaje del broker
+Cola: CAUGHT_POKEMON
+ID del mensaje: 1824
+ID correlativo: 1
+Tamaño del mensaje: 4
+
+[INFO] 21:29:47:752 GameBoy/(17717:17717): Resultado: 1
+
+[INFO] 21:29:47:752 GameBoy/(17717:17717): Esperando mensajes...
+[INFO] 21:29:47:789 GameBoy/(17717:17717): Se recibió un nuevo mensaje del broker
+Cola: CAUGHT_POKEMON
+ID del mensaje: 1825
+ID correlativo: 2
+Tamaño del mensaje: 4
+
+[INFO] 21:29:47:789 GameBoy/(17717:17717): Resultado: 0
+
+[INFO] 21:29:47:789 GameBoy/(17717:17717): Esperando mensajes...
+[INFO] 21:29:57:646 GameBoy/(17717:17720): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 21:29:57:647 GameBoy/(17717:17720): El gameboy se ha desconectado del broker
+[INFO] 21:29:57:648 GameBoy/(17717:17720): El proceso GameBoy finalizó su ejecución
+[INFO] 21:30:14:943 GameBoy/(17760:17760): Se ha iniciado el cliente gameboy
+
+[INFO] 21:30:14:945 GameBoy/(17760:17760): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 21:30:14:948 GameBoy/(17760:17760): Se envió un mensaje a la cola CATCH_POKEMON del proceso BROKER
+[INFO] 21:30:14:948 GameBoy/(17760:17760): El proceso GameBoy finalizó su ejecución
+[INFO] 21:46:57:813 GameBoy/(18750:18750): Se ha iniciado el cliente gameboy
+
+[INFO] 21:46:57:824 GameBoy/(18750:18750): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 21:46:57:825 GameBoy/(18750:18750): Se envió un mensaje a la cola CAUGHT_POKEMON del proceso BROKER
+[INFO] 21:46:57:825 GameBoy/(18750:18750): El proceso GameBoy finalizó su ejecución
+[INFO] 21:47:23:32 GameBoy/(18769:18769): Se ha iniciado el cliente gameboy
+
+[INFO] 21:47:23:34 GameBoy/(18769:18769): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 21:47:23:38 GameBoy/(18769:18769): Se envió un mensaje a la cola CAUGHT_POKEMON del proceso BROKER
+[INFO] 21:47:23:38 GameBoy/(18769:18769): El proceso GameBoy finalizó su ejecución
+[INFO] 21:47:28:457 GameBoy/(18779:18779): Se ha iniciado el cliente gameboy
+
+[INFO] 21:47:28:465 GameBoy/(18779:18779): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 21:47:28:473 GameBoy/(18779:18779): Se envió un mensaje a la cola CATCH_POKEMON del proceso BROKER
+[INFO] 21:47:28:473 GameBoy/(18779:18779): El proceso GameBoy finalizó su ejecución
+[INFO] 21:47:36:0 GameBoy/(18787:18787): Se ha iniciado el cliente gameboy
+
+[INFO] 21:47:37:7 GameBoy/(18787:18787): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 21:47:37:15 GameBoy/(18787:18787): Se envió un mensaje a la cola CATCH_POKEMON del proceso BROKER
+[INFO] 21:47:37:16 GameBoy/(18787:18787): El proceso GameBoy finalizó su ejecución
+[INFO] 21:47:42:18 GameBoy/(18793:18793): Se ha iniciado el cliente gameboy
+
+[INFO] 21:47:42:23 GameBoy/(18793:18793): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 21:47:42:29 GameBoy/(18793:18793): Se envió un mensaje a la cola CATCH_POKEMON del proceso BROKER
+[INFO] 21:47:42:31 GameBoy/(18793:18793): El proceso GameBoy finalizó su ejecución
+[INFO] 21:47:53:976 GameBoy/(18802:18802): Se ha iniciado el cliente gameboy
+
+[INFO] 21:47:53:984 GameBoy/(18802:18802): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[DEBUG] 21:47:53:999 GameBoy/(18802:18802): El broker ha asignado el siguiente ID de proceso: 28
+[INFO] 21:47:53:999 GameBoy/(18802:18802): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:6
+[INFO] 21:47:53:0 GameBoy/(18802:18802): Se ha suscrito a la cola CAUGHT_POKEMON
+[DEBUG] 21:47:53:0 GameBoy/(18802:18802): Se realizó suscripción a la cola CAUGHT_POKEMON
+[INFO] 21:47:53:0 GameBoy/(18802:18802): Esperando mensajes...
+[INFO] 21:47:54:76 GameBoy/(18802:18802): Se recibió un nuevo mensaje del broker
+Cola: CAUGHT_POKEMON
+ID del mensaje: 1830
+ID correlativo: 1
+Tamaño del mensaje: 4
+
+[INFO] 21:47:54:76 GameBoy/(18802:18802): Resultado: 1
+
+[INFO] 21:47:54:76 GameBoy/(18802:18802): Esperando mensajes...
+[INFO] 21:47:54:118 GameBoy/(18802:18802): Se recibió un nuevo mensaje del broker
+Cola: CAUGHT_POKEMON
+ID del mensaje: 1831
+ID correlativo: 2
+Tamaño del mensaje: 4
+
+[INFO] 21:47:54:118 GameBoy/(18802:18802): Resultado: 0
+
+[INFO] 21:47:54:119 GameBoy/(18802:18802): Esperando mensajes...
+[INFO] 21:48:04:10 GameBoy/(18802:18806): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 21:48:04:12 GameBoy/(18802:18806): El gameboy se ha desconectado del broker
+[INFO] 21:48:04:12 GameBoy/(18802:18806): El proceso GameBoy finalizó su ejecución
+[INFO] 21:48:10:168 GameBoy/(18816:18816): Se ha iniciado el cliente gameboy
+
+[INFO] 21:48:10:176 GameBoy/(18816:18816): Se ha conectado el GameBoy a un proceso.
+Tipo de proceso: BROKER
+IP: 127.0.0.1
+PUERTO: 9898
+Socket:5
+[INFO] 21:48:10:184 GameBoy/(18816:18816): Se envió un mensaje a la cola CATCH_POKEMON del proceso BROKER
+[INFO] 21:48:10:185 GameBoy/(18816:18816): El proceso GameBoy finalizó su ejecución

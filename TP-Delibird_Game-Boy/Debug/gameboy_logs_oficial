@@ -1055,3 +1055,31 @@
 [INFO] 18:22:53:65 Delibird - GameBoy/(15339:15339): Se ha conectado el GameBoy a un proceso.Tipo de proceso: GAMECARD | IP: 127.0.0.3 | PUERTO: 6987 | Socket:5
 [INFO] 18:23:55:765 Delibird - GameBoy/(15378:15378): Se ha conectado el GameBoy a un proceso.Tipo de proceso: GAMECARD | IP: 127.0.0.3 | PUERTO: 6987 | Socket:5
 [INFO] 18:24:54:859 Delibird - GameBoy/(15391:15391): Se ha conectado el GameBoy a un proceso.Tipo de proceso: GAMECARD | IP: 127.0.0.3 | PUERTO: 6987 | Socket:5
+[INFO] 21:27:51:736 Delibird - GameBoy/(17387:17387): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:29:18:739 Delibird - GameBoy/(17682:17682): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:29:24:722 Delibird - GameBoy/(17689:17689): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:29:31:524 Delibird - GameBoy/(17699:17699): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:29:36:835 Delibird - GameBoy/(17705:17705): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:29:47:622 Delibird - GameBoy/(17717:17717): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:29:47:630 Delibird - GameBoy/(17717:17717): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:6
+[INFO] 21:29:47:631 Delibird - GameBoy/(17717:17717): Se realizó suscripción a la cola CAUGHT_POKEMON
+[INFO] 21:29:47:752 Delibird - GameBoy/(17717:17717): Se recibió un nuevo mensaje del broker en la cola: CAUGHT_POKEMON
+
+[INFO] 21:29:47:789 Delibird - GameBoy/(17717:17717): Se recibió un nuevo mensaje del broker en la cola: CAUGHT_POKEMON
+
+[INFO] 21:29:57:647 Delibird - GameBoy/(17717:17720): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:30:14:945 Delibird - GameBoy/(17760:17760): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:46:57:825 Delibird - GameBoy/(18750:18750): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:47:23:34 Delibird - GameBoy/(18769:18769): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:47:28:465 Delibird - GameBoy/(18779:18779): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:47:37:7 Delibird - GameBoy/(18787:18787): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:47:42:23 Delibird - GameBoy/(18793:18793): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:47:53:985 Delibird - GameBoy/(18802:18802): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:47:53:0 Delibird - GameBoy/(18802:18802): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:6
+[INFO] 21:47:53:0 Delibird - GameBoy/(18802:18802): Se realizó suscripción a la cola CAUGHT_POKEMON
+[INFO] 21:47:54:76 Delibird - GameBoy/(18802:18802): Se recibió un nuevo mensaje del broker en la cola: CAUGHT_POKEMON
+
+[INFO] 21:47:54:118 Delibird - GameBoy/(18802:18802): Se recibió un nuevo mensaje del broker en la cola: CAUGHT_POKEMON
+
+[INFO] 21:48:04:12 Delibird - GameBoy/(18802:18806): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
+[INFO] 21:48:10:177 Delibird - GameBoy/(18816:18816): Se ha conectado el GameBoy a un proceso.Tipo de proceso: BROKER | IP: 127.0.0.1 | PUERTO: 9898 | Socket:5
