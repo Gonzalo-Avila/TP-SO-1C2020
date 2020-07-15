@@ -202,7 +202,7 @@ bool menorEstimacion(void* entrenador1, void* entrenador2) {
 	float estimadoEntrenador1 = ((t_entrenador*)entrenador1)->datosSjf.estimadoRafagaAct;
 	float estimadoEntrenador2 = ((t_entrenador*)entrenador2)->datosSjf.estimadoRafagaAct;
 
-	return estimadoEntrenador1 < estimadoEntrenador2;
+	return estimadoEntrenador1 <= estimadoEntrenador2;
 }
 
 t_entrenador* entrenadorConMenorRafaga(){
