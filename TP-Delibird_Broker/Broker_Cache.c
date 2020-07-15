@@ -372,27 +372,27 @@ bool compararPorMenorTamanio(void * particion1, void * particion2) {
 	registroParticion * registro1 = (registroParticion *) particion1;
 	registroParticion * registro2 = (registroParticion *) particion2;
 
-	return registro1->tamanioParticion < registro2->tamanioParticion;
+	return registro1->tamanioParticion <= registro2->tamanioParticion;
 }
 
 bool compararPorMayorTamanio(void * particion1, void * particion2) {
 	registroParticion * registro1 = (registroParticion *) particion1;
 	registroParticion * registro2 = (registroParticion *) particion2;
 
-	return registro1->tamanioParticion > registro2->tamanioParticion;
+	return registro1->tamanioParticion >= registro2->tamanioParticion;
 }
 
 bool compararPorFIFO(void * particion1, void * particion2) {
 	registroParticion * registro1 = (registroParticion *) particion1;
 	registroParticion * registro2 = (registroParticion *) particion2;
 
-	return registro1->tiempoArribo < registro2->tiempoArribo;
+	return registro1->tiempoArribo <= registro2->tiempoArribo;
 }
 bool compararPorLRU(void * particion1, void * particion2) {
 	registroParticion * registro1 = (registroParticion *) particion1;
 	registroParticion * registro2 = (registroParticion *) particion2;
 
-	return registro1->tiempoUltimoUso < registro2->tiempoUltimoUso;
+	return registro1->tiempoUltimoUso <= registro2->tiempoUltimoUso;
 }
 
 void eliminarRegistroDeCache(int IDMensaje) {

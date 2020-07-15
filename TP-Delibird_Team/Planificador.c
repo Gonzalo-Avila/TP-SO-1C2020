@@ -163,14 +163,11 @@ int ponerEnReadyAlMasCercano(int x, int y, char* pokemon){
 
 	if(idEntrenadorMasCercano != -1){
 		entrenadorMasCercano = (t_entrenador*) list_get(team->entrenadores,idEntrenadorMasCercano);
-
-
 		/*
 		sem_wait(&mutexOBJETIVOS);
 		list_remove_by_condition(team->objetivosNoAtendidos,esUnObjetivo);
 		sem_post(&mutexOBJETIVOS);
 		*/
-
 		sem_wait(&mutexEntrenadores);
 		entrenadorMasCercano->estado = LISTO;
 		strcpy(entrenadorMasCercano->pokemonAAtrapar.pokemon, pokemon);
