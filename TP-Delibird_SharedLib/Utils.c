@@ -8,8 +8,7 @@
 #include "Utils.h"
 
 void atenderConexionEn(int socket, int backlog) {
-	int * a = malloc(sizeof(int));
-	*a = listen(socket, backlog);
+	listen(socket, backlog);
 }
 
 /* Crea un socket de escucha para un servidor en X puerto
