@@ -251,9 +251,6 @@ void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 				return string_equals_ignore_case(pokemonNoAtrapado,((t_posicionEnMapa*)elemento)->pokemon);
 			}
 
-
-			//FIXME - Tener en cuenta que estamos alterando la idea de guardar las mismas referencias en objetivos originales y objetivos no atendidos.
-			//		  En teoria, solo podria traer leaks en casos border, pero si rompe algo tenerlo en cuenta
 			sem_wait(&mutexOBJETIVOS);
 			list_add(team->objetivosNoAtendidos,pokemonNoAtrapado);
 			sem_post(&mutexOBJETIVOS);
