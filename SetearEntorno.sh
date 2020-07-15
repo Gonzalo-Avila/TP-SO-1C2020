@@ -1,9 +1,6 @@
 pathTP='/home/utnso'
 
 echo "######################## TP DELIBIRD - Ripped Dinos ##########################"
-echo "Seteando variable de entorno"
-export LD_LIBRARY_PATH=/home/utnso/tp-2020-1c-Ripped-Dinos/TP-Delibird_SharedLib/Debug/
-
 echo "Compilando Shared Library..."
 cd "${pathTP}/tp-2020-1c-Ripped-Dinos/TP-Delibird_SharedLib/Debug/"
 make all
