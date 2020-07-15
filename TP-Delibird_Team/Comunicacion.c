@@ -243,16 +243,18 @@ void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 			sem_wait(&mutexEntrenadores);
 			entrenador->suspendido = false;
 			sem_post(&mutexEntrenadores);
+
 			char* pokemonNoAtrapado = malloc(strlen(entrenador->pokemonAAtrapar.pokemon) + 1);
 			strcpy(pokemonNoAtrapado,entrenador->pokemonAAtrapar.pokemon);
+
 			bool tieneElPokemon(void *elemento){
 				return string_equals_ignore_case(pokemonNoAtrapado,((t_posicionEnMapa*)elemento)->pokemon);
 			}
 
 
-			sem_wait(&mutexOBJETIVOS);
 			//FIXME - Tener en cuenta que estamos alterando la idea de guardar las mismas referencias en objetivos originales y objetivos no atendidos.
 			//		  En teoria, solo podria traer leaks en casos border, pero si rompe algo tenerlo en cuenta
+			sem_wait(&mutexOBJETIVOS);
 			list_add(team->objetivosNoAtendidos,pokemonNoAtrapado);
 			sem_post(&mutexOBJETIVOS);
 
@@ -288,9 +290,10 @@ void procesarCAUGHT(mensajeRecibido* miMensajeRecibido) {
 	if(validarIDCorrelativoCatch(miMensajeRecibido->idCorrelativo)) {
 		log_debug(logger, "Se recibio un CAUGHT valido");
 		procesarObjetivoCumplido(buscarCatch(miMensajeRecibido->idCorrelativo),miCaught->resultado);
+		log_info(logger, "Mensaje recibido: CAUGHT_POKEMON %s", resultado);
 	}
 
-	log_info(logger, "Mensaje recibido: CAUGHT_POKEMON %s", resultado);
+
 	log_info(loggerOficial, "Mensaje recibido: CAUGHT_POKEMON %s", resultado);
 
 	free(resultado);
@@ -301,8 +304,10 @@ void procesarCAUGHT(mensajeRecibido* miMensajeRecibido) {
 	sem_post(&mutexCAUGHT);
 }
 
+
 void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
-	sem_wait(&mutexLOCALIZED);
+	sem_wait(&mutexAPPEARED_LOCALIZED);
+	//sem_wait(&mutexLOCALIZED);
 	log_info(logger,"Procesando LOCALIZED...");
 
 	uint32_t cantPokes, longPokemon;
@@ -329,8 +334,11 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 		return miMensajeRecibido->idCorrelativo==*(uint32_t *)id;
 	}
 
+
+	sem_wait(&mutexidsGet);
 	if(list_any_satisfy(idsDeGet,respondeAUnMensajeNuestro))
 	{
+		sem_post(&mutexidsGet);
 		if(!recibiInfoDe(pokemon)){
 			agregarInfoDeEspecie(pokemon);
 
@@ -355,9 +363,14 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 					offset += sizeof(uint32_t);
 
 					if(cantQueNecesito > 0){
+
 						sem_wait(&mutexListaPosiciones);
 						list_add(listaPosicionesInternas, posicion);
 						sem_post(&mutexListaPosiciones);
+
+						sem_wait(&mutexOBJETIVOS);
+						list_remove_by_condition(team->objetivosNoAtendidos,esDeEstaEspecie);
+						sem_post(&mutexOBJETIVOS);
 
 //						sem_post(&posicionesPendientes);
 						cantQueNecesito--;
@@ -378,6 +391,7 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 		}
 	}
 	else{
+		sem_post(&mutexidsGet);
 		log_debug(logger,"El localized se ignoró ya que no corresponde con un GET enviado por el team");
 	}
 
@@ -387,11 +401,13 @@ void procesarLOCALIZED(mensajeRecibido* miMensajeRecibido) {
 	free(pokemon);
 	free(miMensajeRecibido->mensaje);
 	free(miMensajeRecibido);
-	sem_post(&mutexLOCALIZED);
+	//sem_post(&mutexLOCALIZED);
+	sem_post(&mutexAPPEARED_LOCALIZED);
 }
 
 void procesarAPPEARED(mensajeRecibido* miMensajeRecibido) {
-	sem_wait(&mutexAPPEARED);
+	sem_wait(&mutexAPPEARED_LOCALIZED);
+	//sem_wait(&mutexAPPEARED);
 	log_info(logger,"Procesando APPEARED...");
 
 	char * pokemonRecibido;
@@ -414,6 +430,10 @@ void procesarAPPEARED(mensajeRecibido* miMensajeRecibido) {
 
 	memcpy(&(posicion->pos[1]), miMensajeRecibido->mensaje+offset, sizeof(uint32_t));
 
+	bool esDeEstaEspecie(void *elemento){
+		return string_equals_ignore_case(pokemonRecibido, (char*)elemento);
+	}
+
 	if(estaEnLosObjetivosOriginales(pokemonRecibido)){
 		if(!recibiInfoDe(pokemonRecibido))
 			agregarInfoDeEspecie(pokemonRecibido);
@@ -425,6 +445,10 @@ void procesarAPPEARED(mensajeRecibido* miMensajeRecibido) {
 			sem_wait(&mutexListaPosiciones);
 			list_add(listaPosicionesInternas, posicion);
 			sem_post(&mutexListaPosiciones);
+
+			sem_wait(&mutexOBJETIVOS);
+			list_remove_by_condition(team->objetivosNoAtendidos,esDeEstaEspecie);
+			sem_post(&mutexOBJETIVOS);
 
 			log_info(logger, "Mensaje recibido: APPEARED_POKEMON %s %d %d.", pokemonRecibido, posicion->pos[0], posicion->pos[1]);
 			log_info(loggerOficial, "Mensaje recibido: APPEARED_POKEMON %s %d %d.", pokemonRecibido, posicion->pos[0], posicion->pos[1]);
@@ -445,7 +469,8 @@ void procesarAPPEARED(mensajeRecibido* miMensajeRecibido) {
 	free(miMensajeRecibido->mensaje);
 	free(miMensajeRecibido);
 
-	sem_post(&mutexAPPEARED);
+	sem_post(&mutexAPPEARED_LOCALIZED);
+	//sem_post(&mutexAPPEARED);
 }
 
 void enviarACK(int* socketServidor) {
@@ -703,16 +728,18 @@ void enviarGetSegunObjetivo(char *ip, char *puerto) {
 	}
 
 	log_info(logger, "Enviando GETs...");
-	sem_wait(&mutexOBJETIVOS);
+	//sem_wait(&mutexOBJETIVOS); //-> Puede traer problemas si llega un appeared en el medio de esto
 	for (int i = 0; i < list_size(team->objetivosOriginales); i++) {
+		sem_wait(&mutexListaObjetivosOriginales);
 		pokemon = list_get(team->objetivosOriginales, i);
+		sem_post(&mutexListaObjetivosOriginales);
 
 		if(!list_any_satisfy(getsEnviados, fueEnviado)){
 			enviarGetDePokemon(ip, puerto, pokemon);
 			list_add(getsEnviados,pokemon);
 		}
 	}
-	sem_post(&mutexOBJETIVOS);
+	//sem_post(&mutexOBJETIVOS);
 	sem_post(&semGetsEnviados);
 	log_info(logger, "GETs enviados");
 	list_destroy(getsEnviados);

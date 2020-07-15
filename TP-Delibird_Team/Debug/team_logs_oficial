@@ -2113,3 +2113,685 @@
 [INFO] 22:59:34:753 Delibird - Team/(6554:6554): Cambios de contexto del entrenador 1 = 6
 [INFO] 22:59:34:754 Delibird - Team/(6554:6554): Cambios de contexto del entrenador 2 = 4
 [INFO] 22:59:34:754 Delibird - Team/(6554:6554): Deadlocks detectados y resueltos = 3
+[INFO] 15:30:53:223 Delibird - Team/(18166:18214): Mensaje recibido: LOCALIZED_POKEMON Charmander con 2 pokemones
+[INFO] 15:30:53:224 Delibird - Team/(18166:18185): Mensaje recibido: APPEARED_POKEMON Charmander 5 5.
+[INFO] 15:30:53:225 Delibird - Team/(18166:18184): Mensaje recibido: APPEARED_POKEMON Charmander 5 5.
+[INFO] 15:30:53:225 Delibird - Team/(18166:18181): Mensaje recibido: APPEARED_POKEMON Onix 2 19.
+[INFO] 15:30:53:225 Delibird - Team/(18166:18183): Mensaje recibido: APPEARED_POKEMON Onix 10 21.
+[INFO] 15:30:53:225 Delibird - Team/(18166:18182): Mensaje recibido: APPEARED_POKEMON Onix 15 21.
+[INFO] 15:30:53:225 Delibird - Team/(18166:18180): Mensaje recibido: APPEARED_POKEMON Onix 9 1.
+[INFO] 15:30:53:225 Delibird - Team/(18166:18188): Mensaje recibido: APPEARED_POKEMON Bulbasaur 3 9.
+[INFO] 15:30:53:226 Delibird - Team/(18166:18189): Mensaje recibido: APPEARED_POKEMON Bulbasaur 3 10.
+[INFO] 15:30:53:226 Delibird - Team/(18166:18190): Mensaje recibido: APPEARED_POKEMON Bulbasaur 3 11.
+[INFO] 15:30:53:226 Delibird - Team/(18166:18191): Mensaje recibido: APPEARED_POKEMON Bulbasaur 3 12.
+[INFO] 15:30:53:226 Delibird - Team/(18166:18192): Mensaje recibido: APPEARED_POKEMON Squirtle 15 9.
+[INFO] 15:30:53:226 Delibird - Team/(18166:18193): Mensaje recibido: APPEARED_POKEMON Squirtle 25 9.
+[INFO] 15:30:53:226 Delibird - Team/(18166:18194): Mensaje recibido: APPEARED_POKEMON Squirtle 20 5.
+[INFO] 15:30:53:226 Delibird - Team/(18166:18195): Mensaje recibido: APPEARED_POKEMON Squirtle 1 50.
+[INFO] 15:30:53:227 Delibird - Team/(18166:18196): Mensaje recibido: APPEARED_POKEMON Snorlax 20 20.
+[INFO] 15:30:53:227 Delibird - Team/(18166:18197): Mensaje recibido: APPEARED_POKEMON Snorlax 19 21.
+[INFO] 15:30:53:227 Delibird - Team/(18166:18198): Mensaje recibido: APPEARED_POKEMON Snorlax 18 22.
+[INFO] 15:30:53:227 Delibird - Team/(18166:18199): Mensaje recibido: APPEARED_POKEMON Snorlax 17 23.
+[INFO] 15:30:53:227 Delibird - Team/(18166:18200): Mensaje recibido: APPEARED_POKEMON Pikachu 7 10.
+[INFO] 15:30:53:227 Delibird - Team/(18166:18201): Mensaje recibido: APPEARED_POKEMON Pikachu 7 15.
+[INFO] 15:30:53:228 Delibird - Team/(18166:18202): Mensaje recibido: APPEARED_POKEMON Pikachu 15 10.
+[INFO] 15:30:53:228 Delibird - Team/(18166:18203): Mensaje recibido: APPEARED_POKEMON Pikachu 15 12.
+[INFO] 15:30:53:228 Delibird - Team/(18166:18204): Mensaje recibido: APPEARED_POKEMON Raichu 19 19.
+[INFO] 15:30:53:228 Delibird - Team/(18166:18205): Mensaje recibido: APPEARED_POKEMON Raichu 21 21.
+[INFO] 15:30:53:228 Delibird - Team/(18166:18206): Mensaje recibido: APPEARED_POKEMON Raichu 24 24.
+[INFO] 15:30:53:228 Delibird - Team/(18166:18207): Mensaje recibido: APPEARED_POKEMON Raichu 24 24.
+[DEBUG] 15:30:53:229 Delibird - Team/(18166:18168): El entrenador id: 1 se movio a la posicion [1,5]
+[INFO] 15:30:53:234 Delibird - Team/(18166:18215): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 4 pokemones
+[INFO] 15:30:53:238 Delibird - Team/(18166:18217): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 4 pokemones
+[INFO] 15:30:53:242 Delibird - Team/(18166:18218): Mensaje recibido: LOCALIZED_POKEMON Onix con 4 pokemones
+[INFO] 15:30:53:243 Delibird - Team/(18166:18219): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 4 pokemones
+[INFO] 15:30:53:243 Delibird - Team/(18166:18220): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 4 pokemones
+[INFO] 15:30:53:244 Delibird - Team/(18166:18221): Mensaje recibido: LOCALIZED_POKEMON Raichu con 3 pokemones
+[DEBUG] 15:30:54:230 Delibird - Team/(18166:18168): El entrenador id: 1 se movio a la posicion [2,5]
+[DEBUG] 15:30:55:230 Delibird - Team/(18166:18168): El entrenador id: 1 se movio a la posicion [3,5]
+[DEBUG] 15:30:56:230 Delibird - Team/(18166:18168): El entrenador id: 1 se movio a la posicion [4,5]
+[DEBUG] 15:30:57:231 Delibird - Team/(18166:18168): El entrenador id: 1 se movio a la posicion [5,5]
+[INFO] 15:30:58:232 Delibird - Team/(18166:18168): Se desaloja al entrenador 1. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 15:30:58:233 Delibird - Team/(18166:18169): El entrenador id: 2 se movio a la posicion [1,9]
+[INFO] 15:30:58:237 Delibird - Team/(18166:18225): El entrenador 1 capturo un Charmander en la posicion [5,5].
+[INFO] 15:30:58:243 Delibird - Team/(18166:18225): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 15:30:59:233 Delibird - Team/(18166:18169): El entrenador id: 2 se movio a la posicion [1,10]
+[DEBUG] 15:31:00:233 Delibird - Team/(18166:18169): El entrenador id: 2 se movio a la posicion [2,10]
+[DEBUG] 15:31:01:234 Delibird - Team/(18166:18169): El entrenador id: 2 se movio a la posicion [2,11]
+[DEBUG] 15:31:02:234 Delibird - Team/(18166:18169): El entrenador id: 2 se movio a la posicion [2,12]
+[DEBUG] 15:31:03:234 Delibird - Team/(18166:18169): El entrenador id: 2 se movio a la posicion [2,13]
+[DEBUG] 15:31:04:234 Delibird - Team/(18166:18169): El entrenador id: 2 se movio a la posicion [2,14]
+[DEBUG] 15:31:05:236 Delibird - Team/(18166:18169): El entrenador id: 2 se movio a la posicion [2,15]
+[DEBUG] 15:31:06:237 Delibird - Team/(18166:18169): El entrenador id: 2 se movio a la posicion [2,16]
+[DEBUG] 15:31:07:237 Delibird - Team/(18166:18169): El entrenador id: 2 se movio a la posicion [2,17]
+[DEBUG] 15:31:08:238 Delibird - Team/(18166:18169): El entrenador id: 2 se movio a la posicion [2,18]
+[DEBUG] 15:31:09:238 Delibird - Team/(18166:18169): El entrenador id: 2 se movio a la posicion [2,19]
+[INFO] 15:31:10:239 Delibird - Team/(18166:18169): Se desaloja al entrenador 2. Motivo: alcanzo su objetivo y envio un CATCH.
+[INFO] 15:31:10:242 Delibird - Team/(18166:18232): El entrenador 2 capturo un Onix en la posicion [2,19].
+[INFO] 15:31:10:249 Delibird - Team/(18166:18232): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 16:20:25:711 Delibird - Team/(18166:18178): Se perdio la conexion con el Broker
+[INFO] 16:20:25:711 Delibird - Team/(18166:18176): Se perdio la conexion con el Broker
+[INFO] 16:20:25:711 Delibird - Team/(18166:18177): Se perdio la conexion con el Broker
+[INFO] 16:20:25:711 Delibird - Team/(18166:18177): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 16:20:25:711 Delibird - Team/(18166:18176): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 16:20:25:711 Delibird - Team/(18166:18178): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 16:20:32:551 Delibird - Team/(18166:18166): El proceso Team ha finalizado.
+[INFO] 16:20:32:551 Delibird - Team/(18166:18166): Ciclos de CPU totales = 17
+[INFO] 16:20:32:551 Delibird - Team/(18166:18166): Cambios de contexto realizados = 4
+[INFO] 16:20:32:551 Delibird - Team/(18166:18166): Cambios de contexto del entrenador 0 = 0
+[INFO] 16:20:32:551 Delibird - Team/(18166:18166): Cambios de contexto del entrenador 1 = 2
+[INFO] 16:20:32:551 Delibird - Team/(18166:18166): Cambios de contexto del entrenador 2 = 2
+[INFO] 16:20:32:551 Delibird - Team/(18166:18166): Deadlocks detectados y resueltos = 0
+[INFO] 16:20:51:709 Delibird - Team/(19824:19839): Mensaje recibido: APPEARED_POKEMON Onix 2 19.
+[INFO] 16:20:51:710 Delibird - Team/(19824:19842): Mensaje recibido: APPEARED_POKEMON Charmander 5 5.
+[INFO] 16:20:51:710 Delibird - Team/(19824:19846): Mensaje recibido: APPEARED_POKEMON Bulbasaur 3 9.
+[INFO] 16:20:51:710 Delibird - Team/(19824:19850): Mensaje recibido: APPEARED_POKEMON Squirtle 15 9.
+[INFO] 16:20:51:711 Delibird - Team/(19824:19854): Mensaje recibido: APPEARED_POKEMON Snorlax 20 20.
+[INFO] 16:20:51:711 Delibird - Team/(19824:19858): Mensaje recibido: APPEARED_POKEMON Pikachu 7 10.
+[INFO] 16:20:51:712 Delibird - Team/(19824:19862): Mensaje recibido: APPEARED_POKEMON Raichu 19 19.
+[INFO] 16:20:51:712 Delibird - Team/(19824:19871): Mensaje recibido: LOCALIZED_POKEMON Charmander con 2 pokemones
+[INFO] 16:20:51:712 Delibird - Team/(19824:19873): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 4 pokemones
+[INFO] 16:20:51:713 Delibird - Team/(19824:19874): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 4 pokemones
+[INFO] 16:20:51:714 Delibird - Team/(19824:19875): Mensaje recibido: LOCALIZED_POKEMON Onix con 4 pokemones
+[INFO] 16:20:51:717 Delibird - Team/(19824:19877): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 4 pokemones
+[INFO] 16:20:51:719 Delibird - Team/(19824:19878): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 4 pokemones
+[INFO] 16:20:51:720 Delibird - Team/(19824:19879): Mensaje recibido: LOCALIZED_POKEMON Raichu con 3 pokemones
+[INFO] 16:22:14:672 Delibird - Team/(19824:19824): El proceso Team ha finalizado.
+[INFO] 16:22:14:672 Delibird - Team/(19824:19824): Ciclos de CPU totales = 0
+[INFO] 16:22:14:672 Delibird - Team/(19824:19824): Cambios de contexto realizados = 0
+[INFO] 16:22:14:672 Delibird - Team/(19824:19824): Cambios de contexto del entrenador 0 = 0
+[INFO] 16:22:14:672 Delibird - Team/(19824:19824): Cambios de contexto del entrenador 1 = 0
+[INFO] 16:22:14:672 Delibird - Team/(19824:19824): Cambios de contexto del entrenador 2 = 0
+[INFO] 16:22:14:672 Delibird - Team/(19824:19824): Deadlocks detectados y resueltos = 0
+[INFO] 16:22:21:567 Delibird - Team/(19969:19988): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 4 pokemones
+[INFO] 16:22:21:567 Delibird - Team/(19969:19987): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 4 pokemones
+[INFO] 16:22:21:567 Delibird - Team/(19969:19986): Mensaje recibido: LOCALIZED_POKEMON Onix con 4 pokemones
+[INFO] 16:22:21:568 Delibird - Team/(19969:19985): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 4 pokemones
+[INFO] 16:22:21:568 Delibird - Team/(19969:19989): Mensaje recibido: LOCALIZED_POKEMON Raichu con 3 pokemones
+[INFO] 16:22:21:568 Delibird - Team/(19969:19995): Mensaje recibido: APPEARED_POKEMON Charmander 5 5.
+[INFO] 16:22:21:568 Delibird - Team/(19969:19992): Mensaje recibido: APPEARED_POKEMON Onix 15 21.
+[INFO] 16:22:21:569 Delibird - Team/(19969:19984): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 4 pokemones
+[INFO] 16:22:21:570 Delibird - Team/(19969:19983): Mensaje recibido: LOCALIZED_POKEMON Charmander con 2 pokemones
+[INFO] 16:22:21:571 Delibird - Team/(19969:19998): Mensaje recibido: APPEARED_POKEMON Bulbasaur 3 9.
+[INFO] 16:22:21:575 Delibird - Team/(19969:20002): Mensaje recibido: APPEARED_POKEMON Squirtle 15 9.
+[INFO] 16:22:21:585 Delibird - Team/(19969:20006): Mensaje recibido: APPEARED_POKEMON Snorlax 20 20.
+[INFO] 16:22:21:587 Delibird - Team/(19969:20010): Mensaje recibido: APPEARED_POKEMON Pikachu 7 10.
+[INFO] 16:22:21:590 Delibird - Team/(19969:20014): Mensaje recibido: APPEARED_POKEMON Raichu 19 19.
+[INFO] 16:22:21:610 Delibird - Team/(19969:20024): Mensaje recibido: LOCALIZED_POKEMON Charmander con 2 pokemones
+[INFO] 16:22:21:613 Delibird - Team/(19969:20026): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 4 pokemones
+[INFO] 16:22:21:615 Delibird - Team/(19969:20027): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 4 pokemones
+[INFO] 16:22:21:618 Delibird - Team/(19969:20028): Mensaje recibido: LOCALIZED_POKEMON Onix con 4 pokemones
+[INFO] 16:22:21:619 Delibird - Team/(19969:20029): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 4 pokemones
+[INFO] 16:22:21:620 Delibird - Team/(19969:20030): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 4 pokemones
+[INFO] 16:22:21:621 Delibird - Team/(19969:20031): Mensaje recibido: LOCALIZED_POKEMON Raichu con 3 pokemones
+[INFO] 16:22:24:114 Delibird - Team/(19969:19969): El proceso Team ha finalizado.
+[INFO] 16:22:24:114 Delibird - Team/(19969:19969): Ciclos de CPU totales = 0
+[INFO] 16:22:24:114 Delibird - Team/(19969:19969): Cambios de contexto realizados = 0
+[INFO] 16:22:24:114 Delibird - Team/(19969:19969): Cambios de contexto del entrenador 0 = 0
+[INFO] 16:22:24:114 Delibird - Team/(19969:19969): Cambios de contexto del entrenador 1 = 0
+[INFO] 16:22:24:114 Delibird - Team/(19969:19969): Cambios de contexto del entrenador 2 = 0
+[INFO] 16:22:24:114 Delibird - Team/(19969:19969): Deadlocks detectados y resueltos = 0
+[INFO] 16:22:32:260 Delibird - Team/(20034:20053): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 4 pokemones
+[INFO] 16:22:32:260 Delibird - Team/(20034:20052): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 4 pokemones
+[INFO] 16:22:32:260 Delibird - Team/(20034:20051): Mensaje recibido: LOCALIZED_POKEMON Onix con 4 pokemones
+[INFO] 16:22:32:261 Delibird - Team/(20034:20054): Mensaje recibido: LOCALIZED_POKEMON Raichu con 3 pokemones
+[INFO] 16:22:32:261 Delibird - Team/(20034:20050): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 4 pokemones
+[INFO] 16:22:32:261 Delibird - Team/(20034:20055): Mensaje recibido: LOCALIZED_POKEMON Charmander con 2 pokemones
+[INFO] 16:22:32:262 Delibird - Team/(20034:20056): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 4 pokemones
+[INFO] 16:22:32:262 Delibird - Team/(20034:20057): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 4 pokemones
+[INFO] 16:22:32:262 Delibird - Team/(20034:20049): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 4 pokemones
+[INFO] 16:22:32:262 Delibird - Team/(20034:20058): Mensaje recibido: LOCALIZED_POKEMON Onix con 4 pokemones
+[INFO] 16:22:32:263 Delibird - Team/(20034:20059): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 4 pokemones
+[INFO] 16:22:32:263 Delibird - Team/(20034:20060): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 4 pokemones
+[INFO] 16:22:32:263 Delibird - Team/(20034:20061): Mensaje recibido: LOCALIZED_POKEMON Raichu con 3 pokemones
+[INFO] 16:22:32:264 Delibird - Team/(20034:20062): Mensaje recibido: APPEARED_POKEMON Onix 9 1.
+[INFO] 16:22:32:264 Delibird - Team/(20034:20048): Mensaje recibido: LOCALIZED_POKEMON Charmander con 2 pokemones
+[INFO] 16:22:32:267 Delibird - Team/(20034:20066): Mensaje recibido: APPEARED_POKEMON Charmander 5 5.
+[INFO] 16:22:32:273 Delibird - Team/(20034:20070): Mensaje recibido: APPEARED_POKEMON Bulbasaur 3 9.
+[INFO] 16:22:32:276 Delibird - Team/(20034:20074): Mensaje recibido: APPEARED_POKEMON Squirtle 15 9.
+[INFO] 16:22:32:278 Delibird - Team/(20034:20078): Mensaje recibido: APPEARED_POKEMON Snorlax 20 20.
+[INFO] 16:22:32:285 Delibird - Team/(20034:20082): Mensaje recibido: APPEARED_POKEMON Pikachu 7 10.
+[INFO] 16:22:32:289 Delibird - Team/(20034:20086): Mensaje recibido: APPEARED_POKEMON Raichu 19 19.
+[INFO] 16:22:32:307 Delibird - Team/(20034:20095): Mensaje recibido: LOCALIZED_POKEMON Charmander con 2 pokemones
+[INFO] 16:22:32:311 Delibird - Team/(20034:20097): Mensaje recibido: LOCALIZED_POKEMON Onix con 4 pokemones
+[INFO] 16:22:32:312 Delibird - Team/(20034:20098): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 4 pokemones
+[INFO] 16:22:32:314 Delibird - Team/(20034:20099): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 4 pokemones
+[INFO] 16:22:32:317 Delibird - Team/(20034:20101): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 4 pokemones
+[INFO] 16:22:32:317 Delibird - Team/(20034:20102): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 4 pokemones
+[INFO] 16:22:32:321 Delibird - Team/(20034:20103): Mensaje recibido: LOCALIZED_POKEMON Raichu con 3 pokemones
+[INFO] 16:28:44:526 Delibird - Team/(20034:20034): El proceso Team ha finalizado.
+[INFO] 16:28:44:526 Delibird - Team/(20034:20034): Ciclos de CPU totales = 0
+[INFO] 16:28:44:526 Delibird - Team/(20034:20034): Cambios de contexto realizados = 0
+[INFO] 16:28:44:526 Delibird - Team/(20034:20034): Cambios de contexto del entrenador 0 = 0
+[INFO] 16:28:44:526 Delibird - Team/(20034:20034): Cambios de contexto del entrenador 1 = 0
+[INFO] 16:28:44:526 Delibird - Team/(20034:20034): Cambios de contexto del entrenador 2 = 0
+[INFO] 16:28:44:526 Delibird - Team/(20034:20034): Deadlocks detectados y resueltos = 0
+[INFO] 16:28:58:268 Delibird - Team/(20294:20314): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 4 pokemones
+[INFO] 16:28:58:269 Delibird - Team/(20294:20315): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 4 pokemones
+[INFO] 16:28:58:269 Delibird - Team/(20294:20313): Mensaje recibido: LOCALIZED_POKEMON Onix con 4 pokemones
+[INFO] 16:28:58:269 Delibird - Team/(20294:20316): Mensaje recibido: LOCALIZED_POKEMON Raichu con 3 pokemones
+[INFO] 16:28:58:269 Delibird - Team/(20294:20312): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 4 pokemones
+[INFO] 16:28:58:269 Delibird - Team/(20294:20317): Mensaje recibido: LOCALIZED_POKEMON Charmander con 2 pokemones
+[INFO] 16:28:58:270 Delibird - Team/(20294:20311): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 4 pokemones
+[INFO] 16:28:58:270 Delibird - Team/(20294:20318): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 4 pokemones
+[INFO] 16:28:58:271 Delibird - Team/(20294:20319): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 4 pokemones
+[INFO] 16:28:58:271 Delibird - Team/(20294:20310): Mensaje recibido: LOCALIZED_POKEMON Charmander con 2 pokemones
+[INFO] 16:28:58:271 Delibird - Team/(20294:20320): Mensaje recibido: LOCALIZED_POKEMON Onix con 4 pokemones
+[INFO] 16:28:58:271 Delibird - Team/(20294:20321): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 4 pokemones
+[INFO] 16:28:58:272 Delibird - Team/(20294:20322): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 4 pokemones
+[INFO] 16:28:58:272 Delibird - Team/(20294:20323): Mensaje recibido: LOCALIZED_POKEMON Raichu con 3 pokemones
+[INFO] 16:28:58:273 Delibird - Team/(20294:20324): Mensaje recibido: LOCALIZED_POKEMON Charmander con 2 pokemones
+[INFO] 16:28:58:274 Delibird - Team/(20294:20325): Mensaje recibido: LOCALIZED_POKEMON Onix con 4 pokemones
+[INFO] 16:28:58:274 Delibird - Team/(20294:20326): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 4 pokemones
+[INFO] 16:28:58:275 Delibird - Team/(20294:20327): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 4 pokemones
+[INFO] 16:28:58:276 Delibird - Team/(20294:20328): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 4 pokemones
+[INFO] 16:28:58:276 Delibird - Team/(20294:20329): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 4 pokemones
+[INFO] 16:28:58:277 Delibird - Team/(20294:20330): Mensaje recibido: LOCALIZED_POKEMON Raichu con 3 pokemones
+[INFO] 16:28:58:283 Delibird - Team/(20294:20331): Mensaje recibido: APPEARED_POKEMON Onix 9 1.
+[INFO] 16:28:58:288 Delibird - Team/(20294:20335): Mensaje recibido: APPEARED_POKEMON Charmander 5 5.
+[INFO] 16:28:58:293 Delibird - Team/(20294:20339): Mensaje recibido: APPEARED_POKEMON Bulbasaur 3 9.
+[INFO] 16:28:58:297 Delibird - Team/(20294:20343): Mensaje recibido: APPEARED_POKEMON Squirtle 15 9.
+[INFO] 16:28:58:301 Delibird - Team/(20294:20347): Mensaje recibido: APPEARED_POKEMON Snorlax 20 20.
+[INFO] 16:28:58:306 Delibird - Team/(20294:20351): Mensaje recibido: APPEARED_POKEMON Pikachu 7 10.
+[INFO] 16:28:58:310 Delibird - Team/(20294:20355): Mensaje recibido: APPEARED_POKEMON Raichu 19 19.
+[INFO] 16:28:58:333 Delibird - Team/(20294:20368): Mensaje recibido: LOCALIZED_POKEMON Charmander con 2 pokemones
+[INFO] 16:28:58:335 Delibird - Team/(20294:20370): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 4 pokemones
+[INFO] 16:28:58:336 Delibird - Team/(20294:20371): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 4 pokemones
+[INFO] 16:28:58:360 Delibird - Team/(20294:20375): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 5 pokemones
+[INFO] 16:28:58:361 Delibird - Team/(20294:20374): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 4 pokemones
+[INFO] 16:28:58:361 Delibird - Team/(20294:20372): Mensaje recibido: LOCALIZED_POKEMON Onix con 4 pokemones
+[INFO] 16:28:58:364 Delibird - Team/(20294:20376): Mensaje recibido: LOCALIZED_POKEMON Raichu con 3 pokemones
+[INFO] 16:37:23:607 Delibird - Team/(20294:20294): El proceso Team ha finalizado.
+[INFO] 16:37:23:607 Delibird - Team/(20294:20294): Ciclos de CPU totales = 0
+[INFO] 16:37:23:607 Delibird - Team/(20294:20294): Cambios de contexto realizados = 0
+[INFO] 16:37:23:607 Delibird - Team/(20294:20294): Cambios de contexto del entrenador 0 = 0
+[INFO] 16:37:23:607 Delibird - Team/(20294:20294): Cambios de contexto del entrenador 1 = 0
+[INFO] 16:37:23:607 Delibird - Team/(20294:20294): Cambios de contexto del entrenador 2 = 0
+[INFO] 16:37:23:607 Delibird - Team/(20294:20294): Deadlocks detectados y resueltos = 0
+[INFO] 16:38:31:842 Delibird - Team/(20817:20838): Mensaje recibido: APPEARED_POKEMON Charmander 5 5.
+[INFO] 16:38:31:843 Delibird - Team/(20817:20836): Mensaje recibido: APPEARED_POKEMON Onix 10 21.
+[INFO] 16:38:31:843 Delibird - Team/(20817:20841): Mensaje recibido: APPEARED_POKEMON Bulbasaur 3 9.
+[INFO] 16:38:31:844 Delibird - Team/(20817:20845): Mensaje recibido: APPEARED_POKEMON Squirtle 15 9.
+[INFO] 16:38:31:844 Delibird - Team/(20817:20849): Mensaje recibido: APPEARED_POKEMON Snorlax 20 20.
+[INFO] 16:38:31:846 Delibird - Team/(20817:20853): Mensaje recibido: APPEARED_POKEMON Pikachu 7 10.
+[INFO] 16:38:31:847 Delibird - Team/(20817:20857): Mensaje recibido: APPEARED_POKEMON Raichu 19 19.
+[INFO] 16:38:31:865 Delibird - Team/(20817:20866): Mensaje recibido: LOCALIZED_POKEMON Charmander con 2 pokemones
+[INFO] 16:38:31:874 Delibird - Team/(20817:20870): Mensaje recibido: LOCALIZED_POKEMON Onix con 4 pokemones
+[INFO] 16:38:31:875 Delibird - Team/(20817:20869): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 4 pokemones
+[DEBUG] 16:38:31:876 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [1,5]
+[INFO] 16:38:31:876 Delibird - Team/(20817:20868): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 4 pokemones
+[INFO] 16:38:31:877 Delibird - Team/(20817:20871): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 4 pokemones
+[INFO] 16:38:31:881 Delibird - Team/(20817:20873): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 4 pokemones
+[INFO] 16:38:31:882 Delibird - Team/(20817:20874): Mensaje recibido: LOCALIZED_POKEMON Raichu con 3 pokemones
+[DEBUG] 16:38:32:887 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [2,5]
+[DEBUG] 16:38:33:894 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [3,5]
+[DEBUG] 16:38:34:899 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [4,5]
+[DEBUG] 16:38:35:901 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [5,5]
+[INFO] 16:38:36:905 Delibird - Team/(20817:20820): Se desaloja al entrenador 1. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 16:38:36:907 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [1,9]
+[INFO] 16:38:36:911 Delibird - Team/(20817:20877): El entrenador 1 capturo un Charmander en la posicion [5,5].
+[INFO] 16:38:36:915 Delibird - Team/(20817:20877): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 16:38:37:907 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [1,10]
+[DEBUG] 16:38:38:910 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [2,10]
+[DEBUG] 16:38:39:911 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [2,11]
+[DEBUG] 16:38:40:922 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [3,11]
+[DEBUG] 16:38:41:922 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [3,12]
+[DEBUG] 16:38:42:925 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [4,12]
+[DEBUG] 16:38:43:944 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [4,13]
+[DEBUG] 16:38:44:952 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [5,13]
+[DEBUG] 16:38:45:956 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [5,14]
+[DEBUG] 16:38:46:959 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [6,14]
+[DEBUG] 16:38:47:962 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [6,15]
+[DEBUG] 16:38:48:965 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [7,15]
+[DEBUG] 16:38:49:968 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [7,16]
+[DEBUG] 16:38:50:975 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [8,16]
+[DEBUG] 16:38:51:979 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [8,17]
+[DEBUG] 16:38:52:980 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [9,17]
+[DEBUG] 16:38:53:980 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [9,18]
+[DEBUG] 16:38:54:981 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [10,18]
+[DEBUG] 16:38:55:991 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [10,19]
+[DEBUG] 16:38:56:992 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [10,20]
+[DEBUG] 16:38:57:992 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [10,21]
+[INFO] 16:38:58:993 Delibird - Team/(20817:20821): Se desaloja al entrenador 2. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 16:38:58:995 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [1,1]
+[INFO] 16:38:58:2 Delibird - Team/(20817:20889): El entrenador 2 capturo un Onix en la posicion [10,21].
+[INFO] 16:38:58:7 Delibird - Team/(20817:20889): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 16:38:59:995 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [1,2]
+[DEBUG] 16:39:00:996 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [2,2]
+[DEBUG] 16:39:02:1 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [2,3]
+[DEBUG] 16:39:03:5 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [3,3]
+[DEBUG] 16:39:04:8 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [3,4]
+[DEBUG] 16:39:05:20 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [3,5]
+[DEBUG] 16:39:06:21 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [3,6]
+[DEBUG] 16:39:07:31 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [3,7]
+[DEBUG] 16:39:08:37 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [3,8]
+[DEBUG] 16:39:09:38 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [3,9]
+[INFO] 16:39:10:51 Delibird - Team/(20817:20819): Se desaloja al entrenador 0. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 16:39:10:52 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [6,5]
+[INFO] 16:39:10:56 Delibird - Team/(20817:20901): El entrenador 0 capturo un Bulbasaur en la posicion [3,9].
+[INFO] 16:39:10:59 Delibird - Team/(20817:20901): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 16:39:11:54 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [6,6]
+[DEBUG] 16:39:12:57 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [7,6]
+[DEBUG] 16:39:13:58 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [7,7]
+[DEBUG] 16:39:14:67 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [8,7]
+[DEBUG] 16:39:15:71 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [8,8]
+[DEBUG] 16:39:16:77 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [9,8]
+[DEBUG] 16:39:17:81 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [9,9]
+[DEBUG] 16:39:18:94 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [10,9]
+[DEBUG] 16:39:19:97 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [11,9]
+[DEBUG] 16:39:20:100 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [12,9]
+[DEBUG] 16:39:21:101 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [13,9]
+[DEBUG] 16:39:22:108 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [14,9]
+[DEBUG] 16:39:23:110 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [15,9]
+[INFO] 16:39:24:110 Delibird - Team/(20817:20820): Se desaloja al entrenador 1. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 16:39:24:111 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [11,21]
+[INFO] 16:39:24:115 Delibird - Team/(20817:20912): El entrenador 1 capturo un Squirtle en la posicion [15,9].
+[INFO] 16:39:24:117 Delibird - Team/(20817:20912): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 16:39:25:123 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [11,20]
+[DEBUG] 16:39:26:123 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [12,20]
+[DEBUG] 16:39:27:125 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [13,20]
+[DEBUG] 16:39:28:126 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [14,20]
+[DEBUG] 16:39:29:127 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [15,20]
+[DEBUG] 16:39:30:130 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [16,20]
+[DEBUG] 16:39:31:133 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [17,20]
+[DEBUG] 16:39:32:141 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [18,20]
+[DEBUG] 16:39:33:144 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [19,20]
+[DEBUG] 16:39:34:151 Delibird - Team/(20817:20821): El entrenador id: 2 se movio a la posicion [20,20]
+[INFO] 16:39:35:152 Delibird - Team/(20817:20821): Se desaloja al entrenador 2. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 16:39:35:153 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [4,9]
+[INFO] 16:39:35:157 Delibird - Team/(20817:20927): El entrenador 2 capturo un Snorlax en la posicion [20,20].
+[INFO] 16:39:35:159 Delibird - Team/(20817:20927): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 16:39:36:154 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [4,10]
+[DEBUG] 16:39:37:160 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [5,10]
+[DEBUG] 16:39:38:163 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [6,10]
+[DEBUG] 16:39:39:163 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [7,10]
+[INFO] 16:39:40:173 Delibird - Team/(20817:20819): Se desaloja al entrenador 0. Motivo: alcanzo su objetivo y envio un CATCH.
+[INFO] 16:39:40:178 Delibird - Team/(20817:20930): El entrenador 0 capturo un Pikachu en la posicion [7,10].
+[DEBUG] 16:39:40:180 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [8,10]
+[INFO] 16:39:40:180 Delibird - Team/(20817:20930): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 16:39:41:183 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [8,11]
+[DEBUG] 16:39:42:184 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [9,11]
+[DEBUG] 16:39:43:195 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [9,12]
+[DEBUG] 16:39:44:204 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [10,12]
+[DEBUG] 16:39:45:217 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [10,13]
+[DEBUG] 16:39:46:217 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [11,13]
+[DEBUG] 16:39:47:225 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [11,14]
+[DEBUG] 16:39:48:238 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [12,14]
+[DEBUG] 16:39:49:238 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [12,15]
+[DEBUG] 16:39:50:249 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [13,15]
+[DEBUG] 16:39:51:258 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [13,16]
+[DEBUG] 16:39:52:259 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [14,16]
+[DEBUG] 16:39:53:263 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [14,17]
+[DEBUG] 16:39:54:273 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [15,17]
+[DEBUG] 16:39:55:278 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [15,18]
+[DEBUG] 16:39:56:285 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [16,18]
+[DEBUG] 16:39:57:289 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [16,19]
+[DEBUG] 16:39:58:290 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [17,19]
+[DEBUG] 16:39:59:290 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [18,19]
+[DEBUG] 16:40:00:292 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [19,19]
+[INFO] 16:40:01:297 Delibird - Team/(20817:20819): Se desaloja al entrenador 0. Motivo: alcanzo su objetivo y envio un CATCH.
+[INFO] 16:40:01:302 Delibird - Team/(20817:20942): El entrenador 0 capturo un Raichu en la posicion [19,19].
+[INFO] 16:40:01:304 Delibird - Team/(20817:20942): Se inicia la deteccion de deadlock.
+[DEBUG] 16:40:01:311 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [18,19]
+[DEBUG] 16:40:02:319 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [18,18]
+[DEBUG] 16:40:03:321 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [17,18]
+[DEBUG] 16:40:04:329 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [17,17]
+[DEBUG] 16:40:05:332 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [16,17]
+[DEBUG] 16:40:06:332 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [16,16]
+[DEBUG] 16:40:07:333 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [15,16]
+[DEBUG] 16:40:08:338 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [15,15]
+[DEBUG] 16:40:09:348 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [15,14]
+[DEBUG] 16:40:10:351 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [15,13]
+[DEBUG] 16:40:11:358 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [15,12]
+[DEBUG] 16:40:12:358 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [15,11]
+[DEBUG] 16:40:13:359 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [15,10]
+[DEBUG] 16:40:14:359 Delibird - Team/(20817:20819): El entrenador id: 0 se movio a la posicion [15,9]
+[INFO] 16:40:15:359 Delibird - Team/(20817:20819): Se comienza el intercambio entre el entrenador 0 y el entrenador 1
+[INFO] 16:40:20:370 Delibird - Team/(20817:20819): Se finalizo el intercambio entre el entrenador 0 y el entrenador 1
+[INFO] 16:40:20:372 Delibird - Team/(20817:20819): Se comienza el intercambio entre el entrenador 0 y el entrenador 1
+[INFO] 16:40:25:383 Delibird - Team/(20817:20819): Se finalizo el intercambio entre el entrenador 0 y el entrenador 1
+[DEBUG] 16:40:25:385 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [16,9]
+[DEBUG] 16:40:26:386 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [16,10]
+[DEBUG] 16:40:27:397 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [17,10]
+[DEBUG] 16:40:28:398 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [17,11]
+[DEBUG] 16:40:29:400 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [18,11]
+[DEBUG] 16:40:30:400 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [18,12]
+[DEBUG] 16:40:31:403 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [19,12]
+[DEBUG] 16:40:32:415 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [19,13]
+[DEBUG] 16:40:33:415 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [20,13]
+[DEBUG] 16:40:34:416 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [20,14]
+[DEBUG] 16:40:35:416 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [20,15]
+[DEBUG] 16:40:36:417 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [20,16]
+[DEBUG] 16:40:37:425 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [20,17]
+[DEBUG] 16:40:38:426 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [20,18]
+[DEBUG] 16:40:39:430 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [20,19]
+[DEBUG] 16:40:40:432 Delibird - Team/(20817:20820): El entrenador id: 1 se movio a la posicion [20,20]
+[INFO] 16:40:41:434 Delibird - Team/(20817:20820): Se comienza el intercambio entre el entrenador 1 y el entrenador 2
+[INFO] 16:40:46:434 Delibird - Team/(20817:20820): Se finalizo el intercambio entre el entrenador 1 y el entrenador 2
+[INFO] 16:40:46:435 Delibird - Team/(20817:20820): Se comienza el intercambio entre el entrenador 1 y el entrenador 2
+[INFO] 16:40:51:441 Delibird - Team/(20817:20820): Se finalizo el intercambio entre el entrenador 1 y el entrenador 2
+[INFO] 16:40:51:441 Delibird - Team/(20817:20942): Finalizo la resolucion de deadlocks. Deadlocks resueltos = 4.
+[INFO] 16:40:51:441 Delibird - Team/(20817:20942): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 16:40:51:443 Delibird - Team/(20817:20817): El proceso Team ha finalizado.
+[INFO] 16:40:51:443 Delibird - Team/(20817:20817): Ciclos de CPU totales = 139
+[INFO] 16:40:51:443 Delibird - Team/(20817:20817): Cambios de contexto realizados = 18
+[INFO] 16:40:51:443 Delibird - Team/(20817:20817): Cambios de contexto del entrenador 0 = 8
+[INFO] 16:40:51:443 Delibird - Team/(20817:20817): Cambios de contexto del entrenador 1 = 6
+[INFO] 16:40:51:443 Delibird - Team/(20817:20817): Cambios de contexto del entrenador 2 = 4
+[INFO] 16:40:51:443 Delibird - Team/(20817:20817): Deadlocks detectados y resueltos = 4
+[INFO] 17:03:16:839 Delibird - Team/(23154:23176): Mensaje recibido: APPEARED_POKEMON Onix 30 1.
+[DEBUG] 17:03:16:839 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [1,1]
+[INFO] 17:03:16:842 Delibird - Team/(23154:23169): Mensaje recibido: APPEARED_POKEMON Charmander 15 5.
+[INFO] 17:03:16:847 Delibird - Team/(23154:23168): Mensaje recibido: APPEARED_POKEMON Snorlax 5 9.
+[INFO] 17:03:16:848 Delibird - Team/(23154:23178): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 0 pokemones
+[INFO] 17:03:16:849 Delibird - Team/(23154:23179): Mensaje recibido: LOCALIZED_POKEMON Raichu con 0 pokemones
+[INFO] 17:03:16:850 Delibird - Team/(23154:23180): Mensaje recibido: LOCALIZED_POKEMON Onix con 1 pokemones
+[INFO] 17:03:16:852 Delibird - Team/(23154:23181): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 1 pokemones
+[INFO] 17:03:16:853 Delibird - Team/(23154:23182): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 0 pokemones
+[INFO] 17:03:16:853 Delibird - Team/(23154:23183): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 0 pokemones
+[INFO] 17:03:16:855 Delibird - Team/(23154:23184): Mensaje recibido: LOCALIZED_POKEMON Charmander con 1 pokemones
+[DEBUG] 17:03:17:844 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [2,1]
+[DEBUG] 17:03:18:847 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [3,1]
+[DEBUG] 17:03:19:857 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [4,1]
+[DEBUG] 17:03:20:867 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [5,1]
+[DEBUG] 17:03:21:875 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [6,1]
+[DEBUG] 17:03:22:877 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [7,1]
+[DEBUG] 17:03:23:881 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [8,1]
+[DEBUG] 17:03:24:890 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [9,1]
+[DEBUG] 17:03:25:897 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [10,1]
+[DEBUG] 17:03:26:902 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [11,1]
+[DEBUG] 17:03:27:905 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [12,1]
+[DEBUG] 17:03:28:909 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [13,1]
+[DEBUG] 17:03:29:909 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [14,1]
+[DEBUG] 17:03:30:912 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [15,1]
+[DEBUG] 17:03:31:912 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [16,1]
+[DEBUG] 17:03:32:913 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [17,1]
+[DEBUG] 17:03:33:925 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [18,1]
+[DEBUG] 17:03:34:931 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [19,1]
+[DEBUG] 17:03:35:934 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [20,1]
+[DEBUG] 17:03:36:934 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [21,1]
+[DEBUG] 17:03:37:935 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [22,1]
+[DEBUG] 17:03:38:949 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [23,1]
+[DEBUG] 17:03:39:952 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [24,1]
+[DEBUG] 17:03:40:955 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [25,1]
+[DEBUG] 17:03:41:956 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [26,1]
+[DEBUG] 17:03:42:959 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [27,1]
+[DEBUG] 17:03:43:961 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [28,1]
+[DEBUG] 17:03:44:971 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [29,1]
+[DEBUG] 17:03:45:973 Delibird - Team/(23154:23155): El entrenador id: 0 se movio a la posicion [30,1]
+[INFO] 17:03:46:973 Delibird - Team/(23154:23155): Se desaloja al entrenador 0. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 17:03:46:975 Delibird - Team/(23154:23156): El entrenador id: 1 se movio a la posicion [1,5]
+[INFO] 17:03:46:989 Delibird - Team/(23154:23225): El entrenador 0 capturo un Onix en la posicion [30,1].
+[INFO] 17:03:46:992 Delibird - Team/(23154:23225): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 17:03:47:975 Delibird - Team/(23154:23156): El entrenador id: 1 se movio a la posicion [2,5]
+[DEBUG] 17:03:48:976 Delibird - Team/(23154:23156): El entrenador id: 1 se movio a la posicion [3,5]
+[DEBUG] 17:03:49:980 Delibird - Team/(23154:23156): El entrenador id: 1 se movio a la posicion [4,5]
+[DEBUG] 17:03:50:995 Delibird - Team/(23154:23156): El entrenador id: 1 se movio a la posicion [5,5]
+[DEBUG] 17:03:51:995 Delibird - Team/(23154:23156): El entrenador id: 1 se movio a la posicion [6,5]
+[DEBUG] 17:03:52:995 Delibird - Team/(23154:23156): El entrenador id: 1 se movio a la posicion [7,5]
+[DEBUG] 17:03:53:0 Delibird - Team/(23154:23156): El entrenador id: 1 se movio a la posicion [8,5]
+[DEBUG] 17:03:55:3 Delibird - Team/(23154:23156): El entrenador id: 1 se movio a la posicion [9,5]
+[DEBUG] 17:03:56:4 Delibird - Team/(23154:23156): El entrenador id: 1 se movio a la posicion [10,5]
+[DEBUG] 17:03:57:6 Delibird - Team/(23154:23156): El entrenador id: 1 se movio a la posicion [11,5]
+[DEBUG] 17:03:58:7 Delibird - Team/(23154:23156): El entrenador id: 1 se movio a la posicion [12,5]
+[DEBUG] 17:03:59:9 Delibird - Team/(23154:23156): El entrenador id: 1 se movio a la posicion [13,5]
+[DEBUG] 17:04:00:9 Delibird - Team/(23154:23156): El entrenador id: 1 se movio a la posicion [14,5]
+[DEBUG] 17:04:01:11 Delibird - Team/(23154:23156): El entrenador id: 1 se movio a la posicion [15,5]
+[INFO] 17:04:02:24 Delibird - Team/(23154:23156): Se desaloja al entrenador 1. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 17:04:02:26 Delibird - Team/(23154:23157): El entrenador id: 2 se movio a la posicion [1,9]
+[INFO] 17:04:02:32 Delibird - Team/(23154:23246): El entrenador 1 capturo un Charmander en la posicion [15,5].
+[INFO] 17:04:02:38 Delibird - Team/(23154:23246): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 17:04:03:27 Delibird - Team/(23154:23157): El entrenador id: 2 se movio a la posicion [2,9]
+[DEBUG] 17:04:04:29 Delibird - Team/(23154:23157): El entrenador id: 2 se movio a la posicion [3,9]
+[DEBUG] 17:04:05:29 Delibird - Team/(23154:23157): El entrenador id: 2 se movio a la posicion [4,9]
+[DEBUG] 17:04:06:31 Delibird - Team/(23154:23157): El entrenador id: 2 se movio a la posicion [5,9]
+[INFO] 17:04:07:42 Delibird - Team/(23154:23157): Se desaloja al entrenador 2. Motivo: alcanzo su objetivo y envio un CATCH.
+[INFO] 17:04:07:52 Delibird - Team/(23154:23261): El entrenador 2 capturo un Snorlax en la posicion [5,9].
+[INFO] 17:04:07:58 Delibird - Team/(23154:23261): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 17:04:28:595 Delibird - Team/(23154:23154): El proceso Team ha finalizado.
+[INFO] 17:04:28:595 Delibird - Team/(23154:23154): Ciclos de CPU totales = 50
+[INFO] 17:04:28:595 Delibird - Team/(23154:23154): Cambios de contexto realizados = 6
+[INFO] 17:04:28:595 Delibird - Team/(23154:23154): Cambios de contexto del entrenador 0 = 2
+[INFO] 17:04:28:595 Delibird - Team/(23154:23154): Cambios de contexto del entrenador 1 = 2
+[INFO] 17:04:28:595 Delibird - Team/(23154:23154): Cambios de contexto del entrenador 2 = 2
+[INFO] 17:04:28:595 Delibird - Team/(23154:23154): Deadlocks detectados y resueltos = 0
+[INFO] 17:06:24:525 Delibird - Team/(23394:23415): Mensaje recibido: APPEARED_POKEMON Onix 30 1.
+[DEBUG] 17:06:24:526 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [1,1]
+[INFO] 17:06:24:532 Delibird - Team/(23394:23408): Mensaje recibido: APPEARED_POKEMON Snorlax 5 9.
+[INFO] 17:06:24:533 Delibird - Team/(23394:23409): Mensaje recibido: APPEARED_POKEMON Charmander 15 5.
+[INFO] 17:06:24:535 Delibird - Team/(23394:23418): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 0 pokemones
+[INFO] 17:06:24:536 Delibird - Team/(23394:23419): Mensaje recibido: LOCALIZED_POKEMON Charmander con 1 pokemones
+[INFO] 17:06:24:537 Delibird - Team/(23394:23420): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 0 pokemones
+[INFO] 17:06:24:539 Delibird - Team/(23394:23421): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 1 pokemones
+[INFO] 17:06:24:540 Delibird - Team/(23394:23422): Mensaje recibido: LOCALIZED_POKEMON Onix con 1 pokemones
+[INFO] 17:06:24:540 Delibird - Team/(23394:23423): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 0 pokemones
+[INFO] 17:06:24:541 Delibird - Team/(23394:23424): Mensaje recibido: LOCALIZED_POKEMON Raichu con 0 pokemones
+[DEBUG] 17:06:25:535 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [2,1]
+[DEBUG] 17:06:26:542 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [3,1]
+[DEBUG] 17:06:27:545 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [4,1]
+[DEBUG] 17:06:28:551 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [5,1]
+[DEBUG] 17:06:29:553 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [6,1]
+[DEBUG] 17:06:30:555 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [7,1]
+[DEBUG] 17:06:31:564 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [8,1]
+[DEBUG] 17:06:32:565 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [9,1]
+[DEBUG] 17:06:33:567 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [10,1]
+[DEBUG] 17:06:34:570 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [11,1]
+[DEBUG] 17:06:35:570 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [12,1]
+[DEBUG] 17:06:36:571 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [13,1]
+[DEBUG] 17:06:37:576 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [14,1]
+[DEBUG] 17:06:38:577 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [15,1]
+[DEBUG] 17:06:39:578 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [16,1]
+[DEBUG] 17:06:40:590 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [17,1]
+[DEBUG] 17:06:41:591 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [18,1]
+[DEBUG] 17:06:42:601 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [19,1]
+[DEBUG] 17:06:43:601 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [20,1]
+[DEBUG] 17:06:44:610 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [21,1]
+[DEBUG] 17:06:45:612 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [22,1]
+[DEBUG] 17:06:46:621 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [23,1]
+[DEBUG] 17:06:47:621 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [24,1]
+[DEBUG] 17:06:48:623 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [25,1]
+[DEBUG] 17:06:49:625 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [26,1]
+[DEBUG] 17:06:50:629 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [27,1]
+[DEBUG] 17:06:51:633 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [28,1]
+[DEBUG] 17:06:52:635 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [29,1]
+[DEBUG] 17:06:53:644 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [30,1]
+[INFO] 17:06:54:650 Delibird - Team/(23394:23395): Se desaloja al entrenador 0. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 17:06:54:650 Delibird - Team/(23394:23397): El entrenador id: 2 se movio a la posicion [1,9]
+[INFO] 17:06:54:658 Delibird - Team/(23394:23459): El entrenador 0 capturo un Onix en la posicion [30,1].
+[INFO] 17:06:54:660 Delibird - Team/(23394:23459): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 17:06:55:653 Delibird - Team/(23394:23397): El entrenador id: 2 se movio a la posicion [2,9]
+[DEBUG] 17:06:56:657 Delibird - Team/(23394:23397): El entrenador id: 2 se movio a la posicion [3,9]
+[DEBUG] 17:06:57:660 Delibird - Team/(23394:23397): El entrenador id: 2 se movio a la posicion [4,9]
+[DEBUG] 17:06:58:663 Delibird - Team/(23394:23397): El entrenador id: 2 se movio a la posicion [5,9]
+[INFO] 17:06:59:668 Delibird - Team/(23394:23397): Se desaloja al entrenador 2. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 17:06:59:669 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [1,5]
+[INFO] 17:06:59:676 Delibird - Team/(23394:23461): El entrenador 2 capturo un Snorlax en la posicion [5,9].
+[INFO] 17:06:59:682 Delibird - Team/(23394:23461): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 17:07:00:679 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [2,5]
+[DEBUG] 17:07:01:682 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [3,5]
+[DEBUG] 17:07:02:682 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [4,5]
+[DEBUG] 17:07:03:685 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [5,5]
+[DEBUG] 17:07:04:688 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [6,5]
+[DEBUG] 17:07:05:697 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [7,5]
+[DEBUG] 17:07:06:702 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [8,5]
+[DEBUG] 17:07:07:709 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [9,5]
+[DEBUG] 17:07:08:714 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [10,5]
+[DEBUG] 17:07:09:715 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [11,5]
+[DEBUG] 17:07:10:722 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [12,5]
+[DEBUG] 17:07:11:730 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [13,5]
+[DEBUG] 17:07:12:734 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [14,5]
+[DEBUG] 17:07:13:737 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [15,5]
+[INFO] 17:07:14:741 Delibird - Team/(23394:23396): Se desaloja al entrenador 1. Motivo: alcanzo su objetivo y envio un CATCH.
+[INFO] 17:07:14:749 Delibird - Team/(23394:23465): El entrenador 1 capturo un Charmander en la posicion [15,5].
+[INFO] 17:07:14:751 Delibird - Team/(23394:23465): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 17:07:47:65 Delibird - Team/(23394:23480): Mensaje recibido: APPEARED_POKEMON Bulbasaur 50 1.
+[DEBUG] 17:07:47:66 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [31,1]
+[DEBUG] 17:07:48:68 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [32,1]
+[DEBUG] 17:07:49:68 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [33,1]
+[DEBUG] 17:07:50:68 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [34,1]
+[INFO] 17:07:50:71 Delibird - Team/(23394:23489): Mensaje recibido: APPEARED_POKEMON Squirtle 30 5.
+[INFO] 17:07:51:69 Delibird - Team/(23394:23395): Se desaloja al entrenador 0. Motivo: fue desalojado por el entrenador 1.
+[DEBUG] 17:07:51:69 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [16,5]
+[DEBUG] 17:07:52:83 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [17,5]
+[INFO] 17:07:53:75 Delibird - Team/(23394:23493): Mensaje recibido: APPEARED_POKEMON Raichu 10 9.
+[INFO] 17:07:53:88 Delibird - Team/(23394:23396): Se desaloja al entrenador 1. Motivo: fue desalojado por el entrenador 2.
+[DEBUG] 17:07:53:88 Delibird - Team/(23394:23397): El entrenador id: 2 se movio a la posicion [6,9]
+[DEBUG] 17:07:54:96 Delibird - Team/(23394:23397): El entrenador id: 2 se movio a la posicion [7,9]
+[DEBUG] 17:07:55:100 Delibird - Team/(23394:23397): El entrenador id: 2 se movio a la posicion [8,9]
+[DEBUG] 17:07:56:106 Delibird - Team/(23394:23397): El entrenador id: 2 se movio a la posicion [9,9]
+[DEBUG] 17:07:57:109 Delibird - Team/(23394:23397): El entrenador id: 2 se movio a la posicion [10,9]
+[INFO] 17:07:58:121 Delibird - Team/(23394:23397): Se desaloja al entrenador 2. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 17:07:58:121 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [18,5]
+[INFO] 17:07:58:133 Delibird - Team/(23394:23495): El entrenador 2 capturo un Raichu en la posicion [10,9].
+[INFO] 17:07:58:135 Delibird - Team/(23394:23495): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 17:07:59:126 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [19,5]
+[DEBUG] 17:08:00:134 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [20,5]
+[DEBUG] 17:08:01:147 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [21,5]
+[DEBUG] 17:08:02:154 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [22,5]
+[DEBUG] 17:08:03:161 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [23,5]
+[DEBUG] 17:08:04:165 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [24,5]
+[DEBUG] 17:08:05:172 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [25,5]
+[DEBUG] 17:08:06:184 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [26,5]
+[DEBUG] 17:08:07:190 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [27,5]
+[DEBUG] 17:08:08:191 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [28,5]
+[DEBUG] 17:08:09:193 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [29,5]
+[DEBUG] 17:08:10:201 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [30,5]
+[INFO] 17:08:11:205 Delibird - Team/(23394:23396): Se desaloja al entrenador 1. Motivo: alcanzo su objetivo y envio un CATCH.
+[DEBUG] 17:08:11:206 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [35,1]
+[INFO] 17:08:11:219 Delibird - Team/(23394:23505): El entrenador 1 capturo un Squirtle en la posicion [30,5].
+[INFO] 17:08:11:221 Delibird - Team/(23394:23505): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 17:08:12:209 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [36,1]
+[DEBUG] 17:08:13:210 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [37,1]
+[DEBUG] 17:08:14:215 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [38,1]
+[DEBUG] 17:08:15:217 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [39,1]
+[DEBUG] 17:08:16:225 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [40,1]
+[DEBUG] 17:08:17:229 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [41,1]
+[DEBUG] 17:08:18:235 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [42,1]
+[DEBUG] 17:08:19:241 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [43,1]
+[DEBUG] 17:08:20:248 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [44,1]
+[DEBUG] 17:08:21:254 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [45,1]
+[DEBUG] 17:08:22:258 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [46,1]
+[DEBUG] 17:08:23:268 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [47,1]
+[DEBUG] 17:08:24:277 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [48,1]
+[DEBUG] 17:08:25:285 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [49,1]
+[DEBUG] 17:08:26:292 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [50,1]
+[INFO] 17:08:27:299 Delibird - Team/(23394:23395): Se desaloja al entrenador 0. Motivo: alcanzo su objetivo y envio un CATCH.
+[INFO] 17:08:27:308 Delibird - Team/(23394:23512): El entrenador 0 capturo un Bulbasaur en la posicion [50,1].
+[INFO] 17:08:27:313 Delibird - Team/(23394:23512): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 17:09:19:848 Delibird - Team/(23394:23538): Mensaje recibido: APPEARED_POKEMON Pikachu 15 15.
+[DEBUG] 17:09:19:848 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [49,1]
+[DEBUG] 17:09:20:860 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [49,2]
+[DEBUG] 17:09:21:865 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [48,2]
+[DEBUG] 17:09:22:872 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [48,3]
+[DEBUG] 17:09:23:876 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [47,3]
+[DEBUG] 17:09:24:887 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [47,4]
+[DEBUG] 17:09:25:896 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [46,4]
+[DEBUG] 17:09:26:902 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [46,5]
+[DEBUG] 17:09:27:911 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [45,5]
+[DEBUG] 17:09:28:916 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [45,6]
+[DEBUG] 17:09:29:918 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [44,6]
+[DEBUG] 17:09:30:918 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [44,7]
+[DEBUG] 17:09:31:921 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [43,7]
+[DEBUG] 17:09:32:927 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [43,8]
+[DEBUG] 17:09:33:933 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [42,8]
+[DEBUG] 17:09:34:953 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [42,9]
+[DEBUG] 17:09:35:958 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [41,9]
+[DEBUG] 17:09:36:958 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [41,10]
+[DEBUG] 17:09:37:959 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [40,10]
+[DEBUG] 17:09:38:964 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [40,11]
+[DEBUG] 17:09:39:971 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [39,11]
+[DEBUG] 17:09:40:974 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [39,12]
+[DEBUG] 17:09:41:981 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [38,12]
+[DEBUG] 17:09:42:989 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [38,13]
+[DEBUG] 17:09:43:998 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [37,13]
+[DEBUG] 17:09:44:3 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [37,14]
+[DEBUG] 17:09:46:5 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [36,14]
+[DEBUG] 17:09:47:10 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [36,15]
+[DEBUG] 17:09:48:12 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [35,15]
+[DEBUG] 17:09:49:15 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [34,15]
+[DEBUG] 17:09:50:22 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [33,15]
+[DEBUG] 17:09:51:22 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [32,15]
+[DEBUG] 17:09:52:26 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [31,15]
+[DEBUG] 17:09:53:27 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [30,15]
+[DEBUG] 17:09:54:35 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [29,15]
+[DEBUG] 17:09:55:43 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [28,15]
+[DEBUG] 17:09:56:50 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [27,15]
+[DEBUG] 17:09:57:58 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [26,15]
+[DEBUG] 17:09:58:65 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [25,15]
+[DEBUG] 17:09:59:74 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [24,15]
+[DEBUG] 17:10:00:77 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [23,15]
+[DEBUG] 17:10:01:88 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [22,15]
+[DEBUG] 17:10:02:88 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [21,15]
+[DEBUG] 17:10:03:93 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [20,15]
+[DEBUG] 17:10:04:99 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [19,15]
+[DEBUG] 17:10:05:110 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [18,15]
+[DEBUG] 17:10:06:114 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [17,15]
+[DEBUG] 17:10:07:125 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [16,15]
+[DEBUG] 17:10:08:129 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [15,15]
+[INFO] 17:10:09:134 Delibird - Team/(23394:23395): Se desaloja al entrenador 0. Motivo: alcanzo su objetivo y envio un CATCH.
+[INFO] 17:10:09:140 Delibird - Team/(23394:23555): El entrenador 0 capturo un Pikachu en la posicion [15,15].
+[INFO] 17:10:09:141 Delibird - Team/(23394:23555): Se inicia la deteccion de deadlock.
+[DEBUG] 17:10:09:148 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [16,15]
+[DEBUG] 17:10:10:151 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [16,14]
+[DEBUG] 17:10:11:151 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [17,14]
+[DEBUG] 17:10:12:155 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [17,13]
+[DEBUG] 17:10:13:158 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [18,13]
+[DEBUG] 17:10:14:162 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [18,12]
+[DEBUG] 17:10:15:165 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [19,12]
+[DEBUG] 17:10:16:168 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [19,11]
+[DEBUG] 17:10:17:172 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [20,11]
+[DEBUG] 17:10:18:177 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [20,10]
+[DEBUG] 17:10:19:181 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [21,10]
+[DEBUG] 17:10:20:190 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [21,9]
+[DEBUG] 17:10:21:192 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [22,9]
+[DEBUG] 17:10:22:202 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [22,8]
+[DEBUG] 17:10:23:210 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [23,8]
+[DEBUG] 17:10:24:214 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [23,7]
+[DEBUG] 17:10:25:220 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [24,7]
+[DEBUG] 17:10:26:220 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [24,6]
+[DEBUG] 17:10:27:222 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [25,6]
+[DEBUG] 17:10:28:229 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [25,5]
+[DEBUG] 17:10:29:238 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [26,5]
+[DEBUG] 17:10:30:239 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [27,5]
+[DEBUG] 17:10:31:240 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [28,5]
+[DEBUG] 17:10:32:248 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [29,5]
+[DEBUG] 17:10:33:250 Delibird - Team/(23394:23395): El entrenador id: 0 se movio a la posicion [30,5]
+[INFO] 17:10:34:253 Delibird - Team/(23394:23395): Se comienza el intercambio entre el entrenador 0 y el entrenador 1
+[INFO] 17:10:39:260 Delibird - Team/(23394:23395): Se finalizo el intercambio entre el entrenador 0 y el entrenador 1
+[INFO] 17:10:39:261 Delibird - Team/(23394:23395): Se comienza el intercambio entre el entrenador 0 y el entrenador 1
+[INFO] 17:10:44:266 Delibird - Team/(23394:23395): Se finalizo el intercambio entre el entrenador 0 y el entrenador 1
+[DEBUG] 17:10:44:267 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [29,5]
+[DEBUG] 17:10:45:271 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [29,6]
+[DEBUG] 17:10:46:278 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [28,6]
+[DEBUG] 17:10:47:282 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [28,7]
+[DEBUG] 17:10:48:285 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [27,7]
+[DEBUG] 17:10:49:294 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [27,8]
+[DEBUG] 17:10:50:294 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [26,8]
+[DEBUG] 17:10:51:295 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [26,9]
+[DEBUG] 17:10:52:298 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [25,9]
+[DEBUG] 17:10:53:302 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [24,9]
+[DEBUG] 17:10:54:306 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [23,9]
+[DEBUG] 17:10:55:311 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [22,9]
+[DEBUG] 17:10:56:319 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [21,9]
+[DEBUG] 17:10:57:328 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [20,9]
+[DEBUG] 17:10:58:329 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [19,9]
+[DEBUG] 17:10:59:331 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [18,9]
+[DEBUG] 17:11:00:334 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [17,9]
+[DEBUG] 17:11:01:335 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [16,9]
+[DEBUG] 17:11:02:336 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [15,9]
+[DEBUG] 17:11:03:341 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [14,9]
+[DEBUG] 17:11:04:349 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [13,9]
+[DEBUG] 17:11:05:356 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [12,9]
+[DEBUG] 17:11:06:360 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [11,9]
+[DEBUG] 17:11:07:361 Delibird - Team/(23394:23396): El entrenador id: 1 se movio a la posicion [10,9]
+[INFO] 17:11:08:361 Delibird - Team/(23394:23396): Se comienza el intercambio entre el entrenador 1 y el entrenador 2
+[INFO] 17:11:13:362 Delibird - Team/(23394:23396): Se finalizo el intercambio entre el entrenador 1 y el entrenador 2
+[INFO] 17:11:13:362 Delibird - Team/(23394:23555): Finalizo la resolucion de deadlocks. Deadlocks resueltos = 3.
+[INFO] 17:11:13:362 Delibird - Team/(23394:23555): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 17:11:13:364 Delibird - Team/(23394:23394): El proceso Team ha finalizado.
+[INFO] 17:11:13:364 Delibird - Team/(23394:23394): Ciclos de CPU totales = 203
+[INFO] 17:11:13:364 Delibird - Team/(23394:23394): Cambios de contexto realizados = 19
+[INFO] 17:11:13:364 Delibird - Team/(23394:23394): Cambios de contexto del entrenador 0 = 9
+[INFO] 17:11:13:364 Delibird - Team/(23394:23394): Cambios de contexto del entrenador 1 = 6
+[INFO] 17:11:13:364 Delibird - Team/(23394:23394): Cambios de contexto del entrenador 2 = 4
+[INFO] 17:11:13:364 Delibird - Team/(23394:23394): Deadlocks detectados y resueltos = 3

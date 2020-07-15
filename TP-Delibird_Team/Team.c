@@ -39,6 +39,7 @@ void inicializarVariablesGlobales() {
 	sem_init(&mutexEntrenadores,0,1);
 	sem_init(&mutexAPPEARED, 0, 1);
 	sem_init(&mutexLOCALIZED, 0, 1);
+	sem_init(&mutexAPPEARED_LOCALIZED, 0, 1);
 	sem_init(&mutexCAUGHT, 0, 1);
 	sem_init(&mutexCATCH, 0, 1);
 	sem_init(&mutexOBJETIVOS, 0, 1);
