@@ -278,7 +278,6 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 				log_info(logger,"Cerrando el archivo del pokemon %s...",msgNew->pokemon);
 				sleep(tiempoDeRetardo);
 
-				sem_wait(mutexMetadata);
 				config_save(metadataPokemon);
 				log_info(logger,"Se cerró el archivo del pokemon %s",msgNew->pokemon);
 				sem_post(mutexMetadata);
