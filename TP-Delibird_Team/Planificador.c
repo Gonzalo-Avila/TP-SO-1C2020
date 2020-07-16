@@ -305,8 +305,8 @@ void planificarFifo(){
 			sem_wait(&procesoEnReady);
 
 			if(noSeCumplieronLosObjetivos()){
-
 				sem_wait(&mutexListaDeReady);
+
 				if(!list_is_empty(listaDeReady)){
 					sem_post(&mutexListaDeReady);
 					log_debug(logger,"Hurra, tengo algo en ready");
@@ -589,7 +589,8 @@ void realizarIntercambio(t_entrenador *entrenador, t_entrenador *entrenadorAInte
 		strcpy(pokeADarQueNoQuiero,list_get(pokemonesNoRequeridos,0));
 		//Vos tenes uno que yo necesito, ahora tengo yo alguno que vos necesitas?
 
-		log_debug(logger,"Pokemon a intercambiar del entrenador %d: %s\nPokemon a intercambiar del entrenador %d: %s",entrenador->id,list_get(pokemonesNoRequeridos,0),entrenadorAIntercambiar->id,pokeAIntercambiar);
+		log_debug(logger,"Pokemon a intercambiar del entrenador %d: %s",entrenador->id,list_get(pokemonesNoRequeridos,0));
+		log_debug(logger,"Pokemon a intercambiar del entrenador %d: %s",entrenadorAIntercambiar->id,pokeAIntercambiar);
 
 		sem_wait(&mutexEntrenadores);
 		entrenador->estado = LISTO;
@@ -602,16 +603,16 @@ void realizarIntercambio(t_entrenador *entrenador, t_entrenador *entrenadorAInte
 		strcpy(entrenador->datosDeadlock.pokemonAIntercambiar,pokeADarQueNoQuiero);
 
 		entrenador->datosDeadlock.idEntrenadorAIntercambiar = entrenadorAIntercambiar->id;
+		sem_post(&mutexEntrenadores);
 
 		sem_wait(&mutexListaDeReady);
 		list_add(listaDeReady,entrenador);
 		sem_post(&mutexListaDeReady);
 
+		sem_post(&procesoEnReady);
 		free(pokeADarQueNoQuiero);
 		list_destroy(pokemonesNoRequeridos);
 		list_destroy(pokemonesNoRequeridosAIntercambiar);
-		sem_post(&mutexEntrenadores);
-		sem_post(&procesoEnReady);
 }
 
 void imprimirListaDeCadenas(t_list * listaDeCadenas){

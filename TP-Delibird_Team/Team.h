@@ -105,6 +105,9 @@ int cambiosDeContexto;
 int deadlocksResueltos;
 uint32_t idDelProceso;
 bool yaTengoID;
+bool brokerConectado;
+bool hayEntrenadorDesalojante;
+bool conexionInicial;
 float alfa;
 t_team *team;
 t_list *listaHilos;
@@ -121,8 +124,6 @@ int *socketBrokerApp;
 int *socketBrokerLoc;
 int *socketBrokerCau;
 int *socketGameboy;
-bool brokerConectado;
-bool hayEntrenadorDesalojante;
 
 char* ipServidor;
 char* puertoServidor;

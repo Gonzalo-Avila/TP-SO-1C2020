@@ -234,7 +234,10 @@ int main() {
 		conectarGameboy();
 
 		//Se suscribe el Team a las colas
-		crearConexionesYSuscribirseALasColas();
+
+		pthread_t hiloConexiones;
+		pthread_create(&hiloConexiones,NULL,(void*)crearConexionesYSuscribirseALasColas,NULL);
+		pthread_detach(hiloConexiones);
 
 		enviarGetSegunObjetivo(ipServidor,puertoServidor);
 	}
