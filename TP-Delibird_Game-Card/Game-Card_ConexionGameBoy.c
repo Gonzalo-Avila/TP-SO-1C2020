@@ -17,7 +17,7 @@ void atenderConexiones(int *socketEscucha) {
 	int backlog_server = 10;
 	atenderConexionEn(*socketEscucha, backlog_server);
 	while (1) {
-		log_debug(logger, "Esperando cliente GameBoy...");
+		log_info(logger, "Esperando cliente GameBoy...");
 		int *socketCliente = esperarCliente(*socketEscucha);
 		log_info(logger,
 				"Se ha conectado un cliente. Número de socket: %d",*socketCliente);

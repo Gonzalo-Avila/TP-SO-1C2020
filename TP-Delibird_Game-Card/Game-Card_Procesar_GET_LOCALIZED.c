@@ -53,7 +53,7 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 					char** posicionCantidad = string_split(entradaActual, "=");	//["5-4", "3", NULL]
 					char* posicion = posicionCantidad[0];						// "5-4"
 
-					log_debug(logger, "Posicion encontrada: %s", posicion);
+					log_info(logger, "Posicion encontrada: %s", posicion);
 
 					char** posSplitteada = string_split(posicion, "-");			//["5", "4", NULL]
 
@@ -85,7 +85,7 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 				mensajeLocalized * msgLoc = armarMensajeLocalized(msgGet, posicionesList);
 				int sizeMensaje = sizeof(uint32_t) + msgGet->longPokemon + sizeof(uint32_t) + list_size(posicionesList) * 2 * sizeof(uint32_t);
 
-				log_debug(logger, "Enviando LOCALIZED");
+				log_info(logger, "Enviando LOCALIZED");
 				enviarMensajeBroker(LOCALIZED, mensajeRecibido->idMensaje, sizeMensaje, msgLoc);
 
 				operacionFinalizada=true;
@@ -109,7 +109,7 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 			int sizeMensaje = sizeof(uint32_t) + msgGet->longPokemon + sizeof(uint32_t);
 			log_info(logger, "No existe el pokemon %s solicitado", msgGet->pokemon);
 			mensajeLocalized * msgLoc = armarMensajeLocalized(msgGet, posicionesList);
-			log_debug(logger, "Enviando LOCALIZED");
+			log_info(logger, "Enviando LOCALIZED");
 			enviarMensajeBroker(LOCALIZED, mensajeRecibido->idMensaje, sizeMensaje, msgLoc);
 
 			free(msgLoc->pokemon);
@@ -126,7 +126,7 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 	free(msgGet);
 	free(mensajeRecibido->mensaje);
 	free(mensajeRecibido);
-	log_debug(logger, "Mensaje LOCALIZED procesado correctamente");
+	log_info(logger, "Mensaje LOCALIZED procesado correctamente");
 
 }
 void destroyer(void * nodo){

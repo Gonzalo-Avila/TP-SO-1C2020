@@ -4,7 +4,7 @@
 
 void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
-	log_debug(logger, "Procesando mensaje NEW...");
+	log_info(logger, "Procesando mensaje NEW...");
 
 	mensajeNew * msgNew = desarmarMensajeNEW(mensajeRecibido);
 
@@ -110,7 +110,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 							mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 							uint32_t sizeMensaje = msgAppeared->longPokemon + sizeof(uint32_t) * 3;
-							log_debug(logger, "Enviando APPEARED");
+							log_info(logger, "Enviando APPEARED");
 							enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje, sizeMensaje, msgAppeared);
 
 							free(sizeFinal);
@@ -146,7 +146,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 							mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 							uint32_t sizeMensaje = msgAppeared->longPokemon + sizeof(uint32_t) * 3;
-							log_debug(logger, "Enviando APPEARED");
+							log_info(logger, "Enviando APPEARED");
 							enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje, sizeMensaje, msgAppeared);
 							free(sizeFinal);
 							free(msgAppeared->pokemon);
@@ -192,7 +192,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 									mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 									uint32_t sizeMensaje = msgAppeared->longPokemon + sizeof(uint32_t) * 3;
-									log_debug(logger, "Enviando APPEARED");
+									log_info(logger, "Enviando APPEARED");
 									enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje, sizeMensaje, msgAppeared);
 
 									free(sizeFinal);
@@ -230,7 +230,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 										mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 										uint32_t sizeMensaje = msgAppeared->longPokemon+ sizeof(uint32_t) * 3;
-										log_debug(logger, "Enviando APPEARED");
+										log_info(logger, "Enviando APPEARED");
 										enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje,sizeMensaje, msgAppeared);
 
 										free(sizeFinal);
@@ -302,7 +302,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 				mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 				uint32_t sizeMensaje = msgAppeared->longPokemon+ sizeof(uint32_t) * 3;
-				log_debug(logger, "Enviando APPEARED");
+				log_info(logger, "Enviando APPEARED");
 				enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje,sizeMensaje, msgAppeared);
 
 				free(sizeFinal);
