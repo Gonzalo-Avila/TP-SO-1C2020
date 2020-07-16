@@ -154,7 +154,14 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 							}
 							else{
 								log_info(logger, "No se pudo actualizar la cantidad en la coordenada %d-%d del pokemon %s: no hay espacio suficiente",msgNew->posicionX,msgNew->posicionY,msgNew->pokemon);
+								config_set_value(metadataPokemon, "OPEN", "N");
+								log_info(logger,"Cerrando el archivo del pokemon %s...",msgNew->pokemon);
+								sleep(tiempoDeRetardo);
 
+								sem_wait(mutexMetadata);
+								config_save(metadataPokemon);
+								log_info(logger,"Se cerró el archivo del pokemon %s",msgNew->pokemon);
+								sem_post(mutexMetadata);
 							}
 						}
 					free(aEscribirEnBloques);
@@ -234,6 +241,15 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 									}
 									else{
 										log_info(logger,"No se pudo crear la coordenada %d-%d del pokemon %s: no hay espacio suficiente", msgNew->posicionX,msgNew->posicionY,msgNew->pokemon);
+										config_set_value(metadataPokemon, "OPEN", "N");
+										log_info(logger,"Cerrando el archivo del pokemon %s...",msgNew->pokemon);
+										sleep(tiempoDeRetardo);
+
+										sem_wait(mutexMetadata);
+										config_save(metadataPokemon);
+										log_info(logger,"Se cerró el archivo del pokemon %s",msgNew->pokemon);
+										sem_post(mutexMetadata);
+
 									}
 								}
 								free(rutaUltimoBloque);
