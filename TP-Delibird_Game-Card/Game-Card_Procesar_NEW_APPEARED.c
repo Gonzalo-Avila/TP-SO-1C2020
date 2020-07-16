@@ -40,16 +40,20 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 		if (existeElArchivo(rutaMetadataPokemon)){
 			metadataPokemon = config_create(rutaMetadataPokemon);
 
+			log_info(logger,"Intentando abrir archivo del pokemon %s...", msgNew->pokemon);
 			if (strcmp(config_get_string_value(metadataPokemon, "OPEN"), "N") == 0) {
 
 				config_set_value(metadataPokemon, "OPEN", "Y");
 				config_save(metadataPokemon);
-
 				sem_post(mutexMetadata);
+
+				log_info(logger,"Se accedió al archivo del pokemon %s...", msgNew->pokemon);
 
 				char * archivoMappeado = mapearArchivo(rutaMetadataPokemon,metadataPokemon);
 
 				if (existenLasCoordenadas(archivoMappeado, posicionComoCadena)) {
+
+					log_info(logger,"Las coordenadas ya existen en el pokemon %s", msgNew->pokemon);
 
 						char* aEscribirEnBloques = string_new();
 						int indexEntrada = 0;
@@ -86,20 +90,27 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 						int sizeAEscribir = strlen(aEscribirEnBloques);
 						int cantidadDeBloquesAsignadosAArchivo = obtenerCantidadDeBloquesAsignados(rutaMetadataPokemon);
 						if (cantidadDeBloquesAsignadosAArchivo * tamanioBloque>= sizeAEscribir) {
+							log_info(logger,"No se requieren bloques adicionales para %s", msgNew->pokemon);
+							log_info(logger,"Actualizando cantidad en coordenada %d-%d de %s", msgNew->posicionX,msgNew->posicionY,msgNew->pokemon);
 							escribirCadenaEnArchivo(rutaMetadataPokemon,aEscribirEnBloques);
-							sleep(tiempoDeRetardo);
 
+							log_info(logger,"Tamanio inicial del archivo: %d",config_get_int_value(metadataPokemon,"SIZE"));
 							char * sizeFinal = string_itoa(sizeAEscribir);
 							config_set_value(metadataPokemon, "SIZE", sizeFinal);
 							config_set_value(metadataPokemon, "OPEN", "N");
+							log_info(logger,"Tamanio final del archivo: %s", sizeFinal);
+
+							log_info(logger,"Cerrando el archivo del pokemon %s...",msgNew->pokemon);
+							sleep(tiempoDeRetardo);
 
 							sem_wait(mutexMetadata);
 							config_save(metadataPokemon);
+							log_info(logger,"Se cerró el archivo del pokemon %s",msgNew->pokemon);
 							sem_post(mutexMetadata);
 
 							mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 							uint32_t sizeMensaje = msgAppeared->longPokemon + sizeof(uint32_t) * 3;
-							log_debug(logger, "[NEW] Enviando APPEARED");
+							log_debug(logger, "Enviando APPEARED");
 							enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje, sizeMensaje, msgAppeared);
 
 							free(sizeFinal);
@@ -114,52 +125,67 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 							sem_wait(mutexMetadata);
 							asignarBloquesAArchivo(rutaMetadataPokemon, bloquesNecesarios-cantidadDeBloquesAsignadosAArchivo, metadataPokemon);
 							sem_post(mutexMetadata);
-
+							log_info(logger,"Se asignaron %d bloques adicionales al archivo del pokemon %s", bloquesNecesarios-cantidadDeBloquesAsignadosAArchivo,msgNew->pokemon);
+							log_info(logger,"Actualizando cantidad en coordenada %d-%d de %s", msgNew->posicionX,msgNew->posicionY,msgNew->pokemon);
 							escribirCadenaEnArchivo(rutaMetadataPokemon, aEscribirEnBloques);
-							sleep(tiempoDeRetardo);
 
+							log_info(logger,"Tamanio inicial del archivo: %d",config_get_int_value(metadataPokemon,"SIZE"));
 							char * sizeFinal = string_itoa(sizeAEscribir);
 							config_set_value(metadataPokemon, "SIZE", sizeFinal);
 							config_set_value(metadataPokemon, "OPEN", "N");
+							log_info(logger,"Tamanio final del archivo: %s", sizeFinal);
+
+							log_info(logger,"Cerrando el archivo del pokemon %s...",msgNew->pokemon);
+							sleep(tiempoDeRetardo);
+
 
 							sem_wait(mutexMetadata);
 							config_save(metadataPokemon);
+							log_info(logger,"Se cerró el archivo del pokemon %s",msgNew->pokemon);
 							sem_post(mutexMetadata);
 
 							mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 							uint32_t sizeMensaje = msgAppeared->longPokemon + sizeof(uint32_t) * 3;
-							log_debug(logger, "[NEW] Enviando APPEARED");
+							log_debug(logger, "Enviando APPEARED");
 							enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje, sizeMensaje, msgAppeared);
 							free(sizeFinal);
 							free(msgAppeared->pokemon);
 							free(msgAppeared);
 							}
 							else{
-								log_info(logger, "No se pudo actualizar la cantidad en las posiciones dadas, no hay espacio suficiente");
-								return;
+								log_info(logger, "No se pudo actualizar la cantidad en la coordenada %d-%d del pokemon %s: no hay espacio suficiente",msgNew->posicionX,msgNew->posicionY,msgNew->pokemon);
+
 							}
 						}
 					free(aEscribirEnBloques);
 					} else {
 
+						log_info(logger,"Las coordenadas no existen en el pokemon %s", msgNew->pokemon);
 						char * rutaUltimoBloque = obtenerRutaUltimoBloque(rutaMetadataPokemon);
 								int espacioLibreUltimoBloque = obtenerEspacioLibreDeBloque(rutaUltimoBloque);
 
 								if (espacioLibreUltimoBloque >= tamanioEntradaCompleta) {
+									log_info(logger,"No se requieren bloques adicionales para %s", msgNew->pokemon);
+									log_info(logger,"Agregando la coordenada %d-%d a %s", msgNew->posicionX,msgNew->posicionY,msgNew->pokemon);
 									escribirCadenaEnBloque(rutaUltimoBloque,entradaCompletaComoCadena);
-									sleep(tiempoDeRetardo);
 
+									log_info(logger,"Tamanio inicial del archivo: %d",config_get_int_value(metadataPokemon,"SIZE"));
 									char * sizeFinal = string_itoa(tamanioEntradaCompleta + config_get_int_value(metadataPokemon,"SIZE"));
 									config_set_value(metadataPokemon, "SIZE", sizeFinal);
 									config_set_value(metadataPokemon, "OPEN", "N");
+									log_info(logger,"Tamanio final del archivo: %s", sizeFinal);
+
+									log_info(logger,"Cerrando el archivo del pokemon %s...",msgNew->pokemon);
+									sleep(tiempoDeRetardo);
 
 									sem_wait(mutexMetadata);
 									config_save(metadataPokemon);
+									log_info(logger,"Se cerró el archivo del pokemon %s",msgNew->pokemon);
 									sem_post(mutexMetadata);
 
 									mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 									uint32_t sizeMensaje = msgAppeared->longPokemon + sizeof(uint32_t) * 3;
-									log_debug(logger, "[NEW] Enviando APPEARED");
+									log_debug(logger, "Enviando APPEARED");
 									enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje, sizeMensaje, msgAppeared);
 
 									free(sizeFinal);
@@ -174,23 +200,30 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 										sem_wait(mutexMetadata);
 										asignarBloquesAArchivo(rutaMetadataPokemon,bloquesNecesarios, metadataPokemon);
 										sem_post(mutexMetadata);
+										log_info(logger,"Se asignaron %d bloques adicionales al archivo del pokemon %s", bloquesNecesarios,msgNew->pokemon);
+										log_info(logger,"Agregando la coordenada %d-%d a %s", msgNew->posicionX,msgNew->posicionY,msgNew->pokemon);
 
 										char * contenidoAAlmacenar;
 										asprintf(&contenidoAAlmacenar, "%s%s", archivoMappeado,entradaCompletaComoCadena);
 										escribirCadenaEnArchivo(rutaMetadataPokemon,contenidoAAlmacenar);
-										sleep(tiempoDeRetardo);
 
+										log_info(logger,"Tamanio inicial del archivo: %d",config_get_int_value(metadataPokemon,"SIZE"));
 										char * sizeFinal = string_itoa(tamanioEntradaCompleta + config_get_int_value(metadataPokemon,"SIZE"));
 										config_set_value(metadataPokemon, "SIZE", sizeFinal);
 										config_set_value(metadataPokemon, "OPEN", "N");
+										log_info(logger,"Tamanio final del archivo: %s", sizeFinal);
+
+										log_info(logger,"Cerrando el archivo del pokemon %s...",msgNew->pokemon);
+										sleep(tiempoDeRetardo);
 
 										sem_wait(mutexMetadata);
 										config_save(metadataPokemon);
+										log_info(logger,"Se cerró el archivo del pokemon %s",msgNew->pokemon);
 										sem_post(mutexMetadata);
 
 										mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 										uint32_t sizeMensaje = msgAppeared->longPokemon+ sizeof(uint32_t) * 3;
-										log_debug(logger, "[NEW] Enviando APPEARED");
+										log_debug(logger, "Enviando APPEARED");
 										enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje,sizeMensaje, msgAppeared);
 
 										free(sizeFinal);
@@ -200,8 +233,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 									}
 									else{
-										log_info(logger,"No se pueden crear las nuevas posiciones, no hay espacio suficiente");
-										return;
+										log_info(logger,"No se pudo crear la coordenada %d-%d del pokemon %s: no hay espacio suficiente", msgNew->posicionX,msgNew->posicionY,msgNew->pokemon);
 									}
 								}
 								free(rutaUltimoBloque);
@@ -211,13 +243,16 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 				}
 				else{
 					sem_post(mutexMetadata);
+					log_info(logger,"No se puede acceder al archivo del pokemon %s, está abierto por otro proceso. Esperando para reintentar...",msgNew->pokemon);
 					sleep(tiempoDeReintentoDeAcceso);
 				}
 				config_destroy(metadataPokemon);
 		}
 		else {
+			log_info(logger,"No existe el pokemon %s en el filesystem", msgNew->pokemon);
 			if (haySuficientesBloquesLibresParaSize(tamanioEntradaCompleta)) {
 
+				log_info(logger,"Creando el pokemon %s en el filesystem...", msgNew->pokemon);
 				mkdir(rutaPokemon, 0777);
 
 				crearNuevoPokemon(rutaMetadataPokemon, msgNew);
@@ -228,22 +263,31 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 				asignarBloquesAArchivo(rutaMetadataPokemon, cantidadDeBloquesAAsignar, metadataPokemon);
 
+				log_info(logger,"Se asignaron %d bloques al archivo del pokemon %s", cantidadDeBloquesAAsignar,msgNew->pokemon);
+
+				log_info(logger,"Agregando la coordenada %d-%d a %s", msgNew->posicionX,msgNew->posicionY,msgNew->pokemon);
 				escribirCadenaEnArchivo(rutaMetadataPokemon,entradaCompletaComoCadena);
 
-				sleep(tiempoDeRetardo);
+
 
 				char * sizeFinal = string_itoa(tamanioEntradaCompleta);
 				config_set_value(metadataPokemon, "SIZE", sizeFinal);
 				config_set_value(metadataPokemon, "OPEN", "N");
-				config_save(metadataPokemon);
+				log_info(logger,"Tamanio final del archivo: %s", sizeFinal);
 
+				log_info(logger,"Cerrando el archivo del pokemon %s...",msgNew->pokemon);
+				sleep(tiempoDeRetardo);
+
+				sem_wait(mutexMetadata);
+				config_save(metadataPokemon);
+				log_info(logger,"Se cerró el archivo del pokemon %s",msgNew->pokemon);
 				sem_post(mutexMetadata);
 
 				config_destroy(metadataPokemon);
 
 				mensajeAppeared * msgAppeared = armarMensajeAppeared(msgNew);
 				uint32_t sizeMensaje = msgAppeared->longPokemon+ sizeof(uint32_t) * 3;
-				log_debug(logger, "[NEW] Enviando APPEARED");
+				log_debug(logger, "Enviando APPEARED");
 				enviarMensajeBroker(APPEARED, mensajeRecibido->idMensaje,sizeMensaje, msgAppeared);
 
 				free(sizeFinal);
@@ -252,7 +296,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 			}
 			else {
 				sem_post(mutexMetadata);
-				log_info(logger,"No se puede crear el nuevo pokemon, no hay espacio suficiente");
+				log_info(logger,"No se puede crear el pokemon %s, no hay espacio suficiente", msgNew->pokemon);
 			}
 			operacionFinalizada=true;
 		}

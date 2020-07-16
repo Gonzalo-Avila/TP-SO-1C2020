@@ -60,10 +60,8 @@ void inicializarCache() {
 
 	setearAlgoritmos();
 
-	CACHESIZE = adaptarCacheSize(
-			config_get_int_value(config, "TAMANO_MEMORIA"));
-	minimoTamanioParticion = config_get_int_value(config,
-			"TAMANO_MINIMO_PARTICION");
+	CACHESIZE = adaptarCacheSize(config_get_int_value(config, "TAMANO_MEMORIA"));
+	minimoTamanioParticion = config_get_int_value(config,"TAMANO_MINIMO_PARTICION");
 	cacheBroker = malloc(CACHESIZE);
 
 	crearRegistroInicial(registrosDeParticiones);
@@ -104,10 +102,8 @@ registroParticion * obtenerBuddy(registroParticion * particionLiberada) {
 		return reg->nroParticion == particionLiberada->nroParticion + 1;
 	}
 
-	registroParticion * posibleBuddy1 = list_find(registrosDeParticiones,
-			(void *) esContiguaAnterior);
-	registroParticion * posibleBuddy2 = list_find(registrosDeParticiones,
-			(void *) esContiguaPosterior);
+	registroParticion * posibleBuddy1 = list_find(registrosDeParticiones,(void *) esContiguaAnterior);
+	registroParticion * posibleBuddy2 = list_find(registrosDeParticiones,(void *) esContiguaPosterior);
 
 	if (particionLiberada->nroParticion != 0
 			&& posibleBuddy1->tamanioParticion
@@ -148,8 +144,7 @@ void consolidar(registroParticion * particionLiberada, t_list * registros) {
 				registroParticion * reg = (registroParticion *) registro;
 				return reg->nroParticion == particionLiberada->nroParticion + 1;
 			}
-			particionLiberada->tamanioParticion = 2
-					* particionLiberada->tamanioParticion;
+			particionLiberada->tamanioParticion = 2 * particionLiberada->tamanioParticion;
 			particionLiberada->idMensaje = -1;
 			particionLiberada->tamanioMensaje = 0;
 
@@ -248,8 +243,7 @@ void * usarBDBestFit(estructuraMensaje mensaje){
 		t_list * particionesOrdenadasPorTamanio = list_sorted(particionesValidas,(void *) compararPorMenorTamanio);
 		registroParticion * registro = (registroParticion *) list_get(particionesOrdenadasPorTamanio, 0);
 
-		while (registro->tamanioParticion >= 2 * mensaje.sizeMensaje
-				&& registro->tamanioParticion > minimoTamanioParticion) {
+		while (registro->tamanioParticion >= 2 * mensaje.sizeMensaje && registro->tamanioParticion > minimoTamanioParticion) {
 			crearNuevoBuddy(registrosDeParticiones, registro, mensaje.sizeMensaje);
 		}
 
