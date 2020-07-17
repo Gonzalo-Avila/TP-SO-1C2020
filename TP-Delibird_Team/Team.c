@@ -2,8 +2,10 @@
 
 void inicializarVariablesGlobales() {
 	config = config_create("team.config");
-	logger = log_create("team_logs", "Team", 1, LOG_LEVEL_TRACE);
-	loggerOficial = log_create(config_get_string_value(config, "LOG_FILE"),"Delibird - Team", 0, LOG_LEVEL_TRACE);
+	int imprimirPorConsolaLogOficial = config_get_int_value(config,"PRINT_OFICIAL");
+	int imprimirPorConsolaLogNoOficial = config_get_int_value(config,"PRINT_NO_OFICIAL");
+	logger = log_create("team_logs", "Team", imprimirPorConsolaLogNoOficial, LOG_LEVEL_TRACE);
+	loggerOficial = log_create(config_get_string_value(config, "LOG_FILE"),"Delibird - Team",imprimirPorConsolaLogOficial, LOG_LEVEL_TRACE);
 	listaHilos = list_create();
 	team = malloc(sizeof(t_team));
 	team->entrenadores = list_create();

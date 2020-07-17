@@ -3,7 +3,9 @@
 void inicializarVariablesGlobales() {
 
 	config = config_create("gamecard.config");
-	logger = log_create("gamecard_logs_oficial", "GameCard", 1, LOG_LEVEL_TRACE);
+
+	int imprimirPorConsolaLogOficial = config_get_int_value(config,"PRINT_OFICIAL");
+	logger = log_create("gamecard_logs_oficial", "GameCard", imprimirPorConsolaLogOficial, LOG_LEVEL_TRACE);
 
 	ipServidor = malloc(strlen(config_get_string_value(config, "IP_BROKER")) + 1);
 	strcpy(ipServidor, config_get_string_value(config, "IP_BROKER"));

@@ -3,8 +3,11 @@
 
 void inicializarVariablesGlobales() {
 	config = config_create("broker.config");
-	logger = log_create("broker_logs", "Broker", 1, LOG_LEVEL_TRACE);
-	loggerOficial = log_create(config_get_string_value(config,"LOG_FILE"),"Delibird - Broker", 0, LOG_LEVEL_TRACE);
+	int imprimirPorConsolaLogOficial = config_get_int_value(config,"PRINT_OFICIAL");
+	int imprimirPorConsolaLogNoOficial = config_get_int_value(config,"PRINT_NO_OFICIAL");
+
+	logger = log_create("broker_logs", "Broker", imprimirPorConsolaLogNoOficial, LOG_LEVEL_TRACE);
+	loggerOficial = log_create(config_get_string_value(config,"LOG_FILE"),"Delibird - Broker", imprimirPorConsolaLogOficial, LOG_LEVEL_TRACE);
 
 	inicializarColasYListas();
 	inicializarCache();

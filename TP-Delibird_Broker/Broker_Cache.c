@@ -148,8 +148,8 @@ void consolidar(registroParticion * particionLiberada, t_list * registros) {
 			particionLiberada->idMensaje = -1;
 			particionLiberada->tamanioMensaje = 0;
 
-			log_info(loggerOficial,"Se consolidaron las particiones %d (posición inicial: %p) y %d (posición inicial: %p)",
-					particionLiberada->nroParticion,particionLiberada->posInicialFisica,buddy->nroParticion,buddy->posInicialFisica);
+			log_info(loggerOficial,"Se consolidaron las particiones %d (posición inicial: %d - %p) y %d (posición inicial: %d - %p)",
+					particionLiberada->nroParticion,particionLiberada->posInicialLogica,particionLiberada->posInicialFisica,buddy->nroParticion,buddy->posInicialLogica,buddy->posInicialFisica);
 
 			list_remove_and_destroy_by_condition(registros, (void *) coincideID,(void *) destructorGeneral);
 			reasignarNumerosDeParticion(registros);
@@ -163,8 +163,8 @@ void consolidar(registroParticion * particionLiberada, t_list * registros) {
 			buddy->idMensaje = -1;
 			buddy->tamanioMensaje = 0;
 
-			log_info(loggerOficial,"Se consolidaron las particiones %d (posición inicial: %p) y %d (posición inicial: %p)",
-					buddy->nroParticion,buddy->posInicialFisica,particionLiberada->nroParticion,particionLiberada->posInicialFisica);
+			log_info(loggerOficial,"Se consolidaron las particiones %d (posición inicial: %d - %p) y %d (posición inicial: %d - %p)",
+					buddy->nroParticion,buddy->posInicialLogica,buddy->posInicialFisica,particionLiberada->nroParticion,particionLiberada->posInicialLogica,particionLiberada->posInicialFisica);
 
 			list_remove_and_destroy_by_condition(registros, (void *) coincideID,(void *) destructorGeneral);
 			reasignarNumerosDeParticion(registros);
@@ -229,6 +229,9 @@ void * usarBDFirstFit(estructuraMensaje mensaje){
 
 		//reasignarNumerosDeParticion(registrosDeParticiones);
 		list_destroy(particionesValidas);
+
+		log_info(loggerOficial, "Se guardo el mensaje %d en la posición %d - %p", mensaje.id,registro->posInicialLogica,registro->posInicialFisica);
+
 		return registro->posInicialFisica;
 
 }
@@ -258,6 +261,8 @@ void * usarBDBestFit(estructuraMensaje mensaje){
 		list_destroy(particionesValidas);
 		list_destroy(particionesOrdenadasPorTamanio);
 
+		log_info(loggerOficial, "Se guardo el mensaje %d en la posición %d - %p", mensaje.id,registro->posInicialLogica,registro->posInicialFisica);
+
 		return registro->posInicialFisica;
 }
 void * cachearConBuddySystem(estructuraMensaje mensaje) {
@@ -281,8 +286,7 @@ void * usarBestFit(estructuraMensaje mensaje) {
 
 	t_list * particionesValidas = list_filter(registrosDeParticiones,(void *) estaVaciaYAlcanza);
 	t_list * particionesOrdenadasPorTamanio = list_sorted(particionesValidas,(void *) compararPorMenorTamanio);
-	registroParticion * registro = (registroParticion *) list_get(
-			particionesOrdenadasPorTamanio, 0);
+	registroParticion * registro = (registroParticion *) list_get(particionesOrdenadasPorTamanio, 0);
 
 	if (registro->tamanioParticion > maximoEntre(mensaje.sizeMensaje,minimoTamanioParticion)) {
 		aniadirNuevoRegistroALista(registrosDeParticiones, registro,maximoEntre(mensaje.sizeMensaje,minimoTamanioParticion));
@@ -299,6 +303,8 @@ void * usarBestFit(estructuraMensaje mensaje) {
 
 	list_destroy(particionesValidas);
 	list_destroy(particionesOrdenadasPorTamanio);
+
+	log_info(loggerOficial, "Se guardo el mensaje %d en la posición %d - %p", mensaje.id,registro->posInicialLogica,registro->posInicialFisica);
 
 	return registro->posInicialFisica;
 }
@@ -348,6 +354,9 @@ void * usarFirstFit(estructuraMensaje mensaje) {
 	registro->tamanioMensaje=mensaje.sizeMensaje;
 	registro->tiempoArribo = time(NULL);
 	registro->tiempoUltimoUso = time(NULL);
+
+
+	log_info(loggerOficial, "Se guardo el mensaje %d en la posición %d - %p", mensaje.id,registro->posInicialLogica,registro->posInicialFisica);
 
 	return registro->posInicialFisica;
 
@@ -609,7 +618,7 @@ void asegurarEspacioLibrePara(int sizeMensaje) {
 		int i = 0;
 		while (!hayEspacioLibrePara(sizeMensaje)) {
 			registroParticion * particionLiberada = vaciarParticion();
-			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %p", particionLiberada->posInicialFisica);
+			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %d - %p",particionLiberada->posInicialLogica, particionLiberada->posInicialFisica);
 			consolidarPD(particionLiberada);
 			if (hayEspacioLibrePara(sizeMensaje)) {
 				break;
@@ -623,7 +632,7 @@ void asegurarEspacioLibrePara(int sizeMensaje) {
 	} else {
 		while (!hayEspacioLibrePara(sizeMensaje)){
 			registroParticion * particionLiberada = vaciarParticion();
-			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %p", particionLiberada->posInicialFisica);
+			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %d - %p",particionLiberada->posInicialLogica,particionLiberada->posInicialFisica);
 			consolidarPD(particionLiberada);
 			if (hayEspacioLibrePara(sizeMensaje)) {
 				break;
@@ -661,17 +670,15 @@ void cachearMensaje(estructuraMensaje mensaje) {
 	if (mensaje.sizeMensaje <= CACHESIZE) {
 
 		sem_wait(&mutex_regParticiones);
-		void * posicionEnMemoria = asignarParticion(mensaje);
+		asignarParticion(mensaje);
 		sem_post(&mutex_regParticiones);
 
 		crearRegistroCache(mensaje);
 
-		log_info(loggerOficial, "Se guardó en memoría cache el mensaje %d en la posición %p", mensaje.id,posicionEnMemoria);
 
 	} else {
 		log_info(logger,
-				"No se pudo cachear el mensaje con ID %d por ser mas grande que la cache",
-				mensaje.id);
+				"No se pudo cachear el mensaje con ID %d por ser mas grande que la cache",mensaje.id);
 	}
 
 }
