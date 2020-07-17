@@ -120,6 +120,8 @@ t_list *listaCondsEntrenadores;
 t_list *listaPosicionesInternas;
 t_list *listaPosicionesBackUp;
 
+t_log* loggerResultadosFinales;
+
 int *socketBrokerApp;
 int *socketBrokerLoc;
 int *socketBrokerCau;
@@ -223,12 +225,12 @@ void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador);
 void esperarMensajesGameboy(int* socketSuscripcion);
 void crearHiloPlanificador();
 void escaneoDeDeadlock();
-void imprimirListaDeCadenas(t_list * listaDeCadenas);
+void imprimirListaDeCadenas(t_list * listaDeCadenas, t_log* loggerUsado);
 void seCumplieronLosObjetivosDelEntrenador(t_entrenador *entrenador);
 void verificarDeadlock();
 void planificadorDeLargoPlazo();
 void verificarPokemonesEnMapaYPonerEnReady();
-void imprimirEstadoFinalEntrenadores();
+void imprimirEstadoFinalEntrenadores(t_log* loggerUsado);
 int ponerEnReadyAlMasCercano(int x, int y, char* pokemon);
 int crearConexionClienteConReintento(char * ip, char * puerto, int tiempoDeEspera);
 

@@ -6,13 +6,14 @@ void inicializarVariablesGlobales() {
 	int imprimirPorConsolaLogNoOficial = config_get_int_value(config,"PRINT_NO_OFICIAL");
 	logger = log_create("team_logs", "Team", imprimirPorConsolaLogNoOficial, LOG_LEVEL_TRACE);
 	loggerOficial = log_create(config_get_string_value(config, "LOG_FILE"),"Delibird - Team",imprimirPorConsolaLogOficial, LOG_LEVEL_TRACE);
+	loggerResultadosFinales = log_create(config_get_string_value(config, "LOG_FILE"), "Delibird - Team", 1, LOG_LEVEL_TRACE);
 	listaHilos = list_create();
 	team = malloc(sizeof(t_team));
 	team->entrenadores = list_create();
 	team->objetivosNoAtendidos = list_create();
 	listaDeReady = list_create(); //esto se necesita para el FIFO.
 	listaDeBloqued = list_create(); //esto es necesario??
-	ipServidor = config_get_string_value(config, "IP");
+	ipServidor = config_get_string_value(config, "IP_BROKER");
 	puertoServidor = config_get_string_value(config, "PUERTO");
 	tiempoDeEspera = atoi(config_get_string_value(config, "CONNECTION_RETRY"));
 	team->algoritmoPlanificacion = obtenerAlgoritmoPlanificador();
@@ -147,7 +148,8 @@ void liberarConexiones(){
 	free(socketGameboy);
 }
 void imprimirResultadosDelTeam(){
-	log_info(loggerOficial,"El proceso Team ha finalizado.");
+	log_info(loggerResultadosFinales,"El proceso Team ha finalizado.");
+	imprimirEstadoFinalEntrenadores(loggerResultadosFinales);
 	log_info(loggerOficial,"Ciclos de CPU totales = %d", ciclosDeCPUTotales);
 	log_info(loggerOficial,"Cambios de contexto realizados = %d", cambiosDeContexto);
 	
@@ -201,15 +203,15 @@ void finalizarProceso(){
 	exit(0);
 }
 
-void imprimirEstadoFinalEntrenadores() {
-	log_info(logger, "Estado final de los entrenadores");
+void imprimirEstadoFinalEntrenadores(t_log* loggerUsado) {
+	log_info(loggerUsado, "Estado final de los entrenadores:");
 	for (int i = 0; i < list_size(team->entrenadores); i++) {
 		t_entrenador* entrenador = list_get(team->entrenadores, i);
-		log_info(logger, "Entrenador id: %d", entrenador->id);
-		log_info(logger, "Objetivos Originales:");
-		imprimirListaDeCadenas(entrenador->objetivosOriginales);
-		log_info(logger, "Pokemones:");
-		imprimirListaDeCadenas(entrenador->pokemones);
+		log_info(loggerUsado, "Entrenador id: %d", entrenador->id);
+		log_info(loggerUsado, "  Objetivos Originales:");
+		imprimirListaDeCadenas(entrenador->objetivosOriginales, loggerUsado);
+		log_info(loggerUsado, "  Pokemones:");
+		imprimirListaDeCadenas(entrenador->pokemones, loggerUsado);
 	}
 }
 
@@ -247,7 +249,7 @@ int main() {
 	//El TEAM finaliza cuando termine de ejecutarse el planificador, que sera cuando se cumplan todos los objetivos.
 	pthread_join(hiloPlanificador, NULL);
 
-	imprimirEstadoFinalEntrenadores();
+	imprimirEstadoFinalEntrenadores(logger);
 
 	log_info(logger, "Finalizó la conexión con el servidor\n");
 

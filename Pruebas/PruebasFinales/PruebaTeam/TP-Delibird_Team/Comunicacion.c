@@ -182,15 +182,15 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 
 
 	log_info(logger,"Pokemones: ");
-	imprimirListaDeCadenas(catchProcesado->entrenadorConCatch->pokemones);
+	imprimirListaDeCadenas(catchProcesado->entrenadorConCatch->pokemones, logger);
 
 	log_info(logger,"Objetivos: ");
-	imprimirListaDeCadenas(catchProcesado->entrenadorConCatch->objetivos);
+	imprimirListaDeCadenas(catchProcesado->entrenadorConCatch->objetivos, logger);
 
 	log_info(logger,"Estado Actual: %d",catchProcesado->entrenadorConCatch->estado);
 
 	log_info(logger,"Objetivos generales:");
-	imprimirListaDeCadenas(team->objetivosOriginales);
+	imprimirListaDeCadenas(team->objetivosOriginales, logger);
 
 	sem_wait(&mutexListaPosiciones);
 	imprimirListaDePosiciones();
@@ -239,14 +239,14 @@ void emularCaught(t_entrenador *entrenador){
 	seCumplieronLosObjetivosDelEntrenador(entrenador);
 
 	log_info(logger,"Pokemones: ");
-	imprimirListaDeCadenas(entrenador->pokemones);
+	imprimirListaDeCadenas(entrenador->pokemones, logger);
 
 	log_info(logger,"Objetivos: ");
-	imprimirListaDeCadenas(entrenador->objetivos);
+	imprimirListaDeCadenas(entrenador->objetivos, logger);
 
-	log_info(logger,"Estado Actual: %d",entrenador->estado);
+	log_info(logger,"Estado Actual: %d",entrenador->estado, logger);
 	log_info(logger,"Objetivos generales:");
-	imprimirListaDeCadenas(team->objetivosOriginales);
+	imprimirListaDeCadenas(team->objetivosOriginales, logger);
 
 	sem_wait(&mutexListaPosiciones);
 	imprimirListaDePosiciones();

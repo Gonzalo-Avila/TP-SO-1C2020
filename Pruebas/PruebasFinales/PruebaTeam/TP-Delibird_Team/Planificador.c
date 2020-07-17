@@ -551,24 +551,24 @@ void realizarIntercambio(t_entrenador *entrenador, t_entrenador *entrenadorAInte
 
 		log_info(logger,"Entrenador id: %d",entrenador->id);
 		log_info(logger,"Objetivos:");
-		imprimirListaDeCadenas(entrenador->objetivosOriginales);
+		imprimirListaDeCadenas(entrenador->objetivosOriginales, logger);
 		log_info(logger,"Pokemones:");
-		imprimirListaDeCadenas(entrenador->pokemones);
+		imprimirListaDeCadenas(entrenador->pokemones, logger);
 
 
 		t_list *pokemonesNoRequeridos = pokesNoObjetivoEnDeadlock(entrenador->pokemones,entrenador->objetivosOriginales);
 		log_info(logger,"Pokemones no requeridos:");
-		imprimirListaDeCadenas(pokemonesNoRequeridos);
+		imprimirListaDeCadenas(pokemonesNoRequeridos, logger);
 
 		t_list *pokemonesNoRequeridosAIntercambiar = pokesNoObjetivoEnDeadlock(entrenadorAIntercambiar->pokemones,entrenadorAIntercambiar->objetivosOriginales);
 
 		log_info(logger,"Entrenador id: %d",entrenadorAIntercambiar->id);
 		log_info(logger,"Objetivos:");
-		imprimirListaDeCadenas(entrenadorAIntercambiar->objetivosOriginales);
+		imprimirListaDeCadenas(entrenadorAIntercambiar->objetivosOriginales, logger);
 		log_info(logger,"Pokemones:");
-		imprimirListaDeCadenas(entrenadorAIntercambiar->pokemones);
+		imprimirListaDeCadenas(entrenadorAIntercambiar->pokemones, logger);
 		log_info(logger,"Pokemones no requeridos:");
-		imprimirListaDeCadenas(pokemonesNoRequeridosAIntercambiar);
+		imprimirListaDeCadenas(pokemonesNoRequeridosAIntercambiar, logger);
 
 		bool pokemonAIntercambiar(void * elemento){
 			bool verifica = false;
@@ -615,9 +615,9 @@ void realizarIntercambio(t_entrenador *entrenador, t_entrenador *entrenadorAInte
 		list_destroy(pokemonesNoRequeridosAIntercambiar);
 }
 
-void imprimirListaDeCadenas(t_list * listaDeCadenas){
+void imprimirListaDeCadenas(t_list * listaDeCadenas, t_log* loggerUsado){
 	for(int i=0; i<list_size(listaDeCadenas);i++){
-		log_info(logger,"%s",(char*)list_get(listaDeCadenas,i));
+		log_info(loggerUsado,"	%s",(char*)list_get(listaDeCadenas,i));
 	}
 }
 void resolverDeadlock(t_list *entrenadoresEnDeadlock){
@@ -650,7 +650,7 @@ void escaneoDeDeadlock(){
 	log_debug(logger,"Se comienza el analisis de deadlock");
 
 
-	imprimirEstadoFinalEntrenadores();
+	imprimirEstadoFinalEntrenadores(logger);
 	if(puedeExistirDeadlock()){
 		sem_wait(&mutexEntrenadores);
 		t_list *entrenadoresEnDeadlock = list_filter(team->entrenadores,estaEnDeadlock);

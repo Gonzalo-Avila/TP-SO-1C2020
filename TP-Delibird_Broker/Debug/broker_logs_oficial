@@ -9609,3 +9609,826 @@
 [INFO] 13:18:14:703 Delibird - Broker/(9973:9974): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8529
 [INFO] 13:18:14:703 Delibird - Broker/(9973:9974): Se vació la partición cuya posición inicial de memoria es: 17 - 0x93a1461
 [INFO] 13:18:14:703 Delibird - Broker/(9973:9974): Se guardo el mensaje 8529 en la posición 17 - 0x93a1461
+[INFO] 15:20:55:883 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:20:55:885 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:20:55:885 Delibird - Broker/(9108:9110): El proceso 268 se ha suscripto a la cola NEW_POKEMON
+[INFO] 15:20:55:885 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:20:55:888 Delibird - Broker/(9108:9110): El proceso 268 se ha suscripto a la cola CATCH_POKEMON
+[INFO] 15:20:55:889 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:20:55:889 Delibird - Broker/(9108:9110): El proceso 268 se ha suscripto a la cola GET_POKEMON
+[INFO] 15:22:15:45 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:45 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8530
+[INFO] 15:22:15:45 Delibird - Broker/(9108:9110): Se guardo el mensaje 8530 en la posición 0 - 0x8fb4450
+[INFO] 15:22:15:46 Delibird - Broker/(9108:9108): Se envió el mensaje 8530 al suscriptor 268
+[INFO] 15:22:15:46 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8530
+[INFO] 15:22:15:47 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:47 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8531
+[INFO] 15:22:15:47 Delibird - Broker/(9108:9110): Se guardo el mensaje 8531 en la posición 15 - 0x8fb445f
+[INFO] 15:22:15:48 Delibird - Broker/(9108:9108): Se envió el mensaje 8531 al suscriptor 268
+[INFO] 15:22:15:48 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8531
+[INFO] 15:22:15:48 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:49 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8532
+[INFO] 15:22:15:49 Delibird - Broker/(9108:9110): Se guardo el mensaje 8532 en la posición 29 - 0x8fb446d
+[INFO] 15:22:15:50 Delibird - Broker/(9108:9108): Se envió el mensaje 8532 al suscriptor 268
+[INFO] 15:22:15:50 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8532
+[INFO] 15:22:15:50 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:51 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8533
+[INFO] 15:22:15:51 Delibird - Broker/(9108:9110): Se guardo el mensaje 8533 en la posición 42 - 0x8fb447a
+[INFO] 15:22:15:51 Delibird - Broker/(9108:9108): Se envió el mensaje 8533 al suscriptor 268
+[INFO] 15:22:15:52 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8533
+[INFO] 15:22:15:52 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:53 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8534
+[INFO] 15:22:15:53 Delibird - Broker/(9108:9110): Se guardo el mensaje 8534 en la posición 51 - 0x8fb4483
+[INFO] 15:22:15:53 Delibird - Broker/(9108:9108): Se envió el mensaje 8534 al suscriptor 268
+[INFO] 15:22:15:53 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8534
+[INFO] 15:22:15:54 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:55 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8535
+[INFO] 15:22:15:55 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:22:15:55 Delibird - Broker/(9108:9110): Se guardo el mensaje 8535 en la posición 0 - 0x8fb4450
+[INFO] 15:22:15:55 Delibird - Broker/(9108:9108): Se envió el mensaje 8535 al suscriptor 268
+[INFO] 15:22:15:55 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8535
+[INFO] 15:22:15:56 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:56 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8536
+[INFO] 15:22:15:56 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:22:15:56 Delibird - Broker/(9108:9110): Se guardo el mensaje 8536 en la posición 0 - 0x8fb4450
+[INFO] 15:22:15:57 Delibird - Broker/(9108:9108): Se envió el mensaje 8536 al suscriptor 268
+[INFO] 15:22:15:57 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8536
+[INFO] 15:22:15:58 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:62 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:63 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8537
+[INFO] 15:22:15:63 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:22:15:63 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 15 - 0x8fb445f
+[INFO] 15:22:15:63 Delibird - Broker/(9108:9110): Se guardo el mensaje 8537 en la posición 0 - 0x8fb4450
+[INFO] 15:22:15:65 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:66 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8538
+[INFO] 15:22:15:66 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:22:15:66 Delibird - Broker/(9108:9110): Se guardo el mensaje 8538 en la posición 0 - 0x8fb4450
+[INFO] 15:22:15:66 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:67 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8539
+[INFO] 15:22:15:67 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:22:15:67 Delibird - Broker/(9108:9110): Se guardo el mensaje 8539 en la posición 0 - 0x8fb4450
+[INFO] 15:22:15:71 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:72 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8540
+[INFO] 15:22:15:72 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:22:15:72 Delibird - Broker/(9108:9110): Se guardo el mensaje 8540 en la posición 0 - 0x8fb4450
+[INFO] 15:22:15:72 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:72 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8541
+[INFO] 15:22:15:72 Delibird - Broker/(9108:9110): Se guardo el mensaje 8541 en la posición 13 - 0x8fb445d
+[INFO] 15:22:15:73 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:73 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8542
+[INFO] 15:22:15:73 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:22:15:73 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 13 - 0x8fb445d
+[INFO] 15:22:15:73 Delibird - Broker/(9108:9110): Se guardo el mensaje 8542 en la posición 0 - 0x8fb4450
+[INFO] 15:22:15:73 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:74 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8543
+[INFO] 15:22:15:74 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:22:15:74 Delibird - Broker/(9108:9110): Se guardo el mensaje 8543 en la posición 0 - 0x8fb4450
+[INFO] 15:22:15:74 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:74 Delibird - Broker/(9108:9110): El proceso 269 se ha suscripto a la cola CAUGHT_POKEMON
+[INFO] 15:22:15:74 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:75 Delibird - Broker/(9108:9110): El proceso 269 se ha suscripto a la cola LOCALIZED_POKEMON
+[INFO] 15:22:15:75 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:22:15:75 Delibird - Broker/(9108:9110): El proceso 269 se ha suscripto a la cola APPEARED_POKEMON
+[INFO] 15:22:47:837 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:00:827 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:00:828 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8544
+[INFO] 15:25:00:828 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:25:00:828 Delibird - Broker/(9108:9110): Se guardo el mensaje 8544 en la posición 0 - 0x8fb4450
+[INFO] 15:25:00:829 Delibird - Broker/(9108:9108): Se envió el mensaje 8544 al suscriptor 268
+[INFO] 15:25:00:829 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8544
+[INFO] 15:25:01:339 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:01:341 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8545
+[INFO] 15:25:01:341 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 29 - 0x8fb446d
+[INFO] 15:25:01:341 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 42 - 0x8fb447a
+[INFO] 15:25:01:341 Delibird - Broker/(9108:9110): Se guardo el mensaje 8545 en la posición 23 - 0x8fb4467
+[INFO] 15:25:01:341 Delibird - Broker/(9108:9108): Se envió el mensaje 8545 al suscriptor 268
+[INFO] 15:25:01:342 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8545
+[INFO] 15:25:01:859 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:01:862 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8546
+[INFO] 15:25:01:862 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 51 - 0x8fb4483
+[INFO] 15:25:01:862 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:25:01:862 Delibird - Broker/(9108:9110): Se guardo el mensaje 8546 en la posición 0 - 0x8fb4450
+[INFO] 15:25:01:863 Delibird - Broker/(9108:9108): Se envió el mensaje 8546 al suscriptor 268
+[INFO] 15:25:01:864 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8546
+[INFO] 15:25:02:388 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:02:394 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8547
+[INFO] 15:25:02:394 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:25:02:394 Delibird - Broker/(9108:9110): Se guardo el mensaje 8547 en la posición 0 - 0x8fb4450
+[INFO] 15:25:02:395 Delibird - Broker/(9108:9108): Se envió el mensaje 8547 al suscriptor 268
+[INFO] 15:25:02:396 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8547
+[INFO] 15:25:02:835 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:02:837 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8548
+[INFO] 15:25:02:837 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 23 - 0x8fb4467
+[INFO] 15:25:02:837 Delibird - Broker/(9108:9110): Se guardo el mensaje 8548 en la posición 22 - 0x8fb4466
+[INFO] 15:25:02:837 Delibird - Broker/(9108:9108): Se envió el mensaje 8548 al suscriptor 269
+[INFO] 15:25:02:838 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8548
+[INFO] 15:25:02:844 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:02:845 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8549
+[INFO] 15:25:02:846 Delibird - Broker/(9108:9110): Se guardo el mensaje 8549 en la posición 41 - 0x8fb4479
+[INFO] 15:25:02:846 Delibird - Broker/(9108:9108): Se envió el mensaje 8549 al suscriptor 268
+[INFO] 15:25:02:847 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8549
+[INFO] 15:25:02:911 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:02:915 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8550
+[INFO] 15:25:02:915 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:25:02:915 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 22 - 0x8fb4466
+[INFO] 15:25:02:915 Delibird - Broker/(9108:9110): Se guardo el mensaje 8550 en la posición 0 - 0x8fb4450
+[INFO] 15:25:02:915 Delibird - Broker/(9108:9108): Se envió el mensaje 8550 al suscriptor 268
+[INFO] 15:25:02:916 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8550
+[INFO] 15:25:03:360 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:03:363 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8551
+[INFO] 15:25:03:363 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:25:03:363 Delibird - Broker/(9108:9110): Se guardo el mensaje 8551 en la posición 0 - 0x8fb4450
+[INFO] 15:25:03:363 Delibird - Broker/(9108:9108): Se envió el mensaje 8551 al suscriptor 269
+[INFO] 15:25:03:364 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8551
+[INFO] 15:25:03:369 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:03:371 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8552
+[INFO] 15:25:03:371 Delibird - Broker/(9108:9110): Se guardo el mensaje 8552 en la posición 20 - 0x8fb4464
+[INFO] 15:25:03:371 Delibird - Broker/(9108:9108): Se envió el mensaje 8552 al suscriptor 268
+[INFO] 15:25:03:372 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8552
+[INFO] 15:25:03:429 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:03:430 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8553
+[INFO] 15:25:03:430 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 41 - 0x8fb4479
+[INFO] 15:25:03:430 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:25:03:430 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 20 - 0x8fb4464
+[INFO] 15:25:03:430 Delibird - Broker/(9108:9110): Se guardo el mensaje 8553 en la posición 0 - 0x8fb4450
+[INFO] 15:25:03:431 Delibird - Broker/(9108:9108): Se envió el mensaje 8553 al suscriptor 268
+[INFO] 15:25:03:431 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8553
+[INFO] 15:25:03:878 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:03:879 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8554
+[INFO] 15:25:03:879 Delibird - Broker/(9108:9110): Se guardo el mensaje 8554 en la posición 26 - 0x8fb446a
+[INFO] 15:25:03:880 Delibird - Broker/(9108:9108): Se envió el mensaje 8554 al suscriptor 269
+[INFO] 15:25:03:880 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8554
+[INFO] 15:25:03:885 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:03:888 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8555
+[INFO] 15:25:03:888 Delibird - Broker/(9108:9110): Se guardo el mensaje 8555 en la posición 42 - 0x8fb447a
+[INFO] 15:25:03:888 Delibird - Broker/(9108:9108): Se envió el mensaje 8555 al suscriptor 268
+[INFO] 15:25:03:889 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8555
+[INFO] 15:25:03:943 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:03:944 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8556
+[INFO] 15:25:03:944 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:25:03:944 Delibird - Broker/(9108:9110): Se guardo el mensaje 8556 en la posición 0 - 0x8fb4450
+[INFO] 15:25:03:944 Delibird - Broker/(9108:9108): Se envió el mensaje 8556 al suscriptor 268
+[INFO] 15:25:03:945 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8556
+[INFO] 15:25:04:410 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:04:411 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8557
+[INFO] 15:25:04:411 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:25:04:411 Delibird - Broker/(9108:9110): Se guardo el mensaje 8557 en la posición 0 - 0x8fb4450
+[INFO] 15:25:04:412 Delibird - Broker/(9108:9108): Se envió el mensaje 8557 al suscriptor 269
+[INFO] 15:25:04:412 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8557
+[INFO] 15:25:04:471 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:04:472 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8558
+[INFO] 15:25:04:472 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 26 - 0x8fb446a
+[INFO] 15:25:04:472 Delibird - Broker/(9108:9110): Se guardo el mensaje 8558 en la posición 18 - 0x8fb4462
+[INFO] 15:25:04:473 Delibird - Broker/(9108:9108): Se envió el mensaje 8558 al suscriptor 268
+[INFO] 15:25:04:473 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8558
+[INFO] 15:25:04:859 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:04:861 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8559
+[INFO] 15:25:04:861 Delibird - Broker/(9108:9110): Se guardo el mensaje 8559 en la posición 59 - 0x8fb448b
+[INFO] 15:25:04:861 Delibird - Broker/(9108:9108): Se envió el mensaje 8559 al suscriptor 269
+[INFO] 15:25:04:862 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8559
+[INFO] 15:25:04:1 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:05:5 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8560
+[INFO] 15:25:05:5 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 42 - 0x8fb447a
+[INFO] 15:25:05:5 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:25:05:5 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 18 - 0x8fb4462
+[INFO] 15:25:05:5 Delibird - Broker/(9108:9110): Se guardo el mensaje 8560 en la posición 0 - 0x8fb4450
+[INFO] 15:25:05:6 Delibird - Broker/(9108:9108): Se envió el mensaje 8560 al suscriptor 268
+[INFO] 15:25:05:7 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8560
+[INFO] 15:25:05:367 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:05:368 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8561
+[INFO] 15:25:05:368 Delibird - Broker/(9108:9110): Se guardo el mensaje 8561 en la posición 22 - 0x8fb4466
+[INFO] 15:25:05:370 Delibird - Broker/(9108:9108): Se envió el mensaje 8561 al suscriptor 269
+[INFO] 15:25:05:370 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8561
+[INFO] 15:25:05:436 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:05:437 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8562
+[INFO] 15:25:05:437 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 59 - 0x8fb448b
+[INFO] 15:25:05:437 Delibird - Broker/(9108:9110): Se guardo el mensaje 8562 en la posición 42 - 0x8fb447a
+[INFO] 15:25:05:437 Delibird - Broker/(9108:9108): Se envió el mensaje 8562 al suscriptor 269
+[INFO] 15:25:05:437 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8562
+[INFO] 15:25:05:451 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:05:451 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8563
+[INFO] 15:25:05:451 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:25:05:451 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 22 - 0x8fb4466
+[INFO] 15:25:05:452 Delibird - Broker/(9108:9110): Se guardo el mensaje 8563 en la posición 0 - 0x8fb4450
+[INFO] 15:25:05:452 Delibird - Broker/(9108:9108): Se envió el mensaje 8563 al suscriptor 268
+[INFO] 15:25:05:452 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8563
+[INFO] 15:25:05:899 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:05:901 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8564
+[INFO] 15:25:05:901 Delibird - Broker/(9108:9110): Se guardo el mensaje 8564 en la posición 23 - 0x8fb4467
+[INFO] 15:25:05:901 Delibird - Broker/(9108:9108): Se envió el mensaje 8564 al suscriptor 269
+[INFO] 15:25:05:902 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8564
+[INFO] 15:25:05:966 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:05:967 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8565
+[INFO] 15:25:05:967 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:25:05:967 Delibird - Broker/(9108:9110): Se guardo el mensaje 8565 en la posición 0 - 0x8fb4450
+[INFO] 15:25:05:968 Delibird - Broker/(9108:9108): Se envió el mensaje 8565 al suscriptor 269
+[INFO] 15:25:05:968 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8565
+[INFO] 15:25:05:976 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:05:977 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8566
+[INFO] 15:25:05:977 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:25:05:977 Delibird - Broker/(9108:9110): Se guardo el mensaje 8566 en la posición 0 - 0x8fb4450
+[INFO] 15:25:05:978 Delibird - Broker/(9108:9108): Se envió el mensaje 8566 al suscriptor 268
+[INFO] 15:25:05:978 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8566
+[INFO] 15:25:06:493 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:06:495 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8567
+[INFO] 15:25:06:495 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:25:06:495 Delibird - Broker/(9108:9110): Se guardo el mensaje 8567 en la posición 0 - 0x8fb4450
+[INFO] 15:25:06:496 Delibird - Broker/(9108:9108): Se envió el mensaje 8567 al suscriptor 269
+[INFO] 15:25:06:496 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8567
+[INFO] 15:25:07:25 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:07:27 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8568
+[INFO] 15:25:07:27 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 23 - 0x8fb4467
+[INFO] 15:25:07:27 Delibird - Broker/(9108:9110): Se guardo el mensaje 8568 en la posición 19 - 0x8fb4463
+[INFO] 15:25:07:27 Delibird - Broker/(9108:9108): Se envió el mensaje 8568 al suscriptor 269
+[INFO] 15:25:07:28 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8568
+[INFO] 15:25:07:382 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:07:383 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8569
+[INFO] 15:25:07:383 Delibird - Broker/(9108:9110): Se guardo el mensaje 8569 en la posición 37 - 0x8fb4475
+[INFO] 15:25:07:384 Delibird - Broker/(9108:9108): Se envió el mensaje 8569 al suscriptor 269
+[INFO] 15:25:07:385 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8569
+[INFO] 15:25:07:393 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:07:395 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8570
+[INFO] 15:25:07:395 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 42 - 0x8fb447a
+[INFO] 15:25:07:395 Delibird - Broker/(9108:9110): Se guardo el mensaje 8570 en la posición 41 - 0x8fb4479
+[INFO] 15:25:07:395 Delibird - Broker/(9108:9108): Se envió el mensaje 8570 al suscriptor 268
+[INFO] 15:25:07:396 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8570
+[INFO] 15:25:07:456 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:07:457 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8571
+[INFO] 15:25:07:457 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:25:07:457 Delibird - Broker/(9108:9110): Se guardo el mensaje 8571 en la posición 0 - 0x8fb4450
+[INFO] 15:25:07:457 Delibird - Broker/(9108:9108): Se envió el mensaje 8571 al suscriptor 269
+[INFO] 15:25:07:457 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8571
+[INFO] 15:25:07:993 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:07:995 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8572
+[INFO] 15:25:07:995 Delibird - Broker/(9108:9110): Se guardo el mensaje 8572 en la posición 4 - 0x8fb4454
+[INFO] 15:25:07:996 Delibird - Broker/(9108:9108): Se envió el mensaje 8572 al suscriptor 269
+[INFO] 15:25:07:997 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8572
+[INFO] 15:25:09:404 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:09:406 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8573
+[INFO] 15:25:09:406 Delibird - Broker/(9108:9110): Se guardo el mensaje 8573 en la posición 8 - 0x8fb4458
+[INFO] 15:25:09:407 Delibird - Broker/(9108:9108): Se envió el mensaje 8573 al suscriptor 269
+[INFO] 15:25:09:407 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8573
+[INFO] 15:25:09:414 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:09:416 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8574
+[INFO] 15:25:09:416 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:25:09:416 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 4 - 0x8fb4454
+[INFO] 15:25:09:416 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 19 - 0x8fb4463
+[INFO] 15:25:09:416 Delibird - Broker/(9108:9110): Se guardo el mensaje 8574 en la posición 12 - 0x8fb445c
+[INFO] 15:25:09:416 Delibird - Broker/(9108:9108): Se envió el mensaje 8574 al suscriptor 268
+[INFO] 15:25:09:417 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8574
+[INFO] 15:25:11:426 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:25:11:429 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8575
+[INFO] 15:25:11:429 Delibird - Broker/(9108:9110): Se guardo el mensaje 8575 en la posición 0 - 0x8fb4450
+[INFO] 15:25:11:429 Delibird - Broker/(9108:9108): Se envió el mensaje 8575 al suscriptor 269
+[INFO] 15:25:11:430 Delibird - Broker/(9108:9108): El suscriptor 269 confirmó recepción del mensaje 8575
+[INFO] 15:27:14:467 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:468 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8576
+[INFO] 15:27:14:468 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 37 - 0x8fb4475
+[INFO] 15:27:14:468 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 41 - 0x8fb4479
+[INFO] 15:27:14:468 Delibird - Broker/(9108:9110): Se guardo el mensaje 8576 en la posición 31 - 0x8fb446f
+[INFO] 15:27:14:469 Delibird - Broker/(9108:9108): Se envió el mensaje 8576 al suscriptor 268
+[INFO] 15:27:14:469 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8576
+[INFO] 15:27:14:470 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:471 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8577
+[INFO] 15:27:14:471 Delibird - Broker/(9108:9110): Se guardo el mensaje 8577 en la posición 46 - 0x8fb447e
+[INFO] 15:27:14:471 Delibird - Broker/(9108:9108): Se envió el mensaje 8577 al suscriptor 268
+[INFO] 15:27:14:471 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8577
+[INFO] 15:27:14:474 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:478 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8578
+[INFO] 15:27:14:478 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 8 - 0x8fb4458
+[INFO] 15:27:14:478 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 12 - 0x8fb445c
+[INFO] 15:27:14:478 Delibird - Broker/(9108:9110): Se guardo el mensaje 8578 en la posición 4 - 0x8fb4454
+[INFO] 15:27:14:479 Delibird - Broker/(9108:9108): Se envió el mensaje 8578 al suscriptor 268
+[INFO] 15:27:14:479 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8578
+[INFO] 15:27:14:479 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:480 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8579
+[INFO] 15:27:14:480 Delibird - Broker/(9108:9110): Se guardo el mensaje 8579 en la posición 17 - 0x8fb4461
+[INFO] 15:27:14:480 Delibird - Broker/(9108:9108): Se envió el mensaje 8579 al suscriptor 268
+[INFO] 15:27:14:480 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8579
+[INFO] 15:27:14:481 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:481 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8580
+[INFO] 15:27:14:481 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:14:481 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 4 - 0x8fb4454
+[INFO] 15:27:14:481 Delibird - Broker/(9108:9110): Se guardo el mensaje 8580 en la posición 0 - 0x8fb4450
+[INFO] 15:27:14:481 Delibird - Broker/(9108:9108): Se envió el mensaje 8580 al suscriptor 268
+[INFO] 15:27:14:482 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8580
+[INFO] 15:27:14:482 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:498 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8581
+[INFO] 15:27:14:498 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:14:498 Delibird - Broker/(9108:9110): Se guardo el mensaje 8581 en la posición 0 - 0x8fb4450
+[INFO] 15:27:14:499 Delibird - Broker/(9108:9108): Se envió el mensaje 8581 al suscriptor 268
+[INFO] 15:27:14:499 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8581
+[INFO] 15:27:14:499 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:500 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:500 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8582
+[INFO] 15:27:14:500 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:14:500 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 17 - 0x8fb4461
+[INFO] 15:27:14:500 Delibird - Broker/(9108:9110): Se guardo el mensaje 8582 en la posición 0 - 0x8fb4450
+[INFO] 15:27:14:500 Delibird - Broker/(9108:9108): Se envió el mensaje 8582 al suscriptor 269
+[INFO] 15:27:14:501 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:502 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8583
+[INFO] 15:27:14:502 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:14:502 Delibird - Broker/(9108:9110): Se guardo el mensaje 8583 en la posición 0 - 0x8fb4450
+[INFO] 15:27:14:503 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:503 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8584
+[INFO] 15:27:14:503 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:14:503 Delibird - Broker/(9108:9110): Se guardo el mensaje 8584 en la posición 0 - 0x8fb4450
+[INFO] 15:27:14:504 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:510 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8585
+[INFO] 15:27:14:510 Delibird - Broker/(9108:9110): Se guardo el mensaje 8585 en la posición 16 - 0x8fb4460
+[INFO] 15:27:14:510 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:510 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8586
+[INFO] 15:27:14:511 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:14:511 Delibird - Broker/(9108:9110): Se guardo el mensaje 8586 en la posición 0 - 0x8fb4450
+[INFO] 15:27:14:511 Delibird - Broker/(9108:9108): Se envió el mensaje 8586 al suscriptor 268
+[INFO] 15:27:14:511 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8586
+[INFO] 15:27:14:511 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:512 Delibird - Broker/(9108:9110): El proceso 270 se ha suscripto a la cola CAUGHT_POKEMON
+[INFO] 15:27:14:512 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:512 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8587
+[INFO] 15:27:14:512 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:14:512 Delibird - Broker/(9108:9110): Se guardo el mensaje 8587 en la posición 0 - 0x8fb4450
+[INFO] 15:27:14:512 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:513 Delibird - Broker/(9108:9110): El proceso 270 se ha suscripto a la cola APPEARED_POKEMON
+[INFO] 15:27:14:513 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:519 Delibird - Broker/(9108:9110): El proceso 270 se ha suscripto a la cola LOCALIZED_POKEMON
+[INFO] 15:27:14:523 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:14:529 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8588
+[INFO] 15:27:14:529 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:14:529 Delibird - Broker/(9108:9110): Se guardo el mensaje 8588 en la posición 0 - 0x8fb4450
+[INFO] 15:27:14:529 Delibird - Broker/(9108:9108): Se envió el mensaje 8588 al suscriptor 270
+[INFO] 15:27:14:530 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8588
+[INFO] 15:27:16:490 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:16:491 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8589
+[INFO] 15:27:16:491 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:16:491 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 16 - 0x8fb4460
+[INFO] 15:27:16:491 Delibird - Broker/(9108:9110): Se guardo el mensaje 8589 en la posición 0 - 0x8fb4450
+[INFO] 15:27:16:492 Delibird - Broker/(9108:9108): Se envió el mensaje 8589 al suscriptor 270
+[INFO] 15:27:16:493 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8589
+[INFO] 15:27:16:499 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:16:501 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8590
+[INFO] 15:27:16:501 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 31 - 0x8fb446f
+[INFO] 15:27:16:501 Delibird - Broker/(9108:9110): Se guardo el mensaje 8590 en la posición 25 - 0x8fb4469
+[INFO] 15:27:16:501 Delibird - Broker/(9108:9108): Se envió el mensaje 8590 al suscriptor 268
+[INFO] 15:27:16:502 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8590
+[INFO] 15:27:18:514 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:18:515 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8591
+[INFO] 15:27:18:515 Delibird - Broker/(9108:9110): Se guardo el mensaje 8591 en la posición 60 - 0x8fb448c
+[INFO] 15:27:18:516 Delibird - Broker/(9108:9108): Se envió el mensaje 8591 al suscriptor 269
+[INFO] 15:27:18:516 Delibird - Broker/(9108:9108): Se envió el mensaje 8591 al suscriptor 270
+[INFO] 15:27:18:518 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8591
+[INFO] 15:27:28:16 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:28:18 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8592
+[INFO] 15:27:28:18 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 46 - 0x8fb447e
+[INFO] 15:27:28:18 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:28:18 Delibird - Broker/(9108:9110): Se guardo el mensaje 8592 en la posición 0 - 0x8fb4450
+[INFO] 15:27:28:19 Delibird - Broker/(9108:9108): Se envió el mensaje 8592 al suscriptor 268
+[INFO] 15:27:28:19 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8592
+[INFO] 15:27:28:531 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:28:534 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8593
+[INFO] 15:27:28:534 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 25 - 0x8fb4469
+[INFO] 15:27:28:534 Delibird - Broker/(9108:9110): Se guardo el mensaje 8593 en la posición 23 - 0x8fb4467
+[INFO] 15:27:28:535 Delibird - Broker/(9108:9108): Se envió el mensaje 8593 al suscriptor 268
+[INFO] 15:27:28:536 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8593
+[INFO] 15:27:29:59 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:29:62 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8594
+[INFO] 15:27:29:62 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 60 - 0x8fb448c
+[INFO] 15:27:29:62 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:29:62 Delibird - Broker/(9108:9110): Se guardo el mensaje 8594 en la posición 0 - 0x8fb4450
+[INFO] 15:27:29:62 Delibird - Broker/(9108:9108): Se envió el mensaje 8594 al suscriptor 268
+[INFO] 15:27:29:63 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8594
+[INFO] 15:27:29:587 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:29:593 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8595
+[INFO] 15:27:29:593 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 23 - 0x8fb4467
+[INFO] 15:27:29:593 Delibird - Broker/(9108:9110): Se guardo el mensaje 8595 en la posición 20 - 0x8fb4464
+[INFO] 15:27:29:593 Delibird - Broker/(9108:9108): Se envió el mensaje 8595 al suscriptor 268
+[INFO] 15:27:29:594 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8595
+[INFO] 15:27:30:25 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:30:27 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8596
+[INFO] 15:27:30:27 Delibird - Broker/(9108:9110): Se guardo el mensaje 8596 en la posición 42 - 0x8fb447a
+[INFO] 15:27:30:27 Delibird - Broker/(9108:9108): Se envió el mensaje 8596 al suscriptor 269
+[INFO] 15:27:30:28 Delibird - Broker/(9108:9108): Se envió el mensaje 8596 al suscriptor 270
+[INFO] 15:27:30:29 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8596
+[INFO] 15:27:30:36 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:30:37 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8597
+[INFO] 15:27:30:37 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:30:37 Delibird - Broker/(9108:9110): Se guardo el mensaje 8597 en la posición 0 - 0x8fb4450
+[INFO] 15:27:30:37 Delibird - Broker/(9108:9108): Se envió el mensaje 8597 al suscriptor 268
+[INFO] 15:27:30:38 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8597
+[INFO] 15:27:30:118 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:30:119 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8598
+[INFO] 15:27:30:119 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 20 - 0x8fb4464
+[INFO] 15:27:30:119 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:30:119 Delibird - Broker/(9108:9110): Se guardo el mensaje 8598 en la posición 0 - 0x8fb4450
+[INFO] 15:27:30:120 Delibird - Broker/(9108:9108): Se envió el mensaje 8598 al suscriptor 268
+[INFO] 15:27:30:120 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8598
+[INFO] 15:27:30:553 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:30:555 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8599
+[INFO] 15:27:30:555 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:30:555 Delibird - Broker/(9108:9110): Se guardo el mensaje 8599 en la posición 0 - 0x8fb4450
+[INFO] 15:27:30:556 Delibird - Broker/(9108:9108): Se envió el mensaje 8599 al suscriptor 270
+[INFO] 15:27:30:556 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8599
+[INFO] 15:27:30:631 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:30:633 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8600
+[INFO] 15:27:30:633 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:30:633 Delibird - Broker/(9108:9110): Se guardo el mensaje 8600 en la posición 0 - 0x8fb4450
+[INFO] 15:27:30:634 Delibird - Broker/(9108:9108): Se envió el mensaje 8600 al suscriptor 268
+[INFO] 15:27:30:634 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8600
+[INFO] 15:27:31:79 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:31:80 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8601
+[INFO] 15:27:31:81 Delibird - Broker/(9108:9110): Se guardo el mensaje 8601 en la posición 26 - 0x8fb446a
+[INFO] 15:27:31:81 Delibird - Broker/(9108:9108): Se envió el mensaje 8601 al suscriptor 270
+[INFO] 15:27:31:82 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8601
+[INFO] 15:27:31:86 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:31:87 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8602
+[INFO] 15:27:31:87 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:31:87 Delibird - Broker/(9108:9110): Se guardo el mensaje 8602 en la posición 0 - 0x8fb4450
+[INFO] 15:27:31:88 Delibird - Broker/(9108:9108): Se envió el mensaje 8602 al suscriptor 268
+[INFO] 15:27:31:89 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8602
+[INFO] 15:27:31:154 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:31:155 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8603
+[INFO] 15:27:31:155 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 42 - 0x8fb447a
+[INFO] 15:27:31:155 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:31:155 Delibird - Broker/(9108:9110): Se guardo el mensaje 8603 en la posición 0 - 0x8fb4450
+[INFO] 15:27:31:156 Delibird - Broker/(9108:9108): Se envió el mensaje 8603 al suscriptor 268
+[INFO] 15:27:31:156 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8603
+[INFO] 15:27:31:611 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:31:612 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8604
+[INFO] 15:27:31:612 Delibird - Broker/(9108:9110): Se guardo el mensaje 8604 en la posición 42 - 0x8fb447a
+[INFO] 15:27:31:613 Delibird - Broker/(9108:9108): Se envió el mensaje 8604 al suscriptor 270
+[INFO] 15:27:31:614 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8604
+[INFO] 15:27:31:672 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:31:673 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8605
+[INFO] 15:27:31:673 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:31:673 Delibird - Broker/(9108:9110): Se guardo el mensaje 8605 en la posición 0 - 0x8fb4450
+[INFO] 15:27:31:674 Delibird - Broker/(9108:9108): Se envió el mensaje 8605 al suscriptor 268
+[INFO] 15:27:31:674 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8605
+[INFO] 15:27:32:46 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:32:48 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8606
+[INFO] 15:27:32:48 Delibird - Broker/(9108:9110): Se guardo el mensaje 8606 en la posición 60 - 0x8fb448c
+[INFO] 15:27:32:49 Delibird - Broker/(9108:9108): Se envió el mensaje 8606 al suscriptor 270
+[INFO] 15:27:32:50 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8606
+[INFO] 15:27:32:199 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:32:202 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8607
+[INFO] 15:27:32:202 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:32:202 Delibird - Broker/(9108:9110): Se guardo el mensaje 8607 en la posición 0 - 0x8fb4450
+[INFO] 15:27:32:203 Delibird - Broker/(9108:9108): Se envió el mensaje 8607 al suscriptor 268
+[INFO] 15:27:32:204 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8607
+[INFO] 15:27:32:559 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:32:560 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8608
+[INFO] 15:27:32:561 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 26 - 0x8fb446a
+[INFO] 15:27:32:561 Delibird - Broker/(9108:9110): Se guardo el mensaje 8608 en la posición 22 - 0x8fb4466
+[INFO] 15:27:32:561 Delibird - Broker/(9108:9108): Se envió el mensaje 8608 al suscriptor 270
+[INFO] 15:27:32:562 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8608
+[INFO] 15:27:32:649 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:32:650 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8609
+[INFO] 15:27:32:650 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 42 - 0x8fb447a
+[INFO] 15:27:32:650 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:32:650 Delibird - Broker/(9108:9110): Se guardo el mensaje 8609 en la posición 0 - 0x8fb4450
+[INFO] 15:27:32:651 Delibird - Broker/(9108:9108): Se envió el mensaje 8609 al suscriptor 270
+[INFO] 15:27:32:652 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8609
+[INFO] 15:27:32:657 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:32:658 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8610
+[INFO] 15:27:32:658 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:32:658 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 22 - 0x8fb4466
+[INFO] 15:27:32:659 Delibird - Broker/(9108:9110): Se guardo el mensaje 8610 en la posición 0 - 0x8fb4450
+[INFO] 15:27:32:659 Delibird - Broker/(9108:9108): Se envió el mensaje 8610 al suscriptor 268
+[INFO] 15:27:32:660 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8610
+[INFO] 15:27:33:100 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:33:103 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8611
+[INFO] 15:27:33:103 Delibird - Broker/(9108:9110): Se guardo el mensaje 8611 en la posición 23 - 0x8fb4467
+[INFO] 15:27:33:103 Delibird - Broker/(9108:9108): Se envió el mensaje 8611 al suscriptor 270
+[INFO] 15:27:33:104 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8611
+[INFO] 15:27:33:164 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:33:164 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8612
+[INFO] 15:27:33:164 Delibird - Broker/(9108:9110): Se guardo el mensaje 8612 en la posición 27 - 0x8fb446b
+[INFO] 15:27:33:164 Delibird - Broker/(9108:9108): Se envió el mensaje 8612 al suscriptor 270
+[INFO] 15:27:33:164 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8612
+[INFO] 15:27:33:168 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:33:168 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8613
+[INFO] 15:27:33:168 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:33:168 Delibird - Broker/(9108:9110): Se guardo el mensaje 8613 en la posición 0 - 0x8fb4450
+[INFO] 15:27:33:168 Delibird - Broker/(9108:9108): Se envió el mensaje 8613 al suscriptor 268
+[INFO] 15:27:33:169 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8613
+[INFO] 15:27:33:691 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:33:691 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8614
+[INFO] 15:27:33:692 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 60 - 0x8fb448c
+[INFO] 15:27:33:692 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:33:692 Delibird - Broker/(9108:9110): Se guardo el mensaje 8614 en la posición 0 - 0x8fb4450
+[INFO] 15:27:33:692 Delibird - Broker/(9108:9108): Se envió el mensaje 8614 al suscriptor 270
+[INFO] 15:27:33:693 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8614
+[INFO] 15:27:34:227 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:34:228 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8615
+[INFO] 15:27:34:228 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:34:228 Delibird - Broker/(9108:9110): Se guardo el mensaje 8615 en la posición 0 - 0x8fb4450
+[INFO] 15:27:34:229 Delibird - Broker/(9108:9108): Se envió el mensaje 8615 al suscriptor 270
+[INFO] 15:27:34:229 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8615
+[INFO] 15:27:34:668 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:34:670 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8616
+[INFO] 15:27:34:670 Delibird - Broker/(9108:9110): Se guardo el mensaje 8616 en la posición 18 - 0x8fb4462
+[INFO] 15:27:34:670 Delibird - Broker/(9108:9108): Se envió el mensaje 8616 al suscriptor 270
+[INFO] 15:27:34:671 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8616
+[INFO] 15:27:34:680 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:34:681 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8617
+[INFO] 15:27:34:681 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 23 - 0x8fb4467
+[INFO] 15:27:34:681 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 27 - 0x8fb446b
+[INFO] 15:27:34:681 Delibird - Broker/(9108:9110): Se guardo el mensaje 8617 en la posición 22 - 0x8fb4466
+[INFO] 15:27:34:681 Delibird - Broker/(9108:9108): Se envió el mensaje 8617 al suscriptor 268
+[INFO] 15:27:34:682 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8617
+[INFO] 15:27:35:172 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:35:174 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8618
+[INFO] 15:27:35:174 Delibird - Broker/(9108:9110): Se guardo el mensaje 8618 en la posición 42 - 0x8fb447a
+[INFO] 15:27:35:174 Delibird - Broker/(9108:9108): Se envió el mensaje 8618 al suscriptor 270
+[INFO] 15:27:35:175 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8618
+[INFO] 15:27:36:691 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:36:692 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8619
+[INFO] 15:27:36:693 Delibird - Broker/(9108:9110): Se guardo el mensaje 8619 en la posición 46 - 0x8fb447e
+[INFO] 15:27:36:693 Delibird - Broker/(9108:9108): Se envió el mensaje 8619 al suscriptor 270
+[INFO] 15:27:36:694 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8619
+[INFO] 15:27:36:702 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:36:703 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8620
+[INFO] 15:27:36:703 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:27:36:703 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 18 - 0x8fb4462
+[INFO] 15:27:36:703 Delibird - Broker/(9108:9110): Se guardo el mensaje 8620 en la posición 0 - 0x8fb4450
+[INFO] 15:27:36:703 Delibird - Broker/(9108:9108): Se envió el mensaje 8620 al suscriptor 268
+[INFO] 15:27:36:704 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8620
+[INFO] 15:27:38:714 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:27:38:716 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8621
+[INFO] 15:27:38:716 Delibird - Broker/(9108:9110): Se guardo el mensaje 8621 en la posición 50 - 0x8fb4482
+[INFO] 15:27:38:717 Delibird - Broker/(9108:9108): Se envió el mensaje 8621 al suscriptor 270
+[INFO] 15:27:38:718 Delibird - Broker/(9108:9108): El suscriptor 270 confirmó recepción del mensaje 8621
+[INFO] 15:31:56:822 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:823 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8622
+[INFO] 15:31:56:823 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 22 - 0x8fb4466
+[INFO] 15:31:56:823 Delibird - Broker/(9108:9110): Se guardo el mensaje 8622 en la posición 19 - 0x8fb4463
+[INFO] 15:31:56:825 Delibird - Broker/(9108:9108): Se envió el mensaje 8622 al suscriptor 268
+[INFO] 15:31:56:825 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8622
+[INFO] 15:31:56:827 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:828 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8623
+[INFO] 15:31:56:828 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 42 - 0x8fb447a
+[INFO] 15:31:56:828 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:31:56:828 Delibird - Broker/(9108:9110): Se guardo el mensaje 8623 en la posición 0 - 0x8fb4450
+[INFO] 15:31:56:828 Delibird - Broker/(9108:9108): Se envió el mensaje 8623 al suscriptor 268
+[INFO] 15:31:56:829 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8623
+[INFO] 15:31:56:829 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:830 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8624
+[INFO] 15:31:56:830 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 46 - 0x8fb447e
+[INFO] 15:31:56:830 Delibird - Broker/(9108:9110): Se guardo el mensaje 8624 en la posición 34 - 0x8fb4472
+[INFO] 15:31:56:831 Delibird - Broker/(9108:9108): Se envió el mensaje 8624 al suscriptor 268
+[INFO] 15:31:56:831 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8624
+[INFO] 15:31:56:836 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:837 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8625
+[INFO] 15:31:56:837 Delibird - Broker/(9108:9110): Se guardo el mensaje 8625 en la posición 54 - 0x8fb4486
+[INFO] 15:31:56:837 Delibird - Broker/(9108:9108): Se envió el mensaje 8625 al suscriptor 268
+[INFO] 15:31:56:837 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8625
+[INFO] 15:31:56:837 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:838 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8626
+[INFO] 15:31:56:838 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 50 - 0x8fb4482
+[INFO] 15:31:56:838 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:31:56:838 Delibird - Broker/(9108:9110): Se guardo el mensaje 8626 en la posición 0 - 0x8fb4450
+[INFO] 15:31:56:838 Delibird - Broker/(9108:9108): Se envió el mensaje 8626 al suscriptor 268
+[INFO] 15:31:56:839 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8626
+[INFO] 15:31:56:839 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:839 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8627
+[INFO] 15:31:56:840 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:31:56:840 Delibird - Broker/(9108:9110): Se guardo el mensaje 8627 en la posición 0 - 0x8fb4450
+[INFO] 15:31:56:840 Delibird - Broker/(9108:9108): Se envió el mensaje 8627 al suscriptor 268
+[INFO] 15:31:56:840 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8627
+[INFO] 15:31:56:843 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:846 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:848 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola GET_POKEMON. Se le asignó el ID: 8628
+[INFO] 15:31:56:848 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:31:56:848 Delibird - Broker/(9108:9110): Se guardo el mensaje 8628 en la posición 0 - 0x8fb4450
+[INFO] 15:31:56:848 Delibird - Broker/(9108:9108): Se envió el mensaje 8628 al suscriptor 268
+[INFO] 15:31:56:849 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8628
+[INFO] 15:31:56:849 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:851 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8629
+[INFO] 15:31:56:851 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:31:56:851 Delibird - Broker/(9108:9110): Se guardo el mensaje 8629 en la posición 0 - 0x8fb4450
+[INFO] 15:31:56:852 Delibird - Broker/(9108:9108): Se envió el mensaje 8629 al suscriptor 270
+[INFO] 15:31:56:852 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:854 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8630
+[INFO] 15:31:56:854 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:31:56:854 Delibird - Broker/(9108:9110): Se guardo el mensaje 8630 en la posición 0 - 0x8fb4450
+[INFO] 15:31:56:854 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:854 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8631
+[INFO] 15:31:56:854 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:31:56:854 Delibird - Broker/(9108:9110): Se guardo el mensaje 8631 en la posición 0 - 0x8fb4450
+[INFO] 15:31:56:855 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:861 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8632
+[INFO] 15:31:56:861 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:31:56:861 Delibird - Broker/(9108:9110): Se guardo el mensaje 8632 en la posición 0 - 0x8fb4450
+[INFO] 15:31:56:862 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:862 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8633
+[INFO] 15:31:56:862 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:31:56:862 Delibird - Broker/(9108:9110): Se guardo el mensaje 8633 en la posición 0 - 0x8fb4450
+[INFO] 15:31:56:863 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:863 Delibird - Broker/(9108:9110): El proceso 271 se ha suscripto a la cola CAUGHT_POKEMON
+[INFO] 15:31:56:863 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:863 Delibird - Broker/(9108:9110): El proceso 271 se ha suscripto a la cola LOCALIZED_POKEMON
+[INFO] 15:31:56:864 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:864 Delibird - Broker/(9108:9110): El proceso 271 se ha suscripto a la cola APPEARED_POKEMON
+[INFO] 15:31:56:864 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:56:864 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8634
+[INFO] 15:31:56:865 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:31:56:865 Delibird - Broker/(9108:9110): Se guardo el mensaje 8634 en la posición 0 - 0x8fb4450
+[INFO] 15:31:56:865 Delibird - Broker/(9108:9108): Se envió el mensaje 8634 al suscriptor 271
+[INFO] 15:31:56:865 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8634
+[INFO] 15:31:58:847 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:58:848 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola LOCALIZED_POKEMON. Se le asignó el ID: 8635
+[INFO] 15:31:58:848 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:31:58:848 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 19 - 0x8fb4463
+[INFO] 15:31:58:848 Delibird - Broker/(9108:9110): Se guardo el mensaje 8635 en la posición 0 - 0x8fb4450
+[INFO] 15:31:58:849 Delibird - Broker/(9108:9108): Se envió el mensaje 8635 al suscriptor 271
+[INFO] 15:31:58:849 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8635
+[INFO] 15:31:58:852 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:31:58:853 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8636
+[INFO] 15:31:58:853 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 34 - 0x8fb4472
+[INFO] 15:31:58:853 Delibird - Broker/(9108:9110): Se guardo el mensaje 8636 en la posición 33 - 0x8fb4471
+[INFO] 15:31:58:853 Delibird - Broker/(9108:9108): Se envió el mensaje 8636 al suscriptor 268
+[INFO] 15:31:58:854 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8636
+[INFO] 15:32:00:859 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:00:861 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8637
+[INFO] 15:32:00:861 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 54 - 0x8fb4486
+[INFO] 15:32:00:861 Delibird - Broker/(9108:9110): Se guardo el mensaje 8637 en la posición 54 - 0x8fb4486
+[INFO] 15:32:00:861 Delibird - Broker/(9108:9108): Se envió el mensaje 8637 al suscriptor 270
+[INFO] 15:32:00:864 Delibird - Broker/(9108:9108): Se envió el mensaje 8637 al suscriptor 271
+[INFO] 15:32:00:865 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8637
+[INFO] 15:32:02:833 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:02:834 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8638
+[INFO] 15:32:02:834 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:32:02:834 Delibird - Broker/(9108:9110): Se guardo el mensaje 8638 en la posición 0 - 0x8fb4450
+[INFO] 15:32:02:834 Delibird - Broker/(9108:9108): Se envió el mensaje 8638 al suscriptor 268
+[INFO] 15:32:02:835 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8638
+[INFO] 15:32:03:351 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:03:357 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8639
+[INFO] 15:32:03:357 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 33 - 0x8fb4471
+[INFO] 15:32:03:357 Delibird - Broker/(9108:9110): Se guardo el mensaje 8639 en la posición 23 - 0x8fb4467
+[INFO] 15:32:03:357 Delibird - Broker/(9108:9108): Se envió el mensaje 8639 al suscriptor 268
+[INFO] 15:32:03:357 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8639
+[INFO] 15:32:03:889 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:03:893 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8640
+[INFO] 15:32:03:893 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 54 - 0x8fb4486
+[INFO] 15:32:03:893 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:32:03:893 Delibird - Broker/(9108:9110): Se guardo el mensaje 8640 en la posición 0 - 0x8fb4450
+[INFO] 15:32:03:895 Delibird - Broker/(9108:9108): Se envió el mensaje 8640 al suscriptor 268
+[INFO] 15:32:03:896 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8640
+[INFO] 15:32:04:420 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:04:422 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8641
+[INFO] 15:32:04:422 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:32:04:422 Delibird - Broker/(9108:9110): Se guardo el mensaje 8641 en la posición 0 - 0x8fb4450
+[INFO] 15:32:04:423 Delibird - Broker/(9108:9108): Se envió el mensaje 8641 al suscriptor 268
+[INFO] 15:32:04:424 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8641
+[INFO] 15:32:04:840 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:04:840 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8642
+[INFO] 15:32:04:840 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 23 - 0x8fb4467
+[INFO] 15:32:04:841 Delibird - Broker/(9108:9110): Se guardo el mensaje 8642 en la posición 22 - 0x8fb4466
+[INFO] 15:32:04:841 Delibird - Broker/(9108:9108): Se envió el mensaje 8642 al suscriptor 270
+[INFO] 15:32:04:841 Delibird - Broker/(9108:9108): Se envió el mensaje 8642 al suscriptor 271
+[INFO] 15:32:04:842 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8642
+[INFO] 15:32:04:860 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:04:861 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8643
+[INFO] 15:32:04:861 Delibird - Broker/(9108:9110): Se guardo el mensaje 8643 en la posición 41 - 0x8fb4479
+[INFO] 15:32:04:861 Delibird - Broker/(9108:9108): Se envió el mensaje 8643 al suscriptor 268
+[INFO] 15:32:04:862 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8643
+[INFO] 15:32:04:947 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:04:952 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8644
+[INFO] 15:32:04:952 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:32:04:952 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 22 - 0x8fb4466
+[INFO] 15:32:04:952 Delibird - Broker/(9108:9110): Se guardo el mensaje 8644 en la posición 0 - 0x8fb4450
+[INFO] 15:32:04:953 Delibird - Broker/(9108:9108): Se envió el mensaje 8644 al suscriptor 268
+[INFO] 15:32:04:953 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8644
+[INFO] 15:32:05:371 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:05:373 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8645
+[INFO] 15:32:05:373 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:32:05:373 Delibird - Broker/(9108:9110): Se guardo el mensaje 8645 en la posición 0 - 0x8fb4450
+[INFO] 15:32:05:373 Delibird - Broker/(9108:9108): Se envió el mensaje 8645 al suscriptor 271
+[INFO] 15:32:05:374 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8645
+[INFO] 15:32:05:479 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:05:482 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8646
+[INFO] 15:32:05:482 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 41 - 0x8fb4479
+[INFO] 15:32:05:482 Delibird - Broker/(9108:9110): Se guardo el mensaje 8646 en la posición 20 - 0x8fb4464
+[INFO] 15:32:05:483 Delibird - Broker/(9108:9108): Se envió el mensaje 8646 al suscriptor 268
+[INFO] 15:32:05:484 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8646
+[INFO] 15:32:05:918 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:05:919 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8647
+[INFO] 15:32:05:919 Delibird - Broker/(9108:9110): Se guardo el mensaje 8647 en la posición 46 - 0x8fb447e
+[INFO] 15:32:05:920 Delibird - Broker/(9108:9108): Se envió el mensaje 8647 al suscriptor 271
+[INFO] 15:32:05:920 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8647
+[INFO] 15:32:05:934 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:05:935 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8648
+[INFO] 15:32:05:935 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:32:05:935 Delibird - Broker/(9108:9110): Se guardo el mensaje 8648 en la posición 0 - 0x8fb4450
+[INFO] 15:32:05:935 Delibird - Broker/(9108:9108): Se envió el mensaje 8648 al suscriptor 268
+[INFO] 15:32:05:935 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8648
+[INFO] 15:32:06:17 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:06:18 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8649
+[INFO] 15:32:06:18 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:32:06:18 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 20 - 0x8fb4464
+[INFO] 15:32:06:18 Delibird - Broker/(9108:9110): Se guardo el mensaje 8649 en la posición 0 - 0x8fb4450
+[INFO] 15:32:06:18 Delibird - Broker/(9108:9108): Se envió el mensaje 8649 al suscriptor 268
+[INFO] 15:32:06:19 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8649
+[INFO] 15:32:06:436 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:06:437 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8650
+[INFO] 15:32:06:437 Delibird - Broker/(9108:9110): Se guardo el mensaje 8650 en la posición 25 - 0x8fb4469
+[INFO] 15:32:06:437 Delibird - Broker/(9108:9108): Se envió el mensaje 8650 al suscriptor 271
+[INFO] 15:32:06:438 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8650
+[INFO] 15:32:06:537 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:06:543 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8651
+[INFO] 15:32:06:543 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 46 - 0x8fb447e
+[INFO] 15:32:06:544 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:32:06:544 Delibird - Broker/(9108:9110): Se guardo el mensaje 8651 en la posición 0 - 0x8fb4450
+[INFO] 15:32:06:544 Delibird - Broker/(9108:9108): Se envió el mensaje 8651 al suscriptor 268
+[INFO] 15:32:06:545 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8651
+[INFO] 15:32:06:869 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:06:871 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8652
+[INFO] 15:32:06:871 Delibird - Broker/(9108:9110): Se guardo el mensaje 8652 en la posición 43 - 0x8fb447b
+[INFO] 15:32:06:871 Delibird - Broker/(9108:9108): Se envió el mensaje 8652 al suscriptor 271
+[INFO] 15:32:06:872 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8652
+[INFO] 15:32:07:80 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:07:84 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola NEW_POKEMON. Se le asignó el ID: 8653
+[INFO] 15:32:07:84 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:32:07:84 Delibird - Broker/(9108:9110): Se guardo el mensaje 8653 en la posición 0 - 0x8fb4450
+[INFO] 15:32:07:85 Delibird - Broker/(9108:9108): Se envió el mensaje 8653 al suscriptor 268
+[INFO] 15:32:07:86 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8653
+[INFO] 15:32:07:502 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:07:504 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8654
+[INFO] 15:32:07:504 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 25 - 0x8fb4469
+[INFO] 15:32:07:504 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 43 - 0x8fb447b
+[INFO] 15:32:07:504 Delibird - Broker/(9108:9110): Se guardo el mensaje 8654 en la posición 22 - 0x8fb4466
+[INFO] 15:32:07:504 Delibird - Broker/(9108:9108): Se envió el mensaje 8654 al suscriptor 271
+[INFO] 15:32:07:505 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8654
+[INFO] 15:32:07:510 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:07:512 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8655
+[INFO] 15:32:07:512 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:32:07:512 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 22 - 0x8fb4466
+[INFO] 15:32:07:512 Delibird - Broker/(9108:9110): Se guardo el mensaje 8655 en la posición 0 - 0x8fb4450
+[INFO] 15:32:07:512 Delibird - Broker/(9108:9108): Se envió el mensaje 8655 al suscriptor 268
+[INFO] 15:32:07:513 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8655
+[INFO] 15:32:07:949 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:07:950 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8656
+[INFO] 15:32:07:950 Delibird - Broker/(9108:9110): Se guardo el mensaje 8656 en la posición 23 - 0x8fb4467
+[INFO] 15:32:07:951 Delibird - Broker/(9108:9108): Se envió el mensaje 8656 al suscriptor 271
+[INFO] 15:32:07:951 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8656
+[INFO] 15:32:08:31 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:08:32 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8657
+[INFO] 15:32:08:32 Delibird - Broker/(9108:9110): Se guardo el mensaje 8657 en la posición 27 - 0x8fb446b
+[INFO] 15:32:08:32 Delibird - Broker/(9108:9108): Se envió el mensaje 8657 al suscriptor 271
+[INFO] 15:32:08:32 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8657
+[INFO] 15:32:08:44 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:08:45 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8658
+[INFO] 15:32:08:45 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:32:08:45 Delibird - Broker/(9108:9110): Se guardo el mensaje 8658 en la posición 0 - 0x8fb4450
+[INFO] 15:32:08:45 Delibird - Broker/(9108:9108): Se envió el mensaje 8658 al suscriptor 268
+[INFO] 15:32:08:45 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8658
+[INFO] 15:32:08:568 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:08:569 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8659
+[INFO] 15:32:08:569 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 23 - 0x8fb4467
+[INFO] 15:32:08:569 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:32:08:570 Delibird - Broker/(9108:9110): Se guardo el mensaje 8659 en la posición 0 - 0x8fb4450
+[INFO] 15:32:08:570 Delibird - Broker/(9108:9108): Se envió el mensaje 8659 al suscriptor 271
+[INFO] 15:32:08:571 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8659
+[INFO] 15:32:08:587 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:08:588 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8660
+[INFO] 15:32:08:588 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:32:08:588 Delibird - Broker/(9108:9110): Se guardo el mensaje 8660 en la posición 0 - 0x8fb4450
+[INFO] 15:32:08:589 Delibird - Broker/(9108:9108): Se envió el mensaje 8660 al suscriptor 268
+[INFO] 15:32:08:590 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8660
+[INFO] 15:32:08:970 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:08:971 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8661
+[INFO] 15:32:08:972 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:32:08:972 Delibird - Broker/(9108:9110): Se guardo el mensaje 8661 en la posición 0 - 0x8fb4450
+[INFO] 15:32:08:972 Delibird - Broker/(9108:9108): Se envió el mensaje 8661 al suscriptor 271
+[INFO] 15:32:08:973 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8661
+[INFO] 15:32:09:111 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:09:112 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola APPEARED_POKEMON. Se le asignó el ID: 8662
+[INFO] 15:32:09:113 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 0 - 0x8fb4450
+[INFO] 15:32:09:113 Delibird - Broker/(9108:9110): Se guardo el mensaje 8662 en la posición 0 - 0x8fb4450
+[INFO] 15:32:09:113 Delibird - Broker/(9108:9108): Se envió el mensaje 8662 al suscriptor 271
+[INFO] 15:32:09:113 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8662
+[INFO] 15:32:09:523 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:09:525 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8663
+[INFO] 15:32:09:525 Delibird - Broker/(9108:9110): Se guardo el mensaje 8663 en la posición 18 - 0x8fb4462
+[INFO] 15:32:09:526 Delibird - Broker/(9108:9108): Se envió el mensaje 8663 al suscriptor 271
+[INFO] 15:32:09:526 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8663
+[INFO] 15:32:09:539 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:09:541 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CATCH_POKEMON. Se le asignó el ID: 8664
+[INFO] 15:32:09:541 Delibird - Broker/(9108:9110): Se vació la partición cuya posición inicial de memoria es: 27 - 0x8fb446b
+[INFO] 15:32:09:541 Delibird - Broker/(9108:9110): Se guardo el mensaje 8664 en la posición 22 - 0x8fb4466
+[INFO] 15:32:09:542 Delibird - Broker/(9108:9108): Se envió el mensaje 8664 al suscriptor 268
+[INFO] 15:32:09:543 Delibird - Broker/(9108:9108): El suscriptor 268 confirmó recepción del mensaje 8664
+[INFO] 15:32:10:59 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:10:61 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8665
+[INFO] 15:32:10:61 Delibird - Broker/(9108:9110): Se guardo el mensaje 8665 en la posición 41 - 0x8fb4479
+[INFO] 15:32:10:61 Delibird - Broker/(9108:9108): Se envió el mensaje 8665 al suscriptor 271
+[INFO] 15:32:10:62 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8665
+[INFO] 15:32:10:608 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:10:610 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8666
+[INFO] 15:32:10:610 Delibird - Broker/(9108:9110): Se guardo el mensaje 8666 en la posición 45 - 0x8fb447d
+[INFO] 15:32:10:610 Delibird - Broker/(9108:9108): Se envió el mensaje 8666 al suscriptor 271
+[INFO] 15:32:10:611 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8666
+[INFO] 15:32:11:558 Delibird - Broker/(9108:9110): Se ha conectado un proceso al broker.
+[INFO] 15:32:11:559 Delibird - Broker/(9108:9110): Llegó un nuevo mensaje a la cola CAUGHT_POKEMON. Se le asignó el ID: 8667
+[INFO] 15:32:11:559 Delibird - Broker/(9108:9110): Se guardo el mensaje 8667 en la posición 49 - 0x8fb4481
+[INFO] 15:32:11:560 Delibird - Broker/(9108:9108): Se envió el mensaje 8667 al suscriptor 271
+[INFO] 15:32:11:561 Delibird - Broker/(9108:9108): El suscriptor 271 confirmó recepción del mensaje 8667

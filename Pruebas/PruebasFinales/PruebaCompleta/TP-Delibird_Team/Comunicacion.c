@@ -182,15 +182,15 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 
 
 	log_info(logger,"Pokemones: ");
-	imprimirListaDeCadenas(catchProcesado->entrenadorConCatch->pokemones);
+	imprimirListaDeCadenas(catchProcesado->entrenadorConCatch->pokemones, logger);
 
 	log_info(logger,"Objetivos: ");
-	imprimirListaDeCadenas(catchProcesado->entrenadorConCatch->objetivos);
+	imprimirListaDeCadenas(catchProcesado->entrenadorConCatch->objetivos, logger);
 
 	log_info(logger,"Estado Actual: %d",catchProcesado->entrenadorConCatch->estado);
 
 	log_info(logger,"Objetivos generales:");
-	imprimirListaDeCadenas(team->objetivosOriginales);
+	imprimirListaDeCadenas(team->objetivosOriginales, logger);
 
 	sem_wait(&mutexListaPosiciones);
 	imprimirListaDePosiciones();
@@ -202,9 +202,63 @@ void procesarObjetivoCumplido(t_catchEnEspera* catchProcesado, uint32_t resultad
 	verificarDeadlock();
 }
 
+void emularCaught(t_entrenador *entrenador){
+	sem_wait(&mutexEntrenadores);
+	entrenador->suspendido = false;
+	sem_post(&mutexEntrenadores);
 
 
-void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
+	char* pokemonAtrapado = malloc(strlen(entrenador->pokemonAAtrapar.pokemon) + 1);
+	strcpy(pokemonAtrapado,entrenador->pokemonAAtrapar.pokemon);
+
+	sem_wait(&mutexEntrenadores);
+	enlistar(pokemonAtrapado, entrenador->pokemones);
+	sem_post(&mutexEntrenadores);
+
+	bool esUnObjetivo(void *objetivo){
+		bool verifica = false;
+
+		if(string_equals_ignore_case((char *)objetivo, pokemonAtrapado))
+			verifica = true;
+
+		return verifica;
+	}
+
+	sem_wait(&mutexEntrenadores);
+	list_remove_by_condition(entrenador->objetivos,esUnObjetivo);
+	sem_post(&mutexEntrenadores);
+
+	sem_wait(&mutexListaObjetivosOriginales);
+	list_remove_by_condition(team->objetivosOriginales,esUnObjetivo);
+	sem_post(&mutexListaObjetivosOriginales);
+
+	//Marca objetivos cumplidos de entrenador.
+
+	loggearPokemonCapturado(entrenador, true);
+
+	seCumplieronLosObjetivosDelEntrenador(entrenador);
+
+	log_info(logger,"Pokemones: ");
+	imprimirListaDeCadenas(entrenador->pokemones, logger);
+
+	log_info(logger,"Objetivos: ");
+	imprimirListaDeCadenas(entrenador->objetivos, logger);
+
+	log_info(logger,"Estado Actual: %d",entrenador->estado, logger);
+	log_info(logger,"Objetivos generales:");
+	imprimirListaDeCadenas(team->objetivosOriginales, logger);
+
+	sem_wait(&mutexListaPosiciones);
+	imprimirListaDePosiciones();
+	sem_post(&mutexListaPosiciones);
+
+	//Verifica si estan en deadlock, SOLO cuando se acabaron los objetivos generales.
+	verificarDeadlock();
+}
+
+
+
+void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador){
 
 	//if(brokerConectado){
 
@@ -213,9 +267,8 @@ void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 		*socketBroker = crearConexionCliente(ip, puerto);
 		uint32_t idRespuesta;
 
-		if(conexionInicial){
-			if(*socketBroker!=-1)
-			{
+//		if(conexionInicial){
+			if(*socketBroker!=-1){
 				mensajeCatch *msg = malloc(sizeof(mensajeCatch));
 
 				msg->longPokemon = strlen(entrenador->pokemonAAtrapar.pokemon) + 1;
@@ -274,85 +327,50 @@ void enviarCatchDePokemon(char *ip, char *puerto, t_entrenador* entrenador) {
 //				}
 //
 //				sem_post(&entrenadorDisponible);
-				sem_wait(&mutexEntrenadores);
-				entrenador->suspendido = false;
-				sem_post(&mutexEntrenadores);
-
-
-				char* pokemonAtrapado = malloc(strlen(entrenador->pokemonAAtrapar.pokemon) + 1);
-				strcpy(pokemonAtrapado,entrenador->pokemonAAtrapar.pokemon);
-
-				sem_wait(&mutexEntrenadores);
-				enlistar(pokemonAtrapado, entrenador->pokemones);
-				sem_post(&mutexEntrenadores);
-
-				bool esUnObjetivo(void *objetivo){
-					bool verifica = false;
-
-					if(string_equals_ignore_case((char *)objetivo, pokemonAtrapado))
-						verifica = true;
-
-					return verifica;
-				}
-
-				sem_wait(&mutexEntrenadores);
-				list_remove_by_condition(entrenador->objetivos,esUnObjetivo);
-				sem_post(&mutexEntrenadores);
-
-				sem_wait(&mutexListaObjetivosOriginales);
-				list_remove_by_condition(team->objetivosOriginales,esUnObjetivo);
-				sem_post(&mutexListaObjetivosOriginales);
-
-				//Marca objetivos cumplidos de entrenador.
-
-				loggearPokemonCapturado(entrenador, true);
-
-				seCumplieronLosObjetivosDelEntrenador(entrenador);
-
-				//Verifica si estan en deadlock, SOLO cuando se acabaron los objetivos generales.
-				verificarDeadlock();
-
+				pthread_t hiloCaughtEmulado;
+				pthread_create(&hiloCaughtEmulado, NULL, (void*)emularCaught, entrenador);
+				pthread_detach(hiloCaughtEmulado);
 			}
 
-		}
-		else{//Si no tengo conexion inicial asumo que el catch es satisfactorio.
-			sem_wait(&mutexEntrenadores);
-			entrenador->suspendido = false;
-			sem_post(&mutexEntrenadores);
-
-			char* pokemonAtrapado = malloc(strlen(entrenador->pokemonAAtrapar.pokemon) + 1);
-			strcpy(pokemonAtrapado,entrenador->pokemonAAtrapar.pokemon);
-
-			sem_wait(&mutexEntrenadores);
-			enlistar(pokemonAtrapado, entrenador->pokemones);
-			sem_post(&mutexEntrenadores);
-
-			bool esUnObjetivo(void *objetivo){
-				bool verifica = false;
-
-				if(string_equals_ignore_case((char *)objetivo, pokemonAtrapado))
-					verifica = true;
-
-				return verifica;
-			}
-
-			sem_wait(&mutexEntrenadores);
-			list_remove_by_condition(entrenador->objetivos,esUnObjetivo);
-			sem_post(&mutexEntrenadores);
-
-			sem_wait(&mutexListaObjetivosOriginales);
-			list_remove_by_condition(team->objetivosOriginales,esUnObjetivo);
-			sem_post(&mutexListaObjetivosOriginales);
-
-			//Marca objetivos cumplidos de entrenador.
-
-			loggearPokemonCapturado(entrenador, true);
-
-			seCumplieronLosObjetivosDelEntrenador(entrenador);
-
-			//Verifica si estan en deadlock, SOLO cuando se acabaron los objetivos generales.
-			verificarDeadlock();
-		}
+//		}
+//		else{//Si no tengo conexion inicial asumo que el catch es satisfactorio.
+//			sem_wait(&mutexEntrenadores);
+//			entrenador->suspendido = false;
+//			sem_post(&mutexEntrenadores);
+//
+//			char* pokemonAtrapado = malloc(strlen(entrenador->pokemonAAtrapar.pokemon) + 1);
+//			strcpy(pokemonAtrapado,entrenador->pokemonAAtrapar.pokemon);
+//
+//			sem_wait(&mutexEntrenadores);
+//			enlistar(pokemonAtrapado, entrenador->pokemones);
+//			sem_post(&mutexEntrenadores);
+//
+//			bool esUnObjetivo(void *objetivo){
+//				bool verifica = false;
+//
+//				if(string_equals_ignore_case((char *)objetivo, pokemonAtrapado))
+//					verifica = true;
+//
+//				return verifica;
+//			}
+//
+//			sem_wait(&mutexEntrenadores);
+//			list_remove_by_condition(entrenador->objetivos,esUnObjetivo);
+//			sem_post(&mutexEntrenadores);
+//
+//			sem_wait(&mutexListaObjetivosOriginales);
+//			list_remove_by_condition(team->objetivosOriginales,esUnObjetivo);
+//			sem_post(&mutexListaObjetivosOriginales);
+//
+//			//Marca objetivos cumplidos de entrenador.
+//
+//			loggearPokemonCapturado(entrenador, true);
+//
+//			seCumplieronLosObjetivosDelEntrenador(entrenador);
+//
+//			//Verifica si estan en deadlock, SOLO cuando se acabaron los objetivos generales.
+//			verificarDeadlock();
+//		}
 	//}
 }
 
@@ -721,7 +739,7 @@ void crearConexionesYSuscribirseALasColas() {
 	crearHiloParaAtenderServidor(socketBrokerCau);
 
 	brokerConectado = true;
-	sem_post(&conexionCreada);
+//	sem_post(&conexionCreada);
 
 	crearHiloDeReconexion();
 
@@ -798,7 +816,7 @@ void esperarMensajesGameboy(int* socketSuscripcion) {
 }
 
 void enviarGetSegunObjetivo(char *ip, char *puerto) {
-	sem_wait(&conexionCreada);
+//	sem_wait(&conexionCreada);
 	char *pokemon;
 	t_list *getsEnviados = list_create();
 
