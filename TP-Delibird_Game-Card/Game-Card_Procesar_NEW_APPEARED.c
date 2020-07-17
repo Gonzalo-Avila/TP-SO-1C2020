@@ -118,6 +118,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 							free(msgAppeared);
 						}
 						else{
+							sem_wait(&archivoConsumiendoBloques);
 							int cantidadDisponible = cantidadDeBloquesAsignadosAArchivo * tamanioBloque + espacioLibreEnElFS();
 							if(cantidadDisponible >= sizeAEscribir){
 
@@ -125,6 +126,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 							sem_wait(mutexMetadata);
 							asignarBloquesAArchivo(rutaMetadataPokemon, bloquesNecesarios-cantidadDeBloquesAsignadosAArchivo, metadataPokemon);
 							sem_post(mutexMetadata);
+							sem_post(&archivoConsumiendoBloques);
 							log_info(logger,"Se asignaron %d bloques adicionales al archivo del pokemon %s", bloquesNecesarios-cantidadDeBloquesAsignadosAArchivo,msgNew->pokemon);
 							log_info(logger,"Actualizando cantidad en coordenada %d-%d de %s", msgNew->posicionX,msgNew->posicionY,msgNew->pokemon);
 							escribirCadenaEnArchivo(rutaMetadataPokemon, aEscribirEnBloques);
@@ -153,6 +155,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 							free(msgAppeared);
 							}
 							else{
+								sem_post(&archivoConsumiendoBloques);
 								log_info(logger, "No se pudo actualizar la cantidad en la coordenada %d-%d del pokemon %s: no hay espacio suficiente",msgNew->posicionX,msgNew->posicionY,msgNew->pokemon);
 								config_set_value(metadataPokemon, "OPEN", "N");
 								log_info(logger,"Cerrando el archivo del pokemon %s...",msgNew->pokemon);
@@ -200,6 +203,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 									free(msgAppeared);
 								} else {
 
+									sem_wait(&archivoConsumiendoBloques);
 									if (espacioLibreUltimoBloque + espacioLibreEnElFS()>= tamanioEntradaCompleta) {
 
 										int bloquesNecesarios = cantidadDeBloquesNecesariosParaSize(tamanioEntradaCompleta - espacioLibreUltimoBloque);
@@ -207,6 +211,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 										sem_wait(mutexMetadata);
 										asignarBloquesAArchivo(rutaMetadataPokemon,bloquesNecesarios, metadataPokemon);
 										sem_post(mutexMetadata);
+										sem_post(&archivoConsumiendoBloques);
 										log_info(logger,"Se asignaron %d bloques adicionales al archivo del pokemon %s", bloquesNecesarios,msgNew->pokemon);
 										log_info(logger,"Agregando la coordenada %d-%d a %s", msgNew->posicionX,msgNew->posicionY,msgNew->pokemon);
 
@@ -240,6 +245,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 
 									}
 									else{
+										sem_post(&archivoConsumiendoBloques);
 										log_info(logger,"No se pudo crear la coordenada %d-%d del pokemon %s: no hay espacio suficiente", msgNew->posicionX,msgNew->posicionY,msgNew->pokemon);
 										config_set_value(metadataPokemon, "OPEN", "N");
 										log_info(logger,"Cerrando el archivo del pokemon %s...",msgNew->pokemon);
@@ -266,6 +272,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 		}
 		else {
 			log_info(logger,"No existe el pokemon %s en el filesystem", msgNew->pokemon);
+			sem_wait(&archivoConsumiendoBloques);
 			if (haySuficientesBloquesLibresParaSize(tamanioEntradaCompleta)) {
 
 				log_info(logger,"Creando el pokemon %s en el filesystem...", msgNew->pokemon);
@@ -278,6 +285,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 				metadataPokemon = config_create(rutaMetadataPokemon);
 
 				asignarBloquesAArchivo(rutaMetadataPokemon, cantidadDeBloquesAAsignar, metadataPokemon);
+				sem_post(&archivoConsumiendoBloques);
 
 				log_info(logger,"Se asignaron %d bloques al archivo del pokemon %s", cantidadDeBloquesAAsignar,msgNew->pokemon);
 
@@ -310,6 +318,7 @@ void procesarNEW(mensajeRecibido * mensajeRecibido) {
 				free(msgAppeared);
 			}
 			else {
+				sem_post(&archivoConsumiendoBloques);
 				sem_post(mutexMetadata);
 				log_info(logger,"No se puede crear el pokemon %s, no hay espacio suficiente", msgNew->pokemon);
 			}

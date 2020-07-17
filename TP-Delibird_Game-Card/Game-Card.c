@@ -23,6 +23,7 @@ void inicializarVariablesGlobales() {
 
 	sem_init(&mutexListaDeSemaforos,0,1);
 	sem_init(&mutexBitmap, 0, 1);
+	sem_init(&archivoConsumiendoBloques, 0, 1);
 
 	idProceso = -1;
 	statusConexionBroker = 0;
