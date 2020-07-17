@@ -15,7 +15,7 @@ void atenderConexiones(int *socketEscucha) {
 	int backlog_server = config_get_int_value(config, "BACKLOG_SERVER");
 	atenderConexionEn(*socketEscucha, backlog_server);
 	while (1) {
-		log_debug(logger, "Esperando cliente...");
+		log_info(logger, "Esperando cliente...");
 		int *socketCliente = esperarCliente(*socketEscucha);
 		log_info(logger,
 				"Se ha conectado un cliente. Número de socket cliente: %d",
@@ -40,44 +40,42 @@ void esperarMensajes(int *socketCliente) {
 	cola tipoCola;
 
 	recv(*socketCliente, &codOperacion, sizeof(opCode), MSG_WAITALL);
-	log_debug(logger, "Esperando mensaje de cliente %d...", *socketCliente);
+	log_info(logger, "Esperando mensaje de cliente %d...", *socketCliente);
 
 
 	switch (codOperacion) {
 
 	case NUEVA_CONEXION:{
-		log_info(logger, "[NUEVA_CONEXION]");
+		log_info(logger, "Hay una nueva conexión");
         uint32_t idProceso = getIDProceso();
         send(*socketCliente, &idProceso,sizeof(uint32_t),0);
         log_info(logger, "ClientID asignado al nuevo suscriptor: %d", idProceso);
         close(*socketCliente);
-        log_info(logger, "[NUEVA_CONEXION-END]");
+        log_info(logger, "Finalizó la atención a la nueva conexión");
 		break;
 	}
 
 	case SUSCRIPCION: {
-		log_info(logger, "[SUSCRIPCION]");
+		log_info(logger, "Hay una nueva suscripción");
 		atenderSuscripcion(socketCliente);
-		log_info(logger, "[SUSCRIPCION-END]");
+		log_info(logger, "Finalizó la atención a la nueva suscripción");
 		break;
 	}
 
 	case NUEVO_MENSAJE: {
-		log_info(logger, "[NUEVO_MENSAJE]");
+		log_info(logger, "Hay un nuevo mensaje");
 		recv(*socketCliente, &sizeDelMensaje, sizeof(uint32_t), MSG_WAITALL);
 		recv(*socketCliente, &tipoCola, sizeof(cola), MSG_WAITALL);
 		atenderMensaje(*socketCliente, tipoCola);
 		close(*socketCliente);
-		log_info(logger, "[NUEVO_MENSAJE-END]");
+		log_info(logger, "Finalizó la atención al nuevo mensaje");
 		break;
 	}
 	case FINALIZAR: {
 		/* Finaliza la conexión con el broker de forma ordenada.
 		 * No creo que tenga mucho sentido en el TP, seria para hacer pruebas.
-		 *
-		 *
 		 */
-		log_info(logger, "[FINALIZAR]");
+		log_info(logger, "Hay una nueva desuscripción");
 		recv(*socketCliente, &tipoCola, sizeof(cola), MSG_WAITALL);
 		uint32_t clientID;
 		recv(*socketCliente, &clientID, sizeof(uint32_t), MSG_WAITALL);
@@ -85,17 +83,16 @@ void esperarMensajes(int *socketCliente) {
 		log_info(logger, "El cliente con ID %d se ha desconectado",
 				clientID);
 		close(*socketCliente);
-		log_info(logger, "[FINALIZAR-END]");
+		log_info(logger, "Finalizó la atención de la nueva desuscripción");
 		break;
 	}
 	case DUMPCACHE: {
-		log_info(logger, "[DUMP DE LA CACHE]");
+		log_info(logger,"Hay una nueva solicitud de dump de cache");
 		dumpCache();
 		break;
 	}
 	default: {
-		log_error(logger, "[ERROR]");
-		log_error(logger, "El mensaje recibido está dañado");
+		log_error(logger, "Se recibió un mensaje erroneo o dañado");
 		close(*socketCliente);
 		break;
 	}
@@ -125,7 +122,7 @@ void atenderSuscripcion(int *socketSuscriptor){
 	recv(*socketSuscriptor, &codSuscripcion, sizeof(cola), MSG_WAITALL);
 	recv(*socketSuscriptor, &(nuevoSuscriptor->clientID), sizeof(uint32_t), MSG_WAITALL);
 
-	log_debug(logger, "%d", codSuscripcion);
+	log_info(logger, "Cola a la que suscribir: %s", getCodeStringByNum(codSuscripcion));
 
 	sem_wait(&mutexColas);
 	if(yaExisteSuscriptor(nuevoSuscriptor->clientID,codSuscripcion)==true){
@@ -180,7 +177,6 @@ void atenderMensaje(int socketEmisor, cola tipoCola) {
 
 		} else {
 			send(socketEmisor, &idMensaje, sizeof(uint32_t), 0);
-			log_error(logger, "[ERROR]");
 			log_error(logger, "No pudo obtenerse el tipo de cola en el mensaje recibido");
 			free(idCorrelativo);
 		}

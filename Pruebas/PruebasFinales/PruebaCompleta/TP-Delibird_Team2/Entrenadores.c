@@ -296,7 +296,9 @@ void verificarDeadlock() {
 		log_info(loggerOficial, "Se inicia la deteccion de deadlock.");
 		escaneoDeDeadlock();
 	}
-	sem_post(&mutexListaObjetivosOriginales);
+	else{
+		sem_post(&mutexListaObjetivosOriginales);
+	}
 }
 void seCumplieronLosObjetivosDelEntrenador(t_entrenador* entrenador) {
 

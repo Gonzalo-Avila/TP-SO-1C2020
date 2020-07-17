@@ -105,6 +105,9 @@ int cambiosDeContexto;
 int deadlocksResueltos;
 uint32_t idDelProceso;
 bool yaTengoID;
+bool brokerConectado;
+bool hayEntrenadorDesalojante;
+bool conexionInicial;
 float alfa;
 t_team *team;
 t_list *listaHilos;
@@ -117,12 +120,12 @@ t_list *listaCondsEntrenadores;
 t_list *listaPosicionesInternas;
 t_list *listaPosicionesBackUp;
 
+t_log* loggerResultadosFinales;
+
 int *socketBrokerApp;
 int *socketBrokerLoc;
 int *socketBrokerCau;
 int *socketGameboy;
-bool brokerConectado;
-bool hayEntrenadorDesalojante;
 
 char* ipServidor;
 char* puertoServidor;
@@ -222,12 +225,12 @@ void gestionarEntrenadorSJFsinDesalojo(t_entrenador* entrenador);
 void esperarMensajesGameboy(int* socketSuscripcion);
 void crearHiloPlanificador();
 void escaneoDeDeadlock();
-void imprimirListaDeCadenas(t_list * listaDeCadenas);
+void imprimirListaDeCadenas(t_list * listaDeCadenas, t_log* loggerUsado);
 void seCumplieronLosObjetivosDelEntrenador(t_entrenador *entrenador);
 void verificarDeadlock();
 void planificadorDeLargoPlazo();
 void verificarPokemonesEnMapaYPonerEnReady();
-void imprimirEstadoFinalEntrenadores();
+void imprimirEstadoFinalEntrenadores(t_log* loggerUsado);
 int ponerEnReadyAlMasCercano(int x, int y, char* pokemon);
 int crearConexionClienteConReintento(char * ip, char * puerto, int tiempoDeEspera);
 

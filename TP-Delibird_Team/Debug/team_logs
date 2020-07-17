@@ -12928,3 +12928,1960 @@ Pokemon a intercambiar del entrenador 2: Snorlax
 [INFO] 18:00:28:527 Team/(2365:2371): [GAMEBOY] Mensaje recibido
 [DEBUG] 18:00:28:527 Team/(2365:2371): [GAMEBOY] Llegó un mensaje de la cola APPEARED
 [INFO] 18:00:28:527 Team/(2365:2371): Procesando APPEARED...
+[DEBUG] 21:56:33:189 Team/(6086:6086): Se ha iniciado un Team.
+[INFO] 21:56:33:191 Team/(6086:6086): Cantidad de posiciones: 3
+[INFO] 21:56:33:192 Team/(6086:6086): Cantidad de entrenadores: 3
+[INFO] 21:56:33:192 Team/(6086:6086): Entrenadores disponibles: 0
+[INFO] 21:56:33:192 Team/(6086:6086): Enviando GETs...
+[INFO] 21:56:33:206 Team/(6086:6086): GETs enviados
+[INFO] 21:56:33:206 Team/(6086:6093): Socket de escucha para Gameboy creado
+[DEBUG] 21:56:33:207 Team/(6086:6094): ID obtenido = 256
+[INFO] 21:56:33:207 Team/(6086:6092): Entrenadores disponibles: 3
+[ERROR] 21:56:33:207 Team/(6086:6092): Entrando al semaforo de entrenadores disponibles
+[ERROR] 21:56:33:207 Team/(6086:6092): Entrando al semaforo de posiciones pendientes
+[DEBUG] 21:56:33:207 Team/(6086:6091): Se activa el planificador
+[INFO] 21:56:33:212 Team/(6086:6094): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 21:56:33:212 Team/(6086:6094): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 21:56:33:212 Team/(6086:6094): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 21:56:33:223 Team/(6086:6107): Esperando mensajes de broker...
+[INFO] 21:56:33:223 Team/(6086:6106): Esperando mensajes de broker...
+[INFO] 21:56:33:223 Team/(6086:6105): Esperando mensajes de broker...
+[INFO] 21:56:33:235 Team/(6086:6105): Recibido un mensaje de broker
+[INFO] 21:56:33:235 Team/(6086:6105): Esperando mensajes de broker...
+[INFO] 21:56:33:235 Team/(6086:6105): Recibido un mensaje de broker
+[INFO] 21:56:33:235 Team/(6086:6105): Esperando mensajes de broker...
+[INFO] 21:56:33:235 Team/(6086:6105): Recibido un mensaje de broker
+[INFO] 21:56:33:235 Team/(6086:6105): Esperando mensajes de broker...
+[INFO] 21:56:33:236 Team/(6086:6105): Recibido un mensaje de broker
+[INFO] 21:56:33:236 Team/(6086:6105): Esperando mensajes de broker...
+[INFO] 21:56:33:237 Team/(6086:6110): Procesando LOCALIZED...
+[DEBUG] 21:56:33:238 Team/(6086:6110): Pokemon: Charmander
+[INFO] 21:56:33:238 Team/(6086:6110): Mensaje recibido: LOCALIZED_POKEMON Charmander con 0 pokemones
+[INFO] 21:56:33:238 Team/(6086:6105): Recibido un mensaje de broker
+[INFO] 21:56:33:238 Team/(6086:6105): Esperando mensajes de broker...
+[INFO] 21:56:33:239 Team/(6086:6105): Recibido un mensaje de broker
+[INFO] 21:56:33:239 Team/(6086:6105): Esperando mensajes de broker...
+[INFO] 21:56:33:239 Team/(6086:6111): Procesando LOCALIZED...
+[DEBUG] 21:56:33:239 Team/(6086:6111): Pokemon: Bulbasaur
+[INFO] 21:56:33:239 Team/(6086:6111): Mensaje recibido: LOCALIZED_POKEMON Bulbasaur con 0 pokemones
+[INFO] 21:56:33:239 Team/(6086:6112): Procesando LOCALIZED...
+[DEBUG] 21:56:33:239 Team/(6086:6112): Pokemon: Onix
+[INFO] 21:56:33:239 Team/(6086:6112): Mensaje recibido: LOCALIZED_POKEMON Onix con 0 pokemones
+[INFO] 21:56:33:239 Team/(6086:6113): Procesando LOCALIZED...
+[DEBUG] 21:56:33:239 Team/(6086:6113): Pokemon: Squirtle
+[INFO] 21:56:33:240 Team/(6086:6113): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 0 pokemones
+[INFO] 21:56:33:240 Team/(6086:6105): Recibido un mensaje de broker
+[INFO] 21:56:33:240 Team/(6086:6105): Esperando mensajes de broker...
+[INFO] 21:56:33:240 Team/(6086:6114): Procesando LOCALIZED...
+[DEBUG] 21:56:33:241 Team/(6086:6114): Pokemon: Pikachu
+[INFO] 21:56:33:241 Team/(6086:6114): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 0 pokemones
+[INFO] 21:56:33:243 Team/(6086:6115): Procesando LOCALIZED...
+[DEBUG] 21:56:33:243 Team/(6086:6115): Pokemon: Raichu
+[INFO] 21:56:33:243 Team/(6086:6115): Mensaje recibido: LOCALIZED_POKEMON Raichu con 0 pokemones
+[INFO] 21:56:33:243 Team/(6086:6116): Procesando LOCALIZED...
+[DEBUG] 21:56:33:243 Team/(6086:6116): Pokemon: Snorlax
+[INFO] 21:56:33:243 Team/(6086:6116): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 0 pokemones
+[INFO] 21:58:24:671 Team/(6086:6106): Recibido un mensaje de broker
+[INFO] 21:58:24:671 Team/(6086:6106): Esperando mensajes de broker...
+[INFO] 21:58:24:680 Team/(6086:6207): Procesando APPEARED...
+[ERROR] 21:58:24:680 Team/(6086:6207): No me interesa el pokemon Asd
+[INFO] 21:58:30:183 Team/(6086:6106): Recibido un mensaje de broker
+[INFO] 21:58:30:183 Team/(6086:6106): Esperando mensajes de broker...
+[INFO] 21:58:30:185 Team/(6086:6211): Procesando APPEARED...
+[ERROR] 21:58:30:186 Team/(6086:6211): No me interesa el pokemon Asd
+[INFO] 21:58:30:783 Team/(6086:6106): Recibido un mensaje de broker
+[INFO] 21:58:30:783 Team/(6086:6106): Esperando mensajes de broker...
+[INFO] 21:58:30:787 Team/(6086:6214): Procesando APPEARED...
+[ERROR] 21:58:30:789 Team/(6086:6214): No me interesa el pokemon Asd
+[INFO] 21:58:31:202 Team/(6086:6106): Recibido un mensaje de broker
+[INFO] 21:58:31:202 Team/(6086:6106): Esperando mensajes de broker...
+[INFO] 21:58:31:206 Team/(6086:6217): Procesando APPEARED...
+[ERROR] 21:58:31:215 Team/(6086:6217): No me interesa el pokemon Asd
+[INFO] 21:58:31:592 Team/(6086:6106): Recibido un mensaje de broker
+[INFO] 21:58:31:592 Team/(6086:6106): Esperando mensajes de broker...
+[INFO] 21:58:31:594 Team/(6086:6220): Procesando APPEARED...
+[ERROR] 21:58:31:595 Team/(6086:6220): No me interesa el pokemon Asd
+[INFO] 21:58:31:913 Team/(6086:6106): Recibido un mensaje de broker
+[INFO] 21:58:31:913 Team/(6086:6106): Esperando mensajes de broker...
+[INFO] 21:58:31:922 Team/(6086:6223): Procesando APPEARED...
+[ERROR] 21:58:31:922 Team/(6086:6223): No me interesa el pokemon Asd
+[INFO] 21:58:32:177 Team/(6086:6106): Recibido un mensaje de broker
+[INFO] 21:58:32:177 Team/(6086:6106): Esperando mensajes de broker...
+[INFO] 21:58:32:181 Team/(6086:6226): Procesando APPEARED...
+[ERROR] 21:58:32:182 Team/(6086:6226): No me interesa el pokemon Asd
+[INFO] 21:58:32:393 Team/(6086:6106): Recibido un mensaje de broker
+[INFO] 21:58:32:393 Team/(6086:6106): Esperando mensajes de broker...
+[INFO] 21:58:32:404 Team/(6086:6229): Procesando APPEARED...
+[ERROR] 21:58:32:404 Team/(6086:6229): No me interesa el pokemon Asd
+[INFO] 21:58:32:603 Team/(6086:6106): Recibido un mensaje de broker
+[INFO] 21:58:32:603 Team/(6086:6106): Esperando mensajes de broker...
+[INFO] 21:58:32:606 Team/(6086:6232): Procesando APPEARED...
+[ERROR] 21:58:32:606 Team/(6086:6232): No me interesa el pokemon Asd
+[INFO] 21:58:32:774 Team/(6086:6106): Recibido un mensaje de broker
+[INFO] 21:58:32:774 Team/(6086:6106): Esperando mensajes de broker...
+[INFO] 21:58:32:779 Team/(6086:6235): Procesando APPEARED...
+[ERROR] 21:58:32:787 Team/(6086:6235): No me interesa el pokemon Asd
+[INFO] 21:58:32:980 Team/(6086:6106): Recibido un mensaje de broker
+[INFO] 21:58:32:981 Team/(6086:6106): Esperando mensajes de broker...
+[INFO] 21:58:32:981 Team/(6086:6238): Procesando APPEARED...
+[ERROR] 21:58:32:991 Team/(6086:6238): No me interesa el pokemon Asd
+[ERROR] 21:58:41:658 Team/(6086:6107): Se perdio la conexión con el Broker.
+[ERROR] 21:58:41:659 Team/(6086:6106): Se perdio la conexión con el Broker.
+[ERROR] 21:58:41:659 Team/(6086:6105): Se perdio la conexión con el Broker.
+[DEBUG] 21:58:41:660 Team/(6086:6107): Reintentando conexion...
+[DEBUG] 21:58:41:660 Team/(6086:6105): Reintentando conexion...
+[DEBUG] 21:58:41:660 Team/(6086:6106): Reintentando conexion...
+[INFO] 21:58:41:660 Team/(6086:6106): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:58:41:660 Team/(6086:6105): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:58:41:660 Team/(6086:6107): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:58:51:661 Team/(6086:6106): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:58:51:661 Team/(6086:6107): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:58:51:661 Team/(6086:6105): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:01:661 Team/(6086:6106): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:01:662 Team/(6086:6107): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:01:662 Team/(6086:6105): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:11:663 Team/(6086:6105): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:11:663 Team/(6086:6107): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:11:663 Team/(6086:6106): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:21:663 Team/(6086:6105): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:21:663 Team/(6086:6106): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:21:664 Team/(6086:6107): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:31:664 Team/(6086:6105): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:31:664 Team/(6086:6106): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:31:664 Team/(6086:6107): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:41:664 Team/(6086:6106): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:41:664 Team/(6086:6105): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:41:665 Team/(6086:6107): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:51:665 Team/(6086:6105): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:51:665 Team/(6086:6106): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 21:59:51:665 Team/(6086:6107): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 22:00:01:665 Team/(6086:6107): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 22:00:01:665 Team/(6086:6106): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 22:00:01:666 Team/(6086:6105): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 22:00:11:666 Team/(6086:6105): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 22:00:11:666 Team/(6086:6107): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 22:00:11:666 Team/(6086:6106): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 22:00:21:667 Team/(6086:6106): Reconexion con el Broker realizada correctamente.
+[INFO] 22:00:21:667 Team/(6086:6107): Reconexion con el Broker realizada correctamente.
+[INFO] 22:00:21:667 Team/(6086:6105): Reconexion con el Broker realizada correctamente.
+[INFO] 22:00:21:668 Team/(6086:6108): Reconectando...
+[INFO] 22:00:22:668 Team/(6086:6108): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 22:00:22:668 Team/(6086:6108): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 22:00:22:668 Team/(6086:6108): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 22:00:22:669 Team/(6086:6425): Esperando mensajes de broker...
+[INFO] 22:00:22:669 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:00:22:669 Team/(6086:6423): Esperando mensajes de broker...
+[INFO] 22:00:46:987 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:00:46:988 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:00:46:988 Team/(6086:6439): Procesando APPEARED...
+[ERROR] 22:00:47:2 Team/(6086:6439): No me interesa el pokemon Asd
+[INFO] 22:00:57:487 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:00:57:487 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:00:57:491 Team/(6086:6446): Procesando APPEARED...
+[ERROR] 22:00:57:491 Team/(6086:6446): No me interesa el pokemon Asd
+[INFO] 22:00:58:99 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:00:58:99 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:00:58:99 Team/(6086:6454): Procesando APPEARED...
+[ERROR] 22:00:58:99 Team/(6086:6454): No me interesa el pokemon Asd
+[INFO] 22:00:58:730 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:00:58:731 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:00:58:731 Team/(6086:6458): Procesando APPEARED...
+[ERROR] 22:00:58:731 Team/(6086:6458): No me interesa el pokemon Asd
+[INFO] 22:00:59:676 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:00:59:676 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:00:59:676 Team/(6086:6462): Procesando APPEARED...
+[ERROR] 22:00:59:677 Team/(6086:6462): No me interesa el pokemon Asd
+[INFO] 22:01:02:387 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:02:387 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:02:387 Team/(6086:6466): Procesando APPEARED...
+[ERROR] 22:01:02:387 Team/(6086:6466): No me interesa el pokemon Asd
+[INFO] 22:01:03:3 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:03:4 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:03:4 Team/(6086:6470): Procesando APPEARED...
+[ERROR] 22:01:03:4 Team/(6086:6470): No me interesa el pokemon Asd
+[INFO] 22:01:04:920 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:04:920 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:04:920 Team/(6086:6474): Procesando APPEARED...
+[ERROR] 22:01:04:920 Team/(6086:6474): No me interesa el pokemon Asd
+[INFO] 22:01:05:665 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:05:665 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:05:665 Team/(6086:6478): Procesando APPEARED...
+[ERROR] 22:01:05:665 Team/(6086:6478): No me interesa el pokemon Asd
+[INFO] 22:01:06:161 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:06:161 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:06:161 Team/(6086:6482): Procesando APPEARED...
+[ERROR] 22:01:06:161 Team/(6086:6482): No me interesa el pokemon Asd
+[INFO] 22:01:06:434 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:06:434 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:06:435 Team/(6086:6485): Procesando APPEARED...
+[ERROR] 22:01:06:435 Team/(6086:6485): No me interesa el pokemon Asd
+[INFO] 22:01:06:646 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:06:646 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:06:646 Team/(6086:6488): Procesando APPEARED...
+[ERROR] 22:01:06:646 Team/(6086:6488): No me interesa el pokemon Asd
+[INFO] 22:01:06:857 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:06:857 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:06:858 Team/(6086:6491): Procesando APPEARED...
+[ERROR] 22:01:06:858 Team/(6086:6491): No me interesa el pokemon Asd
+[INFO] 22:01:07:57 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:07:57 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:07:57 Team/(6086:6494): Procesando APPEARED...
+[ERROR] 22:01:07:58 Team/(6086:6494): No me interesa el pokemon Asd
+[INFO] 22:01:07:283 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:07:283 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:07:283 Team/(6086:6497): Procesando APPEARED...
+[ERROR] 22:01:07:283 Team/(6086:6497): No me interesa el pokemon Asd
+[INFO] 22:01:07:517 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:07:517 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:07:517 Team/(6086:6500): Procesando APPEARED...
+[ERROR] 22:01:07:517 Team/(6086:6500): No me interesa el pokemon Asd
+[INFO] 22:01:07:715 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:07:715 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:07:716 Team/(6086:6508): Procesando APPEARED...
+[ERROR] 22:01:07:716 Team/(6086:6508): No me interesa el pokemon Asd
+[INFO] 22:01:07:928 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:07:928 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:07:928 Team/(6086:6511): Procesando APPEARED...
+[ERROR] 22:01:07:928 Team/(6086:6511): No me interesa el pokemon Asd
+[INFO] 22:01:08:127 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:08:127 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:08:127 Team/(6086:6514): Procesando APPEARED...
+[ERROR] 22:01:08:127 Team/(6086:6514): No me interesa el pokemon Asd
+[INFO] 22:01:08:332 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:08:332 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:08:332 Team/(6086:6517): Procesando APPEARED...
+[ERROR] 22:01:08:332 Team/(6086:6517): No me interesa el pokemon Asd
+[INFO] 22:01:08:530 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:08:530 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:08:531 Team/(6086:6520): Procesando APPEARED...
+[ERROR] 22:01:08:531 Team/(6086:6520): No me interesa el pokemon Asd
+[INFO] 22:01:08:744 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:08:744 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:08:744 Team/(6086:6523): Procesando APPEARED...
+[ERROR] 22:01:08:744 Team/(6086:6523): No me interesa el pokemon Asd
+[INFO] 22:01:08:952 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:08:952 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:08:952 Team/(6086:6526): Procesando APPEARED...
+[ERROR] 22:01:08:952 Team/(6086:6526): No me interesa el pokemon Asd
+[INFO] 22:01:09:157 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:09:157 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:09:157 Team/(6086:6531): Procesando APPEARED...
+[ERROR] 22:01:09:158 Team/(6086:6531): No me interesa el pokemon Asd
+[INFO] 22:01:09:368 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:09:368 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:09:368 Team/(6086:6534): Procesando APPEARED...
+[ERROR] 22:01:09:368 Team/(6086:6534): No me interesa el pokemon Asd
+[INFO] 22:01:09:581 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:09:581 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:09:582 Team/(6086:6537): Procesando APPEARED...
+[ERROR] 22:01:09:582 Team/(6086:6537): No me interesa el pokemon Asd
+[INFO] 22:01:09:785 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:09:785 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:09:785 Team/(6086:6540): Procesando APPEARED...
+[ERROR] 22:01:09:785 Team/(6086:6540): No me interesa el pokemon Asd
+[INFO] 22:01:10:7 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:10:7 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:10:7 Team/(6086:6543): Procesando APPEARED...
+[ERROR] 22:01:10:7 Team/(6086:6543): No me interesa el pokemon Asd
+[INFO] 22:01:10:236 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:10:236 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:10:237 Team/(6086:6546): Procesando APPEARED...
+[ERROR] 22:01:10:237 Team/(6086:6546): No me interesa el pokemon Asd
+[INFO] 22:01:10:452 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:10:452 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:10:453 Team/(6086:6549): Procesando APPEARED...
+[ERROR] 22:01:10:453 Team/(6086:6549): No me interesa el pokemon Asd
+[INFO] 22:01:10:681 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:10:681 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:10:681 Team/(6086:6552): Procesando APPEARED...
+[ERROR] 22:01:10:682 Team/(6086:6552): No me interesa el pokemon Asd
+[INFO] 22:01:10:912 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:10:912 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:10:912 Team/(6086:6555): Procesando APPEARED...
+[ERROR] 22:01:10:912 Team/(6086:6555): No me interesa el pokemon Asd
+[INFO] 22:01:11:116 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:11:116 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:11:117 Team/(6086:6558): Procesando APPEARED...
+[ERROR] 22:01:11:117 Team/(6086:6558): No me interesa el pokemon Asd
+[INFO] 22:01:11:339 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:11:339 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:11:339 Team/(6086:6561): Procesando APPEARED...
+[ERROR] 22:01:11:340 Team/(6086:6561): No me interesa el pokemon Asd
+[INFO] 22:01:11:552 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:11:552 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:11:552 Team/(6086:6564): Procesando APPEARED...
+[ERROR] 22:01:11:552 Team/(6086:6564): No me interesa el pokemon Asd
+[INFO] 22:01:11:759 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:11:759 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:11:759 Team/(6086:6567): Procesando APPEARED...
+[ERROR] 22:01:11:759 Team/(6086:6567): No me interesa el pokemon Asd
+[INFO] 22:01:11:978 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:11:978 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:11:978 Team/(6086:6571): Procesando APPEARED...
+[ERROR] 22:01:11:978 Team/(6086:6571): No me interesa el pokemon Asd
+[INFO] 22:01:12:345 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:12:345 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:12:345 Team/(6086:6574): Procesando APPEARED...
+[ERROR] 22:01:12:345 Team/(6086:6574): No me interesa el pokemon Asd
+[INFO] 22:01:12:765 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:12:765 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:12:766 Team/(6086:6577): Procesando APPEARED...
+[ERROR] 22:01:12:766 Team/(6086:6577): No me interesa el pokemon Asd
+[INFO] 22:01:13:217 Team/(6086:6424): Recibido un mensaje de broker
+[INFO] 22:01:13:217 Team/(6086:6424): Esperando mensajes de broker...
+[INFO] 22:01:13:217 Team/(6086:6580): Procesando APPEARED...
+[ERROR] 22:01:13:217 Team/(6086:6580): No me interesa el pokemon Asd
+[ERROR] 22:08:49:395 Team/(6086:6424): Se perdio la conexión con el Broker.
+[ERROR] 22:08:49:395 Team/(6086:6425): Se perdio la conexión con el Broker.
+[ERROR] 22:08:49:395 Team/(6086:6423): Se perdio la conexión con el Broker.
+[DEBUG] 22:08:49:396 Team/(6086:6424): Reintentando conexion...
+[DEBUG] 22:08:49:397 Team/(6086:6423): Reintentando conexion...
+[DEBUG] 22:08:49:398 Team/(6086:6425): Reintentando conexion...
+[INFO] 22:08:49:398 Team/(6086:6423): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 22:08:49:398 Team/(6086:6424): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 22:08:49:398 Team/(6086:6425): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 22:08:59:398 Team/(6086:6423): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 22:08:59:399 Team/(6086:6425): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 22:08:59:399 Team/(6086:6424): No se pudo reestablecer la conexion con el Broker. Reintentando...
+[INFO] 22:09:05:881 Team/(6086:6086): El proceso Team ha finalizado.
+[INFO] 22:09:05:881 Team/(6086:6086): Ciclos de CPU totales = 0
+[INFO] 22:09:05:881 Team/(6086:6086): Cambios de contexto realizados = 0
+[INFO] 22:09:05:881 Team/(6086:6086): Deadlocks detectados y resueltos = 0
+[DEBUG] 15:14:44:973 Team/(8925:8925): Se ha iniciado un Team.
+[INFO] 15:14:44:973 Team/(8925:8925): Cantidad de posiciones: 3
+[INFO] 15:14:44:973 Team/(8925:8925): Cantidad de entrenadores: 3
+[INFO] 15:14:44:974 Team/(8925:8925): Entrenadores disponibles: 0
+[INFO] 15:14:44:974 Team/(8925:8925): Enviando GETs...
+[INFO] 15:14:44:974 Team/(8925:8931): Socket de escucha para Gameboy creado
+[INFO] 15:14:44:974 Team/(8925:8930): Entrenadores disponibles: 3
+[INFO] 15:14:44:975 Team/(8925:8925): No se pudo enviar el get
+[ERROR] 15:14:44:975 Team/(8925:8930): Entrando al semaforo de entrenadores disponibles
+[ERROR] 15:14:44:975 Team/(8925:8930): Entrando al semaforo de posiciones pendientes
+[INFO] 15:14:44:975 Team/(8925:8925): No se pudo enviar el get
+[INFO] 15:14:44:975 Team/(8925:8925): No se pudo enviar el get
+[INFO] 15:14:44:976 Team/(8925:8925): No se pudo enviar el get
+[INFO] 15:14:44:976 Team/(8925:8925): No se pudo enviar el get
+[INFO] 15:14:44:976 Team/(8925:8925): No se pudo enviar el get
+[INFO] 15:14:44:976 Team/(8925:8925): No se pudo enviar el get
+[INFO] 15:14:44:976 Team/(8925:8925): GETs enviados
+[DEBUG] 15:14:44:977 Team/(8925:8929): Se activa el planificador
+[INFO] 15:14:49:416 Team/(8925:8925): 	Charmander
+[INFO] 15:14:49:416 Team/(8925:8925): 	Bulbasaur
+[INFO] 15:14:49:416 Team/(8925:8925): 	Squirtle
+[INFO] 15:14:49:417 Team/(8925:8925): 	Onix
+[INFO] 15:14:49:417 Team/(8925:8925): 	Snorlax
+[INFO] 15:14:49:418 Team/(8925:8925): 	Pikachu
+[INFO] 15:14:49:418 Team/(8925:8925): 	Raichu
+[INFO] 15:14:49:418 Team/(8925:8925): El proceso Team ha finalizado.
+[INFO] 15:14:49:419 Team/(8925:8925): Ciclos de CPU totales = 0
+[INFO] 15:14:49:419 Team/(8925:8925): Cambios de contexto realizados = 0
+[INFO] 15:14:49:419 Team/(8925:8925): Deadlocks detectados y resueltos = 0
+[DEBUG] 15:15:13:358 Team/(8933:8933): Se ha iniciado un Team.
+[INFO] 15:15:13:359 Team/(8933:8933): Cantidad de posiciones: 3
+[INFO] 15:15:13:359 Team/(8933:8933): Cantidad de entrenadores: 3
+[INFO] 15:15:13:359 Team/(8933:8933): Entrenadores disponibles: 0
+[INFO] 15:15:13:359 Team/(8933:8933): Enviando GETs...
+[INFO] 15:15:13:360 Team/(8933:8933): No se pudo enviar el get
+[INFO] 15:15:13:360 Team/(8933:8933): No se pudo enviar el get
+[INFO] 15:15:13:360 Team/(8933:8933): No se pudo enviar el get
+[INFO] 15:15:13:360 Team/(8933:8933): No se pudo enviar el get
+[INFO] 15:15:13:360 Team/(8933:8933): No se pudo enviar el get
+[INFO] 15:15:13:361 Team/(8933:8933): No se pudo enviar el get
+[INFO] 15:15:13:361 Team/(8933:8933): No se pudo enviar el get
+[INFO] 15:15:13:361 Team/(8933:8939): Socket de escucha para Gameboy creado
+[INFO] 15:15:13:361 Team/(8933:8933): GETs enviados
+[INFO] 15:15:13:361 Team/(8933:8938): Entrenadores disponibles: 3
+[ERROR] 15:15:13:361 Team/(8933:8938): Entrando al semaforo de entrenadores disponibles
+[ERROR] 15:15:13:362 Team/(8933:8938): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:15:13:362 Team/(8933:8937): Se activa el planificador
+[INFO] 15:15:46:994 Team/(8933:8939): [GAMEBOY] Recibiendo mensaje del socket cliente: 15
+[INFO] 15:15:46:995 Team/(8933:8939): [GAMEBOY] Mensaje recibido
+[DEBUG] 15:15:46:995 Team/(8933:8939): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 15:15:46:995 Team/(8933:8939): Procesando APPEARED...
+[DEBUG] 15:15:46:995 Team/(8933:8939): El pokemon esta en nuestro objetivo
+[INFO] 15:15:46:995 Team/(8933:8939): Pokemon: charmander
+[INFO] 15:15:46:995 Team/(8933:8939): Mensaje recibido: APPEARED_POKEMON charmander 1 1.
+[ERROR] 15:15:46:995 Team/(8933:8938): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:15:46:995 Team/(8933:8937): Hurra, tengo algo en ready
+[ERROR] 15:15:46:995 Team/(8933:8938): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:15:46:995 Team/(8933:8934): El entrenador id: 0 se movio a la posicion [1,1]
+[ERROR] 15:15:47:995 Team/(8933:8934): Estimado de rafaga actual: 1.000000
+[ERROR] 15:15:47:995 Team/(8933:8934): Duracion de rafaga actual: 1.000000
+[INFO] 15:15:47:996 Team/(8933:8947): El entrenador 0 capturo un charmander!
+[INFO] 15:15:47:997 Team/(8933:8947): Pokemones: 
+[INFO] 15:15:47:997 Team/(8933:8947): 	charmander
+[INFO] 15:15:47:997 Team/(8933:8947): Objetivos: 
+[INFO] 15:15:47:998 Team/(8933:8947): 	Bulbasaur
+[INFO] 15:15:47:998 Team/(8933:8947): 	Squirtle
+[INFO] 15:15:47:998 Team/(8933:8947): Estado Actual: 2
+[INFO] 15:15:47:999 Team/(8933:8947): Objetivos generales:
+[INFO] 15:15:47:999 Team/(8933:8947): 	Bulbasaur
+[INFO] 15:15:47:0 Team/(8933:8947): 	Squirtle
+[INFO] 15:15:47:0 Team/(8933:8947): 	Onix
+[INFO] 15:15:47:0 Team/(8933:8947): 	Snorlax
+[INFO] 15:15:47:1 Team/(8933:8947): 	Pikachu
+[INFO] 15:15:47:1 Team/(8933:8947): 	Raichu
+[INFO] 15:15:47:2 Team/(8933:8947): Posiciones pendientes: 
+[INFO] 15:15:58:945 Team/(8933:8939): [GAMEBOY] Recibiendo mensaje del socket cliente: 16
+[INFO] 15:15:58:946 Team/(8933:8939): [GAMEBOY] Mensaje recibido
+[DEBUG] 15:15:58:946 Team/(8933:8939): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 15:15:58:946 Team/(8933:8939): Procesando APPEARED...
+[DEBUG] 15:15:58:946 Team/(8933:8939): El pokemon esta en nuestro objetivo
+[INFO] 15:15:58:946 Team/(8933:8939): Pokemon: bulbasaur
+[INFO] 15:15:58:946 Team/(8933:8939): Mensaje recibido: APPEARED_POKEMON bulbasaur 1 1.
+[ERROR] 15:15:58:946 Team/(8933:8938): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:15:58:946 Team/(8933:8937): Hurra, tengo algo en ready
+[ERROR] 15:15:58:946 Team/(8933:8938): Entrando al semaforo de posiciones pendientes
+[INFO] 15:15:58:950 Team/(8933:8951): El entrenador 0 capturo un bulbasaur!
+[INFO] 15:15:58:950 Team/(8933:8951): Pokemones: 
+[INFO] 15:15:58:951 Team/(8933:8951): 	charmander
+[INFO] 15:15:58:951 Team/(8933:8951): 	bulbasaur
+[INFO] 15:15:58:951 Team/(8933:8951): Objetivos: 
+[INFO] 15:15:58:951 Team/(8933:8951): 	Squirtle
+[INFO] 15:15:58:951 Team/(8933:8951): Estado Actual: 2
+[INFO] 15:15:58:951 Team/(8933:8951): Objetivos generales:
+[INFO] 15:15:58:952 Team/(8933:8951): 	Squirtle
+[INFO] 15:15:58:952 Team/(8933:8951): 	Onix
+[INFO] 15:15:58:952 Team/(8933:8951): 	Snorlax
+[INFO] 15:15:58:952 Team/(8933:8951): 	Pikachu
+[INFO] 15:15:58:952 Team/(8933:8951): 	Raichu
+[INFO] 15:15:58:953 Team/(8933:8951): Posiciones pendientes: 
+[INFO] 15:16:07:204 Team/(8933:8939): [GAMEBOY] Recibiendo mensaje del socket cliente: 18
+[INFO] 15:16:07:205 Team/(8933:8939): [GAMEBOY] Mensaje recibido
+[DEBUG] 15:16:07:205 Team/(8933:8939): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 15:16:07:205 Team/(8933:8939): Procesando APPEARED...
+[DEBUG] 15:16:07:205 Team/(8933:8939): El pokemon esta en nuestro objetivo
+[INFO] 15:16:07:205 Team/(8933:8939): Pokemon: squirtle
+[INFO] 15:16:07:205 Team/(8933:8939): Mensaje recibido: APPEARED_POKEMON squirtle 1 1.
+[ERROR] 15:16:07:205 Team/(8933:8938): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:16:07:205 Team/(8933:8937): Hurra, tengo algo en ready
+[ERROR] 15:16:07:205 Team/(8933:8938): Entrando al semaforo de posiciones pendientes
+[INFO] 15:16:07:215 Team/(8933:8955): El entrenador 0 capturo un squirtle!
+[INFO] 15:16:07:215 Team/(8933:8955): Pokemones: 
+[INFO] 15:16:07:217 Team/(8933:8955): 	charmander
+[INFO] 15:16:07:218 Team/(8933:8955): 	bulbasaur
+[INFO] 15:16:07:218 Team/(8933:8955): 	squirtle
+[INFO] 15:16:07:218 Team/(8933:8955): Objetivos: 
+[INFO] 15:16:07:218 Team/(8933:8955): Estado Actual: 4
+[INFO] 15:16:07:218 Team/(8933:8955): Objetivos generales:
+[INFO] 15:16:07:218 Team/(8933:8955): 	Onix
+[INFO] 15:16:07:219 Team/(8933:8955): 	Snorlax
+[INFO] 15:16:07:219 Team/(8933:8955): 	Pikachu
+[INFO] 15:16:07:219 Team/(8933:8955): 	Raichu
+[INFO] 15:16:07:219 Team/(8933:8955): Posiciones pendientes: 
+[INFO] 15:16:13:82 Team/(8933:8939): [GAMEBOY] Recibiendo mensaje del socket cliente: 20
+[INFO] 15:16:13:82 Team/(8933:8939): [GAMEBOY] Mensaje recibido
+[DEBUG] 15:16:13:82 Team/(8933:8939): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 15:16:13:82 Team/(8933:8939): Procesando APPEARED...
+[DEBUG] 15:16:13:82 Team/(8933:8939): El pokemon esta en nuestro objetivo
+[INFO] 15:16:13:82 Team/(8933:8939): Pokemon: onix
+[INFO] 15:16:13:83 Team/(8933:8939): Mensaje recibido: APPEARED_POKEMON onix 1 1.
+[ERROR] 15:16:13:83 Team/(8933:8938): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:16:13:83 Team/(8933:8937): Hurra, tengo algo en ready
+[ERROR] 15:16:13:83 Team/(8933:8938): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:16:13:83 Team/(8933:8935): El entrenador id: 1 se movio a la posicion [1,5]
+[ERROR] 15:16:14:84 Team/(8933:8935): Estimado de rafaga actual: 1.000000
+[ERROR] 15:16:14:84 Team/(8933:8935): Duracion de rafaga actual: 1.000000
+[DEBUG] 15:16:14:84 Team/(8933:8935): El entrenador id: 1 se movio a la posicion [1,4]
+[ERROR] 15:16:15:84 Team/(8933:8935): Estimado de rafaga actual: 0.000000
+[ERROR] 15:16:15:85 Team/(8933:8935): Duracion de rafaga actual: 2.000000
+[DEBUG] 15:16:15:85 Team/(8933:8935): El entrenador id: 1 se movio a la posicion [1,3]
+[ERROR] 15:16:16:86 Team/(8933:8935): Estimado de rafaga actual: -1.000000
+[ERROR] 15:16:16:86 Team/(8933:8935): Duracion de rafaga actual: 3.000000
+[DEBUG] 15:16:16:86 Team/(8933:8935): El entrenador id: 1 se movio a la posicion [1,2]
+[ERROR] 15:16:17:86 Team/(8933:8935): Estimado de rafaga actual: -2.000000
+[ERROR] 15:16:17:86 Team/(8933:8935): Duracion de rafaga actual: 4.000000
+[DEBUG] 15:16:17:86 Team/(8933:8935): El entrenador id: 1 se movio a la posicion [1,1]
+[ERROR] 15:16:18:87 Team/(8933:8935): Estimado de rafaga actual: -3.000000
+[ERROR] 15:16:18:88 Team/(8933:8935): Duracion de rafaga actual: 5.000000
+[INFO] 15:16:18:89 Team/(8933:8958): El entrenador 1 capturo un onix!
+[INFO] 15:16:18:89 Team/(8933:8958): Pokemones: 
+[INFO] 15:16:18:89 Team/(8933:8958): 	onix
+[INFO] 15:16:18:90 Team/(8933:8958): Objetivos: 
+[INFO] 15:16:18:90 Team/(8933:8958): 	Snorlax
+[INFO] 15:16:18:91 Team/(8933:8958): Estado Actual: 2
+[INFO] 15:16:18:92 Team/(8933:8958): Objetivos generales:
+[INFO] 15:16:18:92 Team/(8933:8958): 	Snorlax
+[INFO] 15:16:18:92 Team/(8933:8958): 	Pikachu
+[INFO] 15:16:18:92 Team/(8933:8958): 	Raichu
+[INFO] 15:16:18:93 Team/(8933:8958): Posiciones pendientes: 
+[INFO] 15:16:26:898 Team/(8933:8939): [GAMEBOY] Recibiendo mensaje del socket cliente: 22
+[INFO] 15:16:26:899 Team/(8933:8939): [GAMEBOY] Mensaje recibido
+[DEBUG] 15:16:26:899 Team/(8933:8939): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 15:16:26:899 Team/(8933:8939): Procesando APPEARED...
+[DEBUG] 15:16:26:899 Team/(8933:8939): El pokemon esta en nuestro objetivo
+[INFO] 15:16:26:899 Team/(8933:8939): Pokemon: snorlax
+[INFO] 15:16:26:899 Team/(8933:8939): Mensaje recibido: APPEARED_POKEMON snorlax 1 1.
+[ERROR] 15:16:26:899 Team/(8933:8938): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:16:26:899 Team/(8933:8937): Hurra, tengo algo en ready
+[ERROR] 15:16:26:899 Team/(8933:8938): Entrando al semaforo de posiciones pendientes
+[INFO] 15:16:26:903 Team/(8933:8963): El entrenador 1 capturo un snorlax!
+[INFO] 15:16:26:903 Team/(8933:8963): Pokemones: 
+[INFO] 15:16:26:903 Team/(8933:8963): 	onix
+[INFO] 15:16:26:903 Team/(8933:8963): 	snorlax
+[INFO] 15:16:26:904 Team/(8933:8963): Objetivos: 
+[INFO] 15:16:26:904 Team/(8933:8963): Estado Actual: 4
+[INFO] 15:16:26:904 Team/(8933:8963): Objetivos generales:
+[INFO] 15:16:26:904 Team/(8933:8963): 	Pikachu
+[INFO] 15:16:26:904 Team/(8933:8963): 	Raichu
+[INFO] 15:16:26:904 Team/(8933:8963): Posiciones pendientes: 
+[INFO] 15:16:40:184 Team/(8933:8939): [GAMEBOY] Recibiendo mensaje del socket cliente: 24
+[INFO] 15:16:40:185 Team/(8933:8939): [GAMEBOY] Mensaje recibido
+[DEBUG] 15:16:40:185 Team/(8933:8939): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 15:16:40:185 Team/(8933:8939): Procesando APPEARED...
+[DEBUG] 15:16:40:185 Team/(8933:8939): El pokemon esta en nuestro objetivo
+[INFO] 15:16:40:185 Team/(8933:8939): Pokemon: pikachu
+[INFO] 15:16:40:186 Team/(8933:8939): Mensaje recibido: APPEARED_POKEMON pikachu 1 1.
+[ERROR] 15:16:40:186 Team/(8933:8938): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:16:40:186 Team/(8933:8937): Hurra, tengo algo en ready
+[DEBUG] 15:16:40:186 Team/(8933:8936): El entrenador id: 2 se movio a la posicion [1,9]
+[ERROR] 15:16:41:186 Team/(8933:8936): Estimado de rafaga actual: 1.000000
+[ERROR] 15:16:41:186 Team/(8933:8936): Duracion de rafaga actual: 1.000000
+[DEBUG] 15:16:41:187 Team/(8933:8936): El entrenador id: 2 se movio a la posicion [1,8]
+[ERROR] 15:16:42:188 Team/(8933:8936): Estimado de rafaga actual: 0.000000
+[ERROR] 15:16:42:188 Team/(8933:8936): Duracion de rafaga actual: 2.000000
+[DEBUG] 15:16:42:188 Team/(8933:8936): El entrenador id: 2 se movio a la posicion [1,7]
+[ERROR] 15:16:43:189 Team/(8933:8936): Estimado de rafaga actual: -1.000000
+[ERROR] 15:16:43:189 Team/(8933:8936): Duracion de rafaga actual: 3.000000
+[DEBUG] 15:16:43:189 Team/(8933:8936): El entrenador id: 2 se movio a la posicion [1,6]
+[ERROR] 15:16:44:189 Team/(8933:8936): Estimado de rafaga actual: -2.000000
+[ERROR] 15:16:44:189 Team/(8933:8936): Duracion de rafaga actual: 4.000000
+[DEBUG] 15:16:44:189 Team/(8933:8936): El entrenador id: 2 se movio a la posicion [1,5]
+[ERROR] 15:16:45:190 Team/(8933:8936): Estimado de rafaga actual: -3.000000
+[ERROR] 15:16:45:190 Team/(8933:8936): Duracion de rafaga actual: 5.000000
+[DEBUG] 15:16:45:190 Team/(8933:8936): El entrenador id: 2 se movio a la posicion [1,4]
+[INFO] 15:16:45:527 Team/(8933:8939): [GAMEBOY] Recibiendo mensaje del socket cliente: 26
+[INFO] 15:16:45:528 Team/(8933:8939): [GAMEBOY] Mensaje recibido
+[DEBUG] 15:16:45:528 Team/(8933:8939): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 15:16:45:528 Team/(8933:8939): Procesando APPEARED...
+[DEBUG] 15:16:45:528 Team/(8933:8939): El pokemon esta en nuestro objetivo
+[INFO] 15:16:45:528 Team/(8933:8939): Pokemon: raichu
+[INFO] 15:16:45:528 Team/(8933:8939): Mensaje recibido: APPEARED_POKEMON raichu 1 1.
+[ERROR] 15:16:46:191 Team/(8933:8936): Estimado de rafaga actual: -4.000000
+[ERROR] 15:16:46:191 Team/(8933:8936): Duracion de rafaga actual: 6.000000
+[DEBUG] 15:16:46:191 Team/(8933:8936): El entrenador id: 2 se movio a la posicion [1,3]
+[ERROR] 15:16:47:192 Team/(8933:8936): Estimado de rafaga actual: -5.000000
+[ERROR] 15:16:47:192 Team/(8933:8936): Duracion de rafaga actual: 7.000000
+[DEBUG] 15:16:47:192 Team/(8933:8936): El entrenador id: 2 se movio a la posicion [1,2]
+[ERROR] 15:16:48:192 Team/(8933:8936): Estimado de rafaga actual: -6.000000
+[ERROR] 15:16:48:192 Team/(8933:8936): Duracion de rafaga actual: 8.000000
+[DEBUG] 15:16:48:193 Team/(8933:8936): El entrenador id: 2 se movio a la posicion [1,1]
+[ERROR] 15:16:49:193 Team/(8933:8936): Estimado de rafaga actual: -7.000000
+[ERROR] 15:16:49:193 Team/(8933:8936): Duracion de rafaga actual: 9.000000
+[INFO] 15:16:49:194 Team/(8933:8973): El entrenador 2 capturo un pikachu!
+[ERROR] 15:16:49:194 Team/(8933:8938): Entrando al semaforo de posiciones pendientes
+[ERROR] 15:16:49:194 Team/(8933:8938): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:16:49:194 Team/(8933:8937): Hurra, tengo algo en ready
+[INFO] 15:16:49:195 Team/(8933:8973): Pokemones: 
+[INFO] 15:16:49:195 Team/(8933:8973): 	pikachu
+[INFO] 15:16:49:196 Team/(8933:8973): Objetivos: 
+[INFO] 15:16:49:196 Team/(8933:8973): 	Raichu
+[INFO] 15:16:49:196 Team/(8933:8973): Estado Actual: 2
+[INFO] 15:16:49:197 Team/(8933:8973): Objetivos generales:
+[INFO] 15:16:49:197 Team/(8933:8973): 	Raichu
+[INFO] 15:16:49:197 Team/(8933:8973): Posiciones pendientes: 
+[INFO] 15:16:49:198 Team/(8933:8974): El entrenador 2 capturo un raichu!
+[INFO] 15:16:49:198 Team/(8933:8974): Pokemones: 
+[INFO] 15:16:49:198 Team/(8933:8974): 	pikachu
+[INFO] 15:16:49:199 Team/(8933:8974): 	raichu
+[INFO] 15:16:49:199 Team/(8933:8974): Objetivos: 
+[INFO] 15:16:49:200 Team/(8933:8974): Estado Actual: 4
+[INFO] 15:16:49:200 Team/(8933:8974): Objetivos generales:
+[INFO] 15:16:49:200 Team/(8933:8974): Posiciones pendientes: 
+[DEBUG] 15:16:49:200 Team/(8933:8974): Se comienza el analisis de deadlock
+[DEBUG] 15:19:23:279 Team/(9029:9029): Se ha iniciado un Team.
+[INFO] 15:19:23:279 Team/(9029:9029): Cantidad de posiciones: 3
+[INFO] 15:19:23:279 Team/(9029:9029): Cantidad de entrenadores: 3
+[INFO] 15:19:23:280 Team/(9029:9029): Entrenadores disponibles: 0
+[INFO] 15:19:23:280 Team/(9029:9029): Enviando GETs...
+[INFO] 15:19:23:280 Team/(9029:9029): No se pudo enviar el get
+[INFO] 15:19:23:280 Team/(9029:9029): No se pudo enviar el get
+[INFO] 15:19:23:280 Team/(9029:9029): No se pudo enviar el get
+[INFO] 15:19:23:281 Team/(9029:9029): No se pudo enviar el get
+[INFO] 15:19:23:281 Team/(9029:9029): No se pudo enviar el get
+[INFO] 15:19:23:281 Team/(9029:9029): No se pudo enviar el get
+[INFO] 15:19:23:281 Team/(9029:9029): No se pudo enviar el get
+[INFO] 15:19:23:281 Team/(9029:9029): GETs enviados
+[INFO] 15:19:23:282 Team/(9029:9035): Socket de escucha para Gameboy creado
+[INFO] 15:19:23:282 Team/(9029:9034): Entrenadores disponibles: 3
+[ERROR] 15:19:23:282 Team/(9029:9034): Entrando al semaforo de entrenadores disponibles
+[ERROR] 15:19:23:282 Team/(9029:9034): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:19:23:282 Team/(9029:9033): Se activa el planificador
+[INFO] 15:19:26:842 Team/(9029:9035): [GAMEBOY] Recibiendo mensaje del socket cliente: 15
+[INFO] 15:19:26:843 Team/(9029:9035): [GAMEBOY] Mensaje recibido
+[DEBUG] 15:19:26:843 Team/(9029:9035): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 15:19:26:843 Team/(9029:9035): Procesando APPEARED...
+[DEBUG] 15:19:26:843 Team/(9029:9035): El pokemon esta en nuestro objetivo
+[INFO] 15:19:26:843 Team/(9029:9035): Pokemon: raichu
+[INFO] 15:19:26:843 Team/(9029:9035): Mensaje recibido: APPEARED_POKEMON raichu 1 1.
+[ERROR] 15:19:26:843 Team/(9029:9034): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:19:26:843 Team/(9029:9033): Hurra, tengo algo en ready
+[ERROR] 15:19:26:843 Team/(9029:9034): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:19:26:843 Team/(9029:9030): El entrenador id: 0 se movio a la posicion [1,1]
+[INFO] 15:19:26:848 Team/(9029:9040): El entrenador 0 capturo un raichu!
+[INFO] 15:19:26:848 Team/(9029:9040): Pokemones: 
+[INFO] 15:19:26:849 Team/(9029:9040): 	raichu
+[INFO] 15:19:26:849 Team/(9029:9040): Objetivos: 
+[INFO] 15:19:26:849 Team/(9029:9040): 	Charmander
+[INFO] 15:19:26:849 Team/(9029:9040): 	Bulbasaur
+[INFO] 15:19:26:849 Team/(9029:9040): 	Squirtle
+[INFO] 15:19:26:850 Team/(9029:9040): Estado Actual: 2
+[INFO] 15:19:26:850 Team/(9029:9040): Objetivos generales:
+[INFO] 15:19:26:850 Team/(9029:9040): 	Charmander
+[INFO] 15:19:26:851 Team/(9029:9040): 	Bulbasaur
+[INFO] 15:19:26:860 Team/(9029:9040): 	Squirtle
+[INFO] 15:19:26:860 Team/(9029:9040): 	Onix
+[INFO] 15:19:26:861 Team/(9029:9040): 	Snorlax
+[INFO] 15:19:26:861 Team/(9029:9040): 	Pikachu
+[INFO] 15:19:26:861 Team/(9029:9040): Posiciones pendientes: 
+[INFO] 15:19:28:222 Team/(9029:9035): [GAMEBOY] Recibiendo mensaje del socket cliente: 16
+[INFO] 15:19:28:225 Team/(9029:9035): [GAMEBOY] Mensaje recibido
+[DEBUG] 15:19:28:225 Team/(9029:9035): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 15:19:28:225 Team/(9029:9035): Procesando APPEARED...
+[DEBUG] 15:19:28:225 Team/(9029:9035): El pokemon esta en nuestro objetivo
+[INFO] 15:19:28:225 Team/(9029:9035): Pokemon: pikachu
+[INFO] 15:19:28:225 Team/(9029:9035): Mensaje recibido: APPEARED_POKEMON pikachu 1 1.
+[ERROR] 15:19:28:225 Team/(9029:9034): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:19:28:225 Team/(9029:9033): Hurra, tengo algo en ready
+[ERROR] 15:19:28:226 Team/(9029:9034): Entrando al semaforo de posiciones pendientes
+[INFO] 15:19:28:244 Team/(9029:9044): El entrenador 0 capturo un pikachu!
+[INFO] 15:19:28:244 Team/(9029:9044): Pokemones: 
+[INFO] 15:19:28:244 Team/(9029:9044): 	raichu
+[INFO] 15:19:28:251 Team/(9029:9044): 	pikachu
+[INFO] 15:19:28:253 Team/(9029:9044): Objetivos: 
+[INFO] 15:19:28:253 Team/(9029:9044): 	Charmander
+[INFO] 15:19:28:253 Team/(9029:9044): 	Bulbasaur
+[INFO] 15:19:28:253 Team/(9029:9044): 	Squirtle
+[INFO] 15:19:28:253 Team/(9029:9044): Estado Actual: 2
+[INFO] 15:19:28:253 Team/(9029:9044): Objetivos generales:
+[INFO] 15:19:28:253 Team/(9029:9044): 	Charmander
+[INFO] 15:19:28:253 Team/(9029:9044): 	Bulbasaur
+[INFO] 15:19:28:253 Team/(9029:9044): 	Squirtle
+[INFO] 15:19:28:254 Team/(9029:9044): 	Onix
+[INFO] 15:19:28:254 Team/(9029:9044): 	Snorlax
+[INFO] 15:19:28:254 Team/(9029:9044): Posiciones pendientes: 
+[INFO] 15:19:30:855 Team/(9029:9035): [GAMEBOY] Recibiendo mensaje del socket cliente: 18
+[INFO] 15:19:30:856 Team/(9029:9035): [GAMEBOY] Mensaje recibido
+[DEBUG] 15:19:30:856 Team/(9029:9035): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 15:19:30:856 Team/(9029:9035): Procesando APPEARED...
+[DEBUG] 15:19:30:856 Team/(9029:9035): El pokemon esta en nuestro objetivo
+[INFO] 15:19:30:856 Team/(9029:9035): Pokemon: snorlax
+[INFO] 15:19:30:856 Team/(9029:9035): Mensaje recibido: APPEARED_POKEMON snorlax 1 1.
+[ERROR] 15:19:30:856 Team/(9029:9034): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:19:30:856 Team/(9029:9033): Hurra, tengo algo en ready
+[ERROR] 15:19:30:856 Team/(9029:9034): Entrando al semaforo de posiciones pendientes
+[INFO] 15:19:30:875 Team/(9029:9047): El entrenador 0 capturo un snorlax!
+[INFO] 15:19:30:881 Team/(9029:9047): Pokemones: 
+[INFO] 15:19:30:882 Team/(9029:9047): 	raichu
+[INFO] 15:19:30:882 Team/(9029:9047): 	pikachu
+[INFO] 15:19:30:882 Team/(9029:9047): 	snorlax
+[INFO] 15:19:30:882 Team/(9029:9047): Objetivos: 
+[INFO] 15:19:30:882 Team/(9029:9047): 	Charmander
+[INFO] 15:19:30:884 Team/(9029:9047): 	Bulbasaur
+[INFO] 15:19:30:884 Team/(9029:9047): 	Squirtle
+[INFO] 15:19:30:885 Team/(9029:9047): Estado Actual: 2
+[INFO] 15:19:30:885 Team/(9029:9047): Objetivos generales:
+[INFO] 15:19:30:885 Team/(9029:9047): 	Charmander
+[INFO] 15:19:30:885 Team/(9029:9047): 	Bulbasaur
+[INFO] 15:19:30:885 Team/(9029:9047): 	Squirtle
+[INFO] 15:19:30:885 Team/(9029:9047): 	Onix
+[INFO] 15:19:30:885 Team/(9029:9047): Posiciones pendientes: 
+[INFO] 15:19:33:776 Team/(9029:9035): [GAMEBOY] Recibiendo mensaje del socket cliente: 20
+[INFO] 15:19:33:777 Team/(9029:9035): [GAMEBOY] Mensaje recibido
+[DEBUG] 15:19:33:777 Team/(9029:9035): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 15:19:33:777 Team/(9029:9035): Procesando APPEARED...
+[DEBUG] 15:19:33:777 Team/(9029:9035): El pokemon esta en nuestro objetivo
+[INFO] 15:19:33:777 Team/(9029:9035): Pokemon: onix
+[INFO] 15:19:33:777 Team/(9029:9035): Mensaje recibido: APPEARED_POKEMON onix 1 1.
+[ERROR] 15:19:33:777 Team/(9029:9034): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:19:33:777 Team/(9029:9033): Hurra, tengo algo en ready
+[ERROR] 15:19:33:777 Team/(9029:9034): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:19:33:778 Team/(9029:9031): El entrenador id: 1 se movio a la posicion [1,5]
+[DEBUG] 15:19:33:778 Team/(9029:9031): El entrenador id: 1 se movio a la posicion [1,4]
+[DEBUG] 15:19:33:779 Team/(9029:9031): El entrenador id: 1 se movio a la posicion [1,3]
+[DEBUG] 15:19:33:780 Team/(9029:9031): El entrenador id: 1 se movio a la posicion [1,2]
+[DEBUG] 15:19:33:781 Team/(9029:9031): El entrenador id: 1 se movio a la posicion [1,1]
+[INFO] 15:19:33:790 Team/(9029:9050): El entrenador 1 capturo un onix!
+[INFO] 15:19:33:790 Team/(9029:9050): Pokemones: 
+[INFO] 15:19:33:790 Team/(9029:9050): 	onix
+[INFO] 15:19:33:790 Team/(9029:9050): Objetivos: 
+[INFO] 15:19:33:790 Team/(9029:9050): 	Snorlax
+[INFO] 15:19:33:791 Team/(9029:9050): Estado Actual: 2
+[INFO] 15:19:33:791 Team/(9029:9050): Objetivos generales:
+[INFO] 15:19:33:791 Team/(9029:9050): 	Charmander
+[INFO] 15:19:33:791 Team/(9029:9050): 	Bulbasaur
+[INFO] 15:19:33:791 Team/(9029:9050): 	Squirtle
+[INFO] 15:19:33:791 Team/(9029:9050): Posiciones pendientes: 
+[INFO] 15:19:37:288 Team/(9029:9035): [GAMEBOY] Recibiendo mensaje del socket cliente: 22
+[INFO] 15:19:37:289 Team/(9029:9035): [GAMEBOY] Mensaje recibido
+[DEBUG] 15:19:37:289 Team/(9029:9035): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 15:19:37:289 Team/(9029:9035): Procesando APPEARED...
+[DEBUG] 15:19:37:289 Team/(9029:9035): El pokemon esta en nuestro objetivo
+[INFO] 15:19:37:289 Team/(9029:9035): Pokemon: squirtle
+[INFO] 15:19:37:289 Team/(9029:9035): Mensaje recibido: APPEARED_POKEMON squirtle 1 1.
+[ERROR] 15:19:37:289 Team/(9029:9034): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:19:37:289 Team/(9029:9033): Hurra, tengo algo en ready
+[ERROR] 15:19:37:289 Team/(9029:9034): Entrando al semaforo de posiciones pendientes
+[INFO] 15:19:37:299 Team/(9029:9053): El entrenador 1 capturo un squirtle!
+[INFO] 15:19:37:299 Team/(9029:9053): Pokemones: 
+[INFO] 15:19:37:300 Team/(9029:9053): 	onix
+[INFO] 15:19:37:300 Team/(9029:9053): 	squirtle
+[INFO] 15:19:37:301 Team/(9029:9053): Objetivos: 
+[INFO] 15:19:37:301 Team/(9029:9053): 	Snorlax
+[INFO] 15:19:37:302 Team/(9029:9053): Estado Actual: 2
+[INFO] 15:19:37:302 Team/(9029:9053): Objetivos generales:
+[INFO] 15:19:37:302 Team/(9029:9053): 	Charmander
+[INFO] 15:19:37:302 Team/(9029:9053): 	Bulbasaur
+[INFO] 15:19:37:302 Team/(9029:9053): Posiciones pendientes: 
+[INFO] 15:19:41:407 Team/(9029:9035): [GAMEBOY] Recibiendo mensaje del socket cliente: 24
+[INFO] 15:19:41:407 Team/(9029:9035): [GAMEBOY] Mensaje recibido
+[DEBUG] 15:19:41:407 Team/(9029:9035): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 15:19:41:407 Team/(9029:9035): Procesando APPEARED...
+[DEBUG] 15:19:41:407 Team/(9029:9035): El pokemon esta en nuestro objetivo
+[INFO] 15:19:41:408 Team/(9029:9035): Pokemon: bulbasaur
+[INFO] 15:19:41:408 Team/(9029:9035): Mensaje recibido: APPEARED_POKEMON bulbasaur 1 1.
+[ERROR] 15:19:41:408 Team/(9029:9034): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:19:41:408 Team/(9029:9033): Hurra, tengo algo en ready
+[DEBUG] 15:19:41:408 Team/(9029:9032): El entrenador id: 2 se movio a la posicion [1,9]
+[DEBUG] 15:19:41:411 Team/(9029:9032): El entrenador id: 2 se movio a la posicion [1,8]
+[DEBUG] 15:19:41:414 Team/(9029:9032): El entrenador id: 2 se movio a la posicion [1,7]
+[DEBUG] 15:19:41:415 Team/(9029:9032): El entrenador id: 2 se movio a la posicion [1,6]
+[DEBUG] 15:19:41:416 Team/(9029:9032): El entrenador id: 2 se movio a la posicion [1,5]
+[DEBUG] 15:19:41:416 Team/(9029:9032): El entrenador id: 2 se movio a la posicion [1,4]
+[DEBUG] 15:19:41:418 Team/(9029:9032): El entrenador id: 2 se movio a la posicion [1,3]
+[DEBUG] 15:19:41:418 Team/(9029:9032): El entrenador id: 2 se movio a la posicion [1,2]
+[DEBUG] 15:19:41:419 Team/(9029:9032): El entrenador id: 2 se movio a la posicion [1,1]
+[INFO] 15:19:41:423 Team/(9029:9063): El entrenador 2 capturo un bulbasaur!
+[ERROR] 15:19:41:423 Team/(9029:9034): Entrando al semaforo de posiciones pendientes
+[INFO] 15:19:41:423 Team/(9029:9063): Pokemones: 
+[INFO] 15:19:41:423 Team/(9029:9063): 	bulbasaur
+[INFO] 15:19:41:424 Team/(9029:9063): Objetivos: 
+[INFO] 15:19:41:424 Team/(9029:9063): 	Pikachu
+[INFO] 15:19:41:424 Team/(9029:9063): 	Raichu
+[INFO] 15:19:41:424 Team/(9029:9063): Estado Actual: 2
+[INFO] 15:19:41:424 Team/(9029:9063): Objetivos generales:
+[INFO] 15:19:41:425 Team/(9029:9063): 	Charmander
+[INFO] 15:19:41:425 Team/(9029:9063): Posiciones pendientes: 
+[INFO] 15:19:45:447 Team/(9029:9035): [GAMEBOY] Recibiendo mensaje del socket cliente: 26
+[INFO] 15:19:45:448 Team/(9029:9035): [GAMEBOY] Mensaje recibido
+[DEBUG] 15:19:45:448 Team/(9029:9035): [GAMEBOY] Llegó un mensaje de la cola APPEARED
+[INFO] 15:19:45:448 Team/(9029:9035): Procesando APPEARED...
+[DEBUG] 15:19:45:448 Team/(9029:9035): El pokemon esta en nuestro objetivo
+[INFO] 15:19:45:448 Team/(9029:9035): Pokemon: charmander
+[INFO] 15:19:45:448 Team/(9029:9035): Mensaje recibido: APPEARED_POKEMON charmander 1 1.
+[ERROR] 15:19:45:448 Team/(9029:9034): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:19:45:448 Team/(9029:9033): Hurra, tengo algo en ready
+[INFO] 15:19:45:460 Team/(9029:9068): El entrenador 2 capturo un charmander!
+[INFO] 15:19:45:460 Team/(9029:9068): Pokemones: 
+[INFO] 15:19:45:461 Team/(9029:9068): 	bulbasaur
+[INFO] 15:19:45:461 Team/(9029:9068): 	charmander
+[INFO] 15:19:45:461 Team/(9029:9068): Objetivos: 
+[INFO] 15:19:45:463 Team/(9029:9068): 	Pikachu
+[INFO] 15:19:45:463 Team/(9029:9068): 	Raichu
+[INFO] 15:19:45:463 Team/(9029:9068): Estado Actual: 2
+[INFO] 15:19:45:463 Team/(9029:9068): Objetivos generales:
+[INFO] 15:19:45:463 Team/(9029:9068): Posiciones pendientes: 
+[DEBUG] 15:19:45:463 Team/(9029:9068): Se comienza el analisis de deadlock
+[DEBUG] 15:20:59:542 Team/(9167:9167): Se ha iniciado un Team.
+[INFO] 15:20:59:542 Team/(9167:9167): Cantidad de posiciones: 3
+[INFO] 15:20:59:542 Team/(9167:9167): Cantidad de entrenadores: 3
+[INFO] 15:20:59:542 Team/(9167:9167): Entrenadores disponibles: 0
+[INFO] 15:20:59:542 Team/(9167:9167): Enviando GETs...
+[INFO] 15:20:59:543 Team/(9167:9167): No se pudo enviar el get
+[INFO] 15:20:59:543 Team/(9167:9167): No se pudo enviar el get
+[INFO] 15:20:59:543 Team/(9167:9167): No se pudo enviar el get
+[INFO] 15:20:59:543 Team/(9167:9167): No se pudo enviar el get
+[INFO] 15:20:59:544 Team/(9167:9167): No se pudo enviar el get
+[INFO] 15:20:59:544 Team/(9167:9167): No se pudo enviar el get
+[INFO] 15:20:59:544 Team/(9167:9167): No se pudo enviar el get
+[INFO] 15:20:59:544 Team/(9167:9173): Socket de escucha para Gameboy creado
+[INFO] 15:20:59:544 Team/(9167:9167): GETs enviados
+[INFO] 15:20:59:545 Team/(9167:9172): Entrenadores disponibles: 3
+[ERROR] 15:20:59:545 Team/(9167:9172): Entrando al semaforo de entrenadores disponibles
+[ERROR] 15:20:59:545 Team/(9167:9172): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:20:59:545 Team/(9167:9171): Se activa el planificador
+[INFO] 15:21:33:767 Team/(9167:9167): 	Charmander
+[INFO] 15:21:33:768 Team/(9167:9167): 	Bulbasaur
+[INFO] 15:21:33:768 Team/(9167:9167): 	Squirtle
+[INFO] 15:21:33:769 Team/(9167:9167): 	Onix
+[INFO] 15:21:33:769 Team/(9167:9167): 	Snorlax
+[INFO] 15:21:33:770 Team/(9167:9167): 	Pikachu
+[INFO] 15:21:33:770 Team/(9167:9167): 	Raichu
+[INFO] 15:21:33:771 Team/(9167:9167): El proceso Team ha finalizado.
+[INFO] 15:21:33:775 Team/(9167:9167): Ciclos de CPU totales = 0
+[INFO] 15:21:33:775 Team/(9167:9167): Cambios de contexto realizados = 0
+[INFO] 15:21:33:775 Team/(9167:9167): Deadlocks detectados y resueltos = 0
+[DEBUG] 15:21:47:494 Team/(9239:9239): Se ha iniciado un Team.
+[INFO] 15:21:47:494 Team/(9239:9239): Cantidad de posiciones: 3
+[INFO] 15:21:47:494 Team/(9239:9239): Cantidad de entrenadores: 3
+[INFO] 15:21:47:494 Team/(9239:9239): Entrenadores disponibles: 0
+[INFO] 15:21:47:495 Team/(9239:9239): Enviando GETs...
+[INFO] 15:21:47:495 Team/(9239:9239): No se pudo enviar el get
+[INFO] 15:21:47:495 Team/(9239:9239): No se pudo enviar el get
+[INFO] 15:21:47:495 Team/(9239:9239): No se pudo enviar el get
+[INFO] 15:21:47:496 Team/(9239:9239): No se pudo enviar el get
+[INFO] 15:21:47:496 Team/(9239:9239): No se pudo enviar el get
+[INFO] 15:21:47:496 Team/(9239:9246): Socket de escucha para Gameboy creado
+[INFO] 15:21:47:496 Team/(9239:9239): No se pudo enviar el get
+[INFO] 15:21:47:497 Team/(9239:9245): Entrenadores disponibles: 3
+[INFO] 15:21:47:497 Team/(9239:9239): No se pudo enviar el get
+[ERROR] 15:21:47:497 Team/(9239:9245): Entrando al semaforo de entrenadores disponibles
+[ERROR] 15:21:47:497 Team/(9239:9245): Entrando al semaforo de posiciones pendientes
+[INFO] 15:21:47:497 Team/(9239:9239): GETs enviados
+[DEBUG] 15:21:47:497 Team/(9239:9244): Se activa el planificador
+[INFO] 15:21:56:148 Team/(9239:9239): 	Charmander
+[INFO] 15:21:56:148 Team/(9239:9239): 	Bulbasaur
+[INFO] 15:21:56:148 Team/(9239:9239): 	Squirtle
+[INFO] 15:21:56:149 Team/(9239:9239): 	Onix
+[INFO] 15:21:56:149 Team/(9239:9239): 	Snorlax
+[INFO] 15:21:56:150 Team/(9239:9239): 	Pikachu
+[INFO] 15:21:56:151 Team/(9239:9239): 	Raichu
+[INFO] 15:21:56:154 Team/(9239:9239): El proceso Team ha finalizado.
+[INFO] 15:21:56:155 Team/(9239:9239): Ciclos de CPU totales = 0
+[INFO] 15:21:56:155 Team/(9239:9239): Cambios de contexto realizados = 0
+[INFO] 15:21:56:155 Team/(9239:9239): Deadlocks detectados y resueltos = 0
+[DEBUG] 15:22:15:36 Team/(9292:9292): Se ha iniciado un Team.
+[INFO] 15:22:15:43 Team/(9292:9292): Cantidad de posiciones: 3
+[INFO] 15:22:15:43 Team/(9292:9292): Cantidad de entrenadores: 3
+[INFO] 15:22:15:44 Team/(9292:9292): Entrenadores disponibles: 0
+[INFO] 15:22:15:44 Team/(9292:9292): Enviando GETs...
+[INFO] 15:22:15:57 Team/(9292:9292): GETs enviados
+[INFO] 15:22:15:57 Team/(9292:9298): Entrenadores disponibles: 3
+[INFO] 15:22:15:57 Team/(9292:9299): Socket de escucha para Gameboy creado
+[ERROR] 15:22:15:58 Team/(9292:9298): Entrando al semaforo de entrenadores disponibles
+[ERROR] 15:22:15:58 Team/(9292:9298): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:22:15:58 Team/(9292:9297): Se activa el planificador
+[DEBUG] 15:22:15:58 Team/(9292:9300): ID obtenido = 269
+[INFO] 15:22:15:66 Team/(9292:9300): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 15:22:15:66 Team/(9292:9300): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 15:22:15:66 Team/(9292:9300): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 15:22:15:67 Team/(9292:9313): Esperando mensajes de broker...
+[INFO] 15:22:15:67 Team/(9292:9312): Esperando mensajes de broker...
+[INFO] 15:22:15:71 Team/(9292:9311): Esperando mensajes de broker...
+[INFO] 15:22:15:75 Team/(9292:9311): Recibido un mensaje de broker
+[INFO] 15:22:15:75 Team/(9292:9311): Esperando mensajes de broker...
+[INFO] 15:22:15:79 Team/(9292:9315): Procesando LOCALIZED...
+[DEBUG] 15:22:15:79 Team/(9292:9315): Pokemon: Snorlax
+[INFO] 15:22:15:79 Team/(9292:9315): Mensaje recibido: LOCALIZED_POKEMON Snorlax con 0 pokemones
+[INFO] 15:25:02:837 Team/(9292:9312): Recibido un mensaje de broker
+[INFO] 15:25:02:838 Team/(9292:9312): Esperando mensajes de broker...
+[INFO] 15:25:02:839 Team/(9292:9445): Procesando APPEARED...
+[DEBUG] 15:25:02:840 Team/(9292:9445): El pokemon esta en nuestro objetivo
+[INFO] 15:25:02:840 Team/(9292:9445): Pokemon: Pikachu
+[INFO] 15:25:02:840 Team/(9292:9445): Mensaje recibido: APPEARED_POKEMON Pikachu 9 9.
+[ERROR] 15:25:02:841 Team/(9292:9298): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:25:02:841 Team/(9292:9297): Hurra, tengo algo en ready
+[ERROR] 15:25:02:841 Team/(9292:9298): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:25:02:841 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [1,9]
+[DEBUG] 15:25:02:842 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [2,9]
+[DEBUG] 15:25:02:842 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [3,9]
+[DEBUG] 15:25:02:842 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [4,9]
+[DEBUG] 15:25:02:843 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [5,9]
+[DEBUG] 15:25:02:843 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [6,9]
+[DEBUG] 15:25:02:843 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [7,9]
+[DEBUG] 15:25:02:843 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [8,9]
+[DEBUG] 15:25:02:844 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [9,9]
+[DEBUG] 15:25:02:844 Team/(9292:9296): Enviando mensaje CATCH...
+[INFO] 15:25:03:363 Team/(9292:9312): Recibido un mensaje de broker
+[INFO] 15:25:03:364 Team/(9292:9312): Esperando mensajes de broker...
+[INFO] 15:25:03:365 Team/(9292:9450): Procesando APPEARED...
+[DEBUG] 15:25:03:366 Team/(9292:9450): El pokemon esta en nuestro objetivo
+[INFO] 15:25:03:366 Team/(9292:9450): Pokemon: Squirtle
+[INFO] 15:25:03:366 Team/(9292:9450): Mensaje recibido: APPEARED_POKEMON Squirtle 5 2.
+[ERROR] 15:25:03:367 Team/(9292:9298): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:25:03:367 Team/(9292:9297): Hurra, tengo algo en ready
+[DEBUG] 15:25:03:367 Team/(9292:9294): El entrenador id: 0 se movio a la posicion [1,1]
+[ERROR] 15:25:03:367 Team/(9292:9298): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:25:03:367 Team/(9292:9294): El entrenador id: 0 se movio a la posicion [1,2]
+[DEBUG] 15:25:03:368 Team/(9292:9294): El entrenador id: 0 se movio a la posicion [2,2]
+[DEBUG] 15:25:03:368 Team/(9292:9294): El entrenador id: 0 se movio a la posicion [3,2]
+[DEBUG] 15:25:03:368 Team/(9292:9294): El entrenador id: 0 se movio a la posicion [4,2]
+[DEBUG] 15:25:03:369 Team/(9292:9294): El entrenador id: 0 se movio a la posicion [5,2]
+[DEBUG] 15:25:03:369 Team/(9292:9294): Enviando mensaje CATCH...
+[INFO] 15:25:03:880 Team/(9292:9312): Recibido un mensaje de broker
+[INFO] 15:25:03:880 Team/(9292:9312): Esperando mensajes de broker...
+[INFO] 15:25:03:882 Team/(9292:9455): Procesando APPEARED...
+[DEBUG] 15:25:03:882 Team/(9292:9455): El pokemon esta en nuestro objetivo
+[INFO] 15:25:03:882 Team/(9292:9455): Pokemon: Onix
+[INFO] 15:25:03:883 Team/(9292:9455): Mensaje recibido: APPEARED_POKEMON Onix 2 8.
+[ERROR] 15:25:03:883 Team/(9292:9298): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:25:03:883 Team/(9292:9297): Hurra, tengo algo en ready
+[DEBUG] 15:25:03:883 Team/(9292:9295): El entrenador id: 1 se movio a la posicion [1,5]
+[DEBUG] 15:25:03:884 Team/(9292:9295): El entrenador id: 1 se movio a la posicion [1,6]
+[DEBUG] 15:25:03:884 Team/(9292:9295): El entrenador id: 1 se movio a la posicion [2,6]
+[DEBUG] 15:25:03:885 Team/(9292:9295): El entrenador id: 1 se movio a la posicion [2,7]
+[DEBUG] 15:25:03:885 Team/(9292:9295): El entrenador id: 1 se movio a la posicion [2,8]
+[DEBUG] 15:25:03:886 Team/(9292:9295): Enviando mensaje CATCH...
+[INFO] 15:25:04:412 Team/(9292:9312): Recibido un mensaje de broker
+[INFO] 15:25:04:412 Team/(9292:9312): Esperando mensajes de broker...
+[INFO] 15:25:04:414 Team/(9292:9460): Procesando APPEARED...
+[ERROR] 15:25:04:414 Team/(9292:9460): No me interesa el pokemon Gengar
+[INFO] 15:25:04:861 Team/(9292:9313): Recibido un mensaje de broker
+[INFO] 15:25:04:862 Team/(9292:9313): Esperando mensajes de broker...
+[INFO] 15:25:04:864 Team/(9292:9464): Procesando CAUGHT...
+[DEBUG] 15:25:04:864 Team/(9292:9464): Se recibio un CAUGHT valido
+[INFO] 15:25:04:864 Team/(9292:9464): El entrenador 2 capturo un Pikachu!
+[INFO] 15:25:04:865 Team/(9292:9464): Pokemones: 
+[INFO] 15:25:04:865 Team/(9292:9464): 	Pikachu
+[INFO] 15:25:04:866 Team/(9292:9464): Objetivos: 
+[INFO] 15:25:04:866 Team/(9292:9464): 	Raichu
+[INFO] 15:25:04:866 Team/(9292:9464): Estado Actual: 2
+[INFO] 15:25:04:867 Team/(9292:9464): Objetivos generales:
+[INFO] 15:25:04:867 Team/(9292:9464): 	Charmander
+[INFO] 15:25:04:868 Team/(9292:9464): 	Bulbasaur
+[INFO] 15:25:04:869 Team/(9292:9464): 	Squirtle
+[INFO] 15:25:04:869 Team/(9292:9464): 	Onix
+[INFO] 15:25:04:871 Team/(9292:9464): 	Snorlax
+[INFO] 15:25:04:871 Team/(9292:9464): 	Raichu
+[INFO] 15:25:04:871 Team/(9292:9464): Posiciones pendientes: 
+[ERROR] 15:25:04:871 Team/(9292:9298): Entrando al semaforo de posiciones pendientes
+[INFO] 15:25:04:871 Team/(9292:9464): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:25:05:370 Team/(9292:9312): Recibido un mensaje de broker
+[INFO] 15:25:05:370 Team/(9292:9312): Esperando mensajes de broker...
+[INFO] 15:25:05:371 Team/(9292:9467): Procesando APPEARED...
+[INFO] 15:25:05:437 Team/(9292:9312): Recibido un mensaje de broker
+[INFO] 15:25:05:437 Team/(9292:9312): Esperando mensajes de broker...
+[INFO] 15:25:05:437 Team/(9292:9468): Procesando APPEARED...
+[DEBUG] 15:25:05:439 Team/(9292:9468): El pokemon esta en nuestro objetivo
+[INFO] 15:25:05:439 Team/(9292:9468): Pokemon: Charmander
+[INFO] 15:25:05:439 Team/(9292:9468): Mensaje recibido: APPEARED_POKEMON Charmander 5 5.
+[ERROR] 15:25:05:439 Team/(9292:9298): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:25:05:439 Team/(9292:9297): Hurra, tengo algo en ready
+[DEBUG] 15:25:05:440 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [8,9]
+[DEBUG] 15:25:05:441 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [8,8]
+[DEBUG] 15:25:05:442 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [7,8]
+[DEBUG] 15:25:05:443 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [7,7]
+[DEBUG] 15:25:05:443 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [6,7]
+[DEBUG] 15:25:05:444 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [6,6]
+[DEBUG] 15:25:05:448 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [5,6]
+[DEBUG] 15:25:05:448 Team/(9292:9296): El entrenador id: 2 se movio a la posicion [5,5]
+[DEBUG] 15:25:05:451 Team/(9292:9296): Enviando mensaje CATCH...
+[INFO] 15:25:05:901 Team/(9292:9313): Recibido un mensaje de broker
+[INFO] 15:25:05:902 Team/(9292:9313): Esperando mensajes de broker...
+[INFO] 15:25:05:903 Team/(9292:9470): Procesando CAUGHT...
+[DEBUG] 15:25:05:904 Team/(9292:9470): Se recibio un CAUGHT valido
+[INFO] 15:25:05:904 Team/(9292:9470): El entrenador 1 capturo un Onix!
+[INFO] 15:25:05:904 Team/(9292:9470): Pokemones: 
+[INFO] 15:25:05:905 Team/(9292:9470): 	Onix
+[INFO] 15:25:05:905 Team/(9292:9470): Objetivos: 
+[INFO] 15:25:05:906 Team/(9292:9470): 	Snorlax
+[INFO] 15:25:05:906 Team/(9292:9470): Estado Actual: 2
+[INFO] 15:25:05:907 Team/(9292:9470): Objetivos generales:
+[INFO] 15:25:05:907 Team/(9292:9470): 	Charmander
+[INFO] 15:25:05:907 Team/(9292:9470): 	Bulbasaur
+[INFO] 15:25:05:908 Team/(9292:9470): 	Squirtle
+[INFO] 15:25:05:908 Team/(9292:9470): 	Snorlax
+[INFO] 15:25:05:909 Team/(9292:9470): 	Raichu
+[INFO] 15:25:05:909 Team/(9292:9470): Posiciones pendientes: 
+[ERROR] 15:25:05:909 Team/(9292:9298): Entrando al semaforo de posiciones pendientes
+[INFO] 15:25:05:909 Team/(9292:9470): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:25:05:968 Team/(9292:9312): Recibido un mensaje de broker
+[INFO] 15:25:05:968 Team/(9292:9312): Esperando mensajes de broker...
+[INFO] 15:25:05:971 Team/(9292:9471): Procesando APPEARED...
+[DEBUG] 15:25:05:971 Team/(9292:9471): El pokemon esta en nuestro objetivo
+[INFO] 15:25:05:971 Team/(9292:9471): Pokemon: Bulbasaur
+[INFO] 15:25:05:971 Team/(9292:9471): Mensaje recibido: APPEARED_POKEMON Bulbasaur 5 5.
+[ERROR] 15:25:05:971 Team/(9292:9298): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:25:05:971 Team/(9292:9297): Hurra, tengo algo en ready
+[DEBUG] 15:25:05:971 Team/(9292:9295): El entrenador id: 1 se movio a la posicion [3,8]
+[DEBUG] 15:25:05:972 Team/(9292:9295): El entrenador id: 1 se movio a la posicion [3,7]
+[DEBUG] 15:25:05:973 Team/(9292:9295): El entrenador id: 1 se movio a la posicion [4,7]
+[DEBUG] 15:25:05:974 Team/(9292:9295): El entrenador id: 1 se movio a la posicion [4,6]
+[DEBUG] 15:25:05:974 Team/(9292:9295): El entrenador id: 1 se movio a la posicion [5,6]
+[DEBUG] 15:25:05:975 Team/(9292:9295): El entrenador id: 1 se movio a la posicion [5,5]
+[DEBUG] 15:25:05:976 Team/(9292:9295): Enviando mensaje CATCH...
+[INFO] 15:25:06:496 Team/(9292:9312): Recibido un mensaje de broker
+[INFO] 15:25:06:496 Team/(9292:9312): Esperando mensajes de broker...
+[INFO] 15:25:06:497 Team/(9292:9473): Procesando APPEARED...
+[DEBUG] 15:25:06:498 Team/(9292:9473): El pokemon esta en nuestro objetivo
+[INFO] 15:25:06:498 Team/(9292:9473): Pokemon: Snorlax
+[INFO] 15:25:06:498 Team/(9292:9473): Mensaje recibido: APPEARED_POKEMON Snorlax 5 5.
+[INFO] 15:25:07:27 Team/(9292:9312): Recibido un mensaje de broker
+[INFO] 15:25:07:28 Team/(9292:9312): Esperando mensajes de broker...
+[INFO] 15:25:07:29 Team/(9292:9474): Procesando APPEARED...
+[DEBUG] 15:25:07:30 Team/(9292:9474): El pokemon esta en nuestro objetivo
+[INFO] 15:25:07:30 Team/(9292:9474): Pokemon: Raichu
+[INFO] 15:25:07:30 Team/(9292:9474): Mensaje recibido: APPEARED_POKEMON Raichu 5 5.
+[INFO] 15:25:07:384 Team/(9292:9313): Recibido un mensaje de broker
+[INFO] 15:25:07:384 Team/(9292:9313): Esperando mensajes de broker...
+[INFO] 15:25:07:385 Team/(9292:9475): Procesando CAUGHT...
+[DEBUG] 15:25:07:386 Team/(9292:9475): Se recibio un CAUGHT valido
+[INFO] 15:25:07:386 Team/(9292:9475): El entrenador 0 capturo un Squirtle!
+[INFO] 15:25:07:386 Team/(9292:9475): Pokemones: 
+[INFO] 15:25:07:387 Team/(9292:9475): 	Squirtle
+[INFO] 15:25:07:387 Team/(9292:9475): Objetivos: 
+[INFO] 15:25:07:388 Team/(9292:9475): 	Charmander
+[INFO] 15:25:07:388 Team/(9292:9475): 	Bulbasaur
+[INFO] 15:25:07:389 Team/(9292:9475): Estado Actual: 2
+[INFO] 15:25:07:389 Team/(9292:9475): Objetivos generales:
+[INFO] 15:25:07:389 Team/(9292:9475): 	Charmander
+[INFO] 15:25:07:390 Team/(9292:9475): 	Bulbasaur
+[INFO] 15:25:07:390 Team/(9292:9475): 	Snorlax
+[INFO] 15:25:07:390 Team/(9292:9475): 	Raichu
+[INFO] 15:25:07:391 Team/(9292:9475): Posiciones pendientes: 
+[INFO] 15:25:07:391 Team/(9292:9475): Snorlax
+[INFO] 15:25:07:391 Team/(9292:9475): 5-5
+[INFO] 15:25:07:391 Team/(9292:9475): Raichu
+[INFO] 15:25:07:391 Team/(9292:9475): 5-5
+[ERROR] 15:25:07:392 Team/(9292:9298): Entrando al semaforo de posiciones pendientes
+[ERROR] 15:25:07:392 Team/(9292:9298): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:25:07:392 Team/(9292:9297): Hurra, tengo algo en ready
+[DEBUG] 15:25:07:392 Team/(9292:9294): El entrenador id: 0 se movio a la posicion [5,3]
+[INFO] 15:25:07:392 Team/(9292:9475): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 15:25:07:392 Team/(9292:9294): El entrenador id: 0 se movio a la posicion [5,4]
+[DEBUG] 15:25:07:393 Team/(9292:9294): El entrenador id: 0 se movio a la posicion [5,5]
+[DEBUG] 15:25:07:393 Team/(9292:9294): Enviando mensaje CATCH...
+[INFO] 15:25:07:457 Team/(9292:9313): Recibido un mensaje de broker
+[INFO] 15:25:07:457 Team/(9292:9313): Esperando mensajes de broker...
+[INFO] 15:25:07:459 Team/(9292:9477): Procesando CAUGHT...
+[DEBUG] 15:25:07:459 Team/(9292:9477): Se recibio un CAUGHT valido
+[INFO] 15:25:07:459 Team/(9292:9477): El entrenador 2 capturo un Charmander!
+[INFO] 15:25:07:459 Team/(9292:9477): Pokemones: 
+[INFO] 15:25:07:459 Team/(9292:9477): 	Pikachu
+[INFO] 15:25:07:459 Team/(9292:9477): 	Charmander
+[INFO] 15:25:07:459 Team/(9292:9477): Objetivos: 
+[INFO] 15:25:07:459 Team/(9292:9477): 	Raichu
+[INFO] 15:25:07:459 Team/(9292:9477): Estado Actual: 2
+[INFO] 15:25:07:459 Team/(9292:9477): Objetivos generales:
+[INFO] 15:25:07:459 Team/(9292:9477): 	Bulbasaur
+[INFO] 15:25:07:459 Team/(9292:9477): 	Snorlax
+[INFO] 15:25:07:459 Team/(9292:9477): 	Raichu
+[INFO] 15:25:07:459 Team/(9292:9477): Posiciones pendientes: 
+[INFO] 15:25:07:459 Team/(9292:9477): Raichu
+[INFO] 15:25:07:459 Team/(9292:9477): 5-5
+[INFO] 15:25:07:459 Team/(9292:9477): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:25:07:996 Team/(9292:9313): Recibido un mensaje de broker
+[INFO] 15:25:07:996 Team/(9292:9313): Esperando mensajes de broker...
+[INFO] 15:25:07:998 Team/(9292:9478): Procesando CAUGHT...
+[DEBUG] 15:25:07:998 Team/(9292:9478): Se recibio un CAUGHT valido
+[INFO] 15:25:07:999 Team/(9292:9478): El entrenador 1 capturo un Bulbasaur!
+[INFO] 15:25:07:999 Team/(9292:9478): Pokemones: 
+[INFO] 15:25:07:0 Team/(9292:9478): 	Onix
+[INFO] 15:25:07:0 Team/(9292:9478): 	Bulbasaur
+[INFO] 15:25:07:1 Team/(9292:9478): Objetivos: 
+[INFO] 15:25:07:1 Team/(9292:9478): 	Snorlax
+[INFO] 15:25:07:1 Team/(9292:9478): Estado Actual: 2
+[INFO] 15:25:07:2 Team/(9292:9478): Objetivos generales:
+[INFO] 15:25:07:2 Team/(9292:9478): 	Snorlax
+[INFO] 15:25:08:3 Team/(9292:9478): 	Raichu
+[INFO] 15:25:08:3 Team/(9292:9478): Posiciones pendientes: 
+[INFO] 15:25:08:3 Team/(9292:9478): Raichu
+[INFO] 15:25:08:3 Team/(9292:9478): 5-5
+[INFO] 15:25:08:3 Team/(9292:9478): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:25:09:407 Team/(9292:9313): Recibido un mensaje de broker
+[INFO] 15:25:09:407 Team/(9292:9313): Esperando mensajes de broker...
+[INFO] 15:25:09:408 Team/(9292:9479): Procesando CAUGHT...
+[DEBUG] 15:25:09:408 Team/(9292:9479): Se recibio un CAUGHT valido
+[INFO] 15:25:09:409 Team/(9292:9479): El entrenador 0 capturo un Snorlax!
+[INFO] 15:25:09:409 Team/(9292:9479): Pokemones: 
+[INFO] 15:25:09:409 Team/(9292:9479): 	Squirtle
+[INFO] 15:25:09:410 Team/(9292:9479): 	Snorlax
+[INFO] 15:25:09:410 Team/(9292:9479): Objetivos: 
+[INFO] 15:25:09:411 Team/(9292:9479): 	Charmander
+[INFO] 15:25:09:411 Team/(9292:9479): 	Bulbasaur
+[INFO] 15:25:09:412 Team/(9292:9479): Estado Actual: 2
+[INFO] 15:25:09:412 Team/(9292:9479): Objetivos generales:
+[INFO] 15:25:09:412 Team/(9292:9479): 	Raichu
+[INFO] 15:25:09:413 Team/(9292:9479): Posiciones pendientes: 
+[INFO] 15:25:09:413 Team/(9292:9479): Raichu
+[INFO] 15:25:09:414 Team/(9292:9479): 5-5
+[ERROR] 15:25:09:414 Team/(9292:9298): Entrando al semaforo de posiciones pendientes
+[ERROR] 15:25:09:414 Team/(9292:9298): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:25:09:414 Team/(9292:9297): Hurra, tengo algo en ready
+[DEBUG] 15:25:09:414 Team/(9292:9294): Enviando mensaje CATCH...
+[INFO] 15:25:09:418 Team/(9292:9479): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:25:11:429 Team/(9292:9313): Recibido un mensaje de broker
+[INFO] 15:25:11:429 Team/(9292:9313): Esperando mensajes de broker...
+[INFO] 15:25:11:431 Team/(9292:9481): Procesando CAUGHT...
+[DEBUG] 15:25:11:432 Team/(9292:9481): Se recibio un CAUGHT valido
+[INFO] 15:25:11:432 Team/(9292:9481): El entrenador 0 capturo un Raichu!
+[INFO] 15:25:11:432 Team/(9292:9481): Pokemones: 
+[INFO] 15:25:11:433 Team/(9292:9481): 	Squirtle
+[INFO] 15:25:11:434 Team/(9292:9481): 	Snorlax
+[INFO] 15:25:11:434 Team/(9292:9481): 	Raichu
+[INFO] 15:25:11:435 Team/(9292:9481): Objetivos: 
+[INFO] 15:25:11:435 Team/(9292:9481): 	Charmander
+[INFO] 15:25:11:439 Team/(9292:9481): 	Bulbasaur
+[INFO] 15:25:11:439 Team/(9292:9481): Estado Actual: 2
+[INFO] 15:25:11:439 Team/(9292:9481): Objetivos generales:
+[INFO] 15:25:11:439 Team/(9292:9481): Posiciones pendientes: 
+[DEBUG] 15:25:11:439 Team/(9292:9481): Se comienza el analisis de deadlock
+[DEBUG] 15:27:14:466 Team/(9789:9789): Se ha iniciado un Team.
+[INFO] 15:27:14:467 Team/(9789:9789): Cantidad de posiciones: 3
+[INFO] 15:27:14:467 Team/(9789:9789): Cantidad de entrenadores: 3
+[INFO] 15:27:14:467 Team/(9789:9789): Entrenadores disponibles: 0
+[INFO] 15:27:14:467 Team/(9789:9789): Enviando GETs...
+[INFO] 15:27:14:487 Team/(9789:9795): Socket de escucha para Gameboy creado
+[INFO] 15:27:14:487 Team/(9789:9794): Entrenadores disponibles: 3
+[ERROR] 15:27:14:487 Team/(9789:9794): Entrando al semaforo de entrenadores disponibles
+[ERROR] 15:27:14:488 Team/(9789:9794): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:27:14:488 Team/(9789:9793): Se activa el planificador
+[DEBUG] 15:27:14:500 Team/(9789:9796): ID obtenido = 270
+[INFO] 15:27:14:503 Team/(9789:9796): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 15:27:14:503 Team/(9789:9796): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 15:27:14:503 Team/(9789:9796): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 15:27:14:509 Team/(9789:9808): Esperando mensajes de broker...
+[INFO] 15:27:14:510 Team/(9789:9807): Esperando mensajes de broker...
+[INFO] 15:27:14:510 Team/(9789:9806): Esperando mensajes de broker...
+[INFO] 15:27:14:511 Team/(9789:9789): GETs enviados
+[INFO] 15:27:14:519 Team/(9789:9806): Recibido un mensaje de broker
+[INFO] 15:27:14:519 Team/(9789:9806): Esperando mensajes de broker...
+[INFO] 15:27:14:520 Team/(9789:9806): Recibido un mensaje de broker
+[INFO] 15:27:14:520 Team/(9789:9806): Esperando mensajes de broker...
+[INFO] 15:27:14:523 Team/(9789:9811): Procesando LOCALIZED...
+[DEBUG] 15:27:14:523 Team/(9789:9811): Pokemon: Onix
+[INFO] 15:27:14:523 Team/(9789:9811): Mensaje recibido: LOCALIZED_POKEMON Onix con 0 pokemones
+[INFO] 15:27:14:528 Team/(9789:9812): Procesando LOCALIZED...
+[DEBUG] 15:27:14:529 Team/(9789:9812): Pokemon: Pikachu
+[INFO] 15:27:14:529 Team/(9789:9812): Mensaje recibido: LOCALIZED_POKEMON Pikachu con 0 pokemones
+[INFO] 15:27:14:529 Team/(9789:9806): Recibido un mensaje de broker
+[INFO] 15:27:14:529 Team/(9789:9806): Esperando mensajes de broker...
+[INFO] 15:27:14:530 Team/(9789:9813): Procesando LOCALIZED...
+[DEBUG] 15:27:14:530 Team/(9789:9813): Pokemon: Raichu
+[INFO] 15:27:14:530 Team/(9789:9813): Mensaje recibido: LOCALIZED_POKEMON Raichu con 0 pokemones
+[INFO] 15:27:16:492 Team/(9789:9806): Recibido un mensaje de broker
+[INFO] 15:27:16:492 Team/(9789:9806): Esperando mensajes de broker...
+[INFO] 15:27:16:495 Team/(9789:9814): Procesando LOCALIZED...
+[DEBUG] 15:27:16:495 Team/(9789:9814): Pokemon: Squirtle
+[DEBUG] 15:27:16:496 Team/(9789:9814): El pokemon Squirtle es un objetivo
+[ERROR] 15:27:16:496 Team/(9789:9794): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:27:16:496 Team/(9789:9793): Hurra, tengo algo en ready
+[ERROR] 15:27:16:496 Team/(9789:9794): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:27:16:496 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [1,5]
+[INFO] 15:27:16:496 Team/(9789:9814): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 1 pokemones
+[DEBUG] 15:27:16:497 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [2,5]
+[DEBUG] 15:27:16:498 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [3,5]
+[DEBUG] 15:27:16:498 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [4,5]
+[DEBUG] 15:27:16:498 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [5,5]
+[DEBUG] 15:27:16:499 Team/(9789:9791): Enviando mensaje CATCH...
+[INFO] 15:27:18:517 Team/(9789:9808): Recibido un mensaje de broker
+[INFO] 15:27:18:517 Team/(9789:9808): Esperando mensajes de broker...
+[INFO] 15:27:18:518 Team/(9789:9816): Procesando CAUGHT...
+[DEBUG] 15:27:18:519 Team/(9789:9816): Se recibio un CAUGHT valido
+[INFO] 15:27:18:519 Team/(9789:9816): El entrenador 1 capturo un Squirtle!
+[INFO] 15:27:18:519 Team/(9789:9816): Pokemones: 
+[INFO] 15:27:18:520 Team/(9789:9816): 	Squirtle
+[INFO] 15:27:18:520 Team/(9789:9816): Objetivos: 
+[INFO] 15:27:18:521 Team/(9789:9816): 	Onix
+[INFO] 15:27:18:521 Team/(9789:9816): 	Snorlax
+[INFO] 15:27:18:521 Team/(9789:9816): Estado Actual: 2
+[INFO] 15:27:18:521 Team/(9789:9816): Objetivos generales:
+[INFO] 15:27:18:521 Team/(9789:9816): 	Charmander
+[INFO] 15:27:18:522 Team/(9789:9816): 	Bulbasaur
+[INFO] 15:27:18:522 Team/(9789:9816): 	Onix
+[INFO] 15:27:18:522 Team/(9789:9816): 	Snorlax
+[INFO] 15:27:18:522 Team/(9789:9816): 	Pikachu
+[INFO] 15:27:18:522 Team/(9789:9816): 	Raichu
+[INFO] 15:27:18:523 Team/(9789:9816): Posiciones pendientes: 
+[INFO] 15:27:18:523 Team/(9789:9816): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:27:30:28 Team/(9789:9807): Recibido un mensaje de broker
+[INFO] 15:27:30:28 Team/(9789:9807): Esperando mensajes de broker...
+[INFO] 15:27:30:30 Team/(9789:9848): Procesando APPEARED...
+[DEBUG] 15:27:30:31 Team/(9789:9848): El pokemon esta en nuestro objetivo
+[INFO] 15:27:30:31 Team/(9789:9848): Pokemon: Pikachu
+[INFO] 15:27:30:31 Team/(9789:9848): Mensaje recibido: APPEARED_POKEMON Pikachu 9 9.
+[ERROR] 15:27:30:32 Team/(9789:9794): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:27:30:32 Team/(9789:9793): Hurra, tengo algo en ready
+[ERROR] 15:27:30:32 Team/(9789:9794): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:27:30:32 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [6,5]
+[DEBUG] 15:27:30:32 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [6,6]
+[DEBUG] 15:27:30:33 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [7,6]
+[DEBUG] 15:27:30:33 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [7,7]
+[DEBUG] 15:27:30:33 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [8,7]
+[DEBUG] 15:27:30:34 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [8,8]
+[DEBUG] 15:27:30:34 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [9,8]
+[DEBUG] 15:27:30:34 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [9,9]
+[DEBUG] 15:27:30:36 Team/(9789:9791): Enviando mensaje CATCH...
+[INFO] 15:27:30:556 Team/(9789:9807): Recibido un mensaje de broker
+[INFO] 15:27:30:556 Team/(9789:9807): Esperando mensajes de broker...
+[INFO] 15:27:30:558 Team/(9789:9853): Procesando APPEARED...
+[ERROR] 15:27:30:558 Team/(9789:9853): No me interesa el pokemon Squirtle
+[INFO] 15:27:31:81 Team/(9789:9807): Recibido un mensaje de broker
+[INFO] 15:27:31:81 Team/(9789:9807): Esperando mensajes de broker...
+[INFO] 15:27:31:83 Team/(9789:9857): Procesando APPEARED...
+[DEBUG] 15:27:31:83 Team/(9789:9857): El pokemon esta en nuestro objetivo
+[INFO] 15:27:31:83 Team/(9789:9857): Pokemon: Onix
+[INFO] 15:27:31:84 Team/(9789:9857): Mensaje recibido: APPEARED_POKEMON Onix 2 8.
+[ERROR] 15:27:31:84 Team/(9789:9794): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:27:31:84 Team/(9789:9793): Hurra, tengo algo en ready
+[ERROR] 15:27:31:84 Team/(9789:9794): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:27:31:85 Team/(9789:9792): El entrenador id: 2 se movio a la posicion [1,9]
+[DEBUG] 15:27:31:85 Team/(9789:9792): El entrenador id: 2 se movio a la posicion [1,8]
+[DEBUG] 15:27:31:85 Team/(9789:9792): El entrenador id: 2 se movio a la posicion [2,8]
+[DEBUG] 15:27:31:86 Team/(9789:9792): Enviando mensaje CATCH...
+[INFO] 15:27:31:613 Team/(9789:9807): Recibido un mensaje de broker
+[INFO] 15:27:31:613 Team/(9789:9807): Esperando mensajes de broker...
+[INFO] 15:27:31:615 Team/(9789:9862): Procesando APPEARED...
+[ERROR] 15:27:31:615 Team/(9789:9862): No me interesa el pokemon Gengar
+[INFO] 15:27:32:50 Team/(9789:9808): Recibido un mensaje de broker
+[INFO] 15:27:32:50 Team/(9789:9808): Esperando mensajes de broker...
+[INFO] 15:27:32:51 Team/(9789:9866): Procesando CAUGHT...
+[DEBUG] 15:27:32:51 Team/(9789:9866): Se recibio un CAUGHT valido
+[INFO] 15:27:32:51 Team/(9789:9866): El entrenador 1 capturo un Pikachu!
+[INFO] 15:27:32:52 Team/(9789:9866): Pokemones: 
+[INFO] 15:27:32:52 Team/(9789:9866): 	Squirtle
+[INFO] 15:27:32:53 Team/(9789:9866): 	Pikachu
+[INFO] 15:27:32:53 Team/(9789:9866): Objetivos: 
+[INFO] 15:27:32:53 Team/(9789:9866): 	Onix
+[INFO] 15:27:32:54 Team/(9789:9866): 	Snorlax
+[INFO] 15:27:32:55 Team/(9789:9866): Estado Actual: 2
+[INFO] 15:27:32:55 Team/(9789:9866): Objetivos generales:
+[INFO] 15:27:32:55 Team/(9789:9866): 	Charmander
+[INFO] 15:27:32:56 Team/(9789:9866): 	Bulbasaur
+[INFO] 15:27:32:58 Team/(9789:9866): 	Onix
+[INFO] 15:27:32:58 Team/(9789:9866): 	Snorlax
+[INFO] 15:27:32:58 Team/(9789:9866): 	Raichu
+[INFO] 15:27:32:59 Team/(9789:9866): Posiciones pendientes: 
+[INFO] 15:27:32:59 Team/(9789:9866): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:27:32:561 Team/(9789:9807): Recibido un mensaje de broker
+[INFO] 15:27:32:561 Team/(9789:9807): Esperando mensajes de broker...
+[INFO] 15:27:32:563 Team/(9789:9869): Procesando APPEARED...
+[ERROR] 15:27:32:563 Team/(9789:9869): No me interesa el pokemon Squirtle
+[INFO] 15:27:32:651 Team/(9789:9807): Recibido un mensaje de broker
+[INFO] 15:27:32:651 Team/(9789:9807): Esperando mensajes de broker...
+[INFO] 15:27:32:652 Team/(9789:9870): Procesando APPEARED...
+[DEBUG] 15:27:32:653 Team/(9789:9870): El pokemon esta en nuestro objetivo
+[INFO] 15:27:32:653 Team/(9789:9870): Pokemon: Charmander
+[INFO] 15:27:32:653 Team/(9789:9870): Mensaje recibido: APPEARED_POKEMON Charmander 5 5.
+[ERROR] 15:27:32:654 Team/(9789:9794): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:27:32:654 Team/(9789:9793): Hurra, tengo algo en ready
+[DEBUG] 15:27:32:654 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [1,1]
+[DEBUG] 15:27:32:654 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [1,2]
+[DEBUG] 15:27:32:655 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [2,2]
+[DEBUG] 15:27:32:655 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [2,3]
+[DEBUG] 15:27:32:655 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [3,3]
+[DEBUG] 15:27:32:656 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [3,4]
+[DEBUG] 15:27:32:656 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [4,4]
+[DEBUG] 15:27:32:656 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [4,5]
+[DEBUG] 15:27:32:657 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [5,5]
+[DEBUG] 15:27:32:657 Team/(9789:9790): Enviando mensaje CATCH...
+[INFO] 15:27:33:103 Team/(9789:9808): Recibido un mensaje de broker
+[INFO] 15:27:33:104 Team/(9789:9808): Esperando mensajes de broker...
+[INFO] 15:27:33:105 Team/(9789:9872): Procesando CAUGHT...
+[DEBUG] 15:27:33:106 Team/(9789:9872): Se recibio un CAUGHT valido
+[INFO] 15:27:33:106 Team/(9789:9872): El entrenador 2 capturo un Onix!
+[INFO] 15:27:33:106 Team/(9789:9872): Pokemones: 
+[INFO] 15:27:33:107 Team/(9789:9872): 	Onix
+[INFO] 15:27:33:107 Team/(9789:9872): Objetivos: 
+[INFO] 15:27:33:108 Team/(9789:9872): 	Pikachu
+[INFO] 15:27:33:108 Team/(9789:9872): 	Raichu
+[INFO] 15:27:33:109 Team/(9789:9872): Estado Actual: 2
+[INFO] 15:27:33:109 Team/(9789:9872): Objetivos generales:
+[INFO] 15:27:33:109 Team/(9789:9872): 	Charmander
+[INFO] 15:27:33:110 Team/(9789:9872): 	Bulbasaur
+[INFO] 15:27:33:110 Team/(9789:9872): 	Snorlax
+[INFO] 15:27:33:114 Team/(9789:9872): 	Raichu
+[INFO] 15:27:33:114 Team/(9789:9872): Posiciones pendientes: 
+[ERROR] 15:27:33:114 Team/(9789:9794): Entrando al semaforo de posiciones pendientes
+[INFO] 15:27:33:115 Team/(9789:9872): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:27:33:164 Team/(9789:9807): Recibido un mensaje de broker
+[INFO] 15:27:33:164 Team/(9789:9807): Esperando mensajes de broker...
+[INFO] 15:27:33:165 Team/(9789:9873): Procesando APPEARED...
+[DEBUG] 15:27:33:165 Team/(9789:9873): El pokemon esta en nuestro objetivo
+[INFO] 15:27:33:165 Team/(9789:9873): Pokemon: Bulbasaur
+[INFO] 15:27:33:165 Team/(9789:9873): Mensaje recibido: APPEARED_POKEMON Bulbasaur 5 5.
+[ERROR] 15:27:33:165 Team/(9789:9794): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:27:33:165 Team/(9789:9793): Hurra, tengo algo en ready
+[DEBUG] 15:27:33:165 Team/(9789:9792): El entrenador id: 2 se movio a la posicion [3,8]
+[DEBUG] 15:27:33:166 Team/(9789:9792): El entrenador id: 2 se movio a la posicion [3,7]
+[DEBUG] 15:27:33:167 Team/(9789:9792): El entrenador id: 2 se movio a la posicion [4,7]
+[DEBUG] 15:27:33:167 Team/(9789:9792): El entrenador id: 2 se movio a la posicion [4,6]
+[DEBUG] 15:27:33:167 Team/(9789:9792): El entrenador id: 2 se movio a la posicion [5,6]
+[DEBUG] 15:27:33:167 Team/(9789:9792): El entrenador id: 2 se movio a la posicion [5,5]
+[DEBUG] 15:27:33:168 Team/(9789:9792): Enviando mensaje CATCH...
+[INFO] 15:27:33:692 Team/(9789:9807): Recibido un mensaje de broker
+[INFO] 15:27:33:692 Team/(9789:9807): Esperando mensajes de broker...
+[INFO] 15:27:33:693 Team/(9789:9875): Procesando APPEARED...
+[DEBUG] 15:27:33:693 Team/(9789:9875): El pokemon esta en nuestro objetivo
+[INFO] 15:27:33:693 Team/(9789:9875): Pokemon: Snorlax
+[INFO] 15:27:33:693 Team/(9789:9875): Mensaje recibido: APPEARED_POKEMON Snorlax 5 5.
+[INFO] 15:27:34:229 Team/(9789:9807): Recibido un mensaje de broker
+[INFO] 15:27:34:229 Team/(9789:9807): Esperando mensajes de broker...
+[INFO] 15:27:34:230 Team/(9789:9876): Procesando APPEARED...
+[DEBUG] 15:27:34:231 Team/(9789:9876): El pokemon esta en nuestro objetivo
+[INFO] 15:27:34:231 Team/(9789:9876): Pokemon: Raichu
+[INFO] 15:27:34:232 Team/(9789:9876): Mensaje recibido: APPEARED_POKEMON Raichu 5 5.
+[INFO] 15:27:34:671 Team/(9789:9808): Recibido un mensaje de broker
+[INFO] 15:27:34:671 Team/(9789:9808): Esperando mensajes de broker...
+[INFO] 15:27:34:672 Team/(9789:9877): Procesando CAUGHT...
+[DEBUG] 15:27:34:673 Team/(9789:9877): Se recibio un CAUGHT valido
+[INFO] 15:27:34:673 Team/(9789:9877): El entrenador 0 capturo un Charmander!
+[INFO] 15:27:34:673 Team/(9789:9877): Pokemones: 
+[INFO] 15:27:34:674 Team/(9789:9877): 	Charmander
+[INFO] 15:27:34:674 Team/(9789:9877): Objetivos: 
+[INFO] 15:27:34:675 Team/(9789:9877): 	Bulbasaur
+[INFO] 15:27:34:675 Team/(9789:9877): 	Squirtle
+[INFO] 15:27:34:676 Team/(9789:9877): Estado Actual: 2
+[INFO] 15:27:34:676 Team/(9789:9877): Objetivos generales:
+[INFO] 15:27:34:677 Team/(9789:9877): 	Bulbasaur
+[INFO] 15:27:34:677 Team/(9789:9877): 	Snorlax
+[INFO] 15:27:34:679 Team/(9789:9877): 	Raichu
+[INFO] 15:27:34:679 Team/(9789:9877): Posiciones pendientes: 
+[INFO] 15:27:34:679 Team/(9789:9877): Snorlax
+[INFO] 15:27:34:679 Team/(9789:9877): 5-5
+[INFO] 15:27:34:679 Team/(9789:9877): Raichu
+[INFO] 15:27:34:679 Team/(9789:9877): 5-5
+[ERROR] 15:27:34:679 Team/(9789:9794): Entrando al semaforo de posiciones pendientes
+[ERROR] 15:27:34:679 Team/(9789:9794): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:27:34:679 Team/(9789:9793): Hurra, tengo algo en ready
+[DEBUG] 15:27:34:680 Team/(9789:9790): Enviando mensaje CATCH...
+[INFO] 15:27:34:683 Team/(9789:9877): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:27:35:174 Team/(9789:9808): Recibido un mensaje de broker
+[INFO] 15:27:35:174 Team/(9789:9808): Esperando mensajes de broker...
+[INFO] 15:27:35:176 Team/(9789:9879): Procesando CAUGHT...
+[DEBUG] 15:27:35:177 Team/(9789:9879): Se recibio un CAUGHT valido
+[INFO] 15:27:35:177 Team/(9789:9879): El entrenador 2 capturo un Bulbasaur!
+[INFO] 15:27:35:177 Team/(9789:9879): Pokemones: 
+[INFO] 15:27:35:178 Team/(9789:9879): 	Onix
+[INFO] 15:27:35:178 Team/(9789:9879): 	Bulbasaur
+[INFO] 15:27:35:179 Team/(9789:9879): Objetivos: 
+[INFO] 15:27:35:179 Team/(9789:9879): 	Pikachu
+[INFO] 15:27:35:180 Team/(9789:9879): 	Raichu
+[INFO] 15:27:35:180 Team/(9789:9879): Estado Actual: 2
+[INFO] 15:27:35:181 Team/(9789:9879): Objetivos generales:
+[INFO] 15:27:35:181 Team/(9789:9879): 	Snorlax
+[INFO] 15:27:35:181 Team/(9789:9879): 	Raichu
+[INFO] 15:27:35:182 Team/(9789:9879): Posiciones pendientes: 
+[INFO] 15:27:35:182 Team/(9789:9879): Raichu
+[INFO] 15:27:35:182 Team/(9789:9879): 5-5
+[INFO] 15:27:35:182 Team/(9789:9879): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:27:36:693 Team/(9789:9808): Recibido un mensaje de broker
+[INFO] 15:27:36:693 Team/(9789:9808): Esperando mensajes de broker...
+[INFO] 15:27:36:695 Team/(9789:9880): Procesando CAUGHT...
+[DEBUG] 15:27:36:695 Team/(9789:9880): Se recibio un CAUGHT valido
+[INFO] 15:27:36:696 Team/(9789:9880): El entrenador 0 capturo un Snorlax!
+[INFO] 15:27:36:696 Team/(9789:9880): Pokemones: 
+[INFO] 15:27:36:697 Team/(9789:9880): 	Charmander
+[INFO] 15:27:36:697 Team/(9789:9880): 	Snorlax
+[INFO] 15:27:36:698 Team/(9789:9880): Objetivos: 
+[INFO] 15:27:36:698 Team/(9789:9880): 	Bulbasaur
+[INFO] 15:27:36:699 Team/(9789:9880): 	Squirtle
+[INFO] 15:27:36:699 Team/(9789:9880): Estado Actual: 2
+[INFO] 15:27:36:700 Team/(9789:9880): Objetivos generales:
+[INFO] 15:27:36:700 Team/(9789:9880): 	Raichu
+[INFO] 15:27:36:701 Team/(9789:9880): Posiciones pendientes: 
+[INFO] 15:27:36:701 Team/(9789:9880): Raichu
+[INFO] 15:27:36:701 Team/(9789:9880): 5-5
+[ERROR] 15:27:36:701 Team/(9789:9794): Entrando al semaforo de posiciones pendientes
+[ERROR] 15:27:36:701 Team/(9789:9794): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:27:36:701 Team/(9789:9793): Hurra, tengo algo en ready
+[DEBUG] 15:27:36:702 Team/(9789:9790): Enviando mensaje CATCH...
+[INFO] 15:27:36:705 Team/(9789:9880): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:27:38:717 Team/(9789:9808): Recibido un mensaje de broker
+[INFO] 15:27:38:717 Team/(9789:9808): Esperando mensajes de broker...
+[INFO] 15:27:38:719 Team/(9789:9882): Procesando CAUGHT...
+[DEBUG] 15:27:38:719 Team/(9789:9882): Se recibio un CAUGHT valido
+[INFO] 15:27:38:719 Team/(9789:9882): El entrenador 0 capturo un Raichu!
+[INFO] 15:27:38:720 Team/(9789:9882): Pokemones: 
+[INFO] 15:27:38:720 Team/(9789:9882): 	Charmander
+[INFO] 15:27:38:720 Team/(9789:9882): 	Snorlax
+[INFO] 15:27:38:720 Team/(9789:9882): 	Raichu
+[INFO] 15:27:38:721 Team/(9789:9882): Objetivos: 
+[INFO] 15:27:38:721 Team/(9789:9882): 	Bulbasaur
+[INFO] 15:27:38:721 Team/(9789:9882): 	Squirtle
+[INFO] 15:27:38:721 Team/(9789:9882): Estado Actual: 2
+[INFO] 15:27:38:721 Team/(9789:9882): Objetivos generales:
+[INFO] 15:27:38:721 Team/(9789:9882): Posiciones pendientes: 
+[DEBUG] 15:27:38:721 Team/(9789:9882): Se comienza el analisis de deadlock
+[INFO] 15:27:38:721 Team/(9789:9882): Estado final de los entrenadores:
+[INFO] 15:27:38:721 Team/(9789:9882): Entrenador id: 0
+[INFO] 15:27:38:721 Team/(9789:9882):   Objetivos Originales:
+[INFO] 15:27:38:721 Team/(9789:9882): 	Charmander
+[INFO] 15:27:38:721 Team/(9789:9882): 	Bulbasaur
+[INFO] 15:27:38:721 Team/(9789:9882): 	Squirtle
+[INFO] 15:27:38:721 Team/(9789:9882):   Pokemones:
+[INFO] 15:27:38:721 Team/(9789:9882): 	Charmander
+[INFO] 15:27:38:721 Team/(9789:9882): 	Snorlax
+[INFO] 15:27:38:721 Team/(9789:9882): 	Raichu
+[INFO] 15:27:38:721 Team/(9789:9882): Entrenador id: 1
+[INFO] 15:27:38:721 Team/(9789:9882):   Objetivos Originales:
+[INFO] 15:27:38:721 Team/(9789:9882): 	Onix
+[INFO] 15:27:38:721 Team/(9789:9882): 	Snorlax
+[INFO] 15:27:38:721 Team/(9789:9882):   Pokemones:
+[INFO] 15:27:38:722 Team/(9789:9882): 	Squirtle
+[INFO] 15:27:38:722 Team/(9789:9882): 	Pikachu
+[INFO] 15:27:38:722 Team/(9789:9882): Entrenador id: 2
+[INFO] 15:27:38:722 Team/(9789:9882):   Objetivos Originales:
+[INFO] 15:27:38:722 Team/(9789:9882): 	Pikachu
+[INFO] 15:27:38:722 Team/(9789:9882): 	Raichu
+[INFO] 15:27:38:722 Team/(9789:9882):   Pokemones:
+[INFO] 15:27:38:722 Team/(9789:9882): 	Onix
+[INFO] 15:27:38:722 Team/(9789:9882): 	Bulbasaur
+[INFO] 15:27:38:722 Team/(9789:9882): Entrenador id: 0
+[INFO] 15:27:38:722 Team/(9789:9882): Objetivos:
+[INFO] 15:27:38:722 Team/(9789:9882): 	Charmander
+[INFO] 15:27:38:722 Team/(9789:9882): 	Bulbasaur
+[INFO] 15:27:38:722 Team/(9789:9882): 	Squirtle
+[INFO] 15:27:38:722 Team/(9789:9882): Pokemones:
+[INFO] 15:27:38:722 Team/(9789:9882): 	Charmander
+[INFO] 15:27:38:722 Team/(9789:9882): 	Snorlax
+[INFO] 15:27:38:722 Team/(9789:9882): 	Raichu
+[INFO] 15:27:38:722 Team/(9789:9882): Pokemones no requeridos:
+[INFO] 15:27:38:722 Team/(9789:9882): 	Snorlax
+[INFO] 15:27:38:722 Team/(9789:9882): 	Raichu
+[INFO] 15:27:38:722 Team/(9789:9882): Entrenador id: 1
+[INFO] 15:27:38:723 Team/(9789:9882): Objetivos:
+[INFO] 15:27:38:723 Team/(9789:9882): 	Onix
+[INFO] 15:27:38:723 Team/(9789:9882): 	Snorlax
+[INFO] 15:27:38:727 Team/(9789:9882): Pokemones:
+[INFO] 15:27:38:727 Team/(9789:9882): 	Squirtle
+[INFO] 15:27:38:727 Team/(9789:9882): 	Pikachu
+[INFO] 15:27:38:727 Team/(9789:9882): Pokemones no requeridos:
+[INFO] 15:27:38:727 Team/(9789:9882): 	Squirtle
+[INFO] 15:27:38:727 Team/(9789:9882): 	Pikachu
+[DEBUG] 15:27:38:731 Team/(9789:9882): Pokemon a intercambiar del entrenador 0: Snorlax
+[DEBUG] 15:27:38:731 Team/(9789:9882): Pokemon a intercambiar del entrenador 1: Squirtle
+[DEBUG] 15:27:38:731 Team/(9789:9793): Hurra, tengo algo en ready
+[DEBUG] 15:27:38:731 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [6,5]
+[DEBUG] 15:27:38:732 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [6,6]
+[DEBUG] 15:27:38:733 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [7,6]
+[DEBUG] 15:27:38:736 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [7,7]
+[DEBUG] 15:27:38:737 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [8,7]
+[DEBUG] 15:27:38:739 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [8,8]
+[DEBUG] 15:27:38:740 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [9,8]
+[DEBUG] 15:27:38:741 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [9,9]
+[DEBUG] 15:27:38:741 Team/(9789:9790): Estoy intercambiando el pokemon Snorlax por Squirtle
+[DEBUG] 15:27:38:742 Team/(9789:9790): Se finalizo el intercambio entre el entrenador 0 y el entrenador 1
+[INFO] 15:27:38:742 Team/(9789:9882): Entrenador id: 0
+[INFO] 15:27:38:742 Team/(9789:9882): Objetivos:
+[INFO] 15:27:38:742 Team/(9789:9882): 	Charmander
+[INFO] 15:27:38:742 Team/(9789:9882): 	Bulbasaur
+[INFO] 15:27:38:742 Team/(9789:9882): 	Squirtle
+[INFO] 15:27:38:742 Team/(9789:9882): Pokemones:
+[INFO] 15:27:38:742 Team/(9789:9882): 	Charmander
+[INFO] 15:27:38:742 Team/(9789:9882): 	Raichu
+[INFO] 15:27:38:742 Team/(9789:9882): 	Squirtle
+[INFO] 15:27:38:742 Team/(9789:9882): Pokemones no requeridos:
+[INFO] 15:27:38:742 Team/(9789:9882): 	Raichu
+[INFO] 15:27:38:742 Team/(9789:9882): Entrenador id: 2
+[INFO] 15:27:38:742 Team/(9789:9882): Objetivos:
+[INFO] 15:27:38:742 Team/(9789:9882): 	Pikachu
+[INFO] 15:27:38:743 Team/(9789:9882): 	Raichu
+[INFO] 15:27:38:743 Team/(9789:9882): Pokemones:
+[INFO] 15:27:38:743 Team/(9789:9882): 	Onix
+[INFO] 15:27:38:743 Team/(9789:9882): 	Bulbasaur
+[INFO] 15:27:38:743 Team/(9789:9882): Pokemones no requeridos:
+[INFO] 15:27:38:743 Team/(9789:9882): 	Onix
+[INFO] 15:27:38:743 Team/(9789:9882): 	Bulbasaur
+[DEBUG] 15:27:38:743 Team/(9789:9882): Pokemon a intercambiar del entrenador 0: Raichu
+[DEBUG] 15:27:38:743 Team/(9789:9882): Pokemon a intercambiar del entrenador 2: Bulbasaur
+[DEBUG] 15:27:38:743 Team/(9789:9793): Hurra, tengo algo en ready
+[DEBUG] 15:27:38:743 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [8,9]
+[DEBUG] 15:27:38:744 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [8,8]
+[DEBUG] 15:27:38:745 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [7,8]
+[DEBUG] 15:27:38:750 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [7,7]
+[DEBUG] 15:27:38:751 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [6,7]
+[DEBUG] 15:27:38:752 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [6,6]
+[DEBUG] 15:27:38:753 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [5,6]
+[DEBUG] 15:27:38:754 Team/(9789:9790): El entrenador id: 0 se movio a la posicion [5,5]
+[DEBUG] 15:27:38:754 Team/(9789:9790): Estoy intercambiando el pokemon Raichu por Bulbasaur
+[DEBUG] 15:27:38:754 Team/(9789:9790): Se finalizo el intercambio entre el entrenador 0 y el entrenador 2
+[INFO] 15:27:38:754 Team/(9789:9882): Entrenador id: 1
+[INFO] 15:27:38:755 Team/(9789:9882): Objetivos:
+[INFO] 15:27:38:755 Team/(9789:9882): 	Onix
+[INFO] 15:27:38:755 Team/(9789:9882): 	Snorlax
+[INFO] 15:27:38:755 Team/(9789:9882): Pokemones:
+[INFO] 15:27:38:755 Team/(9789:9882): 	Pikachu
+[INFO] 15:27:38:755 Team/(9789:9882): 	Snorlax
+[INFO] 15:27:38:755 Team/(9789:9882): Pokemones no requeridos:
+[INFO] 15:27:38:755 Team/(9789:9882): 	Pikachu
+[INFO] 15:27:38:755 Team/(9789:9882): Entrenador id: 2
+[INFO] 15:27:38:755 Team/(9789:9882): Objetivos:
+[INFO] 15:27:38:755 Team/(9789:9882): 	Pikachu
+[INFO] 15:27:38:755 Team/(9789:9882): 	Raichu
+[INFO] 15:27:38:755 Team/(9789:9882): Pokemones:
+[INFO] 15:27:38:755 Team/(9789:9882): 	Onix
+[INFO] 15:27:38:755 Team/(9789:9882): 	Raichu
+[INFO] 15:27:38:755 Team/(9789:9882): Pokemones no requeridos:
+[INFO] 15:27:38:755 Team/(9789:9882): 	Onix
+[DEBUG] 15:27:38:755 Team/(9789:9882): Pokemon a intercambiar del entrenador 1: Pikachu
+[DEBUG] 15:27:38:755 Team/(9789:9882): Pokemon a intercambiar del entrenador 2: Onix
+[DEBUG] 15:27:38:755 Team/(9789:9793): Hurra, tengo algo en ready
+[DEBUG] 15:27:38:755 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [8,9]
+[DEBUG] 15:27:38:755 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [8,8]
+[DEBUG] 15:27:38:755 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [7,8]
+[DEBUG] 15:27:38:756 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [7,7]
+[DEBUG] 15:27:38:756 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [6,7]
+[DEBUG] 15:27:38:756 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [6,6]
+[DEBUG] 15:27:38:756 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [5,6]
+[DEBUG] 15:27:38:756 Team/(9789:9791): El entrenador id: 1 se movio a la posicion [5,5]
+[DEBUG] 15:27:38:757 Team/(9789:9791): Estoy intercambiando el pokemon Pikachu por Onix
+[DEBUG] 15:27:38:757 Team/(9789:9791): Se finalizo el intercambio entre el entrenador 1 y el entrenador 2
+[DEBUG] 15:27:38:757 Team/(9789:9882): Se termino la resolucion de deadlocks
+[INFO] 15:27:38:757 Team/(9789:9882): Mensaje recibido: CAUGHT_POKEMON OK
+[DEBUG] 15:27:38:757 Team/(9789:9793): Se cumplieron los objetivos, finaliza el Planificador
+[INFO] 15:27:38:757 Team/(9789:9789): Estado final de los entrenadores:
+[INFO] 15:27:38:757 Team/(9789:9789): Entrenador id: 0
+[INFO] 15:27:38:757 Team/(9789:9789):   Objetivos Originales:
+[INFO] 15:27:38:757 Team/(9789:9789): 	Charmander
+[INFO] 15:27:38:757 Team/(9789:9789): 	Bulbasaur
+[INFO] 15:27:38:757 Team/(9789:9789): 	Squirtle
+[INFO] 15:27:38:757 Team/(9789:9789):   Pokemones:
+[INFO] 15:27:38:757 Team/(9789:9789): 	Charmander
+[INFO] 15:27:38:757 Team/(9789:9789): 	Squirtle
+[INFO] 15:27:38:758 Team/(9789:9789): 	Bulbasaur
+[INFO] 15:27:38:758 Team/(9789:9789): Entrenador id: 1
+[INFO] 15:27:38:758 Team/(9789:9789):   Objetivos Originales:
+[INFO] 15:27:38:758 Team/(9789:9789): 	Onix
+[INFO] 15:27:38:758 Team/(9789:9789): 	Snorlax
+[INFO] 15:27:38:758 Team/(9789:9789):   Pokemones:
+[INFO] 15:27:38:758 Team/(9789:9789): 	Snorlax
+[INFO] 15:27:38:758 Team/(9789:9789): 	Onix
+[INFO] 15:27:38:758 Team/(9789:9789): Entrenador id: 2
+[INFO] 15:27:38:758 Team/(9789:9789):   Objetivos Originales:
+[INFO] 15:27:38:758 Team/(9789:9789): 	Pikachu
+[INFO] 15:27:38:758 Team/(9789:9789): 	Raichu
+[INFO] 15:27:38:758 Team/(9789:9789):   Pokemones:
+[INFO] 15:27:38:758 Team/(9789:9789): 	Raichu
+[INFO] 15:27:38:758 Team/(9789:9789): 	Pikachu
+[INFO] 15:27:38:758 Team/(9789:9789): Finalizó la conexión con el servidor
+
+[INFO] 15:27:38:759 Team/(9789:9789): 	Charmander
+[INFO] 15:27:38:759 Team/(9789:9789): 	Bulbasaur
+[INFO] 15:27:38:759 Team/(9789:9789): 	Squirtle
+[INFO] 15:27:38:759 Team/(9789:9789): 	Charmander
+[INFO] 15:27:38:759 Team/(9789:9789): 	Squirtle
+[INFO] 15:27:38:759 Team/(9789:9789): 	Bulbasaur
+[INFO] 15:27:38:759 Team/(9789:9789): 	Onix
+[INFO] 15:27:38:759 Team/(9789:9789): 	Snorlax
+[INFO] 15:27:38:759 Team/(9789:9789): 	Snorlax
+[INFO] 15:27:38:759 Team/(9789:9789): 	Onix
+[INFO] 15:27:38:759 Team/(9789:9789): 	Pikachu
+[INFO] 15:27:38:759 Team/(9789:9789): 	Raichu
+[INFO] 15:27:38:759 Team/(9789:9789): 	Raichu
+[INFO] 15:27:38:759 Team/(9789:9789): 	Pikachu
+[INFO] 15:27:38:760 Team/(9789:9789): El proceso Team ha finalizado.
+[INFO] 15:27:38:760 Team/(9789:9789): Ciclos de CPU totales = 70
+[INFO] 15:27:38:760 Team/(9789:9789): Cambios de contexto realizados = 17
+[INFO] 15:27:38:760 Team/(9789:9789): Deadlocks detectados y resueltos = 3
+[DEBUG] 15:31:56:821 Team/(10257:10257): Se ha iniciado un Team.
+[INFO] 15:31:56:821 Team/(10257:10257): Cantidad de posiciones: 3
+[INFO] 15:31:56:821 Team/(10257:10257): Cantidad de entrenadores: 3
+[INFO] 15:31:56:821 Team/(10257:10257): Entrenadores disponibles: 0
+[INFO] 15:31:56:822 Team/(10257:10257): Enviando GETs...
+[INFO] 15:31:56:840 Team/(10257:10263): Socket de escucha para Gameboy creado
+[INFO] 15:31:56:843 Team/(10257:10262): Entrenadores disponibles: 3
+[DEBUG] 15:31:56:844 Team/(10257:10264): ID obtenido = 271
+[ERROR] 15:31:56:844 Team/(10257:10262): Entrando al semaforo de entrenadores disponibles
+[ERROR] 15:31:56:844 Team/(10257:10262): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:31:56:845 Team/(10257:10261): Se activa el planificador
+[INFO] 15:31:56:848 Team/(10257:10264): Se ha suscrito a la cola LOCALIZED_POKEMON
+[INFO] 15:31:56:848 Team/(10257:10264): Se ha suscrito a la cola APPEARED_POKEMON
+[INFO] 15:31:56:848 Team/(10257:10264): Se ha suscrito a la cola CAUGHT_POKEMON
+[INFO] 15:31:56:849 Team/(10257:10257): GETs enviados
+[INFO] 15:31:56:852 Team/(10257:10276): Esperando mensajes de broker...
+[INFO] 15:31:56:852 Team/(10257:10275): Esperando mensajes de broker...
+[INFO] 15:31:56:853 Team/(10257:10274): Esperando mensajes de broker...
+[INFO] 15:31:56:863 Team/(10257:10274): Recibido un mensaje de broker
+[INFO] 15:31:56:863 Team/(10257:10274): Esperando mensajes de broker...
+[INFO] 15:31:56:865 Team/(10257:10274): Recibido un mensaje de broker
+[INFO] 15:31:56:865 Team/(10257:10274): Esperando mensajes de broker...
+[INFO] 15:31:56:865 Team/(10257:10279): Procesando LOCALIZED...
+[DEBUG] 15:31:56:865 Team/(10257:10279): Pokemon: Onix
+[INFO] 15:31:56:865 Team/(10257:10279): Mensaje recibido: LOCALIZED_POKEMON Onix con 0 pokemones
+[INFO] 15:31:56:866 Team/(10257:10280): Procesando LOCALIZED...
+[DEBUG] 15:31:56:866 Team/(10257:10280): Pokemon: Raichu
+[INFO] 15:31:56:866 Team/(10257:10280): Mensaje recibido: LOCALIZED_POKEMON Raichu con 0 pokemones
+[INFO] 15:31:58:849 Team/(10257:10274): Recibido un mensaje de broker
+[INFO] 15:31:58:849 Team/(10257:10274): Esperando mensajes de broker...
+[INFO] 15:31:58:850 Team/(10257:10281): Procesando LOCALIZED...
+[DEBUG] 15:31:58:850 Team/(10257:10281): Pokemon: Squirtle
+[DEBUG] 15:31:58:850 Team/(10257:10281): El pokemon Squirtle es un objetivo
+[ERROR] 15:31:58:850 Team/(10257:10262): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:31:58:850 Team/(10257:10261): Hurra, tengo algo en ready
+[ERROR] 15:31:58:850 Team/(10257:10262): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:31:58:850 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [1,1]
+[INFO] 15:31:58:850 Team/(10257:10281): Mensaje recibido: LOCALIZED_POKEMON Squirtle con 2 pokemones
+[DEBUG] 15:31:58:851 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [1,2]
+[DEBUG] 15:31:58:851 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [2,2]
+[DEBUG] 15:31:58:851 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [3,2]
+[DEBUG] 15:31:58:851 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [4,2]
+[DEBUG] 15:31:58:852 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [5,2]
+[DEBUG] 15:31:58:852 Team/(10257:10258): Enviando mensaje CATCH...
+[INFO] 15:32:00:864 Team/(10257:10276): Recibido un mensaje de broker
+[INFO] 15:32:00:864 Team/(10257:10276): Esperando mensajes de broker...
+[INFO] 15:32:00:867 Team/(10257:10288): Procesando CAUGHT...
+[DEBUG] 15:32:00:867 Team/(10257:10288): Se recibio un CAUGHT valido
+[INFO] 15:32:00:868 Team/(10257:10288): El entrenador 0 capturo un Squirtle!
+[INFO] 15:32:00:868 Team/(10257:10288): Pokemones: 
+[INFO] 15:32:00:868 Team/(10257:10288): 	Squirtle
+[INFO] 15:32:00:869 Team/(10257:10288): Objetivos: 
+[INFO] 15:32:00:870 Team/(10257:10288): 	Charmander
+[INFO] 15:32:00:870 Team/(10257:10288): 	Bulbasaur
+[INFO] 15:32:00:870 Team/(10257:10288): Estado Actual: 2
+[INFO] 15:32:00:871 Team/(10257:10288): Objetivos generales:
+[INFO] 15:32:00:871 Team/(10257:10288): 	Charmander
+[INFO] 15:32:00:871 Team/(10257:10288): 	Bulbasaur
+[INFO] 15:32:00:871 Team/(10257:10288): 	Onix
+[INFO] 15:32:00:871 Team/(10257:10288): 	Snorlax
+[INFO] 15:32:00:871 Team/(10257:10288): 	Pikachu
+[INFO] 15:32:00:871 Team/(10257:10288): 	Raichu
+[INFO] 15:32:00:871 Team/(10257:10288): Posiciones pendientes: 
+[INFO] 15:32:00:871 Team/(10257:10288): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:32:04:841 Team/(10257:10275): Recibido un mensaje de broker
+[INFO] 15:32:04:842 Team/(10257:10275): Esperando mensajes de broker...
+[INFO] 15:32:04:846 Team/(10257:10305): Procesando APPEARED...
+[DEBUG] 15:32:04:847 Team/(10257:10305): El pokemon esta en nuestro objetivo
+[INFO] 15:32:04:847 Team/(10257:10305): Pokemon: Pikachu
+[INFO] 15:32:04:847 Team/(10257:10305): Mensaje recibido: APPEARED_POKEMON Pikachu 9 9.
+[ERROR] 15:32:04:847 Team/(10257:10262): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:32:04:847 Team/(10257:10261): Hurra, tengo algo en ready
+[ERROR] 15:32:04:847 Team/(10257:10262): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:32:04:847 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [6,2]
+[DEBUG] 15:32:04:848 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [6,3]
+[DEBUG] 15:32:04:848 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [7,3]
+[DEBUG] 15:32:04:849 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [7,4]
+[DEBUG] 15:32:04:851 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [8,4]
+[DEBUG] 15:32:04:852 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [8,5]
+[DEBUG] 15:32:04:854 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [9,5]
+[DEBUG] 15:32:04:857 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [9,6]
+[DEBUG] 15:32:04:858 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [9,7]
+[DEBUG] 15:32:04:858 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [9,8]
+[DEBUG] 15:32:04:859 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [9,9]
+[DEBUG] 15:32:04:861 Team/(10257:10258): Enviando mensaje CATCH...
+[INFO] 15:32:05:373 Team/(10257:10275): Recibido un mensaje de broker
+[INFO] 15:32:05:374 Team/(10257:10275): Esperando mensajes de broker...
+[INFO] 15:32:05:374 Team/(10257:10310): Procesando APPEARED...
+[ERROR] 15:32:05:375 Team/(10257:10310): No me interesa el pokemon Squirtle
+[INFO] 15:32:05:920 Team/(10257:10275): Recibido un mensaje de broker
+[INFO] 15:32:05:920 Team/(10257:10275): Esperando mensajes de broker...
+[INFO] 15:32:05:926 Team/(10257:10314): Procesando APPEARED...
+[DEBUG] 15:32:05:930 Team/(10257:10314): El pokemon esta en nuestro objetivo
+[INFO] 15:32:05:930 Team/(10257:10314): Pokemon: Onix
+[INFO] 15:32:05:930 Team/(10257:10314): Mensaje recibido: APPEARED_POKEMON Onix 2 8.
+[ERROR] 15:32:05:931 Team/(10257:10262): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:32:05:931 Team/(10257:10261): Hurra, tengo algo en ready
+[ERROR] 15:32:05:931 Team/(10257:10262): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:32:05:931 Team/(10257:10260): El entrenador id: 2 se movio a la posicion [1,9]
+[DEBUG] 15:32:05:932 Team/(10257:10260): El entrenador id: 2 se movio a la posicion [1,8]
+[DEBUG] 15:32:05:933 Team/(10257:10260): El entrenador id: 2 se movio a la posicion [2,8]
+[DEBUG] 15:32:05:934 Team/(10257:10260): Enviando mensaje CATCH...
+[INFO] 15:32:06:437 Team/(10257:10275): Recibido un mensaje de broker
+[INFO] 15:32:06:438 Team/(10257:10275): Esperando mensajes de broker...
+[INFO] 15:32:06:438 Team/(10257:10319): Procesando APPEARED...
+[ERROR] 15:32:06:438 Team/(10257:10319): No me interesa el pokemon Gengar
+[INFO] 15:32:06:871 Team/(10257:10276): Recibido un mensaje de broker
+[INFO] 15:32:06:872 Team/(10257:10276): Esperando mensajes de broker...
+[INFO] 15:32:06:873 Team/(10257:10323): Procesando CAUGHT...
+[DEBUG] 15:32:06:874 Team/(10257:10323): Se recibio un CAUGHT valido
+[INFO] 15:32:06:874 Team/(10257:10323): El entrenador 0 capturo un Pikachu!
+[INFO] 15:32:06:874 Team/(10257:10323): Pokemones: 
+[INFO] 15:32:06:875 Team/(10257:10323): 	Squirtle
+[INFO] 15:32:06:875 Team/(10257:10323): 	Pikachu
+[INFO] 15:32:06:876 Team/(10257:10323): Objetivos: 
+[INFO] 15:32:06:876 Team/(10257:10323): 	Charmander
+[INFO] 15:32:06:876 Team/(10257:10323): 	Bulbasaur
+[INFO] 15:32:06:877 Team/(10257:10323): Estado Actual: 2
+[INFO] 15:32:06:877 Team/(10257:10323): Objetivos generales:
+[INFO] 15:32:06:878 Team/(10257:10323): 	Charmander
+[INFO] 15:32:06:878 Team/(10257:10323): 	Bulbasaur
+[INFO] 15:32:06:879 Team/(10257:10323): 	Onix
+[INFO] 15:32:06:880 Team/(10257:10323): 	Snorlax
+[INFO] 15:32:06:880 Team/(10257:10323): 	Raichu
+[INFO] 15:32:06:880 Team/(10257:10323): Posiciones pendientes: 
+[INFO] 15:32:06:880 Team/(10257:10323): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:32:07:504 Team/(10257:10275): Recibido un mensaje de broker
+[INFO] 15:32:07:505 Team/(10257:10275): Esperando mensajes de broker...
+[INFO] 15:32:07:507 Team/(10257:10326): Procesando APPEARED...
+[DEBUG] 15:32:07:507 Team/(10257:10326): El pokemon esta en nuestro objetivo
+[INFO] 15:32:07:507 Team/(10257:10326): Pokemon: Charmander
+[INFO] 15:32:07:508 Team/(10257:10326): Mensaje recibido: APPEARED_POKEMON Charmander 5 5.
+[ERROR] 15:32:07:508 Team/(10257:10262): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:32:07:508 Team/(10257:10261): Hurra, tengo algo en ready
+[ERROR] 15:32:07:508 Team/(10257:10262): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:32:07:508 Team/(10257:10259): El entrenador id: 1 se movio a la posicion [1,5]
+[DEBUG] 15:32:07:509 Team/(10257:10259): El entrenador id: 1 se movio a la posicion [2,5]
+[DEBUG] 15:32:07:509 Team/(10257:10259): El entrenador id: 1 se movio a la posicion [3,5]
+[DEBUG] 15:32:07:509 Team/(10257:10259): El entrenador id: 1 se movio a la posicion [4,5]
+[DEBUG] 15:32:07:510 Team/(10257:10259): El entrenador id: 1 se movio a la posicion [5,5]
+[DEBUG] 15:32:07:510 Team/(10257:10259): Enviando mensaje CATCH...
+[INFO] 15:32:07:951 Team/(10257:10276): Recibido un mensaje de broker
+[INFO] 15:32:07:951 Team/(10257:10276): Esperando mensajes de broker...
+[INFO] 15:32:07:952 Team/(10257:10333): Procesando CAUGHT...
+[DEBUG] 15:32:07:953 Team/(10257:10333): Se recibio un CAUGHT valido
+[INFO] 15:32:07:953 Team/(10257:10333): El entrenador 2 capturo un Onix!
+[INFO] 15:32:07:953 Team/(10257:10333): Pokemones: 
+[INFO] 15:32:07:953 Team/(10257:10333): 	Onix
+[INFO] 15:32:07:953 Team/(10257:10333): Objetivos: 
+[INFO] 15:32:07:953 Team/(10257:10333): 	Pikachu
+[INFO] 15:32:07:954 Team/(10257:10333): 	Raichu
+[INFO] 15:32:07:954 Team/(10257:10333): Estado Actual: 2
+[INFO] 15:32:07:955 Team/(10257:10333): Objetivos generales:
+[INFO] 15:32:07:955 Team/(10257:10333): 	Charmander
+[INFO] 15:32:07:955 Team/(10257:10333): 	Bulbasaur
+[INFO] 15:32:07:955 Team/(10257:10333): 	Snorlax
+[INFO] 15:32:07:955 Team/(10257:10333): 	Raichu
+[INFO] 15:32:07:956 Team/(10257:10333): Posiciones pendientes: 
+[INFO] 15:32:07:956 Team/(10257:10333): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:32:08:32 Team/(10257:10275): Recibido un mensaje de broker
+[INFO] 15:32:08:32 Team/(10257:10275): Esperando mensajes de broker...
+[INFO] 15:32:08:36 Team/(10257:10334): Procesando APPEARED...
+[DEBUG] 15:32:08:37 Team/(10257:10334): El pokemon esta en nuestro objetivo
+[INFO] 15:32:08:37 Team/(10257:10334): Pokemon: Bulbasaur
+[INFO] 15:32:08:37 Team/(10257:10334): Mensaje recibido: APPEARED_POKEMON Bulbasaur 5 5.
+[ERROR] 15:32:08:37 Team/(10257:10262): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:32:08:37 Team/(10257:10261): Hurra, tengo algo en ready
+[ERROR] 15:32:08:37 Team/(10257:10262): Entrando al semaforo de posiciones pendientes
+[DEBUG] 15:32:08:37 Team/(10257:10260): El entrenador id: 2 se movio a la posicion [3,8]
+[DEBUG] 15:32:08:38 Team/(10257:10260): El entrenador id: 2 se movio a la posicion [3,7]
+[DEBUG] 15:32:08:39 Team/(10257:10260): El entrenador id: 2 se movio a la posicion [4,7]
+[DEBUG] 15:32:08:40 Team/(10257:10260): El entrenador id: 2 se movio a la posicion [4,6]
+[DEBUG] 15:32:08:41 Team/(10257:10260): El entrenador id: 2 se movio a la posicion [5,6]
+[DEBUG] 15:32:08:43 Team/(10257:10260): El entrenador id: 2 se movio a la posicion [5,5]
+[DEBUG] 15:32:08:44 Team/(10257:10260): Enviando mensaje CATCH...
+[INFO] 15:32:08:570 Team/(10257:10275): Recibido un mensaje de broker
+[INFO] 15:32:08:570 Team/(10257:10275): Esperando mensajes de broker...
+[INFO] 15:32:08:573 Team/(10257:10336): Procesando APPEARED...
+[DEBUG] 15:32:08:573 Team/(10257:10336): El pokemon esta en nuestro objetivo
+[INFO] 15:32:08:574 Team/(10257:10336): Pokemon: Snorlax
+[INFO] 15:32:08:574 Team/(10257:10336): Mensaje recibido: APPEARED_POKEMON Snorlax 5 5.
+[ERROR] 15:32:08:575 Team/(10257:10262): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:32:08:575 Team/(10257:10261): Hurra, tengo algo en ready
+[DEBUG] 15:32:08:575 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [8,9]
+[DEBUG] 15:32:08:575 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [8,8]
+[DEBUG] 15:32:08:576 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [7,8]
+[DEBUG] 15:32:08:576 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [7,7]
+[DEBUG] 15:32:08:577 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [6,7]
+[DEBUG] 15:32:08:577 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [6,6]
+[DEBUG] 15:32:08:582 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [5,6]
+[DEBUG] 15:32:08:586 Team/(10257:10258): El entrenador id: 0 se movio a la posicion [5,5]
+[DEBUG] 15:32:08:587 Team/(10257:10258): Enviando mensaje CATCH...
+[INFO] 15:32:08:973 Team/(10257:10275): Recibido un mensaje de broker
+[INFO] 15:32:08:973 Team/(10257:10275): Esperando mensajes de broker...
+[INFO] 15:32:08:974 Team/(10257:10338): Procesando APPEARED...
+[ERROR] 15:32:08:974 Team/(10257:10338): No me interesa el pokemon Squirtle
+[INFO] 15:32:09:113 Team/(10257:10275): Recibido un mensaje de broker
+[INFO] 15:32:09:113 Team/(10257:10275): Esperando mensajes de broker...
+[INFO] 15:32:09:115 Team/(10257:10339): Procesando APPEARED...
+[DEBUG] 15:32:09:115 Team/(10257:10339): El pokemon esta en nuestro objetivo
+[INFO] 15:32:09:115 Team/(10257:10339): Pokemon: Raichu
+[INFO] 15:32:09:115 Team/(10257:10339): Mensaje recibido: APPEARED_POKEMON Raichu 5 5.
+[INFO] 15:32:09:526 Team/(10257:10276): Recibido un mensaje de broker
+[INFO] 15:32:09:526 Team/(10257:10276): Esperando mensajes de broker...
+[INFO] 15:32:09:531 Team/(10257:10340): Procesando CAUGHT...
+[DEBUG] 15:32:09:531 Team/(10257:10340): Se recibio un CAUGHT valido
+[INFO] 15:32:09:532 Team/(10257:10340): El entrenador 1 capturo un Charmander!
+[INFO] 15:32:09:532 Team/(10257:10340): Pokemones: 
+[INFO] 15:32:09:533 Team/(10257:10340): 	Charmander
+[INFO] 15:32:09:536 Team/(10257:10340): Objetivos: 
+[INFO] 15:32:09:536 Team/(10257:10340): 	Onix
+[INFO] 15:32:09:537 Team/(10257:10340): 	Snorlax
+[INFO] 15:32:09:537 Team/(10257:10340): Estado Actual: 2
+[INFO] 15:32:09:537 Team/(10257:10340): Objetivos generales:
+[INFO] 15:32:09:537 Team/(10257:10340): 	Bulbasaur
+[INFO] 15:32:09:538 Team/(10257:10340): 	Snorlax
+[INFO] 15:32:09:538 Team/(10257:10340): 	Raichu
+[INFO] 15:32:09:538 Team/(10257:10340): Posiciones pendientes: 
+[INFO] 15:32:09:538 Team/(10257:10340): Raichu
+[INFO] 15:32:09:538 Team/(10257:10340): 5-5
+[ERROR] 15:32:09:538 Team/(10257:10262): Entrando al semaforo de posiciones pendientes
+[ERROR] 15:32:09:539 Team/(10257:10262): Entrando al semaforo de entrenadores disponibles
+[DEBUG] 15:32:09:539 Team/(10257:10261): Hurra, tengo algo en ready
+[DEBUG] 15:32:09:539 Team/(10257:10259): Enviando mensaje CATCH...
+[INFO] 15:32:09:543 Team/(10257:10340): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:32:10:61 Team/(10257:10276): Recibido un mensaje de broker
+[INFO] 15:32:10:61 Team/(10257:10276): Esperando mensajes de broker...
+[INFO] 15:32:10:63 Team/(10257:10342): Procesando CAUGHT...
+[DEBUG] 15:32:10:63 Team/(10257:10342): Se recibio un CAUGHT valido
+[INFO] 15:32:10:64 Team/(10257:10342): El entrenador 2 capturo un Bulbasaur!
+[INFO] 15:32:10:64 Team/(10257:10342): Pokemones: 
+[INFO] 15:32:10:64 Team/(10257:10342): 	Onix
+[INFO] 15:32:10:65 Team/(10257:10342): 	Bulbasaur
+[INFO] 15:32:10:65 Team/(10257:10342): Objetivos: 
+[INFO] 15:32:10:66 Team/(10257:10342): 	Pikachu
+[INFO] 15:32:10:66 Team/(10257:10342): 	Raichu
+[INFO] 15:32:10:67 Team/(10257:10342): Estado Actual: 2
+[INFO] 15:32:10:67 Team/(10257:10342): Objetivos generales:
+[INFO] 15:32:10:68 Team/(10257:10342): 	Snorlax
+[INFO] 15:32:10:70 Team/(10257:10342): 	Raichu
+[INFO] 15:32:10:70 Team/(10257:10342): Posiciones pendientes: 
+[INFO] 15:32:10:71 Team/(10257:10342): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:32:10:610 Team/(10257:10276): Recibido un mensaje de broker
+[INFO] 15:32:10:611 Team/(10257:10276): Esperando mensajes de broker...
+[INFO] 15:32:10:612 Team/(10257:10343): Procesando CAUGHT...
+[DEBUG] 15:32:10:613 Team/(10257:10343): Se recibio un CAUGHT valido
+[INFO] 15:32:10:613 Team/(10257:10343): El entrenador 0 capturo un Snorlax!
+[INFO] 15:32:10:613 Team/(10257:10343): Pokemones: 
+[INFO] 15:32:10:614 Team/(10257:10343): 	Squirtle
+[INFO] 15:32:10:614 Team/(10257:10343): 	Pikachu
+[INFO] 15:32:10:623 Team/(10257:10343): 	Snorlax
+[INFO] 15:32:10:623 Team/(10257:10343): Objetivos: 
+[INFO] 15:32:10:623 Team/(10257:10343): 	Charmander
+[INFO] 15:32:10:623 Team/(10257:10343): 	Bulbasaur
+[INFO] 15:32:10:623 Team/(10257:10343): Estado Actual: 2
+[INFO] 15:32:10:623 Team/(10257:10343): Objetivos generales:
+[INFO] 15:32:10:623 Team/(10257:10343): 	Raichu
+[INFO] 15:32:10:623 Team/(10257:10343): Posiciones pendientes: 
+[INFO] 15:32:10:624 Team/(10257:10343): Mensaje recibido: CAUGHT_POKEMON OK
+[INFO] 15:32:11:560 Team/(10257:10276): Recibido un mensaje de broker
+[INFO] 15:32:11:560 Team/(10257:10276): Esperando mensajes de broker...
+[INFO] 15:32:11:574 Team/(10257:10344): Procesando CAUGHT...
+[DEBUG] 15:32:11:574 Team/(10257:10344): Se recibio un CAUGHT valido
+[INFO] 15:32:11:575 Team/(10257:10344): El entrenador 1 capturo un Raichu!
+[INFO] 15:32:11:575 Team/(10257:10344): Pokemones: 
+[INFO] 15:32:11:575 Team/(10257:10344): 	Charmander
+[INFO] 15:32:11:575 Team/(10257:10344): 	Raichu
+[INFO] 15:32:11:575 Team/(10257:10344): Objetivos: 
+[INFO] 15:32:11:575 Team/(10257:10344): 	Onix
+[INFO] 15:32:11:575 Team/(10257:10344): 	Snorlax
+[INFO] 15:32:11:575 Team/(10257:10344): Estado Actual: 2
+[INFO] 15:32:11:575 Team/(10257:10344): Objetivos generales:
+[INFO] 15:32:11:575 Team/(10257:10344): Posiciones pendientes: 
+[DEBUG] 15:32:11:575 Team/(10257:10344): Se comienza el analisis de deadlock
+[INFO] 15:32:11:576 Team/(10257:10344): Estado final de los entrenadores:
+[INFO] 15:32:11:576 Team/(10257:10344): Entrenador id: 0
+[INFO] 15:32:11:576 Team/(10257:10344):   Objetivos Originales:
+[INFO] 15:32:11:576 Team/(10257:10344): 	Charmander
+[INFO] 15:32:11:576 Team/(10257:10344): 	Bulbasaur
+[INFO] 15:32:11:576 Team/(10257:10344): 	Squirtle
+[INFO] 15:32:11:576 Team/(10257:10344):   Pokemones:
+[INFO] 15:32:11:576 Team/(10257:10344): 	Squirtle
+[INFO] 15:32:11:576 Team/(10257:10344): 	Pikachu
+[INFO] 15:32:11:576 Team/(10257:10344): 	Snorlax
+[INFO] 15:32:11:576 Team/(10257:10344): Entrenador id: 1
+[INFO] 15:32:11:576 Team/(10257:10344):   Objetivos Originales:
+[INFO] 15:32:11:576 Team/(10257:10344): 	Onix
+[INFO] 15:32:11:577 Team/(10257:10344): 	Snorlax
+[INFO] 15:32:11:577 Team/(10257:10344):   Pokemones:
+[INFO] 15:32:11:577 Team/(10257:10344): 	Charmander
+[INFO] 15:32:11:577 Team/(10257:10344): 	Raichu
+[INFO] 15:32:11:577 Team/(10257:10344): Entrenador id: 2
+[INFO] 15:32:11:577 Team/(10257:10344):   Objetivos Originales:
+[INFO] 15:32:11:577 Team/(10257:10344): 	Pikachu
+[INFO] 15:32:11:577 Team/(10257:10344): 	Raichu
+[INFO] 15:32:11:577 Team/(10257:10344):   Pokemones:
+[INFO] 15:32:11:577 Team/(10257:10344): 	Onix
+[INFO] 15:32:11:577 Team/(10257:10344): 	Bulbasaur
+[INFO] 15:32:11:582 Team/(10257:10344): Entrenador id: 0
+[INFO] 15:32:11:582 Team/(10257:10344): Objetivos:
+[INFO] 15:32:11:583 Team/(10257:10344): 	Charmander
+[INFO] 15:32:11:583 Team/(10257:10344): 	Bulbasaur
+[INFO] 15:32:11:583 Team/(10257:10344): 	Squirtle
+[INFO] 15:32:11:584 Team/(10257:10344): Pokemones:
+[INFO] 15:32:11:584 Team/(10257:10344): 	Squirtle
+[INFO] 15:32:11:584 Team/(10257:10344): 	Pikachu
+[INFO] 15:32:11:584 Team/(10257:10344): 	Snorlax
+[INFO] 15:32:11:584 Team/(10257:10344): Pokemones no requeridos:
+[INFO] 15:32:11:584 Team/(10257:10344): 	Pikachu
+[INFO] 15:32:11:584 Team/(10257:10344): 	Snorlax
+[INFO] 15:32:11:584 Team/(10257:10344): Entrenador id: 1
+[INFO] 15:32:11:584 Team/(10257:10344): Objetivos:
+[INFO] 15:32:11:584 Team/(10257:10344): 	Onix
+[INFO] 15:32:11:584 Team/(10257:10344): 	Snorlax
+[INFO] 15:32:11:584 Team/(10257:10344): Pokemones:
+[INFO] 15:32:11:584 Team/(10257:10344): 	Charmander
+[INFO] 15:32:11:585 Team/(10257:10344): 	Raichu
+[INFO] 15:32:11:585 Team/(10257:10344): Pokemones no requeridos:
+[INFO] 15:32:11:585 Team/(10257:10344): 	Charmander
+[INFO] 15:32:11:585 Team/(10257:10344): 	Raichu
+[DEBUG] 15:32:11:585 Team/(10257:10344): Pokemon a intercambiar del entrenador 0: Pikachu
+[DEBUG] 15:32:11:585 Team/(10257:10344): Pokemon a intercambiar del entrenador 1: Charmander
+[DEBUG] 15:32:11:585 Team/(10257:10261): Hurra, tengo algo en ready
+[DEBUG] 15:32:11:585 Team/(10257:10258): Estoy intercambiando el pokemon Pikachu por Charmander
+[DEBUG] 15:32:11:586 Team/(10257:10258): Se finalizo el intercambio entre el entrenador 0 y el entrenador 1
+[INFO] 15:32:11:586 Team/(10257:10344): Entrenador id: 0
+[INFO] 15:32:11:586 Team/(10257:10344): Objetivos:
+[INFO] 15:32:11:586 Team/(10257:10344): 	Charmander
+[INFO] 15:32:11:587 Team/(10257:10344): 	Bulbasaur
+[INFO] 15:32:11:587 Team/(10257:10344): 	Squirtle
+[INFO] 15:32:11:587 Team/(10257:10344): Pokemones:
+[INFO] 15:32:11:587 Team/(10257:10344): 	Squirtle
+[INFO] 15:32:11:587 Team/(10257:10344): 	Snorlax
+[INFO] 15:32:11:587 Team/(10257:10344): 	Charmander
+[INFO] 15:32:11:587 Team/(10257:10344): Pokemones no requeridos:
+[INFO] 15:32:11:587 Team/(10257:10344): 	Snorlax
+[INFO] 15:32:11:595 Team/(10257:10344): Entrenador id: 2
+[INFO] 15:32:11:595 Team/(10257:10344): Objetivos:
+[INFO] 15:32:11:595 Team/(10257:10344): 	Pikachu
+[INFO] 15:32:11:595 Team/(10257:10344): 	Raichu
+[INFO] 15:32:11:595 Team/(10257:10344): Pokemones:
+[INFO] 15:32:11:595 Team/(10257:10344): 	Onix
+[INFO] 15:32:11:595 Team/(10257:10344): 	Bulbasaur
+[INFO] 15:32:11:595 Team/(10257:10344): Pokemones no requeridos:
+[INFO] 15:32:11:595 Team/(10257:10344): 	Onix
+[INFO] 15:32:11:595 Team/(10257:10344): 	Bulbasaur
+[DEBUG] 15:32:11:595 Team/(10257:10344): Pokemon a intercambiar del entrenador 0: Snorlax
+[DEBUG] 15:32:11:595 Team/(10257:10344): Pokemon a intercambiar del entrenador 2: Bulbasaur
+[DEBUG] 15:32:11:596 Team/(10257:10261): Hurra, tengo algo en ready
+[DEBUG] 15:32:11:596 Team/(10257:10258): Estoy intercambiando el pokemon Snorlax por Bulbasaur
+[DEBUG] 15:32:11:596 Team/(10257:10258): Se finalizo el intercambio entre el entrenador 0 y el entrenador 2
+[INFO] 15:32:11:596 Team/(10257:10344): Entrenador id: 1
+[INFO] 15:32:11:596 Team/(10257:10344): Objetivos:
+[INFO] 15:32:11:596 Team/(10257:10344): 	Onix
+[INFO] 15:32:11:596 Team/(10257:10344): 	Snorlax
+[INFO] 15:32:11:596 Team/(10257:10344): Pokemones:
+[INFO] 15:32:11:596 Team/(10257:10344): 	Raichu
+[INFO] 15:32:11:597 Team/(10257:10344): 	Pikachu
+[INFO] 15:32:11:597 Team/(10257:10344): Pokemones no requeridos:
+[INFO] 15:32:11:600 Team/(10257:10344): 	Raichu
+[INFO] 15:32:11:600 Team/(10257:10344): 	Pikachu
+[INFO] 15:32:11:600 Team/(10257:10344): Entrenador id: 2
+[INFO] 15:32:11:600 Team/(10257:10344): Objetivos:
+[INFO] 15:32:11:600 Team/(10257:10344): 	Pikachu
+[INFO] 15:32:11:600 Team/(10257:10344): 	Raichu
+[INFO] 15:32:11:600 Team/(10257:10344): Pokemones:
+[INFO] 15:32:11:600 Team/(10257:10344): 	Onix
+[INFO] 15:32:11:600 Team/(10257:10344): 	Snorlax
+[INFO] 15:32:11:600 Team/(10257:10344): Pokemones no requeridos:
+[INFO] 15:32:11:600 Team/(10257:10344): 	Onix
+[INFO] 15:32:11:600 Team/(10257:10344): 	Snorlax
+[DEBUG] 15:32:11:601 Team/(10257:10344): Pokemon a intercambiar del entrenador 1: Raichu
+[DEBUG] 15:32:11:601 Team/(10257:10344): Pokemon a intercambiar del entrenador 2: Onix
+[DEBUG] 15:32:11:601 Team/(10257:10261): Hurra, tengo algo en ready
+[DEBUG] 15:32:11:601 Team/(10257:10259): Estoy intercambiando el pokemon Raichu por Onix
+[DEBUG] 15:32:11:602 Team/(10257:10259): Se finalizo el intercambio entre el entrenador 1 y el entrenador 2
+[INFO] 15:32:11:602 Team/(10257:10344): Entrenador id: 1
+[INFO] 15:32:11:602 Team/(10257:10344): Objetivos:
+[INFO] 15:32:11:602 Team/(10257:10344): 	Onix
+[INFO] 15:32:11:602 Team/(10257:10344): 	Snorlax
+[INFO] 15:32:11:602 Team/(10257:10344): Pokemones:
+[INFO] 15:32:11:602 Team/(10257:10344): 	Pikachu
+[INFO] 15:32:11:602 Team/(10257:10344): 	Onix
+[INFO] 15:32:11:602 Team/(10257:10344): Pokemones no requeridos:
+[INFO] 15:32:11:602 Team/(10257:10344): 	Pikachu
+[INFO] 15:32:11:602 Team/(10257:10344): Entrenador id: 2
+[INFO] 15:32:11:602 Team/(10257:10344): Objetivos:
+[INFO] 15:32:11:602 Team/(10257:10344): 	Pikachu
+[INFO] 15:32:11:602 Team/(10257:10344): 	Raichu
+[INFO] 15:32:11:602 Team/(10257:10344): Pokemones:
+[INFO] 15:32:11:602 Team/(10257:10344): 	Snorlax
+[INFO] 15:32:11:602 Team/(10257:10344): 	Raichu
+[INFO] 15:32:11:602 Team/(10257:10344): Pokemones no requeridos:
+[INFO] 15:32:11:602 Team/(10257:10344): 	Snorlax
+[DEBUG] 15:32:11:603 Team/(10257:10344): Pokemon a intercambiar del entrenador 1: Pikachu
+[DEBUG] 15:32:11:603 Team/(10257:10344): Pokemon a intercambiar del entrenador 2: Snorlax
+[DEBUG] 15:32:11:603 Team/(10257:10261): Hurra, tengo algo en ready
+[DEBUG] 15:32:11:603 Team/(10257:10259): Estoy intercambiando el pokemon Pikachu por Snorlax
+[DEBUG] 15:32:11:603 Team/(10257:10259): Se finalizo el intercambio entre el entrenador 1 y el entrenador 2
+[DEBUG] 15:32:11:603 Team/(10257:10344): Se termino la resolucion de deadlocks
+[DEBUG] 15:32:11:603 Team/(10257:10261): Se cumplieron los objetivos, finaliza el Planificador
+[INFO] 15:32:11:603 Team/(10257:10257): Estado final de los entrenadores:
+[INFO] 15:32:11:603 Team/(10257:10257): Entrenador id: 0
+[INFO] 15:32:11:603 Team/(10257:10257):   Objetivos Originales:
+[INFO] 15:32:11:603 Team/(10257:10257): 	Charmander
+[INFO] 15:32:11:603 Team/(10257:10257): 	Bulbasaur
+[INFO] 15:32:11:603 Team/(10257:10257): 	Squirtle
+[INFO] 15:32:11:603 Team/(10257:10257):   Pokemones:
+[INFO] 15:32:11:603 Team/(10257:10257): 	Squirtle
+[INFO] 15:32:11:603 Team/(10257:10257): 	Charmander
+[INFO] 15:32:11:603 Team/(10257:10257): 	Bulbasaur
+[INFO] 15:32:11:603 Team/(10257:10257): Entrenador id: 1
+[INFO] 15:32:11:603 Team/(10257:10257):   Objetivos Originales:
+[INFO] 15:32:11:603 Team/(10257:10257): 	Onix
+[INFO] 15:32:11:603 Team/(10257:10257): 	Snorlax
+[INFO] 15:32:11:603 Team/(10257:10257):   Pokemones:
+[INFO] 15:32:11:603 Team/(10257:10257): 	Onix
+[INFO] 15:32:11:603 Team/(10257:10257): 	Snorlax
+[INFO] 15:32:11:603 Team/(10257:10257): Entrenador id: 2
+[INFO] 15:32:11:604 Team/(10257:10257):   Objetivos Originales:
+[INFO] 15:32:11:604 Team/(10257:10257): 	Pikachu
+[INFO] 15:32:11:604 Team/(10257:10257): 	Raichu
+[INFO] 15:32:11:604 Team/(10257:10257):   Pokemones:
+[INFO] 15:32:11:604 Team/(10257:10257): 	Raichu
+[INFO] 15:32:11:604 Team/(10257:10257): 	Pikachu
+[INFO] 15:32:11:604 Team/(10257:10257): Finalizó la conexión con el servidor
+
+[INFO] 15:32:11:605 Team/(10257:10257): El proceso Team ha finalizado.
+[INFO] 15:32:11:605 Team/(10257:10257): Ciclos de CPU totales = 59
+[INFO] 15:32:11:605 Team/(10257:10257): Cambios de contexto realizados = 18
+[INFO] 15:32:11:605 Team/(10257:10257): Deadlocks detectados y resueltos = 4

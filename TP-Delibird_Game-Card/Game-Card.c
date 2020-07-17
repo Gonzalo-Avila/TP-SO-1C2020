@@ -3,7 +3,9 @@
 void inicializarVariablesGlobales() {
 
 	config = config_create("gamecard.config");
-	logger = log_create("gamecard_logs_oficial", "GameCard", 1, LOG_LEVEL_TRACE);
+
+	int imprimirPorConsolaLogOficial = config_get_int_value(config,"PRINT_OFICIAL");
+	logger = log_create("gamecard_logs_oficial", "GameCard", imprimirPorConsolaLogOficial, LOG_LEVEL_TRACE);
 
 	ipServidor = malloc(strlen(config_get_string_value(config, "IP_BROKER")) + 1);
 	strcpy(ipServidor, config_get_string_value(config, "IP_BROKER"));
@@ -18,7 +20,10 @@ void inicializarVariablesGlobales() {
 
 	semaforosPokemon = list_create();
 
+
 	sem_init(&mutexListaDeSemaforos,0,1);
+	sem_init(&mutexBitmap, 0, 1);
+	sem_init(&archivoConsumiendoBloques, 0, 1);
 
 	idProceso = -1;
 	statusConexionBroker = 0;
@@ -63,6 +68,7 @@ char * aniadirBloqueAVectorString(int numeroBloque, char ** bloquesActuales) {
 
 void asignarBloquesAArchivo(char * rutaMetadataArchivo, int cantidadDeBloques, t_config * metadataArchivo) {
 
+	sem_wait(&mutexBitmap);
 	for (int i = 0; i < cantidadDeBloques; i++) {
 
 		int indexBloqueLibre = buscarBloqueLibre();
@@ -75,6 +81,7 @@ void asignarBloquesAArchivo(char * rutaMetadataArchivo, int cantidadDeBloques, t
 		free(cadenaAGuardar);
 		liberarStringSplitteado(bloquesActuales);
 	}
+	sem_post(&mutexBitmap);
 	config_save(metadataArchivo);
 }
 
@@ -85,6 +92,7 @@ void desasignarBloquesAArchivo(t_config * metadataArchivo, int cantidadDeBloques
 	int cantidadDeBloquesFinal = cantidadDeBloquesAsignadaInicialmente - cantidadDeBloquesAQuitar;
 	char ** bloquesActuales = config_get_array_value(metadataArchivo,"BLOCKS");	  //["1","2","3","7","9","8"]
 
+	sem_wait(&mutexBitmap);
 	for (int i = 0; i < cantidadDeBloquesAQuitar; i++) {
 
 		numeroDeBloqueActual=atoi(bloquesActuales[index]);
@@ -93,6 +101,7 @@ void desasignarBloquesAArchivo(t_config * metadataArchivo, int cantidadDeBloques
 		index--;
 
 	}
+	sem_post(&mutexBitmap);
 
 	char * bloquesAGuardar = string_new();
 	string_append(&bloquesAGuardar,"[");
@@ -136,11 +145,13 @@ int obtenerCantidadDeBloquesAsignados(char* rutaMetadata) {
 
 int obtenerCantidadDeBloquesLibres() {
 	int cantidadDeBloquesLibres = 0;
+	sem_wait(&mutexBitmap);
 	for (int i = 0; i < cantidadDeBloques; i++) {
 		if (!bitarray_test_bit(bitarrayBloques, i)) {
 			cantidadDeBloquesLibres++;
 		}
 	}
+	sem_post(&mutexBitmap);
 	return cantidadDeBloquesLibres;
 }
 
