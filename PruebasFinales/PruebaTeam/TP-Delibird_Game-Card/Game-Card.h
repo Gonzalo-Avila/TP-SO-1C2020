@@ -47,6 +47,8 @@ char * bitmap;
 t_list * semaforosPokemon;
 
 sem_t mutexListaDeSemaforos;
+sem_t mutexBitmap;
+sem_t archivoConsumiendoBloques;
 
 typedef struct{
 sem_t mutex;

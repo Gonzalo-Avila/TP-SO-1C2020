@@ -122,7 +122,7 @@ void esperarMensajesBroker(int* socketSuscripcion) {
 		switch (mensaje->colaEmisora) {
 		case NEW: {
 			//Procesar mensaje NEW
-			log_debug(logger, "Mensaje de la cola: NEW_POKEMON");
+			log_info(logger, "Mensaje de la cola: NEW_POKEMON");
 			pthread_create(&atencionDeMensaje, NULL, (void *)procesarNEW,mensaje);
 			pthread_detach(atencionDeMensaje);
 			//procesarNEW(mensaje);
@@ -130,7 +130,7 @@ void esperarMensajesBroker(int* socketSuscripcion) {
 		}
 		case GET: {
 			//Procesar mensaje GET
-			log_debug(logger, "Mensaje de la cola: GET_POKEMON");
+			log_info(logger, "Mensaje de la cola: GET_POKEMON");
 			pthread_create(&atencionDeMensaje, NULL, (void *)procesarGET,mensaje);
 			pthread_detach(atencionDeMensaje);
 			//procesarGET(mensaje);
@@ -138,7 +138,7 @@ void esperarMensajesBroker(int* socketSuscripcion) {
 		}
 		case CATCH: {
 			//Procesar mensaje CATCH
-			log_debug(logger, "Mensaje de la cola: CATCH_POKEMON");
+			log_info(logger, "Mensaje de la cola: CATCH_POKEMON");
 			pthread_create(&atencionDeMensaje, NULL, (void *)procesarCATCH,mensaje);
 			pthread_detach(atencionDeMensaje);
 			//procesarCATCH(mensaje);

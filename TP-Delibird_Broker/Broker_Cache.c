@@ -184,7 +184,7 @@ void asegurarQueHayaEspacio(int sizeMensaje) {
 		int i = 0;
 		while (!hayEspacioLibrePara(sizeMensaje)) {
 			registroParticion * particionLiberada = vaciarParticion();
-			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %p", particionLiberada->posInicialFisica);
+			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %d - %p",particionLiberada->posInicialLogica, particionLiberada->posInicialFisica);
 			if (list_size(registrosDeParticiones) > 1)
 				consolidar(particionLiberada, registrosDeParticiones);
 			if (hayEspacioLibrePara(sizeMensaje)) {
@@ -199,7 +199,7 @@ void asegurarQueHayaEspacio(int sizeMensaje) {
 	} else {
 		while (!hayEspacioLibrePara(sizeMensaje)) {
 			registroParticion * particionLiberada = vaciarParticion();
-			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %p", particionLiberada->posInicialFisica);
+			log_info(loggerOficial, "Se vació la partición cuya posición inicial de memoria es: %d - %p", particionLiberada->posInicialLogica,particionLiberada->posInicialFisica);
 			if (list_size(registrosDeParticiones) > 1)
 				consolidar(particionLiberada, registrosDeParticiones);
 		}

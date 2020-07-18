@@ -3,7 +3,7 @@
 
 void procesarGET(mensajeRecibido * mensajeRecibido) {
 
-	log_debug(logger, "Procesando mensaje GET...");
+	log_info(logger, "Procesando mensaje GET...");
 
 	mensajeGet * msgGet = desarmarMensajeGET(mensajeRecibido);
 
@@ -28,15 +28,18 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 
 	while(!operacionFinalizada){
 
+		sem_wait(mutexMetadata);
 		metadataPokemon=config_create(rutaMetadataPokemon);
 		if (existeElArchivo(rutaMetadataPokemon)) {
 
-			log_info(logger, "Existe %s", msgGet->pokemon);
+			log_info(logger,"Intentando abrir archivo del pokemon %s...", msgGet->pokemon);
 			if (strcmp(config_get_string_value(metadataPokemon, "OPEN"), "N") == 0) {
 
 				config_set_value(metadataPokemon, "OPEN", "Y");
 				config_save(metadataPokemon);
 				sem_post(mutexMetadata);
+
+				log_info(logger,"Se accedió al archivo del pokemon %s...", msgGet->pokemon);
 
 				char * archivoMappeado = mapearArchivo(rutaMetadataPokemon, metadataPokemon);
 
@@ -50,7 +53,7 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 					char** posicionCantidad = string_split(entradaActual, "=");	//["5-4", "3", NULL]
 					char* posicion = posicionCantidad[0];						// "5-4"
 
-					log_debug(logger, "Posicion encontrada: %s", posicion);
+					log_info(logger, "Posicion encontrada: %s", posicion);
 
 					char** posSplitteada = string_split(posicion, "-");			//["5", "4", NULL]
 
@@ -71,16 +74,18 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 				liberarStringSplitteado(arrayDeEntradas);
 
 				config_set_value(metadataPokemon, "OPEN", "N");
+				log_info(logger,"Cerrando el archivo del pokemon %s...",msgGet->pokemon);
 				sleep(tiempoDeRetardo);
 
 				sem_wait(mutexMetadata);
 				config_save(metadataPokemon);
+				log_info(logger,"Se cerró el archivo del pokemon %s",msgGet->pokemon);
 				sem_post(mutexMetadata);
 
 				mensajeLocalized * msgLoc = armarMensajeLocalized(msgGet, posicionesList);
 				int sizeMensaje = sizeof(uint32_t) + msgGet->longPokemon + sizeof(uint32_t) + list_size(posicionesList) * 2 * sizeof(uint32_t);
 
-				log_debug(logger, "Enviando LOCALIZED");
+				log_info(logger, "Enviando LOCALIZED");
 				enviarMensajeBroker(LOCALIZED, mensajeRecibido->idMensaje, sizeMensaje, msgLoc);
 
 				operacionFinalizada=true;
@@ -93,15 +98,18 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 				free(msgLoc);
 			}
 			else{
+				log_info(logger,"No se puede acceder al archivo del pokemon %s, está abierto por otro proceso. Esperando para reintentar...",msgGet->pokemon);
 				sem_post(mutexMetadata);
 				sleep(tiempoDeReintentoDeAcceso);
 			}
 			config_destroy(metadataPokemon);
 		}
 		else{
+			sem_post(mutexMetadata);
 			int sizeMensaje = sizeof(uint32_t) + msgGet->longPokemon + sizeof(uint32_t);
 			log_info(logger, "No existe el pokemon %s solicitado", msgGet->pokemon);
 			mensajeLocalized * msgLoc = armarMensajeLocalized(msgGet, posicionesList);
+			log_info(logger, "Enviando LOCALIZED");
 			enviarMensajeBroker(LOCALIZED, mensajeRecibido->idMensaje, sizeMensaje, msgLoc);
 
 			free(msgLoc->pokemon);
@@ -111,7 +119,6 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 		}
 	}
 
-	log_debug(logger, "LOCALIZED enviado");
 	list_destroy_and_destroy_elements(posicionesList,(void *) destroyer);
 	free(rutaPokemon);
 	free(rutaMetadataPokemon);
@@ -119,6 +126,7 @@ void procesarGET(mensajeRecibido * mensajeRecibido) {
 	free(msgGet);
 	free(mensajeRecibido->mensaje);
 	free(mensajeRecibido);
+	log_info(logger, "Mensaje LOCALIZED procesado correctamente");
 
 }
 void destroyer(void * nodo){
