@@ -3,8 +3,11 @@
 
 void inicializarVariablesGlobales() {
 	config = config_create("broker.config");
-	logger = log_create("broker_logs", "Broker", 1, LOG_LEVEL_TRACE);
-	loggerOficial = log_create(config_get_string_value(config,"LOG_FILE"),"Delibird - Broker", 0, LOG_LEVEL_TRACE);
+	int imprimirPorConsolaLogOficial = config_get_int_value(config,"PRINT_OFICIAL");
+	int imprimirPorConsolaLogNoOficial = config_get_int_value(config,"PRINT_NO_OFICIAL");
+
+	logger = log_create("broker_logs", "Broker", imprimirPorConsolaLogNoOficial, LOG_LEVEL_TRACE);
+	loggerOficial = log_create(config_get_string_value(config,"LOG_FILE"),"Delibird - Broker", imprimirPorConsolaLogOficial, LOG_LEVEL_TRACE);
 
 	inicializarColasYListas();
 	inicializarCache();
@@ -134,12 +137,10 @@ void eliminarSuscriptor(t_list* listaSuscriptores, uint32_t clientID){
 
 void desuscribir(uint32_t clientID, cola colaSuscripcion) {
 
-	log_info(logger, "[DESUSCRIPCION]");
 	log_info(logger, "Se procedera a desuscribir de la cola %s al suscriptor con clientID: %d", getCodeStringByNum(colaSuscripcion),clientID);
 	int socketCliente = getSocketActualDelSuscriptor(clientID, colaSuscripcion);
 	close(socketCliente);
 	eliminarSuscriptor(getListaSuscriptoresByNum(colaSuscripcion), clientID);
-	log_info(logger, "[DESUSCRIPCION-END]");
 }
 
 

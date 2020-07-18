@@ -2,7 +2,7 @@
 
 
 void agregarAListaDeEnviados(uint32_t idMsg, uint32_t idProceso){
-	log_debug(logger, "agregarAListaDeEnviados para clientID %d y idMsg %d ", idProceso, idMsg);
+	log_info(logger, "Agregando ID de cliente %d a la lista de procesos a los que se envió el mensaje %d...", idProceso, idMsg);
     bool esElRegistroQueBusco(void * registro){
         registroCache * reg = (registroCache *) registro;
         return reg->idMensaje==idMsg;
@@ -18,17 +18,17 @@ void agregarAListaDeEnviados(uint32_t idMsg, uint32_t idProceso){
 		}
 		if(!list_any_satisfy(registroAActualizar->procesosALosQueSeEnvio,(void*) tieneElMismoID)){
 			list_add(registroAActualizar->procesosALosQueSeEnvio,idProcesoAAgregar);
-			log_debug(logger, "Se agrego a clientID %d lista de enviados de mensaje con id %d ", *idProcesoAAgregar, idMsg);
+			log_info(logger, "Se agregó el ID de cliente %d a la lista de procesos a los que se envió el mensaje %d", *idProcesoAAgregar, idMsg);
 		}else{
 			free(idProcesoAAgregar);
 		}
 	}else{
-		log_debug(logger, "No se encontro registro para agregarAListaDeEnviados: el mensaje no está en cache");
+		log_info(logger, "No se encontró el registro a actualizar: el mensaje %d no está en cache",idMsg);
 	}
 }
 
 void agregarAListaDeConfirmados(uint32_t idMsg, uint32_t idProceso){
-	log_debug(logger, "agregarAListaDeConfirmados para clientID %d y idMsg %d ", idProceso, idMsg);
+	log_info(logger,"Agregando ID de cliente %d y a la lista de procesos que confirmaron recepción del mensaje %d...", idProceso, idMsg);
     bool esElRegistroQueBusco(void * registro){
         registroCache * reg = (registroCache *) registro;
         return reg->idMensaje==idMsg;
@@ -38,9 +38,9 @@ void agregarAListaDeConfirmados(uint32_t idMsg, uint32_t idProceso){
 		uint32_t* idProcesoAAgregar = malloc(sizeof(uint32_t));
 		*idProcesoAAgregar=idProceso;
 		list_add(registroAActualizar->procesosQueConfirmaronRecepcion,idProcesoAAgregar);
-		log_debug(logger, "Se agrego a clientID %d lista de confirmados de mensaje con id %d ", *idProcesoAAgregar, idMsg);
+		log_info(logger, "Se agregó el ID de cliente %d a la lista de procesos que confirmaron recepción del mensaje %d", *idProcesoAAgregar, idMsg);
 	}else{
-		log_debug(logger, "No se encontro registro para agregarAListaDeConfirmados: el mensaje no está en cache");
+		log_info(logger, "No se encontró el registro a actualizar: el mensaje %d no está en cache",idMsg);
 	}
 }
 
@@ -55,14 +55,14 @@ void imprimirListasIDs(uint32_t idMsg){
 	int i = 1;
 	void imprimirElemento(void * elemento){
 		uint32_t* cid = (uint32_t*)elemento;
-		log_debug(logger, "Elemento #%d: %d", i, *cid);
+		log_info(logger, "Proceso numero %d: ID %d", i, *cid);
 		i++;
 	}
 	if(registroAActualizar!=NULL){
-		log_debug(logger, "procesosALosQueSeEnvio");
+		log_info(logger, "Procesos a los que se envió el mensaje %d:", idMsg);
 		list_iterate(registroAActualizar->procesosALosQueSeEnvio, imprimirElemento);
 		i = 1;
-		log_debug(logger, "procesosQueConfirmaronRecepcion");
+		log_info(logger, "Procesos que confirmaron recepción del mensaje %d:",idMsg);
 		list_iterate(registroAActualizar->procesosQueConfirmaronRecepcion, imprimirElemento);
 	}
 }
@@ -73,9 +73,9 @@ void enviarEstructuraMensajeASuscriptor(void* estMensaje) {
 	int estadoDeEnvio, socketDelSuscriptor;
 	uint32_t ack=0;
 
-	log_debug(logger, "Se está enviando un mensaje al suscriptor %d",estMsj->clientID);
-    log_debug(logger,"Se esta enviando el mensaje\nID: %d\nSuscriptor: %d\nID Correlativo: %d\nCola: %d\nSize: %d\nMensaje chorizeado: %s",
-    		estMsj->id, estMsj->clientID,estMsj->idCorrelativo,estMsj->colaMensajeria,estMsj->sizeMensaje,(char*)(estMsj->mensaje));
+	log_info(logger, "Se está enviando un mensaje al suscriptor %d",estMsj->clientID);
+	log_info(logger,"Se esta enviando el mensaje\nID: %d\nSuscriptor: %d\nID Correlativo: %d\nCola: %d\nSize: %d\n",
+    		estMsj->id, estMsj->clientID,estMsj->idCorrelativo,estMsj->colaMensajeria,estMsj->sizeMensaje);
 
     socketDelSuscriptor = getSocketActualDelSuscriptor(estMsj->clientID, estMsj->colaMensajeria);
 

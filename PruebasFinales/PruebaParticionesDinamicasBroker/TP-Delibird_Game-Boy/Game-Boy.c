@@ -3,8 +3,10 @@
 
 void inicializarVariablesGlobales() {
 	config = config_create("gameboy.config");
-	logger = log_create("gameboy_logs", "GameBoy", 1, LOG_LEVEL_TRACE);
-	loggerOficial = log_create("gameboy_logs_oficial", "Delibird - GameBoy",0,LOG_LEVEL_TRACE);
+	int imprimirPorConsolaLogOficial = config_get_int_value(config,"PRINT_OFICIAL");
+	int imprimirPorConsolaLogNoOficial = config_get_int_value(config,"PRINT_NO_OFICIAL");
+	logger = log_create("gameboy_logs", "GameBoy", imprimirPorConsolaLogNoOficial, LOG_LEVEL_TRACE);
+	loggerOficial = log_create("gameboy_logs_oficial", "Delibird - GameBoy",imprimirPorConsolaLogOficial,LOG_LEVEL_TRACE);
 }
 
 int conectarseADestino(proceso destino) {

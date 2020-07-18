@@ -2,7 +2,7 @@
 
 void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 
-	log_debug(logger, "Procesando mensaje CATCH...");
+	log_info(logger, "Procesando mensaje CATCH...");
 
 	mensajeCatch * msgCatch = desarmarMensajeCATCH(mensajeRecibido);
 
@@ -29,15 +29,18 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 	bool operacionFinalizada = false;
 	while(!operacionFinalizada){
 
+		sem_wait(mutexMetadata);
 		metadataPokemon=config_create(rutaMetadataPokemon);
 
 		if (existeElArchivo(rutaMetadataPokemon)) {
 
+			log_info(logger,"Intentando abrir archivo del pokemon %s...", msgCatch->pokemon);
 			if (strcmp(config_get_string_value(metadataPokemon, "OPEN"), "N") == 0) {
 
 				config_set_value(metadataPokemon, "OPEN", "Y");
 				config_save(metadataPokemon);
 				sem_post(mutexMetadata);
+				log_info(logger,"Se accedió al archivo del pokemon %s...", msgCatch->pokemon);
 
 				char * archivoMappeado = mapearArchivo(rutaMetadataPokemon,metadataPokemon);
 
@@ -87,42 +90,51 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 
 					int cantidadDeBloquesSobrantes = cantidadDeBloquesAsignadosActualmente - cantidadDeBloquesNecesariosParaSize(sizeAEscribir);
 					desasignarBloquesAArchivo(metadataPokemon,cantidadDeBloquesSobrantes,cantidadDeBloquesAsignadosActualmente);
-
+					log_info(logger,"Se quitaron %d bloques al pokemon %s", cantidadDeBloquesSobrantes, msgCatch->pokemon);
 					cantidadDeBloquesAsignadosActualmente=obtenerCantidadDeBloquesAsignados(rutaMetadataPokemon);
+					log_info(logger,"El pokemon %s tiene asignados %d bloques actualmente", msgCatch->pokemon, cantidadDeBloquesAsignadosActualmente);
 					if(cantidadDeBloquesAsignadosActualmente==0){
 						remove(rutaMetadataPokemon);
 						rmdir(rutaPokemon);
+						log_info(logger,"Se eliminó el Pokemon del Filesystem dado que no tenia contenido");
 					}
 					else{
+						log_info(logger,"Tamanio inicial del archivo: %d",config_get_int_value(metadataPokemon,"SIZE"));
 						escribirCadenaEnArchivo(rutaMetadataPokemon,aEscribirEnBloques);
 						char * tamanio = string_itoa(sizeAEscribir);
 						config_set_value(metadataPokemon,"SIZE",tamanio);
+						log_info(logger,"Tamanio final del archivo: %s", tamanio);
 						free(tamanio);
 					}
 
 					config_set_value(metadataPokemon, "OPEN", "N");
+					log_info(logger,"Cerrando el archivo del pokemon %s...",msgCatch->pokemon);
 					sleep(tiempoDeRetardo);
 
 					sem_wait(mutexMetadata);
 					config_save(metadataPokemon);
+					log_info(logger,"Se cerró el archivo del pokemon %s",msgCatch->pokemon);
 					sem_post(mutexMetadata);
 
 					mensajeCaught * msgCaught = armarMensajeCaught(OK);
 					enviarMensajeBroker(CAUGHT, mensajeRecibido->idMensaje,sizeMensaje, msgCaught);
+					log_info(logger, "Enviando CAUGHT (OK)");
 					free(msgCaught);
 					free(aEscribirEnBloques);
 				}
 				else{
+					log_info(logger, "No existe %s en la posicion requerida", msgCatch->pokemon);
 					config_set_value(metadataPokemon, "OPEN", "N");
+					log_info(logger,"Cerrando el archivo del pokemon %s...",msgCatch->pokemon);
 					sleep(tiempoDeRetardo);
 
 					sem_wait(mutexMetadata);
 					config_save(metadataPokemon);
+					log_info(logger,"Se cerró el archivo del pokemon %s",msgCatch->pokemon);
 					sem_post(mutexMetadata);
 
-					log_info(logger, "No existe %s en la posicion requerida", msgCatch->pokemon);
 					mensajeCaught * msgCaught = armarMensajeCaught(FAIL);
-					log_debug(logger, "Enviando CAUGHT");
+					log_info(logger, "Enviando CAUGHT (FAIL)");
 					enviarMensajeBroker(CAUGHT, mensajeRecibido->idMensaje,sizeMensaje, msgCaught);
 					free(msgCaught);
 				}
@@ -130,6 +142,7 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 				operacionFinalizada=true;
 			}
 			else{
+				log_info(logger,"No se puede acceder al archivo del pokemon %s, está abierto por otro proceso. Esperando para reintentar...",msgCatch->pokemon);
 				sem_post(mutexMetadata);
 				sleep(tiempoDeReintentoDeAcceso);
 			}
@@ -139,7 +152,7 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 			sem_post(mutexMetadata);
 			log_info(logger, "No existe el pokemon %s en el filesystem", msgCatch->pokemon);
 			mensajeCaught * msgCaught = armarMensajeCaught(FAIL);
-			log_debug(logger, "Enviando CAUGHT");
+			log_info(logger, "Enviando CAUGHT (FAIL)");
 			enviarMensajeBroker(CAUGHT, mensajeRecibido->idMensaje,sizeMensaje, msgCaught);
 			free(msgCaught);
 			operacionFinalizada=true;
@@ -153,7 +166,7 @@ void procesarCATCH(mensajeRecibido * mensajeRecibido) {
 	free(mensajeRecibido->mensaje);
 	free(mensajeRecibido);
 
-	log_debug(logger, "CAUGHT enviado");
+	log_info(logger, "Mensaje CAUGHT procesado correctamente");
 }
 
 mensajeCatch * desarmarMensajeCATCH(mensajeRecibido * mensajeRecibido) {
